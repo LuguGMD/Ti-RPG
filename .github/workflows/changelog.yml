@@ -1,0 +1,110 @@
+name: Changelog Generator
+# Executa quando há um Push na branch main (simulando um merge aceito)
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-changelog:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Passo 1: Baixa o repositório para a máquina virtual
+    - name: Code Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0 # Importante: '0' baixa todo o histórico de git, necessário para ler logs
+
+    # Passo 2: Script Python para processar os commits
+    - name: Generating Changelog
+      shell: python
+      env:
+        # Captura os IDs dos commits fornecidos pelo GitHub
+        BEFORE_SHA: ${{ github.event.before }}
+        CURRENT_SHA: ${{ github.sha }}
+      run: |
+        import os
+        import subprocess
+
+        # Pega as variáveis de ambiente
+        before = os.environ.get('BEFORE_SHA')
+        current = os.environ.get('CURRENT_SHA')
+
+        # Tratamento para o primeiro commit do repositório (caso raro)
+        if not before or '00000000' in before:
+            git_range = current
+        else:
+            git_range = f"{before}..{current}"
+
+        print(f"Analisando commits no intervalo: {git_range}")
+
+        categories_names = ["feat", "style", "fix", "refactor", "other"]
+        
+        # Define as categorias
+        categories = {
+            "feat": [],
+            "fix": [],
+            "style": [],
+            "refactor": [],
+            "other" : []
+        }
+
+        descriptions = {
+            "feat": "New Feature",
+            "fix": "Fixes",
+            "style": "Art Addition",
+            "refactor": "Refactoring",
+            "other": "Other Changes"
+        }
+
+        # Comando git para pegar os commits novo do merge
+        # --no-merges ignora o commit de merge em si, focando no conteúdo
+        cmd = f"git log --no-merges --format='%s' {git_range}"
+        
+        # Executa o comando no terminal do sistema
+        process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        out, err = process.communicate()
+        
+        # Processa as linhas
+        commits = out.decode('utf-8').split('\n')
+
+        # Se não houver commits (ex: push vazio), cria um aviso
+        if not commits:
+            print("Nenhum commit encontrado neste intervalo.")
+            with open("CHANGELOG_RELEASE.md", "w", encoding="utf-8") as f:
+                f.write("No changes detected.")
+            sys.exit(0)
+
+        for commit in commits:
+            if not commit: continue
+            
+            lower_commit = commit.lower()
+            added = False
+
+            for category in categories_names:
+              if lower_commit.startswith(category):
+                categories[category].append(commit)
+                added = True
+            
+            if not added:
+                categories["other"].append(commit)
+
+        # Escreve o arquivo Markdown
+        with open("CHANGELOG_RELEASE.md", "w", encoding="utf-8") as f:
+            f.write("# Changes\n\n")
+            
+            for category in categories_names:
+                f.write(f"## {descriptions[category]}\n")
+                for item in categories[category]:
+                    f.write(f"- {item}\n")
+                f.write("\n")
+        
+        print("Changelog generated with success")
+
+    # Passo 3: Disponibilizar o arquivo gerado para download no GitHub
+    - name: Uploading Changelog
+      uses: actions/upload-artifact@v4
+      with:
+        name: Release-Notes
+        path: CHANGELOG_RELEASE.md
