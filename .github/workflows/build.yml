@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - development
       
 env:
   BUILD_DIR: build/
