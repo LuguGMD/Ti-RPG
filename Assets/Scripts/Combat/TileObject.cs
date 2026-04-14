@@ -27,7 +27,7 @@ namespace RPG.Combat
             _currentTile = tile;
         }
 
-        public void UpdatePosition()
+        public virtual void UpdatePosition()
         {
             transform.position = MapManager.Instance.GetWorldPostion(_currentTile.Position);
         }

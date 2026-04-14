@@ -13,6 +13,7 @@ namespace RPG.Combat
         [SerializeField] private SplineContainer _mapSplineContainer;
 
         [SerializeField] private float _rowRadius = 2f;
+        [SerializeField] private float _centerOffset = 3f;
 
         #region Properties
 
@@ -44,7 +45,7 @@ namespace RPG.Combat
 
             for (int i = 1; i <= _rows; i++)
             {
-                Spline spline = SplineFactory.CreateCircle(_rowRadius * i);
+                Spline spline = SplineFactory.CreateCircle(_centerOffset + _rowRadius * i);
                 _mapSplineContainer.AddSpline(spline);
             }
         }
