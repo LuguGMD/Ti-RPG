@@ -6,26 +6,20 @@ namespace RPG.Combat.Actions
     [System.Serializable]
     public class CombatAction
     {
-        [SerializeField] private Effect _effect;
-        [SerializeField] private List<Movement> _movementPattern;
-        [Tooltip("How many times the movementPattern is repeated")]
-        [SerializeField] private int _movementCount;
+        [SerializeField] private string _actionName;
+        [SerializeField] private List<Effect> _effects;
+        [SerializeField] private List<MovementPattern> _movementPatterns;
 
         #region Properties
 
-        public Effect Effect
+        public List<Effect> Effects
         {
-            get {  return _effect; }
+            get {  return _effects; }
         }
 
-        public List<Movement> MovementPattern
+        public List<MovementPattern> MovementPatterns
         {
-            get { return _movementPattern; }
-        }
-
-        public int MovementCount
-        {
-            get { return _movementCount; }
+            get { return _movementPatterns; }
         }
 
         #endregion

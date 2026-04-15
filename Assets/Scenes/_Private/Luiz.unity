@@ -272,6 +272,8 @@ GameObject:
   m_Component:
   - component: {fileID: 70437763}
   - component: {fileID: 70437764}
+  - component: {fileID: 70437765}
+  - component: {fileID: 70437766}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -307,6 +309,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8250a42ae384e48b4efb883ed9029a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.TileObject
+--- !u!114 &70437765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70437762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e4ebc8453335f845aacadf204dcc22c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Grid.TileObjectMovement
+--- !u!114 &70437766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70437762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72921c53e97b5954b81b42e5523a023b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.EntityController
 --- !u!1 &147252504
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +343,8 @@ GameObject:
   m_Component:
   - component: {fileID: 147252506}
   - component: {fileID: 147252507}
+  - component: {fileID: 147252508}
+  - component: {fileID: 147252509}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -352,6 +380,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42daa8c87cc8b674bbc2185cc4a8fdb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.EnemyTileObject
+--- !u!114 &147252508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147252504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e4ebc8453335f845aacadf204dcc22c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Grid.TileObjectMovement
+--- !u!114 &147252509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147252504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72921c53e97b5954b81b42e5523a023b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.EntityController
 --- !u!1 &180956228
 GameObject:
   m_ObjectHideFlags: 0
