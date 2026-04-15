@@ -2,7 +2,7 @@ using Lugu.Singleton;
 using UnityEngine;
 using UnityEngine.Splines;
 
-namespace RPG.Combat
+namespace RPG.Combat.Grid
 {
     public class MapManager : SingletonMono<MapManager>
     {

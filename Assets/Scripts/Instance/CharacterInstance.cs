@@ -15,7 +15,7 @@ namespace RPG
         }
 
         public CharacterScriptable Data => data;
-        public string Name => data != null ? data.CharacterName : "(No Data)";
+        public string Name => data != null ? data.EntityName : "(No Data)";
         public int Motivation => data != null ? data.Motivation : 0;
 
         public int CurrentMotivation => currentMotivation;

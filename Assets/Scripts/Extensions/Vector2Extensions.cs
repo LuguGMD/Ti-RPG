@@ -1,4 +1,4 @@
-using RPG.Combat;
+using RPG.Combat.Grid;
 using UnityEngine;
 using UnityEngine.UIElements;
 

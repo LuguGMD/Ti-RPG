@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RPG.Combat
+namespace RPG.Combat.Grid
 {
     public class TileObject : MonoBehaviour
     {
@@ -24,7 +24,13 @@ namespace RPG.Combat
 
         public void SetCurrentTile(Tile tile)
         {
+            if(_currentTile != null)
+            {
+                _currentTile.SetTileObject(null);
+            }
+
             _currentTile = tile;
+            _currentTile.SetTileObject(this);
         }
 
         public virtual void UpdatePosition()

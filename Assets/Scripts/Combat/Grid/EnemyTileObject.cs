@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RPG.Combat
+namespace RPG.Combat.Grid
 {
     public class EnemyTileObject : TileObject
     {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RPG.Combat
+namespace RPG.Combat.Grid
 {
     [System.Serializable]
     public class Tile
@@ -23,15 +23,9 @@ namespace RPG.Combat
             _position = position;
         }
 
-        public bool SetTileObject(TileObject tileObject)
+        public void SetTileObject(TileObject tileObject)
         {
-            if(!IsOccupied)
-            {
-                _tileObject = tileObject;
-                return true;
-            }
-
-            return false;
+            _tileObject = tileObject;
         }
 
         public TileObject RemoveTileObject()

@@ -2,7 +2,7 @@ using RPG.Extensions;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.Combat
+namespace RPG.Combat.Grid
 {
     [System.Serializable]
     public class Map
@@ -54,6 +54,16 @@ namespace RPG.Combat
             position = position.ClampMap();
 
             return _grid[position];
+        }
+
+        public Tile GetNeighborTile(Tile tile, Direction direction)
+        {
+            return GetTile(tile.Position + direction.ToVector2Int());
+        }
+
+        public Tile GetNeighborTile(Vector2Int tile, Direction direction)
+        {
+            return GetTile(tile + direction.ToVector2Int());
         }
 
         public void RotateRow(int rowIndex, int amount)

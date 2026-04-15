@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace RPG.Combat
+namespace RPG.Combat.Grid
 {
     //This script is temporary and just for test purposes
     public class MapTest : MonoBehaviour
