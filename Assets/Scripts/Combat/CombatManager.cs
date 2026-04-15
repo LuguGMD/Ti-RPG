@@ -1,4 +1,6 @@
 using Lugu.Singleton;
+using RPG.Combat.Actions;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,9 +18,39 @@ namespace RPG.Combat
             { CombatType.Anger, CombatType.Jokes },
         };
 
-        public static void Attack(/*Entity attacker, Entity defender, Effect effect*/)
+        public static bool IsTargetWeak(CombatType user, CombatType target)
         {
+            return TypeChart[user] == target;
+        }
 
+        public static void SubscribeEffectTriggerAction(EffectTrigger effectTrigger, Action action)
+        {
+            switch (effectTrigger)
+            {
+                case EffectTrigger.ActionStart:
+                    ActionsManager.Instance.OnActionStart += action;
+                    break;
+                case EffectTrigger.ActionEnd:
+                    ActionsManager.Instance.OnActionEnd += action;
+                    break;
+                case EffectTrigger.PatternEnd:
+                    ActionsManager.Instance.OnPatternEnd += action;
+                    break;
+                case EffectTrigger.BeforeTileStep:
+                    ActionsManager.Instance.OnTileStepBefore += action;
+                    break;
+                case EffectTrigger.AfterTileStep:
+                    ActionsManager.Instance.OnTileStepAfter += action;
+                    break;
+            }
+        }
+        public static void UnsubscribeEffectTriggerAction()
+        {
+            ActionsManager.Instance.OnActionStart = null;
+            ActionsManager.Instance.OnActionEnd = null;
+            ActionsManager.Instance.OnPatternEnd = null;
+            ActionsManager.Instance.OnTileStepBefore = null;
+            ActionsManager.Instance.OnTileStepAfter = null;
         }
     }
 }

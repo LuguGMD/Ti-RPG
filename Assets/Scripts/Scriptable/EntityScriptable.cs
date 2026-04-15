@@ -16,6 +16,7 @@ namespace RPG
 
         public string EntityName => _entityName;
         public CombatType Type => _type;
+        public CombatAction[] Actions => _actions;
 
         #endregion
     }

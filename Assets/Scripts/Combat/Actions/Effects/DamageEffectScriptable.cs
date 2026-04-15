@@ -1,0 +1,29 @@
+using UnityEngine;
+
+namespace RPG.Combat.Actions.Effects
+{
+    [CreateAssetMenu(fileName = "DamageEffectScriptable", menuName = "Scriptable Objects/Effects/Damage")]
+    public class DamageEffectScriptable : EffectCommandScriptable
+    {
+        [SerializeField] private float _damage;
+
+        #region Properties
+
+        public float Damage { get { return _damage; } }
+
+        #endregion
+
+        public override bool Execute(EntityController user, EntityController target)
+        {
+            if (target == null || user == null)
+                return false;
+
+            float damage = _damage;
+            if (CombatManager.IsTargetWeak(user.Info.Type, target.Info.Type)) damage *= 2;
+
+            target.TakeDamage(damage);
+
+            return true;
+        }
+    }
+}

@@ -1,0 +1,16 @@
+using UnityEngine;
+
+namespace RPG.Combat
+{
+    public class CharacterController : EntityController
+    {
+        private float _motivation = 10;
+
+        public override void TakeDamage(float damage)
+        {
+            _motivation -= damage;
+
+            Debug.Log(Info.name + " lost " + damage + " motivation\n Current Motivation: " + _motivation);
+        }
+    }
+}

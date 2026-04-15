@@ -9,6 +9,7 @@ namespace RPG.Combat.Grid
         #region Properties
 
         public Tile CurrentTile { get { return _currentTile; } }
+        public Vector2Int Position { get { return _currentTile.Position; }  }
 
         #endregion
 

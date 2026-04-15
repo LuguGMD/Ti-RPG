@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6643821856034087941}
   - component: {fileID: 523569438966301584}
   - component: {fileID: 4099148594424349112}
-  - component: {fileID: 858624574154762926}
+  - component: {fileID: 8653750175042908985}
   m_Layer: 0
   m_Name: CharacterCombatPrefab
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1658439040625981792}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.07, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e4ebc8453335f845aacadf204dcc22c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Grid.TileObjectMovement
---- !u!114 &858624574154762926
+--- !u!114 &8653750175042908985
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,6 +67,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1658439040625981792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72921c53e97b5954b81b42e5523a023b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e796a32190251040afe9994edce7d0f, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.EntityController
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.CharacterController
+  _info: {fileID: 11400000, guid: 1e543e771f1dcc242a52dba744570440, type: 2}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2263448127493250946}
   - component: {fileID: 591034852514754510}
   - component: {fileID: 8550594446077591296}
-  - component: {fileID: 1620358266289114204}
+  - component: {fileID: 5875166748602480768}
   m_Layer: 0
   m_Name: EnemyPrefab
   m_TagString: Untagged
@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e4ebc8453335f845aacadf204dcc22c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Grid.TileObjectMovement
---- !u!114 &1620358266289114204
+--- !u!114 &5875166748602480768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,9 +68,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6108933886631140461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72921c53e97b5954b81b42e5523a023b, type: 3}
+  m_Script: {fileID: 11500000, guid: ef9ebd7b99f91c24580ecaf6fc751bde, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.EntityController
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.EnemyController
+  _info: {fileID: 11400000, guid: 77c2de23c2f84a842befc3e2976b3120, type: 2}
 --- !u!1001 &7529473047155761135
 PrefabInstance:
   m_ObjectHideFlags: 0
