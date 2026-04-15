@@ -36,5 +36,16 @@ namespace RPG.Combat.Grid
             MapManager.Instance.Map.RotateRow(_rowToRotate, _rotateAmount);
         }
 
+        public void Rotate(int amount)
+        {
+            MapManager.Instance.Map.RotateRow(_rowToRotate, amount);
+        }
+
+        public void ChangeRow(int amount)
+        {
+            _rowToRotate += amount;
+            _rowToRotate %= (Map.Rows);
+        }
+
     }
 }

@@ -7,6 +7,7 @@ namespace RPG.Combat.Actions
         ActionStart,
         ActionEnd,
         PatternEnd,
-        TileStep,
+        BeforeTileStep,
+        AfterTileStep,
     }
 }

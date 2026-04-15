@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: EnemyTestScriptable
   m_EditorClassIdentifier: Assembly-CSharp::RPG.EnemyScriptable
   _entityName: Enemy Test
+  _type: 5
   _actions:
   - _actionName: Directional Punch
+    _effects:
+    - _triggerCondition: 0
+      _canAffectAllies: 0
+      _canAffectFoes: 0
+      _canAffectSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToDirection: 1
+      _area: 00000000
     _movementPatterns:
     - _pattern:
       - _direction: 0

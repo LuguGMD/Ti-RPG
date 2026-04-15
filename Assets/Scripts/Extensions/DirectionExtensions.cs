@@ -52,7 +52,68 @@ namespace RPG.Extensions
                     return Direction.UpRight;
             }
 
-            return Direction.Up;
+            return Direction.None;
+        }
+
+        public static Direction RelativeTo(this Direction direction, Direction relative)
+        {
+            switch(relative)
+            {
+                case Direction.Up:
+                    switch(direction)
+                    {
+                        case Direction.Up:
+                            return Direction.Up;
+                        case Direction.Down:
+                            return Direction.Down;
+                        case Direction.Right:
+                            return Direction.Right;
+                        case Direction.Left:
+                            return Direction.Left;
+                    }
+                    break;
+                case Direction.Down:
+                    switch (direction)
+                    {
+                        case Direction.Up:
+                            return Direction.Down;
+                        case Direction.Down:
+                            return Direction.Up;
+                        case Direction.Right:
+                            return Direction.Left;
+                        case Direction.Left:
+                            return Direction.Right;
+                    }
+                    break;
+                case Direction.Right:
+                    switch (direction)
+                    {
+                        case Direction.Up:
+                            return Direction.Right;
+                        case Direction.Down:
+                            return Direction.Left;
+                        case Direction.Right:
+                            return Direction.Down;
+                        case Direction.Left:
+                            return Direction.Up;
+                    }
+                    break;
+                case Direction.Left:
+                    switch (direction)
+                    {
+                        case Direction.Up:
+                            return Direction.Left;
+                        case Direction.Down:
+                            return Direction.Right;
+                        case Direction.Right:
+                            return Direction.Up;
+                        case Direction.Left:
+                            return Direction.Down;
+                    }
+                    break;
+            }
+
+            return direction;
         }
     }
 }

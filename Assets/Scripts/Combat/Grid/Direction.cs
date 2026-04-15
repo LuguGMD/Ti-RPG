@@ -11,6 +11,7 @@ namespace RPG.Combat.Grid
         UpRight,
         UpLeft,
         DownRight,
-        DownLeft
+        DownLeft,
+        None
     }
 }
