@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat.Grid
@@ -6,27 +7,27 @@ namespace RPG.Combat.Grid
     //This script is temporary and just for test purposes
     public class MapTest : MonoBehaviour
     {
-        [SerializeField] private TileObject _characterPrefab;
-        [SerializeField] private TileObject _enemyPrefab;
+        [SerializeField] private List<TileObject> _entityPrefabs;
+        [SerializeField] private List<Vector2Int> _startPositions;
 
         [SerializeField] private int _rowToRotate = 0;
         [SerializeField] private int _rotateAmount = 1;
 
         private void Start()
         {
-            TileObject characterObject = Instantiate<TileObject>(_characterPrefab);
-            TileObject enemyObject = Instantiate<TileObject>(_enemyPrefab);
-
-            characterObject.gameObject.SetActive(true);
-            enemyObject.gameObject.SetActive(true);
-
-            MapManager.Instance.AddTileObject(characterObject, new Vector2Int(0, 0));
-            MapManager.Instance.AddTileObject(enemyObject, new Vector2Int(0, 2));
-
-            characterObject.UpdatePosition();
-            enemyObject.UpdatePosition();
+            for (int i = 0; i < _entityPrefabs.Count; i++)
+            {
+                InstantiateTileObject(i);
+            }
         }
 
+        public void InstantiateTileObject(int index)
+        {
+            TileObject characterObject = Instantiate<TileObject>(_entityPrefabs[index]);
+            MapManager.Instance.AddTileObject(characterObject, _startPositions[index]);
+            characterObject.UpdatePosition();
+            
+        }
 
 
         [ContextMenu("Rotate")]

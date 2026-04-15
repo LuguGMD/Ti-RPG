@@ -36,6 +36,7 @@ namespace RPG.Combat.Grid
         public virtual void UpdatePosition()
         {
             transform.position = MapManager.Instance.GetWorldPostion(_currentTile.Position);
+            transform.LookAt(transform.position + (transform.position.normalized));
         }
     }
 }
