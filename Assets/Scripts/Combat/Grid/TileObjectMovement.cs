@@ -11,7 +11,7 @@ namespace RPG.Combat.Grid
         private Queue<Movement> _movementQueue = new Queue<Movement>();
         private int _patternMovementCount = 0;
         private int _movementCount = 0;
-        
+
 
         #region Properties
 
@@ -25,6 +25,14 @@ namespace RPG.Combat.Grid
             _tileObject = GetComponent<TileObject>();
         }
 
+        private void ChangeTile(Direction direction)
+        {
+            Tile currentTile = _tileObject.CurrentTile;
+            Tile nextTile = MapManager.Instance.Map.GetNeighborTile(currentTile, direction);
+            _tileObject.SetCurrentTile(nextTile);
+            _tileObject.UpdatePosition();
+        }
+
         public void Move()
         {
             Movement movement = _movementQueue.Dequeue();
@@ -35,23 +43,28 @@ namespace RPG.Combat.Grid
             {
                 ActionsManager.Instance.OnTileStepBefore?.Invoke();
 
-                Tile currentTile = _tileObject.CurrentTile;
-                Tile nextTile = MapManager.Instance.Map.GetNeighborTile(currentTile, direction);
-                _tileObject.SetCurrentTile(nextTile);
-                _tileObject.UpdatePosition();
+                ChangeTile(direction);
 
                 ActionsManager.Instance.OnTileStepAfter?.Invoke();
             }
 
             _movementCount++;
 
-            
+
 
             if (_movementCount % _patternMovementCount == 0)
             {
                 ActionsManager.Instance.OnPatternEnd?.Invoke();
             }
 
+        }
+
+        public void Push(Movement movement)
+        {
+            if (MapManager.IsMovementValid(_tileObject.Position, movement))
+            {
+                ChangeTile(movement.Direction);
+            }
         }
 
         public void EnqueuePattern(List<Movement> pattern, int repetitions)

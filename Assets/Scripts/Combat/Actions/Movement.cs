@@ -21,5 +21,12 @@ namespace RPG.Combat.Actions
         public bool NeedsToBeEmpty { get { return _needsToBeEmpty; } }
 
         #endregion
+
+        public Movement() { }
+        public Movement(Direction direction, bool needsToBeEmpty)
+        {
+            _direction = direction;
+            _needsToBeEmpty = needsToBeEmpty;
+        }
     }
 }
