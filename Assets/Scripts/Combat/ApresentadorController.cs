@@ -14,6 +14,11 @@ namespace RPG.Combat
 
         #endregion
 
+        public override EntityScriptable GetEntityInfo()
+        {
+            return _info;
+        }
+
         public override void TakeDamage(float damage)
         {
             _motivationPoint -= damage;

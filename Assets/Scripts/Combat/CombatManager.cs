@@ -52,5 +52,25 @@ namespace RPG.Combat
             ActionsManager.Instance.OnTileStepBefore = null;
             ActionsManager.Instance.OnTileStepAfter = null;
         }
+
+        public static bool CanTarget(EntityScriptable user, EntityScriptable target, Effect effect)
+        {
+            if(user == target)
+            {
+                return effect.CanAffectSelf;
+            }
+
+            if (user.Team != target.Team)
+            {
+                return effect.CanAffectFoes;
+            }
+
+            if (user.Team == target.Team)
+            {
+                return effect.CanAffectAllies;
+            }
+
+            return true;
+        }
     }
 }

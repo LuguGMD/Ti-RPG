@@ -25,6 +25,9 @@ namespace RPG.Combat
 
         public abstract void TakeDamage(float damage);
 
+        public abstract EntityScriptable GetEntityInfo();
+
+
         
     }
 }

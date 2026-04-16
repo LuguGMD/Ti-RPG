@@ -13,6 +13,7 @@ namespace RPG
         #region Properties
 
         public string EntityName => _entityName;
+        public abstract Team Team { get; }
 
         #endregion
     }

@@ -1,3 +1,4 @@
+using RPG.Combat;
 using UnityEngine;
 
 namespace RPG
@@ -9,7 +10,11 @@ namespace RPG
         [Header("Stats")]
         [SerializeField] private int motivation = 100;
 
-        
+        #region Properties
+
         public int Motivation => motivation;
+        public override Team Team { get { return Team.Circus; } }
+
+        #endregion
     }
 }

@@ -6,6 +6,11 @@ namespace RPG.Combat
     {
         private float _health = 5;
 
+        public override EntityScriptable GetEntityInfo()
+        {
+            return _info;
+        }
+
         public override void TakeDamage(float damage)
         {
             _health -= damage;

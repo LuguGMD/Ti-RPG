@@ -42,22 +42,33 @@ namespace RPG.Combat.Actions
         public void Execute(StageEntityController user)
         {
             Vector2Int checkPosition = user.Position;
+            List<Vector2Int> checkedTiles = new List<Vector2Int>();
 
             for (int i = 0; i < _area.Count; i++)
             {
                 Direction direction = _isRelativeToMovement ? _area[i].RelativeTo(user.Direction) : _area[i];
-
                 checkPosition += direction.ToVector2Int();
-                Tile tile = MapManager.Instance.Map.GetTile(checkPosition);
 
-                //TO DO check if can target this target
-                if (tile.Position == Map.CENTER_POS)
+                if (checkedTiles.Contains(checkPosition)) continue;
+
+                Tile tile = MapManager.Instance.Map.GetTile(checkPosition);
+                checkedTiles.Add(checkPosition);
+
+                if (tile.IsOccupied)
                 {
-                    _command.ExecuteApresentador(user, tile.TileObject.GetComponent<ApresentadorController>());
-                }
-                else if (tile.IsOccupied)
-                {
-                    _command.Execute(user, tile.TileObject.GetComponent<StageEntityController>());
+                    EntityController entity = tile.TileObject.GetComponent<EntityController>();
+
+                    if (CombatManager.CanTarget(user.Info, entity.GetEntityInfo(), this))
+                    {
+                        if (tile.Position == Map.CENTER_POS)
+                        {
+                            _command.ExecuteApresentador(user, entity as ApresentadorController);
+                        }
+                        else
+                        {
+                            _command.Execute(user, entity as StageEntityController);
+                        }
+                    }
                 }
             }
         }

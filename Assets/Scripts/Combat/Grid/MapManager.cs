@@ -84,7 +84,7 @@ namespace RPG.Combat.Grid
             Vector2Int addedMovement = movement.Direction.ToVector2Int();
             Vector2Int finalPos = (currentPos + addedMovement).ClampMap();
 
-            if (finalPos == Map.CENTER_POS || finalPos.y == Map.Rows-1)
+            if (finalPos == Map.CENTER_POS || finalPos.y >= Map.Rows-1)
             {
                 return false;
             }
