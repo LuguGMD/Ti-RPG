@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class EnemyController : EntityController
+    public class EnemyController : StageEntityController
     {
         private float _health = 5;
 

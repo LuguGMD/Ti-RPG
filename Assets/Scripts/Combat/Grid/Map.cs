@@ -11,6 +11,8 @@ namespace RPG.Combat.Grid
         private static int _rows;
         private static int _columns;
 
+        public static readonly Vector2Int CENTER_POS = new Vector2Int(0,-1);
+
         #region Properties
 
         public static int Rows { get { return _rows; } }
@@ -34,6 +36,8 @@ namespace RPG.Combat.Grid
                     AddTile(new Vector2Int(i, j));
                 }
             }
+
+            AddTile(CENTER_POS);
         }
 
         private void AddTile(Vector2Int position)

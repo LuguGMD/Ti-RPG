@@ -1,4 +1,6 @@
 using Lugu.Singleton;
+using RPG.Combat.Actions;
+using RPG.Extensions;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -38,8 +40,8 @@ namespace RPG.Combat.Grid
         [ContextMenu("Generate Map")]
         private void GenerateMap()
         {
-            while(_mapSplineContainer.Splines.Count > 0)
-            { 
+            while (_mapSplineContainer.Splines.Count > 0)
+            {
                 _mapSplineContainer.RemoveSplineAt(0);
             }
 
@@ -65,14 +67,38 @@ namespace RPG.Combat.Grid
 
         public Vector3 GetWorldPostion(Vector2Int tilePosition)
         {
-            Spline spline = _mapSplineContainer[tilePosition.y];
-            float percentage = (float)tilePosition.x / (float)Map.Columns;
-            Vector3 worldPosition = spline.EvaluatePosition(percentage);
+            Vector3 worldPosition = Vector3.zero;
+            if (tilePosition.y >= 0)
+            {
+                Spline spline = _mapSplineContainer[tilePosition.y];
+                float percentage = (float)tilePosition.x / (float)Map.Columns;
+                worldPosition = spline.EvaluatePosition(percentage);
+            }
+            
 
             return worldPosition;
         }
 
-        
+        public static bool IsMovementValid(Vector2Int currentPos, Movement movement)
+        {
+            Vector2Int addedMovement = movement.Direction.ToVector2Int();
+            Vector2Int finalPos = (currentPos + addedMovement).ClampMap();
+
+            if (finalPos == Map.CENTER_POS || finalPos.y == Map.Rows-1)
+            {
+                return false;
+            }
+
+            Tile finalTile = Instance.Map.GetTile(finalPos);
+
+            if (movement.NeedsToBeEmpty && finalTile.IsOccupied)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
 
     }
 }

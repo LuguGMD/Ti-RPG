@@ -8,16 +8,15 @@ namespace RPG.Combat.Grid
     public class TileObjectMovement : MonoBehaviour
     {
         private TileObject _tileObject;
-        private Queue<Direction> _movementQueue = new Queue<Direction>();
+        private Queue<Movement> _movementQueue = new Queue<Movement>();
         private int _patternMovementCount = 0;
         private int _movementCount = 0;
-        private Direction _direction;
+        
 
         #region Properties
 
         public TileObject TileObject { get { return _tileObject; } }
-        public Queue<Direction> MovementQueue { get { return _movementQueue; } }
-        public Direction Direction { get { return _direction; } }
+        public Queue<Movement> MovementQueue { get { return _movementQueue; } }
 
         #endregion
 
@@ -28,19 +27,25 @@ namespace RPG.Combat.Grid
 
         public void Move()
         {
-            Direction direction = _movementQueue.Dequeue();
-            _direction = direction;
+            Movement movement = _movementQueue.Dequeue();
+            Direction direction = movement.Direction;
+            _tileObject.SetDirection(direction);
 
-            ActionsManager.Instance.OnTileStepBefore?.Invoke();
+            if (MapManager.IsMovementValid(_tileObject.Position, movement))
+            {
+                ActionsManager.Instance.OnTileStepBefore?.Invoke();
 
-            Tile currentTile = _tileObject.CurrentTile;
-            Tile nextTile = MapManager.Instance.Map.GetNeighborTile(currentTile, direction);
-            _tileObject.SetCurrentTile(nextTile);
-            _tileObject.UpdatePosition();
+                Tile currentTile = _tileObject.CurrentTile;
+                Tile nextTile = MapManager.Instance.Map.GetNeighborTile(currentTile, direction);
+                _tileObject.SetCurrentTile(nextTile);
+                _tileObject.UpdatePosition();
+
+                ActionsManager.Instance.OnTileStepAfter?.Invoke();
+            }
 
             _movementCount++;
 
-            ActionsManager.Instance.OnTileStepAfter?.Invoke();
+            
 
             if (_movementCount % _patternMovementCount == 0)
             {
@@ -56,7 +61,7 @@ namespace RPG.Combat.Grid
             {
                 for (int j = 0; j < pattern.Count; j++)
                 {
-                    _movementQueue.Enqueue(pattern[j].Direction);
+                    _movementQueue.Enqueue(pattern[j]);
                 }
             }
             _movementCount = 0;

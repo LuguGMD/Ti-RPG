@@ -5,18 +5,14 @@ using UnityEngine;
 namespace RPG
 {
     
-    public class EntityScriptable : ScriptableObject
+    public abstract class EntityScriptable : ScriptableObject
     {
         [Header("Identity")]
         [SerializeField] private string _entityName = "Entity";
-        [SerializeField] private CombatType _type;
-        [SerializeField] private CombatAction[] _actions;
 
         #region Properties
 
         public string EntityName => _entityName;
-        public CombatType Type => _type;
-        public CombatAction[] Actions => _actions;
 
         #endregion
     }

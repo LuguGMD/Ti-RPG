@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31161da255b716f41ac0a86efae96960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.MapManager
-  _rows: 3
+  _rows: 4
   _columns: 12
   _mapSplineContainer: {fileID: 839817705}
   _rowRadius: 2
@@ -1018,6 +1018,98 @@ MonoBehaviour:
       m_Data: []
     m_ObjectData:
       m_Data: []
+  - m_EditModeType: 1
+    m_Knots:
+    - Position:
+        x: -12
+        y: 0
+        z: 0
+      TangentIn:
+        x: -0
+        y: -0
+        z: -6.6274166
+      TangentOut:
+        x: 0
+        y: 0
+        z: 6.6274166
+      Rotation:
+        value:
+          x: 0
+          y: 0
+          z: 0
+          w: 1
+    - Position:
+        x: -0.0000009536743
+        y: 0
+        z: 11.999999
+      TangentIn:
+        x: -0
+        y: -0
+        z: -6.6274166
+      TangentOut:
+        x: 0
+        y: 0
+        z: 6.6274166
+      Rotation:
+        value:
+          x: 0
+          y: 0.70710677
+          z: 0
+          w: 0.70710677
+    - Position:
+        x: 11.999996
+        y: 0
+        z: 0
+      TangentIn:
+        x: -0
+        y: -0
+        z: -6.6274166
+      TangentOut:
+        x: 0
+        y: 0
+        z: 6.6274166
+      Rotation:
+        value:
+          x: 0
+          y: 0.99999994
+          z: 0
+          w: 0
+    - Position:
+        x: -0.0000019073486
+        y: 0
+        z: -11.999998
+      TangentIn:
+        x: -0
+        y: -0
+        z: -6.6274166
+      TangentOut:
+        x: 0
+        y: 0
+        z: 6.6274166
+      Rotation:
+        value:
+          x: 0
+          y: 0.7071067
+          z: 0
+          w: -0.7071067
+    m_MetaData:
+    - Mode: 4
+      Tension: 0.5
+    - Mode: 4
+      Tension: 0.5
+    - Mode: 4
+      Tension: 0.5
+    - Mode: 4
+      Tension: 0.5
+    m_Closed: 1
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
   m_Knots:
     m_KnotsLink: []
 --- !u!114 &839817706
@@ -1027,7 +1119,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 839817703}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 222dc08d484f16869bdd89edd9d368fc, type: 3}
   m_Name: 
@@ -1144,13 +1236,15 @@ MonoBehaviour:
   - {fileID: 5493847886512494035, guid: 53917fa4a5823d748a68d5ad5e0e6ee8, type: 3}
   - {fileID: 6037305696629807674, guid: 61245aac8b3a2ee469796eda827137ad, type: 3}
   - {fileID: 5920769643581815162, guid: 71c58aac71435da4396b7b945d2f1d7b, type: 3}
+  - {fileID: 8367280372710811195, guid: df3863b37b5e68b4b99a62a1995e4597, type: 3}
   _startPositions:
-  - {x: 3, y: 2}
+  - {x: 3, y: 3}
   - {x: 0, y: 0}
   - {x: 5, y: 1}
   - {x: 3, y: 0}
   - {x: 2, y: 1}
   - {x: 1, y: 0}
+  - {x: 1, y: -1}
   _rowToRotate: 0
   _rotateAmount: 1
 --- !u!4 &1551867205

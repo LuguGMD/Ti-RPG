@@ -3,7 +3,7 @@ using UnityEngine;
 namespace RPG
 {
     [CreateAssetMenu(fileName = "CharacterScriptable", menuName = "Scriptable Objects/Entity/Character")]
-    public class CharacterScriptable : EntityScriptable
+    public class CharacterScriptable : StageEntityScriptable
     {
 
         [Header("Stats")]

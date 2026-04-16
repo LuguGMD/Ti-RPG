@@ -39,7 +39,7 @@ namespace RPG.Combat.Actions
 
         #endregion
 
-        public void Execute(EntityController user)
+        public void Execute(StageEntityController user)
         {
             Vector2Int checkPosition = user.Position;
 
@@ -51,9 +51,13 @@ namespace RPG.Combat.Actions
                 Tile tile = MapManager.Instance.Map.GetTile(checkPosition);
 
                 //TO DO check if can target this target
-                if(tile.IsOccupied)
+                if (tile.Position == Map.CENTER_POS)
                 {
-                    _command.Execute(user, tile.TileObject.GetComponent<EntityController>());
+                    _command.ExecuteApresentador(user, tile.TileObject.GetComponent<ApresentadorController>());
+                }
+                else if (tile.IsOccupied)
+                {
+                    _command.Execute(user, tile.TileObject.GetComponent<StageEntityController>());
                 }
             }
         }

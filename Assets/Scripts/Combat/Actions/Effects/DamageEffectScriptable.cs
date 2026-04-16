@@ -13,7 +13,7 @@ namespace RPG.Combat.Actions.Effects
 
         #endregion
 
-        public override bool Execute(EntityController user, EntityController target)
+        public override bool Execute(StageEntityController user, StageEntityController target)
         {
             if (target == null || user == null)
                 return false;
@@ -22,6 +22,16 @@ namespace RPG.Combat.Actions.Effects
             if (CombatManager.IsTargetWeak(user.Info.Type, target.Info.Type)) damage *= 2;
 
             target.TakeDamage(damage);
+
+            return true;
+        }
+
+        public override bool ExecuteApresentador(StageEntityController user, ApresentadorController target)
+        {
+            if (target == null || user == null)
+                return false;
+
+            target.TakeDamage(_damage);
 
             return true;
         }
