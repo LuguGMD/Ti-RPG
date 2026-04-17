@@ -1,6 +1,10 @@
+using DG.Tweening;
 using RPG.Combat.Actions;
+using RPG.Extensions;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Splines;
 
 namespace RPG.Combat.Grid
 {
@@ -33,7 +37,7 @@ namespace RPG.Combat.Grid
             _tileObject.UpdatePosition();
         }
 
-        public void Move()
+        public IEnumerator Move()
         {
             Movement movement = _movementQueue.Dequeue();
             Direction direction = movement.Direction;
@@ -42,6 +46,16 @@ namespace RPG.Combat.Grid
             if (MapManager.IsMovementValid(_tileObject.Position, movement))
             {
                 ActionsManager.Instance.OnTileStepBefore?.Invoke();
+
+                if(direction.IsSideways())
+                {
+                    yield return MoveAlongSpline(1, direction);
+                }
+                else
+                {
+                    yield return MoveAlongPoints(1, direction);
+                }
+                
 
                 ChangeTile(direction);
 
@@ -57,6 +71,35 @@ namespace RPG.Combat.Grid
                 ActionsManager.Instance.OnPatternEnd?.Invoke();
             }
 
+        }
+
+        private IEnumerator MoveAlongSpline(float time, Direction direction)
+        {
+            Spline spline = MapManager.Instance.GetCurrentSpline(_tileObject.Position);
+
+            Vector2Int targetTile = _tileObject.Position + direction.ToVector2Int();
+            Vector3 targetPos = MapManager.Instance.GetWorldPostion(targetTile);
+
+            float startPercentage = MapManager.Instance.GetCurrentTilePercentage(_tileObject.Position);
+            float endPercentage = MapManager.Instance.GetCurrentTilePercentage(targetTile);
+
+            DOVirtual.Float(0f, 1f, time, t => {
+                float currentPercentage = Mathf.Lerp(startPercentage, endPercentage, t);
+                Vector3 position = spline.EvaluatePosition(currentPercentage);
+                transform.position = position;
+            }).SetEase(Ease.Linear);
+
+            yield return new WaitForSeconds(time);
+        }
+
+        private IEnumerator MoveAlongPoints(float time, Direction direction)
+        {
+            Vector2Int targetTile = _tileObject.Position + direction.ToVector2Int();
+            Vector3 targetPos = MapManager.Instance.GetWorldPostion(targetTile);
+
+            transform.DOMove(targetPos, time).SetEase(Ease.Linear);
+
+            yield return new WaitForSeconds(time);
         }
 
         public void Push(Movement movement)

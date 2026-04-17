@@ -17,16 +17,8 @@ namespace RPG.Combat.Grid
         {
             for (int i = 0; i < _entityPrefabs.Count; i++)
             {
-                InstantiateTileObject(i);
+                CombatFactory.InstantiateTileObject(_entityPrefabs[i], _startPositions[i]);
             }
-        }
-
-        public void InstantiateTileObject(int index)
-        {
-            TileObject characterObject = Instantiate<TileObject>(_entityPrefabs[index]);
-            MapManager.Instance.AddTileObject(characterObject, _startPositions[index]);
-            characterObject.UpdatePosition();
-            
         }
 
 

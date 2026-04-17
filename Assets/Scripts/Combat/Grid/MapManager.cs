@@ -71,7 +71,7 @@ namespace RPG.Combat.Grid
             if (tilePosition.y >= 0)
             {
                 Spline spline = _mapSplineContainer[tilePosition.y];
-                float percentage = (float)tilePosition.x / (float)Map.Columns;
+                float percentage = GetCurrentTilePercentage(tilePosition);
                 worldPosition = spline.EvaluatePosition(percentage);
             }
             
@@ -99,6 +99,17 @@ namespace RPG.Combat.Grid
             return true;
         }
 
+        public float GetCurrentTilePercentage(Vector2Int tilePosition)
+        {
+            Spline spline = _mapSplineContainer[tilePosition.y];
+            float percentage = (float)tilePosition.x / (float)Map.Columns;
+            return percentage;
+        }
+
+        public Spline GetCurrentSpline(Vector2Int tilePosition)
+        {
+            return _mapSplineContainer.Splines[tilePosition.y];
+        }
 
     }
 }

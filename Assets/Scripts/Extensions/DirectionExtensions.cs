@@ -115,5 +115,10 @@ namespace RPG.Extensions
 
             return direction;
         }
+
+        public static bool IsSideways(this Direction direction)
+        {
+            return direction == Direction.Left || direction == Direction.Right;
+        }
     }
 }

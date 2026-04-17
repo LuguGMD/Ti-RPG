@@ -40,8 +40,7 @@ namespace RPG.Combat
 
             while (_movement.MovementQueue.Count > 0)
             {
-                yield return new WaitForSeconds(0.1f);
-                _movement.Move();
+                yield return _movement.Move();
             }
 
             ActionsManager.Instance.OnActionEnd?.Invoke();

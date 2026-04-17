@@ -1,4 +1,5 @@
 using RPG.Combat.Actions;
+using RPG.Combat.Grid;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -13,6 +14,11 @@ namespace RPG.Combat
         public EntityScriptable Info { get { return _info; } }
 
         #endregion
+
+        private void Start()
+        {
+            MapManager.Instance.AddTileObject(_tileObject, Map.CENTER_POS);
+        }
 
         public override EntityScriptable GetEntityInfo()
         {
