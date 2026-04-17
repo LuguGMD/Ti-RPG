@@ -23,5 +23,15 @@ namespace RPG.Combat.Actions
         }
 
         #endregion
+
+        public List<EffectTrigger> GetEffectTriggers()
+        {
+            List<EffectTrigger> effectTriggers = new List<EffectTrigger>();
+            for (int i = 0; i < _effects.Count; i++)
+            {
+                effectTriggers.Add(_effects[i].TriggerCondition);
+            }
+            return effectTriggers;
+        }
     }
 }

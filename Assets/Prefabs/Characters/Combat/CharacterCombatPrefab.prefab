@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 523569438966301584}
   - component: {fileID: 4099148594424349112}
   - component: {fileID: 8653750175042908985}
+  - component: {fileID: 1206390615293562564}
   m_Layer: 0
   m_Name: CharacterCombatPrefab
   m_TagString: Untagged
@@ -71,3 +72,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.CharacterController
   _info: {fileID: 11400000, guid: 1e543e771f1dcc242a52dba744570440, type: 2}
+--- !u!114 &1206390615293562564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658439040625981792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79da4ee4a2e2bae4c9a758b3da5cc706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Preview.PreviewActionHandler

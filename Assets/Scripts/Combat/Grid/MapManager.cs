@@ -99,6 +99,26 @@ namespace RPG.Combat.Grid
             return true;
         }
 
+        public static bool IsPositionValid(Vector2Int tilePosition)
+        {
+            tilePosition = tilePosition.ClampMap();
+
+            if (tilePosition == Map.CENTER_POS || tilePosition.y >= Map.Rows - 1)
+            {
+                return false;
+            }
+
+            Tile finalTile = Instance.Map.GetTile(tilePosition);
+
+            if (finalTile.IsOccupied)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
+
         public float GetCurrentTilePercentage(Vector2Int tilePosition)
         {
             Spline spline = _mapSplineContainer[tilePosition.y];

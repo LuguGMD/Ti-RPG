@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 591034852514754510}
   - component: {fileID: 8550594446077591296}
   - component: {fileID: 5875166748602480768}
+  - component: {fileID: 4508179335307852333}
   m_Layer: 0
   m_Name: EnemyPrefab
   m_TagString: Untagged
@@ -72,6 +73,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.EnemyController
   _info: {fileID: 11400000, guid: 77c2de23c2f84a842befc3e2976b3120, type: 2}
+--- !u!114 &4508179335307852333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6108933886631140461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79da4ee4a2e2bae4c9a758b3da5cc706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Preview.PreviewActionHandler
 --- !u!1001 &7529473047155761135
 PrefabInstance:
   m_ObjectHideFlags: 0

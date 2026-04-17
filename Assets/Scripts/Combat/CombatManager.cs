@@ -1,4 +1,5 @@
 using Lugu.Singleton;
+using RPG.Combat.Preview;
 using RPG.Combat.Actions;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,8 @@ namespace RPG.Combat
 {
     public class CombatManager : SingletonMono<CombatManager>
     {
+        [SerializeField] private PreviewTile _previewTilePrefab;
+
         public static readonly Dictionary<CombatType, CombatType> TypeChart = new Dictionary<CombatType, CombatType>()
         {
             { CombatType.Magic, CombatType.Anger },
@@ -17,6 +20,15 @@ namespace RPG.Combat
             { CombatType.Sadness, CombatType.Strength },
             { CombatType.Anger, CombatType.Jokes },
         };
+
+        #region Properties
+
+        public static PreviewTile PreviewTilePrefab
+        {
+            get { return Instance._previewTilePrefab; }
+        }
+
+        #endregion
 
         public static bool IsTargetWeak(CombatType user, CombatType target)
         {

@@ -1245,6 +1245,7 @@ GameObject:
   - component: {fileID: 1577057574}
   - component: {fileID: 1577057573}
   - component: {fileID: 1577057572}
+  - component: {fileID: 1577057575}
   m_Layer: 0
   m_Name: CombatManager
   m_TagString: Untagged
@@ -1276,6 +1277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39dafb8bae663a4e8fb27459640da1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.CombatManager
+  _previewTilePrefab: {fileID: 842704998248691793, guid: 8c9aa5dc2442a65478801c1c35bf134e, type: 3}
 --- !u!4 &1577057574
 Transform:
   m_ObjectHideFlags: 0
@@ -1291,6 +1293,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1577057575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577057571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e47ec97960a28944b937ec023daa0ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Preview.PreviewTilesPool
 --- !u!1001 &2050973441
 PrefabInstance:
   m_ObjectHideFlags: 0

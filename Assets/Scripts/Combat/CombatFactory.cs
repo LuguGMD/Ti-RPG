@@ -1,5 +1,6 @@
 using Lugu.Singleton;
 using RPG.Combat.Grid;
+using RPG.Combat.Preview;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -13,6 +14,12 @@ namespace RPG.Combat
             characterObject.UpdatePosition();
 
             return characterObject;
+        }
+        public static PreviewTile InstantiatePreviewTile()
+        {
+            PreviewTile prefab = CombatManager.PreviewTilePrefab;
+            PreviewTile instance = Instantiate(prefab);
+            return instance;
         }
     }
 }
