@@ -13,9 +13,8 @@ namespace RPG.Combat.Actions
 
         [Header("Conditions")]
         [SerializeField] private EffectTrigger _triggerCondition = EffectTrigger.ActionEnd;
-        [SerializeField] private bool _canAffectAllies = false;
-        [SerializeField] private bool _canAffectFoes = true;
-        [SerializeField] private bool _canAffectSelf = false;
+        [SerializeField] private List<Team> _targetList = new List<Team>();
+        [SerializeField] private bool _canTargetSelf = false;
         [Tooltip("If the character needs to be in the spotlight to this to activate")]
         [SerializeField] private bool _doNeedSpotlight = false;
 
@@ -28,9 +27,8 @@ namespace RPG.Combat.Actions
         public EffectCommandScriptable Command { get { return _command; } }
 
         public EffectTrigger TriggerCondition { get { return _triggerCondition; } }
-        public bool CanAffectAllies { get { return _canAffectAllies; } }
-        public bool CanAffectFoes { get { return _canAffectFoes; } }
-        public bool CanAffectSelf { get { return _canAffectSelf; } }
+        public List<Team> TargetList { get { return _targetList; } }
+        public bool CanTargetSelf { get { return _canTargetSelf; } }
         public bool DoNeedSpotlight { get { return _doNeedSpotlight; }  }
 
         public bool IsRelativeToMovement { get { return _isRelativeToMovement; } }

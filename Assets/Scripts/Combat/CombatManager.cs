@@ -57,20 +57,10 @@ namespace RPG.Combat
         {
             if(user == target)
             {
-                return effect.CanAffectSelf;
+                return effect.CanTargetSelf;
             }
 
-            if (user.Team != target.Team)
-            {
-                return effect.CanAffectFoes;
-            }
-
-            if (user.Team == target.Team)
-            {
-                return effect.CanAffectAllies;
-            }
-
-            return true;
+            return effect.TargetList.Contains(target.Team);
         }
     }
 }
