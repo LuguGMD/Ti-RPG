@@ -4,6 +4,8 @@ using static UnityEngine.InputSystem.InputAction;
 
 namespace RPG
 {
+    // Essa classe é provisória e foi criada como prova de conceito.
+    // As PlayerActions provavelmente vão ser modificadas ou removidas futuramente.
     public class PlayerInput : InputComponent<PlayerInput.Handler>
     {
         protected override Handler SetupHandler() => new();

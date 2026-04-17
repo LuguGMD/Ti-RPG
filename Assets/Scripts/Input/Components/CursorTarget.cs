@@ -1,7 +1,6 @@
 using UnityEngine;
 
 using LucasRozado.Utility;
-using System.Collections.Generic;
 
 namespace RPG
 {
