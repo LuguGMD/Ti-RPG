@@ -29,6 +29,15 @@ namespace RPG
             cursor.Actions.Hover.OnStart(() =>
                 Debug.Log("Hovered!")
             );
+
+            cursor.Actions.LeftClick.OnStart(() =>
+                Debug.Log("Left Click!")
+            );
+
+            cursor.Actions.RightClick.OnStart(() =>
+                Debug.Log("Right Click!")
+            );
+            
         }
 
         private void Update()

@@ -37,16 +37,40 @@ namespace RPG
             
             public DerivedHandler<CursorTarget, bool> Hover;
 
+            public DerivedHandler<bool, bool> LeftClick;
+            public DerivedHandler<bool, bool> MiddleClick;
+            public DerivedHandler<bool, bool> RightClick;
+
             public Handler()
             {
                 Hover = DeriveHandler(
                     from: CursorInput.Instance.Actions.HoverTarget,
                     derive: (target) =>
+                    {
+                        bool hasTarget = target != null;
+                        bool isTarget = hasTarget && target.Actions == this;
+                        return isTarget;
+                    }
+                );
+
+                bool DeriveClick(bool isClicked)
                 {
-                    bool hasTarget = target != null;
-                    bool isTarget = hasTarget && target.Actions == this;
-                    return isTarget;
-                });
+                    bool isHovered = Hover.IsPressed;
+                    return isHovered && isClicked;
+                }
+                
+                LeftClick = DeriveHandler(
+                    from: CursorInput.Instance.Actions.LeftClick,
+                    derive: DeriveClick
+                );
+                MiddleClick = DeriveHandler(
+                    from: CursorInput.Instance.Actions.MiddleClick,
+                    derive: DeriveClick
+                );
+                RightClick = DeriveHandler(
+                    from: CursorInput.Instance.Actions.RightClick,
+                    derive: DeriveClick
+                );
             }
 
             #endregion
