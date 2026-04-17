@@ -9,8 +9,6 @@ namespace RPG
     public abstract class ActionHandler { }
     public abstract class ActionHandler<TValue> : ActionHandler
     {
-        private Action<CallbackContext> onHandle;
-
         private Action onStart;
         private Action<TValue> onUpdate;
         private Action onCancel;
@@ -18,43 +16,32 @@ namespace RPG
         public TValue LastValue { get; private set; }
         public bool IsPressed { get; private set; }
 
+        public abstract TValue GetValue(CallbackContext context);
 
-        protected abstract TValue GetValue(CallbackContext context);
-
-        public void Handle(CallbackContext context)
+        public virtual void Handle(CallbackContext context)
         {
             TValue value = GetValue(context);
-            Handle(context, value);
-        }
 
-        protected virtual void Handle(CallbackContext context, TValue value)
-        {
             bool actionStarted = context.started;
+            bool actionUpdated = context.performed || context.canceled;
+            bool actionCancelled = context.canceled;
+
             if (actionStarted)
             { EmitOnStart(value); }
 
-            bool actionUpdated = context.performed || context.canceled;
             if (actionUpdated)
             { EmitOnUpdate(value); }
 
-            bool actionCancelled = context.canceled;
             if (actionCancelled)
             { EmitOnCancel(value); }
-
-            EmitOnHandle(context);
         }
 
         #region Signal Emitters
 
-        protected virtual void EmitOnHandle(CallbackContext context)
-        {
-            onHandle?.Invoke(context);
-        }
-
         protected virtual void EmitOnStart(TValue value)
         {
-            onStart?.Invoke();
             IsPressed = true;
+            onStart?.Invoke();
         }
 
         protected virtual void EmitOnUpdate(TValue value)
@@ -65,8 +52,8 @@ namespace RPG
 
         protected virtual void EmitOnCancel(TValue value)
         {
-            onCancel?.Invoke();
             IsPressed = false;
+            onCancel?.Invoke();
         }
 
         #endregion
@@ -90,8 +77,6 @@ namespace RPG
 
         public void OnCancel(Action execute) => onCancel += execute;
 
-        public void OnHandle(Action<CallbackContext> execute) => onHandle += execute;
-
         #endregion
 
         #region Signal Remover
@@ -108,8 +93,6 @@ namespace RPG
             public readonly void OnUpdate(Action<TValue> callback) => self.onUpdate -= callback;
 
             public readonly void OnCancel(Action callback) => self.onCancel -= callback;
-
-            public readonly void OnHandle(Action<CallbackContext> callback) => self.onHandle -= callback;
         }
 
         #endregion
@@ -118,7 +101,7 @@ namespace RPG
     public class ValueHandler<TValue> : ActionHandler<TValue>
         where TValue : struct
     {
-        protected override TValue GetValue(CallbackContext context)
+        public override TValue GetValue(CallbackContext context)
         {
             TValue value = context.ReadValue<TValue>();
             return value;
@@ -140,42 +123,47 @@ namespace RPG
             Start();
         }
 
-        protected override TValue GetValue(CallbackContext context)
+        public override TValue GetValue(CallbackContext context)
         {
-            TInput input = baseHandler.LastValue;
+            TInput input = baseHandler.GetValue(context);
             TValue value = deriver(input);
             return value;
         }
 
-        protected override void Handle(CallbackContext context, TValue value)
+        public override void Handle(CallbackContext context)
         {
+            baseHandler.Handle(context);
+        }
+
+        private void Derive(TInput input)
+        {
+            TValue value = deriver(input);
+
             bool isSameValue = Equals(value, LastValue);
-            bool isDefaultValue = Equals(value, default);
+            bool isDefaultValue = Equals(value, default(TValue));
 
             bool actionStarted = !IsPressed && !isDefaultValue;
+            bool actionUpdated = !isSameValue;
+            bool actionCancelled = !isSameValue && isDefaultValue;
+            
             if (actionStarted)
             { EmitOnStart(value); }
 
-            bool actionUpdated = !isSameValue;
             if (actionUpdated)
             { EmitOnUpdate(value); }
 
-            bool actionCancelled = !isSameValue && isDefaultValue;
             if (actionCancelled)
             { EmitOnCancel(value); }
-
-            if (actionUpdated)
-            { EmitOnHandle(context); }
         }
 
         public void Start()
         {
-            baseHandler.OnHandle(Handle);
+            baseHandler.OnUpdate(Derive);
         }
 
         public void Stop()
         {
-            baseHandler.Remove.OnHandle(Handle);
+            baseHandler.Remove.OnUpdate(Derive);
         }
     }
 

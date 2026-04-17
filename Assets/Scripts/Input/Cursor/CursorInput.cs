@@ -100,12 +100,12 @@ namespace RPG
 
             public Handler()
             {
-                Ray = new(from: Position, derive: (position) =>
+                Ray = DeriveHandler(from: Position, derive: (position) =>
                 {
                     return Camera.main.ScreenPointToRay(position);
                 });
 
-                HoverTarget = new(from: Ray, derive: (ray) =>
+                HoverTarget = DeriveHandler(from: Ray, derive: (ray) =>
                 {
                     if (Physics.Raycast(ray,
                         maxDistance: Mathf.Infinity,
