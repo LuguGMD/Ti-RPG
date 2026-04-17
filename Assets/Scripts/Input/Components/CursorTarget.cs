@@ -4,43 +4,57 @@ using LucasRozado.Utility;
 
 namespace RPG
 {
-    public class CursorTarget : InputComponent<CursorTarget.Handler>
+    public class CursorTarget : InputComponent<CursorTarget.CursorTargetActionsHandler>
     {
         static public LayerMask CollisionLayer => CursorInput.Instance.CollisionLayer;
 
-        protected override Handler SetupHandler() => new();
-
         [SerializeField] private new Collider collider;
+
         protected new void Awake()
         {
             base.Awake();
-         
+
             if (collider == null)
             {
-                Debug.LogError(
-                $"{gameObject.name}: O Collider detectado pelo Cursor não foi definido."
-                );
+                if (TryGetComponent(out collider))
+                {
+                    Debug.LogWarning(
+                        $"{gameObject.name}: " +
+                        $"Um Collider para ser detectado pelo Cursor não foi definido." +
+                        $"O componente {collider.GetType().Name} será utilizado."
+                    );
+                }
+                else
+                {
+                    Debug.LogError(
+                        $"{gameObject.name}: " +
+                        $"Um Collider para ser detectado pelo Cursor não foi definido."
+                    );
+                }
             }
-            else if (!Layer.IsInMask(collider.gameObject.layer, CollisionLayer))
+
+            if (!Layer.IsInMask(collider.gameObject.layer, CollisionLayer))
             {
                 Debug.LogError(
-                $"{gameObject.name} > {collider.gameObject.name}: A Layer do colisor não é detectada pelo Cursor."
+                    $"{gameObject.name} > {collider.gameObject.name}: " +
+                    "A Layer do colisor não é detectada pelo Cursor."
                 );
             }
 
         }
 
-        public class Handler : ActionsHandler
+        protected override CursorTargetActionsHandler SetupHandler() => new();
+        public class CursorTargetActionsHandler : ActionsHandler
         {
             #region Derived Handlers
-            
+
             public DerivedHandler<CursorTarget, bool> Hover;
 
             public DerivedHandler<bool, bool> LeftClick;
             public DerivedHandler<bool, bool> MiddleClick;
             public DerivedHandler<bool, bool> RightClick;
 
-            public Handler()
+            public CursorTargetActionsHandler()
             {
                 Hover = DeriveHandler(
                     from: CursorInput.Instance.Actions.HoverTarget,
@@ -57,7 +71,7 @@ namespace RPG
                     bool isHovered = Hover.IsPressed;
                     return isHovered && isClicked;
                 }
-                
+
                 LeftClick = DeriveHandler(
                     from: CursorInput.Instance.Actions.LeftClick,
                     derive: DeriveClick

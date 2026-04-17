@@ -6,11 +6,11 @@ namespace RPG
 {
     // Essa classe é provisória e foi criada para testes e prova de conceito.
     // As PlayerActions provavelmente vão ser modificadas ou removidas futuramente.
-    public class PlayerInput : InputComponent<PlayerInput.Handler>
+    public class PlayerInput : InputComponent<PlayerInput.PlayerInputActionsHandler>
     {
-        protected override Handler SetupHandler() => new();
+        protected override PlayerInputActionsHandler SetupHandler() => new();
 
-        public class Handler : ActionsHandler<PlayerActions>, IPlayerActions
+        public class PlayerInputActionsHandler : ActionsHandler<PlayerActions>, IPlayerActions
         {
             public override PlayerActions InputActions => InputManager.Actions.Player;
 

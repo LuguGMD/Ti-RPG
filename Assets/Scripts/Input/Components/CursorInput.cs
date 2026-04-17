@@ -6,73 +6,23 @@ using LucasRozado.Utility;
 
 namespace RPG
 {
-    public class CursorInput : InputComponent<CursorInput.Handler>
+    public class CursorInput : InputComponent<CursorInput.CursorInputActionsHandler>
     {
-        #region Singleton Logic
-
-        static private CursorInput instance;
-        static public CursorInput Instance => instanceGetter.Invoke();
-        static private Getter<CursorInput> instanceGetter = GetNoInstance;
-
-        static private CursorInput GetNoInstance()
-        {
-            Debug.LogError(
-                $"{nameof(CursorInput)}: " +
-                "Tried getting a Singleton's instance, " +
-                "but none were ever created."
-            );
-            return null;
-        }
-        
-        static private void SetInstance(CursorInput instance)
-        {
-            instanceGetter = GetInstance;
-            CursorInput.instance = instance;
-        }
-        
-        static private CursorInput GetInstance() => instance;
-        
-        #endregion
+        static public CursorInput Instance => Singleton<CursorInput>.Instance;
         
         public LayerMask CollisionLayer;
 
         protected new void Awake()
         {
             base.Awake();
-
-            if (instance == null)
-            { SetInstance(this); }
-            else
-            {
-                Debug.LogWarning(
-                    $"{gameObject.name}: " +
-                    "Another instance of a Singleton class was created."
-                );
-            }
+            Singleton<CursorInput>.Create(this);
         }
 
-        protected override Handler SetupHandler() => Handler.Instance;
-        public class Handler : ActionsHandler<CursorActions>, ICursorActions
+        protected override CursorInputActionsHandler SetupHandler() => Singleton<CursorInputActionsHandler>.Instance;
+        public class CursorInputActionsHandler : ActionsHandler<CursorActions>, ICursorActions
         {
 
             public override CursorActions InputActions => InputManager.Actions.Cursor;
-
-            #region Singleton Logic
-
-            static private Handler instance;
-            static public Handler Instance => instanceGetter.Invoke();
-            static private Getter<Handler> instanceGetter = GetFirstInstance;
-            
-            static private Handler GetInstance() => instance;
-            
-            static private Handler GetFirstInstance()
-            {
-                instance = new();
-                instanceGetter = GetInstance;
-                return instance;
-            }
-
-            #endregion
 
             #region Input Actions
 
@@ -98,7 +48,7 @@ namespace RPG
             public readonly DerivedHandler<Vector2, Ray> Ray;
             public readonly DerivedHandler<Ray, CursorTarget> HoverTarget;
 
-            public Handler()
+            public CursorInputActionsHandler()
             {
                 Ray = DeriveHandler(from: Position, derive: (position) =>
                 {
