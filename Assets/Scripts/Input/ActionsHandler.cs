@@ -15,7 +15,7 @@ namespace RPG
 
         protected DerivedHandler<TInput, TValue> DeriveHandler<TInput, TValue>
         (
-            ActionHandler<TInput> from,
+            InputHandler<TInput> from,
             DerivedHandler<TInput, TValue>.Deriver derive
         )
         {
@@ -63,7 +63,7 @@ namespace RPG
             InputManager.Register(this);
         }
 
-        protected void Handle<TValue>(CallbackContext context, ActionHandler<TValue> handler)
+        protected void Handle<TValue>(CallbackContext context, InputHandler<TValue> handler)
         {
             handler.Handle(context);
         }

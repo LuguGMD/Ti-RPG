@@ -4,14 +4,14 @@ using LucasRozado.Utility;
 
 namespace RPG
 {
-    public class DerivedHandler<TInput, TValue> : ActionHandler<TValue>, ISimpleProcess
+    public class DerivedHandler<TInput, TValue> : InputHandler<TValue>, ISimpleProcess
     {
-        private readonly ActionHandler<TInput> baseHandler;
+        private readonly InputHandler<TInput> baseHandler;
 
         public delegate TValue Deriver(TInput input);
         private readonly Deriver deriver;
 
-        public DerivedHandler(ActionHandler<TInput> from, Deriver derive)
+        public DerivedHandler(InputHandler<TInput> from, Deriver derive)
         {
             baseHandler = from;
             deriver = derive;

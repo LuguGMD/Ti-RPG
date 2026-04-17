@@ -4,8 +4,8 @@ using static UnityEngine.InputSystem.InputAction;
 
 namespace RPG
 {
-    public abstract class ActionHandler { }
-    public abstract class ActionHandler<TValue> : ActionHandler
+    public abstract class InputHandler { }
+    public abstract class InputHandler<TValue> : InputHandler
     {
         private Action onStart;
         private Action<TValue> onUpdate;
@@ -82,8 +82,8 @@ namespace RPG
         public SignalRemover Remove => new(this);
         public readonly struct SignalRemover
         {
-            private readonly ActionHandler<TValue> self;
-            public SignalRemover(ActionHandler<TValue> self)
+            private readonly InputHandler<TValue> self;
+            public SignalRemover(InputHandler<TValue> self)
             { this.self = self; }
 
             public readonly void OnStart(Action callback) => self.onStart -= callback;
