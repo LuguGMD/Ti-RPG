@@ -576,9 +576,9 @@ GameObject:
   - component: {fileID: 1691069389}
   - component: {fileID: 1691069388}
   - component: {fileID: 1691069387}
-  - component: {fileID: 1691069386}
   - component: {fileID: 1691069385}
   - component: {fileID: 1691069391}
+  - component: {fileID: 1691069392}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -598,18 +598,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e8a73542e4af8d4a78aead8c656c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.TestCube
---- !u!114 &1691069386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1691069384}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2cabbfd784cf6e479693566451ef8e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPG.PlayerInputManager
 --- !u!65 &1691069387
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -716,6 +704,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.CursorTarget
   collider: {fileID: 1691069387}
+--- !u!114 &1691069392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1691069384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a87fa8b0ca01030e9e09e48120680fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.PlayerInput
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
