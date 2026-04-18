@@ -12,12 +12,12 @@ namespace RPG.Combat.Preview
     [RequireComponent(typeof(StageEntityController))]
     public class PreviewActionHandler : MonoBehaviour
     {
-        private StageEntityController _stageEntityController;
+        protected StageEntityController _stageEntityController;
 
-        private CombatAction _actionToPreview;
+        protected CombatAction _actionToPreview;
 
-        private List<PreviewTileInfo> _previewTileInfos = new List<PreviewTileInfo>();
-        private List<PreviewTile> _activePreviewTiles = new List<PreviewTile>();
+        protected List<PreviewTileInfo> _previewTileInfos = new List<PreviewTileInfo>();
+        protected List<PreviewTile> _activePreviewTiles = new List<PreviewTile>();
 
         protected void Awake()
         {
@@ -51,7 +51,7 @@ namespace RPG.Combat.Preview
             }
         }
 
-        public void ShowPreview()
+        public virtual void ShowPreview()
         {
             HidePreview();
 
@@ -60,11 +60,28 @@ namespace RPG.Combat.Preview
                 Vector2Int position = _previewTileInfos[i].RelativePosition;
                 position += _stageEntityController.Position;
 
-                if (MapManager.IsPositionValid(position))
+                if (IsPositionValid(_previewTileInfos[i], position))
                 {
                     AddPreviewTile(_previewTileInfos[i], position);
                 }
             }
+        }
+
+        private bool IsPositionValid(PreviewTileInfo previewTileInfo, Vector2Int position)
+        {
+            Tile tile = MapManager.Instance.Map.GetTile(position);
+
+            if (tile.Position == Map.CENTER_POS) return false;
+            if(tile.IsOccupied)
+            {
+                if(tile.TileObject.TryGetComponent<StageEntityController>(out StageEntityController stageEntity))
+                {
+                    //TO DO adicionar mais condições em relação ao ataque selecionado
+                    if (stageEntity.Info.Team == _stageEntityController.Info.Team) return false;
+                }
+            }
+
+            return true;
         }
 
         public void HidePreview()
@@ -77,13 +94,15 @@ namespace RPG.Combat.Preview
             _activePreviewTiles.Clear();
         }
 
-        private void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position)
+        protected virtual void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position)
         {
             PreviewTilesPool.Pool.Get(out PreviewTile previewTile);
             previewTile.SetInfo(previewTileInfo);
+            previewTile.SetCanBeSelected(true);
             previewTile.SetPosition(position);
 
             _activePreviewTiles.Add(previewTile);
+
         }
 
         private void GetPatternTiles(MovementPattern movementPattern, int patternIndex, bool isMirror)

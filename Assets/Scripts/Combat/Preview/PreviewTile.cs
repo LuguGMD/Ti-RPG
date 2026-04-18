@@ -8,10 +8,12 @@ namespace RPG.Combat.Preview
     public class PreviewTile : MonoBehaviour
     {
         private PreviewTileInfo _info;
+        private bool _canBeSelected = false;
 
         #region Properties
 
         public PreviewTileInfo Info { get { return _info; } }
+        public bool CanBeSelected { get { return _canBeSelected; } }
 
         #endregion
 
@@ -43,9 +45,15 @@ namespace RPG.Combat.Preview
             _info = info;
         }
 
+        public void SetCanBeSelected(bool canBeSelected)
+        {
+            _canBeSelected = canBeSelected;
+        }
+
         private void Select()
         {
-            ActionsManager.Instance.OnActionTileSelected?.Invoke(_info);
+            if(_canBeSelected)
+                ActionsManager.Instance.OnActionTileSelected?.Invoke(_info);
         }
     }
 }

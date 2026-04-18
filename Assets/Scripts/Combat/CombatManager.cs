@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 namespace RPG.Combat
 {
@@ -19,6 +20,9 @@ namespace RPG.Combat
         private CharacterController _selectedCharacter;
         private List<CharacterController> _usedCharacters = new List<CharacterController>();
         private bool _canSelectCharacter = true;
+
+        private List<EnemyController> _remainingEnemies = new List<EnemyController>();
+
         private bool _isActionInProgress = false;
 
         public static readonly Dictionary<CombatType, CombatType> TypeChart = new Dictionary<CombatType, CombatType>()
@@ -46,6 +50,7 @@ namespace RPG.Combat
 
         private void Start()
         {
+            _remainingEnemies = GameObject.FindObjectsByType<EnemyController>(FindObjectsSortMode.InstanceID).ToList();
             InitializeBattle();
         }
 
@@ -154,22 +159,19 @@ namespace RPG.Combat
             if (_currentTurnState == BattleTurnState.PlayerTurn)
             {
                 _currentTurnState = BattleTurnState.EnemyTurn;
-
-                StartEnemyTurn();
-
                 Debug.Log($"Turno {_turnCount}: Player -> Enemy");
                 ActionsManager.Instance.OnEnemyTurnStarted?.Invoke();
+
+                StartEnemyTurn();
             }
             else if (_currentTurnState == BattleTurnState.EnemyTurn)
             {
                 _currentTurnState = BattleTurnState.PlayerTurn;
                 _turnCount++;
-
-                StartPlayerTurn();
-
                 Debug.Log($"Turno {_turnCount}: Enemy -> Player");
                 ActionsManager.Instance.OnPlayerTurnStarted?.Invoke();
 
+                StartPlayerTurn();
             }
         }
 
@@ -186,12 +188,15 @@ namespace RPG.Combat
             _canSelectCharacter = false;
             _isActionInProgress = true;
             _selectedCharacter.Preview.HidePreview();
+            HideAllEnemiesPreviews();
 
             yield return _selectedCharacter.UseAction(0, patternIndex, repetition, isMirrored);
 
+            ShowAllEnemiesPreviews();
             DeselectCharacter();
             _canSelectCharacter = true;
             _isActionInProgress = false;
+
 
             CheckEndPlayerTurn();
 
@@ -221,6 +226,8 @@ namespace RPG.Combat
 
         private void StartPlayerTurn()
         {
+            ShowAllEnemiesPreviews();
+
             _usedCharacters.Clear();
             _canSelectCharacter = true;
         }
@@ -228,23 +235,41 @@ namespace RPG.Combat
         #endregion
 
         #region Metodos Enemy
-        public void ExecuteEnemyAction()
+        
+        private IEnumerator EnemyTurnCoroutine()
         {
-            if (_isBattleOver || _currentTurnState != BattleTurnState.EnemyTurn)
-                return;
+            for(int i = 0; i< _remainingEnemies.Count; i++)
+            {
+                yield return _remainingEnemies[i].UseAction(0, 0, 1, false);
+                yield return new WaitForSeconds(0.5f);
+            }
 
-            ExecuteEnemyTurn();
             SwitchTurn();
-        }
-
-        private void ExecuteEnemyTurn()
-        {
-            Debug.Log($"[Turno {_turnCount}] Turno do Enemy executado!");
         }
 
         private void StartEnemyTurn()
         {
             _canSelectCharacter = false;
+
+            HideAllEnemiesPreviews();
+
+            StartCoroutine(EnemyTurnCoroutine());
+        }
+
+        private void ShowAllEnemiesPreviews()
+        {
+            for (int i = 0; i < _remainingEnemies.Count; i++)
+            {
+                _remainingEnemies[i].Preview.ShowPreview();
+            }
+        }
+
+        private void HideAllEnemiesPreviews()
+        {
+            for (int i = 0; i < _remainingEnemies.Count; i++)
+            {
+                _remainingEnemies[i].Preview.HidePreview();
+            }
         }
 
         #endregion
