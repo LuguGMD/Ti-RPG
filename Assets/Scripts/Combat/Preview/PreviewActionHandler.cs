@@ -1,10 +1,11 @@
-using UnityEngine;
 using RPG.Combat.Actions;
-using UnityEngine.Pool;
 using RPG.Combat.Grid;
+using RPG.Extensions;
 using System;
 using System.Collections.Generic;
-using RPG.Extensions;
+using UnityEngine;
+using UnityEngine.Pool;
+using UnityEngine.UIElements;
 
 namespace RPG.Combat.Preview
 {
@@ -14,9 +15,9 @@ namespace RPG.Combat.Preview
         private StageEntityController _stageEntityController;
 
         private CombatAction _actionToPreview;
-        private bool _isPreviewEnabled;
 
         private List<PreviewTileInfo> _previewTileInfos = new List<PreviewTileInfo>();
+        private List<PreviewTile> _activePreviewTiles = new List<PreviewTile>();
 
         protected void Awake()
         {
@@ -29,11 +30,6 @@ namespace RPG.Combat.Preview
             
             //TO DO remover depois
             CalculatePreviewTiles();
-        }
-
-        public void TogglePreview(bool toggleState)
-        {
-            _isPreviewEnabled = toggleState;
         }
 
 
@@ -58,6 +54,7 @@ namespace RPG.Combat.Preview
         [ContextMenu("Show Preview")]
         private void ShowPreview()
         {
+            HidePreview();
 
             for (int i = 0; i < _previewTileInfos.Count; i++)
             {
@@ -66,10 +63,28 @@ namespace RPG.Combat.Preview
 
                 if (MapManager.IsPositionValid(position))
                 {
-                    PreviewTilesPool.Pool.Get(out PreviewTile previewTile);
-                    previewTile.SetPosition(position);
+                    AddPreviewTile(_previewTileInfos[i], position);
                 }
             }
+        }
+
+        private void HidePreview()
+        {
+            for(int i = 0; i < _activePreviewTiles.Count; i++)
+            {
+                PreviewTilesPool.Pool.Release(_activePreviewTiles[i]);
+            }
+
+            _activePreviewTiles.Clear();
+        }
+
+        private void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position)
+        {
+            PreviewTilesPool.Pool.Get(out PreviewTile previewTile);
+            previewTile.SetInfo(previewTileInfo);
+            previewTile.SetPosition(position);
+
+            _activePreviewTiles.Add(previewTile);
         }
 
         private void GetPatternTiles(MovementPattern movementPattern, int patternIndex, bool isMirror)

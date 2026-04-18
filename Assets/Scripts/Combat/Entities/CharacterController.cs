@@ -2,8 +2,10 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
+    
     public class CharacterController : StageEntityController
     {
+        
         private float _motivation = 10;
 
         public override EntityScriptable GetEntityInfo()

@@ -7,10 +7,11 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    [RequireComponent(typeof(TileObject))]
+    [RequireComponent(typeof(TileObject), typeof(CursorTarget))]
     public abstract class EntityController : MonoBehaviour
     {
         protected TileObject _tileObject;
+        protected CursorTarget _cursorTarget;
 
         #region Properties
         public Vector2Int Position { get { return _tileObject.Position; } }
@@ -21,6 +22,20 @@ namespace RPG.Combat
         protected void Awake()
         {
             _tileObject = GetComponent<TileObject>();
+            _cursorTarget = GetComponent<CursorTarget>();
+
+            _cursorTarget.Actions.LeftClick.OnCancel(OnSelected);
+            _cursorTarget.Actions.Hover.OnStart(OnHover);
+        }
+
+        protected virtual void OnSelected()
+        {
+            ActionsManager.Instance.OnEntitySelected?.Invoke(this);
+        }
+
+        protected virtual void OnHover()
+        {
+            ActionsManager.Instance.OnEntityHovered?.Invoke(this);
         }
 
         public abstract void TakeDamage(float damage);

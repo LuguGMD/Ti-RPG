@@ -1,5 +1,7 @@
 using Lugu.Singleton;
+using RPG.Combat;
 using RPG.Combat.Actions;
+using RPG.Combat.Preview;
 using System;
 using UnityEngine;
 
@@ -20,6 +22,15 @@ namespace RPG
         public Action OnTileStepAfter;
 
         #endregion
+
+        #region Tile Interaction
+
+        public Action<PreviewTileInfo> OnActionTileSelected;
+
+        #endregion
+
+        public Action<EntityController> OnEntitySelected;
+        public Action<EntityController> OnEntityHovered;
 
         #endregion
     }

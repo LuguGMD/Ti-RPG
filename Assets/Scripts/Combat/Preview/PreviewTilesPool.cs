@@ -35,16 +35,17 @@ namespace RPG.Combat.Preview
 
         private void OnGet(PreviewTile previewTile)
         {
-            
+            previewTile.gameObject.SetActive(true);
         }
 
         private void OnRelease(PreviewTile previewTile)
         {
-            
+            previewTile.gameObject.SetActive(false);
         }
 
         private void OnClear(PreviewTile previewTile)
         {
+            previewTile.gameObject.SetActive(false);
         }
     }
 }
