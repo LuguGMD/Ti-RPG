@@ -37,13 +37,13 @@ namespace RPG.Combat.Grid
             _tileObject.UpdatePosition();
         }
 
-        public IEnumerator Move()
+        public IEnumerator Move(bool isMirrored)
         {
             Movement movement = _movementQueue.Dequeue();
-            Direction direction = movement.Direction;
+            Direction direction = isMirrored ? movement.Direction.Mirror() : movement.Direction;
             _tileObject.SetDirection(direction);
 
-            if (MapManager.IsMovementValid(_tileObject.Position, movement))
+            if (MapManager.IsMovementValid(_tileObject.Position, movement, isMirrored))
             {
                 ActionsManager.Instance.OnTileStepBefore?.Invoke();
 
@@ -104,7 +104,7 @@ namespace RPG.Combat.Grid
 
         public void Push(Movement movement)
         {
-            if (MapManager.IsMovementValid(_tileObject.Position, movement))
+            if (MapManager.IsMovementValid(_tileObject.Position, movement, false))
             {
                 ChangeTile(movement.Direction);
             }

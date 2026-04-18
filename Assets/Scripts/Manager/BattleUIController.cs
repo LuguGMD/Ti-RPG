@@ -1,3 +1,6 @@
+using RPG.Combat;
+using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,18 +8,13 @@ namespace RPG
 {
     public class BattleUIController : MonoBehaviour
     {
-        [SerializeField] private BattleManager battleManager;
 
         [Header("Player UI")]
         [SerializeField] private Button playerActionButton;
-        [SerializeField] private Text playerActionButtonText;
-
-        [Header("Enemy UI")]
-        [SerializeField] private Button enemyActionButton;
-        [SerializeField] private Text enemyActionButtonText;
+        [SerializeField] private TextMeshProUGUI playerActionButtonText;
 
         [Header("Battle Info")]
-        [SerializeField] private Text turnInfoText;
+        [SerializeField] private TextMeshProUGUI turnInfoText;
 
         private void Start()
         {
@@ -28,13 +26,13 @@ namespace RPG
         {
             if (playerActionButton != null)
             {
-                playerActionButton.onClick.AddListener(OnPlayerActionClicked);
+                playerActionButton.onClick.AddListener(OnEndTurnClicked);
             }
+        }
 
-            if (enemyActionButton != null)
-            {
-                enemyActionButton.onClick.AddListener(OnEnemyActionClicked);
-            }
+        private void OnEndTurnClicked()
+        {
+            ActionsManager.Instance.OnPlayerTurnEnded?.Invoke();
         }
 
         private void Update()
@@ -46,8 +44,8 @@ namespace RPG
         {
             if (turnInfoText != null)
             {
-                var turnState = battleManager.GetCurrentTurnState();
-                turnInfoText.text = $"Turno {battleManager.GetTurnCount()} - {GetTurnStateName(turnState)}";
+                var turnState = CombatManager.Instance.CurrentTurnState;
+                turnInfoText.text = $"Turno {CombatManager.Instance.TurnCount} - {GetTurnStateName(turnState)}";
             }
 
             UpdateButtonStates();
@@ -55,41 +53,16 @@ namespace RPG
 
         private void UpdateButtonStates()
         {
-            bool isPlayerTurn = battleManager.GetCurrentTurnState() == BattleTurnState.PlayerTurn;
-            bool isEnemyTurn = battleManager.GetCurrentTurnState() == BattleTurnState.EnemyTurn;
+            bool isPlayerTurn = CombatManager.Instance.CurrentTurnState == BattleTurnState.PlayerTurn;
+            bool isEnemyTurn = CombatManager.Instance.CurrentTurnState == BattleTurnState.EnemyTurn;
 
             if (playerActionButton != null)
             {
                 playerActionButton.interactable = isPlayerTurn;
                 if (playerActionButtonText != null)
                 {
-                    playerActionButtonText.text = isPlayerTurn ? "Ação Player" : "Aguarde...";
+                    playerActionButtonText.text = isPlayerTurn ? "Finalizar Turno" : "Aguarde...";
                 }
-            }
-
-            if (enemyActionButton != null)
-            {
-                enemyActionButton.interactable = isEnemyTurn;
-                if (enemyActionButtonText != null)
-                {
-                    enemyActionButtonText.text = isEnemyTurn ? "Ação Inimigo" : "Aguarde...";
-                }
-            }
-        }
-
-        private void OnPlayerActionClicked()
-        {
-            if (battleManager != null)
-            {
-                battleManager.ExecutePlayerAction();
-            }
-        }
-
-        private void OnEnemyActionClicked()
-        {
-            if (battleManager != null)
-            {
-                battleManager.ExecuteEnemyAction();
             }
         }
 

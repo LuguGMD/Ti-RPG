@@ -26,7 +26,7 @@ namespace RPG.Combat.Actions.Effects
 
             Movement movement = new Movement(pushDirection, true);
 
-            if (!MapManager.IsMovementValid(target.Position, movement))
+            if (!MapManager.IsMovementValid(target.Position, movement, false))
             {
                 return false;
             }

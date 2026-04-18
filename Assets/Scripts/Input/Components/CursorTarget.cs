@@ -10,10 +10,8 @@ namespace RPG
 
         [SerializeField] private GameObject collisionTarget;
 
-        protected new void Awake()
+        private void Start()
         {
-            base.Awake();
-
             if (collisionTarget == null)
             {
                 if (

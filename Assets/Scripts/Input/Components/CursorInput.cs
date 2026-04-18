@@ -16,7 +16,6 @@ namespace RPG
 
         protected new void Awake()
         {
-            base.Awake();
             if(_instance == null)
             {
                 _instance = this;
@@ -25,6 +24,7 @@ namespace RPG
             {
                 Destroy(gameObject);
             }
+            base.Awake();
             //Singleton<CursorInput>.Create(this);
         }
 

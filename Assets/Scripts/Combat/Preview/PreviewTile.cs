@@ -5,12 +5,9 @@ using UnityEngine;
 
 namespace RPG.Combat.Preview
 {
-    [RequireComponent(typeof(CursorTarget))]
     public class PreviewTile : MonoBehaviour
     {
         private PreviewTileInfo _info;
-        private CursorTarget _cursorTarget;
-        [SerializeField] private List<Collider> _colliders;
 
         #region Properties
 
@@ -18,24 +15,23 @@ namespace RPG.Combat.Preview
 
         #endregion
 
-        private void Awake()
-        {
-            _cursorTarget = GetComponent<CursorTarget>();
-        }
-
         private void Start()
         {
-            _cursorTarget.Actions.LeftClick.OnCancel(Select);
+            CursorTarget[] cursorTargets = GetComponentsInChildren<CursorTarget>(true); 
+
+            foreach (CursorTarget cursorTarget in cursorTargets)
+            {
+                cursorTarget.Actions.LeftClick.OnCancel(Select);
+            }
         }
 
         public void SetPosition(Vector2Int tilePosition)
         {
             tilePosition = tilePosition.ClampMap();
 
-            for (int i = 0; i < _colliders.Count; i++)
+            for (int i = 0; i < transform.childCount; i++)
             {
-                _colliders[i].gameObject.SetActive(i == tilePosition.y);
-                _cursorTarget.SetCollider(_colliders[i]);
+                transform.GetChild(i)?.gameObject.SetActive(i == tilePosition.y);
             }
 
             transform.position = MapManager.Instance.GetWorldPostion(tilePosition);

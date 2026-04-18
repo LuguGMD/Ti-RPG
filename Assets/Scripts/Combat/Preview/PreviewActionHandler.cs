@@ -103,7 +103,7 @@ namespace RPG.Combat.Preview
                     currentPos += direction.ToVector2Int();
                 }
 
-                _previewTileInfos.Add(new PreviewTileInfo(currentPos, patternIndex, j, false, false, true));
+                _previewTileInfos.Add(new PreviewTileInfo(currentPos, patternIndex, j+1, isMirror, false, true));
             }
         }
 

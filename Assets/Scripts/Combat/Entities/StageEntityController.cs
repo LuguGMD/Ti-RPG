@@ -1,6 +1,7 @@
 using RPG.Combat.Actions;
 using RPG.Combat.Grid;
 using RPG.Combat.Preview;
+using RPG.Extensions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,6 +41,11 @@ namespace RPG.Combat
 
             SubscribeEffects(action.Effects);
 
+            Direction startDirection = movementPattern.Pattern[0].Direction;
+            if(isMirrored) startDirection = startDirection.Mirror();
+
+            _tileObject.SetDirection(startDirection);
+
             _movement.EnqueuePattern(movementPattern.Pattern, repetitions);
 
             ActionsManager.Instance.OnActionStart?.Invoke();
@@ -48,8 +54,9 @@ namespace RPG.Combat
 
             while (_movement.MovementQueue.Count > 0)
             {
-                yield return _movement.Move();
+                yield return _movement.Move(isMirrored);
             }
+
 
             ActionsManager.Instance.OnActionEnd?.Invoke();
 

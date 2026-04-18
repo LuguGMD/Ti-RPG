@@ -10,6 +10,8 @@ namespace RPG.Combat.Grid
         [SerializeField] private List<TileObject> _entityPrefabs;
         [SerializeField] private List<Vector2Int> _startPositions;
 
+        [SerializeField] private GameObject _apresentador;
+
         [SerializeField] private int _rowToRotate = 0;
         [SerializeField] private int _rotateAmount = 1;
 
@@ -19,6 +21,8 @@ namespace RPG.Combat.Grid
             {
                 CombatFactory.InstantiateTileObject(_entityPrefabs[i], _startPositions[i]);
             }
+
+            _apresentador.SetActive(true);
         }
 
 

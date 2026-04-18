@@ -4,13 +4,22 @@ using RPG.Combat.Actions;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 namespace RPG.Combat
 {
     public class CombatManager : SingletonMono<CombatManager>
     {
         [SerializeField] private PreviewTile _previewTilePrefab;
+
+        private BattleTurnState _currentTurnState;
+        private int _turnCount;
+        private bool _isBattleOver;
+
         private CharacterController _selectedCharacter;
+        private List<CharacterController> _usedCharacters = new List<CharacterController>();
+        private bool _canSelectCharacter = true;
+        private bool _isActionInProgress = false;
 
         public static readonly Dictionary<CombatType, CombatType> TypeChart = new Dictionary<CombatType, CombatType>()
         {
@@ -21,6 +30,8 @@ namespace RPG.Combat
             { CombatType.Sadness, CombatType.Strength },
             { CombatType.Anger, CombatType.Jokes },
         };
+        private const int MAX_CHARACTERS_COUNT = 3;
+
 
         #region Properties
 
@@ -28,20 +39,31 @@ namespace RPG.Combat
         {
             get { return Instance._previewTilePrefab; }
         }
+        public BattleTurnState CurrentTurnState { get { return _currentTurnState; } }
+        public int TurnCount { get { return _turnCount; } }
 
         #endregion
+
+        private void Start()
+        {
+            InitializeBattle();
+        }
 
         private void OnEnable()
         {
             ActionsManager.Instance.OnCharacterSelected += OnCharacterSelected;
             ActionsManager.Instance.OnActionTileSelected += OnCombatActionSelected;
+            ActionsManager.Instance.OnPlayerTurnEnded += EndPlayerTurn;
         }
 
         private void OnDisable()
         {
             ActionsManager.Instance.OnCharacterSelected -= OnCharacterSelected;
             ActionsManager.Instance.OnActionTileSelected -= OnCombatActionSelected;
+            ActionsManager.Instance.OnPlayerTurnEnded -= EndPlayerTurn;
         }
+
+        #region Control
 
         public static bool IsTargetWeak(CombatType user, CombatType target)
         {
@@ -88,24 +110,145 @@ namespace RPG.Combat
             return effect.TargetList.Contains(target.Team);
         }
 
+        #endregion
+
         private void OnCharacterSelected(CharacterController selectedCharacter)
         {
-            _selectedCharacter?.Preview.HidePreview();
+            if (_usedCharacters.Contains(selectedCharacter))
+            {
 
-            _selectedCharacter = selectedCharacter;
+            }
+            else if(!_canSelectCharacter)
+            {
 
-            _selectedCharacter.Preview.ShowPreview();
+            }
+            else
+            {
+                DeselectCharacter();
+
+                _selectedCharacter = selectedCharacter;
+
+                _selectedCharacter.Preview.ShowPreview();
+            }
         }
 
         private void OnCombatActionSelected(PreviewTileInfo previewTileInfo)
         {
             if (_selectedCharacter == null) return;
 
+            StartCoroutine(PlayerActionCoroutine(previewTileInfo));
+        }
+
+        #region Metodos Combate
+
+        private void InitializeBattle()
+        {
+            _currentTurnState = BattleTurnState.PlayerTurn;
+            _turnCount = 1;
+            _isBattleOver = false;
+            StartPlayerTurn();
+        }
+
+        private void SwitchTurn()
+        {
+            if (_currentTurnState == BattleTurnState.PlayerTurn)
+            {
+                _currentTurnState = BattleTurnState.EnemyTurn;
+
+                StartEnemyTurn();
+
+                Debug.Log($"Turno {_turnCount}: Player -> Enemy");
+                ActionsManager.Instance.OnEnemyTurnStarted?.Invoke();
+            }
+            else if (_currentTurnState == BattleTurnState.EnemyTurn)
+            {
+                _currentTurnState = BattleTurnState.PlayerTurn;
+                _turnCount++;
+
+                StartPlayerTurn();
+
+                Debug.Log($"Turno {_turnCount}: Enemy -> Player");
+                ActionsManager.Instance.OnPlayerTurnStarted?.Invoke();
+
+            }
+        }
+
+        #region Metodos Player
+
+        private IEnumerator PlayerActionCoroutine(PreviewTileInfo previewTileInfo)
+        {
             int patternIndex = previewTileInfo.PatternIndex;
             int repetition = previewTileInfo.PatternRepetitionCount;
             bool isMirrored = previewTileInfo.IsMirrored;
 
-            _selectedCharacter.UseAction(0, patternIndex, repetition, isMirrored);
+            _usedCharacters.Add(_selectedCharacter);
+
+            _canSelectCharacter = false;
+            _isActionInProgress = true;
+            _selectedCharacter.Preview.HidePreview();
+
+            yield return _selectedCharacter.UseAction(0, patternIndex, repetition, isMirrored);
+
+            DeselectCharacter();
+            _canSelectCharacter = true;
+            _isActionInProgress = false;
+
+            CheckEndPlayerTurn();
+
         }
+
+        private void CheckEndPlayerTurn()
+        {
+            if(_usedCharacters.Count >= MAX_CHARACTERS_COUNT)
+            {
+                EndPlayerTurn();
+            }
+        }
+
+        private void EndPlayerTurn()
+        {
+            if(!_isActionInProgress && _currentTurnState == BattleTurnState.PlayerTurn)
+            {
+                SwitchTurn();
+            }
+        }
+
+        private void DeselectCharacter()
+        {
+            _selectedCharacter?.Preview.HidePreview();
+            _selectedCharacter = null;
+        }
+
+        private void StartPlayerTurn()
+        {
+            _usedCharacters.Clear();
+            _canSelectCharacter = true;
+        }
+
+        #endregion
+
+        #region Metodos Enemy
+        public void ExecuteEnemyAction()
+        {
+            if (_isBattleOver || _currentTurnState != BattleTurnState.EnemyTurn)
+                return;
+
+            ExecuteEnemyTurn();
+            SwitchTurn();
+        }
+
+        private void ExecuteEnemyTurn()
+        {
+            Debug.Log($"[Turno {_turnCount}] Turno do Enemy executado!");
+        }
+
+        private void StartEnemyTurn()
+        {
+            _canSelectCharacter = false;
+        }
+
+        #endregion
+
+        #endregion
     }
 }

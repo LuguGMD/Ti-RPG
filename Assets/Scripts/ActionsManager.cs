@@ -39,6 +39,14 @@ namespace RPG
 
         #endregion
 
+        #region Turns
+
+        public Action OnPlayerTurnStarted;
+        public Action OnPlayerTurnEnded;
+        public Action OnEnemyTurnStarted;
+
+        #endregion
+
         #endregion
     }
 }
