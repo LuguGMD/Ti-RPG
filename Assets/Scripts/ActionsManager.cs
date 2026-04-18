@@ -41,6 +41,8 @@ namespace RPG
 
         #region Turns
 
+        public Action OnTurnPassed;
+
         public Action OnPlayerTurnStarted;
         public Action OnPlayerTurnEnded;
         public Action OnEnemyTurnStarted;

@@ -148,8 +148,9 @@ namespace RPG.Combat
 
         private void InitializeBattle()
         {
+            _turnCount = 0;
             _currentTurnState = BattleTurnState.PlayerTurn;
-            _turnCount = 1;
+            PassTurn();
             _isBattleOver = false;
             StartPlayerTurn();
         }
@@ -167,11 +168,33 @@ namespace RPG.Combat
             else if (_currentTurnState == BattleTurnState.EnemyTurn)
             {
                 _currentTurnState = BattleTurnState.PlayerTurn;
-                _turnCount++;
+                PassTurn();
                 Debug.Log($"Turno {_turnCount}: Enemy -> Player");
                 ActionsManager.Instance.OnPlayerTurnStarted?.Invoke();
 
                 StartPlayerTurn();
+            }
+        }
+
+        private void PassTurn()
+        {
+            _turnCount++;
+            ActionsManager.Instance.OnTurnPassed?.Invoke();
+        }
+
+        public void AddEnemy(EnemyController enemy)
+        {
+            if (!_remainingEnemies.Contains(enemy))
+            {
+                _remainingEnemies.Add(enemy);
+            }
+        }
+
+        public void RemoveEnemy(EnemyController enemy)
+        {
+            if (_remainingEnemies.Contains(enemy))
+            {
+                _remainingEnemies.Remove(enemy);
             }
         }
 

@@ -1807,6 +1807,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1651366513}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1231775290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1231775291}
+  - component: {fileID: 1231775292}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1231775291
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231775290}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.18941, y: -0.5, z: 4.63198}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1651366513}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1231775292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1231775290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9a8ccc1e1c4654d921c443730f8322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.GameManager
+  _selectedLevel: {fileID: 11400000, guid: b45db701fc957124ebea2c9ff3c24524, type: 2}
 --- !u!1 &1443282108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1868,12 +1913,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.MapTest
   _entityPrefabs:
-  - {fileID: 591034852514754510, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
   - {fileID: 234000024867868942, guid: 8ac0f4ac5daa4a84fa99c94e77146cc1, type: 3}
   - {fileID: 4759027188436585152, guid: 48287771299bca948ad21e8af07dede4, type: 3}
   - {fileID: 5920769643581815162, guid: 71c58aac71435da4396b7b945d2f1d7b, type: 3}
   _startPositions:
-  - {x: 3, y: 3}
   - {x: 0, y: 0}
   - {x: 5, y: 1}
   - {x: 1, y: 0}
@@ -1907,6 +1950,7 @@ GameObject:
   - component: {fileID: 1577057573}
   - component: {fileID: 1577057572}
   - component: {fileID: 1577057575}
+  - component: {fileID: 1577057576}
   m_Layer: 0
   m_Name: CombatManager
   m_TagString: Untagged
@@ -1966,6 +2010,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e47ec97960a28944b937ec023daa0ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Preview.PreviewTilesPool
+--- !u!114 &1577057576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577057571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7be2336d90d4cad458c374cd6750d39c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Wave.WaveManager
 --- !u!1 &1603299667
 GameObject:
   m_ObjectHideFlags: 0
@@ -2121,6 +2177,7 @@ Transform:
   - {fileID: 839928541}
   - {fileID: 467413764}
   - {fileID: 1024584593}
+  - {fileID: 1231775291}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1858814134

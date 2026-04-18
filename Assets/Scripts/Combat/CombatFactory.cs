@@ -1,6 +1,7 @@
 using Lugu.Singleton;
 using RPG.Combat.Grid;
 using RPG.Combat.Preview;
+using RPG.Combat.Wave;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -15,6 +16,24 @@ namespace RPG.Combat
 
             return characterObject;
         }
+
+        public static TileObject InstantiateTileObject(SpawnInfo spawnInfo)
+        {
+            return InstantiateTileObject(spawnInfo.TileObjectPrefab, spawnInfo.SpawnPosition);
+        }
+
+        public static EnemyController InstantiateTileObject(EnemySpawnInfo spawnInfo)
+        {
+            EnemyController enemyInstance = Instantiate<EnemyController>(spawnInfo.EnemyInfo.Prefab);
+
+            TileObject enemyObject = enemyInstance.GetComponent<TileObject>();
+            MapManager.Instance.AddTileObject(enemyObject, new Vector2Int(spawnInfo.SpawnPosition, Map.Rows-1));
+            enemyObject.UpdatePosition();
+
+            CombatManager.Instance.AddEnemy(enemyInstance);
+            return enemyInstance;
+        }
+
         public static PreviewTile InstantiatePreviewTile()
         {
             PreviewTile prefab = CombatManager.PreviewTilePrefab;
