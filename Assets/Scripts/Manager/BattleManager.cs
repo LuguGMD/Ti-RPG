@@ -4,18 +4,16 @@ namespace RPG
 {
     public class BattleManager : MonoBehaviour
     {
-        [Header("Character Types")]
-        [SerializeField] private CharacterScriptable playerType;
-        [SerializeField] private CharacterScriptable enemyType;
-
-        [Header("Instance")]
-        [SerializeField] private CharacterInstance player;
-        [SerializeField] private CharacterInstance enemy;
+        #region Propriedades
 
         [Header("Turn Settings")]
         private BattleTurnState currentTurnState;
         private int turnCount;
-        private bool battleEnded;
+        private bool isBattleOver;
+
+        #endregion
+
+        #region Metodos Combate
 
         private void Start()
         {
@@ -26,59 +24,61 @@ namespace RPG
         {
             currentTurnState = BattleTurnState.PlayerTurn;
             turnCount = 1;
-            battleEnded = false;
+            isBattleOver = false;
         }
 
-        private void Update()
+        #endregion Metodos Combate
+
+        #region Metodos Player
+        public void ExecutePlayerAction()
         {
-            if (battleEnded)
+            if (isBattleOver || currentTurnState != BattleTurnState.PlayerTurn)
                 return;
-        }
 
-        private void ExecuteTurn()
-        {
-            switch (currentTurnState)
-            {
-                case BattleTurnState.PlayerTurn:
-                    ExecutePlayerTurn();
-                    break;
-                case BattleTurnState.EnemyTurn:
-                    ExecuteEnemyTurn();
-                    break;
-            }
-
-            CheckBattleEnd();
-
-            if (!battleEnded)
-            {
-                SwitchTurn();
-            }
+            ExecutePlayerTurn();
+            SwitchTurn();
         }
 
         private void ExecutePlayerTurn()
         {
-            
+            Debug.Log($"[Turno {turnCount}] Turno do Player executado!");
+        }
+
+        #endregion Metodos Player
+
+        #region Metodos Enemy
+        public void ExecuteEnemyAction()
+        {
+            if (isBattleOver || currentTurnState != BattleTurnState.EnemyTurn)
+                return;
+
+            ExecuteEnemyTurn();
+            SwitchTurn();
         }
 
         private void ExecuteEnemyTurn()
         {
-           
+            Debug.Log($"[Turno {turnCount}] Turno do Enemy executado!");
         }
 
         private void SwitchTurn()
         {
-          
+            if (currentTurnState == BattleTurnState.PlayerTurn)
+            {
+                currentTurnState = BattleTurnState.EnemyTurn;
+                Debug.Log($"Turno {turnCount}: Player -> Enemy");
+            }
+            else if (currentTurnState == BattleTurnState.EnemyTurn)
+            {
+                currentTurnState = BattleTurnState.PlayerTurn;
+                turnCount++;
+                Debug.Log($"Turno {turnCount}: Enemy -> Player");
+            }
         }
-
-        private void CheckBattleEnd()
-        {
-           
-        }
+        #endregion Metodos Enemy
 
         public BattleTurnState GetCurrentTurnState() => currentTurnState;
-        public CharacterInstance GetPlayer() => player;
-        public CharacterInstance GetEnemy() => enemy;
-        public bool IsBattleEnded() => battleEnded;
         public int GetTurnCount() => turnCount;
+
     }
 }
