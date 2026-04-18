@@ -51,7 +51,8 @@ namespace RPG.Combat
         private void Start()
         {
             _remainingEnemies = GameObject.FindObjectsByType<EnemyController>(FindObjectsSortMode.InstanceID).ToList();
-            InitializeBattle();
+            //TO DO adicionar escolha da posicao dos personagens antes do comeco do combate
+            Invoke(nameof(InitializeBattle),0.01f);
         }
 
         private void OnEnable()
