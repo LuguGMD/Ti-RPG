@@ -1,10 +1,9 @@
+using System;
 using System.Collections.Generic;
 
-using static LucasRozado.Utility.Object;
 using static UnityEngine.InputSystem.InputAction;
 
 using LucasRozado.Utility;
-using System;
 
 namespace RPG
 {
@@ -89,9 +88,9 @@ namespace RPG
         }
 
         public override void OnStart()
-        { GetUtils(InputActions).Invoke("AddCallbacks", this); }
+        { Utility.Get(InputActions).Invoke("AddCallbacks", this); }
         public override void OnStop()
-        { GetUtils(InputActions).Invoke("RemoveCallbacks", this); }
+        { Utility.Get(InputActions).Invoke("RemoveCallbacks", this); }
 
         ~ActionsHandler()
         {

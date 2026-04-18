@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-using static LucasRozado.Utility.Object;
+using LucasRozado.Utility;
 
 namespace RPG
 {
@@ -51,7 +51,7 @@ namespace RPG
             { throw new UnityException(); }
 
             ActionsHandler<TActions> randomInputHandler
-            = GetUtils(Handlers[actionsType]).GetAny() as ActionsHandler<TActions>;
+            = Utility.Get(Handlers[actionsType]).GetAny() as ActionsHandler<TActions>;
 
             return randomInputHandler.InputActions;
         }
@@ -60,14 +60,14 @@ namespace RPG
             where TActions : struct
         {
             TActions inputActions = GetActions<TActions>();
-            GetUtils(inputActions).Invoke("Enable");
+            Utility.Get(inputActions).Invoke("Enable");
         }
 
         static public void StopHandling<TActions>()
             where TActions : struct
         {
             TActions inputActions = GetActions<TActions>();
-            GetUtils(inputActions).Invoke("Disable");
+            Utility.Get(inputActions).Invoke("Disable");
         }
     }
 }
