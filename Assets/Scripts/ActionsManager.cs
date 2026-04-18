@@ -4,6 +4,7 @@ using RPG.Combat.Actions;
 using RPG.Combat.Preview;
 using System;
 using UnityEngine;
+using CharacterController = RPG.Combat.CharacterController;
 
 namespace RPG
 {
@@ -29,8 +30,14 @@ namespace RPG
 
         #endregion
 
+        #region Selection
+
         public Action<EntityController> OnEntitySelected;
         public Action<EntityController> OnEntityHovered;
+
+        public Action<CharacterController> OnCharacterSelected;
+
+        #endregion
 
         #endregion
     }

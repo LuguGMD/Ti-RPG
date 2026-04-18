@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8550594446077591296}
   - component: {fileID: 5875166748602480768}
   - component: {fileID: 4508179335307852333}
+  - component: {fileID: 8616814990594416409}
+  - component: {fileID: 5934706940530837927}
   m_Layer: 0
   m_Name: EnemyPrefab
   m_TagString: Untagged
@@ -85,6 +87,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79da4ee4a2e2bae4c9a758b3da5cc706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Preview.PreviewActionHandler
+--- !u!114 &8616814990594416409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6108933886631140461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0ead27d8c99bab05885f4db4cbe2d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.CursorTarget
+  collider: {fileID: 5934706940530837927}
+--- !u!136 &5934706940530837927
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6108933886631140461}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1.6129749
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.30648744, z: 0}
 --- !u!1001 &7529473047155761135
 PrefabInstance:
   m_ObjectHideFlags: 0

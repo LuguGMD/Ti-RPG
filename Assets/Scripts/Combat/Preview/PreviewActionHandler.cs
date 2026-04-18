@@ -51,8 +51,7 @@ namespace RPG.Combat.Preview
             }
         }
 
-        [ContextMenu("Show Preview")]
-        private void ShowPreview()
+        public void ShowPreview()
         {
             HidePreview();
 
@@ -68,7 +67,7 @@ namespace RPG.Combat.Preview
             }
         }
 
-        private void HidePreview()
+        public void HidePreview()
         {
             for(int i = 0; i < _activePreviewTiles.Count; i++)
             {

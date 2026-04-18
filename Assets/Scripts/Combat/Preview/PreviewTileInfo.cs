@@ -14,8 +14,9 @@ namespace RPG.Combat.Preview
         #region Properties
 
         public Vector2Int RelativePosition { get { return _relativePosition; } }
-        public int PatternCount { get { return _patternIndex; } }
+        public int PatternIndex { get { return _patternIndex; } }
         public int PatternRepetitionCount { get { return _patternRepetitionCount; } } 
+        public bool IsMirrored { get { return _isMirrored; } }
         public bool IsAttack { get { return _isAttack; } }
         public bool IsMovement { get { return _isMovement; } }
 

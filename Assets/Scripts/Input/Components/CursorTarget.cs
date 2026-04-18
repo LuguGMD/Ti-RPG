@@ -43,6 +43,11 @@ namespace RPG
 
         }
 
+        public void SetCollider(Collider collider)
+        {
+            this.collider = collider; 
+        }
+
         protected override CursorTargetActionsHandler SetupHandler() => new();
         public class CursorTargetActionsHandler : ActionsHandler
         {

@@ -19,5 +19,11 @@ namespace RPG.Combat
 
             Debug.Log(Info.name + " lost " + damage + " motivation\n Current Motivation: " + _motivation);
         }
+
+        protected override void OnSelected()
+        {
+            base.OnSelected();
+            ActionsManager.Instance.OnCharacterSelected?.Invoke(this);
+        }
     }
 }

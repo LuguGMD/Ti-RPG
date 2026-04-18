@@ -23,7 +23,10 @@ namespace RPG.Combat
         {
             _tileObject = GetComponent<TileObject>();
             _cursorTarget = GetComponent<CursorTarget>();
+        }
 
+        private void Start()
+        {
             _cursorTarget.Actions.LeftClick.OnCancel(OnSelected);
             _cursorTarget.Actions.Hover.OnStart(OnHover);
         }

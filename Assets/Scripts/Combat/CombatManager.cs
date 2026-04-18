@@ -10,6 +10,7 @@ namespace RPG.Combat
     public class CombatManager : SingletonMono<CombatManager>
     {
         [SerializeField] private PreviewTile _previewTilePrefab;
+        private CharacterController _selectedCharacter;
 
         public static readonly Dictionary<CombatType, CombatType> TypeChart = new Dictionary<CombatType, CombatType>()
         {
@@ -29,6 +30,18 @@ namespace RPG.Combat
         }
 
         #endregion
+
+        private void OnEnable()
+        {
+            ActionsManager.Instance.OnCharacterSelected += OnCharacterSelected;
+            ActionsManager.Instance.OnActionTileSelected += OnCombatActionSelected;
+        }
+
+        private void OnDisable()
+        {
+            ActionsManager.Instance.OnCharacterSelected -= OnCharacterSelected;
+            ActionsManager.Instance.OnActionTileSelected -= OnCombatActionSelected;
+        }
 
         public static bool IsTargetWeak(CombatType user, CombatType target)
         {
@@ -73,6 +86,26 @@ namespace RPG.Combat
             }
 
             return effect.TargetList.Contains(target.Team);
+        }
+
+        private void OnCharacterSelected(CharacterController selectedCharacter)
+        {
+            _selectedCharacter?.Preview.HidePreview();
+
+            _selectedCharacter = selectedCharacter;
+
+            _selectedCharacter.Preview.ShowPreview();
+        }
+
+        private void OnCombatActionSelected(PreviewTileInfo previewTileInfo)
+        {
+            if (_selectedCharacter == null) return;
+
+            int patternIndex = previewTileInfo.PatternIndex;
+            int repetition = previewTileInfo.PatternRepetitionCount;
+            bool isMirrored = previewTileInfo.IsMirrored;
+
+            _selectedCharacter.UseAction(0, patternIndex, repetition, isMirrored);
         }
     }
 }

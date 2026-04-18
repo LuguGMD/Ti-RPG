@@ -15,10 +15,11 @@ namespace RPG.Combat
         protected TileObjectMovement _movement;
         protected PreviewActionHandler _preview;
 
-        #region
+        #region Properties
 
         public TileObjectMovement Movement { get { return _movement; } }
         public StageEntityScriptable Info { get { return _info; } }
+        public PreviewActionHandler Preview { get { return _preview; } }
 
         #endregion
 
@@ -63,12 +64,6 @@ namespace RPG.Combat
             {
                 CombatManager.SubscribeEffectTriggerAction(effect.TriggerCondition, () => effect.Execute(this));
             }
-        }
-
-        [ContextMenu("Use Action")]
-        private void UseActionTest()
-        {
-            StartCoroutine(UseAction(0, 0, 1, false));
         }
     }
 }

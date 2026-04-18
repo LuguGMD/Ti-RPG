@@ -8,14 +8,24 @@ namespace RPG
 {
     public class CursorInput : InputComponent<CursorInput.CursorInputActionsHandler>
     {
-        static public CursorInput Instance => Singleton<CursorInput>.Instance;
+        private static CursorInput _instance;
         
         public LayerMask CollisionLayer;
+
+        public static CursorInput Instance {  get { return _instance; } }
 
         protected new void Awake()
         {
             base.Awake();
-            Singleton<CursorInput>.Create(this);
+            if(_instance == null)
+            {
+                _instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            //Singleton<CursorInput>.Create(this);
         }
 
         protected override CursorInputActionsHandler SetupHandler() => Singleton<CursorInputActionsHandler>.Instance;
