@@ -8,65 +8,72 @@ namespace RPG
     {
         static public LayerMask CollisionLayer => CursorInput.Instance.CollisionLayer;
 
-        [SerializeField] private new Collider collider;
+        [SerializeField] private GameObject collisionTarget;
 
         protected new void Awake()
         {
             base.Awake();
 
-            if (collider == null)
+            if (collisionTarget == null)
             {
-                if (TryGetComponent(out collider))
+                if (
+                    Layer.IsInMask(gameObject.layer, CollisionLayer)
+                    && TryGetComponent<Collider>(out _)
+                )
                 {
                     Debug.LogWarning(
                         $"{gameObject.name}: " +
-                        $"Um Collider para ser detectado pelo Cursor não foi definido." +
-                        $"O componente {collider.GetType().Name} será utilizado."
+                        $"Um Target Collider para ser detectado pelo Cursor não foi definido.\n" +
+                        $"O Collider do próprio objeto será utilizado."
                     );
+                    collisionTarget = gameObject;
                 }
                 else
                 {
-                    Debug.LogError(
+                    Debug.LogWarning(
                         $"{gameObject.name}: " +
-                        $"Um Collider para ser detectado pelo Cursor não foi definido."
+                        $"Um Collision Target para ser detectado pelo Cursor não foi definido."
                     );
                 }
             }
-
-            if (!Layer.IsInMask(collider.gameObject.layer, CollisionLayer))
+            else
             {
-                Debug.LogError(
-                    $"{gameObject.name} > {collider.gameObject.name}: " +
-                    "A Layer do colisor não é detectada pelo Cursor."
-                );
+                if (!collisionTarget.TryGetComponent<Collider>(out _))
+                {
+                    Debug.LogWarning(
+                        $"{gameObject.name} > {collisionTarget.name}: " +
+                        "O Collision Target não possui nenhum Collider."
+                    );
+                }
+
+                if (!Layer.IsInMask(collisionTarget.layer, CollisionLayer))
+                {
+                    Debug.LogWarning(
+                        $"{gameObject.name} > {collisionTarget.name}: " +
+                        "A Layer do Collision Target não é detectada pelo Cursor."
+                    );
+                }
             }
-
         }
 
-        public void SetCollider(Collider collider)
-        {
-            this.collider = collider; 
-        }
-
-        protected override CursorTargetActionsHandler SetupHandler() => new();
+        protected override CursorTargetActionsHandler SetupHandler() => new(this);
         public class CursorTargetActionsHandler : ActionsHandler
         {
             #region Derived Handlers
 
-            public DerivedHandler<CursorTarget, bool> Hover;
+            public DerivedHandler<GameObject, bool> Hover;
 
             public DerivedHandler<bool, bool> LeftClick;
             public DerivedHandler<bool, bool> MiddleClick;
             public DerivedHandler<bool, bool> RightClick;
 
-            public CursorTargetActionsHandler()
+            public CursorTargetActionsHandler(CursorTarget cursorTarget)
             {
                 Hover = DeriveHandler(
                     from: CursorInput.Instance.Actions.HoverTarget,
                     derive: (target) =>
                     {
-                        bool hasTarget = target != null;
-                        bool isTarget = hasTarget && target.Actions == this;
+                        bool isTarget = target == cursorTarget.collisionTarget;
                         return isTarget;
                     }
                 );

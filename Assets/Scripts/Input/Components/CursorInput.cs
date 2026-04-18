@@ -56,7 +56,7 @@ namespace RPG
             #region Derived Handlers
 
             public readonly DerivedHandler<Vector2, Ray> Ray;
-            public readonly DerivedHandler<Ray, CursorTarget> HoverTarget;
+            public readonly DerivedHandler<Ray, GameObject> HoverTarget;
 
             public CursorInputActionsHandler()
             {
@@ -72,12 +72,7 @@ namespace RPG
                         layerMask: CursorTarget.CollisionLayer,
                         hitInfo: out RaycastHit hit
                     ))
-                    {
-                        if (hit.collider.TryGetComponent(out CursorTarget target))
-                        { return target; }
-                        else
-                        { return null; }
-                    }
+                    { return hit.collider.gameObject; }
                     else
                     { return null; }
                 });
