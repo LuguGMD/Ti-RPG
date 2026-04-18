@@ -4,6 +4,7 @@ using static LucasRozado.Utility.Object;
 using static UnityEngine.InputSystem.InputAction;
 
 using LucasRozado.Utility;
+using System;
 
 namespace RPG
 {
@@ -11,7 +12,9 @@ namespace RPG
     {
         #region Derived Handlers Logic
 
-        private readonly HashSet<ISimpleProcess> derivedHandlers = new();
+        private HashSet<ISimpleProcess> derivedHandlers;
+
+        protected virtual void DeriveHandlers() { }
 
         protected DerivedHandler<TInput, TValue> DeriveHandler<TInput, TValue>
         (
@@ -38,20 +41,37 @@ namespace RPG
 
         #endregion
 
-        public void Start()
+        static private void FirstStart(ActionsHandler self)
         {
-            StartDerivedHandlers();
-            OnStart();
+            self.derivedHandlers = new();
+            self.DeriveHandlers();
+            
+            self.start = Start;
+            self.stop = Stop;
+
+            Start(self);
         }
 
-        public void Stop()
+        static private void Start(ActionsHandler self)
         {
-            StopDerivedHandlers();
-            OnStop();
+            self.StartDerivedHandlers();
+            self.OnStart();
         }
 
-        public virtual void OnStart() {}
-        public virtual void OnStop() {}
+        static private void Stop(ActionsHandler self)
+        {
+            self.StopDerivedHandlers();
+            self.OnStop();
+        }
+
+        private Action<ActionsHandler> start = FirstStart;
+        private Action<ActionsHandler> stop = Stop;
+
+        public void Start() => start.Invoke(this);
+        public void Stop() => stop.Invoke(this);
+
+        public virtual void OnStart() { }
+        public virtual void OnStop() { }
     }
 
     public abstract class ActionsHandler<TActions> : ActionsHandler

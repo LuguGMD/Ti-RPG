@@ -8,11 +8,11 @@ namespace RPG
         where THandler : ActionsHandler
     {
         public THandler Actions { get; private set; }
-        protected abstract THandler SetupHandler();
+        protected abstract THandler GetHandler();
 
         protected void Awake()
         {
-            Actions = SetupHandler();
+            Actions = GetHandler();
         }
 
         protected void OnEnable()

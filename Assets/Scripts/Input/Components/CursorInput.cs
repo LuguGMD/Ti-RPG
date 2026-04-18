@@ -10,7 +10,8 @@ namespace RPG
     {
         static public CursorInput Instance => Singleton<CursorInput>.Instance;
         
-        public LayerMask CollisionLayer;
+        [SerializeField] private LayerMask targetCollisionLayer;
+        static public LayerMask TargetCollisionLayer => Instance.targetCollisionLayer;
 
         protected new void Awake()
         {
@@ -18,7 +19,7 @@ namespace RPG
             Singleton<CursorInput>.Create(this);
         }
 
-        protected override CursorInputActionsHandler SetupHandler() => Singleton<CursorInputActionsHandler>.Instance;
+        protected override CursorInputActionsHandler GetHandler() => Singleton<CursorInputActionsHandler>.Instance;
         public class CursorInputActionsHandler : ActionsHandler<CursorActions>, ICursorActions
         {
 
@@ -45,10 +46,10 @@ namespace RPG
 
             #region Derived Handlers
 
-            public readonly DerivedHandler<Vector2, Ray> Ray;
-            public readonly DerivedHandler<Ray, GameObject> HoverTarget;
+            public DerivedHandler<Vector2, Ray> Ray;
+            public DerivedHandler<Ray, GameObject> HoverTarget;
 
-            public CursorInputActionsHandler()
+            protected override void DeriveHandlers()
             {
                 Ray = DeriveHandler(from: Position, derive: (position) =>
                 {
@@ -59,7 +60,7 @@ namespace RPG
                 {
                     if (Physics.Raycast(ray,
                         maxDistance: Mathf.Infinity,
-                        layerMask: CursorTarget.CollisionLayer,
+                        layerMask: TargetCollisionLayer,
                         hitInfo: out RaycastHit hit
                     ))
                     { return hit.collider.gameObject; }
