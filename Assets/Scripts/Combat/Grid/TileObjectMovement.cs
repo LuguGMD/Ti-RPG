@@ -83,7 +83,7 @@ namespace RPG.Combat.Grid
             float startPercentage = MapManager.Instance.GetCurrentTilePercentage(_tileObject.Position);
             float endPercentage = MapManager.Instance.GetCurrentTilePercentage(targetTile);
 
-            DOVirtual.Float(0f, 1f, time, t => {
+            DOVirtual.Float(0f, 1f, time / CombatManager.CombatSpeed, t => {
                 float currentPercentage = Mathf.Lerp(startPercentage, endPercentage, t);
                 Vector3 position = spline.EvaluatePosition(currentPercentage);
                 transform.position = position;
@@ -97,7 +97,7 @@ namespace RPG.Combat.Grid
             Vector2Int targetTile = _tileObject.Position + direction.ToVector2Int();
             Vector3 targetPos = MapManager.Instance.GetWorldPostion(targetTile);
 
-            transform.DOMove(targetPos, time).SetEase(Ease.Linear);
+            transform.DOMove(targetPos, time / CombatManager.CombatSpeed).SetEase(Ease.Linear);
 
             yield return new WaitForSeconds(time / CombatManager.CombatSpeed);
         }

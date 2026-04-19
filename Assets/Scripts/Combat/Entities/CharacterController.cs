@@ -20,13 +20,15 @@ namespace RPG.Combat
             _currentMotivation = info.Motivation;
         }
 
-        private void OnEnable()
+        protected new void OnEnable()
         {
+            base.OnEnable();
             ActionsManager.Instance.OnApresentadorDamageTaken += CheckDefeated;
         }
 
-        private void OnDisable()
+        protected new void OnDisable()
         {
+            base.OnDisable();
             ActionsManager.Instance.OnApresentadorDamageTaken -= CheckDefeated;
         }
 

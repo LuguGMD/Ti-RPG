@@ -57,7 +57,7 @@ namespace RPG.Combat.Wave
         private bool SpawnEnemy(EnemySpawnInfo spawn)
         {
             EnemyController enemyInstance = CombatFactory.InstantiateEnemy(spawn);
-            if (enemyInstance == null)
+            if (enemyInstance == null && !_queuedSpawns.Contains(spawn))
             {
                 _queuedSpawns.Add(spawn);
             }
@@ -67,7 +67,7 @@ namespace RPG.Combat.Wave
 
         private void TrySpawnQueuedEnemies()
         {
-            for(int i = 0; i < _queuedSpawns.Count; i++)
+            for(int i = 0; i < _queuedSpawns.Count && _queuedSpawns.Count != 0; i++)
             { 
                 bool hasSpawned = SpawnEnemy(_queuedSpawns[i]);
 

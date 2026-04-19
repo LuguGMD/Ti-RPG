@@ -15,6 +15,7 @@ namespace RPG.Combat
 
         protected TileObjectMovement _movement;
         protected PreviewActionHandler _preview;
+        protected Animator[] _animators;
 
         #region Properties
 
@@ -29,12 +30,37 @@ namespace RPG.Combat
             base.Awake();
             _movement = GetComponent<TileObjectMovement>();
             _preview = GetComponent<PreviewActionHandler>();
+            _animators = GetComponentsInChildren<Animator>();
 
             //TO DO remover depois
             _preview.ChangeActionToPreview(_info.Actions[0]);
         }
 
+        protected new void Start()
+        {
+            base.Start();
+            AdjsutGameSpeed();
+        }
+
+        protected void OnEnable()
+        {
+            ActionsManager.Instance.OnCombatSpeedChanged += AdjsutGameSpeed;
+        }
+
+        protected void OnDisable()
+        {
+            ActionsManager.Instance.OnCombatSpeedChanged -= AdjsutGameSpeed;
+        }
+
         protected abstract void Defeated();
+
+        protected virtual void AdjsutGameSpeed()
+        {
+            foreach(Animator animator in _animators)
+            {
+                animator.SetFloat("GameSpeed", CombatManager.CombatSpeed);
+            }
+        }
 
         public IEnumerator UseAction(int actionIndex, int movementPatternIndex, int repetitions, bool isMirrored)
         {

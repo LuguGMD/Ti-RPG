@@ -451,7 +451,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8365109717965475917}
   m_Layer: 0
-  m_Name: Circus
+  m_Name: CircusCombatPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -794,6 +794,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4621860887983003231, guid: f2dac8f4a915c4c42893752d47521f5d, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6286379009535016647, guid: f2dac8f4a915c4c42893752d47521f5d, type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

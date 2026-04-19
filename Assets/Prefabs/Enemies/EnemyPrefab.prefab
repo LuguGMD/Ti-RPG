@@ -99,10 +99,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2263448127493250946}
+  - component: {fileID: 5875166748602480768}
   - component: {fileID: 591034852514754510}
   - component: {fileID: 8550594446077591296}
-  - component: {fileID: 5875166748602480768}
-  - component: {fileID: 4508179335307852333}
+  - component: {fileID: 5000773616101672634}
   - component: {fileID: 8616814990594416409}
   - component: {fileID: 5934706940530837927}
   m_Layer: 0
@@ -129,6 +129,19 @@ Transform:
   - {fileID: 7693492269921051677}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5875166748602480768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6108933886631140461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef9ebd7b99f91c24580ecaf6fc751bde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.EnemyController
+  _info: {fileID: 11400000, guid: 77c2de23c2f84a842befc3e2976b3120, type: 2}
 --- !u!114 &591034852514754510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e4ebc8453335f845aacadf204dcc22c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Grid.TileObjectMovement
---- !u!114 &5875166748602480768
+--- !u!114 &5000773616101672634
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,22 +175,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6108933886631140461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ef9ebd7b99f91c24580ecaf6fc751bde, type: 3}
+  m_Script: {fileID: 11500000, guid: 00806275340297241b226043d7b720c0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.EnemyController
-  _info: {fileID: 11400000, guid: 77c2de23c2f84a842befc3e2976b3120, type: 2}
---- !u!114 &4508179335307852333
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6108933886631140461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79da4ee4a2e2bae4c9a758b3da5cc706, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Preview.PreviewActionHandler
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Preview.EnemyPreviewActionHandler
 --- !u!114 &8616814990594416409
 MonoBehaviour:
   m_ObjectHideFlags: 0
