@@ -32,7 +32,7 @@ namespace RPG.Combat.Grid
         private void ChangeTile(Direction direction)
         {
             Tile currentTile = _tileObject.CurrentTile;
-            Tile nextTile = MapManager.Instance.Map.GetNeighborTile(currentTile, direction);
+            Tile nextTile = MapManager.Map.GetNeighborTile(currentTile, direction);
             _tileObject.SetCurrentTile(nextTile);
             _tileObject.UpdatePosition();
         }

@@ -20,6 +20,9 @@ namespace RPG
         public Action OnCombatSpeedChanged;
         public Action OnApresentadorDamageTaken;
 
+        public Action OnApresentadorActionCompleted;
+        public Action OnApresentadorActionCanceled;
+
         #region Effect Triggers
 
         public Action OnActionStart;
@@ -42,6 +45,8 @@ namespace RPG
         public Action<EntityController> OnEntityHovered;
 
         public Action<CharacterController> OnCharacterSelected;
+
+        public Action OnApresentadorSelected;
 
         #endregion
 

@@ -17,12 +17,16 @@ namespace RPG.Combat.Grid
         [SerializeField] private float _rowRadius = 2f;
         [SerializeField] private float _centerOffset = 3f;
 
+        [SerializeField] private GameObject[] _rowGameObjects;
+
         #region Properties
 
-        public Map Map
+        public static Map Map
         {
-            get { return _map; }
+            get { return Instance._map; }
         }
+
+        public static GameObject[] RowGameObjects { get { return Instance._rowGameObjects; } }
 
         #endregion
 
@@ -90,7 +94,7 @@ namespace RPG.Combat.Grid
                 return false;
             }
 
-            Tile finalTile = Instance.Map.GetTile(finalPos);
+            Tile finalTile = Map.GetTile(finalPos);
 
             if (movement.NeedsToBeEmpty && finalTile.IsOccupied)
             {
@@ -109,7 +113,7 @@ namespace RPG.Combat.Grid
                 return false;
             }
 
-            Tile finalTile = Instance.Map.GetTile(tilePosition);
+            Tile finalTile = Map.GetTile(tilePosition);
 
             if (finalTile.IsOccupied)
             {

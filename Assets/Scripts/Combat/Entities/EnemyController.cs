@@ -1,4 +1,5 @@
 using RPG.Combat.Grid;
+using System.Collections;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -30,6 +31,12 @@ namespace RPG.Combat
             _tileObject.CurrentTile.SetTileObject(null);
             //TO DO triggar animacao de morte
             Destroy(gameObject);
+        }
+
+        public IEnumerator UsePreparedAction()
+        {
+            //TO DO guardar acao preparada e usar aqui
+            yield return UseAction(0, 0, 1, false);
         }
     }
 }

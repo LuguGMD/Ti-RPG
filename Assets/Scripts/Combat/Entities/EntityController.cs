@@ -25,9 +25,9 @@ namespace RPG.Combat
             _cursorTarget = GetComponent<CursorTarget>();
         }
 
-        private void Start()
+        protected void Start()
         {
-            _cursorTarget.Actions.LeftClick.OnCancel(OnSelected);
+            _cursorTarget.Actions.LeftClick.OnStart(OnSelected);
             _cursorTarget.Actions.Hover.OnStart(OnHover);
         }
 

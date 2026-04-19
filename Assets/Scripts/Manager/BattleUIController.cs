@@ -1,4 +1,5 @@
 using RPG.Combat;
+using RPG.Combat.Grid;
 using System;
 using TMPro;
 using UnityEngine;
@@ -8,6 +9,8 @@ namespace RPG
 {
     public class BattleUIController : MonoBehaviour
     {
+
+        [SerializeField] private GameObject _mainPanel;
 
         [Header("Player UI")]
         [SerializeField] private Button playerActionButton;
@@ -38,6 +41,20 @@ namespace RPG
         private void Update()
         {
             UpdateUI();
+        }
+
+        private void OnEnable()
+        {
+            ActionsManager.Instance.OnApresentadorActionCanceled += ShowCanvas;
+            ActionsManager.Instance.OnApresentadorActionCompleted += ShowCanvas;
+            ActionsManager.Instance.OnApresentadorSelected += HideCanvas;
+        }
+
+        private void OnDisable()
+        {
+            ActionsManager.Instance.OnApresentadorActionCanceled -= ShowCanvas;
+            ActionsManager.Instance.OnApresentadorActionCompleted -= ShowCanvas;
+            ActionsManager.Instance.OnApresentadorSelected -= HideCanvas;
         }
 
         private void UpdateUI()
@@ -75,6 +92,16 @@ namespace RPG
                 BattleTurnState.BattleEnd => "Fim da Batalha",
                 _ => "Desconhecido"
             };
+        }
+
+        private void ShowCanvas()
+        {
+            _mainPanel.SetActive(true);
+        }
+
+        private void HideCanvas()
+        {
+            _mainPanel.SetActive(false);
         }
     }
 }

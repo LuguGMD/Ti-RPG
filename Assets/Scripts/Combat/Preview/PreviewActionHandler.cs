@@ -19,9 +19,21 @@ namespace RPG.Combat.Preview
         protected List<PreviewTileInfo> _previewTileInfos = new List<PreviewTileInfo>();
         protected List<PreviewTile> _activePreviewTiles = new List<PreviewTile>();
 
+        private bool _isPreviewing = false;
+
         protected void Awake()
         {
             _stageEntityController = GetComponent<StageEntityController>();
+        }
+
+        protected void OnEnable()
+        {
+            ActionsManager.Instance.OnMapChanged += UpdatePreview;
+        }
+
+        protected void OnDisable()
+        {
+            ActionsManager.Instance.OnMapChanged -= UpdatePreview;
         }
 
         public void ChangeActionToPreview(CombatAction actionToPreview)
@@ -55,6 +67,8 @@ namespace RPG.Combat.Preview
         {
             HidePreview();
 
+            _isPreviewing = true;
+
             for (int i = 0; i < _previewTileInfos.Count; i++)
             {
                 Vector2Int position = _previewTileInfos[i].RelativePosition;
@@ -69,7 +83,7 @@ namespace RPG.Combat.Preview
 
         private bool IsPositionValid(PreviewTileInfo previewTileInfo, Vector2Int position)
         {
-            Tile tile = MapManager.Instance.Map.GetTile(position);
+            Tile tile = MapManager.Map.GetTile(position);
 
             if (tile.Position == Map.CENTER_POS) return false;
             if(tile.IsOccupied)
@@ -86,7 +100,9 @@ namespace RPG.Combat.Preview
 
         public void HidePreview()
         {
-            for(int i = 0; i < _activePreviewTiles.Count; i++)
+            _isPreviewing = false;
+
+            for (int i = 0; i < _activePreviewTiles.Count; i++)
             {
                 PreviewTilesPool.Pool.Release(_activePreviewTiles[i]);
             }
@@ -126,6 +142,13 @@ namespace RPG.Combat.Preview
             }
         }
 
+        private void UpdatePreview()
+        {
+            if(_isPreviewing)
+            {
+                ShowPreview();
+            }
+        }
 
     }
 }

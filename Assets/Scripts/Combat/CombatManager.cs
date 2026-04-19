@@ -28,9 +28,6 @@ namespace RPG.Combat
 
         private bool _isActionInProgress = false;
         private float _combatSpeed = 1;
-        
-        
-        
 
         #region Properties
 
@@ -48,6 +45,7 @@ namespace RPG.Combat
         private void Start()
         {
             _apresentador = GameObject.FindAnyObjectByType<ApresentadorController>(FindObjectsInactive.Include);
+            _apresentador.gameObject.SetActive(true);
 
             //TO DO adicionar escolha da posicao dos personagens antes do comeco do combate
             Invoke(nameof(InitializeBattle),0.01f);
@@ -56,14 +54,18 @@ namespace RPG.Combat
         private void OnEnable()
         {
             ActionsManager.Instance.OnCharacterSelected += OnCharacterSelected;
+            ActionsManager.Instance.OnApresentadorSelected += OnApresentadorSelected;
             ActionsManager.Instance.OnActionTileSelected += OnCombatActionSelected;
+            ActionsManager.Instance.OnApresentadorActionCompleted += CheckEndPlayerTurn;
             ActionsManager.Instance.OnPlayerTurnEnded += EndPlayerTurn;
         }
 
         private void OnDisable()
         {
             ActionsManager.Instance.OnCharacterSelected -= OnCharacterSelected;
+            ActionsManager.Instance.OnApresentadorSelected -= OnApresentadorSelected;
             ActionsManager.Instance.OnActionTileSelected -= OnCombatActionSelected;
+            ActionsManager.Instance.OnApresentadorActionCompleted -= CheckEndPlayerTurn;
             ActionsManager.Instance.OnPlayerTurnEnded -= EndPlayerTurn;
         }
 
@@ -118,7 +120,11 @@ namespace RPG.Combat
 
         private void OnCharacterSelected(CharacterController selectedCharacter)
         {
-            if (_usedCharacters.Contains(selectedCharacter))
+            if(_isBattleOver)
+            {
+
+            }
+            else if (_usedCharacters.Contains(selectedCharacter))
             {
 
             }
@@ -136,9 +142,14 @@ namespace RPG.Combat
             }
         }
 
+        private void OnApresentadorSelected()
+        {
+            DeselectCharacter();
+        }
+
         private void OnCombatActionSelected(PreviewTileInfo previewTileInfo)
         {
-            if (_selectedCharacter == null) return;
+            if (_selectedCharacter == null || _isBattleOver) return;
 
             StartCoroutine(PlayerActionCoroutine(previewTileInfo));
         }
@@ -225,7 +236,7 @@ namespace RPG.Combat
 
         private void CheckEndPlayerTurn()
         {
-            if(_usedCharacters.Count >= _remainingCharacters.Count)
+            if(_usedCharacters.Count >= _remainingCharacters.Count && _apresentador.HasActed)
             {
                 EndPlayerTurn();
             }
@@ -249,6 +260,7 @@ namespace RPG.Combat
         {
             ShowAllEnemiesPreviews();
 
+            _apresentador.ResetAction();
             _usedCharacters.Clear();
             _canSelectCharacter = true;
         }
@@ -297,8 +309,11 @@ namespace RPG.Combat
         {
             for(int i = 0; i< _remainingEnemies.Count; i++)
             {
-                yield return _remainingEnemies[i].UseAction(0, 0, 1, false);
-                yield return new WaitForSeconds(0.1f / _combatSpeed);
+                if (!_isBattleOver)
+                {
+                    yield return _remainingEnemies[i].UsePreparedAction();
+                    yield return new WaitForSeconds(0.1f / _combatSpeed);
+                }
             }
 
             SwitchTurn();
@@ -306,6 +321,7 @@ namespace RPG.Combat
 
         private void StartEnemyTurn()
         {
+            DeselectCharacter();
             _canSelectCharacter = false;
 
             HideAllEnemiesPreviews();

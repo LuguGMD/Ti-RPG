@@ -2,6 +2,7 @@ using Lugu.Singleton;
 using RPG.Combat.Grid;
 using RPG.Combat.Preview;
 using RPG.Combat.Wave;
+using System;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -24,13 +25,21 @@ namespace RPG.Combat
 
         public static EnemyController InstantiateEnemy(EnemySpawnInfo spawnInfo)
         {
-            EnemyController enemyInstance = Instantiate<EnemyController>(spawnInfo.EnemyInfo.Prefab);
+            Vector2Int spawnPos = new Vector2Int(spawnInfo.SpawnPosition, Map.Rows - 1);
+            Tile spawnTile = MapManager.Map.GetTile(spawnPos);
 
-            TileObject enemyObject = enemyInstance.GetComponent<TileObject>();
-            MapManager.Instance.AddTileObject(enemyObject, new Vector2Int(spawnInfo.SpawnPosition, Map.Rows-1));
-            enemyObject.UpdatePosition();
+            EnemyController enemyInstance = null;
 
-            CombatManager.Instance.AddEnemy(enemyInstance);
+            if (!spawnTile.IsOccupied)
+            {
+                enemyInstance = Instantiate<EnemyController>(spawnInfo.EnemyInfo.Prefab);
+                TileObject enemyObject = enemyInstance.GetComponent<TileObject>();
+                MapManager.Instance.AddTileObject(enemyObject, spawnPos);
+                enemyObject.UpdatePosition();
+
+                CombatManager.Instance.AddEnemy(enemyInstance);
+            }
+
             return enemyInstance;
         }
 

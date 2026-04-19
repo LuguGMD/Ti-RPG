@@ -49,7 +49,7 @@ namespace RPG.Combat.Actions
 
                 if (checkedTiles.Contains(checkPosition)) continue;
 
-                Tile tile = MapManager.Instance.Map.GetTile(checkPosition);
+                Tile tile = MapManager.Map.GetTile(checkPosition);
                 checkedTiles.Add(checkPosition);
 
                 if (tile.IsOccupied)
