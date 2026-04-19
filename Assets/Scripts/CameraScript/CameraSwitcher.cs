@@ -1,6 +1,9 @@
 using UnityEngine;
-using System.Collections.Generic; 
+using System.Collections.Generic;
+
+#if UNITY_EDITOR
 using UnityEditor;
+#endif
 
 public class CameraSwitcher : MonoBehaviour
 {
@@ -195,7 +198,7 @@ public class CameraSwitcher : MonoBehaviour
     }
 }
 
-#region Unity Editor
+#if UNITY_EDITOR
 
 
 [CustomEditor(typeof(CameraSwitcher))]
@@ -261,5 +264,5 @@ public class CameraSwitcherEditor : Editor
             displayIndex = 0;
     }
 }
-#endregion
 
+#endif
