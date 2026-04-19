@@ -280,15 +280,18 @@ namespace RPG.Combat
                 _remainingCharacters.Remove(character);
             }
 
-            CheckPlayerDefeated();
+            CheckPlayerLost();
         }
 
-        private void CheckPlayerDefeated()
+        private void CheckPlayerLost()
         {
             if(_remainingCharacters.Count <= 0)
             {
                 ActionsManager.Instance.OnCombatLost?.Invoke();
                 _isBattleOver = true;
+
+                //TO DO remover depois
+                GameManager.ChangeScene(3);
             }
         }
 
@@ -298,6 +301,9 @@ namespace RPG.Combat
             {
                 ActionsManager.Instance.OnCombatWon?.Invoke();
                 _isBattleOver = true;
+
+                //TO DO remover depois
+                GameManager.ChangeScene(2);
             }
         }
 
