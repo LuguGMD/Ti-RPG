@@ -18,11 +18,6 @@ namespace RPG.Combat
             return characterObject;
         }
 
-        public static TileObject InstantiateTileObject(SpawnInfo spawnInfo)
-        {
-            return InstantiateTileObject(spawnInfo.TileObjectPrefab, spawnInfo.SpawnPosition);
-        }
-
         public static EnemyController InstantiateEnemy(EnemySpawnInfo spawnInfo)
         {
             Vector2Int spawnPos = new Vector2Int(spawnInfo.SpawnPosition, Map.Rows - 1);
@@ -43,15 +38,16 @@ namespace RPG.Combat
             return enemyInstance;
         }
 
-        public static CharacterController InstantiateCharacter(SpawnInfo spawnInfo)
+        public static CharacterController InstantiateCharacter(CharacterSpawnInfo spawnInfo)
         {
-            TileObject tileObject = InstantiateTileObject(spawnInfo);
+            CharacterController characterInstance = Instantiate<CharacterController>(spawnInfo.CharacterInfo.Prefab);
+            TileObject characterObject = characterInstance.GetComponent<TileObject>();
+            MapManager.Instance.AddTileObject(characterObject, spawnInfo.SpawnPosition);
+            characterObject.UpdatePosition();
 
-            //TO DO adicionar spawn info especifico para character depois
-            CharacterController character = tileObject.GetComponent<CharacterController>();
-            CombatManager.Instance.AddCharacter(character);
+            CombatManager.Instance.AddCharacter(characterInstance);
 
-            return character;
+            return characterInstance;
         }
 
         public static PreviewTile InstantiatePreviewTile()

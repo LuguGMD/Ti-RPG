@@ -6,11 +6,18 @@ namespace RPG.Combat
 {
     public class EnemyController : StageEntityController
     {
-        private float _health = 5;
+        private float _health;
 
         public override EntityScriptable GetEntityInfo()
         {
             return _info;
+        }
+
+        protected new void Start()
+        {
+            base.Start();
+            EnemyScriptable info = (EnemyScriptable)_info;
+            _health = info.Health;
         }
 
         public override void TakeDamage(float damage)

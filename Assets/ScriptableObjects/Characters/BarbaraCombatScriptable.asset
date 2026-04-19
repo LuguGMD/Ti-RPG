@@ -9,34 +9,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9871af246da17e944b0ac45a59bd6774, type: 3}
-  m_Name: EnemyTestScriptable
-  m_EditorClassIdentifier: Assembly-CSharp::RPG.EnemyScriptable
-  _entityName: Enemy Test
+  m_Script: {fileID: 11500000, guid: feeba527babfd6e418fcce306f2e1d67, type: 3}
+  m_Name: BarbaraCombatScriptable
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterScriptable
+  _entityName: Barbara
   _actions:
   - _actionName: Directional Punch
     _effects:
-    - _command: {fileID: 11400000, guid: 9e7030b0156994b489378a928fae6623, type: 2}
+    - _command: {fileID: 11400000, guid: faaab5275613368488736a1e776f3671, type: 2}
       _triggerCondition: 0
-      _targetList: 00000000
+      _targetList: 01000000
       _canTargetSelf: 0
       _doNeedSpotlight: 0
       _isRelativeToMovement: 1
       _area: 00000000
     - _command: {fileID: 11400000, guid: 5bb2fb777cbd3ba4da4a3b23bb4509aa, type: 2}
       _triggerCondition: 0
-      _targetList: 00000000
+      _targetList: 01000000
       _canTargetSelf: 0
       _doNeedSpotlight: 0
       _isRelativeToMovement: 1
       _area: 00000000
     _movementPatterns:
     - _pattern:
-      - _direction: 1
+      - _direction: 0
         _needsToBeEmpty: 1
       _repetition: 1
-      _canMirror: 0
+      _canMirror: 1
       Repetition: 1
-  _type: 5
-  _prefab: {fileID: 5875166748602480768, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
-  _health: 6
+    - _pattern:
+      - _direction: 3
+        _needsToBeEmpty: 1
+      _repetition: 1
+      _canMirror: 1
+      Repetition: 1
+  _type: 1
+  motivation: 30
+  _prefab: {fileID: 4420048070789446249, guid: 48287771299bca948ad21e8af07dede4, type: 3}

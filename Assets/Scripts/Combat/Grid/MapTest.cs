@@ -8,7 +8,7 @@ namespace RPG.Combat.Grid
     //This script is temporary and just for test purposes
     public class MapTest : MonoBehaviour
     {
-        [SerializeField] private List<SpawnInfo> _characterSpawns;
+        [SerializeField] private List<CharacterSpawnInfo> _characterSpawns;
 
         [SerializeField] private GameObject _apresentador;
 

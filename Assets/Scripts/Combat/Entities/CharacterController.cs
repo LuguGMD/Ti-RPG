@@ -6,11 +6,18 @@ namespace RPG.Combat
     public class CharacterController : StageEntityController
     {
         
-        private float _motivation = 10;
+        private float _currentMotivation;
 
         public override EntityScriptable GetEntityInfo()
         {
             return _info;
+        }
+
+        protected new void Start()
+        {
+            base.Start();
+            CharacterScriptable info = (CharacterScriptable)_info;
+            _currentMotivation = info.Motivation;
         }
 
         private void OnEnable()
@@ -25,16 +32,16 @@ namespace RPG.Combat
 
         public override void TakeDamage(float damage)
         {
-            _motivation -= damage;
+            _currentMotivation -= damage;
 
             CheckDefeated();
 
-            Debug.Log(Info.name + " lost " + damage + " motivation\n Current Motivation: " + _motivation);
+            Debug.Log(Info.name + " lost " + damage + " motivation\n Current Motivation: " + _currentMotivation);
         }
 
         private void CheckDefeated()
         {
-            if (CombatManager.Apresentador.CurrentMotivation < _motivation)
+            if (CombatManager.Apresentador.CurrentMotivation < CombatConstants.MAX_MOTIVATION_APRESENTADOR - _currentMotivation)
             {
                 Defeated();
             }

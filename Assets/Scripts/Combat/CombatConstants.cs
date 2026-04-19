@@ -6,6 +6,7 @@ namespace RPG.Combat
     public static class CombatConstants
     {
         public const int MAX_CHARACTERS_COUNT = 3;
+        public const float MAX_MOTIVATION_APRESENTADOR = 100f;
         public static readonly Dictionary<CombatType, CombatType> TypeChart = new Dictionary<CombatType, CombatType>()
         {
             { CombatType.Magic, CombatType.Anger },
