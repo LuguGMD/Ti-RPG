@@ -64,8 +64,6 @@ namespace RPG.Combat
         {
             _currentMotivation -= damage;
             ActionsManager.Instance.OnApresentadorDamageTaken?.Invoke();
-
-            Debug.Log(Info.name + " took " + damage + " damage\n Current Motivation Bar: " + _currentMotivation);
         }
 
         public void Rotate(int amount)

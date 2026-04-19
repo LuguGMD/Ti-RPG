@@ -1,11 +1,16 @@
 using RPG.Combat.Grid;
+using RPG.Combat.UI;
 using System.Collections;
 using UnityEngine;
 
 namespace RPG.Combat
 {
+    [RequireComponent(typeof(EnemyHealthBar))]
     public class EnemyController : StageEntityController
     {
+        private EnemyScriptable _enemyInfo;
+
+        private EnemyHealthBar _healthBar;
         private float _health;
 
         public override EntityScriptable GetEntityInfo()
@@ -16,20 +21,34 @@ namespace RPG.Combat
         protected new void Start()
         {
             base.Start();
-            EnemyScriptable info = (EnemyScriptable)_info;
-            _health = info.Health;
+            Initialize();
+        }
+
+        private void Initialize()
+        {
+            _enemyInfo = (EnemyScriptable)_info;
+            _health = _enemyInfo.Health;
+
+            _healthBar = GetComponent<EnemyHealthBar>();
+
+            UpdateHealthBar();
         }
 
         public override void TakeDamage(float damage)
         {
             _health -= damage;
 
-            if(_health <= 0)
+            UpdateHealthBar();
+
+            if (_health <= 0)
             {
                 Defeated();
             }
+        }
 
-            Debug.Log(Info.name + " lost " + damage + " health\n Current Health: " + _health);
+        private void UpdateHealthBar()
+        {
+            _healthBar.Slider.value = (_health / _enemyInfo.Health);
         }
 
         protected override void Defeated()
