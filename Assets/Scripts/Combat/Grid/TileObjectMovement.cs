@@ -49,11 +49,11 @@ namespace RPG.Combat.Grid
 
                 if(direction.IsSideways())
                 {
-                    yield return MoveAlongSpline(1, direction);
+                    yield return MoveAlongSpline(0.3f, direction);
                 }
                 else
                 {
-                    yield return MoveAlongPoints(1, direction);
+                    yield return MoveAlongPoints(0.3f, direction);
                 }
                 
 
@@ -89,7 +89,7 @@ namespace RPG.Combat.Grid
                 transform.position = position;
             }).SetEase(Ease.Linear);
 
-            yield return new WaitForSeconds(time);
+            yield return new WaitForSeconds(time / CombatManager.CombatSpeed);
         }
 
         private IEnumerator MoveAlongPoints(float time, Direction direction)
@@ -99,7 +99,7 @@ namespace RPG.Combat.Grid
 
             transform.DOMove(targetPos, time).SetEase(Ease.Linear);
 
-            yield return new WaitForSeconds(time);
+            yield return new WaitForSeconds(time / CombatManager.CombatSpeed);
         }
 
         public void Push(Movement movement)

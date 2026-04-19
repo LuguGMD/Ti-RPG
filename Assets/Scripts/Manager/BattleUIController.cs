@@ -44,8 +44,8 @@ namespace RPG
         {
             if (turnInfoText != null)
             {
-                var turnState = CombatManager.Instance.CurrentTurnState;
-                turnInfoText.text = $"Turno {CombatManager.Instance.TurnCount} - {GetTurnStateName(turnState)}";
+                var turnState = CombatManager.CurrentTurnState;
+                turnInfoText.text = $"Turno {CombatManager.TurnCount} - {GetTurnStateName(turnState)}";
             }
 
             UpdateButtonStates();
@@ -53,8 +53,8 @@ namespace RPG
 
         private void UpdateButtonStates()
         {
-            bool isPlayerTurn = CombatManager.Instance.CurrentTurnState == BattleTurnState.PlayerTurn;
-            bool isEnemyTurn = CombatManager.Instance.CurrentTurnState == BattleTurnState.EnemyTurn;
+            bool isPlayerTurn = CombatManager.CurrentTurnState == BattleTurnState.PlayerTurn;
+            bool isEnemyTurn = CombatManager.CurrentTurnState == BattleTurnState.EnemyTurn;
 
             if (playerActionButton != null)
             {

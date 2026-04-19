@@ -22,7 +22,7 @@ namespace RPG.Combat
             return InstantiateTileObject(spawnInfo.TileObjectPrefab, spawnInfo.SpawnPosition);
         }
 
-        public static EnemyController InstantiateTileObject(EnemySpawnInfo spawnInfo)
+        public static EnemyController InstantiateEnemy(EnemySpawnInfo spawnInfo)
         {
             EnemyController enemyInstance = Instantiate<EnemyController>(spawnInfo.EnemyInfo.Prefab);
 
@@ -32,6 +32,17 @@ namespace RPG.Combat
 
             CombatManager.Instance.AddEnemy(enemyInstance);
             return enemyInstance;
+        }
+
+        public static CharacterController InstantiateCharacter(SpawnInfo spawnInfo)
+        {
+            TileObject tileObject = InstantiateTileObject(spawnInfo);
+
+            //TO DO adicionar spawn info especifico para character depois
+            CharacterController character = tileObject.GetComponent<CharacterController>();
+            CombatManager.Instance.AddCharacter(character);
+
+            return character;
         }
 
         public static PreviewTile InstantiatePreviewTile()

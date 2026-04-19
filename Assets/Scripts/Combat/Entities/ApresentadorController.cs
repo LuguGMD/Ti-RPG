@@ -12,6 +12,7 @@ namespace RPG.Combat
         #region Properties
 
         public EntityScriptable Info { get { return _info; } }
+        public float CurrentMotivation { get { return _motivationPoint; } }
 
         #endregion
 
@@ -28,6 +29,7 @@ namespace RPG.Combat
         public override void TakeDamage(float damage)
         {
             _motivationPoint -= damage;
+            ActionsManager.Instance.OnApresentadorDamageTaken?.Invoke();
 
             Debug.Log(Info.name + " took " + damage + " damage\n Current Motivation Bar: " + _motivationPoint);
         }

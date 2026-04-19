@@ -34,6 +34,8 @@ namespace RPG.Combat
             _preview.ChangeActionToPreview(_info.Actions[0]);
         }
 
+        protected abstract void Defeated();
+
         public IEnumerator UseAction(int actionIndex, int movementPatternIndex, int repetitions, bool isMirrored)
         {
             CombatAction action = _info.Actions[actionIndex];
@@ -50,7 +52,7 @@ namespace RPG.Combat
 
             ActionsManager.Instance.OnActionStart?.Invoke();
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
 
             while (_movement.MovementQueue.Count > 0)
             {
@@ -60,7 +62,7 @@ namespace RPG.Combat
 
             ActionsManager.Instance.OnActionEnd?.Invoke();
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.1f / CombatManager.CombatSpeed);
 
             CombatManager.UnsubscribeEffectTriggerAction();
         }

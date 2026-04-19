@@ -1,3 +1,4 @@
+using RPG.Combat.Wave;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +8,7 @@ namespace RPG.Combat.Grid
     //This script is temporary and just for test purposes
     public class MapTest : MonoBehaviour
     {
-        [SerializeField] private List<TileObject> _entityPrefabs;
-        [SerializeField] private List<Vector2Int> _startPositions;
+        [SerializeField] private List<SpawnInfo> _characterSpawns;
 
         [SerializeField] private GameObject _apresentador;
 
@@ -17,9 +17,9 @@ namespace RPG.Combat.Grid
 
         private void Start()
         {
-            for (int i = 0; i < _entityPrefabs.Count; i++)
+            for (int i = 0; i < _characterSpawns.Count; i++)
             {
-                CombatFactory.InstantiateTileObject(_entityPrefabs[i], _startPositions[i]);
+                CombatFactory.InstantiateCharacter(_characterSpawns[i]);
             }
 
             _apresentador.SetActive(true);

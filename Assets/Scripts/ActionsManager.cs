@@ -14,6 +14,12 @@ namespace RPG
 
         #region Combat
 
+        public Action OnCombatWon;
+        public Action OnCombatLost;
+
+        public Action OnCombatSpeedChanged;
+        public Action OnApresentadorDamageTaken;
+
         #region Effect Triggers
 
         public Action OnActionStart;
