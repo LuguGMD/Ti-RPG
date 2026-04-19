@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 70e61f55f2185484c87b1216fd7ef383
+guid: ad5ca967e609ffc4088ad52bd1de2a39
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -25,40 +25,11 @@ ModelImporter:
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
-    animationScaleError: 0.01
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations:
-    - serializedVersion: 16
-      name: FolesbelaRig|Attack
-      takeName: FolesbelaRig|Attack
-      internalID: 745835584596174114
-      firstFrame: 0
-      lastFrame: 44
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: FolesbelaAttackRoot
       takeName: FolesbelaRig|AttackRoot
@@ -89,9 +60,38 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
+      name: FolesbelaBakeAttack
+      takeName: FolesbelaRig|BakeAttack
+      internalID: 4867833702043026464
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
       name: FolesbelaIdleCombat
-      takeName: FolesbelaRig|IdleCombat
-      internalID: 7641595634728670594
+      takeName: FolesbelaRig|BakeIdleCombat
+      internalID: 327136939370349715
       firstFrame: 0
       lastFrame: 55
       wrapMode: 0
@@ -119,8 +119,8 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: FolesbelaIdleStretching
-      takeName: FolesbelaRig|IdleStretching
-      internalID: -8649844168268041857
+      takeName: FolesbelaRig|BakeIdleStretching
+      internalID: -401010308907763764
       firstFrame: 0
       lastFrame: 132
       wrapMode: 0
