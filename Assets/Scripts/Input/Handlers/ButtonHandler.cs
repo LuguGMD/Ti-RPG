@@ -1,4 +1,4 @@
-namespace RPG
+namespace RPG.Input
 {
     public class ButtonHandler : DerivedHandler<float, bool>
     {

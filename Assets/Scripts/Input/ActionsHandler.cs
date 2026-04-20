@@ -5,7 +5,7 @@ using static UnityEngine.InputSystem.InputAction;
 
 using LucasRozado.Utility;
 
-namespace RPG
+namespace RPG.Input
 {
     public abstract class ActionsHandler
     {

@@ -4,7 +4,7 @@ using static UnityEngine.InputSystem.InputAction;
 
 using LucasRozado.Utility;
 
-namespace RPG
+namespace RPG.Input
 {
     public class CursorInput : InputComponent<CursorInput.CursorInputActionsHandler>
     {

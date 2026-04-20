@@ -2,7 +2,7 @@ using System;
 
 using static UnityEngine.InputSystem.InputAction;
 
-namespace RPG
+namespace RPG.Input
 {
     public abstract class InputHandler { }
     public abstract class InputHandler<TValue> : InputHandler

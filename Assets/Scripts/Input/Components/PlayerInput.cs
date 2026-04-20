@@ -2,7 +2,7 @@ using UnityEngine;
 using static InputSystem_Actions;
 using static UnityEngine.InputSystem.InputAction;
 
-namespace RPG
+namespace RPG.Input
 {
     // Essa classe é provisória e foi criada para testes e prova de conceito.
     // As PlayerActions provavelmente vão ser modificadas ou removidas futuramente.

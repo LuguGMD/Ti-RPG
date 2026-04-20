@@ -2,7 +2,7 @@ using System;
 
 using UnityEngine;
 
-namespace RPG
+namespace RPG.Input
 {
     public abstract class InputComponent<THandler> : MonoBehaviour
         where THandler : ActionsHandler

@@ -1,6 +1,6 @@
 using static UnityEngine.InputSystem.InputAction;
 
-namespace RPG
+namespace RPG.Input
 {
 
     public class ValueHandler<TValue> : InputHandler<TValue>

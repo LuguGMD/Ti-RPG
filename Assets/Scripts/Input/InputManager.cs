@@ -4,7 +4,7 @@ using UnityEngine;
 
 using LucasRozado.Utility;
 
-namespace RPG
+namespace RPG.Input
 {
     public sealed class InputManager
     {

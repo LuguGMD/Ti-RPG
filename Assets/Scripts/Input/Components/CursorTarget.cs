@@ -2,7 +2,7 @@ using UnityEngine;
 
 using LucasRozado.Utility;
 
-namespace RPG
+namespace RPG.Input
 {
     public class CursorTarget : InputComponent<CursorTarget.CursorTargetActionsHandler>
     {

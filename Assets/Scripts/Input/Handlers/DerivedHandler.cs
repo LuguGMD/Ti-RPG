@@ -2,7 +2,7 @@ using static UnityEngine.InputSystem.InputAction;
 
 using LucasRozado.Utility;
 
-namespace RPG
+namespace RPG.Input
 {
     public class DerivedHandler<TInput, TValue> : InputHandler<TValue>, ISimpleProcess
     {
