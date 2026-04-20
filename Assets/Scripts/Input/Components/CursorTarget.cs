@@ -6,7 +6,7 @@ namespace RPG
 {
     public class CursorTarget : InputComponent<CursorTarget.CursorTargetActionsHandler>
     {
-        static public LayerMask CollisionLayer => CursorInput.Instance.CollisionLayer;
+        static public LayerMask CollisionLayer => CursorInput.TargetCollisionLayer;
 
         [SerializeField] private GameObject collisionTarget;
 
@@ -36,7 +36,10 @@ namespace RPG
             }
             else
             {
-                if (!collisionTarget.TryGetComponent<Collider>(out _))
+                if (
+                    !collisionTarget.TryGetComponent<Collider>(out _)
+                    && collisionTarget.GetComponentInChildren<Collider>() == null
+                )
                 {
                     Debug.LogWarning(
                         $"{gameObject.name} > {collisionTarget.name}: " +
@@ -54,9 +57,13 @@ namespace RPG
             }
         }
 
-        protected override CursorTargetActionsHandler SetupHandler() => new(this);
+        protected override CursorTargetActionsHandler GetHandler() => new(this);
         public class CursorTargetActionsHandler : ActionsHandler
         {
+            private readonly CursorTarget self;
+            public CursorTargetActionsHandler(CursorTarget self)
+            { this.self = self; }
+
             #region Derived Handlers
 
             public DerivedHandler<GameObject, bool> Hover;
@@ -65,14 +72,22 @@ namespace RPG
             public DerivedHandler<bool, bool> MiddleClick;
             public DerivedHandler<bool, bool> RightClick;
 
-            public CursorTargetActionsHandler(CursorTarget cursorTarget)
+            protected override void DeriveHandlers()
             {
                 Hover = DeriveHandler(
                     from: CursorInput.Instance.Actions.HoverTarget,
                     derive: (target) =>
                     {
-                        bool isTarget = target == cursorTarget.collisionTarget;
-                        return isTarget;
+                        do
+                        {
+                            if (target == self.collisionTarget)
+                            { return true; }
+                            else
+                            { target = target?.transform.parent?.gameObject; }
+                        }
+                        while (target != null && Layer.IsInMask(target.layer, CollisionLayer));
+                        
+                        return false;
                     }
                 );
 

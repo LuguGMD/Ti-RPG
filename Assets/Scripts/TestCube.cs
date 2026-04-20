@@ -26,8 +26,9 @@ namespace RPG
                 SetVelocity(new(input.x, 0, input.y), speed)
             );
 
-            cursor.Actions.Hover.OnStart(() =>
-                Debug.Log("Hovered!")
+            cursor.Actions.Hover.Handle(
+                onStart: () => Debug.Log("Hovered!"),
+                onCancel: () => Debug.Log("Exit hover :(")
             );
 
             cursor.Actions.LeftClick.OnStart(() =>
@@ -37,12 +38,16 @@ namespace RPG
             cursor.Actions.RightClick.OnStart(() =>
                 Debug.Log("Right Click!")
             );
-            
         }
 
         private void Update()
         {
             UpdatePosition(Time.deltaTime);
+        }
+
+        private void UpdateHover()
+        {
+            Debug.Log("Hovering!");
         }
 
         private void UpdatePosition(float deltaTime)

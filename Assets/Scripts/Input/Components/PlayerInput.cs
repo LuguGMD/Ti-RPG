@@ -8,7 +8,7 @@ namespace RPG
     // As PlayerActions provavelmente vão ser modificadas ou removidas futuramente.
     public class PlayerInput : InputComponent<PlayerInput.PlayerInputActionsHandler>
     {
-        protected override PlayerInputActionsHandler SetupHandler() => new();
+        protected override PlayerInputActionsHandler GetHandler() => new();
 
         public class PlayerInputActionsHandler : ActionsHandler<PlayerActions>, IPlayerActions
         {
