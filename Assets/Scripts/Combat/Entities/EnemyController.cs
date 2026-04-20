@@ -48,6 +48,7 @@ namespace RPG.Combat
 
         private void UpdateHealthBar()
         {
+            Debug.Log("Inimigo levou dano");
             _healthBar.Slider.value = (_health / _enemyInfo.Health);
         }
 

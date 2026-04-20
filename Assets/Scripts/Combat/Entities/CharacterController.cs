@@ -57,7 +57,6 @@ namespace RPG.Combat
             ActionsManager.Instance.OnCharacterDamageTaken?.Invoke(this);
 
             CheckDefeated();
-            Debug.Log(Info.name + " lost " + damage + " motivation\n Current Motivation: " + _currentMotivation);
         }
 
         private void CheckDefeated()
