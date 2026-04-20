@@ -16,6 +16,7 @@ namespace RPG.Combat.UI
         [SerializeField] private Button _changeRowDownButton;
         [SerializeField] private Button _rotateLeftButton;
         [SerializeField] private Button _rotateRightButton;
+        [SerializeField] private Button _cancelActionButton;
         [SerializeField] private Button _confirmActionButton;
         [SerializeField] private TextMeshProUGUI _rotationsLeftText;
 
@@ -41,9 +42,10 @@ namespace RPG.Combat.UI
             _changeRowDownButton.onClick.AddListener(() => ChangeRow(-1));
             _changeRowUpButton.onClick.AddListener(() => ChangeRow(1));
 
-            _rotateLeftButton.onClick.AddListener(() => Rotate(-1));
-            _rotateRightButton.onClick.AddListener(() => Rotate(1));
+            _rotateLeftButton.onClick.AddListener(() => Rotate(1));
+            _rotateRightButton.onClick.AddListener(() => Rotate(-1));
 
+            _cancelActionButton.onClick.AddListener(CancelAction);
             _confirmActionButton.onClick.AddListener(ConfirmAction);
 
             InitializeDictionary();

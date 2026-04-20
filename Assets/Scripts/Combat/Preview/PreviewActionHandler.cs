@@ -116,6 +116,7 @@ namespace RPG.Combat.Preview
             previewTile.SetInfo(previewTileInfo);
             previewTile.SetCanBeSelected(true);
             previewTile.SetPosition(position);
+            previewTile.SetMaterial(CombatManager.CharacterPreviewMaterial);
 
             _activePreviewTiles.Add(previewTile);
 

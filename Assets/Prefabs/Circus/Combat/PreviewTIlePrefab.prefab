@@ -48,6 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8147d4e85e604e247b5e42607fa3b017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Preview.PreviewTile
+  _renderer:
+  - {fileID: 2885792858701898197}
+  - {fileID: 4724786700318400581}
+  - {fileID: 6126958172492915762}
+  - {fileID: 6680788118298096653}
 --- !u!1001 &4120830348394683567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -123,6 +128,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1177464162344401489}
   m_SourcePrefab: {fileID: 100100000, guid: 2d6b998c7bc70d1498cc954fab24ab34, type: 3}
+--- !u!23 &2885792858701898197 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 1241942427825077626, guid: 2d6b998c7bc70d1498cc954fab24ab34, type: 3}
+  m_PrefabInstance: {fileID: 4120830348394683567}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6235300940391127233 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8050215623635682414, guid: 2d6b998c7bc70d1498cc954fab24ab34, type: 3}
@@ -243,6 +253,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3180115031019537413}
   m_SourcePrefab: {fileID: 100100000, guid: b23b08134a535184b9d267eb813bf4c8, type: 3}
+--- !u!23 &4724786700318400581 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 848756487377094502, guid: b23b08134a535184b9d267eb813bf4c8, type: 3}
+  m_PrefabInstance: {fileID: 5356666718043006755}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6795703916659466172 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1448333114163837087, guid: b23b08134a535184b9d267eb813bf4c8, type: 3}
@@ -408,6 +423,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3615694226061502400, guid: c4036b41107fdab498ed0bc2c6d3b9c8, type: 3}
   m_PrefabInstance: {fileID: 8439346644010171559}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &6126958172492915762 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2313098625602918549, guid: c4036b41107fdab498ed0bc2c6d3b9c8, type: 3}
+  m_PrefabInstance: {fileID: 8439346644010171559}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8984447698015841432
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -526,5 +546,10 @@ MonoBehaviour:
 --- !u!4 &5657274475945446232 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3615694226061502400, guid: c4036b41107fdab498ed0bc2c6d3b9c8, type: 3}
+  m_PrefabInstance: {fileID: 8984447698015841432}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6680788118298096653 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2313098625602918549, guid: c4036b41107fdab498ed0bc2c6d3b9c8, type: 3}
   m_PrefabInstance: {fileID: 8984447698015841432}
   m_PrefabAsset: {fileID: 0}

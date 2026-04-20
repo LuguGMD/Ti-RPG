@@ -16,6 +16,6 @@ namespace RPG.Combat
             { CombatType.Sadness, CombatType.Strength },
             { CombatType.Anger, CombatType.Jokes },
         };
-        public static readonly float[] CombatSpeedTiers = { 1, 2, 4, 8 };
+        public static readonly float[] CombatSpeedTiers = { 1, 2, 3 };
     }
 }

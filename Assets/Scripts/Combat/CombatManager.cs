@@ -13,6 +13,8 @@ namespace RPG.Combat
     public class CombatManager : SingletonMono<CombatManager>
     {
         [SerializeField] private PreviewTile _previewTilePrefab;
+        [SerializeField] private Material _characterPreviewMaterial;
+        [SerializeField] private Material _enemyPreviewMaterial;
 
         private BattleTurnState _currentTurnState;
         private int _turnCount;
@@ -35,6 +37,8 @@ namespace RPG.Combat
         {
             get { return Instance._previewTilePrefab; }
         }
+        public static Material CharacterPreviewMaterial { get  { return Instance._characterPreviewMaterial; } }
+        public static Material EnemyPreviewMaterial { get { return Instance._enemyPreviewMaterial; } }
         public static BattleTurnState CurrentTurnState { get { return Instance._currentTurnState; } }
         public static int TurnCount { get { return Instance._turnCount; } }
         public static float CombatSpeed {  get { return Instance._combatSpeed; } }

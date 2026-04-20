@@ -8,7 +8,9 @@ namespace RPG.Combat.Preview
     public class PreviewTile : MonoBehaviour
     {
         private PreviewTileInfo _info;
+        [SerializeField] private MeshRenderer[] _renderer;
         private bool _canBeSelected = false;
+        private int _tileIndex;
 
         #region Properties
 
@@ -36,8 +38,15 @@ namespace RPG.Combat.Preview
                 transform.GetChild(i)?.gameObject.SetActive(i == tilePosition.y);
             }
 
+            _tileIndex = tilePosition.y;
+
             transform.position = MapManager.Instance.GetWorldPostion(tilePosition);
             transform.LookAt(transform.position - (transform.position.normalized));
+        }
+
+        public void SetMaterial(Material material)
+        {
+            _renderer[_tileIndex].material = material;
         }
 
         public void SetInfo(PreviewTileInfo info)
