@@ -29,7 +29,7 @@ namespace RPG.Combat.Grid
             _tileObject = GetComponent<TileObject>();
         }
 
-        private void ChangeTile(Direction direction)
+        private void ChangeTile(DirectionEnum direction)
         {
             Tile currentTile = _tileObject.CurrentTile;
             Tile nextTile = MapManager.Map.GetNeighborTile(currentTile, direction);
@@ -40,7 +40,7 @@ namespace RPG.Combat.Grid
         public IEnumerator Move(bool isMirrored)
         {
             Movement movement = _movementQueue.Dequeue();
-            Direction direction = isMirrored ? movement.Direction.Mirror() : movement.Direction;
+            DirectionEnum direction = isMirrored ? movement.Direction.Mirror() : movement.Direction;
             _tileObject.SetDirection(direction);
 
             if (MapManager.IsMovementValid(_tileObject.Position, movement, isMirrored))
@@ -73,7 +73,7 @@ namespace RPG.Combat.Grid
 
         }
 
-        private IEnumerator MoveAlongSpline(float time, Direction direction)
+        private IEnumerator MoveAlongSpline(float time, DirectionEnum direction)
         {
             Spline spline = MapManager.Instance.GetCurrentSpline(_tileObject.Position);
 
@@ -92,7 +92,7 @@ namespace RPG.Combat.Grid
             yield return new WaitForSeconds(time / CombatManager.CombatSpeed);
         }
 
-        private IEnumerator MoveAlongPoints(float time, Direction direction)
+        private IEnumerator MoveAlongPoints(float time, DirectionEnum direction)
         {
             Vector2Int targetTile = _tileObject.Position + direction.ToVector2Int();
             Vector3 targetPos = MapManager.Instance.GetWorldPostion(targetTile);

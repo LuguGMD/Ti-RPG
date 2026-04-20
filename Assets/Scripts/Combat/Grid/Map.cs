@@ -60,12 +60,12 @@ namespace RPG.Combat.Grid
             return _grid[position];
         }
 
-        public Tile GetNeighborTile(Tile tile, Direction direction)
+        public Tile GetNeighborTile(Tile tile, DirectionEnum direction)
         {
             return GetTile(tile.Position + direction.ToVector2Int());
         }
 
-        public Tile GetNeighborTile(Vector2Int tile, Direction direction)
+        public Tile GetNeighborTile(Vector2Int tile, DirectionEnum direction)
         {
             return GetTile(tile + direction.ToVector2Int());
         }

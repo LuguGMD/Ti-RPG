@@ -7,13 +7,13 @@ namespace RPG.Combat.Actions
     [System.Serializable]
     public class Movement
     {
-        [SerializeField] private Direction _direction;
+        [SerializeField] private DirectionEnum _direction;
         [Tooltip("If the destination tile needs to be empty")]
         [SerializeField] private bool _needsToBeEmpty = true;
 
         #region Properties
 
-        public Direction Direction
+        public DirectionEnum Direction
         {
             get { return _direction; }
         }
@@ -23,7 +23,7 @@ namespace RPG.Combat.Actions
         #endregion
 
         public Movement() { }
-        public Movement(Direction direction, bool needsToBeEmpty)
+        public Movement(DirectionEnum direction, bool needsToBeEmpty)
         {
             _direction = direction;
             _needsToBeEmpty = needsToBeEmpty;

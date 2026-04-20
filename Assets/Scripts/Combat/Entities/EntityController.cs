@@ -15,7 +15,7 @@ namespace RPG.Combat
 
         #region Properties
         public Vector2Int Position { get { return _tileObject.Position; } }
-        public Direction Direction { get { return _tileObject.Direction; } }
+        public DirectionEnum Direction { get { return _tileObject.Direction; } }
 
         #endregion
 

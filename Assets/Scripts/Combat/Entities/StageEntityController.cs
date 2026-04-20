@@ -69,7 +69,7 @@ namespace RPG.Combat
 
             SubscribeEffects(action.Effects);
 
-            Direction startDirection = movementPattern.Pattern[0].Direction;
+            DirectionEnum startDirection = movementPattern.Pattern[0].Direction;
             if(isMirrored) startDirection = startDirection.Mirror();
 
             _tileObject.SetDirection(startDirection);

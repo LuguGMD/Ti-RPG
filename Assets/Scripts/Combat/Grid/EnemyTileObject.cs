@@ -8,7 +8,7 @@ namespace RPG.Combat.Grid
         {
             base.Awake();
 
-            SetDirection(Direction.Down);
+            SetDirection(DirectionEnum.Down);
         }
 
         public override void UpdatePosition()

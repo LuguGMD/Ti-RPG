@@ -12,27 +12,27 @@ namespace RPG.Combat.Actions
         [SerializeField] private EffectCommandScriptable _command;
 
         [Header("Conditions")]
-        [SerializeField] private EffectTrigger _triggerCondition = EffectTrigger.ActionEnd;
-        [SerializeField] private List<Team> _targetList = new List<Team>();
+        [SerializeField] private EffectTriggerEnum _triggerCondition = EffectTriggerEnum.ActionEnd;
+        [SerializeField] private List<TeamEnum> _targetList = new List<TeamEnum>();
         [SerializeField] private bool _canTargetSelf = false;
         [Tooltip("If the character needs to be in the spotlight to this to activate")]
         [SerializeField] private bool _doNeedSpotlight = false;
 
         [Header("Area Of Effect")]
         [SerializeField] private bool _isRelativeToMovement = true;
-        [SerializeField] private List<Direction> _area = new List<Direction>();
+        [SerializeField] private List<DirectionEnum> _area = new List<DirectionEnum>();
 
         #region Properties
 
         public EffectCommandScriptable Command { get { return _command; } }
 
-        public EffectTrigger TriggerCondition { get { return _triggerCondition; } }
-        public List<Team> TargetList { get { return _targetList; } }
+        public EffectTriggerEnum TriggerCondition { get { return _triggerCondition; } }
+        public List<TeamEnum> TargetList { get { return _targetList; } }
         public bool CanTargetSelf { get { return _canTargetSelf; } }
         public bool DoNeedSpotlight { get { return _doNeedSpotlight; }  }
 
         public bool IsRelativeToMovement { get { return _isRelativeToMovement; } }
-        public List<Direction> Area { get { return _area; } }
+        public List<DirectionEnum> Area { get { return _area; } }
         
 
         #endregion
@@ -44,7 +44,7 @@ namespace RPG.Combat.Actions
 
             for (int i = 0; i < _area.Count; i++)
             {
-                Direction direction = _isRelativeToMovement ? _area[i].RelativeTo(user.Direction) : _area[i];
+                DirectionEnum direction = _isRelativeToMovement ? _area[i].RelativeTo(user.Direction) : _area[i];
                 checkPosition += direction.ToVector2Int();
 
                 if (checkedTiles.Contains(checkPosition)) continue;

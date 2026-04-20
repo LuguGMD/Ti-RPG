@@ -16,7 +16,7 @@ namespace RPG.Combat
         [SerializeField] private Material _characterPreviewMaterial;
         [SerializeField] private Material _enemyPreviewMaterial;
 
-        private BattleTurnState _currentTurnState;
+        private CombatTurnStateEnum _currentTurnState;
         private int _turnCount;
         private bool _isBattleOver;
 
@@ -39,7 +39,7 @@ namespace RPG.Combat
         }
         public static Material CharacterPreviewMaterial { get  { return Instance._characterPreviewMaterial; } }
         public static Material EnemyPreviewMaterial { get { return Instance._enemyPreviewMaterial; } }
-        public static BattleTurnState CurrentTurnState { get { return Instance._currentTurnState; } }
+        public static CombatTurnStateEnum CurrentTurnState { get { return Instance._currentTurnState; } }
         public static int TurnCount { get { return Instance._turnCount; } }
         public static float CombatSpeed {  get { return Instance._combatSpeed; } }
         public static ApresentadorController Apresentador { get { return Instance._apresentador; } }
@@ -75,28 +75,28 @@ namespace RPG.Combat
 
         #region Control
 
-        public static bool IsTargetWeak(CombatType user, CombatType target)
+        public static bool IsTargetWeak(CombatTypeEnum user, CombatTypeEnum target)
         {
             return CombatConstants.TypeChart[user] == target;
         }
 
-        public static void SubscribeEffectTriggerAction(EffectTrigger effectTrigger, Action action)
+        public static void SubscribeEffectTriggerAction(EffectTriggerEnum effectTrigger, Action action)
         {
             switch (effectTrigger)
             {
-                case EffectTrigger.ActionStart:
+                case EffectTriggerEnum.ActionStart:
                     ActionsManager.Instance.OnActionStart += action;
                     break;
-                case EffectTrigger.ActionEnd:
+                case EffectTriggerEnum.ActionEnd:
                     ActionsManager.Instance.OnActionEnd += action;
                     break;
-                case EffectTrigger.PatternEnd:
+                case EffectTriggerEnum.PatternEnd:
                     ActionsManager.Instance.OnPatternEnd += action;
                     break;
-                case EffectTrigger.BeforeTileStep:
+                case EffectTriggerEnum.BeforeTileStep:
                     ActionsManager.Instance.OnTileStepBefore += action;
                     break;
-                case EffectTrigger.AfterTileStep:
+                case EffectTriggerEnum.AfterTileStep:
                     ActionsManager.Instance.OnTileStepAfter += action;
                     break;
             }
@@ -163,7 +163,7 @@ namespace RPG.Combat
         private void InitializeBattle()
         {
             _turnCount = 0;
-            _currentTurnState = BattleTurnState.PlayerTurn;
+            _currentTurnState = CombatTurnStateEnum.PlayerTurn;
             PassTurn();
             _isBattleOver = false;
             StartPlayerTurn();
@@ -171,17 +171,17 @@ namespace RPG.Combat
 
         private void SwitchTurn()
         {
-            if (_currentTurnState == BattleTurnState.PlayerTurn)
+            if (_currentTurnState == CombatTurnStateEnum.PlayerTurn)
             {
-                _currentTurnState = BattleTurnState.EnemyTurn;
+                _currentTurnState = CombatTurnStateEnum.EnemyTurn;
                 Debug.Log($"Turno {_turnCount}: Player -> Enemy");
                 ActionsManager.Instance.OnEnemyTurnStarted?.Invoke();
 
                 StartEnemyTurn();
             }
-            else if (_currentTurnState == BattleTurnState.EnemyTurn)
+            else if (_currentTurnState == CombatTurnStateEnum.EnemyTurn)
             {
-                _currentTurnState = BattleTurnState.PlayerTurn;
+                _currentTurnState = CombatTurnStateEnum.PlayerTurn;
                 PassTurn();
                 Debug.Log($"Turno {_turnCount}: Enemy -> Player");
                 ActionsManager.Instance.OnPlayerTurnStarted?.Invoke();
@@ -248,7 +248,7 @@ namespace RPG.Combat
 
         private void EndPlayerTurn()
         {
-            if(!_isActionInProgress && _currentTurnState == BattleTurnState.PlayerTurn)
+            if(!_isActionInProgress && _currentTurnState == CombatTurnStateEnum.PlayerTurn)
             {
                 SwitchTurn();
             }

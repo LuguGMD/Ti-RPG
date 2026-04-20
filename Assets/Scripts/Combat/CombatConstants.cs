@@ -7,14 +7,14 @@ namespace RPG.Combat
     {
         public const int MAX_CHARACTERS_COUNT = 3;
         public const float MAX_MOTIVATION_APRESENTADOR = 100f;
-        public static readonly Dictionary<CombatType, CombatType> TypeChart = new Dictionary<CombatType, CombatType>()
+        public static readonly Dictionary<CombatTypeEnum, CombatTypeEnum> TypeChart = new Dictionary<CombatTypeEnum, CombatTypeEnum>()
         {
-            { CombatType.Magic, CombatType.Anger },
-            { CombatType.Strength, CombatType.Fear },
-            { CombatType.Jokes, CombatType.Sadness },
-            { CombatType.Fear, CombatType.Magic },
-            { CombatType.Sadness, CombatType.Strength },
-            { CombatType.Anger, CombatType.Jokes },
+            { CombatTypeEnum.Magic, CombatTypeEnum.Anger },
+            { CombatTypeEnum.Strength, CombatTypeEnum.Fear },
+            { CombatTypeEnum.Jokes, CombatTypeEnum.Sadness },
+            { CombatTypeEnum.Fear, CombatTypeEnum.Magic },
+            { CombatTypeEnum.Sadness, CombatTypeEnum.Strength },
+            { CombatTypeEnum.Anger, CombatTypeEnum.Jokes },
         };
         public static readonly float[] CombatSpeedTiers = { 1, 2, 3 };
     }

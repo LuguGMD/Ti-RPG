@@ -8,21 +8,21 @@ namespace RPG.Combat.Actions.Effects
     public class PushEffectScriptable : EffectCommandScriptable
     {
         [SerializeField] private bool _isPushDirectionRelative = true;
-        [SerializeField] private Direction _pushDirection = Direction.Up;
+        [SerializeField] private DirectionEnum _pushDirection = DirectionEnum.Up;
         [Min(1)] [SerializeField] private int _pushAmount = 1;
 
         #region Properties
 
         public bool IsPushDirectionRelative { get { return _isPushDirectionRelative; } }
-        public Direction PushDirection { get { return _pushDirection; } }
+        public DirectionEnum PushDirection { get { return _pushDirection; } }
         public int PushAmount { get { return _pushAmount; } }
 
         #endregion
 
         public override bool Execute(StageEntityController user, StageEntityController target)
         {
-            Direction facing = user.Direction;
-            Direction pushDirection = _isPushDirectionRelative ? _pushDirection.RelativeTo(facing) : _pushDirection;
+            DirectionEnum facing = user.Direction;
+            DirectionEnum pushDirection = _isPushDirectionRelative ? _pushDirection.RelativeTo(facing) : _pushDirection;
 
             Movement movement = new Movement(pushDirection, true);
 

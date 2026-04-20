@@ -5,19 +5,19 @@ namespace RPG.Combat.Grid
     public class TileObject : MonoBehaviour
     {
         private Tile _currentTile;
-        private Direction _direction;
+        private DirectionEnum _direction;
 
         #region Properties
 
         public Tile CurrentTile { get { return _currentTile; } }
         public Vector2Int Position { get { return _currentTile.Position; }  }
-        public Direction Direction { get { return _direction; } }
+        public DirectionEnum Direction { get { return _direction; } }
 
         #endregion
 
         protected void Awake()
         {
-            SetDirection(Direction.Up);
+            SetDirection(DirectionEnum.Up);
         }
 
         private void OnEnable()
@@ -41,7 +41,7 @@ namespace RPG.Combat.Grid
             _currentTile.SetTileObject(this);
         }
 
-        public void SetDirection(Direction direction)
+        public void SetDirection(DirectionEnum direction)
         {
             _direction = direction;
         }

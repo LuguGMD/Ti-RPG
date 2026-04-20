@@ -135,7 +135,7 @@ namespace RPG.Combat.Preview
                 for (int k = 0; k < pattern.Count; k++)
                 {
                     Movement movement = pattern[k];
-                    Direction direction = isMirror ? movement.Direction.Mirror() : movement.Direction;
+                    DirectionEnum direction = isMirror ? movement.Direction.Mirror() : movement.Direction;
                     currentPos += direction.ToVector2Int();
                 }
 
