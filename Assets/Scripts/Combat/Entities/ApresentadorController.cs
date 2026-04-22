@@ -42,13 +42,11 @@ namespace RPG.Combat
 
         private void OnEnable()
         {
-            ActionsManager.Instance.OnApresentadorActionCompleted += ActionCompleted;
             ActionsManager.Instance.OnCombatSpeedChanged += AdjsutGameSpeed;
         }
 
         private void OnDisable()
         {
-            ActionsManager.Instance.OnApresentadorActionCompleted -= ActionCompleted;
             ActionsManager.Instance.OnCombatSpeedChanged -= AdjsutGameSpeed;
         }
 
@@ -110,7 +108,7 @@ namespace RPG.Combat
             _rowToRotate %= (Map.Rows - 1);
         }
 
-        private void ActionCompleted()
+        public void CompleteAction()
         {
             _hasActed = true;
         }
