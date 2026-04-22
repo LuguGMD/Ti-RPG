@@ -97,42 +97,27 @@ namespace RPG.Audio
             }
         }
 
+        private Bus GetBusType(FMODBusEnum type)
+        {
+            return type switch
+            {
+                FMODBusEnum.Master => _masterBus,
+                FMODBusEnum.Music => _musicBus,
+                FMODBusEnum.SFX => _soundEffectsBus,
+                _ => _masterBus
+            };
+        }
+        
         public float GetVolume(FMODBusEnum type)
         {
-            Bus bank = _masterBus;
-
-            switch (type)
-            {
-                case FMODBusEnum.Music:
-                    bank = _musicBus;
-                    break;
-                case FMODBusEnum.SFX:
-                    bank = _soundEffectsBus;
-                    break;
-            }
-
+            Bus bank = GetBusType(type);
             bank.getVolume(out float volume);
-
             return volume;
         }
 
         public void SetVolume(FMODBusEnum type, float volume)
         {
-            Bus bank = _masterBus;
-
-            switch (type)
-            {
-                case FMODBusEnum.Master:
-                    bank = _masterBus;
-                    break;
-                case FMODBusEnum.Music:
-                    bank = _musicBus;
-                    break;
-                case FMODBusEnum.SFX:
-                    bank = _soundEffectsBus;
-                    break;
-            }
-            bank.setVolume(volume);
+            GetBusType(type).setVolume(volume);
         }
 
         public bool IsMusicPlaying()
