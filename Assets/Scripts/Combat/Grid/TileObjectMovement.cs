@@ -29,11 +29,12 @@ namespace RPG.Combat.Grid
             _tileObject = GetComponent<TileObject>();
         }
 
-        private void ChangeTile(DirectionEnum direction)
+        private void ChangeTile(DirectionEnum direction, bool doReplace)
         {
             Tile currentTile = _tileObject.CurrentTile;
             Tile nextTile = MapManager.Map.GetNeighborTile(currentTile, direction);
-            _tileObject.SetCurrentTile(nextTile);
+
+            _tileObject.SetCurrentTile(nextTile, doReplace);
             _tileObject.UpdatePosition();
         }
 
@@ -57,8 +58,7 @@ namespace RPG.Combat.Grid
                     yield return MoveAlongPoints(0.3f, direction);
                 }
                 
-
-                ChangeTile(direction);
+                ChangeTile(direction, movement.NeedsToBeEmpty);
 
                 ActionsManager.Instance.OnTileStepAfter?.Invoke();
             }
@@ -107,7 +107,7 @@ namespace RPG.Combat.Grid
         {
             if (MapManager.IsMovementValid(_tileObject.Position, movement, false))
             {
-                ChangeTile(movement.Direction);
+                ChangeTile(movement.Direction, true);
             }
         }
 

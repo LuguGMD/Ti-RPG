@@ -14,35 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterScriptable
   _entityName: Folesbela
   _actions:
-  - _actionName: Directional Punch
+  - _actionName: Acrobatics
     _effects:
-    - _command: {fileID: 11400000, guid: faaab5275613368488736a1e776f3671, type: 2}
-      _triggerCondition: 0
+    - _command: {fileID: 11400000, guid: 6c8af37d4bd251e409452514cea49749, type: 2}
+      _triggerCondition: 2
       _targetList: 01000000
       _canTargetSelf: 0
       _doNeedSpotlight: 0
-      _isRelativeToMovement: 1
-      _area: 00000000
-    - _command: {fileID: 11400000, guid: 5bb2fb777cbd3ba4da4a3b23bb4509aa, type: 2}
-      _triggerCondition: 0
-      _targetList: 01000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 0
-      _isRelativeToMovement: 1
-      _area: 00000000
+      _isRelativeToMovement: 0
+      _area: 08000000
     _movementPatterns:
     - _pattern:
-      - _direction: 0
-        _needsToBeEmpty: 1
-      _repetition: 1
-      _canMirror: 1
-      Repetition: 1
-    - _pattern:
       - _direction: 3
-        _needsToBeEmpty: 1
-      _repetition: 1
-      _canMirror: 1
-      Repetition: 1
+        _needsToBeEmpty: 0
+      - _direction: 3
+        _needsToBeEmpty: 0
+      _repetition: 5
+      _canMirror: 0
+      Repetition: 5
   _type: 1
-  motivation: 80
+  motivation: 65
   _prefab: {fileID: 3275965007155841491, guid: 71c58aac71435da4396b7b945d2f1d7b, type: 3}

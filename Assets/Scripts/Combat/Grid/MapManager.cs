@@ -64,7 +64,7 @@ namespace RPG.Combat.Grid
         {
             Tile tile = _map.GetTile(position);
 
-            tileObject.SetCurrentTile(tile);
+            tileObject.SetCurrentTile(tile, true);
             tile.SetTileObject(tileObject);
         }
 
