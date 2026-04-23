@@ -46,6 +46,14 @@ namespace RPG.Combat
             }
         }
 
+        public override void Heal(float heal)
+        {
+            _health += heal;
+            _health = Mathf.Clamp(_health, 0, _enemyInfo.Health);
+
+            UpdateHealthBar();
+        }
+
         private void UpdateHealthBar()
         {
             _healthBar.Slider.value = (_health / _enemyInfo.Health);

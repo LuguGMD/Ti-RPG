@@ -53,10 +53,19 @@ namespace RPG.Combat
         public override void TakeDamage(float damage)
         {
             _currentMotivation -= damage;
+            _currentMotivation = Mathf.Clamp(_currentMotivation, 0, CombatConstants.MAX_MOTIVATION_APRESENTADOR);
 
             ActionsManager.Instance.OnCharacterDamageTaken?.Invoke(this);
 
             CheckDefeated();
+        }
+
+        public override void Heal(float heal)
+        {
+            _currentMotivation += heal;
+            _currentMotivation = Mathf.Clamp(_currentMotivation, 0, CombatConstants.MAX_MOTIVATION_APRESENTADOR);
+
+            ActionsManager.Instance.OnCharacterDamageTaken?.Invoke(this);
         }
 
         private void CheckDefeated()

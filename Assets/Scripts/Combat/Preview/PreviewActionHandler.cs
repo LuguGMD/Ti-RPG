@@ -83,6 +83,8 @@ namespace RPG.Combat.Preview
 
         private bool IsPositionValid(PreviewTileInfo previewTileInfo, Vector2Int position)
         {
+            if (position.y >= Map.Rows) return false;
+
             Tile tile = MapManager.Map.GetTile(position);
 
             if (tile.Position == Map.CENTER_POS) return false;
