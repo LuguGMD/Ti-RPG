@@ -92,12 +92,12 @@ namespace RPG.Combat
 
         public void Rotate(int amount)
         {
-            MapManager.Map.RotateRow(_rowToRotate, amount);
+            MapManager.Instance.RotateRow(_rowToRotate, amount);
         }
 
         public void Rotate(int row, int amount)
         {
-            MapManager.Map.RotateRow(row, amount);
+            MapManager.Instance.RotateRow(row, amount);
         }
 
         public void ChangeRow(int amount)

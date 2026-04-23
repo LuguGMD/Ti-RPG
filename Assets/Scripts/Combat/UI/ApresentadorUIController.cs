@@ -159,7 +159,7 @@ namespace RPG.Combat.UI
         {
             GameObject selectedRow = MapManager.RowGameObjects[CombatManager.Apresentador.RowToRotate];
             selectedRow.transform.DOKill(true);
-            selectedRow.transform.DOLocalMove(-Vector3.up * 0.25f, 0.5f);
+            selectedRow.transform.DOLocalMove(Vector3.up * 0.4f, 0.5f);
         }
 
         private void DeselectRow()

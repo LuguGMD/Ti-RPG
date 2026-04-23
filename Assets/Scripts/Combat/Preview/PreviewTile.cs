@@ -11,7 +11,7 @@ namespace RPG.Combat.Preview
         private PreviewTileInfo _info;
         [SerializeField] private MeshRenderer[] _renderer;
         private bool _canBeSelected = false;
-        private int _tileIndex;
+        private Vector2Int _tilePosition;
 
         #region Properties
 
@@ -30,24 +30,49 @@ namespace RPG.Combat.Preview
             }
         }
 
+        private void OnEnable()
+        {
+            ActionsManager.Instance.OnRotationAnimationStarted += RemoveParent;
+            ActionsManager.Instance.OnRotationAnimationEnded += AddParent;
+        }
+
+        private void OnDisable()
+        {
+            ActionsManager.Instance.OnRotationAnimationStarted -= RemoveParent;
+            ActionsManager.Instance.OnRotationAnimationEnded -= AddParent;
+        }
+
         public void SetPosition(Vector2Int tilePosition)
         {
             tilePosition = tilePosition.ClampMap();
+            _tilePosition = tilePosition;
 
             for (int i = 0; i < transform.childCount; i++)
             {
-                transform.GetChild(i)?.gameObject.SetActive(i == tilePosition.y);
+                transform.GetChild(i)?.gameObject.SetActive(i == _tilePosition.y);
             }
 
-            _tileIndex = tilePosition.y;
-
-            transform.position = MapManager.Instance.GetWorldPostion(tilePosition);
+            transform.position = MapManager.Instance.GetWorldPosition(_tilePosition);
+            AddParent();
             transform.LookAt(transform.position - (transform.position.normalized));
+            transform.localPosition = new Vector3(transform.localPosition.x, 0, transform.localPosition.z);
+        }
+
+        private void RemoveParent()
+        {
+            transform.parent = null;
+            transform.GetChild(_tilePosition.y)?.gameObject.SetActive(false);
+        }
+
+        private void AddParent()
+        {
+            transform.parent = MapManager.Map.GetTile(_tilePosition).Transform;
+            transform.GetChild(_tilePosition.y)?.gameObject.SetActive(true);
         }
 
         public void SetMaterial(Material material)
         {
-            _renderer[_tileIndex].material = material;
+            _renderer[_tilePosition.y].material = material;
         }
 
         public void SetInfo(PreviewTileInfo info)

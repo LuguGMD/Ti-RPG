@@ -39,6 +39,7 @@ namespace RPG.Combat.Grid
 
         public IEnumerator Move(bool isMirrored)
         {
+            transform.parent = null;
             Movement movement = _movementQueue.Dequeue();
             DirectionEnum direction = isMirrored ? movement.Direction.Mirror() : movement.Direction;
             _tileObject.SetDirection(direction);
@@ -78,7 +79,7 @@ namespace RPG.Combat.Grid
             Spline spline = MapManager.Instance.GetCurrentSpline(_tileObject.Position);
 
             Vector2Int targetTile = _tileObject.Position + direction.ToVector2Int();
-            Vector3 targetPos = MapManager.Instance.GetWorldPostion(targetTile);
+            Vector3 targetPos = MapManager.Instance.GetWorldPosition(targetTile);
 
             float startPercentage = MapManager.Instance.GetCurrentTilePercentage(_tileObject.Position);
             float endPercentage = MapManager.Instance.GetCurrentTilePercentage(targetTile);
@@ -95,7 +96,7 @@ namespace RPG.Combat.Grid
         private IEnumerator MoveAlongPoints(float time, DirectionEnum direction)
         {
             Vector2Int targetTile = _tileObject.Position + direction.ToVector2Int();
-            Vector3 targetPos = MapManager.Instance.GetWorldPostion(targetTile);
+            Vector3 targetPos = MapManager.Instance.GetWorldPosition(targetTile);
 
             transform.DOMove(targetPos, time / CombatManager.CombatSpeed).SetEase(Ease.Linear);
 
