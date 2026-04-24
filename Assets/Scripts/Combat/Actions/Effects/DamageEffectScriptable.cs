@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RPG.Combat.Actions.Effects
 {
-    [CreateAssetMenu(fileName = "DamageEffectScriptable", menuName = "Scriptable Objects/Effects/Damage")]
+    [CreateAssetMenu(fileName = "DamageEffectScriptable", menuName = "Scriptable Objects/Combat/Effects/Damage")]
     public class DamageEffectScriptable : EffectCommandScriptable
     {
         [SerializeField] private float _damage;

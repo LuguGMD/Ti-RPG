@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RPG.Combat.Actions.Effects
 {
-    [CreateAssetMenu(fileName = "HealingEffectScriptable", menuName = "Scriptable Objects/Effects/Healing")]
+    [CreateAssetMenu(fileName = "HealingEffectScriptable", menuName = "Scriptable Objects/Combat/Effects/Healing")]
     public class HealingEffectScriptable : EffectCommandScriptable
     {
         [SerializeField] private float _healAmount = 10;
