@@ -50,7 +50,10 @@ namespace RPG
         public Action<EntityController> OnEntitySelected;
         public Action<EntityController> OnEntityHovered;
 
+        public Action<CharacterController> OnCharacterClicked;
+
         public Action<CharacterController> OnCharacterSelected;
+        public Action OnCharacterDeselected;
 
         public Action OnApresentadorSelected;
 

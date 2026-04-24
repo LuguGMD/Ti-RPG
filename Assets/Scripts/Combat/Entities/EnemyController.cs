@@ -70,7 +70,7 @@ namespace RPG.Combat
         public IEnumerator UsePreparedAction()
         {
             //TO DO guardar acao preparada e usar aqui
-            yield return UseAction(0, 0, 1, false);
+            yield return UseSelectedAction(0, 1, false);
         }
     }
 }

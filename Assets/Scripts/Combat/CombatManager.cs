@@ -57,7 +57,7 @@ namespace RPG.Combat
 
         private void OnEnable()
         {
-            ActionsManager.Instance.OnCharacterSelected += OnCharacterSelected;
+            ActionsManager.Instance.OnCharacterClicked += OnCharacterClicked;
             ActionsManager.Instance.OnApresentadorSelected += OnApresentadorSelected;
             ActionsManager.Instance.OnActionTileSelected += OnCombatActionSelected;
             ActionsManager.Instance.OnApresentadorActionCompleted += CheckEndPlayerTurn;
@@ -66,7 +66,7 @@ namespace RPG.Combat
 
         private void OnDisable()
         {
-            ActionsManager.Instance.OnCharacterSelected -= OnCharacterSelected;
+            ActionsManager.Instance.OnCharacterClicked -= OnCharacterClicked;
             ActionsManager.Instance.OnApresentadorSelected -= OnApresentadorSelected;
             ActionsManager.Instance.OnActionTileSelected -= OnCombatActionSelected;
             ActionsManager.Instance.OnApresentadorActionCompleted -= CheckEndPlayerTurn;
@@ -122,7 +122,7 @@ namespace RPG.Combat
 
         #endregion
 
-        private void OnCharacterSelected(CharacterController selectedCharacter)
+        private void OnCharacterClicked(CharacterController selectedCharacter)
         {
             if(_isBattleOver)
             {
@@ -141,7 +141,9 @@ namespace RPG.Combat
                 DeselectCharacter();
 
                 _selectedCharacter = selectedCharacter;
+                ActionsManager.Instance.OnCharacterSelected?.Invoke(_selectedCharacter);
 
+                //TO DO passar para quando acao for selecionada
                 _selectedCharacter.Preview.ShowPreview();
             }
         }
@@ -226,7 +228,7 @@ namespace RPG.Combat
             _selectedCharacter.Preview.HidePreview();
             HideAllEnemiesPreviews();
 
-            yield return _selectedCharacter.UseAction(0, patternIndex, repetition, isMirrored);
+            yield return _selectedCharacter.UseSelectedAction(patternIndex, repetition, isMirrored);
 
             ShowAllEnemiesPreviews();
             DeselectCharacter();
@@ -257,7 +259,10 @@ namespace RPG.Combat
         private void DeselectCharacter()
         {
             _selectedCharacter?.Preview.HidePreview();
+            ActionsManager.Instance.OnCharacterDeselected?.Invoke();
+
             _selectedCharacter = null;
+
         }
 
         private void StartPlayerTurn()

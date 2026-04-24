@@ -11,6 +11,7 @@ namespace RPG.Combat
 
         #region Properties
 
+        public CharacterScriptable CharacterInfo { get { return _characterInfo; } }
         public float CurrentMotivation
         {
             get { return _currentMotivation; }
@@ -92,7 +93,7 @@ namespace RPG.Combat
         protected override void OnSelected()
         {
             base.OnSelected();
-            ActionsManager.Instance.OnCharacterSelected?.Invoke(this);
+            ActionsManager.Instance.OnCharacterClicked?.Invoke(this);
         }
     }
 }
