@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    [CreateAssetMenu(fileName = "ApresentadorScriptable", menuName = "Scriptable Objects/ApresentadorScriptable")]
+    //[CreateAssetMenu(fileName = "ApresentadorScriptable", menuName = "Scriptable Objects/Combat/ApresentadorScriptable")]
     public class ApresentadorScriptable : EntityScriptable
     {
         #region Properties

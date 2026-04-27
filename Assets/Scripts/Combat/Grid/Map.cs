@@ -42,7 +42,14 @@ namespace RPG.Combat.Grid
 
         private void AddTile(Vector2Int position)
         {
-            _grid.Add(position, new Tile(position));
+            Transform tileTransform = new GameObject("TileTransform").transform;
+            _grid.Add(position, new Tile(position, tileTransform));
+
+            tileTransform.position = MapManager.Instance.GetWorldPosition(position);
+            if(position.y < MapManager.RowGameObjects.Length && position.y >= 0)
+            {
+                tileTransform.parent = MapManager.RowGameObjects[position.y].transform;
+            }
         }
 
         private void SetTile(Vector2Int position, Tile tile)

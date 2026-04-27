@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    [CreateAssetMenu(fileName = "EnemyScriptable", menuName = "Scriptable Objects/Entity/Enemy")]
+    [CreateAssetMenu(fileName = "EnemyScriptable", menuName = "Scriptable Objects/Combat/Entity/Enemy")]
     public class EnemyScriptable : StageEntityScriptable
     {
         [SerializeField] private EnemyController _prefab;

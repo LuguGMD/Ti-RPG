@@ -6,11 +6,13 @@ namespace RPG.Combat.Grid
     public class Tile
     {
         private Vector2Int _position;
+        private Transform _transform;
         private TileObject _tileObject;
 
         #region Properties
 
         public Vector2Int Position { get { return _position; } }
+        public Transform Transform { get { return _transform; } }
 
         public TileObject TileObject { get { return _tileObject; } }
 
@@ -18,9 +20,10 @@ namespace RPG.Combat.Grid
 
         #endregion
 
-        public Tile(Vector2Int position)
+        public Tile(Vector2Int position, Transform transform)
         {
             _position = position;
+            _transform = transform;
         }
 
         public void SetTileObject(TileObject tileObject)

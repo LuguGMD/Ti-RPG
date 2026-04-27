@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace RPG.Combat.Actions.Effects
 {
-    [CreateAssetMenu(fileName = "PushEffectScriptable", menuName = "Scriptable Objects/Effects/Push")]
+    [CreateAssetMenu(fileName = "PushEffectScriptable", menuName = "Scriptable Objects/Combat/Effects/Push")]
     public class PushEffectScriptable : EffectCommandScriptable
     {
         [SerializeField] private bool _isPushDirectionRelative = true;

@@ -42,13 +42,11 @@ namespace RPG.Combat
 
         private void OnEnable()
         {
-            ActionsManager.Instance.OnApresentadorActionCompleted += ActionCompleted;
             ActionsManager.Instance.OnCombatSpeedChanged += AdjsutGameSpeed;
         }
 
         private void OnDisable()
         {
-            ActionsManager.Instance.OnApresentadorActionCompleted -= ActionCompleted;
             ActionsManager.Instance.OnCombatSpeedChanged -= AdjsutGameSpeed;
         }
 
@@ -89,17 +87,26 @@ namespace RPG.Combat
         public override void TakeDamage(float damage)
         {
             _currentMotivation -= damage;
+            _currentMotivation = Mathf.Clamp(_currentMotivation, 0, CombatConstants.MAX_MOTIVATION_APRESENTADOR);
+            ActionsManager.Instance.OnApresentadorDamageTaken?.Invoke();
+        }
+
+        public override void Heal(float heal)
+        {
+            _currentMotivation += heal;
+            _currentMotivation = Mathf.Clamp(_currentMotivation, 0, CombatConstants.MAX_MOTIVATION_APRESENTADOR);
+
             ActionsManager.Instance.OnApresentadorDamageTaken?.Invoke();
         }
 
         public void Rotate(int amount)
         {
-            MapManager.Map.RotateRow(_rowToRotate, amount);
+            MapManager.Instance.RotateRow(_rowToRotate, amount);
         }
 
         public void Rotate(int row, int amount)
         {
-            MapManager.Map.RotateRow(row, amount);
+            MapManager.Instance.RotateRow(row, amount);
         }
 
         public void ChangeRow(int amount)
@@ -110,7 +117,7 @@ namespace RPG.Combat
             _rowToRotate %= (Map.Rows - 1);
         }
 
-        private void ActionCompleted()
+        public void CompleteAction()
         {
             _hasActed = true;
         }
