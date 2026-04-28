@@ -10,9 +10,11 @@ namespace RPG
 {
     public class ActionsManager : Singleton<ActionsManager>
     {
-        public Action OnMapChanged;
-
         #region Combat
+
+        public Action OnMapChanged;
+        public Action OnRotationAnimationStarted;
+        public Action OnRotationAnimationEnded;
 
         public Action OnCombatWon;
         public Action OnCombatLost;
@@ -48,7 +50,10 @@ namespace RPG
         public Action<EntityController> OnEntitySelected;
         public Action<EntityController> OnEntityHovered;
 
+        public Action<CharacterController> OnCharacterClicked;
+
         public Action<CharacterController> OnCharacterSelected;
+        public Action OnCharacterDeselected;
 
         public Action OnApresentadorSelected;
 

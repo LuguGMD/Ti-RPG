@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feeba527babfd6e418fcce306f2e1d67, type: 3}
+  m_Name: FolesbelaCombatScriptable
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterScriptable
+  _entityName: Folesbela
+  _actions:
+  - _actionName: Acrobatics
+    _effects:
+    - _command: {fileID: 11400000, guid: 6c8af37d4bd251e409452514cea49749, type: 2}
+      _triggerCondition: 2
+      _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 0
+      _area: 08000000
+    _movementPatterns:
+    - _pattern:
+      - _direction: 3
+        _needsToBeEmpty: 0
+      - _direction: 3
+        _needsToBeEmpty: 0
+      _repetition: 5
+      _canMirror: 0
+      Repetition: 5
+  _type: 1
+  motivation: 65
+  _prefab: {fileID: 3275965007155841491, guid: 71c58aac71435da4396b7b945d2f1d7b, type: 3}

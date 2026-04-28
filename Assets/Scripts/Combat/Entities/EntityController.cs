@@ -43,6 +43,7 @@ namespace RPG.Combat
         }
 
         public abstract void TakeDamage(float damage);
+        public abstract void Heal(float heal);
 
         public abstract EntityScriptable GetEntityInfo();
 

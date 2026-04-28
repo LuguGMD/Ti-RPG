@@ -3,7 +3,7 @@ using CharacterController = RPG.Combat.CharacterController;
 
 namespace RPG.Combat
 {
-    [CreateAssetMenu(fileName = "CharacterScriptable", menuName = "Scriptable Objects/Entity/Character")]
+    [CreateAssetMenu(fileName = "CharacterScriptable", menuName = "Scriptable Objects/Combat/Entity/Character")]
     public class CharacterScriptable : StageEntityScriptable
     {
 

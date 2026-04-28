@@ -16,6 +16,7 @@ namespace RPG.Combat
         protected TileObjectMovement _movement;
         protected PreviewActionHandler _preview;
         protected Animator[] _animators;
+        protected int _selectedActionIndex;
 
         #region Properties
 
@@ -33,7 +34,7 @@ namespace RPG.Combat
             _animators = GetComponentsInChildren<Animator>();
 
             //TO DO remover depois
-            _preview.ChangeActionToPreview(_info.Actions[0]);
+            SelectAction(0);
         }
 
         protected new void Start()
@@ -62,9 +63,9 @@ namespace RPG.Combat
             }
         }
 
-        public IEnumerator UseAction(int actionIndex, int movementPatternIndex, int repetitions, bool isMirrored)
+        public IEnumerator UseSelectedAction(int movementPatternIndex, int repetitions, bool isMirrored)
         {
-            CombatAction action = _info.Actions[actionIndex];
+            CombatAction action = _info.Actions[_selectedActionIndex];
             MovementPattern movementPattern = action.MovementPatterns[movementPatternIndex];
 
             SubscribeEffects(action.Effects);
@@ -91,6 +92,12 @@ namespace RPG.Combat
             yield return new WaitForSeconds(0.1f / CombatManager.CombatSpeed);
 
             CombatManager.UnsubscribeEffectTriggerAction();
+        }
+
+        public void SelectAction(int actionIndex)
+        {
+            _selectedActionIndex = actionIndex;
+            _preview.ChangeActionToPreview(_info.Actions[actionIndex]);
         }
 
         private void SubscribeEffects(List<Effect> effects)

@@ -14,22 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterScriptable
   _entityName: Barbara
   _actions:
-  - _actionName: Directional Punch
+  - _actionName: Healing Song
     _effects:
-    - _command: {fileID: 11400000, guid: faaab5275613368488736a1e776f3671, type: 2}
-      _triggerCondition: 0
-      _targetList: 01000000
-      _canTargetSelf: 0
+    - _command: {fileID: 11400000, guid: 4ee1697dcabbbf74dbe43317843439d5, type: 2}
+      _triggerCondition: 1
+      _targetList: 00000000
+      _canTargetSelf: 1
       _doNeedSpotlight: 0
       _isRelativeToMovement: 1
-      _area: 00000000
-    - _command: {fileID: 11400000, guid: 5bb2fb777cbd3ba4da4a3b23bb4509aa, type: 2}
-      _triggerCondition: 0
-      _targetList: 01000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 0
-      _isRelativeToMovement: 1
-      _area: 00000000
+      _area: 0000000003000000010000000100000002000000020000000000000000000000
     _movementPatterns:
     - _pattern:
       - _direction: 0
@@ -39,6 +32,18 @@ MonoBehaviour:
       Repetition: 1
     - _pattern:
       - _direction: 3
+        _needsToBeEmpty: 1
+      _repetition: 1
+      _canMirror: 1
+      Repetition: 1
+    - _pattern:
+      - _direction: 4
+        _needsToBeEmpty: 1
+      _repetition: 1
+      _canMirror: 1
+      Repetition: 1
+    - _pattern:
+      - _direction: 5
         _needsToBeEmpty: 1
       _repetition: 1
       _canMirror: 1

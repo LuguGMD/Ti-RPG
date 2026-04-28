@@ -948,14 +948,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 67958230}
     m_Modifications:
-    - target: {fileID: 3161286144815765642, guid: aea6d2ea44c617844bdbcebf58c23996, type: 3}
-      propertyPath: _enemyPreviewMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: ffd7002902d40f84c83d982e7a5fc8b3, type: 2}
-    - target: {fileID: 3161286144815765642, guid: aea6d2ea44c617844bdbcebf58c23996, type: 3}
-      propertyPath: _characterPreviewMaterial
-      value: 
-      objectReference: {fileID: 2100000, guid: 2b26e7ad2cfbbab44a40fe2eca49cc9a, type: 2}
     - target: {fileID: 3241753435312579225, guid: aea6d2ea44c617844bdbcebf58c23996, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29.72354
@@ -1915,11 +1907,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.MapTest
   _characterSpawns:
-  - _characterInfo: {fileID: 11400000, guid: c557b0a8f59d6f94090d1b6fd49443c8, type: 2}
+  - _characterInfo: {fileID: 11400000, guid: 1e543e771f1dcc242a52dba744570440, type: 2}
     _spawnPosition: {x: 0, y: 0}
   - _characterInfo: {fileID: 11400000, guid: 5ffce755d859269439f95831192bd7b1, type: 2}
     _spawnPosition: {x: 2, y: 1}
-  - _characterInfo: {fileID: 11400000, guid: 1e543e771f1dcc242a52dba744570440, type: 2}
+  - _characterInfo: {fileID: 11400000, guid: 99de96255f8ebcc4ba100d2e0ec53840, type: 2}
     _spawnPosition: {x: 5, y: 2}
   _apresentador: {fileID: 582848416}
 --- !u!4 &1980782985

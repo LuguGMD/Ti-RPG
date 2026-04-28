@@ -7,10 +7,14 @@ namespace RPG.Combat.Actions
     public class CombatAction
     {
         [SerializeField] private string _actionName;
+        [SerializeField] private string _actionDescription;
         [SerializeField] private List<Effect> _effects;
         [SerializeField] private List<MovementPattern> _movementPatterns;
 
         #region Properties
+
+        public string ActionName { get { return  _actionName; }  }
+        public string ActionDescription { get { return _actionDescription; } }
 
         public List<Effect> Effects
         {
