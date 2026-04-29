@@ -13,6 +13,7 @@ namespace RPG.Combat
     {
         protected TileObject _tileObject;
         protected CursorTarget _cursorTarget;
+        protected Animator[] _animators;
 
         #region Properties
         public Vector2Int Position { get { return _tileObject.Position; } }
@@ -24,12 +25,31 @@ namespace RPG.Combat
         {
             _tileObject = GetComponent<TileObject>();
             _cursorTarget = GetComponent<CursorTarget>();
+            _animators = GetComponentsInChildren<Animator>();
         }
 
         protected void Start()
         {
             _cursorTarget.Actions.LeftClick.OnStart(OnSelected);
             _cursorTarget.Actions.Hover.OnStart(OnHover);
+        }
+
+        protected void OnEnable()
+        {
+            ActionsManager.Instance.OnCombatSpeedChanged += AdjsutGameSpeed;
+        }
+
+        protected void OnDisable()
+        {
+            ActionsManager.Instance.OnCombatSpeedChanged -= AdjsutGameSpeed;
+        }
+
+        protected void AdjsutGameSpeed()
+        {
+            foreach (Animator animator in _animators)
+            {
+                animator.SetFloat("GameSpeed", CombatManager.CombatSpeed);
+            }
         }
 
         protected virtual void OnSelected()
@@ -42,12 +62,44 @@ namespace RPG.Combat
             ActionsManager.Instance.OnEntityHovered?.Invoke(this);
         }
 
-        public abstract void TakeDamage(float damage);
+        protected void SetAnimationTrigger(string trigger)
+        {
+            foreach (Animator animator in _animators)
+            {
+                animator.SetTrigger(trigger);
+            }
+        }
+        protected void SetAnimationInt(string intName, int intValue)
+        {
+            foreach(Animator animator in _animators)
+            {
+                animator.SetInteger(intName, intValue);
+            }
+        }
+        protected void SetAnimationBool(string boolName, bool boolValue)
+        {
+            foreach (Animator animator in _animators)
+            {
+                animator.SetBool(boolName, boolValue);
+            }
+        }
+
+        public virtual void TakeDamage(float damage)
+        {
+            SetAnimationTrigger("TookDamage");
+            CheckDefeated();
+        }
+
         public abstract void Heal(float heal);
+        protected abstract void CheckDefeated();
+        protected virtual void Defeated()
+        {
+            SetAnimationTrigger("Died");
+        }
 
         public abstract EntityScriptable GetEntityInfo();
 
 
-        
+
     }
 }

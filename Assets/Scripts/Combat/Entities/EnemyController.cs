@@ -39,11 +39,7 @@ namespace RPG.Combat
             _health -= damage;
 
             UpdateHealthBar();
-
-            if (_health <= 0)
-            {
-                Defeated();
-            }
+            base.TakeDamage(damage);
         }
 
         public override void Heal(float heal)
@@ -59,11 +55,20 @@ namespace RPG.Combat
             _healthBar.Slider.value = (_health / _enemyInfo.Health);
         }
 
+        protected override void CheckDefeated()
+        {
+            if (_health <= 0)
+            {
+                Defeated();
+            }
+        }
         protected override void Defeated()
         {
+            base.Defeated();
+
             CombatManager.Instance.RemoveEnemy(this);
             _tileObject.CurrentTile.SetTileObject(null);
-            //TO DO triggar animacao de morte
+            //TO DO esperar fim animação de morte
             Destroy(gameObject);
         }
 

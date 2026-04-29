@@ -58,7 +58,7 @@ namespace RPG.Combat
 
             ActionsManager.Instance.OnCharacterDamageTaken?.Invoke(this);
 
-            CheckDefeated();
+            base.TakeDamage(damage);
         }
 
         public override void Heal(float heal)
@@ -69,7 +69,7 @@ namespace RPG.Combat
             ActionsManager.Instance.OnCharacterDamageTaken?.Invoke(this);
         }
 
-        private void CheckDefeated()
+        protected override void CheckDefeated()
         {
             if (CombatManager.Apresentador.CurrentMotivation < CombatConstants.MAX_MOTIVATION_APRESENTADOR - _currentMotivation)
             {
@@ -79,6 +79,8 @@ namespace RPG.Combat
 
         protected override void Defeated()
         {
+            base.Defeated();
+
             CombatManager.Instance.RemoveCharacter(this);
             _tileObject.CurrentTile.SetTileObject(null);
 

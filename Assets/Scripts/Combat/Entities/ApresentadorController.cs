@@ -15,8 +15,6 @@ namespace RPG.Combat
 
         private bool _hasActed = false;
 
-        private Animator[] _animators;
-
         #region Properties
 
         public EntityScriptable Info { get { return _info; } }
@@ -27,27 +25,10 @@ namespace RPG.Combat
 
         #endregion
 
-        protected new void Awake()
-        {
-            base.Awake();
-
-            _animators = GetComponentsInChildren<Animator>();
-        }
-
         protected new void Start()
         {
             base.Start();
             Initialize();
-        }
-
-        private void OnEnable()
-        {
-            ActionsManager.Instance.OnCombatSpeedChanged += AdjsutGameSpeed;
-        }
-
-        private void OnDisable()
-        {
-            ActionsManager.Instance.OnCombatSpeedChanged -= AdjsutGameSpeed;
         }
 
         private void Initialize()
@@ -55,14 +36,6 @@ namespace RPG.Combat
             _currentMotivation = CombatConstants.MAX_MOTIVATION_APRESENTADOR;
             MapManager.Instance.AddTileObject(_tileObject, Map.CENTER_POS);
             AdjsutGameSpeed();
-        }
-
-        private void AdjsutGameSpeed()
-        {
-            foreach(Animator animator in _animators)
-            {
-                animator.SetFloat("GameSpeed", CombatManager.CombatSpeed);
-            }
         }
 
         public override EntityScriptable GetEntityInfo()
@@ -89,6 +62,13 @@ namespace RPG.Combat
             _currentMotivation -= damage;
             _currentMotivation = Mathf.Clamp(_currentMotivation, 0, CombatConstants.MAX_MOTIVATION_APRESENTADOR);
             ActionsManager.Instance.OnApresentadorDamageTaken?.Invoke();
+
+            base.TakeDamage(damage);
+        }
+
+        protected override void CheckDefeated()
+        {
+            
         }
 
         public override void Heal(float heal)
