@@ -15,7 +15,6 @@ namespace RPG.Combat.Actions.Effects
 
         public override bool Execute(StageEntityController user, StageEntityController target)
         {
-            Debug.Log("Ataque tentado");
 
             if (target == null || user == null)
                 return false;
@@ -24,8 +23,6 @@ namespace RPG.Combat.Actions.Effects
             if (CombatManager.IsTargetWeak(user.Info.Type, target.Info.Type)) damage *= 2;
 
             target.TakeDamage(damage);
-
-            Debug.Log("Ataque bem sucedido");
 
             return true;
         }

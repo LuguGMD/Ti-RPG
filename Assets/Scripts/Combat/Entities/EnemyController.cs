@@ -66,6 +66,7 @@ namespace RPG.Combat
         {
             base.Defeated();
 
+            ActionsManager.Instance.OnEnemyDefeated?.Invoke(this);
             CombatManager.Instance.RemoveEnemy(this);
             _tileObject.CurrentTile.SetTileObject(null);
             //TO DO esperar fim animação de morte
