@@ -5,20 +5,13 @@ namespace RPG.Level.Challenge
     [CreateAssetMenu(fileName = "ChallengeScriptable", menuName = "Scriptable Objects/Level/Challenge")]
     public class ChallengeScriptable : ScriptableObject
     {
-        private string _challengeID;
-        private ChallengeTypeEnum _challengeType;
-        private string _challengeName;
-        private string _description;
-        private float _targetValue;
-        private int _coinsReward;
+        [SerializeField] private ChallengeTypeEnum _challengeType;
+        [SerializeField] private string _challengeName;
+        [SerializeField] private string _description;
+        [SerializeField] private float _targetValue;
+        [SerializeField] private int _coinsReward;
 
         #region Properties
-
-        public string ChallengeID
-        {
-            get { return _challengeID; }
-        }
-
         public ChallengeTypeEnum ChallengeType
         {
             get { return _challengeType; }

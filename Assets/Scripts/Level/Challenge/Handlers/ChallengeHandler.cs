@@ -26,33 +26,54 @@ namespace RPG.Level.Challenge
 
         #endregion
 
-        private void AddProgress(float progress)
+        protected void AddProgress(float progress)
         {
             SetProgress(_currentValue + progress);
         }
 
-        private void SetProgress(float progress)
+        protected void SetProgress(float progress)
         {
+
             if (!IsComplete)
             {
                 _currentValue = progress;
                 UpdateProgress();
-                //TO DO - ActionsManager.OnChallengeProgressChanged?.Invoke(ChallengeHandler);
+
+                ActionsManager.Instance.OnChallengeProgressChanged?.Invoke(this);
             }
         }
 
-        private void ResetProgress()
+        protected void ResetProgress()
         {
-            _currentValue = 0;
+            if (!IsComplete)
+            {
+                _currentValue = 0;
+                UpdateProgress();
+            }
         }
 
         private void UpdateProgress()
         {
             _currentValue = Mathf.Clamp(_currentValue, 0f, _info.TargetValue);
+            CheckCompletion();
         }
 
-
+        private void CheckCompletion()
+        {
+            if(_currentValue >= _info.TargetValue)
+            {
+                Complete();
+            }
+        }
+        private void Complete()
+        {
+            ActionsManager.Instance.OnChallengeCompleted?.Invoke(this);
+        }
         public abstract void SubscribeCallbacks();
         public abstract void UnsubscribeCallbacks();
+        public void SetInfo(ChallengeScriptable info)
+        {
+            _info = info;
+        }
     }
 }

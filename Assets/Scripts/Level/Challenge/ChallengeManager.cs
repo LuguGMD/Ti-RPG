@@ -5,7 +5,22 @@ namespace RPG.Level.Challenge
 {
     public class ChallengeManager : MonoBehaviour
     {
-        private List<ChallengeHandler> _challengeHandlers;
+        private List<ChallengeHandler> _challengeHandlers = new List<ChallengeHandler>();
+
+        private void Start()
+        {
+            LoadChallenges();
+        }
+
+        private void OnEnable()
+        {
+            ActionsManager.Instance.OnCombatWon += SaveChallenges;
+        }
+
+        private void OnDisable()
+        {
+            ActionsManager.Instance.OnCombatWon -= SaveChallenges;
+        }
 
         private void OnDestroy()
         {
@@ -14,15 +29,16 @@ namespace RPG.Level.Challenge
 
         private void LoadChallenges()
         {
-            ChallengeScriptable[] challenges = new ChallengeScriptable[3]/*TO DO - GameManager.Instance.CurrentLevel.Challenges*/;
+            ChallengeScriptable[] challenges = GameManager.SelectedLevel.Challenges;
             for (int i = 0; i < challenges.Length; i++)
             {
-                //TO DO - Get from save later
+                //TO DO - Get from save later 
+                //Challenge ID = $"{LevelNumber} + {i}"
                 bool isCompleted = false;
 
                 if (!isCompleted)
                 {
-                    AddChallenge(challenges[i].ChallengeType);
+                    AddChallenge(challenges[i].ChallengeType, challenges[i]);
                 }
             }
 
@@ -35,17 +51,22 @@ namespace RPG.Level.Challenge
                 if (_challengeHandlers[i].IsComplete)
                 {
                     //TO DO - Send to save later
-                    //TO DO - ActionsManager.OnChallengeCompleted?.Invoke(_challengeHandlers[i].Info);
+                    //Challenge ID = $"{LevelNumber} + {i}"
                 }
             }
         }
 
-        private void AddChallenge(ChallengeTypeEnum challengeType)
+        private void AddChallenge(ChallengeTypeEnum challengeType, ChallengeScriptable challengeInfo)
         {
             if (ChallengeConstants.ChallengeComponents.ContainsKey(challengeType))
             {
-                Component challenge = gameObject.AddComponent(ChallengeConstants.ChallengeComponents[challengeType]);
-                _challengeHandlers.Add(challenge as ChallengeHandler);
+                ChallengeHandler challenge = gameObject.AddComponent(ChallengeConstants.ChallengeComponents[challengeType]) as ChallengeHandler;
+                challenge.SetInfo(challengeInfo);
+                _challengeHandlers.Add(challenge);
+            }
+            else
+            {
+                Debug.LogWarning(challengeType + " not implemented or not added to ChallengeConstants");
             }
         }
 

@@ -2,6 +2,7 @@ using Lugu.Singleton;
 using RPG.Combat;
 using RPG.Combat.Actions;
 using RPG.Combat.Preview;
+using RPG.Level.Challenge;
 using System;
 using UnityEngine;
 using CharacterController = RPG.Combat.CharacterController;
@@ -28,6 +29,8 @@ namespace RPG
         public Action<CharacterController> OnCharacterDamageTaken;
         public Action<CharacterController> OnCharacterCreated;
         public Action<CharacterController> OnCharacterDefeated;
+
+        public Action<EnemyController> OnEnemyDefeated;
 
         #region Effect Triggers
 
@@ -66,6 +69,13 @@ namespace RPG
         public Action OnPlayerTurnStarted;
         public Action OnPlayerTurnEnded;
         public Action OnEnemyTurnStarted;
+
+        #endregion
+
+        #region Challenge
+
+        public Action<ChallengeHandler> OnChallengeProgressChanged;
+        public Action<ChallengeHandler> OnChallengeCompleted;
 
         #endregion
 
