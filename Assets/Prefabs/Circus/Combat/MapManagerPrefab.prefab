@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5294250839399833816}
   - component: {fileID: 8480419576121687874}
+  - component: {fileID: 7489786419682880321}
   m_Layer: 0
   m_Name: MapManagerPrefab
   m_TagString: Untagged
@@ -56,6 +57,18 @@ MonoBehaviour:
   - {fileID: 2881770444647922306}
   - {fileID: 6103537057097500046}
   - {fileID: 3710151184553541096}
+--- !u!114 &7489786419682880321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2695757743931908401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8438c716ea5086e43b07c9814fe34c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.MapTileNavigator
 --- !u!1 &6007487106036965474
 GameObject:
   m_ObjectHideFlags: 0

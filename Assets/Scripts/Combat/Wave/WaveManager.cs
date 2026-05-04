@@ -18,6 +18,11 @@ namespace RPG.Combat.Wave
 
         #endregion
 
+        private void Start()
+        {
+            CheckWavesToSpawn();
+        }
+
         private void OnEnable()
         {
             ActionsManager.Instance.OnTurnPassed += CheckWavesToSpawn;
@@ -56,7 +61,8 @@ namespace RPG.Combat.Wave
 
         private bool SpawnEnemy(EnemySpawnInfo spawn)
         {
-            EnemyController enemyInstance = CombatFactory.InstantiateEnemy(spawn);
+            EnemySpawnWarning enemyInstance = CombatFactory.InstantiateEnemyWarning(spawn);
+
             if (enemyInstance == null && !_queuedSpawns.Contains(spawn))
             {
                 _queuedSpawns.Add(spawn);

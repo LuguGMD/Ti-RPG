@@ -1,28 +1,25 @@
 using RPG.Combat.Grid;
 using RPG.Extensions;
-using System.Collections.Generic;
-using UnityEngine;
 using RPG.Input;
+using UnityEngine;
 
 namespace RPG.Combat.Preview
 {
     public class PreviewTile : MonoBehaviour
     {
-        private PreviewTileInfo _info;
-        [SerializeField] private MeshRenderer[] _renderer;
-        private bool _canBeSelected = false;
-        private Vector2Int _tilePosition;
+        [SerializeField] protected MeshRenderer[] _renderer;
+        protected bool _canBeSelected = true;
+        protected Vector2Int _tilePosition;
 
         #region Properties
 
-        public PreviewTileInfo Info { get { return _info; } }
         public bool CanBeSelected { get { return _canBeSelected; } }
 
         #endregion
 
-        private void Start()
+        protected void Start()
         {
-            CursorTarget[] cursorTargets = GetComponentsInChildren<CursorTarget>(true); 
+            CursorTarget[] cursorTargets = GetComponentsInChildren<CursorTarget>(true);
 
             foreach (CursorTarget cursorTarget in cursorTargets)
             {
@@ -30,13 +27,13 @@ namespace RPG.Combat.Preview
             }
         }
 
-        private void OnEnable()
+        protected void OnEnable()
         {
             ActionsManager.Instance.OnRotationAnimationStarted += RemoveParent;
             ActionsManager.Instance.OnRotationAnimationEnded += AddParent;
         }
 
-        private void OnDisable()
+        protected void OnDisable()
         {
             ActionsManager.Instance.OnRotationAnimationStarted -= RemoveParent;
             ActionsManager.Instance.OnRotationAnimationEnded -= AddParent;
@@ -58,13 +55,13 @@ namespace RPG.Combat.Preview
             transform.localPosition = new Vector3(transform.localPosition.x, 0, transform.localPosition.z);
         }
 
-        private void RemoveParent()
+        protected void RemoveParent()
         {
             transform.parent = null;
             transform.GetChild(_tilePosition.y)?.gameObject.SetActive(false);
         }
 
-        private void AddParent()
+        protected void AddParent()
         {
             transform.parent = MapManager.Map.GetTile(_tilePosition).Transform;
             transform.GetChild(_tilePosition.y)?.gameObject.SetActive(true);
@@ -75,20 +72,17 @@ namespace RPG.Combat.Preview
             _renderer[_tilePosition.y].material = material;
         }
 
-        public void SetInfo(PreviewTileInfo info)
-        {
-            _info = info;
-        }
-
         public void SetCanBeSelected(bool canBeSelected)
         {
             _canBeSelected = canBeSelected;
         }
 
-        private void Select()
+        protected virtual void Select()
         {
-            if(_canBeSelected)
-                ActionsManager.Instance.OnActionTileSelected?.Invoke(_info);
+            if (_canBeSelected)
+            {
+                ActionsManager.Instance.OnPreviewTileSelected?.Invoke(_tilePosition);
+            }
         }
     }
 }

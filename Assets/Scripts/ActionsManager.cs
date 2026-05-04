@@ -13,6 +13,8 @@ namespace RPG
     {
         #region Combat
 
+        public Action OnCombatStart;
+
         public Action OnMapChanged;
         public Action OnRotationAnimationStarted;
         public Action OnRotationAnimationEnded;
@@ -45,6 +47,7 @@ namespace RPG
         #region Tile Interaction
 
         public Action<PreviewTileInfo> OnActionTileSelected;
+        public Action<Vector2Int> OnPreviewTileSelected;
 
         #endregion
 
@@ -68,7 +71,9 @@ namespace RPG
 
         public Action OnPlayerTurnStarted;
         public Action OnPlayerTurnEnded;
+
         public Action OnEnemyTurnStarted;
+        public Action OnEnemyTurnEnded;
 
         #endregion
 

@@ -37,6 +37,12 @@ namespace RPG.Combat
 
             return enemyInstance;
         }
+        public static EnemySpawnWarning InstantiateEnemyWarning(EnemySpawnInfo spawnInfo)
+        {
+            EnemySpawnWarning enemySpawnWarningInstance = Instantiate<EnemySpawnWarning>(CombatManager.EnemySpawnWarningPrefab);
+            enemySpawnWarningInstance.SetSpawnInfo(spawnInfo);
+            return enemySpawnWarningInstance;
+        }
 
         public static CharacterController InstantiateCharacter(CharacterSpawnInfo spawnInfo)
         {
@@ -50,10 +56,10 @@ namespace RPG.Combat
             return characterInstance;
         }
 
-        public static PreviewTile InstantiatePreviewTile()
+        public static ActionPreviewTile InstantiatePreviewActionTile()
         {
-            PreviewTile prefab = CombatManager.PreviewTilePrefab;
-            PreviewTile instance = Instantiate(prefab);
+            ActionPreviewTile prefab = CombatManager.PreviewTilePrefab;
+            ActionPreviewTile instance = Instantiate(prefab);
             return instance;
         }
     }

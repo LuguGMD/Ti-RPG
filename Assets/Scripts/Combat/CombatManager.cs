@@ -7,12 +7,16 @@ using UnityEngine;
 using System.Collections;
 using System.Linq;
 using RPG.Combat.Wave;
+using RPG.Combat.Grid;
 
 namespace RPG.Combat
 {
     public class CombatManager : SingletonMono<CombatManager>
     {
-        [SerializeField] private PreviewTile _previewTilePrefab;
+        [Header("Enemies")]
+        [SerializeField] private EnemySpawnWarning _enemySpawnWarningPrefab;
+        [Header("Tiles")]
+        [SerializeField] private ActionPreviewTile _previewTilePrefab;
         [SerializeField] private Material _characterPreviewMaterial;
         [SerializeField] private Material _enemyPreviewMaterial;
 
@@ -33,7 +37,8 @@ namespace RPG.Combat
 
         #region Properties
 
-        public static PreviewTile PreviewTilePrefab
+        public static EnemySpawnWarning EnemySpawnWarningPrefab { get { return Instance._enemySpawnWarningPrefab; } }
+        public static ActionPreviewTile PreviewTilePrefab
         {
             get { return Instance._previewTilePrefab; }
         }
@@ -51,12 +56,12 @@ namespace RPG.Combat
             _apresentador = GameObject.FindAnyObjectByType<ApresentadorController>(FindObjectsInactive.Include);
             _apresentador.gameObject.SetActive(true);
 
-            //TO DO adicionar escolha da posicao dos personagens antes do comeco do combate
-            Invoke(nameof(InitializeBattle),0.01f);
+            ActionsManager.Instance.OnPreviewTileSelected += PlaceCharacter;
         }
 
         private void OnEnable()
         {
+            ActionsManager.Instance.OnCombatStart += InitializeBattle;
             ActionsManager.Instance.OnCharacterClicked += OnCharacterClicked;
             ActionsManager.Instance.OnApresentadorSelected += OnApresentadorSelected;
             ActionsManager.Instance.OnActionTileSelected += OnCombatActionSelected;
@@ -66,12 +71,38 @@ namespace RPG.Combat
 
         private void OnDisable()
         {
+            ActionsManager.Instance.OnCombatStart -= InitializeBattle;
             ActionsManager.Instance.OnCharacterClicked -= OnCharacterClicked;
             ActionsManager.Instance.OnApresentadorSelected -= OnApresentadorSelected;
             ActionsManager.Instance.OnActionTileSelected -= OnCombatActionSelected;
             ActionsManager.Instance.OnApresentadorActionCompleted -= CheckEndPlayerTurn;
             ActionsManager.Instance.OnPlayerTurnEnded -= EndPlayerTurn;
         }
+
+        #region Preparation
+
+        private void PlaceCharacter(Vector2Int position)
+        {
+            if (MapManager.Map.GetTile(position).IsOccupied)
+            {
+                //TO DO mostrar erro ao jogador
+                Debug.Log("Tile ocupado");
+            }
+            else if(position.y >= Map.Rows-1)
+            {
+                //TO DO mostrar erro ao jogador
+                Debug.Log("Tile Invalido");
+            }
+            else
+            {
+                CharacterScriptable characterInfo = GameManager.CurrentParty[_remainingCharacters.Count];
+                CharacterSpawnInfo characterSpawnInfo = new CharacterSpawnInfo(characterInfo, position);
+                CombatFactory.InstantiateCharacter(characterSpawnInfo);
+            }
+            
+        }
+
+        #endregion
 
         #region Control
 
@@ -164,6 +195,8 @@ namespace RPG.Combat
 
         private void InitializeBattle()
         {
+            ActionsManager.Instance.OnPreviewTileSelected -= PlaceCharacter;
+
             _turnCount = 0;
             _currentTurnState = CombatTurnStateEnum.PlayerTurn;
             PassTurn();
@@ -176,16 +209,15 @@ namespace RPG.Combat
             if (_currentTurnState == CombatTurnStateEnum.PlayerTurn)
             {
                 _currentTurnState = CombatTurnStateEnum.EnemyTurn;
-                Debug.Log($"Turno {_turnCount}: Player -> Enemy");
                 ActionsManager.Instance.OnEnemyTurnStarted?.Invoke();
 
                 StartEnemyTurn();
             }
             else if (_currentTurnState == CombatTurnStateEnum.EnemyTurn)
             {
+                ActionsManager.Instance.OnEnemyTurnEnded?.Invoke();
                 _currentTurnState = CombatTurnStateEnum.PlayerTurn;
                 PassTurn();
-                Debug.Log($"Turno {_turnCount}: Enemy -> Player");
                 ActionsManager.Instance.OnPlayerTurnStarted?.Invoke();
 
                 StartPlayerTurn();
@@ -279,6 +311,11 @@ namespace RPG.Combat
             if (!_remainingCharacters.Contains(character))
             {
                 _remainingCharacters.Add(character);
+            }
+
+            if(_remainingCharacters.Count >= CombatConstants.MAX_CHARACTERS_COUNT)
+            {
+                ActionsManager.Instance.OnCombatStart?.Invoke();
             }
         }
 

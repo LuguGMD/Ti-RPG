@@ -17,7 +17,7 @@ namespace RPG.Combat.Preview
         protected CombatAction _actionToPreview;
 
         protected List<List<PreviewTileInfo>> _previewTileInfos = new List<List<PreviewTileInfo>>();
-        protected List<PreviewTile> _activePreviewTiles = new List<PreviewTile>();
+        protected List<ActionPreviewTile> _activePreviewTiles = new List<ActionPreviewTile>();
 
         private bool _isPreviewing = false;
 
@@ -123,7 +123,7 @@ namespace RPG.Combat.Preview
 
         protected virtual void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position)
         {
-            PreviewTilesPool.Pool.Get(out PreviewTile previewTile);
+            PreviewTilesPool.Pool.Get(out ActionPreviewTile previewTile);
             previewTile.SetInfo(previewTileInfo);
             previewTile.SetCanBeSelected(true);
             previewTile.SetPosition(position);
