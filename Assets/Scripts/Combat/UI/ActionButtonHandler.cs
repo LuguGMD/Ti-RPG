@@ -13,8 +13,8 @@ namespace RPG.Combat.UI
         private CharacterController _character;
         private CharacterActionPanelController _panelController;
 
-        private Button _button;
-        private TextMeshProUGUI _buttonText;
+        [SerializeField] private Button _button;
+        [SerializeField] private TextMeshProUGUI _buttonText;
 
         private void Awake()
         {

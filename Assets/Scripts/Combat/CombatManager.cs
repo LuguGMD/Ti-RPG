@@ -22,7 +22,8 @@ namespace RPG.Combat
 
         private CombatTurnStateEnum _currentTurnState;
         private int _turnCount;
-        private bool _isBattleOver;
+        private bool _hasCombatStarted = false;
+        private bool _hasCombatEnded = false;
 
         private CharacterController _selectedCharacter;
         private List<CharacterController> _usedCharacters = new List<CharacterController>();
@@ -155,7 +156,7 @@ namespace RPG.Combat
 
         private void OnCharacterClicked(CharacterController selectedCharacter)
         {
-            if(_isBattleOver)
+            if(_hasCombatEnded || !_hasCombatStarted)
             {
 
             }
@@ -186,7 +187,7 @@ namespace RPG.Combat
 
         private void OnCombatActionSelected(PreviewTileInfo previewTileInfo)
         {
-            if (_selectedCharacter == null || _isBattleOver) return;
+            if (_selectedCharacter == null || _hasCombatEnded) return;
 
             StartCoroutine(PlayerActionCoroutine(previewTileInfo));
         }
@@ -200,7 +201,8 @@ namespace RPG.Combat
             _turnCount = 0;
             _currentTurnState = CombatTurnStateEnum.PlayerTurn;
             PassTurn();
-            _isBattleOver = false;
+            _hasCombatStarted = true;
+            _hasCombatEnded = false;
             StartPlayerTurn();
         }
 
@@ -334,7 +336,7 @@ namespace RPG.Combat
             if(_remainingCharacters.Count <= 0)
             {
                 ActionsManager.Instance.OnCombatLost?.Invoke();
-                _isBattleOver = true;
+                _hasCombatEnded = true;
 
                 //TO DO remover depois
                 GameManager.ChangeScene(3);
@@ -346,7 +348,7 @@ namespace RPG.Combat
             if(WaveManager.AreAllWavesSpawned && _remainingEnemies.Count == 0)
             {
                 ActionsManager.Instance.OnCombatWon?.Invoke();
-                _isBattleOver = true;
+                _hasCombatEnded = true;
 
                 //TO DO remover depois
                 GameManager.ChangeScene(2);
@@ -361,7 +363,7 @@ namespace RPG.Combat
         {
             for(int i = 0; i< _remainingEnemies.Count; i++)
             {
-                if (!_isBattleOver)
+                if (!_hasCombatEnded)
                 {
                     yield return _remainingEnemies[i].UsePreparedAction();
                     yield return new WaitForSeconds(0.1f / _combatSpeed);

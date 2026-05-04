@@ -42,6 +42,8 @@ namespace RPG.Combat.Preview
             
             //TO DO remover depois
             CalculatePreviewTiles();
+            if (_isPreviewing)
+                ShowPreview();
         }
 
 

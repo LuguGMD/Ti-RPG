@@ -71,7 +71,7 @@ namespace RPG.Combat
 
         protected override void CheckDefeated()
         {
-            if (CombatManager.Apresentador.CurrentMotivation < CombatConstants.MAX_MOTIVATION_APRESENTADOR - _currentMotivation)
+            if (CombatManager.Apresentador.CurrentMotivation <= CombatConstants.MAX_MOTIVATION_APRESENTADOR - _currentMotivation)
             {
                 Defeated();
             }
