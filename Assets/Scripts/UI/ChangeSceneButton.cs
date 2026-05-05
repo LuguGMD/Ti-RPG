@@ -4,11 +4,11 @@ namespace RPG.UI
 {
     public class ChangeSceneButton : UIButtonHandler
     {
-        [SerializeField] private int _sceneBuildIndex;
+        [SerializeField] private ScenesEnum _scene;
 
         protected override void OnClick()
         {
-            GameManager.ChangeScene(_sceneBuildIndex);
+            GameManager.ChangeScene(_scene);
         }
     }
 }

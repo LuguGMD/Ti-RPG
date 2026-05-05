@@ -2,6 +2,7 @@ using Lugu.Singleton;
 using RPG.Combat;
 using RPG.Combat.Actions;
 using RPG.Combat.Preview;
+using RPG.Level.Challenge;
 using System;
 using UnityEngine;
 using CharacterController = RPG.Combat.CharacterController;
@@ -10,9 +11,13 @@ namespace RPG
 {
     public class ActionsManager : Singleton<ActionsManager>
     {
-        public Action OnMapChanged;
-
         #region Combat
+
+        public Action OnCombatStart;
+
+        public Action OnMapChanged;
+        public Action OnRotationAnimationStarted;
+        public Action OnRotationAnimationEnded;
 
         public Action OnCombatWon;
         public Action OnCombatLost;
@@ -27,6 +32,8 @@ namespace RPG
         public Action<CharacterController> OnCharacterCreated;
         public Action<CharacterController> OnCharacterDefeated;
 
+        public Action<EnemyController> OnEnemyDefeated;
+
         #region Effect Triggers
 
         public Action OnActionStart;
@@ -40,6 +47,7 @@ namespace RPG
         #region Tile Interaction
 
         public Action<PreviewTileInfo> OnActionTileSelected;
+        public Action<Vector2Int> OnPreviewTileSelected;
 
         #endregion
 
@@ -48,7 +56,10 @@ namespace RPG
         public Action<EntityController> OnEntitySelected;
         public Action<EntityController> OnEntityHovered;
 
+        public Action<CharacterController> OnCharacterClicked;
+
         public Action<CharacterController> OnCharacterSelected;
+        public Action OnCharacterDeselected;
 
         public Action OnApresentadorSelected;
 
@@ -60,7 +71,16 @@ namespace RPG
 
         public Action OnPlayerTurnStarted;
         public Action OnPlayerTurnEnded;
+
         public Action OnEnemyTurnStarted;
+        public Action OnEnemyTurnEnded;
+
+        #endregion
+
+        #region Challenge
+
+        public Action<ChallengeHandler> OnChallengeProgressChanged;
+        public Action<ChallengeHandler> OnChallengeCompleted;
 
         #endregion
 

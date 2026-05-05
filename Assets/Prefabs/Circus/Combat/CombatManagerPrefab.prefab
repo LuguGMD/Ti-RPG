@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5580500017862193543}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 29.72354, y: -9.50968, z: 0.5211}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,7 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c39dafb8bae663a4e8fb27459640da1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.CombatManager
+  _enemySpawnWarningPrefab: {fileID: -6850794319542030427, guid: 7490fa6e4c54db140a4da1ec1c7daea3, type: 3}
   _previewTilePrefab: {fileID: 842704998248691793, guid: 8c9aa5dc2442a65478801c1c35bf134e, type: 3}
+  _characterPreviewMaterial: {fileID: 2100000, guid: 2b26e7ad2cfbbab44a40fe2eca49cc9a, type: 2}
+  _enemyPreviewMaterial: {fileID: 2100000, guid: ffd7002902d40f84c83d982e7a5fc8b3, type: 2}
 --- !u!114 &1949714965458669372
 MonoBehaviour:
   m_ObjectHideFlags: 0

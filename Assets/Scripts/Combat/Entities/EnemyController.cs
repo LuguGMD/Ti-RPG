@@ -39,11 +39,15 @@ namespace RPG.Combat
             _health -= damage;
 
             UpdateHealthBar();
+            base.TakeDamage(damage);
+        }
 
-            if (_health <= 0)
-            {
-                Defeated();
-            }
+        public override void Heal(float heal)
+        {
+            _health += heal;
+            _health = Mathf.Clamp(_health, 0, _enemyInfo.Health);
+
+            UpdateHealthBar();
         }
 
         private void UpdateHealthBar()
@@ -51,18 +55,28 @@ namespace RPG.Combat
             _healthBar.Slider.value = (_health / _enemyInfo.Health);
         }
 
+        protected override void CheckDefeated()
+        {
+            if (_health <= 0)
+            {
+                Defeated();
+            }
+        }
         protected override void Defeated()
         {
+            base.Defeated();
+
+            ActionsManager.Instance.OnEnemyDefeated?.Invoke(this);
             CombatManager.Instance.RemoveEnemy(this);
             _tileObject.CurrentTile.SetTileObject(null);
-            //TO DO triggar animacao de morte
+            //TO DO esperar fim animação de morte
             Destroy(gameObject);
         }
 
         public IEnumerator UsePreparedAction()
         {
             //TO DO guardar acao preparada e usar aqui
-            yield return UseAction(0, 0, 1, false);
+            yield return UseSelectedAction(0, 1, false);
         }
     }
 }

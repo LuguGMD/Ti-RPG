@@ -15,7 +15,7 @@ namespace RPG.Combat
 
         protected TileObjectMovement _movement;
         protected PreviewActionHandler _preview;
-        protected Animator[] _animators;
+        protected int _selectedActionIndex;
 
         #region Properties
 
@@ -30,10 +30,9 @@ namespace RPG.Combat
             base.Awake();
             _movement = GetComponent<TileObjectMovement>();
             _preview = GetComponent<PreviewActionHandler>();
-            _animators = GetComponentsInChildren<Animator>();
 
             //TO DO remover depois
-            _preview.ChangeActionToPreview(_info.Actions[0]);
+            SelectAction(0);
         }
 
         protected new void Start()
@@ -42,29 +41,12 @@ namespace RPG.Combat
             AdjsutGameSpeed();
         }
 
-        protected void OnEnable()
+        public IEnumerator UseSelectedAction(int movementPatternIndex, int repetitions, bool isMirrored)
         {
-            ActionsManager.Instance.OnCombatSpeedChanged += AdjsutGameSpeed;
-        }
+            SetAnimationInt("ActionIndex", _selectedActionIndex);
+            SetAnimationBool("IsActionRunning", true);
 
-        protected void OnDisable()
-        {
-            ActionsManager.Instance.OnCombatSpeedChanged -= AdjsutGameSpeed;
-        }
-
-        protected abstract void Defeated();
-
-        protected virtual void AdjsutGameSpeed()
-        {
-            foreach(Animator animator in _animators)
-            {
-                animator.SetFloat("GameSpeed", CombatManager.CombatSpeed);
-            }
-        }
-
-        public IEnumerator UseAction(int actionIndex, int movementPatternIndex, int repetitions, bool isMirrored)
-        {
-            CombatAction action = _info.Actions[actionIndex];
+            CombatAction action = _info.Actions[_selectedActionIndex];
             MovementPattern movementPattern = action.MovementPatterns[movementPatternIndex];
 
             SubscribeEffects(action.Effects);
@@ -78,7 +60,7 @@ namespace RPG.Combat
 
             ActionsManager.Instance.OnActionStart?.Invoke();
 
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.1f / CombatManager.CombatSpeed);
 
             while (_movement.MovementQueue.Count > 0)
             {
@@ -87,10 +69,17 @@ namespace RPG.Combat
 
 
             ActionsManager.Instance.OnActionEnd?.Invoke();
+            SetAnimationBool("IsActionRunning", false);
 
             yield return new WaitForSeconds(0.1f / CombatManager.CombatSpeed);
 
             CombatManager.UnsubscribeEffectTriggerAction();
+        }
+
+        public void SelectAction(int actionIndex)
+        {
+            _selectedActionIndex = actionIndex;
+            _preview.ChangeActionToPreview(_info.Actions[actionIndex]);
         }
 
         private void SubscribeEffects(List<Effect> effects)

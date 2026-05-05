@@ -29,16 +29,18 @@ namespace RPG.Combat.Grid
             _tileObject = GetComponent<TileObject>();
         }
 
-        private void ChangeTile(DirectionEnum direction)
+        private void ChangeTile(DirectionEnum direction, bool doReplace)
         {
             Tile currentTile = _tileObject.CurrentTile;
             Tile nextTile = MapManager.Map.GetNeighborTile(currentTile, direction);
-            _tileObject.SetCurrentTile(nextTile);
+
+            _tileObject.SetCurrentTile(nextTile, doReplace);
             _tileObject.UpdatePosition();
         }
 
         public IEnumerator Move(bool isMirrored)
         {
+            transform.parent = null;
             Movement movement = _movementQueue.Dequeue();
             DirectionEnum direction = isMirrored ? movement.Direction.Mirror() : movement.Direction;
             _tileObject.SetDirection(direction);
@@ -56,8 +58,7 @@ namespace RPG.Combat.Grid
                     yield return MoveAlongPoints(0.3f, direction);
                 }
                 
-
-                ChangeTile(direction);
+                ChangeTile(direction, movement.NeedsToBeEmpty);
 
                 ActionsManager.Instance.OnTileStepAfter?.Invoke();
             }
@@ -78,7 +79,7 @@ namespace RPG.Combat.Grid
             Spline spline = MapManager.Instance.GetCurrentSpline(_tileObject.Position);
 
             Vector2Int targetTile = _tileObject.Position + direction.ToVector2Int();
-            Vector3 targetPos = MapManager.Instance.GetWorldPostion(targetTile);
+            Vector3 targetPos = MapManager.Instance.GetWorldPosition(targetTile);
 
             float startPercentage = MapManager.Instance.GetCurrentTilePercentage(_tileObject.Position);
             float endPercentage = MapManager.Instance.GetCurrentTilePercentage(targetTile);
@@ -95,7 +96,7 @@ namespace RPG.Combat.Grid
         private IEnumerator MoveAlongPoints(float time, DirectionEnum direction)
         {
             Vector2Int targetTile = _tileObject.Position + direction.ToVector2Int();
-            Vector3 targetPos = MapManager.Instance.GetWorldPostion(targetTile);
+            Vector3 targetPos = MapManager.Instance.GetWorldPosition(targetTile);
 
             transform.DOMove(targetPos, time / CombatManager.CombatSpeed).SetEase(Ease.Linear);
 
@@ -106,7 +107,7 @@ namespace RPG.Combat.Grid
         {
             if (MapManager.IsMovementValid(_tileObject.Position, movement, false))
             {
-                ChangeTile(movement.Direction);
+                ChangeTile(movement.Direction, true);
             }
         }
 

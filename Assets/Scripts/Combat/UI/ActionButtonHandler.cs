@@ -1,0 +1,60 @@
+using RPG.Combat.Actions;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using TMPro;
+
+namespace RPG.Combat.UI
+{
+    public class ActionButtonHandler : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    {
+        private int _actionIndex;
+        private CombatAction _action;
+        private CharacterController _character;
+        private CharacterActionPanelController _panelController;
+
+        [SerializeField] private Button _button;
+        [SerializeField] private TextMeshProUGUI _buttonText;
+
+        private void Awake()
+        {
+            _button = GetComponent<Button>();
+            _buttonText = GetComponentInChildren<TextMeshProUGUI>();
+        }
+
+        public void Initialize(int actionIndex, CombatAction action, CharacterController character, CharacterActionPanelController panelController)
+        {
+            _actionIndex = actionIndex;
+            _action = action;
+            _character = character;
+            _panelController = panelController;
+
+            _buttonText.text = action.ActionName;
+            _button.onClick.AddListener(OnButtonClick);
+        }
+
+        private void OnButtonClick()
+        {
+            if (_panelController != null)
+            {
+                _panelController.OnActionSelected(_actionIndex);
+            }
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            if (_panelController != null)
+            {
+                _panelController.OnActionButtonHovered(_action);
+            }
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            if (_panelController != null)
+            {
+                _panelController.OnActionButtonExited();
+            }
+        }
+    }
+}

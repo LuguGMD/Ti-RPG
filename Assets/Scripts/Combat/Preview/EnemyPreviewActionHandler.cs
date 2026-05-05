@@ -10,7 +10,7 @@ namespace RPG.Combat.Preview
         {
             base.AddPreviewTile(previewTileInfo, position);
 
-            PreviewTile previewTile = _activePreviewTiles[_activePreviewTiles.Count - 1];
+            ActionPreviewTile previewTile = _activePreviewTiles[_activePreviewTiles.Count - 1];
 
             previewTile.SetCanBeSelected(false);
             previewTile.SetMaterial(CombatManager.EnemyPreviewMaterial);

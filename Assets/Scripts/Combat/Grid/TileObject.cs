@@ -30,15 +30,19 @@ namespace RPG.Combat.Grid
             ActionsManager.Instance.OnMapChanged -= UpdatePosition;
         }
 
-        public void SetCurrentTile(Tile tile)
+        public void SetCurrentTile(Tile tile, bool doReplace)
         {
-            if(_currentTile != null)
+            if(_currentTile != null && _currentTile.TileObject == this)
             {
                 _currentTile.SetTileObject(null);
             }
 
             _currentTile = tile;
-            _currentTile.SetTileObject(this);
+
+            if (doReplace || !_currentTile.IsOccupied)
+            {
+                _currentTile.SetTileObject(this);
+            }
         }
 
         public void SetDirection(DirectionEnum direction)
@@ -48,7 +52,8 @@ namespace RPG.Combat.Grid
 
         public virtual void UpdatePosition()
         {
-            transform.position = MapManager.Instance.GetWorldPostion(_currentTile.Position);
+            transform.parent = _currentTile.Transform;
+            transform.localPosition = Vector3.zero;
             transform.LookAt(transform.position + (transform.position.normalized));
             //TO DO look at _direction
         }

@@ -7,11 +7,11 @@ namespace RPG.Combat.Preview
 {
     public class PreviewTilesPool : SingletonMono<PreviewTilesPool>
     {
-        private static ObjectPool<PreviewTile> _pool;
+        private static ObjectPool<ActionPreviewTile> _pool;
 
         #region Properties
 
-        public static ObjectPool<PreviewTile> Pool { get { return _pool; } }
+        public static ObjectPool<ActionPreviewTile> Pool { get { return _pool; } }
 
         #endregion
 
@@ -19,9 +19,9 @@ namespace RPG.Combat.Preview
         {
             if (Instance == this)
             {
-                _pool = new ObjectPool<PreviewTile>
+                _pool = new ObjectPool<ActionPreviewTile>
                 (
-                    CombatFactory.InstantiatePreviewTile,
+                    CombatFactory.InstantiatePreviewActionTile,
                     actionOnGet: OnGet,
                     actionOnRelease: OnRelease,
                     actionOnDestroy: OnClear,
@@ -33,17 +33,17 @@ namespace RPG.Combat.Preview
             }
         }
 
-        private void OnGet(PreviewTile previewTile)
+        private void OnGet(ActionPreviewTile previewTile)
         {
             previewTile.gameObject.SetActive(true);
         }
 
-        private void OnRelease(PreviewTile previewTile)
+        private void OnRelease(ActionPreviewTile previewTile)
         {
             previewTile.gameObject.SetActive(false);
         }
 
-        private void OnClear(PreviewTile previewTile)
+        private void OnClear(ActionPreviewTile previewTile)
         {
             previewTile.gameObject.SetActive(false);
         }

@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feeba527babfd6e418fcce306f2e1d67, type: 3}
+  m_Name: BarbaraCombatScriptable
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterScriptable
+  _entityName: Barbara
+  _actions:
+  - _actionName: Healing Song
+    _actionDescription: 
+    _effects:
+    - _command: {fileID: 11400000, guid: 4ee1697dcabbbf74dbe43317843439d5, type: 2}
+      _triggerCondition: 1
+      _targetList: 00000000
+      _canTargetSelf: 1
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area: 0000000003000000010000000100000002000000020000000000000000000000
+    _movementPatterns:
+    - _pattern:
+      - _direction: 0
+        _needsToBeEmpty: 1
+      _repetition: 1
+      _canMirror: 1
+      Repetition: 1
+    - _pattern:
+      - _direction: 3
+        _needsToBeEmpty: 1
+      _repetition: 1
+      _canMirror: 1
+      Repetition: 1
+    - _pattern:
+      - _direction: 4
+        _needsToBeEmpty: 1
+      _repetition: 1
+      _canMirror: 1
+      Repetition: 1
+    - _pattern:
+      - _direction: 5
+        _needsToBeEmpty: 1
+      _repetition: 1
+      _canMirror: 1
+      Repetition: 1
+  - _actionName: Directional Punch
+    _actionDescription: 
+    _effects:
+    - _command: {fileID: 11400000, guid: faaab5275613368488736a1e776f3671, type: 2}
+      _triggerCondition: 0
+      _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area: 00000000
+    - _command: {fileID: 11400000, guid: 5bb2fb777cbd3ba4da4a3b23bb4509aa, type: 2}
+      _triggerCondition: 0
+      _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area: 00000000
+    _movementPatterns:
+    - _pattern:
+      - _direction: 0
+        _needsToBeEmpty: 1
+      _repetition: 1
+      _canMirror: 1
+      Repetition: 1
+    - _pattern:
+      - _direction: 3
+        _needsToBeEmpty: 1
+      _repetition: 1
+      _canMirror: 1
+      Repetition: 1
+  _type: 1
+  motivation: 30
+  _prefab: {fileID: 4420048070789446249, guid: 48287771299bca948ad21e8af07dede4, type: 3}

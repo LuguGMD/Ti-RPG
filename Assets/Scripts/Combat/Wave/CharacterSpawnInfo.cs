@@ -14,5 +14,11 @@ namespace RPG.Combat.Wave
         public Vector2Int SpawnPosition { get { return _spawnPosition; } }
 
         #endregion
+
+        public CharacterSpawnInfo(CharacterScriptable characterInfo, Vector2Int spawnPosition)
+        {
+            _characterInfo = characterInfo;
+            _spawnPosition = spawnPosition;
+        }
     }
 }

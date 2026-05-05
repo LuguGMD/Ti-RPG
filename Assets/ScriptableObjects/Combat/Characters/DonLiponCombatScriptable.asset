@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feeba527babfd6e418fcce306f2e1d67, type: 3}
+  m_Name: DonLiponCombatScriptable
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterScriptable
+  _entityName: Don Lipon
+  _actions:
+  - _actionName: Weight Lifting
+    _actionDescription: 
+    _effects:
+    - _command: {fileID: 11400000, guid: b10b79f96f3698848be462c146de5f76, type: 2}
+      _triggerCondition: 1
+      _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area: 00000000
+    _movementPatterns:
+    - _pattern:
+      - _direction: 0
+        _needsToBeEmpty: 1
+      _repetition: 2
+      _canMirror: 1
+      Repetition: 2
+    - _pattern:
+      - _direction: 3
+        _needsToBeEmpty: 1
+      _repetition: 2
+      _canMirror: 1
+      Repetition: 2
+  - _actionName: Directional Punch
+    _actionDescription: 
+    _effects:
+    - _command: {fileID: 11400000, guid: faaab5275613368488736a1e776f3671, type: 2}
+      _triggerCondition: 0
+      _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area: 00000000
+    - _command: {fileID: 11400000, guid: 5bb2fb777cbd3ba4da4a3b23bb4509aa, type: 2}
+      _triggerCondition: 0
+      _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area: 00000000
+    _movementPatterns:
+    - _pattern:
+      - _direction: 0
+        _needsToBeEmpty: 1
+      _repetition: 1
+      _canMirror: 1
+      Repetition: 1
+    - _pattern:
+      - _direction: 3
+        _needsToBeEmpty: 1
+      _repetition: 1
+      _canMirror: 1
+      Repetition: 1
+  _type: 1
+  motivation: 90
+  _prefab: {fileID: 3212348313461435027, guid: 61245aac8b3a2ee469796eda827137ad, type: 3}

@@ -4,7 +4,7 @@ namespace RPG.Level.Challenge
 {
     public enum ChallengeTypeEnum
     {
-        DefeatEnemies,
+        DefeatEnemiesInOneTurn,
         TurnLimit,
         MotivationLimit
     }

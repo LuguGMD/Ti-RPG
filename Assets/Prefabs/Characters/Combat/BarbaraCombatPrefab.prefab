@@ -122,6 +122,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BarbaraModel
       objectReference: {fileID: 0}
+    - target: {fileID: 2478417623011553671, guid: 05d638ba08420364a91bd551da6764de, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f07370d80e3a0b244a90ddfdd41b4fdb, type: 2}
     - target: {fileID: 9142718875704238253, guid: 05d638ba08420364a91bd551da6764de, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -149,7 +153,7 @@ Animator:
   m_GameObject: {fileID: 6120509375946940071}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d1b5e05a453e5db4198a7e70bd77bf17, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9e44ea2946d9c424fa018e98adc8afe5, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

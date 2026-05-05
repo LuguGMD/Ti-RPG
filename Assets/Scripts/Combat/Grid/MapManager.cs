@@ -1,6 +1,9 @@
+using DG.Tweening;
 using Lugu.Singleton;
 using RPG.Combat.Actions;
 using RPG.Extensions;
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -18,6 +21,7 @@ namespace RPG.Combat.Grid
         [SerializeField] private float _centerOffset = 3f;
 
         [SerializeField] private GameObject[] _rowGameObjects;
+        private Coroutine _rotationAnimationCoroutine;
 
         #region Properties
 
@@ -60,7 +64,7 @@ namespace RPG.Combat.Grid
         {
             Tile tile = _map.GetTile(position);
 
-            tileObject.SetCurrentTile(tile);
+            tileObject.SetCurrentTile(tile, true);
             tile.SetTileObject(tileObject);
         }
 
@@ -69,7 +73,7 @@ namespace RPG.Combat.Grid
             return _map.GetTile(position).IsOccupied;
         }
 
-        public Vector3 GetWorldPostion(Vector2Int tilePosition)
+        public Vector3 GetWorldPosition(Vector2Int tilePosition)
         {
             Vector3 worldPosition = Vector3.zero;
             if (tilePosition.y >= 0)
@@ -78,8 +82,6 @@ namespace RPG.Combat.Grid
                 float percentage = GetCurrentTilePercentage(tilePosition);
                 worldPosition = spline.EvaluatePosition(percentage);
             }
-            
-
             return worldPosition;
         }
 
@@ -89,7 +91,7 @@ namespace RPG.Combat.Grid
             Vector2Int addedMovement = movementDirection.ToVector2Int();
             Vector2Int finalPos = (currentPos + addedMovement).ClampMap();
 
-            if (finalPos == Map.CENTER_POS || finalPos.y >= Map.Rows-1)
+            if (finalPos == Map.CENTER_POS || finalPos.y >= Map.Rows - 1)
             {
                 return false;
             }
@@ -136,5 +138,28 @@ namespace RPG.Combat.Grid
             return _mapSplineContainer.Splines[tilePosition.y];
         }
 
+        public void RotateRow(int rowToRotate, int amount)
+        {
+            _map.RotateRow(rowToRotate, amount);
+
+            if (_rotationAnimationCoroutine != null) StopCoroutine(_rotationAnimationCoroutine);
+
+            _rotationAnimationCoroutine = StartCoroutine(RotateAnimationCoroutine(rowToRotate, amount));
+        }
+
+        private IEnumerator RotateAnimationCoroutine(int rowToRotate, int amount)
+        {
+            ActionsManager.Instance.OnRotationAnimationStarted?.Invoke();
+
+            Transform rowTransform = _rowGameObjects[rowToRotate].transform;
+            rowTransform.DOKill(true);
+
+            float currentAngle = rowTransform.localEulerAngles.y;
+            Vector3 endValue = Vector3.up * (currentAngle + ((360 / Map.Columns) * amount));
+            rowTransform.DORotate(endValue, 0.5f / CombatManager.CombatSpeed, RotateMode.FastBeyond360);
+
+            yield return new WaitForSeconds(0.5f / CombatManager.CombatSpeed);
+            ActionsManager.Instance.OnRotationAnimationEnded?.Invoke();
+        }
     }
 }

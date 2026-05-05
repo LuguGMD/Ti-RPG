@@ -15,8 +15,6 @@ namespace RPG.Combat
 
         private bool _hasActed = false;
 
-        private Animator[] _animators;
-
         #region Properties
 
         public EntityScriptable Info { get { return _info; } }
@@ -27,29 +25,10 @@ namespace RPG.Combat
 
         #endregion
 
-        protected new void Awake()
-        {
-            base.Awake();
-
-            _animators = GetComponentsInChildren<Animator>();
-        }
-
         protected new void Start()
         {
             base.Start();
             Initialize();
-        }
-
-        private void OnEnable()
-        {
-            ActionsManager.Instance.OnApresentadorActionCompleted += ActionCompleted;
-            ActionsManager.Instance.OnCombatSpeedChanged += AdjsutGameSpeed;
-        }
-
-        private void OnDisable()
-        {
-            ActionsManager.Instance.OnApresentadorActionCompleted -= ActionCompleted;
-            ActionsManager.Instance.OnCombatSpeedChanged -= AdjsutGameSpeed;
         }
 
         private void Initialize()
@@ -57,14 +36,6 @@ namespace RPG.Combat
             _currentMotivation = CombatConstants.MAX_MOTIVATION_APRESENTADOR;
             MapManager.Instance.AddTileObject(_tileObject, Map.CENTER_POS);
             AdjsutGameSpeed();
-        }
-
-        private void AdjsutGameSpeed()
-        {
-            foreach(Animator animator in _animators)
-            {
-                animator.SetFloat("GameSpeed", CombatManager.CombatSpeed);
-            }
         }
 
         public override EntityScriptable GetEntityInfo()
@@ -89,17 +60,33 @@ namespace RPG.Combat
         public override void TakeDamage(float damage)
         {
             _currentMotivation -= damage;
+            _currentMotivation = Mathf.Clamp(_currentMotivation, 0, CombatConstants.MAX_MOTIVATION_APRESENTADOR);
+            ActionsManager.Instance.OnApresentadorDamageTaken?.Invoke();
+
+            base.TakeDamage(damage);
+        }
+
+        protected override void CheckDefeated()
+        {
+            
+        }
+
+        public override void Heal(float heal)
+        {
+            _currentMotivation += heal;
+            _currentMotivation = Mathf.Clamp(_currentMotivation, 0, CombatConstants.MAX_MOTIVATION_APRESENTADOR);
+
             ActionsManager.Instance.OnApresentadorDamageTaken?.Invoke();
         }
 
         public void Rotate(int amount)
         {
-            MapManager.Map.RotateRow(_rowToRotate, amount);
+            MapManager.Instance.RotateRow(_rowToRotate, amount);
         }
 
         public void Rotate(int row, int amount)
         {
-            MapManager.Map.RotateRow(row, amount);
+            MapManager.Instance.RotateRow(row, amount);
         }
 
         public void ChangeRow(int amount)
@@ -110,7 +97,7 @@ namespace RPG.Combat
             _rowToRotate %= (Map.Rows - 1);
         }
 
-        private void ActionCompleted()
+        public void CompleteAction()
         {
             _hasActed = true;
         }

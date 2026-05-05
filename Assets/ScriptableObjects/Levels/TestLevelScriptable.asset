@@ -13,17 +13,20 @@ MonoBehaviour:
   m_Name: TestLevelScriptable
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Level.LevelScriptable
   _waves:
-  - _turnCount: 1
+  - _turnCount: 0
     _spawns:
     - _enemyInfo: {fileID: 11400000, guid: 77c2de23c2f84a842befc3e2976b3120, type: 2}
       _spawnPosition: 0
-  - _turnCount: 3
+  - _turnCount: 2
     _spawns:
     - _enemyInfo: {fileID: 11400000, guid: 77c2de23c2f84a842befc3e2976b3120, type: 2}
       _spawnPosition: 7
-  - _turnCount: 4
+  - _turnCount: 3
     _spawns:
     - _enemyInfo: {fileID: 11400000, guid: 77c2de23c2f84a842befc3e2976b3120, type: 2}
       _spawnPosition: 5
     - _enemyInfo: {fileID: 11400000, guid: 77c2de23c2f84a842befc3e2976b3120, type: 2}
       _spawnPosition: 7
+  _challenges:
+  - {fileID: 11400000, guid: bae7697a1146d65468ffb5abe468407f, type: 2}
+  - {fileID: 11400000, guid: b509e3106bb231b4fb2ac2149264142f, type: 2}
