@@ -18,6 +18,11 @@ namespace RPG
 
         #endregion
 
+        public static void ChangeScene(ScenesEnum scene)
+        {
+            ChangeScene((int)scene);
+        }
+
         public static void ChangeScene(string name)
         {
             ChangeScene(SceneManager.GetSceneByName(name).buildIndex);

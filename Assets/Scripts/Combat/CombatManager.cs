@@ -339,7 +339,7 @@ namespace RPG.Combat
                 _hasCombatEnded = true;
 
                 //TO DO remover depois
-                GameManager.ChangeScene(3);
+                GameManager.ChangeScene(ScenesEnum.Lose);
             }
         }
 
@@ -351,7 +351,7 @@ namespace RPG.Combat
                 _hasCombatEnded = true;
 
                 //TO DO remover depois
-                GameManager.ChangeScene(2);
+                GameManager.ChangeScene(ScenesEnum.Win);
             }
         }
 
