@@ -10,27 +10,27 @@ namespace RPG.Management.Movement
         [SerializeField] private float rotationSpeed = 10f;
 
         [Header("Referências")]
-        [SerializeField] private CharacterController controller;
-        [SerializeField] private PlayerInput playerInput;
+        private CharacterController controller;
+        private PlayerInput playerInput;
         [SerializeField] private Transform modelTransform;
 
-        // Variáveis internas
         private Vector2 inputDirection;
+        private Vector3 moveDirection;
+        private Vector3 lastMoveDirection;
         private float currentSpeed;
-        public float VelocidadeAtual => currentSpeed;
-        public float VelocidadeMaxima => maxSpeed;
-        public Vector2 Direcao => inputDirection;
+
+        #region Properties
+
+        public float CurrentSpeed => currentSpeed;
+        public float MaxSpeed => maxSpeed;
+        public Vector3 LastMoveDirection => lastMoveDirection;
+
+        #endregion
 
         private void Awake()
         {
-            if (controller == null)
-            {
-                controller = GetComponent<CharacterController>();
-            }
-            if (playerInput == null)
-            {
-                playerInput = GetComponent<PlayerInput>();
-            }
+            controller = GetComponent<CharacterController>();
+            playerInput = GetComponent<PlayerInput>();
         }
 
         private void Start()
@@ -46,21 +46,31 @@ namespace RPG.Management.Movement
 
         private void Update()
         {
+            CalculateMoveDirection();
             ApplyMovement();
+            ApplyRotation();
+        }
+
+        private void CalculateMoveDirection()
+        {
+            moveDirection = (Camera.main.transform.right * inputDirection.x) + (Camera.main.transform.forward * inputDirection.y);
+            moveDirection.y = 0;
+            moveDirection = moveDirection.normalized;
+
+            if (moveDirection != Vector3.zero)
+            {
+                lastMoveDirection = moveDirection;
+            }
         }
 
         private void ApplyMovement()
         {
-            Vector3 moveDirection = (transform.right * inputDirection.x) + (transform.forward * inputDirection.y);
-            moveDirection = moveDirection.normalized;
             controller.Move(moveDirection * (currentSpeed * Time.deltaTime));
-
-            ApplyRotation(moveDirection);
         }
 
-        private void ApplyRotation(Vector3 moveDirection)
+        private void ApplyRotation()
         {
-            if (moveDirection.sqrMagnitude > 0.01f && modelTransform != null)
+            if (moveDirection.sqrMagnitude > 0.01f)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
 
