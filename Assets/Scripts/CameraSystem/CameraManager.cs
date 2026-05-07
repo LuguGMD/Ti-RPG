@@ -12,8 +12,9 @@ public class CameraManager : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Selecione a câmera pelo índice no inspetor")]
-    private int inspectorCameraIndex = 0;
+    private int cameraNumber = 0;
 
+    #region Unity Methods
     void Awake()
     {
 
@@ -21,7 +22,7 @@ public class CameraManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            Start();
+
         }
         else
         {
@@ -29,37 +30,51 @@ public class CameraManager : MonoBehaviour
         }
     }
 
-    //apenas para teste de trocar a camera no inspctor
-    void OnValidate()
+    private void Start()
     {
-        
-        if (cameras.Count > 0)
-        {
-            inspectorCameraIndex = Mathf.Clamp(inspectorCameraIndex, 0, cameras.Count - 1);
-
-            if (currentCamera != cameras[inspectorCameraIndex])
-            {
-                SwitchCamera(cameras[inspectorCameraIndex]);
-            }
-        }
+        InitializeCameras();
     }
 
-    void Start()
+    private void Update()
+    {
+        ValidateCameraSwitch();
+    }
+
+    #endregion
+
+    #region Methods
+    private void InitializeCameras()
     {
         if (cameras.Count == 0)
         {
-            Debug.LogWarning("CameraManager: Nenhuma câmera foi adicionada à lista!");
+            Debug.LogWarning("Nenhuma câmera encontrada!");
             return;
         }
 
-        foreach (var cam in cameras)
+        foreach (GameObject cam in cameras)
         {
             cam.SetActive(false);
         }
 
-        inspectorCameraIndex = 0;
         currentCamera = cameras[0];
         currentCamera.SetActive(true);
+
+        cameraNumber = 0;
+    }
+
+    //apenas para teste de trocar a camera no inspctor
+    void ValidateCameraSwitch()
+    {
+
+        if (cameras.Count > 0)
+        {
+            cameraNumber = Mathf.Clamp(cameraNumber, 0, cameras.Count - 1);
+
+            if (currentCamera != cameras[cameraNumber])
+            {
+                SwitchCamera(cameras[cameraNumber]);
+            }
+        }
     }
 
     public void SwitchCamera(GameObject newCamera)
@@ -78,10 +93,9 @@ public class CameraManager : MonoBehaviour
 
         newCamera.SetActive(true);
         currentCamera = newCamera;
-        inspectorCameraIndex = cameras.IndexOf(newCamera);
+        cameraNumber = cameras.IndexOf(newCamera);
     }
 
-    
     public void SwitchCameraByIndex(int index)
     {
         SwitchCamera(cameras[index]);
@@ -96,4 +110,5 @@ public class CameraManager : MonoBehaviour
     {
         return cameras.IndexOf(currentCamera);
     }
+    #endregion
 }
