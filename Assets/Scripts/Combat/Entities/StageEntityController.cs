@@ -39,6 +39,7 @@ namespace RPG.Combat
         {
             base.Start();
             AdjsutGameSpeed();
+            ActionsManager.Instance.OnStageEntityCreated?.Invoke(this);
         }
 
         public IEnumerator UseSelectedAction(int movementPatternIndex, int repetitions, bool isMirrored)
@@ -88,6 +89,12 @@ namespace RPG.Combat
             {
                 CombatManager.SubscribeEffectTriggerAction(effect.TriggerCondition, () => effect.Execute(this));
             }
+        }
+
+        protected override void Defeated()
+        {
+            base.Defeated();
+            ActionsManager.Instance.OnStageEntityDefeated?.Invoke(this);
         }
     }
 }

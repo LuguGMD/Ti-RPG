@@ -28,6 +28,9 @@ namespace RPG
         public Action OnApresentadorActionCompleted;
         public Action OnApresentadorActionCanceled;
 
+        public Action<StageEntityController> OnStageEntityCreated;
+        public Action<StageEntityController> OnStageEntityDefeated;
+
         public Action<CharacterController> OnCharacterDamageTaken;
         public Action<CharacterController> OnCharacterCreated;
         public Action<CharacterController> OnCharacterDefeated;
