@@ -8,6 +8,7 @@ namespace RPG.Input
 {
     public class CursorInput : InputComponent<CursorInput.CursorInputActionsHandler>
     {
+        static public new CursorInputActionsHandler Actions => Singleton<CursorInputActionsHandler>.Instance;
         private static CursorInput _instance;
         
         [SerializeField] private LayerMask targetCollisionLayer;
