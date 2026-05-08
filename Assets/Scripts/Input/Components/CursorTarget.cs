@@ -75,7 +75,7 @@ namespace RPG.Input
             protected override void DeriveHandlers()
             {
                 Hover = DeriveHandler(
-                    from: CursorInput.Instance.Actions.HoverTarget,
+                    from: CursorInput.Actions.HoverTarget,
                     derive: (target) =>
                     {
                         do
@@ -98,15 +98,15 @@ namespace RPG.Input
                 }
 
                 LeftClick = DeriveHandler(
-                    from: CursorInput.Instance.Actions.LeftClick,
+                    from: CursorInput.Actions.LeftClick,
                     derive: DeriveClick
                 );
                 MiddleClick = DeriveHandler(
-                    from: CursorInput.Instance.Actions.MiddleClick,
+                    from: CursorInput.Actions.MiddleClick,
                     derive: DeriveClick
                 );
                 RightClick = DeriveHandler(
-                    from: CursorInput.Instance.Actions.RightClick,
+                    from: CursorInput.Actions.RightClick,
                     derive: DeriveClick
                 );
             }
