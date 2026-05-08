@@ -32,7 +32,7 @@ namespace RPG.Combat.UI
         private void AddCharacter(CharacterController character)
         {
             CharacterMotivationSlider motivationSlider = Instantiate<CharacterMotivationSlider>(_motivationBarPrefab, _motivationBarContainer);
-            motivationSlider.SetName(character.Info.EntityName);
+            motivationSlider.SetInfo(character.CharacterInfo);
 
             _characterSliders.Add(character, motivationSlider);
 

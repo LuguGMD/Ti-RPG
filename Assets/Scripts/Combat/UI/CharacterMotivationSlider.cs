@@ -7,7 +7,7 @@ namespace RPG.Combat.UI
     public class CharacterMotivationSlider : MonoBehaviour
     {
         [SerializeField] private Slider _slider;
-        [SerializeField] private TextMeshProUGUI _characterNameText;
+        [SerializeField] private Image _characterIcon;
 
         #region Properties
 
@@ -15,9 +15,9 @@ namespace RPG.Combat.UI
 
         #endregion
 
-        public void SetName(string name)
+        public void SetInfo(CharacterScriptable characterInfo)
         {
-            _characterNameText.text = name;
+            _characterIcon.sprite = characterInfo.Icon;
         }
     }
 }
