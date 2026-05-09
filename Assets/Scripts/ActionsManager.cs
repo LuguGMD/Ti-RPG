@@ -91,5 +91,17 @@ namespace RPG
         #endregion
 
         #endregion
+
+        #region Management
+
+        #region Minigames
+
+        public Action OnMinigameMiss;
+        public Action OnMinigameHit;
+        public Action OnMinigamePerfectHit;
+
+        #endregion
+
+        #endregion
     }
 }
