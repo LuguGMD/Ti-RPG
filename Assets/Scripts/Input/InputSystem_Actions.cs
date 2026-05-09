@@ -317,7 +317,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""WASD"",
+                    ""name"": ""Arrows"",
                     ""id"": ""4eb3eb45-1650-4e47-9320-f844789d12da"",
                     ""path"": ""Dpad"",
                     ""interactions"": """",
@@ -328,7 +328,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
-                    ""name"": ""up"",
+                    ""name"": ""Up"",
                     ""id"": ""0d3e2ca2-9a1c-424d-93ae-1528d2094203"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
@@ -339,7 +339,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""down"",
+                    ""name"": ""Down"",
                     ""id"": ""ece1b0e8-3a9f-438b-b1bf-5c4950e5323f"",
                     ""path"": ""<Keyboard>/downArrow"",
                     ""interactions"": """",
@@ -350,7 +350,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""left"",
+                    ""name"": ""Left"",
                     ""id"": ""ff22ef5f-0452-46a3-a08f-083eea03d165"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
@@ -361,7 +361,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""right"",
+                    ""name"": ""Right"",
                     ""id"": ""4c32b9d6-7ff9-4ce8-b8f4-c19eb34fb5df"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
@@ -381,6 +381,39 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""LookSecondary"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Delta Pointer"",
+                    ""id"": ""53287f40-550d-4819-a43e-690b51bc285b"",
+                    ""path"": ""OneModifier(modifiersOrder=2)"",
+                    ""interactions"": """",
+                    ""processors"": ""InvertVector2,ScaleVector2(x=0.5,y=0.2)"",
+                    ""groups"": """",
+                    ""action"": ""LookSecondary"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""modifier"",
+                    ""id"": ""51237ded-74ac-4440-a20f-db8c4c3a1e74"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""LookSecondary"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""binding"",
+                    ""id"": ""55167af0-cd02-4f3a-a804-1033da068875"",
+                    ""path"": ""<Pointer>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""LookSecondary"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",

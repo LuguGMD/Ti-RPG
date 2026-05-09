@@ -59,6 +59,8 @@ namespace RPG.Combat
             ActionsManager.Instance.OnSpotlightPositionChanged?.Invoke(_currentSpotlightPosition);
             ActionsManager.Instance.OnMapChanged?.Invoke();
 
+            transform.LookAt(Vector3.zero);
+
             /*Spline spline = MapManager.Instance.GetCurrentSpline(previousSpotlightPosition);
 
             Vector2Int targetTile = _currentSpotlightPosition;
