@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4323065237608473677}
   - component: {fileID: 848756487377094502}
   - component: {fileID: 228516692257669675}
+  - component: {fileID: -765080072857556946}
+  - component: {fileID: 4909179492303688096}
   m_Layer: 0
   m_Name: StageMiddleCircleTilePrefab
   m_TagString: Untagged
@@ -113,3 +115,28 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2281542524388654446, guid: 814c24e66e85d61429c17a9af28c6eb8, type: 3}
+--- !u!114 &-765080072857556946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448333114163837087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0ead27d8c99bab05885f4db4cbe2d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Input.CursorTarget
+  collisionTarget: {fileID: 1448333114163837087}
+--- !u!114 &4909179492303688096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1448333114163837087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330d8318551420346bf008b81672a3ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.StageTile

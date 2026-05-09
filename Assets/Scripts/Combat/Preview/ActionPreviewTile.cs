@@ -16,6 +16,18 @@ namespace RPG.Combat.Preview
 
         #endregion
 
+        protected new void OnEnable()
+        {
+            base.OnEnable();
+            ActionsManager.Instance.OnPreviewTileSelected += CheckSelected;
+        }
+
+        protected new void OnDisable()
+        {
+            base.OnDisable();
+            ActionsManager.Instance.OnPreviewTileSelected = CheckSelected;
+        }
+
         public void SetInfo(PreviewTileInfo info)
         {
             _info = info;
@@ -25,6 +37,14 @@ namespace RPG.Combat.Preview
         {
             if (_canBeSelected)
                 ActionsManager.Instance.OnActionTileSelected?.Invoke(_info);
+        }
+
+        private void CheckSelected(Vector2Int selectedPosition)
+        {
+            if(_tilePosition == selectedPosition)
+            {
+                Select();
+            }
         }
     }
 }

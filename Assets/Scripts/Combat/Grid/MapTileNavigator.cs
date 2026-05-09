@@ -18,17 +18,30 @@ namespace RPG.Combat.Grid
             _previewTile = Instantiate<PreviewTile>(_previewTilePrefab);
 
             _playerInput.Actions.Move.OnUpdate(MoveHoveredTile);
+            _playerInput.Actions.Interact.OnStart(SelectHoveredTile);
             UpdatePosition();
+
+            EnablePreview();
         }
 
         private void OnEnable()
         {
-            ActionsManager.Instance.OnCombatStart += DisablePreview;
+            ActionsManager.Instance.OnPlayerTurnStarted += EnablePreview;
+            ActionsManager.Instance.OnPlayerTurnEnded += DisablePreview;
+            ActionsManager.Instance.OnTileHovered += SetHoveredTile;
         }
 
         private void OnDisable()
         {
-            ActionsManager.Instance.OnCombatStart -= DisablePreview;
+            ActionsManager.Instance.OnPlayerTurnStarted -= EnablePreview;
+            ActionsManager.Instance.OnPlayerTurnEnded -= DisablePreview;
+            ActionsManager.Instance.OnTileHovered -= SetHoveredTile;
+        }
+
+        private void SetHoveredTile(Vector2Int hoveredTilePosition)
+        {
+            _currentHoveredTile = hoveredTilePosition;
+            UpdatePosition();
         }
 
         private void MoveHoveredTile(Vector2 movementInput)
@@ -60,6 +73,12 @@ namespace RPG.Combat.Grid
         {
             _isEnabled = false;
             _previewTile.gameObject.SetActive(false);
+        }
+
+        private void SelectHoveredTile()
+        {
+            if (!_isEnabled) return;
+            ActionsManager.Instance.OnPreviewTileSelected?.Invoke(_currentHoveredTile);
         }
 
         

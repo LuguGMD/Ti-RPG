@@ -38,11 +38,13 @@ namespace RPG.Combat
         protected void OnEnable()
         {
             ActionsManager.Instance.OnCombatSpeedChanged += AdjsutGameSpeed;
+            ActionsManager.Instance.OnPreviewTileSelected += CheckSelected;
         }
 
         protected void OnDisable()
         {
             ActionsManager.Instance.OnCombatSpeedChanged -= AdjsutGameSpeed;
+            ActionsManager.Instance.OnPreviewTileSelected -= CheckSelected;
         }
 
         protected void AdjsutGameSpeed()
@@ -50,6 +52,14 @@ namespace RPG.Combat
             foreach (Animator animator in _animators)
             {
                 animator.SetFloat("GameSpeed", CombatManager.CombatSpeed);
+            }
+        }
+
+        private void CheckSelected(Vector2Int selectedPositon)
+        {
+            if(selectedPositon == Position)
+            {
+                OnSelected();
             }
         }
 

@@ -31,6 +31,9 @@ namespace RPG.Input
             public ValueHandler<Vector2> Look = new();
             void IPlayerActions.OnLook(CallbackContext context) => Look.Handle(context);
 
+            public ValueHandler<Vector2> LookSecondary = new();
+            void IPlayerActions.OnLookSecondary(CallbackContext context) => LookSecondary.Handle(context);
+
             public ValueHandler<Vector2> Move = new();
             void IPlayerActions.OnMove(CallbackContext context) => Move.Handle(context);
 
