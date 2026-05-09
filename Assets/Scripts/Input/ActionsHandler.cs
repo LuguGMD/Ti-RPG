@@ -9,9 +9,15 @@ namespace RPG.Input
 {
     public abstract class ActionsHandler
     {
-        #region Derived Handlers Logic
-
         private HashSet<ISimpleProcess> derivedHandlers;
+
+        public ActionsHandler() : base()
+        {
+            derivedHandlers = new();
+            DeriveHandlers();
+        }
+
+        #region Derived Handlers Logic
 
         protected virtual void DeriveHandlers() { }
 
@@ -40,34 +46,17 @@ namespace RPG.Input
 
         #endregion
 
-        static private void FirstStart(ActionsHandler self)
+        public void Start()
         {
-            self.derivedHandlers = new();
-            self.DeriveHandlers();
-            
-            self.start = Start;
-            self.stop = Stop;
-
-            Start(self);
+            StartDerivedHandlers();
+            OnStart();
         }
 
-        static private void Start(ActionsHandler self)
+        public void Stop()
         {
-            self.StartDerivedHandlers();
-            self.OnStart();
+            StopDerivedHandlers();
+            OnStop();
         }
-
-        static private void Stop(ActionsHandler self)
-        {
-            self.StopDerivedHandlers();
-            self.OnStop();
-        }
-
-        private Action<ActionsHandler> start = FirstStart;
-        private Action<ActionsHandler> stop = Stop;
-
-        public void Start() => start.Invoke(this);
-        public void Stop() => stop.Invoke(this);
 
         public virtual void OnStart() { }
         public virtual void OnStop() { }
