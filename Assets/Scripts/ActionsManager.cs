@@ -37,6 +37,8 @@ namespace RPG
 
         public Action<EnemyController> OnEnemyDefeated;
 
+        public Action<Vector2Int> OnSpotlightPositionChanged;
+
         #region Effect Triggers
 
         public Action OnActionStart;

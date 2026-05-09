@@ -6,12 +6,14 @@ namespace RPG.Combat.Grid
     {
         private Tile _currentTile;
         private DirectionEnum _direction;
+        protected bool _isOnSpotlight;
 
         #region Properties
 
         public Tile CurrentTile { get { return _currentTile; } }
         public Vector2Int Position { get { return _currentTile.Position; }  }
         public DirectionEnum Direction { get { return _direction; } }
+        public bool IsOnSpotlight {  get { return _isOnSpotlight; } }
 
         #endregion
 
@@ -55,7 +57,9 @@ namespace RPG.Combat.Grid
             transform.parent = _currentTile.Transform;
             transform.localPosition = Vector3.zero;
             transform.LookAt(transform.position + (transform.position.normalized));
-            //TO DO look at _direction
+
+            _isOnSpotlight = MapManager.Instance.IsPositionOnSpotlight(Position);
+
         }
     }
 }

@@ -41,6 +41,11 @@ namespace RPG.Combat.Actions
         {
             Vector2Int checkPosition = user.Position;
             List<Vector2Int> checkedTiles = new List<Vector2Int>();
+            
+            if(_doNeedSpotlight && !user.TileObject.IsOnSpotlight)
+            {
+                return;
+            }
 
             for (int i = 0; i < _area.Count; i++)
             {

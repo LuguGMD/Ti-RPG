@@ -22,6 +22,8 @@ namespace RPG.Combat.Grid
 
         [SerializeField] private GameObject[] _rowGameObjects;
         private Coroutine _rotationAnimationCoroutine;
+        private Vector2Int _spotlightPosition;
+        
 
         #region Properties
 
@@ -31,6 +33,7 @@ namespace RPG.Combat.Grid
         }
 
         public static GameObject[] RowGameObjects { get { return Instance._rowGameObjects; } }
+        public static Vector2Int SpotlightPosition { get { return Instance._spotlightPosition; } }
 
         #endregion
 
@@ -42,6 +45,16 @@ namespace RPG.Combat.Grid
             {
                 _map = new Map(_rows, _columns);
             }
+        }
+
+        private void OnEnable()
+        {
+            ActionsManager.Instance.OnSpotlightPositionChanged += UpdateSpotlightPosition;
+        }
+
+        private void OnDisable()
+        {   
+            ActionsManager.Instance.OnSpotlightPositionChanged -= UpdateSpotlightPosition;
         }
 
 
@@ -126,6 +139,12 @@ namespace RPG.Combat.Grid
 
         }
 
+        public bool IsPositionOnSpotlight(Vector2Int tilePosition)
+        {
+            Vector2Int distance = tilePosition - _spotlightPosition;
+            return Mathf.Abs(distance.x) <= 1 && Mathf.Abs(distance.y) <= 1;
+        }
+
         public float GetCurrentTilePercentage(Vector2Int tilePosition)
         {
             Spline spline = _mapSplineContainer[tilePosition.y];
@@ -160,6 +179,11 @@ namespace RPG.Combat.Grid
 
             yield return new WaitForSeconds(0.5f / CombatManager.CombatSpeed);
             ActionsManager.Instance.OnRotationAnimationEnded?.Invoke();
+        }
+
+        private void UpdateSpotlightPosition(Vector2Int spotlightPosition)
+        {
+            _spotlightPosition = spotlightPosition;
         }
     }
 }

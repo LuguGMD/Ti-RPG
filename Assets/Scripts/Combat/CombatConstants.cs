@@ -17,5 +17,7 @@ namespace RPG.Combat
             { CombatTypeEnum.Anger, CombatTypeEnum.Jokes },
         };
         public static readonly float[] CombatSpeedTiers = { 1, 2, 3 };
+        public const int SPOTLIGHT_CHANGE_TURNS = 3;
+        public const int MAP_SECTIONS = 4;
     }
 }
