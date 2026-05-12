@@ -3983,7 +3983,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1961038933}
   - component: {fileID: 1961038935}
-  - component: {fileID: 1961038934}
   m_Layer: 0
   m_Name: CameraManager
   m_TagString: Untagged
@@ -4006,21 +4005,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 50344623}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1961038934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1961038932}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39b3c532ebbfd2c409963d612b3b3487, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: RPG.Scripts::CameraSwitcher
-  targetCamera: {fileID: 1987366181}
-  targetTransform: {fileID: 1568753881}
-  selectedCameraIndex: 0
 --- !u!114 &1961038935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4033,6 +4017,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddf0ae25a96bcd44aa00b02e103d803a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: RPG.Scripts::CameraManager
+  cameras: []
+  cameraNumber: 0
 --- !u!1 &1965470228
 GameObject:
   m_ObjectHideFlags: 0
@@ -4283,7 +4269,6 @@ GameObject:
   - component: {fileID: 1987366185}
   - component: {fileID: 1987366184}
   - component: {fileID: 1987366183}
-  - component: {fileID: 1987366181}
   - component: {fileID: 1987366182}
   m_Layer: 0
   m_Name: StageCamera
@@ -4292,19 +4277,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1987366181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1987366180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 811fcdd9862b01040ab260b2720a60f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: RPG.Scripts::BaseCamera
-  target: {fileID: 1568753881}
 --- !u!114 &1987366182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4328,6 +4300,8 @@ MonoBehaviour:
       Input:
         InputAction: {fileID: -6354132148661623932, guid: 052faaac586de48259a63d0c4782560b, type: 3}
         Gain: -80
+        LegacyInput: 
+        LegacyGain: 1
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
@@ -4339,6 +4313,8 @@ MonoBehaviour:
       Input:
         InputAction: {fileID: -6354132148661623932, guid: 052faaac586de48259a63d0c4782560b, type: 3}
         Gain: 80
+        LegacyInput: 
+        LegacyGain: 1
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
@@ -4350,6 +4326,8 @@ MonoBehaviour:
       Input:
         InputAction: {fileID: -423771258819551211, guid: 1d6e640e716dc4ff6989b73d02023f2b, type: 3}
         Gain: -1
+        LegacyInput: 
+        LegacyGain: 1
         CancelDeltaTime: 0
       InputValue: 0
       Driver:
