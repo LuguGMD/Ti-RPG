@@ -64,7 +64,7 @@ namespace RPG.Input
             {
                 Ray = DeriveHandler(from: Position, derive: (position) =>
                 {
-                    return Camera.main.ScreenPointToRay(position);
+                    return UnityEngine.Camera.main.ScreenPointToRay(position);
                 });
 
                 HoverTarget = DeriveHandler(from: Ray, derive: (ray) =>

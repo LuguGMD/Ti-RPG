@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace RPG.CameraSystem
+namespace RPG.Camera
 {
     [ExecuteAlways]
     public class CameraBendingHandler : MonoBehaviour
@@ -20,11 +20,11 @@ namespace RPG.CameraSystem
         }
 
 
-        private void OnBeginCameraRendering(ScriptableRenderContext context, Camera camera)
+        private void OnBeginCameraRendering(ScriptableRenderContext context, UnityEngine.Camera camera)
         {
             camera.cullingMatrix = Matrix4x4.Ortho(-99, 99, -99, 99, 0.001f, 99) * camera.worldToCameraMatrix;
         }
-        private void OnEndCameraRendering(ScriptableRenderContext context, Camera camera)
+        private void OnEndCameraRendering(ScriptableRenderContext context, UnityEngine.Camera camera)
         {
             camera.ResetCullingMatrix();    
         }

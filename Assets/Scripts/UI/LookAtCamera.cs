@@ -18,8 +18,8 @@ namespace RPG.UI
         {
             Vector3 previousRotation = transform.localEulerAngles;
 
-            Vector3 lookAtPosition = Camera.main.transform.position;
-            lookAtPosition += -Camera.main.transform.forward * PERSPECTIVE_DISTANCE;
+            Vector3 lookAtPosition = UnityEngine.Camera.main.transform.position;
+            lookAtPosition += -UnityEngine.Camera.main.transform.forward * PERSPECTIVE_DISTANCE;
 
             transform.LookAt(lookAtPosition);
             Vector3 newRotation = transform.localEulerAngles;
