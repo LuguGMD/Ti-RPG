@@ -913,6 +913,11 @@ Transform:
   - {fileID: 1764864410}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1965554972 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5194910314767015949, guid: 85fd07e497bbe5b4f8890b696fd24f15, type: 3}
+  m_PrefabInstance: {fileID: 6365599966302955451}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1971082194
 GameObject:
   m_ObjectHideFlags: 0
@@ -1184,6 +1189,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5332132207786402583, guid: 85fd07e497bbe5b4f8890b696fd24f15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332132207786402583, guid: 85fd07e497bbe5b4f8890b696fd24f15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332132207786402583, guid: 85fd07e497bbe5b4f8890b696fd24f15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6365599966302955452}
+    - target: {fileID: 5332132207786402583, guid: 85fd07e497bbe5b4f8890b696fd24f15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 1965554972}
+    - target: {fileID: 5332132207786402583, guid: 85fd07e497bbe5b4f8890b696fd24f15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332132207786402583, guid: 85fd07e497bbe5b4f8890b696fd24f15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332132207786402583, guid: 85fd07e497bbe5b4f8890b696fd24f15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5332132207786402583, guid: 85fd07e497bbe5b4f8890b696fd24f15, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6909540444186683999, guid: 85fd07e497bbe5b4f8890b696fd24f15, type: 3}
       propertyPath: m_Name
       value: LevelSelectCanvas
@@ -1193,6 +1230,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 85fd07e497bbe5b4f8890b696fd24f15, type: 3}
+--- !u!1 &6365599966302955452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8026163645103707330, guid: 85fd07e497bbe5b4f8890b696fd24f15, type: 3}
+  m_PrefabInstance: {fileID: 6365599966302955451}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
