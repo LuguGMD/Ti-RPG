@@ -3,6 +3,7 @@ using static InputSystem_Actions;
 using static UnityEngine.InputSystem.InputAction;
 
 using LucasRozado.Utility;
+using UnityEngine.EventSystems;
 
 namespace RPG.Input
 {
@@ -69,6 +70,12 @@ namespace RPG.Input
 
                 HoverTarget = DeriveHandler(from: Ray, derive: (ray) =>
                 {
+                    Vector2 cursorPosition = Position.LastValue;
+                    var eventSystemUtility = Utility.Get(EventSystem.current);
+                    
+                    if (eventSystemUtility.IsCursorOverUIElement(cursorPosition))
+                    { return null; }
+                    
                     if (Physics.Raycast(ray,
                         maxDistance: Mathf.Infinity,
                         layerMask: TargetCollisionLayer,
