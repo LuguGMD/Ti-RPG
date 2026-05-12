@@ -1,54 +1,58 @@
+using RPG.Input;
 using UnityEngine;
 
-public class PlayerInteract : MonoBehaviour
+namespace RPG.Management.Interaction
 {
-    [Header("Configurações de Interação")]
-    [Tooltip("O raio da área ao redor do apresentador onde a interação é possível.")]
-    public float interactionRadius = 3f;
-    
-    [Tooltip("A tecla usada para interagir.")]
-    public KeyCode interactKey = KeyCode.E;
-
-    void Update()
+    [RequireComponent(typeof(PlayerInput))]
+    public class PlayerInteract : MonoBehaviour
     {
-        if (Input.GetKeyDown(interactKey))
+        private PlayerInput _playerInput;
+        [Tooltip("O raio da área ao redor do apresentador onde a interação é possível.")]
+        [SerializeField] private float interactionRadius = 3f;
+
+        private void Awake()
         {
-            InteractWithClosest();
+            _playerInput = GetComponent<PlayerInput>();
         }
-    }
 
-    private void InteractWithClosest()
-    {
-        Collider[] colliders = Physics.OverlapSphere(transform.position, interactionRadius);
-        
-        IInteractable closestInteractable = null;
-        float closestDistance = float.MaxValue;
-
-        foreach (Collider collider in colliders)
+        private void Start()
         {
-            IInteractable interactable = collider.GetComponent<IInteractable>();
+            _playerInput.Actions.Interact.OnStart(InteractWithClosest);
+        }
 
-            if (interactable != null)
+        private void InteractWithClosest()
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, interactionRadius);
+
+            IInteractable closestInteractable = null;
+            float closestDistance = float.MaxValue;
+
+            foreach (Collider collider in colliders)
             {
-                float distanceToInteractable = Vector3.Distance(transform.position, collider.transform.position);
+                IInteractable interactable = collider.GetComponent<IInteractable>();
 
-                if (distanceToInteractable < closestDistance)
+                if (interactable != null)
                 {
-                    closestDistance = distanceToInteractable;
-                    closestInteractable = interactable;
+                    float distanceToInteractable = Vector3.Distance(transform.position, collider.transform.position);
+
+                    if (distanceToInteractable < closestDistance)
+                    {
+                        closestDistance = distanceToInteractable;
+                        closestInteractable = interactable;
+                    }
                 }
+            }
+
+            if (closestInteractable != null)
+            {
+                closestInteractable.Interact();
             }
         }
 
-        if (closestInteractable != null)
+        private void OnDrawGizmosSelected()
         {
-            closestInteractable.Interact();
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, interactionRadius);
         }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, interactionRadius);
     }
 }

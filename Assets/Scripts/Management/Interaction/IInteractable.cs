@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public interface IInteractable
+namespace RPG.Management.Interaction
 {
-    void Interact();
+    public interface IInteractable
+    {
+        void Interact();
+    }
 }

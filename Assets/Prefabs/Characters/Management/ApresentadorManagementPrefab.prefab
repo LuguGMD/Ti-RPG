@@ -1942,7 +1942,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1124647380222391642
 Transform:
   m_ObjectHideFlags: 0
@@ -6588,6 +6588,8 @@ GameObject:
   - component: {fileID: 6293911206743334705}
   - component: {fileID: 5777017520411260790}
   - component: {fileID: 4155014204745474996}
+  - component: {fileID: 6207427184872340164}
+  - component: {fileID: 7838806876568927991}
   - component: {fileID: 2171968915690823437}
   m_Layer: 0
   m_Name: ApresentadorManagementPrefab
@@ -6639,6 +6641,32 @@ MonoBehaviour:
   maxSpeed: 5
   rotationSpeed: 10
   modelTransform: {fileID: 4711289722333241982}
+--- !u!114 &6207427184872340164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8430495449747810312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af4075de018129f4e85263c897fc1589, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInteract
+  interactionRadius: 3
+  interactKey: 101
+--- !u!114 &7838806876568927991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8430495449747810312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39744e244735296459c45896024d14fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.PlayerAnimation
 --- !u!143 &2171968915690823437
 CharacterController:
   m_ObjectHideFlags: 0
@@ -6657,7 +6685,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 1.8
   m_Radius: 0.4
   m_SlopeLimit: 2
   m_StepOffset: 0.01
