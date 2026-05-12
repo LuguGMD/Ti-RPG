@@ -1,165 +1,114 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.CameraSystem
+public class CameraManager : MonoBehaviour
 {
-    public class CameraManager : MonoBehaviour
+    public static CameraManager Instance;
+
+    [SerializeField]
+    private List<GameObject> cameras = new List<GameObject>();
+
+    private GameObject currentCamera;
+
+    [SerializeField]
+    [Tooltip("Selecione a câmera pelo índice no inspetor")]
+    private int cameraNumber = 0;
+
+    #region Unity Methods
+    void Awake()
     {
-        public static CameraManager Instance { get; private set; }
 
-        private List<BaseCamera> cameras = new List<BaseCamera>();
-        private BaseCamera currentCamera;
-        private BaseCamera previousCamera;
-
-        private void Awake()
+        if (Instance == null)
         {
-            if (Instance != null && Instance != this)
-            {
-                Debug.LogWarning("CameraManager já existe. Destruindo duplicata.");
-                Destroy(gameObject);
-                return;
-            }
-
             Instance = this;
-            InitializeCameras();
-        }
+            DontDestroyOnLoad(gameObject);
 
-        private void OnDestroy()
+        }
+        else
         {
-            if (Instance == this)
-            {
-                Instance = null;
-            }
+            Destroy(gameObject);
         }
-
-        private void InitializeCameras()
-        {
-            cameras.Clear();
-
-            var camerasFound = FindObjectsByType<BaseCamera>(FindObjectsInactive.Include, FindObjectsSortMode.None);
-
-            foreach (var camera in camerasFound)
-            {
-                if (camera != null)
-                {
-                    cameras.Add(camera);
-                    camera.Deactivate();
-                }
-            }
-
-            Debug.Log($"[CameraManager] {cameras.Count} câmeras registradas");
-        }
-
-        public void SwitchCamera(BaseCamera newCamera)
-        {
-            if (newCamera == null)
-            {
-                Debug.LogError("[CameraManager] Câmera não pode ser nula.");
-                return;
-            }
-
-            if (!cameras.Contains(newCamera))
-            {
-                Debug.LogError("[CameraManager] Câmera não está registrada no CameraManager");
-                return;
-            }
-
-            if (currentCamera == newCamera)
-            {
-                Debug.LogWarning("[CameraManager] Câmera já está ativa");
-                return;
-            }
-
-            previousCamera = currentCamera;
-            currentCamera?.Deactivate();
-            currentCamera = newCamera;
-            currentCamera.Activate();
-        }
-
-        public void SwitchCameraByIndex(int index)
-        {
-            if (index < 0 || index >= cameras.Count)
-            {
-                Debug.LogError($"[CameraManager] Índice inválido: {index}. Total de câmeras: {cameras.Count}");
-                return;
-            }
-
-            SwitchCamera(cameras[index]);
-        }
-
-        public void SwitchCameraByName(string cameraName)
-        {
-            if (string.IsNullOrEmpty(cameraName))
-            {
-                Debug.LogError("[CameraManager] Nome da câmera não pode ser nulo ou vazio");
-                return;
-            }
-
-            var camera = cameras.Find(c => c.gameObject.name == cameraName);
-
-            if (camera == null)
-            {
-                Debug.LogError($"[CameraManager] Câmera com nome '{cameraName}' não encontrada");
-                return;
-            }
-
-            SwitchCamera(camera);
-        }
-
-        public void SetCameraTarget(BaseCamera targetCamera, Transform newTarget)
-        {
-            if (targetCamera == null)
-            {
-                Debug.LogError("[CameraManager] Câmera não pode ser nula.");
-                return;
-            }
-
-            if (!cameras.Contains(targetCamera))
-            {
-                Debug.LogError("[CameraManager] Câmera não está registrada no CameraManager");
-                return;
-            }
-
-            targetCamera.SetTarget(newTarget);
-        }
-
-        public void SetCurrentCameraTarget(Transform newTarget)
-        {
-            if (currentCamera == null)
-            {
-                Debug.LogError("[CameraManager] Nenhuma câmera ativa no momento");
-                return;
-            }
-
-            SetCameraTarget(currentCamera, newTarget);
-        }
-
-        public void ReturnToPreviousCamera()
-        {
-            if (previousCamera == null)
-            {
-                Debug.LogWarning("[CameraManager] Nenhuma câmera anterior disponível");
-                return;
-            }
-
-            SwitchCamera(previousCamera);
-        }
-
-        public BaseCamera GetCurrentCamera() => currentCamera;
-
-        public List<BaseCamera> GetAllCameras() => cameras;
-
-        public BaseCamera GetCameraByName(string cameraName)
-        {
-            if (string.IsNullOrEmpty(cameraName))
-            {
-                Debug.LogWarning("[CameraManager] Nome da câmera não pode ser nulo ou vazio");
-                return null;
-            }
-
-            return cameras.Find(c => c.gameObject.name == cameraName);
-        }
-
-        public int GetCameraCount() => cameras.Count;
     }
+
+    private void Start()
+    {
+        InitializeCameras();
+    }
+
+    private void Update()
+    {
+        ValidateCameraSwitch();
+    }
+
+    #endregion
+
+    #region Methods
+    private void InitializeCameras()
+    {
+        if (cameras.Count == 0)
+        {
+            Debug.LogWarning("Nenhuma câmera encontrada!");
+            return;
+        }
+
+        foreach (GameObject cam in cameras)
+        {
+            cam.SetActive(false);
+        }
+
+        currentCamera = cameras[0];
+        currentCamera.SetActive(true);
+
+        cameraNumber = 0;
+    }
+
+    //apenas para teste de trocar a camera no inspctor
+    void ValidateCameraSwitch()
+    {
+
+        if (cameras.Count > 0)
+        {
+            cameraNumber = Mathf.Clamp(cameraNumber, 0, cameras.Count - 1);
+
+            if (currentCamera != cameras[cameraNumber])
+            {
+                SwitchCamera(cameras[cameraNumber]);
+            }
+        }
+    }
+
+    public void SwitchCamera(GameObject newCamera)
+    {
+        if (newCamera == null)
+        {
+            Debug.LogWarning("Não tem camera!");
+            return;
+        }
+
+        if (currentCamera == newCamera)
+            return;
+
+        if (currentCamera != null)
+            currentCamera.SetActive(false);
+
+        newCamera.SetActive(true);
+        currentCamera = newCamera;
+        cameraNumber = cameras.IndexOf(newCamera);
+    }
+
+    public void SwitchCameraByIndex(int index)
+    {
+        SwitchCamera(cameras[index]);
+    }
+
+    public GameObject GetCurrentCamera()
+    {
+        return currentCamera;
+    }
+
+    public int GetCurrentCameraIndex()
+    {
+        return cameras.IndexOf(currentCamera);
+    }
+    #endregion
 }
