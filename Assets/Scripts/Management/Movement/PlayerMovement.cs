@@ -53,7 +53,7 @@ namespace RPG.Management.Movement
 
         private void CalculateMoveDirection()
         {
-            moveDirection = (Camera.main.transform.right * inputDirection.x) + (Camera.main.transform.forward * inputDirection.y);
+            moveDirection = (UnityEngine.Camera.main.transform.right * inputDirection.x) + (UnityEngine.Camera.main.transform.forward * inputDirection.y);
             moveDirection.y = 0;
             moveDirection = moveDirection.normalized;
 

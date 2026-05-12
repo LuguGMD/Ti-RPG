@@ -8,6 +8,7 @@ namespace RPG.Combat.Preview
     public class PreviewTile : MonoBehaviour
     {
         [SerializeField] protected MeshRenderer[] _renderer;
+        [SerializeField] protected MeshFilter[] _filter;
         protected bool _canBeSelected = true;
         protected Vector2Int _tilePosition;
 
@@ -67,9 +68,9 @@ namespace RPG.Combat.Preview
             transform.GetChild(_tilePosition.y)?.gameObject.SetActive(true);
         }
 
-        public void SetMaterial(Material material)
+        public void SetMeshes(PreviewTileModels info)
         {
-            _renderer[_tilePosition.y].material = material;
+            _filter[_tilePosition.y].mesh = info.PreviewLinesMeshs[_tilePosition.y];
         }
 
         public void SetCanBeSelected(bool canBeSelected)
