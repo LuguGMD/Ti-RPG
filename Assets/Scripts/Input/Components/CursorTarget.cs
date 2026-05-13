@@ -1,6 +1,6 @@
 using UnityEngine;
 
-using static LucasRozado.Utility.Unity;
+using LucasRozado.Utility;
 
 namespace RPG.Input
 {
@@ -15,7 +15,7 @@ namespace RPG.Input
             if (collisionTarget == null)
             {
                 if (
-                    Layer.IsLayerInMask(gameObject.layer, CollisionLayer)
+                    Layer.IsInMask(gameObject.layer, CollisionLayer)
                     && TryGetComponent<Collider>(out _)
                 )
                 {
@@ -47,7 +47,7 @@ namespace RPG.Input
                     );
                 }
 
-                if (!Layer.IsLayerInMask(collisionTarget.layer, CollisionLayer))
+                if (!Layer.IsInMask(collisionTarget.layer, CollisionLayer))
                 {
                     Debug.LogWarning(
                         $"{gameObject.name} > {collisionTarget.name}: " +
@@ -82,11 +82,11 @@ namespace RPG.Input
                         {
                             if (target == self.collisionTarget)
                             { return true; }
-                            else if (target != null && target.transform.parent != null)
-                            { target = target.transform.parent.gameObject; }
+                            else
+                            { target = target?.transform.parent?.gameObject; }
                         }
-                        while (target != null && Layer.IsLayerInMask(target.layer, CollisionLayer));
-
+                        while (target != null && Layer.IsInMask(target.layer, CollisionLayer));
+                        
                         return false;
                     }
                 );

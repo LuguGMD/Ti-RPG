@@ -79,10 +79,6 @@ mono_crash.*
 # Crashlytics generated file
 crashlytics-build.properties
 
-# Recovery generated files
-/[Aa]ssets/_Recovery
-/[Aa]ssets/_Recovery.meta
-
 # TestRunner generated files
 InitTestScene*.unity*
 
@@ -122,3 +118,5 @@ InitTestScene*.unity*
 # If the source bank files are kept outside of the StreamingAssets folder then these can be ignored.
 # Log files can be ignored.
 fmod_editor.log
+/Assets/_Recovery
+Assets/_Recovery.meta
