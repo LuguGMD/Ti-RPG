@@ -26,6 +26,7 @@ namespace RPG.Combat.UI
         private void OnEnable()
         {
             ActionsManager.Instance.OnTurnPassed += HidePanel;
+            ActionsManager.Instance.OnActionStart += HidePanel;
             ActionsManager.Instance.OnEntitySelected += OnEntitySelected;
             ActionsManager.Instance.OnCharacterSelected += OnCharacterSelected;
         }
@@ -33,6 +34,7 @@ namespace RPG.Combat.UI
         private void OnDisable()
         {
             ActionsManager.Instance.OnTurnPassed -= HidePanel;
+            ActionsManager.Instance.OnActionStart -= HidePanel;
             ActionsManager.Instance.OnEntitySelected -= OnEntitySelected;
             ActionsManager.Instance.OnCharacterSelected -= OnCharacterSelected;
         }
