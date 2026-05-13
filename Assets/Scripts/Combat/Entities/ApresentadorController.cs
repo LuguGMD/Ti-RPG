@@ -45,6 +45,8 @@ namespace RPG.Combat
 
         protected override void OnSelected()
         {
+            if (!CombatManager.HasCombatStarted) return;
+
             base.OnSelected();
 
             if (!_hasActed)

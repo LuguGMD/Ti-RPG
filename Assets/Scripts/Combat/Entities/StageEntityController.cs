@@ -68,11 +68,12 @@ namespace RPG.Combat
                 yield return _movement.Move(isMirrored);
             }
 
+            SetAnimationBool("IsActionRunning", false);
+
             yield return new WaitUntil(() => !IsInActionAnimation());
             _tileObject.UpdatePosition();
 
             ActionsManager.Instance.OnActionEnd?.Invoke();
-            SetAnimationBool("IsActionRunning", false);
 
             yield return new WaitForSeconds(0.1f / CombatManager.CombatSpeed);
 
