@@ -71,6 +71,7 @@ namespace RPG.Combat.Preview
         public void SetMeshes(PreviewTileModels info)
         {
             _filter[_tilePosition.y].mesh = info.PreviewLinesMeshs[_tilePosition.y];
+            _renderer[_tilePosition.y].material = info.Material;
         }
 
         public void SetCanBeSelected(bool canBeSelected)

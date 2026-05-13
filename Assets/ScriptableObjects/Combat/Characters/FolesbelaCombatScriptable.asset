@@ -24,6 +24,13 @@ MonoBehaviour:
       _doNeedSpotlight: 0
       _isRelativeToMovement: 0
       _area: 08000000
+    - _command: {fileID: 11400000, guid: 58b14df0b40a7074aac972afbc8fb47a, type: 2}
+      _triggerCondition: 2
+      _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 1
+      _isRelativeToMovement: 0
+      _area: 08000000
     _movementPatterns:
     - _pattern:
       - _direction: 3
@@ -33,6 +40,7 @@ MonoBehaviour:
       _repetition: 5
       _canMirror: 0
       Repetition: 5
+    _lastTileNeedsToBeEmpty: 1
   - _actionName: Directional Punch
     _actionDescription: 
     _effects:
@@ -63,7 +71,10 @@ MonoBehaviour:
       _repetition: 1
       _canMirror: 1
       Repetition: 1
+    _lastTileNeedsToBeEmpty: 0
   _type: 1
+  _spotlightDescription: "No Holofote: Toda A\xE7\xE3o empurra o Inimigo para fora
+    do Palco"
   _icon: {fileID: -65060539, guid: f484e21bd27c36f47ac7f15d8c6dc25d, type: 3}
   motivation: 65
   _prefab: {fileID: 3275965007155841491, guid: 71c58aac71435da4396b7b945d2f1d7b, type: 3}

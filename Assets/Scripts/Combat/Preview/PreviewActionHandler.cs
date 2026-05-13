@@ -85,6 +85,10 @@ namespace RPG.Combat.Preview
                     {
                         AddPreviewTile(_previewTileInfos[i][j], position);
                     }
+                    else if(j == _previewTileInfos[i].Count-1 && !_actionToPreview.LastTileNeedsToBeEmpty)
+                    {
+                        AddPreviewTile(_previewTileInfos[i][j], position);
+                    }
                 }
             }
         }
@@ -102,7 +106,7 @@ namespace RPG.Combat.Preview
                 if(tile.TileObject.TryGetComponent<StageEntityController>(out StageEntityController stageEntity))
                 {
                     doCancelPattern = previewTileInfo.NeedsToBeEmpty;
-
+ 
                     //TO DO adicionar mais condições em relação ao ataque selecionado
                     return false;
                 }
@@ -129,7 +133,7 @@ namespace RPG.Combat.Preview
             previewTile.SetInfo(previewTileInfo);
             previewTile.SetCanBeSelected(true);
             previewTile.SetPosition(position);
-            previewTile.SetMeshes(CombatManager.CharacterPreviewModels);
+            previewTile.SetMeshes(CombatManager.CharacterPreviewGroups);
 
             _activePreviewTiles.Add(previewTile);
 

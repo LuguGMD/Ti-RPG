@@ -8,6 +8,7 @@ using System.Collections;
 using System.Linq;
 using RPG.Combat.Wave;
 using RPG.Combat.Grid;
+using RPG.Combat.UI;
 
 namespace RPG.Combat
 {
@@ -17,8 +18,8 @@ namespace RPG.Combat
         [SerializeField] private EnemySpawnWarning _enemySpawnWarningPrefab;
         [Header("Tiles")]
         [SerializeField] private ActionPreviewTile _previewTilePrefab;
-        [SerializeField] private PreviewTileModels _characterPreviewModels;
-        [SerializeField] private PreviewTileModels _enemyPreviewModels;
+        [SerializeField] private PreviewTileGroup _characterPreviewGroups;
+        [SerializeField] private PreviewTileGroup _enemyPreviewGroups;
 
         private CombatTurnStateEnum _currentTurnState;
         private int _turnCount;
@@ -43,12 +44,13 @@ namespace RPG.Combat
         {
             get { return Instance._previewTilePrefab; }
         }
-        public static PreviewTileModels CharacterPreviewModels { get  { return Instance._characterPreviewModels; } }
-        public static PreviewTileModels EnemyPreviewModels { get { return Instance._enemyPreviewModels; } }
+        public static PreviewTileGroup CharacterPreviewGroups { get  { return Instance._characterPreviewGroups; } }
+        public static PreviewTileGroup EnemyPreviewGroups { get { return Instance._enemyPreviewGroups; } }
         public static CombatTurnStateEnum CurrentTurnState { get { return Instance._currentTurnState; } }
         public static int TurnCount { get { return Instance._turnCount; } }
         public static float CombatSpeed {  get { return Instance._combatSpeed; } }
         public static ApresentadorController Apresentador { get { return Instance._apresentador; } }
+        public static bool HasCombatStarted { get { return Instance._hasCombatStarted; } }
 
         #endregion
 
@@ -197,7 +199,7 @@ namespace RPG.Combat
         private void InitializeBattle()
         {
             ActionsManager.Instance.OnPreviewTileSelected -= PlaceCharacter;
-
+            CombatUIManager.Instance.ChangePanel(CombatUIManager.DefaultPanelIndex);
             _turnCount = 0;
             _currentTurnState = CombatTurnStateEnum.PlayerTurn;
             PassTurn();

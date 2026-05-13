@@ -35,7 +35,6 @@ namespace RPG.Combat.Grid
             Tile nextTile = MapManager.Map.GetNeighborTile(currentTile, direction);
 
             _tileObject.SetCurrentTile(nextTile, doReplace);
-            _tileObject.UpdatePosition();
         }
 
         public IEnumerator Move(bool isMirrored)
@@ -87,6 +86,7 @@ namespace RPG.Combat.Grid
             DOVirtual.Float(0f, 1f, time / CombatManager.CombatSpeed, t => {
                 float currentPercentage = Mathf.Lerp(startPercentage, endPercentage, t);
                 Vector3 position = spline.EvaluatePosition(currentPercentage);
+                transform.LookAt(position);
                 transform.position = position;
             }).SetEase(Ease.Linear);
 
@@ -98,6 +98,7 @@ namespace RPG.Combat.Grid
             Vector2Int targetTile = _tileObject.Position + direction.ToVector2Int();
             Vector3 targetPos = MapManager.Instance.GetWorldPosition(targetTile);
 
+            transform.LookAt(targetPos);
             transform.DOMove(targetPos, time / CombatManager.CombatSpeed).SetEase(Ease.Linear);
 
             yield return new WaitForSeconds(time / CombatManager.CombatSpeed);
@@ -108,6 +109,7 @@ namespace RPG.Combat.Grid
             if (MapManager.IsMovementValid(_tileObject.Position, movement, false))
             {
                 ChangeTile(movement.Direction, true);
+                _tileObject.UpdatePosition();
             }
         }
 

@@ -10,6 +10,7 @@ namespace RPG.Combat.Actions
         [SerializeField] private string _actionDescription;
         [SerializeField] private List<Effect> _effects;
         [SerializeField] private List<MovementPattern> _movementPatterns;
+        [SerializeField] private bool _lastTileNeedsToBeEmpty = true;
 
         #region Properties
 
@@ -25,6 +26,8 @@ namespace RPG.Combat.Actions
         {
             get { return _movementPatterns; }
         }
+
+        public bool LastTileNeedsToBeEmpty { get { return _lastTileNeedsToBeEmpty; } }
 
         #endregion
 

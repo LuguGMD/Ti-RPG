@@ -39,6 +39,15 @@ namespace RPG.Combat.Preview
                 ActionsManager.Instance.OnActionTileSelected?.Invoke(_info);
         }
 
+        public void SetMeshes(PreviewTileGroup previewTileGroup)
+        {
+            if(_info.IsMovement)
+                SetMeshes(previewTileGroup.Movement);
+
+            if (_info.IsAttack)
+                SetMeshes(previewTileGroup.Effect);
+        }
+
         private void CheckSelected(Vector2Int selectedPosition)
         {
             if(_tilePosition == selectedPosition)

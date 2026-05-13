@@ -95,6 +95,18 @@ namespace RPG.Combat
             }
         }
 
+        protected bool IsInActionAnimation()
+        {
+            foreach (Animator animator in _animators)
+            {
+                if(animator.GetCurrentAnimatorStateInfo(0).IsTag("Action") || animator.IsInTransition(0))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public virtual void TakeDamage(float damage)
         {
             SetAnimationTrigger("TookDamage");

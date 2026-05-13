@@ -68,6 +68,8 @@ namespace RPG.Combat
                 yield return _movement.Move(isMirrored);
             }
 
+            yield return new WaitUntil(() => !IsInActionAnimation());
+            _tileObject.UpdatePosition();
 
             ActionsManager.Instance.OnActionEnd?.Invoke();
             SetAnimationBool("IsActionRunning", false);

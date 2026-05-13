@@ -96,12 +96,12 @@ namespace RPG.Combat.UI
 
         private void ShowCanvas()
         {
-            _mainPanel.SetActive(true);
+            CombatUIManager.Instance.ChangePanel(_mainPanel);
         }
 
         private void HideCanvas()
         {
-            _mainPanel.SetActive(false);
+            CombatUIManager.Instance.DisablePanel(_mainPanel);
         }
     }
 }
