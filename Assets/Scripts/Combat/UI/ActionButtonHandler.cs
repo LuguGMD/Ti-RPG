@@ -37,7 +37,7 @@ namespace RPG.Combat.UI
         {
             if (_panelController != null)
             {
-                _panelController.OnActionSelected(_actionIndex);
+                _panelController.OnActionButtonClicked();
             }
         }
 
@@ -45,6 +45,7 @@ namespace RPG.Combat.UI
         {
             if (_panelController != null)
             {
+                _panelController.OnActionSelected(_actionIndex);
                 _panelController.OnActionButtonHovered(_action);
             }
         }

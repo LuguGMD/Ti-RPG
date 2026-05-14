@@ -22,6 +22,7 @@ namespace RPG.Combat
         public TileObjectMovement Movement { get { return _movement; } }
         public StageEntityScriptable Info { get { return _info; } }
         public PreviewActionHandler Preview { get { return _preview; } }
+        public int SelectedActionIndex {  get { return _selectedActionIndex; } }
 
         #endregion
 

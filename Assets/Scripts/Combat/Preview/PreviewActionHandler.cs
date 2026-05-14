@@ -106,7 +106,6 @@ namespace RPG.Combat.Preview
                 if(tile.TileObject.TryGetComponent<StageEntityController>(out StageEntityController stageEntity))
                 {
                     doCancelPattern = previewTileInfo.NeedsToBeEmpty;
- 
                     //TO DO adicionar mais condições em relação ao ataque selecionado
                     return false;
                 }
@@ -129,6 +128,11 @@ namespace RPG.Combat.Preview
 
         protected virtual void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position)
         {
+            if(position.y < 0)
+            {
+                return;
+            }
+
             PreviewTilesPool.Pool.Get(out ActionPreviewTile previewTile);
             previewTile.SetInfo(previewTileInfo);
             previewTile.SetCanBeSelected(true);

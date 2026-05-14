@@ -609,6 +609,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6602691397485413360, guid: 90ae1b87327be87499e1a802694983b9, type: 3}
+      propertyPath: _cancelButton
+      value: 
+      objectReference: {fileID: 701703518}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1326,6 +1330,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3615694226061502400, guid: c4036b41107fdab498ed0bc2c6d3b9c8, type: 3}
   m_PrefabInstance: {fileID: 690900660}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &701703518 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3053061976877411, guid: 90ae1b87327be87499e1a802694983b9, type: 3}
+  m_PrefabInstance: {fileID: 261358476}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1 &781798001
 GameObject:
   m_ObjectHideFlags: 0

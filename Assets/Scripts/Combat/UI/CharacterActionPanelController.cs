@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using RPG.Combat.Actions;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 namespace RPG.Combat.UI
 {
@@ -14,6 +15,7 @@ namespace RPG.Combat.UI
         [SerializeField] private TextMeshProUGUI _spotlightDescriptionText;
         [SerializeField] private ActionButtonHandler _actionButtonPrefab;
         [SerializeField] private RectTransform _actionsPanel;
+        [SerializeField] private Button _cancelButton;
         private List<ActionButtonHandler> _actionButtons = new List<ActionButtonHandler>();
 
         private CharacterController _selectedCharacter;
@@ -21,22 +23,20 @@ namespace RPG.Combat.UI
         private void Start()
         {
             HidePanel();
+            _cancelButton.onClick.AddListener(HidePanel);
         }
 
         private void OnEnable()
         {
-            ActionsManager.Instance.OnTurnPassed += HidePanel;
-            ActionsManager.Instance.OnActionStart += HidePanel;
             ActionsManager.Instance.OnEntitySelected += OnEntitySelected;
             ActionsManager.Instance.OnCharacterSelected += OnCharacterSelected;
         }
 
         private void OnDisable()
         {
-            ActionsManager.Instance.OnTurnPassed -= HidePanel;
-            ActionsManager.Instance.OnActionStart -= HidePanel;
             ActionsManager.Instance.OnEntitySelected -= OnEntitySelected;
             ActionsManager.Instance.OnCharacterSelected -= OnCharacterSelected;
+            HidePanel();
         }
 
         private void OnEntitySelected(EntityController entity)
@@ -88,6 +88,11 @@ namespace RPG.Combat.UI
             _actionButtons.Add(actionButton);
         }
 
+        public void OnActionButtonClicked()
+        {
+            HidePanel();
+        }
+
         public void OnActionButtonHovered(CombatAction action)
         {
             _actionDescriptionText.text = action.ActionDescription;
@@ -101,7 +106,7 @@ namespace RPG.Combat.UI
 
         public void OnActionSelected(int actionIndex)
         {
-            if (_selectedCharacter != null)
+            if (_selectedCharacter != null && _selectedCharacter.SelectedActionIndex != actionIndex)
             {
                 _selectedCharacter.SelectAction(actionIndex);
             }
@@ -110,11 +115,15 @@ namespace RPG.Combat.UI
         private void ShowPanel()
         {
             CombatUIManager.Instance.ChangePanel(_panel);
+            ActionsManager.Instance.OnTurnPassed += HidePanel;
+            ActionsManager.Instance.OnActionStart += HidePanel;
         }
 
         private void HidePanel()
         {
             CombatUIManager.Instance.DisablePanel(_panel);
+            ActionsManager.Instance.OnTurnPassed -= HidePanel;
+            ActionsManager.Instance.OnActionStart -= HidePanel;
         }
     }
 }
