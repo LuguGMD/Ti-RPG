@@ -84,6 +84,8 @@ namespace RPG.Input
                             { return true; }
                             else if (target != null && target.transform.parent != null)
                             { target = target.transform.parent.gameObject; }
+                            else
+                            { target = null; }
                         }
                         while (target != null && Layer.IsLayerInMask(target.layer, CollisionLayers));
 
