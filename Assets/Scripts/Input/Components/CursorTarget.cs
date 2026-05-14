@@ -6,7 +6,7 @@ namespace RPG.Input
 {
     public class CursorTarget : InputComponent<CursorTarget.CursorTargetActionsHandler>
     {
-        static public LayerMask CollisionLayer => CursorInput.TargetCollisionLayer;
+        static public LayerMask CollisionLayers => CursorInput.CollisionLayers;
 
         [SerializeField] private GameObject collisionTarget;
 
@@ -15,7 +15,7 @@ namespace RPG.Input
             if (collisionTarget == null)
             {
                 if (
-                    Layer.IsLayerInMask(gameObject.layer, CollisionLayer)
+                    Layer.IsLayerInMask(gameObject.layer, CollisionLayers)
                     && TryGetComponent<Collider>(out _)
                 )
                 {
@@ -47,7 +47,7 @@ namespace RPG.Input
                     );
                 }
 
-                if (!Layer.IsLayerInMask(collisionTarget.layer, CollisionLayer))
+                if (!Layer.IsLayerInMask(collisionTarget.layer, CollisionLayers))
                 {
                     Debug.LogWarning(
                         $"{gameObject.name} > {collisionTarget.name}: " +
@@ -85,7 +85,7 @@ namespace RPG.Input
                             else if (target != null && target.transform.parent != null)
                             { target = target.transform.parent.gameObject; }
                         }
-                        while (target != null && Layer.IsLayerInMask(target.layer, CollisionLayer));
+                        while (target != null && Layer.IsLayerInMask(target.layer, CollisionLayers));
 
                         return false;
                     }

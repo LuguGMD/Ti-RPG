@@ -18,15 +18,27 @@ namespace LucasRozado.Utility
                 public Utility(LayerMask of) : base(of)
                 { }
 
-                public bool HasLayer(int layer) => IsLayerInMask(layer, self);
+                public bool HasLayer(int layerID) => IsLayerInMask(layerID, self);
+
+                public LayerMask Inverse => Not(self);
             }
 
-            static public bool IsLayerInMask(int layer, LayerMask mask)
+            static public LayerMask LayerAsMask(int layerID)
             {
-                int layerAsMask = 1 << (layer - 1);
+                int layerAsMask = 1 << (layerID - 1);
+                return layerAsMask;
+            }
+
+            static public bool IsLayerInMask(int layerID, LayerMask mask)
+            {
+                int layerAsMask = LayerAsMask(layerID);
                 return (mask & layerAsMask) == layerAsMask;
             }
 
+            static public LayerMask Not(LayerMask mask)
+            {
+                return ~mask;
+            }
         }
     }
 }

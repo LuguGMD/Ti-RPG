@@ -7,16 +7,35 @@ namespace LucasRozado.Utility
     {
 
         static public TSelf Instance => instanceGetter.Invoke();
-        static public void Create(TSelf instance) => instanceSetter.Invoke(instance);
+        static public bool Create(TSelf instance) {
+            bool hasInstance = instanceGetter == GetInstance;
+            if (hasInstance)
+            {
+                Debug.LogWarning(
+                    $"{typeof(TSelf).Name}: " +
+                    "Tried to create a second Singleton instance."
+                );
+                return false;
+            }
+            else
+            {
+                SetInstance(instance);
+                return true;
+            }
+        }
 
         static private TSelf instance;
         static private Getter<TSelf> instanceGetter = TryGetFirstInstance;
-        static private Setter<TSelf> instanceSetter = SetFirstInstance;
 
         static private TSelf TryGetFirstInstance()
         {
-            if (instance is MonoBehaviour) return GetNoInstance();
-            if (instance is ScriptableObject) return GetNoInstance();
+            switch (instance)
+            {
+                case MonoBehaviour:
+                case ScriptableObject:
+                    instanceGetter = GetNoInstance;
+                    return GetNoInstance();
+            }
 
             return GetFirstInstance();
         }
@@ -25,7 +44,7 @@ namespace LucasRozado.Utility
         {
             Debug.LogError(
                 $"{typeof(TSelf).Name}: " +
-                "Tried getting a Singleton instance, " +
+                "Tried to get a Singleton instance, " +
                 "but none were ever created."
             );
             return default;
@@ -33,34 +52,25 @@ namespace LucasRozado.Utility
 
         static private TSelf GetFirstInstance()
         {
-            SetFirstInstance(new());
+            SetInstance(new());
             return instance;
         }
 
-        static private void SetFirstInstance(TSelf instance)
+        static private void SetInstance(TSelf instance)
         {
             if (instance == null)
             {
                 Debug.LogError(
                     $"{typeof(TSelf).Name}: " +
-                    "Tried creating a null Singleton instance."
+                    "Tried to create a null Singleton instance."
                 );
                 return;
             }
 
             Singleton<TSelf>.instance = instance;
             instanceGetter = GetInstance;
-            instanceSetter = FailToSetInstance;
         }
 
         static private TSelf GetInstance() => instance;
-
-        static private void FailToSetInstance(TSelf _)
-        {
-            Debug.LogWarning(
-                $"{typeof(TSelf).Name}: " +
-                "Failed to create another Singleton instance."
-            );
-        }
     }
 }
