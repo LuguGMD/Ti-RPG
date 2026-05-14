@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterScriptable
   _entityName: Barbara
   _actions:
-  - _actionName: Healing Song
+  - _actionName: "Can\xE7\xE3o Motivadora"
     _actionDescription: "Aumente a Motiva\xE7\xE3o de Aliados"
     _effects:
     - _command: {fileID: 11400000, guid: 4ee1697dcabbbf74dbe43317843439d5, type: 2}
@@ -57,7 +57,7 @@ MonoBehaviour:
       _canMirror: 1
       Repetition: 1
     _lastTileNeedsToBeEmpty: 1
-  - _actionName: Directional Punch
+  - _actionName: Soco Direcional
     _actionDescription: 
     _effects:
     - _command: {fileID: 11400000, guid: faaab5275613368488736a1e776f3671, type: 2}
