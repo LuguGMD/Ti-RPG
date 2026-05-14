@@ -1,34 +1,25 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using static InputSystem_Actions;
 using static UnityEngine.InputSystem.InputAction;
 
 using LucasRozado.Utility;
-using UnityEngine.EventSystems;
 
 namespace RPG.Input
 {
     public class CursorInput : InputComponent<CursorInput.CursorInputActionsHandler>
     {
         static public new CursorInputActionsHandler Actions => Singleton<CursorInputActionsHandler>.Instance;
-        private static CursorInput _instance;
-        
-        [SerializeField] private LayerMask targetCollisionLayer;
-        static public LayerMask TargetCollisionLayer => Instance.targetCollisionLayer;
+        public static CursorInput Instance => Singleton<CursorInput>.Instance;
 
-        public static CursorInput Instance {  get { return _instance; } }
+        [SerializeField] private LayerMask ignoreCollisionLayers;
+        static public LayerMask CollisionLayers => Utility.Get(Instance.ignoreCollisionLayers).Inverse;
+
 
         protected new void Awake()
         {
-            if(_instance == null)
-            {
-                _instance = this;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-            base.Awake();
-            //Singleton<CursorInput>.Create(this);
+            if (Singleton<CursorInput>.Create(this))
+            { base.Awake(); }
         }
 
         protected override CursorInputActionsHandler GetHandler() => Singleton<CursorInputActionsHandler>.Instance;
@@ -72,13 +63,13 @@ namespace RPG.Input
                 {
                     Vector2 cursorPosition = Position.LastValue;
                     var eventSystemUtility = Utility.Get(EventSystem.current);
-                    
+
                     if (eventSystemUtility.IsCursorOverUIElement(cursorPosition))
                     { return null; }
-                    
+
                     if (Physics.Raycast(ray,
                         maxDistance: Mathf.Infinity,
-                        layerMask: TargetCollisionLayer,
+                        layerMask: CollisionLayers,
                         hitInfo: out RaycastHit hit
                     ))
                     { return hit.collider.gameObject; }
