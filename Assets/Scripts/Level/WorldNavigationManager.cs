@@ -1,4 +1,5 @@
 using RPG.Camera;
+using RPG.Input;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +7,11 @@ namespace RPG.Level
 {
     public class WorldNavigationManager : MonoBehaviour
     {
+        private PlayerInput _playerInput;
+
         [Header("Levels")]
         [SerializeField]
         private List<LevelNode> levels = new();
-
-
 
         [Header("Progression")]
         [SerializeField]
@@ -31,7 +32,33 @@ namespace RPG.Level
 
         #region Methods
 
-        public void NextLevel()
+        private void Awake()
+        {
+            _playerInput = GameObject.FindAnyObjectByType<PlayerInput>();
+        }
+
+        private void Start()
+        {
+            _playerInput.Actions.Move.OnUpdate(NavigationInput);
+            _playerInput.Actions.Interact.OnStart(SelectCurrentLevel);
+        }
+
+        private void NavigationInput(Vector2 input)
+        {
+            if (CameraManager.Instance.CurrentCamera.IsParticipatingInBlend()) return;
+            if (LevelSelectUIController.IsActive) return;
+
+            if(input.y > 0.3f)
+            {
+                NextLevel();
+            }
+            else if(input.y < -0.3f)
+            {
+                PreviousLevel();
+            }
+        }
+
+        private void NextLevel()
         {
             int nextIndex = currentLevel + 1; 
 
@@ -40,30 +67,38 @@ namespace RPG.Level
 
             if (nextIndex > maxUnlockedLevel) 
                 return;
-              
-            SelectLevel(nextIndex);
+
+            ChangeCurrentLevel(nextIndex);
         }
 
-        public void PreviousLevel()
+        private void PreviousLevel()
         {
             int previousIndex = currentLevel - 1; 
             if (previousIndex < 0) 
                 return;
 
-            SelectLevel(previousIndex);
+            ChangeCurrentLevel(previousIndex);
         }
 
-        private void SelectLevel(int levelIndex)
+        private void ChangeCurrentLevel(int levelIndex)
         {
             currentLevel = levelIndex;
 
             LevelNode _currentLevel = CurrentLevel;
 
-            CameraManager.Instance.SwitchCameraForLevel(levelIndex);
+            CameraManager.Instance.SwitchCamera(CurrentLevel.LevelCamera);
 
             UpdateLoadedLevels();
+        }
 
-            ActionsManager.Instance.OnLevelSelected?.Invoke(this);
+        private void SelectCurrentLevel()
+        {
+            if (CurrentLevel == null) return;
+            if (CurrentLevel.LevelData == null) return;
+            if (CameraManager.Instance.CurrentCamera.IsParticipatingInBlend()) return;
+            if (LevelSelectUIController.IsActive) return;
+
+            ActionsManager.Instance.OnLevelSelected?.Invoke(CurrentLevel.LevelData);
         }
 
         private void UpdateLoadedLevels()
@@ -71,7 +106,7 @@ namespace RPG.Level
             for (int i = 0; i < levels.Count;i++)
             {
                 bool shouldBeActive = 
-                    i <= currentLevel ||
+                    i == currentLevel ||
                     i == currentLevel - 1 ||
                     i == currentLevel + 1;
 

@@ -1,6 +1,7 @@
 using Lugu.Singleton;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace RPG.Camera
@@ -8,14 +9,10 @@ namespace RPG.Camera
     public class CameraManager : SingletonMono<CameraManager>
     {
         [SerializeField]
-        private List<GameObject> cameras = new List<GameObject>();
+        private List<CinemachineCamera> cameras = new List<CinemachineCamera>();
 
-        [SerializeField]
-        [Tooltip("Tempo de transição")]
-        private float transitionDelay = 1f;
-
-        private GameObject currentCamera;
-        private GameObject previousCamera;
+        private CinemachineCamera currentCamera;
+        private CinemachineCamera previousCamera;
 
         [SerializeField]
         [Tooltip("Selecione a câmera pelo índice no inspetor")]
@@ -23,8 +20,8 @@ namespace RPG.Camera
 
         #region Properties
 
-        public GameObject CurrentCamera { get { return currentCamera; } }
-        public GameObject PreviousCamera { get { return previousCamera; } }
+        public CinemachineCamera CurrentCamera { get { return currentCamera; } }
+        public CinemachineCamera PreviousCamera { get { return previousCamera; } }
         public int CameraNumber { get { return cameraNumber; } }
 
         #endregion
@@ -52,9 +49,9 @@ namespace RPG.Camera
                 return;
             }
 
-            foreach (GameObject cam in cameras)
+            foreach (CinemachineCamera cam in cameras)
             {
-                cam.SetActive(false);
+                cam.gameObject.SetActive(false);
             }
 
             SwitchCamera(cameras[cameraNumber]);
@@ -75,7 +72,7 @@ namespace RPG.Camera
             }
         }
 
-        public void SwitchCamera(GameObject newCamera)
+        public void SwitchCamera(CinemachineCamera newCamera)
         {
             if (newCamera == null)
             {
@@ -89,16 +86,16 @@ namespace RPG.Camera
             if (currentCamera != null)
             {
                 previousCamera = currentCamera;
-                previousCamera.SetActive(false);
+                previousCamera.gameObject.SetActive(false);
             }
 
             currentCamera = newCamera;
 
-            currentCamera.SetActive(true);
+            currentCamera.gameObject.SetActive(true);
             cameraNumber = cameras.IndexOf(currentCamera);
         }
 
-        public void DisableCamera(GameObject camera)
+        public void DisableCamera(CinemachineCamera camera)
         {
             if(currentCamera == camera)
             {
@@ -112,42 +109,6 @@ namespace RPG.Camera
         public void SwitchCameraByIndex(int index)
         {
             SwitchCamera(cameras[index]);
-        }
-
-        public void SwitchCameraWithTransition(int initialCameraIndex)
-        {
-
-            if (initialCameraIndex % 2 == 0)
-            {
-                int nextCameraIndex = initialCameraIndex + 1;
-                if (nextCameraIndex < cameras.Count)
-                {
-                    StartCoroutine(TransitionCameras(initialCameraIndex, nextCameraIndex));
-                }
-                else
-                {
-                    SwitchCamera(cameras[initialCameraIndex]);
-                }
-            }
-            else
-            {
-                SwitchCamera(cameras[initialCameraIndex]);
-            }
-        }
-
-        private IEnumerator TransitionCameras(int fromCameraIndex, int toCameraIndex)
-        {
-            SwitchCamera(cameras[fromCameraIndex]);
-
-            yield return new WaitForSeconds(transitionDelay);
-
-            SwitchCamera(cameras[toCameraIndex]);
-        }
-
-        public void SwitchCameraForLevel(int levelIndex)
-        {
-            int initialCameraIndex = levelIndex * 2;
-            SwitchCameraWithTransition(initialCameraIndex);
         }
         #endregion
     }

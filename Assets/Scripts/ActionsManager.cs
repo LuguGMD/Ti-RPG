@@ -105,7 +105,7 @@ namespace RPG
 
         #region Level
 
-        public Action<WorldNavigationManager> OnLevelSelected;
+        public Action<LevelScriptable> OnLevelSelected;
 
         #endregion
 

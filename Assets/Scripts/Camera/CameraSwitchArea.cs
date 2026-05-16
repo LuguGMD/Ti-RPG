@@ -1,10 +1,11 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace RPG.Camera
 {
     public class CameraSwitchArea : MonoBehaviour
     {
-        [SerializeField] private GameObject _camera;
+        [SerializeField] private CinemachineCamera _camera;
 
         private void OnTriggerEnter(Collider other)
         {

@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace RPG.Level
@@ -14,7 +15,7 @@ namespace RPG.Level
 
         [Header("Camera")]
         [SerializeField]
-        private GameObject levelCamera;
+        private CinemachineCamera levelCamera;
 
         #region Properties
         
@@ -23,7 +24,7 @@ namespace RPG.Level
             get { return levelData; }
         }
 
-        public GameObject LevelCamera
+        public CinemachineCamera LevelCamera
         {
             get { return levelCamera; }
         }
