@@ -473,7 +473,7 @@ PrefabInstance:
     - target: {fileID: 2259966632924729377, guid: 02eea88449fc5b1459ae8ad01c63702b, type: 3}
       propertyPath: _camera
       value: 
-      objectReference: {fileID: 977461423}
+      objectReference: {fileID: 977461424}
     - target: {fileID: 5875054023988033559, guid: 02eea88449fc5b1459ae8ad01c63702b, type: 3}
       propertyPath: m_Name
       value: CircusManagementBlocking
@@ -556,8 +556,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701645360}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2985801, y: 0, z: 0, w: 0.9543846}
-  m_LocalPosition: {x: 1.3399658, y: 5.4427023, z: -19.61264}
+  m_LocalRotation: {x: 0.0037818244, y: 0.99408376, z: -0.10211666, w: 0.036815245}
+  m_LocalPosition: {x: 0.64246756, y: 3.4580688, z: -5.966006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -587,7 +587,7 @@ MonoBehaviour:
     DefaultMode: 2
   DefaultBlend:
     Style: 1
-    Time: 2
+    Time: 1
     CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -977,7 +977,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1063941471
 Transform:
   m_ObjectHideFlags: 0
@@ -1206,7 +1206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1586216070
 Transform:
   m_ObjectHideFlags: 0
@@ -2023,15 +2023,15 @@ PrefabInstance:
     - target: {fileID: 7391651223910733229, guid: d08c4b0808d557746822252ec57d6c98, type: 3}
       propertyPath: 'cameras.Array.data[0]'
       value: 
-      objectReference: {fileID: 1586216069}
+      objectReference: {fileID: 1063941473}
     - target: {fileID: 7391651223910733229, guid: d08c4b0808d557746822252ec57d6c98, type: 3}
       propertyPath: 'cameras.Array.data[1]'
       value: 
-      objectReference: {fileID: 977461423}
+      objectReference: {fileID: 977461424}
     - target: {fileID: 7391651223910733229, guid: d08c4b0808d557746822252ec57d6c98, type: 3}
       propertyPath: 'cameras.Array.data[2]'
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 977461423}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -1,9 +1,10 @@
 using Lugu.Singleton;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Management.Minigames
 {
-    public abstract class MinigameManager : SingletonMono<MinigameManager>
+    public class MinigameManager : SingletonMono<MinigameManager>
     {
         private int _totalHits;
         private int _totalPerfectHits;
@@ -15,6 +16,9 @@ namespace RPG.Management.Minigames
         private int _currentComboDuration;
 
         private bool _isPaused = false;
+
+        [SerializeField] private List<MinigameChallenge> _challenges;
+        private int _currentChallengeIndex = 0;
 
         #region Properties
 
@@ -28,14 +32,21 @@ namespace RPG.Management.Minigames
         public static int CurrentComboDuration {  get { return Instance._currentComboDuration; } }
 
         public static bool IsPaused { get { return Instance._isPaused; } }
+        public static int CurrentChallengeIndex { get { return Instance._currentChallengeIndex; } }
 
         #endregion
+
+        private void Start()
+        {
+            Init();
+        }
 
         private void OnEnable()
         {
             ActionsManager.Instance.OnMinigameHit += OnHit;
             ActionsManager.Instance.OnMinigamePerfectHit += OnPerfectHit;
             ActionsManager.Instance.OnMinigameMiss += OnMiss;
+            ActionsManager.Instance.OnMinigameChallengeCompleted += OnChallengeCompleted;
         }
 
         private void OnDisable()
@@ -43,6 +54,7 @@ namespace RPG.Management.Minigames
             ActionsManager.Instance.OnMinigameHit -= OnHit;
             ActionsManager.Instance.OnMinigamePerfectHit -= OnPerfectHit;
             ActionsManager.Instance.OnMinigameMiss -= OnMiss;
+            ActionsManager.Instance.OnMinigameChallengeCompleted -= OnChallengeCompleted;
         }
 
         private void Init()
@@ -52,23 +64,27 @@ namespace RPG.Management.Minigames
             _totalMisses = 0;
             ResetCombo();
             ResetPerfectCombo();
+            InitCurrentChallenge();
         }
 
         private void ResetPerfectCombo()
         {
-            ResetPerfectCombo();
+            _currentPerfectCombo = 0;
         }
 
         private void ResetCombo()
         {
             _currentCombo = 0;
             _currentComboDuration = 0;
+            ResetPerfectCombo();
         }
 
         private void OnHit()
         {
             _totalHits++;
             _currentCombo++;
+
+            ActionsManager.Instance.OnMinigameValuesUpdated?.Invoke();
         }
 
         private void OnPerfectHit()
@@ -83,11 +99,29 @@ namespace RPG.Management.Minigames
             _totalMisses++;
             ResetPerfectCombo();
             ResetCombo();
+
+            ActionsManager.Instance.OnMinigameValuesUpdated?.Invoke();
         }
 
         public void TogglePause(bool doPaused)
         {
             _isPaused = doPaused;
+        }
+
+        private void OnChallengeCompleted()
+        {
+            _challenges[_currentChallengeIndex].RemoveListeners();
+
+            _currentChallengeIndex++;
+            InitCurrentChallenge();
+        }
+
+        private void InitCurrentChallenge()
+        {
+            if (_currentChallengeIndex < _challenges.Count)
+            {
+                _challenges[_currentChallengeIndex].AddListeners();
+            }
         }
     }
 }

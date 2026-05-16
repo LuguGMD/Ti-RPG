@@ -9,7 +9,7 @@ namespace RPG.Camera
     public class CameraManager : SingletonMono<CameraManager>
     {
         [SerializeField]
-        private List<CinemachineCamera> cameras = new List<CinemachineCamera>();
+        private List<CinemachineCamera> cameras;
 
         private CinemachineCamera currentCamera;
         private CinemachineCamera previousCamera;

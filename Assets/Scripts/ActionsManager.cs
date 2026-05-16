@@ -4,6 +4,7 @@ using RPG.Combat.Actions;
 using RPG.Combat.Preview;
 using RPG.Level;
 using RPG.Level.Challenge;
+using RPG.Management.Minigames;
 using System;
 using UnityEngine;
 using CharacterController = RPG.Combat.CharacterController;
@@ -100,6 +101,10 @@ namespace RPG
         public Action OnMinigameMiss;
         public Action OnMinigameHit;
         public Action OnMinigamePerfectHit;
+
+        public Action OnMinigameValuesUpdated;
+        public Action<MinigameChallenge> OnMinigameChallengeUpdated;
+        public Action OnMinigameChallengeCompleted;
 
         #endregion
 
