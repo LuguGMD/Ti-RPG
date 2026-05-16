@@ -609,6 +609,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5989211975576280247, guid: 90ae1b87327be87499e1a802694983b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1567,9 +1571,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 624594990007fae9aba8f2c5c8a31f2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.CursorManager
-  targetCollisionLayer:
+  ignoreCollisionLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 0
 --- !u!1001 &900876427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4825,7 +4829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5204142915136496256, guid: 044e23737c44e744fb71e78db0185d8f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

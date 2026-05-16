@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RPG
+namespace RPG.Dialogue
 {
     public class TextProgress
     {

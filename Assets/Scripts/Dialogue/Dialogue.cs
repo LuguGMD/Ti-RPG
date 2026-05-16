@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization.Tables;
 
-namespace RPG
+namespace RPG.Dialogue
 {
     public class Dialogue
     {

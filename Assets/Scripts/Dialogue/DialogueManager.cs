@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Tables;
 
-namespace RPG
+namespace RPG.Dialogue
 {
     public class DialogueManager : MonoBehaviour
     {
@@ -24,7 +24,7 @@ namespace RPG
                 );
             }
 
-            player = GetComponent<PlayerInput>();
+            player = GameObject.FindAnyObjectByType<PlayerInput>();
             table = dialogueTable.GetTable();
         }
 
