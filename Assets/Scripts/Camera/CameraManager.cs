@@ -1,4 +1,5 @@
 using Lugu.Singleton;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,6 +9,10 @@ namespace RPG.Camera
     {
         [SerializeField]
         private List<GameObject> cameras = new List<GameObject>();
+
+        [SerializeField]
+        [Tooltip("Tempo de transição")]
+        private float transitionDelay = 1f;
 
         private GameObject currentCamera;
         private GameObject previousCamera;
@@ -107,6 +112,42 @@ namespace RPG.Camera
         public void SwitchCameraByIndex(int index)
         {
             SwitchCamera(cameras[index]);
+        }
+
+        public void SwitchCameraWithTransition(int initialCameraIndex)
+        {
+
+            if (initialCameraIndex % 2 == 0)
+            {
+                int nextCameraIndex = initialCameraIndex + 1;
+                if (nextCameraIndex < cameras.Count)
+                {
+                    StartCoroutine(TransitionCameras(initialCameraIndex, nextCameraIndex));
+                }
+                else
+                {
+                    SwitchCamera(cameras[initialCameraIndex]);
+                }
+            }
+            else
+            {
+                SwitchCamera(cameras[initialCameraIndex]);
+            }
+        }
+
+        private IEnumerator TransitionCameras(int fromCameraIndex, int toCameraIndex)
+        {
+            SwitchCamera(cameras[fromCameraIndex]);
+
+            yield return new WaitForSeconds(transitionDelay);
+
+            SwitchCamera(cameras[toCameraIndex]);
+        }
+
+        public void SwitchCameraForLevel(int levelIndex)
+        {
+            int initialCameraIndex = levelIndex * 2;
+            SwitchCameraWithTransition(initialCameraIndex);
         }
         #endregion
     }

@@ -2,6 +2,7 @@ using Lugu.Singleton;
 using RPG.Combat;
 using RPG.Combat.Actions;
 using RPG.Combat.Preview;
+using RPG.Level;
 using RPG.Level.Challenge;
 using System;
 using UnityEngine;
@@ -99,6 +100,12 @@ namespace RPG
         public Action OnMinigameMiss;
         public Action OnMinigameHit;
         public Action OnMinigamePerfectHit;
+
+        #endregion
+
+        #region Level
+
+        public Action<WorldNavigationManager> OnLevelSelected;
 
         #endregion
 
