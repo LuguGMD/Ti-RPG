@@ -116,13 +116,7 @@ namespace RPG.Camera
 
         public void SwitchCameraWithTransition(int initialCameraIndex)
         {
-            if (initialCameraIndex < 0 || initialCameraIndex >= cameras.Count)
-            {
-                Debug.LogWarning($"Câmera inicial inválida: {initialCameraIndex}");
-                return;
-            }
 
-            // Se é um índice par, começa a transição
             if (initialCameraIndex % 2 == 0)
             {
                 int nextCameraIndex = initialCameraIndex + 1;
