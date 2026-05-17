@@ -25,11 +25,13 @@ namespace RPG.Combat.Grid
         private void OnEnable()
         {
             ActionsManager.Instance.OnMapChanged += UpdatePosition;
+            ActionsManager.Instance.OnTurnPassed += CheckSpotlight;
         }
 
         private void OnDisable()
         {
             ActionsManager.Instance.OnMapChanged -= UpdatePosition;
+            ActionsManager.Instance.OnTurnPassed -= CheckSpotlight;
         }
 
         public void SetCurrentTile(Tile tile, bool doReplace)
@@ -57,9 +59,11 @@ namespace RPG.Combat.Grid
             transform.parent = _currentTile.Transform;
             transform.localPosition = Vector3.zero;
             transform.LookAt(transform.position + (transform.position.normalized));
+        }
 
+        public void CheckSpotlight()
+        {
             _isOnSpotlight = MapManager.Instance.IsPositionOnSpotlight(Position);
-
         }
     }
 }

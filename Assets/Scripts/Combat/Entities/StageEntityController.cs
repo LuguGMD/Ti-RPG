@@ -45,6 +45,8 @@ namespace RPG.Combat
 
         public IEnumerator UseSelectedAction(int movementPatternIndex, int repetitions, bool isMirrored)
         {
+            _tileObject.CheckSpotlight();
+
             SetAnimationInt("ActionIndex", _selectedActionIndex);
             SetAnimationBool("IsActionRunning", true);
 

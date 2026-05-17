@@ -12,11 +12,14 @@ namespace RPG
         [SerializeField] private CharacterScriptable[] _currentParty = new CharacterScriptable[CombatConstants.MAX_CHARACTERS_COUNT];
         [SerializeField] private CharacterScriptable[] _availableCharacters;
 
+        private int _coins = 0;
+
         #region Properties
 
         public static LevelScriptable SelectedLevel { get { return Instance._selectedLevel; } }
         public static CharacterScriptable[] CurrentParty { get { return Instance._currentParty; } }
         public static CharacterScriptable[] AvailableCharacters {  get { return Instance._availableCharacters; } }
+        public static int Coins { get { return Instance._coins; } }
 
         #endregion
 
@@ -33,6 +36,16 @@ namespace RPG
         private void SelectLevel(LevelScriptable selectedLevel)
         {
             _selectedLevel = selectedLevel;
+        }
+
+        public void AddCoins(int coinsAmount)
+        {
+            _coins += coinsAmount;
+        }
+
+        public void SpendCoins(int coinsAmount)
+        {
+            _coins -= coinsAmount;
         }
 
         public static void ChangeScene(ScenesEnum scene)
