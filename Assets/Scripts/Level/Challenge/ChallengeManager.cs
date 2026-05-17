@@ -50,6 +50,8 @@ namespace RPG.Level.Challenge
             {
                 if (_challengeHandlers[i].IsComplete)
                 {
+                    int reward = _challengeHandlers[i].Info.CoinsReward;
+                    GameManager.Instance.AddCoins(reward);
                     //TO DO - Send to save later
                     //Challenge ID = $"{LevelNumber} + {i}"
                 }
