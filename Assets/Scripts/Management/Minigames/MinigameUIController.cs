@@ -27,6 +27,8 @@ namespace RPG.Management.Minigames
         private void Start()
         {
             _playerInput.Actions.Pause.OnStart(TogglePause);
+
+            UpdateTexts();
         }
 
         private void OnEnable()
@@ -71,7 +73,7 @@ namespace RPG.Management.Minigames
             }
 
             _challengeNameText.text = challengeName + $" #{MinigameManager.CurrentChallengeIndex+1}";
-            _challengeProgressBar.value = challenge.ChallengeProgress / challenge.ChallengeGoal;
+            _challengeProgressBar.value = (float)challenge.ChallengeProgress / (float)challenge.ChallengeGoal;
             _challengeProgressText.text = $"{challenge.ChallengeProgress} / {challenge.ChallengeGoal}";
         }
 
@@ -97,6 +99,11 @@ namespace RPG.Management.Minigames
         {
             MinigameManager.Instance.TogglePause(false);
             _panelsController.ChangePanel(0);
+        }
+
+        public void ExitMinigame()
+        {
+            MinigameManager.Instance.EndMinigame();
         }
     }
 }

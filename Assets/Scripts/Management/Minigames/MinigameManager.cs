@@ -44,6 +44,7 @@ namespace RPG.Management.Minigames
         private void OnEnable()
         {
             ActionsManager.Instance.OnMinigameHit += OnHit;
+            ActionsManager.Instance.OnMinigameHit += ResetPerfectCombo;
             ActionsManager.Instance.OnMinigamePerfectHit += OnPerfectHit;
             ActionsManager.Instance.OnMinigameMiss += OnMiss;
             ActionsManager.Instance.OnMinigameChallengeCompleted += OnChallengeCompleted;
@@ -52,6 +53,7 @@ namespace RPG.Management.Minigames
         private void OnDisable()
         {
             ActionsManager.Instance.OnMinigameHit -= OnHit;
+            ActionsManager.Instance.OnMinigameHit -= ResetPerfectCombo;
             ActionsManager.Instance.OnMinigamePerfectHit -= OnPerfectHit;
             ActionsManager.Instance.OnMinigameMiss -= OnMiss;
             ActionsManager.Instance.OnMinigameChallengeCompleted -= OnChallengeCompleted;
@@ -65,6 +67,16 @@ namespace RPG.Management.Minigames
             ResetCombo();
             ResetPerfectCombo();
             InitCurrentChallenge();
+
+            ActionsManager.Instance.OnMinigameStart?.Invoke();
+        }
+
+        public void EndMinigame()
+        {
+            ActionsManager.Instance.OnMinigameEnd?.Invoke();
+
+            //TO DO adicionar uma condição depois
+            ActionsManager.Instance.OnCharacterMotivated?.Invoke(GameManager.SelectedCharacterMinigame);
         }
 
         private void ResetPerfectCombo()

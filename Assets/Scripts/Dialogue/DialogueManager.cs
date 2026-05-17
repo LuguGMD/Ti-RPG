@@ -80,6 +80,7 @@ namespace RPG.Dialogue
 
         protected void Start()
         {
+            player.Actions.Interact.OnStart(OnDialogueInput);
             player.Actions.Jump.OnStart(OnDialogueInput);
         }
 
@@ -150,6 +151,9 @@ namespace RPG.Dialogue
         {
             dialoguePanel.SetActive(false);
             ActionsManager.Instance.OnDialogueEnd?.Invoke();
+            //TO DO - REMOVER DEPOIS
+            if(currentCharacter.CharacterInfo != null)
+                ActionsManager.Instance.OnCharacterMinigameSelected?.Invoke(currentCharacter.CharacterInfo);
         }
 
         #endregion

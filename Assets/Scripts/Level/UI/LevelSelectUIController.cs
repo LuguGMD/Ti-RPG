@@ -123,7 +123,11 @@ namespace RPG.Level
         public void UpdateCharacterInfo(CharacterScriptable character)
         {
             _partyMemberNameText.text = character.EntityName;
-            _motivationBarSlider.value = character.Motivation / CombatConstants.MAX_MOTIVATION_APRESENTADOR;
+
+            float motivationValue = character.Motivation / CombatConstants.MAX_MOTIVATION_APRESENTADOR;
+            motivationValue = GameManager.DefeatedCharacters.Contains(character) ? 0 : motivationValue;
+
+            _motivationBarSlider.value = motivationValue;
         }
 
         public void SelectPartyMember(int index)
@@ -144,6 +148,20 @@ namespace RPG.Level
         {
             _mainPanel.gameObject.SetActive(false);
             _isActive = false;
+        }
+
+        public void ConfirmButton()
+        {
+            bool isPartyValid = true;
+
+            foreach(CharacterScriptable character in GameManager.CurrentParty)
+            {
+                if (GameManager.DefeatedCharacters.Contains(character))
+                    isPartyValid = false;
+            }
+
+            if(isPartyValid)
+                GameManager.ChangeScene(ScenesEnum.Combat);
         }
     }
 }

@@ -19,6 +19,8 @@ namespace RPG.Management
             ActionsManager.Instance.OnDialogueEnd += EndInteraction;
             ActionsManager.Instance.OnUpgradePanelOpen += StartInteraction;
             ActionsManager.Instance.OnUpgradePanelClose += EndInteraction;
+            ActionsManager.Instance.OnMinigameStart += StartInteraction;
+            ActionsManager.Instance.OnMinigameEnd += EndInteraction;
         }
 
         private void OnDisable()
@@ -27,6 +29,8 @@ namespace RPG.Management
             ActionsManager.Instance.OnDialogueEnd -= EndInteraction;
             ActionsManager.Instance.OnUpgradePanelOpen -= StartInteraction;
             ActionsManager.Instance.OnUpgradePanelClose -= EndInteraction;
+            ActionsManager.Instance.OnMinigameStart -= StartInteraction;
+            ActionsManager.Instance.OnMinigameEnd -= EndInteraction;
         }
 
         private void StartInteraction()

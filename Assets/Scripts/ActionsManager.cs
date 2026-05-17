@@ -98,6 +98,11 @@ namespace RPG
 
         #region Minigames
 
+        public Action<CharacterScriptable> OnCharacterMinigameSelected;
+
+        public Action OnMinigameStart;
+        public Action OnMinigameEnd;
+
         public Action OnMinigameMiss;
         public Action OnMinigameHit;
         public Action OnMinigamePerfectHit;
@@ -105,6 +110,8 @@ namespace RPG
         public Action OnMinigameValuesUpdated;
         public Action<MinigameChallenge> OnMinigameChallengeUpdated;
         public Action OnMinigameChallengeCompleted;
+
+        public Action<CharacterScriptable> OnCharacterMotivated;
 
         #endregion
 
