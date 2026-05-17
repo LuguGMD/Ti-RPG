@@ -17,12 +17,16 @@ namespace RPG.Management
         {
             ActionsManager.Instance.OnDialogueStart += StartInteraction;
             ActionsManager.Instance.OnDialogueEnd += EndInteraction;
+            ActionsManager.Instance.OnUpgradePanelOpen += StartInteraction;
+            ActionsManager.Instance.OnUpgradePanelClose += EndInteraction;
         }
 
         private void OnDisable()
         {
             ActionsManager.Instance.OnDialogueStart -= StartInteraction;
             ActionsManager.Instance.OnDialogueEnd -= EndInteraction;
+            ActionsManager.Instance.OnUpgradePanelOpen -= StartInteraction;
+            ActionsManager.Instance.OnUpgradePanelClose -= EndInteraction;
         }
 
         private void StartInteraction()

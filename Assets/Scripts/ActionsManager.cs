@@ -114,6 +114,13 @@ namespace RPG
 
         #endregion
 
+        #region Upgrades
+
+        public Action OnUpgradePanelOpen;
+        public Action OnUpgradePanelClose;
+
+        #endregion
+
         #endregion
 
         #region Dialogue
