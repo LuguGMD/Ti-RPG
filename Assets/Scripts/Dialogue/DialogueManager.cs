@@ -80,7 +80,7 @@ namespace RPG.Dialogue
 
         protected void Start()
         {
-            player.Actions.Interact.OnStart(OnDialogueInput);
+            //player.Actions.Interact.OnStart(OnDialogueInput);
             player.Actions.Jump.OnStart(OnDialogueInput);
         }
 
