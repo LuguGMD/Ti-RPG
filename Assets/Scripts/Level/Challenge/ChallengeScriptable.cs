@@ -7,7 +7,6 @@ namespace RPG.Level.Challenge
     {
         [SerializeField] private ChallengeTypeEnum _challengeType;
         [SerializeField] private string _challengeName;
-        [SerializeField] private string _description;
         [SerializeField] private float _targetValue;
         [SerializeField] private int _coinsReward;
 
@@ -20,11 +19,6 @@ namespace RPG.Level.Challenge
         public string ChallengeName
         {
             get { return _challengeName; }
-        }
-
-        public string Description
-        {
-            get { return _description; }
         }
 
         public float TargetValue

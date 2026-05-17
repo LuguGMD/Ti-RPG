@@ -10,11 +10,13 @@ namespace RPG
     {
         [SerializeField] private LevelScriptable _selectedLevel;
         [SerializeField] private CharacterScriptable[] _currentParty = new CharacterScriptable[CombatConstants.MAX_CHARACTERS_COUNT];
+        [SerializeField] private CharacterScriptable[] _availableCharacters;
 
         #region Properties
 
         public static LevelScriptable SelectedLevel { get { return Instance._selectedLevel; } }
         public static CharacterScriptable[] CurrentParty { get { return Instance._currentParty; } }
+        public static CharacterScriptable[] AvailableCharacters {  get { return Instance._availableCharacters; } }
 
         #endregion
 

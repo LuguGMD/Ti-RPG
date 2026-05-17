@@ -1,18 +1,19 @@
 using RPG.Combat;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-namespace RPG
+namespace RPG.Level
 {
     public class PartyCharacterButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
-        public CharacterScriptable character;
-
-        public PartyManagerUI uiManager;
-        public int partyIndex;
+        private CharacterScriptable _character;
+        private int _partyIndex;
 
         private Vector3 originalScale;
         private float scaleMultiplier = 1.25f;
+
+        [SerializeField] private Image _characterIcon;
 
         private void Start()
         {
@@ -22,7 +23,7 @@ namespace RPG
         public void OnPointerEnter(PointerEventData eventData)
         {
             transform.localScale = originalScale * scaleMultiplier;
-            uiManager.UpdateCharacterInfo(character);
+            LevelSelectUIController.Instance.UpdateCharacterInfo(_character);
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -32,7 +33,18 @@ namespace RPG
 
         public void OnClick()
         {
-            uiManager.SelectPartyMember(partyIndex);
+            LevelSelectUIController.Instance.SelectPartyMember(_partyIndex);
+        }
+
+        public void SetIndex(int index)
+        {
+            _partyIndex = index;
+        }
+
+        public void UpdateInfo(CharacterScriptable character)
+        {
+            _character = character;
+            _characterIcon.sprite = character.Icon;
         }
     }
 }

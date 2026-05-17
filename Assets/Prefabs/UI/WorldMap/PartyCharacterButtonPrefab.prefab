@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1990026030776987403}
   - component: {fileID: 7400605787175222168}
   - component: {fileID: 4316577934440445853}
+  - component: {fileID: 7266610039031985920}
   m_Layer: 5
   m_Name: PartyCharacterButtonPrefab
   m_TagString: Untagged
@@ -90,18 +91,31 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 7266610039031985920}
+        m_TargetAssemblyTypeName: RPG.Level.PartyCharacterButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7266610039031985920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2467091074403693084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a8d2364efa3478438ca77b61fcc2116, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Level.PartyCharacterButton
+  _characterIcon: {fileID: 103827011863306943}
 --- !u!1 &5290803197281406269
 GameObject:
   m_ObjectHideFlags: 0
