@@ -1,100 +1,155 @@
+using DG.Tweening;
+using Lugu.Singleton;
 using RPG.Input;
+using RPG.Management;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Tables;
+using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 namespace RPG.Dialogue
 {
-    public class DialogueManager : MonoBehaviour
+    public class DialogueManager : SingletonMono<DialogueManager>
     {
         private PlayerInput player;
+        private DialogueCharacter currentCharacter;
+        private Tween lineProgressTween;
+        private float lineProgress;
+        private TextProgress textProgress;
 
-        [SerializeField] private LocalizedStringTable dialogueTable;
-        [SerializeField] private string entryDialogueKey = "LINE_1";
+        [Header("UI")]
+        [SerializeField] private GameObject dialoguePanel;
+        [SerializeField] private TextMeshProUGUI dialogueText;
+        [SerializeField] private TextMeshProUGUI characterNameText;
+        [SerializeField] private Image characterIcon;
+        [SerializeField] private List<DialogueIcon> dialogueIcons;
+        private Dictionary<string, DialogueIcon> dialogueIconsDictionary = new Dictionary<string, DialogueIcon>();
 
-        private StringTable table;
+        private const float CHAR_DURATION = 0.08f;
 
-        protected void Awake()
+        protected override void Awake()
         {
-            if (entryDialogueKey == null || entryDialogueKey == string.Empty)
-            {
-                Debug.LogWarning(
-                    $"{gameObject.name} > {nameof(Dialogue)}: " +
-                    $"Nenhum diálogo de entrada foi definido."
-                );
-            }
+            base.Awake();
+            if (Instance != this) return;
 
             player = GameObject.FindAnyObjectByType<PlayerInput>();
-            table = dialogueTable.GetTable();
+
+            foreach (DialogueIcon icon in dialogueIcons)
+            {
+                dialogueIconsDictionary[icon.Key] = icon;
+            }
         }
 
         public Dialogue Current { get; private set; }
 
         public void Next()
         {
+            lineProgress = 0;
+
+            string entryDialogueKey = currentCharacter.EntryDialogueKey;
+            StringTable table = currentCharacter.StringTable.GetTable();
+
             Current = Current == null ?
                 Dialogue.Get(table, entryDialogueKey)
               : Current.GetNext();
+
+            Display();
+
+            if (Current != null)
+            {
+                float duration = CHAR_DURATION * Current.TextLocalized.Length;
+                lineProgressTween = DOTween.To(() => lineProgress, x => lineProgress = x, 1f, duration);
+
+                textProgress = new TextProgress(Current.TextLocalized);
+            }
+        }
+
+        public void SetDialogueCharacter(DialogueCharacter character)
+        {
+            currentCharacter = character;
+            dialoguePanel.SetActive(true);
+            ActionsManager.Instance.OnDialogueStart?.Invoke();
+            Next();
         }
 
         #region Examples
 
-        [SerializeField] private TMPro.TMP_Text textField;
-        [SerializeField, Range(0, 1)] private float lineProgress;
-        private TextProgress textProgress;
-
         protected void Start()
         {
-            player.Actions.Jump.OnStart(() =>
+            player.Actions.Jump.OnStart(OnDialogueInput);
+        }
+
+        public void OnDialogueInput()
+        {
+            if (!dialoguePanel.activeSelf) return;
+
+            if (lineProgressTween == null || lineProgress == 1)
             {
                 Next();
-                Display();
-                if (Current != null)
-                {
-                    textProgress = new TextProgress(Current.TextLocalized);
-                }
-            });
+            }
+            else
+            {
+                lineProgressTween.Kill(true);
+                lineProgressTween = null;
+            }
         }
 
         protected void Update()
         {
-            if (Current != null)
+            if (Current != null && textProgress != null)
             {
                 textProgress.SetProgress(lineProgress);
-                textField.text = textProgress.ToString();
+                dialogueText.text = textProgress.ToString();
             }
         }
 
-        public void Display()
+        private void Display()
         {
+            if(Current != null)
+            {
+                DialogueIcon dialogueIcon = dialogueIconsDictionary[Current.SpriteKey];
+                characterIcon.sprite = dialogueIcon.Icon;
+                characterNameText.text = dialogueIcon.Name;
+            }
+
             switch (Current)
             {
                 case Dialogue.WithChoice:
                     Dialogue.WithChoice current = Current as Dialogue.WithChoice;
-                    Debug.Log(
+                    /*Debug.Log(
                         Current.Key + '\n' +
                         Current.TextLocalized
-                    );
+                    );*/
                     foreach (Dialogue.Choice choice in current.Choices)
                     {
-                        Debug.Log(
+                        /*Debug.Log(
                             choice.Key + '\n' +
                             choice.TextLocalized
-                        );
+                        );*/
                     }
                     break;
 
                 case Dialogue:
-                    Debug.Log(
+                    /*Debug.Log(
                         Current.Key + '\n' +
                         Current.TextLocalized
-                    );
+                    );*/
                     break;
 
                 default:
-                    Debug.Log("Fim do Diálogo.");
+                    EndDialogue();
                     break;
             }
+        }
+
+        private void EndDialogue()
+        {
+            dialoguePanel.SetActive(false);
+            ActionsManager.Instance.OnDialogueEnd?.Invoke();
         }
 
         #endregion

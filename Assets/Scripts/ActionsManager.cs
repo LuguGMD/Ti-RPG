@@ -115,5 +115,12 @@ namespace RPG
         #endregion
 
         #endregion
+
+        #region Dialogue
+
+        public Action OnDialogueStart;
+        public Action OnDialogueEnd;
+
+        #endregion
     }
 }

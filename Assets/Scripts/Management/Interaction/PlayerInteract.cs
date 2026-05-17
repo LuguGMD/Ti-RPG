@@ -22,6 +22,8 @@ namespace RPG.Management.Interaction
 
         private void InteractWithClosest()
         {
+            if (ManagementManager.IsInteractionRunning) return;
+
             Collider[] colliders = Physics.OverlapSphere(transform.position, interactionRadius);
 
             IInteractable closestInteractable = null;

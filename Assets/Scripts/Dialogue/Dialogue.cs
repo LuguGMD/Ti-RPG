@@ -47,8 +47,8 @@ namespace RPG.Dialogue
                 if (textLocalizedRaw[charIndex] == '\n')
                 {
                     string[] parsedText = textLocalizedRaw.Split('\n', 2);
-                    spriteKey = parsedText[1];
-                    textLocalized = parsedText[2];
+                    spriteKey = parsedText[0];
+                    textLocalized = parsedText[1];
                     break;
                 }
             }

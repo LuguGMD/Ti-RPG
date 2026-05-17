@@ -2361,7 +2361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8521992192106886631}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.3618442, z: -0, w: 0.9322386}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2728,9 +2728,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3674608178342188119, guid: c7909cfccc5316846a5fd8dd241206bb, type: 3}
+      propertyPath: m_Height
+      value: 2.2738974
+      objectReference: {fileID: 0}
+    - target: {fileID: -3674608178342188119, guid: c7909cfccc5316846a5fd8dd241206bb, type: 3}
+      propertyPath: m_Center.y
+      value: 0.63694894
+      objectReference: {fileID: 0}
     - target: {fileID: 1660981728548129449, guid: c7909cfccc5316846a5fd8dd241206bb, type: 3}
       propertyPath: m_Name
-      value: BarbaraManagementPrefab Variant
+      value: BarbaraManagementPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 6411454026617174344, guid: c7909cfccc5316846a5fd8dd241206bb, type: 3}
       propertyPath: m_LocalPosition.x

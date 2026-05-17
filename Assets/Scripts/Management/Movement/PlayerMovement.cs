@@ -40,6 +40,8 @@ namespace RPG.Management.Movement
 
         private void MovePlayer(Vector2 input2d)
         {
+            if (ManagementManager.IsInteractionRunning) input2d = Vector2.zero;
+
             inputDirection = input2d;
             currentSpeed = Mathf.Clamp01(inputDirection.magnitude) * maxSpeed;
         }
