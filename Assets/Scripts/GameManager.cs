@@ -18,6 +18,21 @@ namespace RPG
 
         #endregion
 
+        private void OnEnable()
+        {
+            ActionsManager.Instance.OnLevelSelected += SelectLevel;
+        }
+
+        private void OnDisable()
+        {
+            ActionsManager.Instance.OnLevelSelected -= SelectLevel;
+        }
+
+        private void SelectLevel(LevelScriptable selectedLevel)
+        {
+            _selectedLevel = selectedLevel;
+        }
+
         public static void ChangeScene(ScenesEnum scene)
         {
             ChangeScene((int)scene);

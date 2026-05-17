@@ -389,6 +389,7 @@ namespace RPG.Combat
         {
             for (int i = 0; i < _remainingEnemies.Count; i++)
             {
+                _remainingEnemies[i].PrepareAction();
                 _remainingEnemies[i].Preview.ShowPreview();
             }
         }

@@ -11,8 +11,6 @@ namespace RPG.Level
         [SerializeField] private WaveInfo[] _waves;
         [SerializeField] private ChallengeScriptable[] _challenges;
         [SerializeField] public string levelName;
-        [SerializeField] public Sprite levelIcon;
-        [SerializeField] public int sceneIndex;
         //TO DO adicionar desafios e outras informacoes necessaria para compor uma fase
 
         #region Properties
