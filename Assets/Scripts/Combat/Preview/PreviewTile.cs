@@ -9,6 +9,7 @@ namespace RPG.Combat.Preview
     {
         [SerializeField] protected MeshRenderer[] _renderer;
         [SerializeField] protected MeshFilter[] _filter;
+        [SerializeField] protected MeshCollider[] _colliders;
         protected bool _canBeSelected = true;
         protected Vector2Int _tilePosition;
 
@@ -78,7 +79,16 @@ namespace RPG.Combat.Preview
 
         public void SetCanBeSelected(bool canBeSelected)
         {
+            ToggleColliders(canBeSelected);
             _canBeSelected = canBeSelected;
+        }
+
+        protected void ToggleColliders(bool toogle)
+        {
+            foreach(Collider collider in _colliders)
+            {
+                collider.enabled = toogle;
+            }
         }
 
         protected virtual void Select()
