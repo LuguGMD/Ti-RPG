@@ -1,12 +1,21 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace RPG.Management.Minigames.Rhythm
 {
     public class RhythmHitCircle : MonoBehaviour
     {
+        [SerializeField] private SpriteRenderer _visual;
 
         public void TryHit()
         {
+            transform.DOKill(true);
+
+            transform.DOScale(Vector3.one * 1.1f, 0.1f).SetEase(Ease.InBack).From(Vector3.one).OnComplete(()=>
+            {
+                transform.DOScale(Vector3.one, 0.1f).SetEase(Ease.OutBack);
+            });
+
             Collider[] hits = Physics.OverlapSphere(transform.position, RhythmMinigameHandler.HIT_RADIUS);
             foreach(Collider hit in hits)
             {
@@ -26,8 +35,10 @@ namespace RPG.Management.Minigames.Rhythm
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = Color.yellow;
+            Gizmos.color = Color.white;
             Gizmos.DrawWireSphere(transform.position, RhythmMinigameHandler.HIT_RADIUS);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, RhythmMinigameHandler.PERFECT_DISTANCE);
         }
     }
 }

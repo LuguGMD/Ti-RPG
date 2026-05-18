@@ -53,7 +53,7 @@ namespace RPG.Combat.Preview
             _previewTileInfos.Clear();
 
             //TO DO adicionar preview de efeitos
-            //List<EffectTrigger> _effectTriggers = _actionToPreview.GetEffectTriggers();
+            List<EffectTriggerEnum> _effectTriggers = _actionToPreview.GetEffectTriggers();
 
             List<MovementPattern> movementPatterns = _actionToPreview.MovementPatterns;
 

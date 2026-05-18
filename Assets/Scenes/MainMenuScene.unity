@@ -1387,7 +1387,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 808005033}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.2179371
+  m_Size: 0.23040943
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1600,10 +1600,10 @@ RectTransform:
   - {fileID: 2039639995}
   m_Father: {fileID: 954939727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 165, y: -103.838326}
+  m_SizeDelta: {x: 330, y: 38.38333}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &267761521
 MonoBehaviour:
@@ -1719,10 +1719,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1753401294}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 550, y: -1147.12}
-  m_SizeDelta: {x: 1040, y: 2234.24}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1040, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &289401905
 MonoBehaviour:
@@ -1744,31 +1744,30 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Controle da C\xE2mera: W A S D\nSelecionar: Bot\xE3o do Mouse Esquerdo\n\nInimigos:
-    Personagens em vermelhos\nMembros do Circo: Personagens em azul espalhados pelo
-    Palco.\n\nApresentador: Personagem no centro do mapa\n\nAo selecionar um Membro
-    do Circo, os Tiles que ele pode usar sua a\xE7\xE3o v\xE3o ficar demarcados,
-    apertando nesse tile esse personagem usa sua a\xE7\xE3o.\nUm Personagem s\xF3
-    pode usar 1 a\xE7\xE3o por turno, quando todas as a\xE7\xF5es poss\xEDveis s\xE3o
-    feitas o turno \xE9 passado automaticamente.\n\nTodos os Personagens (inclusive
-    os Inimigos) apenas possuem uma a\xE7\xE3o que \xE9 mover, atacar e empurrar
-    em uma dire\xE7\xE3o escolhida.\n\nAo selecionar o Apresentador, a linha selecionada
-    para ser rotacionada vai ser destacada, op\xE7\xF5es para mudar a linha selecionada
-    e rotacionar a linha selecionada v\xE3o aparecer no canto da tela.\nO Apresentador
-    tem um total de 3 rota\xE7\xF5es por rodada, elas podem ser usadas em uma mesma
-    linha ou separadas em mais de uma linha por vez.\n\nInimigos demarcam o tile
-    que pretendem atacar no proximo turno.\n\nCaso um Inimigo seja acertado, a sua
-    barra de vida, indicada no topo de sua cabe\xE7a, \xE9 reduzida, chegando em
-    0 o inimigo \xE9 derrotado.\n\nCaso um Membro do Circo seja acertado, sua motiva\xE7\xE3o
-    \xE9 reduzida, a motiva\xE7\xE3o atual do personagem \xE9 indicada na barra de
-    motiva\xE7\xE3o no topo da tela, caso a motiva\xE7\xE3o de um personagem chegue
-    ao ponto vermelho da barra, esse personagem \xE9 derrotado.\n\nCaso o Apresentador
-    seja acertado, a barra do topo \xE9 reduzida, ou seja, deixando o ponto em que
-    os membros do circo s\xE3o derrotados mais proximo.\n\nO jogo \xE9 ganho quando
-    todos os inimigos em campo foram derrotados e n\xE3o existem mais inimigos para
-    surgir.\n\nO jogo \xE9 perdido quando todos os Membros do Circo s\xE3o derrotados.\n\nEssa
-    build representa uma vers\xE3o simplificada do Loop de combate, por conta disso
-    alguns elementos que v\xE3o ter no jogo final foram deixados de foram.\n"
+  m_text: "Controle da C\xE2mera: W A S D / Segurar Bot\xE3o Direito\nSelecionar:
+    Bot\xE3o do Mouse Esquerdo / E\nInteragir: E\n\nInimigos: Personagens em vermelhos\nMembros
+    do Circo: Personagens em azul espalhados pelo Palco.\n\nApresentador: Personagem
+    no centro do mapa\n\nAo selecionar um Membro do Circo, os Tiles que ele pode
+    usar sua a\xE7\xE3o v\xE3o ficar demarcados, apertando nesse tile esse personagem
+    usa sua a\xE7\xE3o.\nUm Personagem s\xF3 pode usar 1 a\xE7\xE3o por turno, quando
+    todas as a\xE7\xF5es poss\xEDveis s\xE3o feitas o turno \xE9 passado automaticamente.\n\nAo
+    selecionar o Apresentador, a linha selecionada para ser rotacionada vai ser destacada,
+    op\xE7\xF5es para mudar a linha selecionada e rotacionar a linha selecionada
+    v\xE3o aparecer no canto da tela.\nO Apresentador tem um total de 3 rota\xE7\xF5es
+    por rodada, elas podem ser usadas em uma mesma linha ou separadas em mais de
+    uma linha por vez.\n\nInimigos demarcam o tile que pretendem atacar no proximo
+    turno.\n\nCaso um Inimigo seja acertado, a sua barra de vida, indicada no topo
+    de sua cabe\xE7a, \xE9 reduzida, chegando em 0 o inimigo \xE9 derrotado.\n\nCaso
+    um Membro do Circo seja acertado, sua motiva\xE7\xE3o \xE9 reduzida, a motiva\xE7\xE3o
+    atual do personagem \xE9 indicada na barra de motiva\xE7\xE3o no topo da tela,
+    caso a motiva\xE7\xE3o de um personagem chegue ao ponto vermelho da barra, esse
+    personagem \xE9 derrotado.\n\nCaso o Apresentador seja acertado, a barra do topo
+    \xE9 reduzida, ou seja, deixando o ponto em que os membros do circo s\xE3o derrotados
+    mais proximo.\n\nO jogo \xE9 ganho quando todos os inimigos em campo foram derrotados
+    e n\xE3o existem mais inimigos para surgir.\n\nO jogo \xE9 perdido quando todos
+    os Membros do Circo s\xE3o derrotados.\n\nEssa build representa uma vers\xE3o
+    simplificada do Loop de combate, por conta disso alguns elementos que v\xE3o
+    ter no jogo final foram deixados de foram.\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4280,8 +4279,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 585220721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.7820629}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4507,10 +4506,10 @@ RectTransform:
   - {fileID: 455790562}
   m_Father: {fileID: 954939727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 165, y: -61.514996}
+  m_SizeDelta: {x: 330, y: 38.38333}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &880614674
 MonoBehaviour:
@@ -4912,10 +4911,10 @@ RectTransform:
   - {fileID: 516552385}
   m_Father: {fileID: 954939727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 165, y: -230.80832}
+  m_SizeDelta: {x: 330, y: 38.38333}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &997108828
 MonoBehaviour:
@@ -6280,9 +6279,9 @@ RectTransform:
   m_Father: {fileID: 1808107119}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -17, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1155295985
 MonoBehaviour:
@@ -6879,10 +6878,10 @@ RectTransform:
   - {fileID: 97180940}
   m_Father: {fileID: 954939727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 165, y: -146.16165}
+  m_SizeDelta: {x: 330, y: 38.38333}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1267252630
 MonoBehaviour:
@@ -7410,10 +7409,10 @@ RectTransform:
   - {fileID: 1543766304}
   m_Father: {fileID: 954939727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 165, y: -19.191666}
+  m_SizeDelta: {x: 330, y: 38.38333}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1391358744
 MonoBehaviour:
@@ -7545,10 +7544,10 @@ RectTransform:
   - {fileID: 1051820861}
   m_Father: {fileID: 954939727}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 165, y: -188.48499}
+  m_SizeDelta: {x: 330, y: 38.38333}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1424248483
 MonoBehaviour:
@@ -8450,7 +8449,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1545323771
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9325,7 +9324,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 17, y: 2294.24}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1753401295
 MonoBehaviour:
@@ -9962,7 +9961,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1942283057
 RectTransform:
   m_ObjectHideFlags: 0
