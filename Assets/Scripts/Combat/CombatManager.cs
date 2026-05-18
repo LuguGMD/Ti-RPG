@@ -353,6 +353,9 @@ namespace RPG.Combat
                 ActionsManager.Instance.OnCombatWon?.Invoke();
                 _hasCombatEnded = true;
 
+                //TO DO Verificar se ja foi dado antes
+                GameManager.Instance.AddCoins(GameManager.SelectedLevel.CoinsReward);
+
                 //TO DO remover depois
                 GameManager.ChangeScene(ScenesEnum.Win);
             }

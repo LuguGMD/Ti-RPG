@@ -29,7 +29,7 @@ namespace RPG.Dialogue
         [SerializeField] private List<DialogueIcon> dialogueIcons;
         private Dictionary<string, DialogueIcon> dialogueIconsDictionary = new Dictionary<string, DialogueIcon>();
 
-        private const float CHAR_DURATION = 0.08f;
+        private const float CHAR_DURATION = 0.04f;
 
         protected override void Awake()
         {
@@ -62,7 +62,7 @@ namespace RPG.Dialogue
             if (Current != null)
             {
                 float duration = CHAR_DURATION * Current.TextLocalized.Length;
-                lineProgressTween = DOTween.To(() => lineProgress, x => lineProgress = x, 1f, duration);
+                lineProgressTween = DOTween.To(() => lineProgress, x => lineProgress = x, 1f, duration).SetEase(Ease.Linear);
 
                 textProgress = new TextProgress(Current.TextLocalized);
             }
