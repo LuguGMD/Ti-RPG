@@ -35,6 +35,11 @@ namespace RPG.Combat
             _cursorTarget.Actions.Hover.OnStart(OnHover);
         }
 
+        protected void OnDestroy()
+        {
+            _cursorTarget.Actions.LeftClick.Stop();
+        }
+
         protected void OnEnable()
         {
             ActionsManager.Instance.OnCombatSpeedChanged += AdjsutGameSpeed;

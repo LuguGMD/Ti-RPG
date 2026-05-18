@@ -288,6 +288,7 @@ namespace RPG.Combat
         {
             if(!_isActionInProgress && _currentTurnState == CombatTurnStateEnum.PlayerTurn)
             {
+                _apresentador.CompleteAction();
                 SwitchTurn();
             }
         }

@@ -96,7 +96,10 @@ namespace RPG.Combat.UI
         public void OnActionButtonHovered(CombatAction action)
         {
             _actionDescriptionText.text = action.ActionDescription;
-            _actionsDescriptionPanel.gameObject.SetActive(true);
+            if (action.ActionDescription != "")
+            {
+                _actionsDescriptionPanel.gameObject.SetActive(true);
+            }
         }
 
         public void OnActionButtonExited()
