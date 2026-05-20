@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.Level.Challenge.UI
+namespace RPG.Combat.Challenge.UI
 {
     public class ChallengeUIController : MonoBehaviour
     {

@@ -1,8 +1,8 @@
 using RPG.Combat;
-using RPG.Level.Challenge;
+using RPG.Combat.Challenge;
 using UnityEngine;
 
-namespace RPG.Level.Challenge.Handlers
+namespace RPG.Combat.Challenge.Handlers
 {
     public class ChallengeHandlerMotivationLimit : ChallengeHandler
     {

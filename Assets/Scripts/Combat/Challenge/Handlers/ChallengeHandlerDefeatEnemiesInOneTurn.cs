@@ -2,7 +2,7 @@ using RPG.Combat;
 using System;
 using UnityEngine;
 
-namespace RPG.Level.Challenge.Handlers
+namespace RPG.Combat.Challenge.Handlers
 {
     public class ChallengeHandlerDefeatEnemiesInOneTurn : ChallengeHandler
     {

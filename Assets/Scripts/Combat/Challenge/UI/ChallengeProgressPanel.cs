@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RPG.Level.Challenge.UI
+namespace RPG.Combat.Challenge.UI
 {
     public class ChallengeProgressPanel : MonoBehaviour
     {

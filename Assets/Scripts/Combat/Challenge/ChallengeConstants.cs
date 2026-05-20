@@ -1,9 +1,9 @@
-using RPG.Level.Challenge.Handlers;
+using RPG.Combat.Challenge.Handlers;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.Level.Challenge
+namespace RPG.Combat.Challenge
 {
     public class ChallengeConstants
     {

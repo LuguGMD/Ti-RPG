@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RPG.Level.Challenge
+namespace RPG.Combat.Challenge
 {
     [CreateAssetMenu(fileName = "ChallengeScriptable", menuName = "Scriptable Objects/Level/Challenge")]
     public class ChallengeScriptable : ScriptableObject

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RPG.Level.Challenge
+namespace RPG.Combat.Challenge
 {
     [System.Serializable]
     public class ChallengeData

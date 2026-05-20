@@ -1,5 +1,5 @@
 using RPG.Combat.Wave;
-using RPG.Level.Challenge;
+using RPG.Combat.Challenge;
 using System;
 using UnityEngine;
 

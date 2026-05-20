@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RPG.Level.Challenge
+namespace RPG.Combat.Challenge
 {
     public class ChallengeManager : MonoBehaviour
     {

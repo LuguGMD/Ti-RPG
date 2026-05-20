@@ -1,9 +1,9 @@
 using RPG.Combat;
 using UnityEngine;
 
-namespace RPG
+namespace RPG.Combat.VFX
 {
-    public class VFXManager : MonoBehaviour
+    public class CombatVFXManager : MonoBehaviour
     {
         [SerializeField] GameObject spawnVFX;
 

@@ -3,7 +3,7 @@ using RPG.Combat;
 using RPG.Combat.Actions;
 using RPG.Combat.Preview;
 using RPG.Level;
-using RPG.Level.Challenge;
+using RPG.Combat.Challenge;
 using RPG.Management.Minigames;
 using System;
 using UnityEngine;

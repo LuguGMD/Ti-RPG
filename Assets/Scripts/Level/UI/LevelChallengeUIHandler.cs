@@ -1,4 +1,4 @@
-using RPG.Level.Challenge;
+using RPG.Combat.Challenge;
 using TMPro;
 using UnityEngine;
 

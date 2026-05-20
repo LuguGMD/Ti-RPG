@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace RPG.Level.Challenge
+namespace RPG.Combat.Challenge
 {
     public abstract class ChallengeHandler : MonoBehaviour
     {
