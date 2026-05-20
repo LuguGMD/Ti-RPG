@@ -14,14 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterScriptable
   _entityName: Barbara
   _actions:
-  - _actionName: Healing Song
-    _actionDescription: 
+  - _actionName: "Can\xE7\xE3o Motivadora"
+    _actionDescription: "Aumente a Motiva\xE7\xE3o de Aliados"
     _effects:
     - _command: {fileID: 11400000, guid: 4ee1697dcabbbf74dbe43317843439d5, type: 2}
       _triggerCondition: 1
       _targetList: 00000000
       _canTargetSelf: 1
       _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area: 0000000003000000010000000100000002000000020000000000000000000000
+    - _command: {fileID: 11400000, guid: 0ba39fd2ca82dc9418b2ae6f85d49ad2, type: 2}
+      _triggerCondition: 1
+      _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 1
       _isRelativeToMovement: 1
       _area: 0000000003000000010000000100000002000000020000000000000000000000
     _movementPatterns:
@@ -49,7 +56,8 @@ MonoBehaviour:
       _repetition: 1
       _canMirror: 1
       Repetition: 1
-  - _actionName: Directional Punch
+    _lastTileNeedsToBeEmpty: 1
+  - _actionName: Soco Direcional
     _actionDescription: 
     _effects:
     - _command: {fileID: 11400000, guid: faaab5275613368488736a1e776f3671, type: 2}
@@ -79,7 +87,10 @@ MonoBehaviour:
       _repetition: 1
       _canMirror: 1
       Repetition: 1
+    _lastTileNeedsToBeEmpty: 0
   _type: 1
+  _spotlightDescription: "No Holofote: Todo Aumento de Motiva\xE7\xE3o \xE9 convertido
+    para Dano em Inimigos"
   _icon: {fileID: -2077560954, guid: f484e21bd27c36f47ac7f15d8c6dc25d, type: 3}
   motivation: 30
   _prefab: {fileID: 4420048070789446249, guid: 48287771299bca948ad21e8af07dede4, type: 3}

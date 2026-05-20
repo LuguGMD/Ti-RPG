@@ -1,30 +1,62 @@
+using Lugu.Singleton;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Management.Minigames
 {
-    public abstract class MinigameManager : MonoBehaviour
+    public class MinigameManager : SingletonMono<MinigameManager>
     {
         private int _totalHits;
         private int _totalPerfectHits;
         private int _totalMisses;
-        private int _totalHitsRecord;
+        private int _totalHitsHighscore;
 
         private int _currentCombo;
         private int _currentPerfectCombo;
         private int _currentComboDuration;
 
+        private bool _isPaused = false;
+
+        [SerializeField] private List<MinigameChallenge> _challenges;
+        private int _currentChallengeIndex = 0;
+
+        #region Properties
+
+        public static int TotalHits { get { return Instance._totalHits; } }
+        public static int TotalPerfectHits { get { return Instance._totalPerfectHits; } }
+        public static int TotalMisses {  get { return Instance._totalMisses; } }
+        public static int TotalHitsHighscore { get { return Instance._totalHitsHighscore; } }
+
+        public static int CurrentCombo { get { return Instance._currentCombo; } }
+        public static int CurrentPerfectCombo { get { return Instance._currentPerfectCombo; } }
+        public static int CurrentComboDuration {  get { return Instance._currentComboDuration; } }
+
+        public static bool IsPaused { get { return Instance._isPaused; } }
+        public static int CurrentChallengeIndex { get { return Instance._currentChallengeIndex; } }
+
+        #endregion
+
+        private void Start()
+        {
+            Init();
+        }
+
         private void OnEnable()
         {
             ActionsManager.Instance.OnMinigameHit += OnHit;
+            ActionsManager.Instance.OnMinigameHit += ResetPerfectCombo;
             ActionsManager.Instance.OnMinigamePerfectHit += OnPerfectHit;
             ActionsManager.Instance.OnMinigameMiss += OnMiss;
+            ActionsManager.Instance.OnMinigameChallengeCompleted += OnChallengeCompleted;
         }
 
         private void OnDisable()
         {
             ActionsManager.Instance.OnMinigameHit -= OnHit;
+            ActionsManager.Instance.OnMinigameHit -= ResetPerfectCombo;
             ActionsManager.Instance.OnMinigamePerfectHit -= OnPerfectHit;
             ActionsManager.Instance.OnMinigameMiss -= OnMiss;
+            ActionsManager.Instance.OnMinigameChallengeCompleted -= OnChallengeCompleted;
         }
 
         private void Init()
@@ -34,23 +66,37 @@ namespace RPG.Management.Minigames
             _totalMisses = 0;
             ResetCombo();
             ResetPerfectCombo();
+            InitCurrentChallenge();
+
+            ActionsManager.Instance.OnMinigameStart?.Invoke();
+        }
+
+        public void EndMinigame()
+        {
+            ActionsManager.Instance.OnMinigameEnd?.Invoke();
+
+            //TO DO adicionar uma condição depois
+            ActionsManager.Instance.OnCharacterMotivated?.Invoke(GameManager.SelectedCharacterMinigame);
         }
 
         private void ResetPerfectCombo()
         {
-            ResetPerfectCombo();
+            _currentPerfectCombo = 0;
         }
 
         private void ResetCombo()
         {
             _currentCombo = 0;
             _currentComboDuration = 0;
+            ResetPerfectCombo();
         }
 
         private void OnHit()
         {
             _totalHits++;
             _currentCombo++;
+
+            ActionsManager.Instance.OnMinigameValuesUpdated?.Invoke();
         }
 
         private void OnPerfectHit()
@@ -65,6 +111,29 @@ namespace RPG.Management.Minigames
             _totalMisses++;
             ResetPerfectCombo();
             ResetCombo();
+
+            ActionsManager.Instance.OnMinigameValuesUpdated?.Invoke();
+        }
+
+        public void TogglePause(bool doPaused)
+        {
+            _isPaused = doPaused;
+        }
+
+        private void OnChallengeCompleted()
+        {
+            _challenges[_currentChallengeIndex].RemoveListeners();
+
+            _currentChallengeIndex++;
+            InitCurrentChallenge();
+        }
+
+        private void InitCurrentChallenge()
+        {
+            if (_currentChallengeIndex < _challenges.Count)
+            {
+                _challenges[_currentChallengeIndex].AddListeners();
+            }
         }
     }
 }

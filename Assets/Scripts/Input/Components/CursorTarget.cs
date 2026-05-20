@@ -1,12 +1,12 @@
 using UnityEngine;
 
-using LucasRozado.Utility;
+using static LucasRozado.Utility.Unity;
 
 namespace RPG.Input
 {
     public class CursorTarget : InputComponent<CursorTarget.CursorTargetActionsHandler>
     {
-        static public LayerMask CollisionLayer => CursorInput.TargetCollisionLayer;
+        static public LayerMask CollisionLayers => CursorInput.CollisionLayers;
 
         [SerializeField] private GameObject collisionTarget;
 
@@ -15,7 +15,7 @@ namespace RPG.Input
             if (collisionTarget == null)
             {
                 if (
-                    Layer.IsInMask(gameObject.layer, CollisionLayer)
+                    Layer.IsLayerInMask(gameObject.layer, CollisionLayers)
                     && TryGetComponent<Collider>(out _)
                 )
                 {
@@ -47,7 +47,7 @@ namespace RPG.Input
                     );
                 }
 
-                if (!Layer.IsInMask(collisionTarget.layer, CollisionLayer))
+                if (!Layer.IsLayerInMask(collisionTarget.layer, CollisionLayers))
                 {
                     Debug.LogWarning(
                         $"{gameObject.name} > {collisionTarget.name}: " +
@@ -82,11 +82,13 @@ namespace RPG.Input
                         {
                             if (target == self.collisionTarget)
                             { return true; }
+                            else if (target != null && target.transform.parent != null)
+                            { target = target.transform.parent.gameObject; }
                             else
-                            { target = target?.transform.parent?.gameObject; }
+                            { target = null; }
                         }
-                        while (target != null && Layer.IsInMask(target.layer, CollisionLayer));
-                        
+                        while (target != null && Layer.IsLayerInMask(target.layer, CollisionLayers));
+
                         return false;
                     }
                 );

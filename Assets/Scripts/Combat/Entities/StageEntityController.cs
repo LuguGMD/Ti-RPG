@@ -22,6 +22,7 @@ namespace RPG.Combat
         public TileObjectMovement Movement { get { return _movement; } }
         public StageEntityScriptable Info { get { return _info; } }
         public PreviewActionHandler Preview { get { return _preview; } }
+        public int SelectedActionIndex {  get { return _selectedActionIndex; } }
 
         #endregion
 
@@ -44,6 +45,8 @@ namespace RPG.Combat
 
         public IEnumerator UseSelectedAction(int movementPatternIndex, int repetitions, bool isMirrored)
         {
+            _tileObject.CheckSpotlight();
+
             SetAnimationInt("ActionIndex", _selectedActionIndex);
             SetAnimationBool("IsActionRunning", true);
 
@@ -68,9 +71,12 @@ namespace RPG.Combat
                 yield return _movement.Move(isMirrored);
             }
 
+            SetAnimationBool("IsActionRunning", false);
+
+            yield return new WaitUntil(() => !IsInActionAnimation());
+            _tileObject.UpdatePosition();
 
             ActionsManager.Instance.OnActionEnd?.Invoke();
-            SetAnimationBool("IsActionRunning", false);
 
             yield return new WaitForSeconds(0.1f / CombatManager.CombatSpeed);
 

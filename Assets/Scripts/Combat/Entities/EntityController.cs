@@ -35,6 +35,11 @@ namespace RPG.Combat
             _cursorTarget.Actions.Hover.OnStart(OnHover);
         }
 
+        protected void OnDestroy()
+        {
+            _cursorTarget.Actions.LeftClick.Stop();
+        }
+
         protected void OnEnable()
         {
             ActionsManager.Instance.OnCombatSpeedChanged += AdjsutGameSpeed;
@@ -93,6 +98,18 @@ namespace RPG.Combat
             {
                 animator.SetBool(boolName, boolValue);
             }
+        }
+
+        protected bool IsInActionAnimation()
+        {
+            foreach (Animator animator in _animators)
+            {
+                if(animator.GetCurrentAnimatorStateInfo(0).IsTag("Action") || animator.IsInTransition(0))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public virtual void TakeDamage(float damage)

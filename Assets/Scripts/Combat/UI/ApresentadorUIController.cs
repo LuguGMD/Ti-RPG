@@ -81,7 +81,7 @@ namespace RPG.Combat.UI
             _isCanvasEnabled = true;
             InitializeDictionary();
             _rotatedAmount = 0;
-            _mainPanel.SetActive(true);
+            CombatUIManager.Instance.ChangePanel(_mainPanel);
 
             UpdateText();
             SelectRow();
@@ -90,7 +90,7 @@ namespace RPG.Combat.UI
         private void HideCanvas()
         {
             _isCanvasEnabled = false;
-            _mainPanel.SetActive(false);
+            CombatUIManager.Instance.DisablePanel(_mainPanel);
 
             DeselectRow();
         }

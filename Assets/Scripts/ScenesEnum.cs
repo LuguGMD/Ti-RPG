@@ -10,5 +10,6 @@ namespace RPG
         Combat = 3,
         Lose = 4,
         Win = 5,
+        MinigameDefault = 6,
     }
 }

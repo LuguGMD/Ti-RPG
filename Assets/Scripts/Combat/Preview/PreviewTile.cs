@@ -8,6 +8,8 @@ namespace RPG.Combat.Preview
     public class PreviewTile : MonoBehaviour
     {
         [SerializeField] protected MeshRenderer[] _renderer;
+        [SerializeField] protected MeshFilter[] _filter;
+        [SerializeField] protected MeshCollider[] _colliders;
         protected bool _canBeSelected = true;
         protected Vector2Int _tilePosition;
 
@@ -44,6 +46,8 @@ namespace RPG.Combat.Preview
             tilePosition = tilePosition.ClampMap();
             _tilePosition = tilePosition;
 
+            if (_tilePosition == Map.CENTER_POS) return;
+
             for (int i = 0; i < transform.childCount; i++)
             {
                 transform.GetChild(i)?.gameObject.SetActive(i == _tilePosition.y);
@@ -67,14 +71,24 @@ namespace RPG.Combat.Preview
             transform.GetChild(_tilePosition.y)?.gameObject.SetActive(true);
         }
 
-        public void SetMaterial(Material material)
+        public void SetMeshes(PreviewTileModels info)
         {
-            _renderer[_tilePosition.y].material = material;
+            _filter[_tilePosition.y].mesh = info.PreviewLinesMeshs[_tilePosition.y];
+            _renderer[_tilePosition.y].material = info.Material;
         }
 
         public void SetCanBeSelected(bool canBeSelected)
         {
+            ToggleColliders(canBeSelected);
             _canBeSelected = canBeSelected;
+        }
+
+        protected void ToggleColliders(bool toogle)
+        {
+            foreach(Collider collider in _colliders)
+            {
+                collider.enabled = toogle;
+            }
         }
 
         protected virtual void Select()

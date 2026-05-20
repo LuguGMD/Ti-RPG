@@ -45,7 +45,8 @@ namespace RPG.Input
 
             public ButtonHandler Sprint = new();
             void IPlayerActions.OnSprint(CallbackContext context) => Sprint.Handle(context);
-
+            public ButtonHandler Pause = new();
+            void IPlayerActions.OnPause(CallbackContext context) => Pause.Handle(context);
             #endregion
         }
     }

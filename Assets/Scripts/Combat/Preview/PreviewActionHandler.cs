@@ -53,7 +53,7 @@ namespace RPG.Combat.Preview
             _previewTileInfos.Clear();
 
             //TO DO adicionar preview de efeitos
-            //List<EffectTrigger> _effectTriggers = _actionToPreview.GetEffectTriggers();
+            List<EffectTriggerEnum> _effectTriggers = _actionToPreview.GetEffectTriggers();
 
             List<MovementPattern> movementPatterns = _actionToPreview.MovementPatterns;
 
@@ -85,6 +85,10 @@ namespace RPG.Combat.Preview
                     {
                         AddPreviewTile(_previewTileInfos[i][j], position);
                     }
+                    else if(j == _previewTileInfos[i].Count-1 && !_actionToPreview.LastTileNeedsToBeEmpty)
+                    {
+                        AddPreviewTile(_previewTileInfos[i][j], position);
+                    }
                 }
             }
         }
@@ -102,7 +106,6 @@ namespace RPG.Combat.Preview
                 if(tile.TileObject.TryGetComponent<StageEntityController>(out StageEntityController stageEntity))
                 {
                     doCancelPattern = previewTileInfo.NeedsToBeEmpty;
-
                     //TO DO adicionar mais condições em relação ao ataque selecionado
                     return false;
                 }
@@ -125,11 +128,16 @@ namespace RPG.Combat.Preview
 
         protected virtual void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position)
         {
+            if(position.y < 0)
+            {
+                return;
+            }
+
             PreviewTilesPool.Pool.Get(out ActionPreviewTile previewTile);
             previewTile.SetInfo(previewTileInfo);
             previewTile.SetCanBeSelected(true);
             previewTile.SetPosition(position);
-            previewTile.SetMaterial(CombatManager.CharacterPreviewMaterial);
+            previewTile.SetMeshes(CombatManager.CharacterPreviewGroups);
 
             _activePreviewTiles.Add(previewTile);
 
