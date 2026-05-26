@@ -9,7 +9,7 @@ namespace RPG.Combat.Actions
     [System.Serializable]
     public class Effect
     {
-        [SerializeField] private EffectCommandScriptable _command;
+        [SerializeField] private EffectCommand _command;
 
         [Header("Conditions")]
         [SerializeField] private EffectTriggerEnum _triggerCondition = EffectTriggerEnum.ActionEnd;
@@ -24,7 +24,7 @@ namespace RPG.Combat.Actions
 
         #region Properties
 
-        public EffectCommandScriptable Command { get { return _command; } }
+        public EffectCommand Command { get { return _command; } }
 
         public EffectTriggerEnum TriggerCondition { get { return _triggerCondition; } }
         public List<TeamEnum> TargetList { get { return _targetList; } }

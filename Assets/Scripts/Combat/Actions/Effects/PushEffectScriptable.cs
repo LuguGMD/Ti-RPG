@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace RPG.Combat.Actions.Effects
 {
-    [CreateAssetMenu(fileName = "PushEffectScriptable", menuName = "Scriptable Objects/Combat/Effects/Push")]
-    public class PushEffectScriptable : EffectCommandScriptable
+    [System.Serializable]
+    public class PushEffect : EffectCommand
     {
         [SerializeField] private bool _isPushDirectionRelative = true;
         [SerializeField] private DirectionEnum _pushDirection = DirectionEnum.Up;
