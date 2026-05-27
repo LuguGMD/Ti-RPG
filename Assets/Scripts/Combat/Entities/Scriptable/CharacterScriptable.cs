@@ -14,6 +14,8 @@ namespace RPG.Combat
 
         #region Properties
 
+        [Tooltip("Nome do parâmetro no FMOD")]
+        public string FmodParameterName;
         public Sprite Icon { get { return _icon; } }
         public int Motivation => motivation;
         public override TeamEnum Team { get { return TeamEnum.Circus; } }

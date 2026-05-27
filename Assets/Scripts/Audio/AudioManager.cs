@@ -3,6 +3,8 @@ using UnityEngine;
 using FMODUnity;
 using FMOD.Studio;
 using Lugu.Singleton;
+using RPG.Combat;
+using CharacterController = RPG.Combat.CharacterController;
 
 namespace RPG.Audio
 {
@@ -131,6 +133,48 @@ namespace RPG.Audio
             PLAYBACK_STATE state;
             musicInstance.getPlaybackState(out state);
             return state != PLAYBACK_STATE.STOPPED;
+        }
+
+        private void OnEnable()
+        {
+            if (ActionsManager.Instance != null)
+            {
+                ActionsManager.Instance.OnCharacterCreated += CharacterEntered;
+                ActionsManager.Instance.OnCharacterDefeated += CharacterDefeated;
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (ActionsManager.Instance != null)
+            {
+                ActionsManager.Instance.OnCharacterCreated -= CharacterEntered;
+                ActionsManager.Instance.OnCharacterDefeated -= CharacterDefeated;
+            }
+        }
+
+        private void CharacterEntered(CharacterController character)
+        {
+            string paramName = character.CharacterInfo.FmodParameterName;
+
+            if (string.IsNullOrEmpty(paramName)) return;
+
+            if (musicInstance.isValid())
+            {
+                musicInstance.setParameterByName(paramName, 1f);
+            }
+        }
+
+        private void CharacterDefeated(CharacterController character)
+        {
+            string paramName = character.CharacterInfo.FmodParameterName;
+
+            if (string.IsNullOrEmpty(paramName)) return;
+
+            if (musicInstance.isValid())
+            {
+                musicInstance.setParameterByName(paramName, 0f);
+            }
         }
     }
 }
