@@ -117,10 +117,7 @@ namespace RPG.Audio
 
             if (string.IsNullOrEmpty(paramName)) return;
 
-            if (musicInstance.isValid())
-            {
-                musicInstance.setParameterByName(paramName, 1f);
-            }
+            RuntimeManager.StudioSystem.setParameterByName(paramName, 1f);
         }
 
         private void CharacterDefeated(CharacterController character)
@@ -129,10 +126,7 @@ namespace RPG.Audio
 
             if (string.IsNullOrEmpty(paramName)) return;
 
-            if (musicInstance.isValid())
-            {
-                musicInstance.setParameterByName(paramName, 0f);
-            }
+            RuntimeManager.StudioSystem.setParameterByName(paramName, 0f);
         }
     }
 }
