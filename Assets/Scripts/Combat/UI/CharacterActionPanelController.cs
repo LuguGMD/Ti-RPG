@@ -56,8 +56,8 @@ namespace RPG.Combat.UI
 
         private void PopulateActionButtons(CharacterController character)
         {
-            CombatAction[] actions = character.CharacterInfo.Actions;
-            int count = Mathf.Max(actions.Length, _actionButtons.Count);
+            List<CombatAction> actions = character.Actions;
+            int count = Mathf.Max(actions.Count, _actionButtons.Count);
 
             for (int i = 0; i < count; i++)
             {

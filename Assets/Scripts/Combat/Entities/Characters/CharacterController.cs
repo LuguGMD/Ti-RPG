@@ -1,3 +1,4 @@
+using RPG.Combat.Actions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ namespace RPG.Combat
     {
         private CharacterScriptable _characterInfo;
         private float _currentMotivation;
+        [SerializeField] private CharacterDirectionalPunch _characterDirectionalPunch;
 
         #region Properties
 
@@ -97,6 +99,13 @@ namespace RPG.Combat
             if (!CombatManager.HasCombatStarted) return;
             base.OnSelected();
             ActionsManager.Instance.OnCharacterClicked?.Invoke(this);
+        }
+
+        protected override void InitCombatActions()
+        {
+            _actions.Add(_characterDirectionalPunch);
+
+            base.InitCombatActions();
         }
     }
 }

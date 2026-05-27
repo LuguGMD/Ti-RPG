@@ -1,3 +1,6 @@
+using RPG.Combat.Actions;
+using RPG.Combat.Grid;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat.Preview
@@ -5,34 +8,52 @@ namespace RPG.Combat.Preview
     public class PreviewTileInfo
     {
         private Vector2Int _relativePosition;
-        private int _patternIndex = 0;
-        private int _patternRepetitionCount = 1;
-        private bool _isMirrored = false;
-        private bool _isAttack = false;
-        private bool _isMovement = false;
+        private DirectionEnum _direction;
+        private PreviewTileInfo _child;
+        private PreviewTileInfo _parent;
+        private List<Effect> _effects = new List<Effect>();
         private bool _needsToBeEmpty = false;
 
         #region Properties
 
         public Vector2Int RelativePosition { get { return _relativePosition; } }
-        public int PatternIndex { get { return _patternIndex; } }
-        public int PatternRepetitionCount { get { return _patternRepetitionCount; } } 
-        public bool IsMirrored { get { return _isMirrored; } }
-        public bool IsAttack { get { return _isAttack; } }
-        public bool IsMovement { get { return _isMovement; } }
+        public PreviewTileInfo Child { get { return _child; } }
+        public PreviewTileInfo Parent { get { return _parent; } }
+        public List<Effect> Effects { get { return _effects; } }
+        public DirectionEnum Direction { get { return _direction; } }
         public bool NeedsToBeEmpty { get { return _needsToBeEmpty; } }
 
         #endregion
 
-        public PreviewTileInfo(Vector2Int relativePosition, int patternIndex, int patternRepetitionCount, bool isMirrored, bool isAttack, bool isMovement, bool needsToBeEmpty)
+        public PreviewTileInfo(Vector2Int relativePosition, DirectionEnum direction, bool needsToBeEmpty)
         {
             _relativePosition = relativePosition;
-            _patternIndex = patternIndex;
-            _patternRepetitionCount = patternRepetitionCount;
-            _isMirrored = isMirrored;
-            _isAttack = isAttack;
-            _isMovement = isMovement;
+            _direction = direction;
             _needsToBeEmpty = needsToBeEmpty;
+        }
+
+        public void SetParent(PreviewTileInfo parent)
+        {
+            _parent = parent;
+        }
+
+        public PreviewTileInfo CreateChild(Vector2Int relativePosition, DirectionEnum direction, bool needsToBeEmpty)
+        {
+            PreviewTileInfo child = new PreviewTileInfo(relativePosition, direction, needsToBeEmpty);
+            _child = child;
+            child.SetParent(this);
+
+            return child;
+        }
+
+        public static PreviewTileInfo GetRoot(PreviewTileInfo previewTileInfo)
+        {
+            if(previewTileInfo.Parent == null)
+            {
+                return previewTileInfo;
+            }
+
+            return GetRoot(previewTileInfo.Parent);
         }
     }
 }

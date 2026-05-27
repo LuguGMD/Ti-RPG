@@ -16,7 +16,7 @@ namespace RPG.Combat.Preview
 
         protected CombatAction _actionToPreview;
 
-        protected List<List<PreviewTileInfo>> _previewTileInfos = new List<List<PreviewTileInfo>>();
+        protected List<PreviewTileInfo> _previewTileInfos = new List<PreviewTileInfo>();
         protected List<ActionPreviewTile> _activePreviewTiles = new List<ActionPreviewTile>();
 
         private bool _isPreviewing = false;
@@ -39,30 +39,12 @@ namespace RPG.Combat.Preview
         public void ChangeActionToPreview(CombatAction actionToPreview)
         {
             _actionToPreview = actionToPreview;
-            
+
+            _previewTileInfos = _actionToPreview.Preview();
+
             //TO DO remover depois
-            CalculatePreviewTiles();
             if (_isPreviewing)
                 ShowPreview();
-        }
-
-
-        //TO DO bake de preview para apenas calcular viabilidade de tiles no futuro
-        private void CalculatePreviewTiles()
-        {
-            _previewTileInfos.Clear();
-
-            //TO DO adicionar preview de efeitos
-            List<EffectTriggerEnum> _effectTriggers = _actionToPreview.GetEffectTriggers();
-
-            List<MovementPattern> movementPatterns = _actionToPreview.MovementPatterns;
-
-            for (int i = 0; i < movementPatterns.Count; i++)
-            {
-                GetPatternTiles(movementPatterns[i], i, false);
-                if (movementPatterns[i].CanMirror)
-                    GetPatternTiles(movementPatterns[i], i, true);
-            }
         }
 
         public virtual void ShowPreview()
@@ -73,23 +55,25 @@ namespace RPG.Combat.Preview
 
             for (int i = 0; i < _previewTileInfos.Count; i++)
             {
+                PreviewTileInfo currentPreviewTileInfo = _previewTileInfos[i];
+                Vector2Int position = _stageEntityController.Position;
                 bool doCancelPattern = false;
-                for (int j = 0; j < _previewTileInfos[i].Count; j++)
+                do
                 {
-                    if (doCancelPattern) continue;
+                    position += currentPreviewTileInfo.RelativePosition;
 
-                    Vector2Int position = _previewTileInfos[i][j].RelativePosition;
-                    position += _stageEntityController.Position;
+                    if (IsPositionValid(currentPreviewTileInfo, position, out doCancelPattern))
+                    {
+                        AddPreviewTile(currentPreviewTileInfo, position);
+                    }
+                    else if (!_actionToPreview.LastTileNeedsToBeEmpty)
+                    {
+                        AddPreviewTile(currentPreviewTileInfo, position);
+                        doCancelPattern = true;
+                    }
 
-                    if (IsPositionValid(_previewTileInfos[i][j], position, out doCancelPattern))
-                    {
-                        AddPreviewTile(_previewTileInfos[i][j], position);
-                    }
-                    else if(j == _previewTileInfos[i].Count-1 && !_actionToPreview.LastTileNeedsToBeEmpty)
-                    {
-                        AddPreviewTile(_previewTileInfos[i][j], position);
-                    }
-                }
+                    currentPreviewTileInfo = currentPreviewTileInfo.Child;
+                } while (currentPreviewTileInfo != null && !doCancelPattern);
             }
         }
 
@@ -101,9 +85,9 @@ namespace RPG.Combat.Preview
             Tile tile = MapManager.Map.GetTile(position);
 
             if (tile.Position == Map.CENTER_POS) return false;
-            if(tile.IsOccupied)
+            if (tile.IsOccupied)
             {
-                if(tile.TileObject.TryGetComponent<StageEntityController>(out StageEntityController stageEntity))
+                if (tile.TileObject.TryGetComponent<StageEntityController>(out StageEntityController stageEntity))
                 {
                     doCancelPattern = previewTileInfo.NeedsToBeEmpty;
                     //TO DO adicionar mais condições em relação ao ataque selecionado
@@ -128,7 +112,7 @@ namespace RPG.Combat.Preview
 
         protected virtual void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position)
         {
-            if(position.y < 0)
+            if (position.y < 0)
             {
                 return;
             }
@@ -137,39 +121,15 @@ namespace RPG.Combat.Preview
             previewTile.SetInfo(previewTileInfo);
             previewTile.SetCanBeSelected(true);
             previewTile.SetPosition(position);
-            previewTile.SetMeshes(CombatManager.CharacterPreviewGroups);
+            previewTile.SetMeshes(CombatManager.CharacterPreviewGroups.Movement);
 
             _activePreviewTiles.Add(previewTile);
 
         }
 
-        private void GetPatternTiles(MovementPattern movementPattern, int patternIndex, bool isMirror)
-        {
-            Vector2Int startPos = Vector2Int.zero;
-
-            List<Movement> pattern = movementPattern.Pattern;
-            Vector2Int currentPos = startPos;
-
-            _previewTileInfos.Add(new List<PreviewTileInfo>());
-
-            for (int j = 0; j < movementPattern.Repetition; j++)
-            {
-
-                for (int k = 0; k < pattern.Count; k++)
-                {
-                    Movement movement = pattern[k];
-                    DirectionEnum direction = isMirror ? movement.Direction.Mirror() : movement.Direction;
-                    currentPos += direction.ToVector2Int();
-                }
-
-                bool needsToBeEmpty = pattern[pattern.Count-1].NeedsToBeEmpty;
-                _previewTileInfos[_previewTileInfos.Count-1].Add(new PreviewTileInfo(currentPos, patternIndex, j+1, isMirror, false, true, needsToBeEmpty));
-            }
-        }
-
         private void UpdatePreview()
         {
-            if(_isPreviewing)
+            if (_isPreviewing)
             {
                 ShowPreview();
             }

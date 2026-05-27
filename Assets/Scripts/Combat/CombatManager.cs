@@ -109,40 +109,6 @@ namespace RPG.Combat
 
         #region Control
 
-        public static bool IsTargetWeak(CombatTypeEnum user, CombatTypeEnum target)
-        {
-            return CombatConstants.TypeChart[user] == target;
-        }
-
-        public static void SubscribeEffectTriggerAction(EffectTriggerEnum effectTrigger, Action action)
-        {
-            switch (effectTrigger)
-            {
-                case EffectTriggerEnum.ActionStart:
-                    ActionsManager.Instance.OnActionStart += action;
-                    break;
-                case EffectTriggerEnum.ActionEnd:
-                    ActionsManager.Instance.OnActionEnd += action;
-                    break;
-                case EffectTriggerEnum.PatternEnd:
-                    ActionsManager.Instance.OnPatternEnd += action;
-                    break;
-                case EffectTriggerEnum.BeforeTileStep:
-                    ActionsManager.Instance.OnTileStepBefore += action;
-                    break;
-                case EffectTriggerEnum.AfterTileStep:
-                    ActionsManager.Instance.OnTileStepAfter += action;
-                    break;
-            }
-        }
-        public static void UnsubscribeEffectTriggerAction()
-        {
-            ActionsManager.Instance.OnActionStart = null;
-            ActionsManager.Instance.OnActionEnd = null;
-            ActionsManager.Instance.OnPatternEnd = null;
-            ActionsManager.Instance.OnTileStepBefore = null;
-            ActionsManager.Instance.OnTileStepAfter = null;
-        }
 
         public static bool CanTarget(EntityScriptable user, EntityScriptable target, Effect effect)
         {
@@ -253,10 +219,6 @@ namespace RPG.Combat
 
         private IEnumerator PlayerActionCoroutine(PreviewTileInfo previewTileInfo)
         {
-            int patternIndex = previewTileInfo.PatternIndex;
-            int repetition = previewTileInfo.PatternRepetitionCount;
-            bool isMirrored = previewTileInfo.IsMirrored;
-
             _usedCharacters.Add(_selectedCharacter);
 
             _canSelectCharacter = false;
@@ -264,7 +226,7 @@ namespace RPG.Combat
             _selectedCharacter.Preview.HidePreview();
             HideAllEnemiesPreviews();
 
-            yield return _selectedCharacter.UseSelectedAction(patternIndex, repetition, isMirrored);
+            yield return _selectedCharacter.UseSelectedAction(previewTileInfo);
 
             ShowAllEnemiesPreviews();
             DeselectCharacter();

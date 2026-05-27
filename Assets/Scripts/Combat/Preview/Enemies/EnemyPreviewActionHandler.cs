@@ -13,7 +13,7 @@ namespace RPG.Combat.Preview
             ActionPreviewTile previewTile = _activePreviewTiles[_activePreviewTiles.Count - 1];
 
             previewTile.SetCanBeSelected(false);
-            previewTile.SetMeshes(CombatManager.EnemyPreviewGroups);
+            previewTile.SetMeshes(CombatManager.EnemyPreviewGroups.Movement);
         }
     }
 }

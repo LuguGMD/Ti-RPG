@@ -1,16 +1,18 @@
+using RPG.Combat.Preview;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat.Actions
 {
     [System.Serializable]
-    public class CombatAction
+    public abstract class CombatAction
     {
-        [SerializeField] private string _actionName;
-        [SerializeField] private string _actionDescription;
-        [SerializeField] private List<Effect> _effects;
-        [SerializeField] private List<MovementPattern> _movementPatterns;
-        [SerializeField] private bool _lastTileNeedsToBeEmpty = true;
+        [SerializeField] protected string _actionName;
+        [SerializeField] protected string _actionDescription;
+        [SerializeField] protected List<Effect> _effects;
+        [SerializeField] protected bool _lastTileNeedsToBeEmpty = true;
+        protected StageEntityController _user;
 
         #region Properties
 
@@ -22,23 +24,14 @@ namespace RPG.Combat.Actions
             get {  return _effects; }
         }
 
-        public List<MovementPattern> MovementPatterns
-        {
-            get { return _movementPatterns; }
-        }
-
         public bool LastTileNeedsToBeEmpty { get { return _lastTileNeedsToBeEmpty; } }
 
         #endregion
 
-        public List<EffectTriggerEnum> GetEffectTriggers()
-        {
-            List<EffectTriggerEnum> effectTriggers = new List<EffectTriggerEnum>();
-            for (int i = 0; i < _effects.Count; i++)
-            {
-                effectTriggers.Add(_effects[i].TriggerCondition);
-            }
-            return effectTriggers;
-        }
+        public abstract void Init(StageEntityController user);
+
+        public abstract IEnumerator Execute(PreviewTileInfo selectedPreviewTile);
+
+        public abstract List<PreviewTileInfo> Preview();
     }
 }

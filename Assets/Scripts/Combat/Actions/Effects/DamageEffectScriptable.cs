@@ -5,13 +5,18 @@ namespace RPG.Combat.Actions.Effects
     [System.Serializable]
     public class DamageEffect : EffectCommand
     {
-        [SerializeField] private float _damage;
+        private float _damage;
 
         #region Properties
 
         public float Damage { get { return _damage; } }
 
         #endregion
+
+        public DamageEffect(float damage)
+        {
+            _damage = damage;
+        }
 
         public override bool Execute(StageEntityController user, StageEntityController target)
         {
@@ -20,7 +25,6 @@ namespace RPG.Combat.Actions.Effects
                 return false;
 
             float damage = _damage;
-            if (CombatManager.IsTargetWeak(user.Info.Type, target.Info.Type)) damage *= 2;
 
             target.TakeDamage(damage);
 

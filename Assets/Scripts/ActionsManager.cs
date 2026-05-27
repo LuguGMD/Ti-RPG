@@ -45,9 +45,6 @@ namespace RPG
 
         public Action OnActionStart;
         public Action OnActionEnd;
-        public Action OnPatternEnd;
-        public Action OnTileStepBefore;
-        public Action OnTileStepAfter;
 
         #endregion
 

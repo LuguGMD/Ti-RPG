@@ -16,7 +16,7 @@ namespace RPG.Combat
                 SelectAction(1);
             }
 
-            _preparedAction = new PreviewTileInfo(Vector2Int.zero, 0, 1, false, true, false, false);
+            _preparedAction = new PreviewTileInfo(Vector2Int.zero, Grid.DirectionEnum.None, false);
         }
     }
 }

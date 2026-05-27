@@ -55,7 +55,7 @@ namespace RPG.Combat.Grid
             _currentHoveredTile.y += Map.Rows;
             _currentHoveredTile.y %= Map.Rows;
 
-            UpdatePosition();
+            ActionsManager.Instance.OnTileHovered?.Invoke(_currentHoveredTile);
         }
 
         private void UpdatePosition()

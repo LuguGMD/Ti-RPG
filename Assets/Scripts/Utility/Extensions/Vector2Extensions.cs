@@ -18,5 +18,22 @@ namespace RPG.Extensions
 
             return vector;
         }
+
+        public static Vector2Int RelativeTo(this Vector2Int vector, DirectionEnum direction)
+        {
+            switch (direction)
+            {
+                case DirectionEnum.Up:
+                    return vector;
+                case DirectionEnum.Down:
+                    return -vector;
+                case DirectionEnum.Right:
+                    return new Vector2Int(vector.y, vector.x);
+                case DirectionEnum.Left:
+                    return new Vector2Int(-vector.y, -vector.x);
+            }
+
+            return vector;
+    }
     }
 }

@@ -78,12 +78,12 @@ namespace RPG.Combat
         public IEnumerator UsePreparedAction()
         {
             //TO DO guardar acao preparada e usar aqui
-            yield return UseSelectedAction(_preparedAction.PatternIndex, _preparedAction.PatternRepetitionCount, _preparedAction.IsMirrored);
+            yield return UseSelectedAction(_preparedAction);
         }
 
         public virtual void PrepareAction()
         {
-            _preparedAction = new PreviewTileInfo(Vector2Int.zero, 0, 1, false, true, false, false);
+            _preparedAction = new PreviewTileInfo(Vector2Int.zero, DirectionEnum.None, false);
         }
     }
 }
