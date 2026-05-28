@@ -7,7 +7,7 @@ using UnityEngine;
 namespace RPG.Combat
 {
     [RequireComponent(typeof(EnemyHealthBar))]
-    public class EnemyController : StageEntityController
+    public abstract class EnemyController : StageEntityController
     {
         protected EnemyScriptable _enemyInfo;
 
@@ -81,9 +81,6 @@ namespace RPG.Combat
             yield return UseSelectedAction(_preparedAction);
         }
 
-        public virtual void PrepareAction()
-        {
-            _preparedAction = new PreviewTileInfo(Vector2Int.zero, DirectionEnum.None, false);
-        }
+        public abstract void PrepareAction();
     }
 }

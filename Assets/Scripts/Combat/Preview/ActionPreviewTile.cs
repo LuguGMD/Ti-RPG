@@ -59,7 +59,8 @@ namespace RPG.Combat.Preview
         {
             foreach(ActionPreviewTile preview in _effectPreviewTiles)
             {
-                PreviewTilesPool.Pool.Release(preview);
+                if(preview.gameObject.activeSelf)
+                    PreviewTilesPool.Pool.Release(preview);
             }
             _effectPreviewTiles.Clear();
         }

@@ -104,7 +104,8 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 54095ab513d3c37468125137df6ed7c8, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5875166748602480768, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4951601983924896297, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
     - {fileID: 6126102940381731830, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
@@ -112,5 +113,38 @@ PrefabInstance:
     - {fileID: 965931616274400209, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
     - {fileID: 1191660307582590258, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6108933886631140461, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 2324266041985874038}
   m_SourcePrefab: {fileID: 100100000, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+--- !u!1 &699827620956430052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6108933886631140461, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+  m_PrefabInstance: {fileID: 6733165682577605257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2324266041985874038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 699827620956430052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0103ef46d08c1544899054fddc11b9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.BasicAngerEnemyController
+  _info: {fileID: 11400000, guid: 2a205814f321f0b4d8eb4dac1e8284ba, type: 2}
+  _attack:
+    _actionName: 
+    _actionDescription: 
+    _effects:
+    - _targetList: 00000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area:
+      - {x: 0, y: 1}
+    _lastTileNeedsToBeEmpty: 0
+    _damage: 15

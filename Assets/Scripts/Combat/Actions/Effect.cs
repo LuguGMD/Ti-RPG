@@ -49,7 +49,9 @@ namespace RPG.Combat.Actions
 
             for (int i = 0; i < _area.Count; i++)
             {
+
                 checkPosition += _isRelativeToMovement ? _area[i].RelativeTo(user.Direction) : _area[i];
+
 
                 if (checkedTiles.Contains(checkPosition)) continue;
                 Tile tile = MapManager.Map.GetTile(checkPosition);
@@ -131,12 +133,28 @@ namespace RPG.Combat.Actions
         public static Effect Clone(Effect original)
         {
             Effect clone = new Effect();
-            clone._commands = original._commands;
-            clone._targetList = original._targetList;
+            clone._commands = new List<EffectCommand>();
+            foreach (EffectCommand cmd in original._commands)
+            {
+                clone._commands.Add(cmd);
+            }
+
+            clone._targetList = new List<TeamEnum>();
+            foreach (TeamEnum target in original._targetList)
+            {
+                clone._targetList.Add(target);
+            }
+
             clone._canTargetSelf = original._canTargetSelf;
             clone._doNeedSpotlight = original._doNeedSpotlight;
             clone._isRelativeToMovement = original._isRelativeToMovement;
-            clone._area = original._area;
+
+            clone._area = new List<Vector2Int>();
+            foreach (Vector2Int area in original._area)
+            {
+                clone._area.Add(area);
+            }
+
             return clone;
         }
 
