@@ -28,12 +28,13 @@ namespace RPG.Combat.Actions
 
             do
             {
+                AudioManager.Instance.PlayOneShot(_attackSFX);
+                yield return new WaitForSeconds(0.9f / CombatManager.CombatSpeed);
                 foreach (Effect effect in root.Effects)
                 {
                     effect.Execute(_user);
                 }
-                AudioManager.Instance.PlayOneShot(_attackSFX);
-                yield return new WaitForSeconds(1.2f / CombatManager.CombatSpeed);
+                yield return new WaitForSeconds(0.3f / CombatManager.CombatSpeed);
                 yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
 
                 if (root == selectedPreviewTile) break;

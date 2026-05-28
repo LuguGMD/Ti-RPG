@@ -9,6 +9,7 @@ using System.Linq;
 using RPG.Combat.Wave;
 using RPG.Combat.Grid;
 using RPG.Combat.UI;
+using Unity.Cinemachine;
 
 namespace RPG.Combat
 {
@@ -20,6 +21,7 @@ namespace RPG.Combat
         [SerializeField] private ActionPreviewTile _previewTilePrefab;
         [SerializeField] private PreviewTileGroup _characterPreviewGroups;
         [SerializeField] private PreviewTileGroup _enemyPreviewGroups;
+        private CinemachineImpulseSource _impulseSource;
 
         private CombatTurnStateEnum _currentTurnState;
         private int _turnCount;
@@ -54,6 +56,14 @@ namespace RPG.Combat
 
         #endregion
 
+        protected override void Awake()
+        {
+            base.Awake();
+
+            if(Instance == this)
+                _impulseSource = GetComponent<CinemachineImpulseSource>();
+        }
+
         private void Start()
         {
             _apresentador = GameObject.FindAnyObjectByType<ApresentadorController>(FindObjectsInactive.Include);
@@ -70,6 +80,8 @@ namespace RPG.Combat
             ActionsManager.Instance.OnActionTileSelected += OnCombatActionSelected;
             ActionsManager.Instance.OnApresentadorActionCompleted += CheckEndPlayerTurn;
             ActionsManager.Instance.OnPlayerTurnEnded += EndPlayerTurn;
+            ActionsManager.Instance.OnCharacterDamageTaken += CharacterDamageTaken;
+            ActionsManager.Instance.OnApresentadorDamageTaken += ApresentadorDamageTaken;
         }
 
         private void OnDisable()
@@ -80,6 +92,8 @@ namespace RPG.Combat
             ActionsManager.Instance.OnActionTileSelected -= OnCombatActionSelected;
             ActionsManager.Instance.OnApresentadorActionCompleted -= CheckEndPlayerTurn;
             ActionsManager.Instance.OnPlayerTurnEnded -= EndPlayerTurn;
+            ActionsManager.Instance.OnCharacterDamageTaken -= CharacterDamageTaken;
+            ActionsManager.Instance.OnApresentadorDamageTaken -= ApresentadorDamageTaken;
         }
 
         #region Preparation
@@ -119,6 +133,26 @@ namespace RPG.Combat
 
             return effect.TargetList.Contains(target.Team);
         }
+
+        #endregion
+
+        #region Feedback
+
+        private void CharacterDamageTaken(CharacterController character)
+        {
+            CameraShake(0.1f);
+        }
+
+        private void ApresentadorDamageTaken()
+        {
+            CameraShake(0.25f);
+        }
+
+        public void CameraShake(float force)
+        {
+            _impulseSource.GenerateImpulse(force);
+        }
+
 
         #endregion
 
