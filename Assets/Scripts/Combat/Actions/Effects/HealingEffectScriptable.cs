@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace RPG.Combat.Actions.Effects
 {
-    [CreateAssetMenu(fileName = "HealingEffectScriptable", menuName = "Scriptable Objects/Combat/Effects/Healing")]
-    public class HealingEffectScriptable : EffectCommandScriptable
+    [System.Serializable]
+    public class HealingEffect : EffectCommand
     {
         [SerializeField] private float _healAmount = 10;
 
@@ -12,6 +12,11 @@ namespace RPG.Combat.Actions.Effects
         public float HealAmount { get { return _healAmount; } }
 
         #endregion
+
+        public HealingEffect(float healAmount)
+        {
+            _healAmount = healAmount;
+        }
 
         public override bool Execute(StageEntityController user, StageEntityController target)
         {

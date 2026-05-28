@@ -74,6 +74,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.CharacterController
   _info: {fileID: 11400000, guid: 1e543e771f1dcc242a52dba744570440, type: 2}
+  _characterDirectionalPunch:
+    _actionName: Soco Direcional
+    _actionDescription: 
+    _effects:
+    - _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area:
+      - {x: 0, y: 1}
+    _lastTileNeedsToBeEmpty: 1
+    _damage: 2
+    _pushAmount: 1
 --- !u!114 &1206390615293562564
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,40 +13,6 @@ MonoBehaviour:
   m_Name: BasicSadnessEnemyScriptable
   m_EditorClassIdentifier: Assembly-CSharp::RPG.EnemyScriptable
   _entityName: Sadness
-  _actions:
-  - _actionName: Directional Punch
-    _actionDescription: 
-    _effects:
-    - _command: {fileID: 11400000, guid: fddc838bd287aad4ea13e81de63572d6, type: 2}
-      _triggerCondition: 0
-      _targetList: 00000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 0
-      _isRelativeToMovement: 1
-      _area: 00000000
-    - _command: {fileID: 11400000, guid: 9e7030b0156994b489378a928fae6623, type: 2}
-      _triggerCondition: 0
-      _targetList: 00000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 1
-      _isRelativeToMovement: 1
-      _area: 00000000
-    - _command: {fileID: 11400000, guid: 5bb2fb777cbd3ba4da4a3b23bb4509aa, type: 2}
-      _triggerCondition: 0
-      _targetList: 00000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 0
-      _isRelativeToMovement: 1
-      _area: 00000000
-    _movementPatterns:
-    - _pattern:
-      - _direction: 1
-        _needsToBeEmpty: 1
-      _repetition: 1
-      _canMirror: 0
-      Repetition: 1
-    _lastTileNeedsToBeEmpty: 1
-  _type: 5
   _spotlightDescription: 
-  _prefab: {fileID: 5655526747909198144, guid: 8968af223bae48144901e4bfe6e4ff11, type: 3}
+  _prefab: {fileID: 2616140076056256543, guid: 8968af223bae48144901e4bfe6e4ff11, type: 3}
   _health: 4

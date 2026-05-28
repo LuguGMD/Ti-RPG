@@ -58,11 +58,7 @@ MonoBehaviour:
   - {fileID: 8189847677155033966}
   - {fileID: 3917095168574210910}
   - {fileID: 4606601696700846945}
-  _colliders:
-  - {fileID: 8483960224783772085}
-  - {fileID: 1856010913787031456}
-  - {fileID: 1015759544754809608}
-  - {fileID: 8520805137872654}
+  _colliders: []
 --- !u!1 &3653421264753115032
 GameObject:
   m_ObjectHideFlags: 0
@@ -74,8 +70,6 @@ GameObject:
   - component: {fileID: 5657274475945446232}
   - component: {fileID: 4606601696700846945}
   - component: {fileID: 6680788118298096653}
-  - component: {fileID: 8520805137872654}
-  - component: {fileID: 3024625441053861444}
   m_Layer: 0
   m_Name: Stage_OuterCircle
   m_TagString: Untagged
@@ -155,41 +149,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8520805137872654
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3653421264753115032}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7430029756845338538, guid: 814c24e66e85d61429c17a9af28c6eb8, type: 3}
---- !u!114 &3024625441053861444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3653421264753115032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0ead27d8c99bab05885f4db4cbe2d52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPG.CursorTarget
-  collisionTarget: {fileID: 3653421264753115032}
 --- !u!1 &4252015784251142055
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,8 +160,6 @@ GameObject:
   - component: {fileID: 5130466059158018919}
   - component: {fileID: 3917095168574210910}
   - component: {fileID: 6126958172492915762}
-  - component: {fileID: 1015759544754809608}
-  - component: {fileID: 5321500423037993554}
   m_Layer: 0
   m_Name: Stage_OuterCircle
   m_TagString: Untagged
@@ -282,41 +239,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1015759544754809608
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4252015784251142055}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7430029756845338538, guid: 814c24e66e85d61429c17a9af28c6eb8, type: 3}
---- !u!114 &5321500423037993554
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4252015784251142055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0ead27d8c99bab05885f4db4cbe2d52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPG.CursorTarget
-  collisionTarget: {fileID: 4252015784251142055}
 --- !u!1 &6235300940391127233
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,8 +250,6 @@ GameObject:
   - component: {fileID: 8257174492250010700}
   - component: {fileID: 4253777206839677881}
   - component: {fileID: 2885792858701898197}
-  - component: {fileID: 8483960224783772085}
-  - component: {fileID: 1177464162344401489}
   m_Layer: 0
   m_Name: Stage_InnerCircle
   m_TagString: Untagged
@@ -409,41 +329,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8483960224783772085
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6235300940391127233}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -8527754874272524636, guid: 814c24e66e85d61429c17a9af28c6eb8, type: 3}
---- !u!114 &1177464162344401489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6235300940391127233}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0ead27d8c99bab05885f4db4cbe2d52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPG.CursorTarget
-  collisionTarget: {fileID: 6235300940391127233}
 --- !u!1 &6795703916659466172
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,8 +340,6 @@ GameObject:
   - component: {fileID: 8893334387542273850}
   - component: {fileID: 8189847677155033966}
   - component: {fileID: 4724786700318400581}
-  - component: {fileID: 1856010913787031456}
-  - component: {fileID: 3180115031019537413}
   m_Layer: 0
   m_Name: Stage_MiddleCircle
   m_TagString: Untagged
@@ -536,38 +419,3 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &1856010913787031456
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6795703916659466172}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2281542524388654446, guid: 814c24e66e85d61429c17a9af28c6eb8, type: 3}
---- !u!114 &3180115031019537413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6795703916659466172}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0ead27d8c99bab05885f4db4cbe2d52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPG.CursorTarget
-  collisionTarget: {fileID: 6795703916659466172}

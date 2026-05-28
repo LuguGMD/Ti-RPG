@@ -12,6 +12,7 @@ namespace RPG.Combat
     public abstract class StageEntityController : EntityController
     {
         [SerializeField] protected StageEntityScriptable _info;
+        protected List<CombatAction> _actions = new List<CombatAction>();
 
         protected TileObjectMovement _movement;
         protected PreviewActionHandler _preview;
@@ -23,6 +24,7 @@ namespace RPG.Combat
         public StageEntityScriptable Info { get { return _info; } }
         public PreviewActionHandler Preview { get { return _preview; } }
         public int SelectedActionIndex {  get { return _selectedActionIndex; } }
+        public List<CombatAction> Actions => _actions;
 
         #endregion
 
@@ -31,9 +33,6 @@ namespace RPG.Combat
             base.Awake();
             _movement = GetComponent<TileObjectMovement>();
             _preview = GetComponent<PreviewActionHandler>();
-
-            //TO DO remover depois
-            SelectAction(0);
         }
 
         protected new void Start()
@@ -41,35 +40,26 @@ namespace RPG.Combat
             base.Start();
             AdjsutGameSpeed();
             ActionsManager.Instance.OnStageEntityCreated?.Invoke(this);
+
+            InitCombatActions();
+
+            //TO DO remover depois
+            SelectAction(0);
         }
 
-        public IEnumerator UseSelectedAction(int movementPatternIndex, int repetitions, bool isMirrored)
+        public IEnumerator UseSelectedAction(PreviewTileInfo selectedPreviewTile)
         {
             _tileObject.CheckSpotlight();
 
             SetAnimationInt("ActionIndex", _selectedActionIndex);
             SetAnimationBool("IsActionRunning", true);
 
-            CombatAction action = _info.Actions[_selectedActionIndex];
-            MovementPattern movementPattern = action.MovementPatterns[movementPatternIndex];
-
-            SubscribeEffects(action.Effects);
-
-            DirectionEnum startDirection = movementPattern.Pattern[0].Direction;
-            if(isMirrored) startDirection = startDirection.Mirror();
-
-            _tileObject.SetDirection(startDirection);
-
-            _movement.EnqueuePattern(movementPattern.Pattern, repetitions);
+            CombatAction action = _actions[_selectedActionIndex];
 
             ActionsManager.Instance.OnActionStart?.Invoke();
+            yield return action.Execute(selectedPreviewTile);
 
             yield return new WaitForSeconds(0.1f / CombatManager.CombatSpeed);
-
-            while (_movement.MovementQueue.Count > 0)
-            {
-                yield return _movement.Move(isMirrored);
-            }
 
             SetAnimationBool("IsActionRunning", false);
 
@@ -77,30 +67,26 @@ namespace RPG.Combat
             _tileObject.UpdatePosition();
 
             ActionsManager.Instance.OnActionEnd?.Invoke();
-
-            yield return new WaitForSeconds(0.1f / CombatManager.CombatSpeed);
-
-            CombatManager.UnsubscribeEffectTriggerAction();
         }
 
         public void SelectAction(int actionIndex)
         {
             _selectedActionIndex = actionIndex;
-            _preview.ChangeActionToPreview(_info.Actions[actionIndex]);
-        }
-
-        private void SubscribeEffects(List<Effect> effects)
-        {
-            foreach (Effect effect in effects)
-            {
-                CombatManager.SubscribeEffectTriggerAction(effect.TriggerCondition, () => effect.Execute(this));
-            }
+            _preview.ChangeActionToPreview(_actions[actionIndex]);
         }
 
         protected override void Defeated()
         {
             base.Defeated();
             ActionsManager.Instance.OnStageEntityDefeated?.Invoke(this);
+        }
+
+        protected virtual void InitCombatActions()
+        {
+            foreach (CombatAction combatAction in _actions)
+            {
+                combatAction.Init(this);
+            }
         }
     }
 }

@@ -98,10 +98,9 @@ namespace RPG.Combat.Grid
             return worldPosition;
         }
 
-        public static bool IsMovementValid(Vector2Int currentPos, Movement movement, bool isMirrored)
+        public static bool IsMovementValid(Vector2Int currentPos, Movement movement)
         {
-            DirectionEnum movementDirection = isMirrored ? movement.Direction.Mirror() : movement.Direction;
-            Vector2Int addedMovement = movementDirection.ToVector2Int();
+            Vector2Int addedMovement = movement.Direction.ToVector2Int();
             Vector2Int finalPos = (currentPos + addedMovement).ClampMap();
 
             if (finalPos == Map.CENTER_POS || finalPos.y >= Map.Rows - 1)

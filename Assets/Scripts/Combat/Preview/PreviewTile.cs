@@ -85,9 +85,10 @@ namespace RPG.Combat.Preview
 
         protected void ToggleColliders(bool toogle)
         {
-            foreach(Collider collider in _colliders)
+            foreach (Collider collider in _colliders)
             {
-                collider.enabled = toogle;
+                if (collider != null)
+                    collider.enabled = toogle;
             }
         }
 

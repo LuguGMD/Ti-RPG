@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace RPG.Combat.Actions.Effects
 {
-    [CreateAssetMenu(fileName = "PushEffectScriptable", menuName = "Scriptable Objects/Combat/Effects/Push")]
-    public class PushEffectScriptable : EffectCommandScriptable
+    [System.Serializable]
+    public class PushEffect : EffectCommand
     {
-        [SerializeField] private bool _isPushDirectionRelative = true;
-        [SerializeField] private DirectionEnum _pushDirection = DirectionEnum.Up;
-        [Min(1)] [SerializeField] private int _pushAmount = 1;
+        private bool _isPushDirectionRelative = true;
+        private DirectionEnum _pushDirection = DirectionEnum.Up;
+        private int _pushAmount = 1;
 
         #region Properties
 
@@ -19,6 +19,13 @@ namespace RPG.Combat.Actions.Effects
 
         #endregion
 
+        public PushEffect(DirectionEnum pushDirection, int pushAmount, bool isPushDirectionRelative = true)
+        {
+            _isPushDirectionRelative |= isPushDirectionRelative;
+            _pushDirection = pushDirection;
+            _pushAmount = pushAmount;
+        }
+
         public override bool Execute(StageEntityController user, StageEntityController target)
         {
             DirectionEnum facing = user.Direction;
@@ -26,7 +33,7 @@ namespace RPG.Combat.Actions.Effects
 
             Movement movement = new Movement(pushDirection, true);
 
-            if (!MapManager.IsMovementValid(target.Position, movement, false))
+            if (!MapManager.IsMovementValid(target.Position, movement))
             {
                 return false;
             }
