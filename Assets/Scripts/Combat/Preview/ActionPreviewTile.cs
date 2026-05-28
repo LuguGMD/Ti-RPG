@@ -11,6 +11,7 @@ namespace RPG.Combat.Preview
     {
         private PreviewTileInfo _info;
         private List<ActionPreviewTile> _effectPreviewTiles = new List<ActionPreviewTile>();
+        private bool _effectPreviewEnabled = false;
 
         #region Properties
 
@@ -47,9 +48,10 @@ namespace RPG.Combat.Preview
 
         protected void ShowEffects()
         {
-            if (_info == null) return;
+            if (_info == null || _effectPreviewEnabled || !_canBeSelected) return;
+            _effectPreviewEnabled = true;
 
-            foreach(Effect effect in _info.Effects)
+            foreach (Effect effect in _info.Effects)
             {
                 _effectPreviewTiles.AddRange(effect.Preview(_tilePosition, _info.Direction));
             }
@@ -57,12 +59,17 @@ namespace RPG.Combat.Preview
 
         protected void HideEffects()
         {
-            foreach(ActionPreviewTile preview in _effectPreviewTiles)
+            if (!_effectPreviewEnabled) return;
+
+            for (int i =0; i< _effectPreviewTiles.Count; i++)
             {
-                if(preview.gameObject.activeSelf)
+                ActionPreviewTile preview = _effectPreviewTiles[i];
+                if (preview.gameObject.activeSelf)
                     PreviewTilesPool.Pool.Release(preview);
             }
+
             _effectPreviewTiles.Clear();
+            _effectPreviewEnabled = false;
         }
 
         private void CheckSelected(Vector2Int selectedPosition)

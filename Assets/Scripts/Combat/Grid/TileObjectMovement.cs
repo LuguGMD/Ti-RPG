@@ -69,7 +69,7 @@ namespace RPG.Combat.Grid
         {
             transform.parent = null;
 
-            if (MapManager.IsPositionValid(_tileObject.Position))
+            if (MapManager.IsPositionValid(position))
             {
                 _tileObject.SetDirection(direction);
 

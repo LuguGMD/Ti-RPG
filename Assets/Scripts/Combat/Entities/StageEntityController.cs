@@ -33,11 +33,6 @@ namespace RPG.Combat
             base.Awake();
             _movement = GetComponent<TileObjectMovement>();
             _preview = GetComponent<PreviewActionHandler>();
-
-            InitCombatActions();
-
-            //TO DO remover depois
-            SelectAction(0);
         }
 
         protected new void Start()
@@ -45,6 +40,11 @@ namespace RPG.Combat
             base.Start();
             AdjsutGameSpeed();
             ActionsManager.Instance.OnStageEntityCreated?.Invoke(this);
+
+            InitCombatActions();
+
+            //TO DO remover depois
+            SelectAction(0);
         }
 
         public IEnumerator UseSelectedAction(PreviewTileInfo selectedPreviewTile)

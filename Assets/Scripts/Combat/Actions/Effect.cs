@@ -39,7 +39,7 @@ namespace RPG.Combat.Actions
 
         public void Execute(StageEntityController user)
         {
-            Vector2Int checkPosition = user.Position;
+           
             List<Vector2Int> checkedTiles = new List<Vector2Int>();
 
             if (_doNeedSpotlight && !user.TileObject.IsOnSpotlight)
@@ -49,7 +49,7 @@ namespace RPG.Combat.Actions
 
             for (int i = 0; i < _area.Count; i++)
             {
-
+                Vector2Int checkPosition = user.Position;
                 checkPosition += _isRelativeToMovement ? _area[i].RelativeTo(user.Direction) : _area[i];
 
 
@@ -86,12 +86,13 @@ namespace RPG.Combat.Actions
 
         public List<ActionPreviewTile> Preview(Vector2Int startPosition, DirectionEnum startDirection)
         {
-            Vector2Int checkPosition = startPosition;
+            
             List<Vector2Int> checkedTiles = new List<Vector2Int>();
             List<ActionPreviewTile> actionPreviewTiles = new List<ActionPreviewTile>();
 
             for (int i = 0; i < _area.Count; i++)
             {
+                Vector2Int checkPosition = startPosition;
                 checkPosition += _isRelativeToMovement ? _area[i].RelativeTo(startDirection) : _area[i];
 
                 if (checkedTiles.Contains(checkPosition)) continue;

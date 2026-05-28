@@ -58,18 +58,53 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 389c289dd57504043b4814689a29bf6d, type: 2}
     m_RemovedComponents:
     - {fileID: 858624574154762926, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+    - {fileID: 8653750175042908985, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6643821856034087941, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8543931765419976932}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1658439040625981792, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: -889452348996019726}
   m_SourcePrefab: {fileID: 100100000, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
 --- !u!4 &1678047081122411078 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6643821856034087941, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
   m_PrefabInstance: {fileID: 5438666281577207363}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6663625059827674915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1658439040625981792, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+  m_PrefabInstance: {fileID: 5438666281577207363}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-889452348996019726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6663625059827674915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0efcc0b311b51fb46b5c87b4affc278b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.BuzinaCombatController
+  _info: {fileID: 11400000, guid: 389c289dd57504043b4814689a29bf6d, type: 2}
+  _characterDirectionalPunch:
+    _actionName: Soco Direcional
+    _actionDescription: 
+    _effects:
+    - _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area:
+      - {x: 0, y: 1}
+    _lastTileNeedsToBeEmpty: 1
+    _damage: 2
+    _pushAmount: 1
 --- !u!1001 &8149437047668854543
 PrefabInstance:
   m_ObjectHideFlags: 0
