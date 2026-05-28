@@ -1,3 +1,5 @@
+using FMODUnity;
+using RPG.Audio;
 using RPG.Combat.Actions;
 using RPG.Combat.Grid;
 using RPG.Combat.Preview;
@@ -17,6 +19,8 @@ namespace RPG.Combat
         protected TileObjectMovement _movement;
         protected PreviewActionHandler _preview;
         protected int _selectedActionIndex;
+
+        [SerializeField] private EventReference _defeatedSFX;
 
         #region Properties
 
@@ -78,6 +82,7 @@ namespace RPG.Combat
         protected override void Defeated()
         {
             base.Defeated();
+            AudioManager.Instance.PlayOneShot(_defeatedSFX);
             ActionsManager.Instance.OnStageEntityDefeated?.Invoke(this);
         }
 

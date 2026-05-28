@@ -1,3 +1,5 @@
+using FMODUnity;
+using RPG.Audio;
 using RPG.Combat.Actions.Effects;
 using RPG.Combat.Preview;
 using System.Collections;
@@ -11,6 +13,7 @@ namespace RPG.Combat.Actions
     {
         [SerializeField] private float _damage;
         [SerializeField] private int _pushAmount;
+        [SerializeField] private EventReference _attackSFX;
 
         public override void Init(StageEntityController user)
         {
@@ -29,6 +32,8 @@ namespace RPG.Combat.Actions
                 {
                     effect.Execute(_user);
                 }
+                AudioManager.Instance.PlayOneShot(_attackSFX);
+                yield return new WaitForSeconds(1.2f / CombatManager.CombatSpeed);
                 yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
 
                 if (root == selectedPreviewTile) break;
