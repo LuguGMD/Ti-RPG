@@ -13,6 +13,11 @@ namespace RPG.Combat.Actions.Effects
 
         #endregion
 
+        public HealingEffect(float healAmount)
+        {
+            _healAmount = healAmount;
+        }
+
         public override bool Execute(StageEntityController user, StageEntityController target)
         {
             if (target == null) return false;
