@@ -52,23 +52,24 @@ namespace RPG.Combat.Preview
             HidePreview();
 
             _isPreviewing = true;
-
+            
             for (int i = 0; i < _previewTileInfos.Count; i++)
             {
                 PreviewTileInfo currentPreviewTileInfo = _previewTileInfos[i];
                 Vector2Int position = _stageEntityController.Position;
                 bool doCancelPattern = false;
+                ActionPreviewTile lastPreviewTile = null;
                 do
                 {
                     position += currentPreviewTileInfo.RelativePosition;
 
                     if (IsPositionValid(currentPreviewTileInfo, position, out doCancelPattern))
                     {
-                        AddPreviewTile(currentPreviewTileInfo, position);
+                        AddPreviewTile(currentPreviewTileInfo, position, ref lastPreviewTile);
                     }
                     else if (!_actionToPreview.LastTileNeedsToBeEmpty)
                     {
-                        AddPreviewTile(currentPreviewTileInfo, position);
+                        AddPreviewTile(currentPreviewTileInfo, position, ref lastPreviewTile);
                         doCancelPattern = true;
                     }
 
@@ -110,7 +111,7 @@ namespace RPG.Combat.Preview
             _activePreviewTiles.Clear();
         }
 
-        protected virtual void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position)
+        protected virtual void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position, ref ActionPreviewTile lastPreviewTile)
         {
             if (position.y < 0)
             {
@@ -123,8 +124,13 @@ namespace RPG.Combat.Preview
             previewTile.SetPosition(position);
             previewTile.SetMeshes(CombatManager.CharacterPreviewGroups.Movement);
 
-            _activePreviewTiles.Add(previewTile);
+            if (lastPreviewTile != null)
+            {
+                previewTile.SeParent(lastPreviewTile);
+            }
 
+            lastPreviewTile = previewTile;
+            _activePreviewTiles.Add(previewTile);
         }
 
         private void UpdatePreview()

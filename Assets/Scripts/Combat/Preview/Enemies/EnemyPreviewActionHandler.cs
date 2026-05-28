@@ -6,9 +6,9 @@ namespace RPG.Combat.Preview
     {
         //TO DO adicionar logica da IA do inimigo para qual opção escolher
 
-        protected override void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position)
+        protected override void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position, ref ActionPreviewTile lastPreviewTile)
         {
-            base.AddPreviewTile(previewTileInfo, position);
+            base.AddPreviewTile(previewTileInfo, position, ref lastPreviewTile);
 
             ActionPreviewTile previewTile = _activePreviewTiles[_activePreviewTiles.Count - 1];
 

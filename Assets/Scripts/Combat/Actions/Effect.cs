@@ -52,7 +52,6 @@ namespace RPG.Combat.Actions
                 Vector2Int checkPosition = user.Position;
                 checkPosition += _isRelativeToMovement ? _area[i].RelativeTo(user.Direction) : _area[i];
 
-
                 if (checkedTiles.Contains(checkPosition)) continue;
                 Tile tile = MapManager.Map.GetTile(checkPosition);
 

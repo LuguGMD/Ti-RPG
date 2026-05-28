@@ -11,6 +11,7 @@ namespace RPG.Combat.Preview
     {
         private PreviewTileInfo _info;
         private List<ActionPreviewTile> _effectPreviewTiles = new List<ActionPreviewTile>();
+        private ActionPreviewTile _parent;
         private bool _effectPreviewEnabled = false;
 
         #region Properties
@@ -33,11 +34,17 @@ namespace RPG.Combat.Preview
             ActionsManager.Instance.OnTileHovered -= CheckHovered;
 
             HideEffects();
+            _parent = null;
         }
 
         public void SetInfo(PreviewTileInfo info)
         {
             _info = info;
+        }
+
+        public void SeParent(ActionPreviewTile parent)
+        {
+            _parent = parent;
         }
 
         protected override void Select()
@@ -55,6 +62,12 @@ namespace RPG.Combat.Preview
             {
                 _effectPreviewTiles.AddRange(effect.Preview(_tilePosition, _info.Direction));
             }
+
+            if(_parent != null)
+            {
+                _parent.ShowEffects();
+            }
+            
         }
 
         protected void HideEffects()
@@ -69,6 +82,12 @@ namespace RPG.Combat.Preview
             }
 
             _effectPreviewTiles.Clear();
+
+            if (_parent != null)
+            {
+                _parent.HideEffects();
+            }
+
             _effectPreviewEnabled = false;
         }
 
