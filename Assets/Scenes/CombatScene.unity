@@ -609,10 +609,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 5989211975576280247, guid: 90ae1b87327be87499e1a802694983b9, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -889,6 +885,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 6353857453689576970, guid: 48e63c7cd934ec74ca3ff7573f4af5da, type: 3}
+      propertyPath: '_currentParty.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 389c289dd57504043b4814689a29bf6d, type: 2}
+    - target: {fileID: 6353857453689576970, guid: 48e63c7cd934ec74ca3ff7573f4af5da, type: 3}
+      propertyPath: '_currentParty.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c557b0a8f59d6f94090d1b6fd49443c8, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4877,10 +4881,6 @@ PrefabInstance:
     - target: {fileID: 3509102768106382784, guid: 044e23737c44e744fb71e78db0185d8f, type: 3}
       propertyPath: m_Name
       value: CombatCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 5204142915136496256, guid: 044e23737c44e744fb71e78db0185d8f, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
