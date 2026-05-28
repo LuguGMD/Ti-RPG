@@ -13,69 +13,9 @@ MonoBehaviour:
   m_Name: FolesbelaCombatScriptable
   m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterScriptable
   _entityName: Folesbela
-  _actions:
-  - _actionName: Acrobacias
-    _actionDescription: Acerta todos em seu caminho, dando cambalhotas de 2 em 2
-      tiles
-    _effects:
-    - _command: {fileID: 11400000, guid: 6c8af37d4bd251e409452514cea49749, type: 2}
-      _triggerCondition: 2
-      _targetList: 01000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 0
-      _isRelativeToMovement: 0
-      _area: 08000000
-    - _command: {fileID: 11400000, guid: 58b14df0b40a7074aac972afbc8fb47a, type: 2}
-      _triggerCondition: 2
-      _targetList: 01000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 1
-      _isRelativeToMovement: 0
-      _area: 08000000
-    _movementPatterns:
-    - _pattern:
-      - _direction: 3
-        _needsToBeEmpty: 0
-      - _direction: 3
-        _needsToBeEmpty: 0
-      _repetition: 5
-      _canMirror: 0
-      Repetition: 5
-    _lastTileNeedsToBeEmpty: 1
-  - _actionName: Soco Direcional
-    _actionDescription: 
-    _effects:
-    - _command: {fileID: 11400000, guid: faaab5275613368488736a1e776f3671, type: 2}
-      _triggerCondition: 0
-      _targetList: 01000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 0
-      _isRelativeToMovement: 1
-      _area: 00000000
-    - _command: {fileID: 11400000, guid: 5bb2fb777cbd3ba4da4a3b23bb4509aa, type: 2}
-      _triggerCondition: 0
-      _targetList: 01000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 0
-      _isRelativeToMovement: 1
-      _area: 00000000
-    _movementPatterns:
-    - _pattern:
-      - _direction: 0
-        _needsToBeEmpty: 1
-      _repetition: 1
-      _canMirror: 1
-      Repetition: 1
-    - _pattern:
-      - _direction: 3
-        _needsToBeEmpty: 1
-      _repetition: 1
-      _canMirror: 1
-      Repetition: 1
-    _lastTileNeedsToBeEmpty: 0
-  _type: 1
   _spotlightDescription: "No Holofote: Toda A\xE7\xE3o empurra o Inimigo para fora
     do Palco"
   _icon: {fileID: -65060539, guid: f484e21bd27c36f47ac7f15d8c6dc25d, type: 3}
   motivation: 65
   _prefab: {fileID: 3275965007155841491, guid: 71c58aac71435da4396b7b945d2f1d7b, type: 3}
+  _fmodParameterName: Folesbela
