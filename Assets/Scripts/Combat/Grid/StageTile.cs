@@ -8,6 +8,7 @@ namespace RPG.Combat.Grid
     {
         private CursorTarget _cursorTarget;
         [SerializeField] private Vector2Int _position;
+        private Tile _tile;
 
         private void Awake()
         {
@@ -17,11 +18,27 @@ namespace RPG.Combat.Grid
         private void Start()
         {
             _cursorTarget.Actions.Hover.OnStart(OnHover);
+            _tile = MapManager.Map.GetTile(_position);
+        }
+
+        private void OnEnable()
+        {
+            ActionsManager.Instance.OnMapChanged += UpdatePosition;
+        }
+
+        private void OnDisable()
+        {
+            ActionsManager.Instance.OnMapChanged -= UpdatePosition;
         }
 
         private void OnHover()
         {
             ActionsManager.Instance.OnTileHovered?.Invoke(_position);
+        }
+
+        private void UpdatePosition()
+        {
+            _position = _tile.Position;
         }
     }
 }
