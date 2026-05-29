@@ -11,5 +11,10 @@ namespace RPG.Audio
         {
             AudioManager.Instance.PlayMusic(battleMusic);
         }
+
+        private void OnDestroy()
+        {
+            AudioManager.Instance.StopMusic();
+        }
     }
 }

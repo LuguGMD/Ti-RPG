@@ -16,7 +16,7 @@ namespace RPG.Combat.Actions
         {
             _user = user;
             _effects[0].Commands.Add(new DamageEffect(_damage));
-            //_effects[0].Commands.Add(new Push) TO DO adicionar efeito de empurrar em relacao ao usuario
+            _effects[0].Commands.Add(new PushRelativeEffect(_pushAmount));
         }
 
 

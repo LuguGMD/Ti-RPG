@@ -34,6 +34,20 @@ namespace RPG.Extensions
             }
 
             return vector;
-    }
+        }
+
+        public static DirectionEnum ToDirection(this Vector2Int vector)
+        {
+            if (vector == Vector2Int.left) return DirectionEnum.Left;
+            if (vector == Vector2Int.right) return DirectionEnum.Right;
+            if (vector == Vector2Int.up) return DirectionEnum.Up;
+            if (vector == Vector2Int.down) return DirectionEnum.Down;
+            if (vector == Vector2Int.up + Vector2Int.right) return DirectionEnum.UpRight;
+            if (vector == Vector2Int.up + Vector2Int.left) return DirectionEnum.UpLeft;
+            if (vector == Vector2Int.down + Vector2Int.right) return DirectionEnum.DownRight;
+            if (vector == Vector2Int.down + Vector2Int.left) return DirectionEnum.DownLeft;
+
+            return DirectionEnum.None;
+        }
     }
 }
