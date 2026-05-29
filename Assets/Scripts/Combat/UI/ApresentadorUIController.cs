@@ -166,7 +166,10 @@ namespace RPG.Combat.UI
         {
             GameObject selectedRow = MapManager.RowGameObjects[CombatManager.Apresentador.RowToRotate];
             selectedRow.transform.DOKill(true);
-            selectedRow.transform.DOLocalMove(Vector3.zero, 0.25f);
+            selectedRow.transform.DOLocalMove(Vector3.zero, 0.25f).OnComplete(() =>
+            {
+                ActionsManager.Instance.OnMapChanged?.Invoke();
+            });
         }
     }
 }
