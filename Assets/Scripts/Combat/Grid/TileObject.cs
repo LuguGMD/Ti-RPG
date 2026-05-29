@@ -24,6 +24,11 @@ namespace RPG.Combat.Grid
             SetDirection(DirectionEnum.Up);
         }
 
+        private void Start()
+        {
+            CheckSpotlight();
+        }
+
         private void OnEnable()
         {
             ActionsManager.Instance.OnMapChanged += UpdatePosition;
