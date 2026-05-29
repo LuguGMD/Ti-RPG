@@ -21,6 +21,11 @@ namespace RPG.Combat.Grid
             _tile = MapManager.Map.GetTile(_position);
         }
 
+        private void OnDestroy()
+        {
+            _cursorTarget.Actions.Hover.Stop();
+        }
+
         private void OnEnable()
         {
             ActionsManager.Instance.OnMapChanged += UpdatePosition;
