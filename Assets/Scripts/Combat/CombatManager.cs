@@ -67,9 +67,10 @@ namespace RPG.Combat
 
         private void Start()
         {
+            if (Instance != this) return;
+
             _apresentador = GameObject.FindAnyObjectByType<ApresentadorController>(FindObjectsInactive.Include);
             _apresentador.gameObject.SetActive(true);
-
             ActionsManager.Instance.OnPreviewTileSelected += PlaceCharacter;
         }
 

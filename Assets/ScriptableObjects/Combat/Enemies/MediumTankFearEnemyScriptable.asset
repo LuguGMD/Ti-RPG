@@ -13,44 +13,6 @@ MonoBehaviour:
   m_Name: MediumTankFearEnemyScriptable
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.EnemyScriptable
   _entityName: Tank
-  _actions:
-  - _actionName: Directional Punch
-    _actionDescription: 
-    _effects:
-    - _command: {fileID: 11400000, guid: c7ad9af455d32914cb8692d628b632b3, type: 2}
-      _triggerCondition: 0
-      _targetList: 00000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 0
-      _isRelativeToMovement: 1
-      _area: 00000000
-    - _command: {fileID: 11400000, guid: 9e7030b0156994b489378a928fae6623, type: 2}
-      _triggerCondition: 0
-      _targetList: 00000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 1
-      _isRelativeToMovement: 1
-      _area: 00000000
-    _movementPatterns:
-    - _pattern:
-      - _direction: 1
-        _needsToBeEmpty: 1
-      _repetition: 1
-      _canMirror: 0
-      Repetition: 1
-    _lastTileNeedsToBeEmpty: 1
-  - _actionName: Nothing
-    _actionDescription: 
-    _effects: []
-    _movementPatterns:
-    - _pattern:
-      - _direction: 8
-        _needsToBeEmpty: 0
-      _repetition: 0
-      _canMirror: 0
-      Repetition: 0
-    _lastTileNeedsToBeEmpty: 0
-  _type: 5
   _spotlightDescription: 
   _prefab: {fileID: -3376593613523441933, guid: 21671a50b761773408133b247d766eaa, type: 3}
-  _health: 24
+  _health: 18
