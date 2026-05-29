@@ -205,9 +205,17 @@ PrefabInstance:
       value: BarbaraModel
       objectReference: {fileID: 0}
     - target: {fileID: 2478417623011553671, guid: 05d638ba08420364a91bd551da6764de, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2478417623011553671, guid: 05d638ba08420364a91bd551da6764de, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: f07370d80e3a0b244a90ddfdd41b4fdb, type: 2}
+    - target: {fileID: 2478417623011553671, guid: 05d638ba08420364a91bd551da6764de, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 61b1311d00483074ba93cf89bbbd2f57, type: 2}
     - target: {fileID: 9142718875704238253, guid: 05d638ba08420364a91bd551da6764de, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

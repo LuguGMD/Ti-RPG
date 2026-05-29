@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace RPG.Combat.Grid
@@ -7,6 +8,7 @@ namespace RPG.Combat.Grid
         private Tile _currentTile;
         private DirectionEnum _direction;
         protected bool _isOnSpotlight;
+        public Action<bool> OnSpotlightStateChange;
 
         #region Properties
 
@@ -25,12 +27,14 @@ namespace RPG.Combat.Grid
         private void OnEnable()
         {
             ActionsManager.Instance.OnMapChanged += UpdatePosition;
+            ActionsManager.Instance.OnMapChanged += CheckSpotlight;
             ActionsManager.Instance.OnTurnPassed += CheckSpotlight;
         }
 
         private void OnDisable()
         {
             ActionsManager.Instance.OnMapChanged -= UpdatePosition;
+            ActionsManager.Instance.OnMapChanged -= CheckSpotlight;
             ActionsManager.Instance.OnTurnPassed -= CheckSpotlight;
         }
 
@@ -63,7 +67,15 @@ namespace RPG.Combat.Grid
 
         public void CheckSpotlight()
         {
+            if (MapManager.Instance == null || _currentTile == null) return;
+            UpdatePosition();
+
+            bool previousState = _isOnSpotlight;
             _isOnSpotlight = MapManager.Instance.IsPositionOnSpotlight(Position);
+            if(previousState != _isOnSpotlight)
+            {
+                OnSpotlightStateChange?.Invoke(_isOnSpotlight);
+            }
         }
     }
 }

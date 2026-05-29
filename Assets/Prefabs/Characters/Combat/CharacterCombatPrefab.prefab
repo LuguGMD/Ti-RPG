@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1206390615293562564}
   - component: {fileID: 6528647309577072793}
   - component: {fileID: 2426029175546086407}
+  - component: {fileID: 1859410682183151354}
   m_Layer: 0
   m_Name: CharacterCombatPrefab
   m_TagString: Untagged
@@ -34,7 +35,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8522121786923487233}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &523569438966301584
@@ -73,7 +75,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e796a32190251040afe9994edce7d0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.CharacterController
+  _damagedSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   _info: {fileID: 11400000, guid: 1e543e771f1dcc242a52dba744570440, type: 2}
+  _defeatedSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _spotlightHandler: {fileID: 0}
   _characterDirectionalPunch:
     _actionName: Soco Direcional
     _actionDescription: 
@@ -135,3 +152,107 @@ CapsuleCollider:
   m_Height: 2.6919117
   m_Direction: 1
   m_Center: {x: 0, y: 0.84595585, z: 0}
+--- !u!114 &1859410682183151354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658439040625981792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c25a94fb196e34c815761306d6aa8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.SpotlightSparkleEffect
+  _effect: {fileID: 3951131373566740000}
+--- !u!1001 &3255003641637269282
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6643821856034087941}
+    m_Modifications:
+    - target: {fileID: 267133261173223705, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 310935296794368468, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015683660778088706, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2493192310903565714, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2605285150161156327, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5902994673802035009, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: m_Name
+      value: BlueBuffVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586708020755267363, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586708020755267363, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586708020755267363, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586708020755267363, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586708020755267363, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586708020755267363, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586708020755267363, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586708020755267363, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586708020755267363, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586708020755267363, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7021842847942901297, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+--- !u!198 &3951131373566740000 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2015683660778088706, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+  m_PrefabInstance: {fileID: 3255003641637269282}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8522121786923487233 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6586708020755267363, guid: cd2ab3be1ef2ee447994b22a96751433, type: 3}
+  m_PrefabInstance: {fileID: 3255003641637269282}
+  m_PrefabAsset: {fileID: 0}

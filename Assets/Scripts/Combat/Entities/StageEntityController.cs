@@ -1,3 +1,4 @@
+using DG.Tweening;
 using FMODUnity;
 using RPG.Audio;
 using RPG.Combat.Actions;
@@ -21,6 +22,9 @@ namespace RPG.Combat
         protected int _selectedActionIndex;
 
         [SerializeField] private EventReference _defeatedSFX;
+        
+        [SerializeField] private SpotlightSparkleEffect _spotlightHandler;
+        
 
         #region Properties
 
@@ -51,6 +55,22 @@ namespace RPG.Combat
             SelectAction(0);
         }
 
+        protected new void OnEnable()
+        {
+            base.OnEnable();
+
+            _spotlightHandler = GetComponent<SpotlightSparkleEffect>();
+            _tileObject.OnSpotlightStateChange += _spotlightHandler.UpdateSpotlightEffect;
+        }
+
+        protected new void OnDisable()
+        {
+            base.OnDisable();
+            _tileObject.OnSpotlightStateChange -= _spotlightHandler.UpdateSpotlightEffect;
+        }
+
+        
+
         public IEnumerator UseSelectedAction(PreviewTileInfo selectedPreviewTile)
         {
             _tileObject.CheckSpotlight();
@@ -71,6 +91,7 @@ namespace RPG.Combat
             _tileObject.UpdatePosition();
 
             ActionsManager.Instance.OnActionEnd?.Invoke();
+            TileObject.CheckSpotlight();
         }
 
         public void SelectAction(int actionIndex)
