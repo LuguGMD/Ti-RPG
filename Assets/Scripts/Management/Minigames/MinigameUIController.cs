@@ -8,7 +8,6 @@ namespace RPG.Management.Minigames
 {
     public class MinigameUIController : MonoBehaviour
     {
-        private PlayerInput _playerInput;
         private PanelsController _panelsController;
 
         [SerializeField] private TextMeshProUGUI _currentComboText;
@@ -20,14 +19,11 @@ namespace RPG.Management.Minigames
 
         private void Awake()
         {
-            _playerInput = GameObject.FindAnyObjectByType<PlayerInput>();
             _panelsController = GetComponent<PanelsController>();
         }
 
         private void Start()
         {
-            _playerInput.Actions.Pause.OnStart(TogglePause);
-
             UpdateTexts();
         }
 
@@ -35,12 +31,14 @@ namespace RPG.Management.Minigames
         {
             ActionsManager.Instance.OnMinigameValuesUpdated += UpdateTexts;
             ActionsManager.Instance.OnMinigameChallengeUpdated += UpdateChallengePanel;
+            ActionsManager.Instance.OnPauseToggle += TogglePause;
         }
 
         private void OnDisable()
         {
             ActionsManager.Instance.OnMinigameValuesUpdated -= UpdateTexts;
             ActionsManager.Instance.OnMinigameChallengeUpdated -= UpdateChallengePanel;
+            ActionsManager.Instance.OnPauseToggle -= TogglePause;
         }
 
         private void UpdateTexts()
@@ -77,22 +75,21 @@ namespace RPG.Management.Minigames
             _challengeProgressText.text = $"{challenge.ChallengeProgress} / {challenge.ChallengeGoal}";
         }
 
-        private void TogglePause()
+        private void TogglePause(bool isPaused)
         {
-            if(MinigameManager.IsPaused)
+            if(isPaused)
             {
-                UnPauseMinigame();
+                PauseMinigame(); 
             }
             else
             {
-                PauseMinigame();
+                UnPauseMinigame();
             }
         }
 
         public void PauseMinigame()
         {
             MinigameManager.Instance.TogglePause(true);
-            _panelsController.ChangePanel(1);
         }
 
         public void UnPauseMinigame()

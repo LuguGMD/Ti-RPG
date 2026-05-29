@@ -4740,6 +4740,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: c557b0a8f59d6f94090d1b6fd49443c8, type: 2}
     m_RemovedComponents:
     - {fileID: 858624574154762926, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+    - {fileID: 8653750175042908985, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6643821856034087941, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
@@ -4748,8 +4749,76 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6643821856034087941, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7244429273809850178}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1658439040625981792, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 6712933676206287897}
   m_SourcePrefab: {fileID: 100100000, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+--- !u!1 &1403073509598325758 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1658439040625981792, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+  m_PrefabInstance: {fileID: 322924817554133662}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6712933676206287897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403073509598325758}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56ed16a1ccf49a34e94ce9d1d2785f25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.AnikaCombatController
+  _damagedSFX:
+    Guid:
+      Data1: -57277573
+      Data2: 1163687725
+      Data3: 314102462
+      Data4: 801854642
+    Path: event:/Character/Player/Damaged
+  _info: {fileID: 11400000, guid: c557b0a8f59d6f94090d1b6fd49443c8, type: 2}
+  _defeatedSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _characterDirectionalPunch:
+    _actionName: Soco Direcional
+    _actionDescription: "Ataca e empurra em uma dire\xE7\xE3o"
+    _effects:
+    - _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area:
+      - {x: 0, y: 1}
+    _lastTileNeedsToBeEmpty: 0
+    _damage: 2
+    _pushAmount: 1
+  _jumpAttack:
+    _actionName: Salto
+    _actionDescription: Pula para o outro lado do palco, empurrando todos para longe
+    _effects:
+    - _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 0
+      _area:
+      - {x: -1, y: 1}
+      - {x: 0, y: 1}
+      - {x: 1, y: 1}
+      - {x: -1, y: 0}
+      - {x: 1, y: 0}
+      - {x: -1, y: -1}
+      - {x: 0, y: -1}
+      - {x: 1, y: -1}
+    _lastTileNeedsToBeEmpty: 1
+    _damage: 2
+    _pushAmount: 1
 --- !u!4 &6361574914798630555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6643821856034087941, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}

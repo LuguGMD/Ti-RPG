@@ -60,7 +60,8 @@ namespace RPG
         {
             if(!_defeatedCharacters.Contains(character.CharacterInfo))
             {
-                _defeatedCharacters.Add(character.CharacterInfo);
+                //TO DO Adicionar dnv depois
+                //_defeatedCharacters.Add(character.CharacterInfo);
             }
         }
 

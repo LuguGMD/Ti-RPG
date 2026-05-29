@@ -5,6 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Input;
+using FMODUnity;
+using RPG.Audio;
 
 namespace RPG.Combat
 {
@@ -14,6 +16,8 @@ namespace RPG.Combat
         protected TileObject _tileObject;
         protected CursorTarget _cursorTarget;
         protected Animator[] _animators;
+
+        [SerializeField] private EventReference _damagedSFX;
 
         #region Properties
         public Vector2Int Position { get { return _tileObject.Position; } }
@@ -38,6 +42,7 @@ namespace RPG.Combat
         protected void OnDestroy()
         {
             _cursorTarget.Actions.LeftClick.Stop();
+            _cursorTarget.Actions.Hover.Stop();
         }
 
         protected void OnEnable()
@@ -114,6 +119,7 @@ namespace RPG.Combat
 
         public virtual void TakeDamage(float damage)
         {
+            AudioManager.Instance.PlayOneShot(_damagedSFX);
             SetAnimationTrigger("TookDamage");
             CheckDefeated();
         }

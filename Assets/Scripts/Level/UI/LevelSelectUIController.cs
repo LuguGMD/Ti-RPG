@@ -51,6 +51,7 @@ namespace RPG.Level
         private void OnDisable()
         {
             ActionsManager.Instance.OnLevelSelected -= OnLevelSelected;
+            _isActive = false;
         }
 
         private void OnLevelSelected(LevelScriptable selectedLevel)

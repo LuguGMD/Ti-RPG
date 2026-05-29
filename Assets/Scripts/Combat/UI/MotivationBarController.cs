@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using DG.Tweening;
 
 namespace RPG.Combat.UI
 {
@@ -53,12 +54,12 @@ namespace RPG.Combat.UI
             if (!_characterSliders.ContainsKey(character)) return;
 
             CharacterMotivationSlider motivationSlider = _characterSliders[character];
-            motivationSlider.Slider.value = (CombatConstants.MAX_MOTIVATION_APRESENTADOR - character.CurrentMotivation) / CombatConstants.MAX_MOTIVATION_APRESENTADOR;
+            motivationSlider.Slider.DOValue((CombatConstants.MAX_MOTIVATION_APRESENTADOR - character.CurrentMotivation) / CombatConstants.MAX_MOTIVATION_APRESENTADOR, 1f);
         }
 
         private void UpdateApresentadorDamage()
         {
-            _apresentadorSlider.value = CombatManager.Apresentador.CurrentMotivation / CombatConstants.MAX_MOTIVATION_APRESENTADOR;
+            _apresentadorSlider.DOValue(CombatManager.Apresentador.CurrentMotivation / CombatConstants.MAX_MOTIVATION_APRESENTADOR, 0.2f);
         }
     }
 }

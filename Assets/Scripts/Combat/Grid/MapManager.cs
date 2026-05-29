@@ -1,5 +1,7 @@
 using DG.Tweening;
+using FMODUnity;
 using Lugu.Singleton;
+using RPG.Audio;
 using RPG.Combat.Actions;
 using RPG.Extensions;
 using System;
@@ -23,7 +25,9 @@ namespace RPG.Combat.Grid
         [SerializeField] private GameObject[] _rowGameObjects;
         private Coroutine _rotationAnimationCoroutine;
         private Vector2Int _spotlightPosition;
-        
+
+        [SerializeField] private EventReference _rotationSFX;
+
 
         #region Properties
 
@@ -98,10 +102,9 @@ namespace RPG.Combat.Grid
             return worldPosition;
         }
 
-        public static bool IsMovementValid(Vector2Int currentPos, Movement movement, bool isMirrored)
+        public static bool IsMovementValid(Vector2Int currentPos, Movement movement)
         {
-            DirectionEnum movementDirection = isMirrored ? movement.Direction.Mirror() : movement.Direction;
-            Vector2Int addedMovement = movementDirection.ToVector2Int();
+            Vector2Int addedMovement = movement.Direction.ToVector2Int();
             Vector2Int finalPos = (currentPos + addedMovement).ClampMap();
 
             if (finalPos == Map.CENTER_POS || finalPos.y >= Map.Rows - 1)
@@ -159,6 +162,8 @@ namespace RPG.Combat.Grid
 
         public void RotateRow(int rowToRotate, int amount)
         {
+            AudioManager.Instance.PlayOneShot(_rotationSFX);
+
             _map.RotateRow(rowToRotate, amount);
 
             if (_rotationAnimationCoroutine != null) StopCoroutine(_rotationAnimationCoroutine);

@@ -56,19 +56,80 @@ PrefabInstance:
       propertyPath: _info
       value: 
       objectReference: {fileID: 11400000, guid: 99de96255f8ebcc4ba100d2e0ec53840, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8653750175042908985, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6643821856034087941, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5766291761327145778}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1658439040625981792, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 7788911528210877111}
   m_SourcePrefab: {fileID: 100100000, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
 --- !u!4 &630326845916249519 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6643821856034087941, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
   m_PrefabInstance: {fileID: 6092462280435931562}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4868166550986629322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1658439040625981792, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+  m_PrefabInstance: {fileID: 6092462280435931562}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7788911528210877111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4868166550986629322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc457ea79ebb4e1459adf8117b26701e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.DonLiponCombatController
+  _damagedSFX:
+    Guid:
+      Data1: -57277573
+      Data2: 1163687725
+      Data3: 314102462
+      Data4: 801854642
+    Path: event:/Character/Player/Damaged
+  _info: {fileID: 11400000, guid: 99de96255f8ebcc4ba100d2e0ec53840, type: 2}
+  _defeatedSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _characterDirectionalPunch:
+    _actionName: Soco Direcional
+    _actionDescription: "Ataca e empurra em uma dire\xE7\xE3o"
+    _effects:
+    - _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area:
+      - {x: 0, y: 1}
+    _lastTileNeedsToBeEmpty: 0
+    _damage: 2
+    _pushAmount: 1
+  _weightAttack:
+    _actionName: Levantamento de Peso
+    _actionDescription: 
+    _effects:
+    - _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area:
+      - {x: 0, y: 1}
+    _lastTileNeedsToBeEmpty: 1
+    _damage: 8
 --- !u!1001 &6309334940468634841
 PrefabInstance:
   m_ObjectHideFlags: 0

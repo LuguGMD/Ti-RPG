@@ -1985,4 +1985,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84bbb594f91aadf439d7ee9d2b8b0c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.MediumFearTankEnemyController
+  _damagedSFX:
+    Guid:
+      Data1: -2050587371
+      Data2: 1092163508
+      Data3: -615420032
+      Data4: -424402750
+    Path: event:/Character/Enemy/Damaged
   _info: {fileID: 11400000, guid: 3d44cf0cff62b634581bfea2c7845f0d, type: 2}
+  _defeatedSFX:
+    Guid:
+      Data1: -1922207554
+      Data2: 1249813310
+      Data3: -128057705
+      Data4: 1009727366
+    Path: event:/Character/Enemy/Death
+  _attack:
+    _actionName: 
+    _actionDescription: 
+    _effects:
+    - _targetList: 00000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area:
+      - {x: 0, y: 1}
+    _lastTileNeedsToBeEmpty: 0
+    _damage: 8
+    _attackSFX:
+      Guid:
+        Data1: -604343227
+        Data2: 1338147339
+        Data3: -1551870839
+        Data4: -1019038061
+      Path: event:/Character/Enemy/Attack
+  _nothing:
+    _actionName: 
+    _actionDescription: 
+    _effects:
+    - _targetList: 01000000
+      _canTargetSelf: 1
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 0
+      _area:
+      - {x: 0, y: 0}
+    _lastTileNeedsToBeEmpty: 1

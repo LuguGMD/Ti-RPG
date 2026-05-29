@@ -13,40 +13,8 @@ MonoBehaviour:
   m_Name: BuzinaCombatScriptable
   m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterScriptable
   _entityName: Buzina
-  _actions:
-  - _actionName: Soco Direcional
-    _actionDescription: 
-    _effects:
-    - _command: {fileID: 11400000, guid: faaab5275613368488736a1e776f3671, type: 2}
-      _triggerCondition: 0
-      _targetList: 01000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 0
-      _isRelativeToMovement: 1
-      _area: 00000000
-    - _command: {fileID: 11400000, guid: 5bb2fb777cbd3ba4da4a3b23bb4509aa, type: 2}
-      _triggerCondition: 0
-      _targetList: 01000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 0
-      _isRelativeToMovement: 1
-      _area: 00000000
-    _movementPatterns:
-    - _pattern:
-      - _direction: 0
-        _needsToBeEmpty: 1
-      _repetition: 1
-      _canMirror: 1
-      Repetition: 1
-    - _pattern:
-      - _direction: 3
-        _needsToBeEmpty: 1
-      _repetition: 1
-      _canMirror: 1
-      Repetition: 1
-    _lastTileNeedsToBeEmpty: 0
-  _type: 1
-  _spotlightDescription: 'No Holofote: '
+  _spotlightDescription: 'No Holofote: Causa mais dano'
   _icon: {fileID: 2032068210, guid: f484e21bd27c36f47ac7f15d8c6dc25d, type: 3}
   motivation: 70
-  _prefab: {fileID: 3702607355161470330, guid: 53917fa4a5823d748a68d5ad5e0e6ee8, type: 3}
+  _prefab: {fileID: -889452348996019726, guid: 53917fa4a5823d748a68d5ad5e0e6ee8, type: 3}
+  _fmodParameterName: Buzina

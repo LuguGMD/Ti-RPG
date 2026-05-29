@@ -7,7 +7,7 @@ using UnityEngine;
 namespace RPG.Combat
 {
     [RequireComponent(typeof(EnemyHealthBar))]
-    public class EnemyController : StageEntityController
+    public abstract class EnemyController : StageEntityController
     {
         protected EnemyScriptable _enemyInfo;
 
@@ -39,6 +39,8 @@ namespace RPG.Combat
         public override void TakeDamage(float damage)
         {
             _health -= damage;
+
+            CombatManager.Instance.CameraShake(0.1f);
 
             UpdateHealthBar();
             base.TakeDamage(damage);
@@ -78,12 +80,9 @@ namespace RPG.Combat
         public IEnumerator UsePreparedAction()
         {
             //TO DO guardar acao preparada e usar aqui
-            yield return UseSelectedAction(_preparedAction.PatternIndex, _preparedAction.PatternRepetitionCount, _preparedAction.IsMirrored);
+            yield return UseSelectedAction(_preparedAction);
         }
 
-        public virtual void PrepareAction()
-        {
-            _preparedAction = new PreviewTileInfo(Vector2Int.zero, 0, 1, false, true, false, false);
-        }
+        public abstract void PrepareAction();
     }
 }

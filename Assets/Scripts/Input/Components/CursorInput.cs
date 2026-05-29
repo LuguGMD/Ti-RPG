@@ -10,7 +10,7 @@ namespace RPG.Input
     public class CursorInput : InputComponent<CursorInput.CursorInputActionsHandler>
     {
         static public new CursorInputActionsHandler Actions => Singleton<CursorInputActionsHandler>.Instance;
-        public static CursorInput Instance => Singleton<CursorInput>.Instance;
+        public static CursorInput Instance;
 
         [SerializeField] private LayerMask ignoreCollisionLayers;
         static public LayerMask CollisionLayers => Utility.Get(Instance.ignoreCollisionLayers).Inverse;
@@ -18,8 +18,36 @@ namespace RPG.Input
 
         protected new void Awake()
         {
-            if (Singleton<CursorInput>.Create(this))
+            Singleton();
+
+            if (Instance == this)
             { base.Awake(); }
+        }
+
+        protected new void OnEnable()
+        {
+            Singleton();
+
+            if (Instance == this)
+                base.OnEnable();
+        }
+
+        protected new void OnDisable()
+        {
+            if (Instance == this)
+                base.OnDisable();
+        }
+
+        private void Singleton()
+        {
+            if(Instance == null)
+            {
+                Instance = this;
+            }
+            else if(Instance != this)
+            {
+                Destroy(gameObject);
+            }
         }
 
         protected override CursorInputActionsHandler GetHandler() => Singleton<CursorInputActionsHandler>.Instance;

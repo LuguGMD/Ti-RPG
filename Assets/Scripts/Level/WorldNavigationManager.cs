@@ -58,6 +58,16 @@ namespace RPG.Level
             }
         }
 
+        public void NextLevelButton()
+        {
+            NavigationInput(Vector2.up);
+        }
+
+        public void PreviousLevelButton()
+        {
+            NavigationInput(Vector2.down);
+        }
+
         private void NextLevel()
         {
             int nextIndex = currentLevel + 1; 

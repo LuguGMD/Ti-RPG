@@ -41,13 +41,16 @@ namespace RPG
 
         public Action<Vector2Int> OnSpotlightPositionChanged;
 
+        #region Pause
+
+        public Action<bool> OnPauseToggle;
+
+        #endregion
+
         #region Effect Triggers
 
         public Action OnActionStart;
         public Action OnActionEnd;
-        public Action OnPatternEnd;
-        public Action OnTileStepBefore;
-        public Action OnTileStepAfter;
 
         #endregion
 
