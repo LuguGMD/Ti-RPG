@@ -24,7 +24,7 @@ namespace RPG.Management.Interaction
         {
             if (ManagementManager.IsInteractionRunning) return;
 
-            Collider[] colliders = Physics.OverlapSphere(transform.position, interactionRadius);
+            Collider[] colliders = Physics.OverlapSphere(transform.position, interactionRadius, LayerMask.GetMask("Default") ,QueryTriggerInteraction.Ignore);
 
             IInteractable closestInteractable = null;
             float closestDistance = float.MaxValue;
