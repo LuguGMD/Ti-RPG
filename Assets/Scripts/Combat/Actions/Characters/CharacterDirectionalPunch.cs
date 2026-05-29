@@ -47,18 +47,18 @@ namespace RPG.Combat.Actions
             Effect previewEffect = Effect.Clone(_effects[0]);
             previewEffect.Area[0] = Vector2Int.zero;
 
-            up = new PreviewTileInfo(Vector2Int.up, Grid.DirectionEnum.Up, true);
+            up = new PreviewTileInfo(Vector2Int.up, Grid.DirectionEnum.Up, false);
             up.Effects.Add(previewEffect);
 
-            down = new PreviewTileInfo(Vector2Int.down, Grid.DirectionEnum.Down, true);
+            down = new PreviewTileInfo(Vector2Int.down, Grid.DirectionEnum.Down, false);
             down.Effects.Add(previewEffect);
 
 
-            right = new PreviewTileInfo(Vector2Int.right, Grid.DirectionEnum.Right, true);
+            right = new PreviewTileInfo(Vector2Int.right, Grid.DirectionEnum.Right, false);
             right.Effects.Add(previewEffect);
 
 
-            left = new PreviewTileInfo(Vector2Int.left, Grid.DirectionEnum.Left, true);
+            left = new PreviewTileInfo(Vector2Int.left, Grid.DirectionEnum.Left, false);
             left.Effects.Add(previewEffect);
 
             firstSteps.Add(up);

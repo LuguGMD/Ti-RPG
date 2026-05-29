@@ -12,6 +12,7 @@ namespace RPG.Combat.Preview
         [SerializeField] protected MeshCollider[] _colliders;
         protected bool _canBeSelected = true;
         protected Vector2Int _tilePosition;
+        private CursorTarget[] _cursorTargets;
 
         #region Properties
 
@@ -21,24 +22,39 @@ namespace RPG.Combat.Preview
 
         protected void Start()
         {
-            CursorTarget[] cursorTargets = GetComponentsInChildren<CursorTarget>(true);
-
-            foreach (CursorTarget cursorTarget in cursorTargets)
-            {
-                cursorTarget.Actions.LeftClick.OnCancel(Select);
-            }
+            Init();
         }
 
         protected void OnEnable()
         {
             ActionsManager.Instance.OnRotationAnimationStarted += RemoveParent;
             ActionsManager.Instance.OnRotationAnimationEnded += AddParent;
+
+            if(didStart)
+            {
+                Init();
+            }
         }
 
         protected void OnDisable()
         {
             ActionsManager.Instance.OnRotationAnimationStarted -= RemoveParent;
             ActionsManager.Instance.OnRotationAnimationEnded -= AddParent;
+
+            foreach (CursorTarget cursorTarget in _cursorTargets)
+            {
+                cursorTarget.Actions.LeftClick.Stop();
+            }
+        }
+
+        private void Init()
+        {
+            _cursorTargets = GetComponentsInChildren<CursorTarget>(true);
+
+            foreach (CursorTarget cursorTarget in _cursorTargets)
+            {
+                cursorTarget.Actions.LeftClick.OnCancel(Select);
+            }
         }
 
         public void SetPosition(Vector2Int tilePosition)

@@ -43,12 +43,20 @@ namespace RPG.Audio
         {
             if (musicInstance.isValid())
             {
-                musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                musicInstance.release();
+                StopMusic();
             }
 
             musicInstance = RuntimeManager.CreateInstance(musicRef);
             musicInstance.start();
+        }
+
+        public void StopMusic()
+        {
+            if(IsMusicPlaying())
+            {
+                musicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                musicInstance.release();
+            }
         }
 
         public void PlayOneShot(EventReference sfxRef)
