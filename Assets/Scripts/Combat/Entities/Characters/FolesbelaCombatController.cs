@@ -5,11 +5,13 @@ namespace RPG.Combat
 {
     public class FolesbelaCombatController : CharacterController
     {
-        [SerializeField] private FolesbelaAcrobaticsAttack _acrobaticsAttack;
+        [SerializeField] private FolesbelaAcrobaticsAttack _acrobaticsLeftAttack;
+        [SerializeField] private FolesbelaAcrobaticsAttack _acrobaticsRightAttack;
 
         protected override void InitCombatActions()
         {
-            _actions.Add(_acrobaticsAttack);
+            _actions.Add(_acrobaticsLeftAttack);
+            _actions.Add(_acrobaticsRightAttack);
 
             base.InitCombatActions();
         }

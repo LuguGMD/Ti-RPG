@@ -23,7 +23,7 @@ namespace RPG.Combat
 
         [SerializeField] private EventReference _defeatedSFX;
         
-        [SerializeField] private SpotlightSparkleEffect _spotlightHandler;
+        private SpotlightSparkleEffect _spotlightHandler;
         
 
         #region Properties

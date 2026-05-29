@@ -1,5 +1,6 @@
 using RPG.Combat.Actions.Effects;
 using RPG.Combat.Preview;
+using RPG.Extensions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace RPG.Combat.Actions
     {
         [SerializeField] private float _damage;
         [SerializeField] private int _pushAmount;
+        [SerializeField] private Vector2Int _dir;
 
         public override void Init(StageEntityController user)
         {
@@ -37,34 +39,24 @@ namespace RPG.Combat.Actions
 
         public override List<PreviewTileInfo> Preview()
         {
-            PreviewTileInfo right;
-            PreviewTileInfo left;
+            PreviewTileInfo side;
 
             List<PreviewTileInfo> firstSteps = new List<PreviewTileInfo>();
 
-            right = new PreviewTileInfo(Vector2Int.right, Grid.DirectionEnum.Right, false);
-            right.Effects.Add(_effects[0]);
-            right.Effects.Add(_effects[1]);
-            PreviewTileInfo child = right.CreateChild(Vector2Int.right + Vector2Int.right, Grid.DirectionEnum.Right, false);
+            side = new PreviewTileInfo(_dir + _dir, _dir.ToDirection(), false);
+            side.Effects.Add(_effects[0]);
+            side.Effects.Add(_effects[1]);
+            PreviewTileInfo child = side.CreateChild(_dir + _dir, _dir.ToDirection(), false);
             child.Effects.Add(_effects[0]);
             child.Effects.Add(_effects[1]);
-            child = child.CreateChild(Vector2Int.right + Vector2Int.right, Grid.DirectionEnum.Right, false);
+            child = child.CreateChild(_dir + _dir, _dir.ToDirection(), false);
             child.Effects.Add(_effects[0]);
             child.Effects.Add(_effects[1]);
-
-
-            left = new PreviewTileInfo(Vector2Int.left, Grid.DirectionEnum.Left, false);
-            left.Effects.Add(_effects[0]);
-            left.Effects.Add(_effects[1]);
-            child = left.CreateChild(Vector2Int.left + Vector2Int.left, Grid.DirectionEnum.Left, false);
-            child.Effects.Add(_effects[0]);
-            child.Effects.Add(_effects[1]);
-            child = child.CreateChild(Vector2Int.left + Vector2Int.left, Grid.DirectionEnum.Left, false);
+            child = child.CreateChild(_dir + _dir, _dir.ToDirection(), false);
             child.Effects.Add(_effects[0]);
             child.Effects.Add(_effects[1]);
 
-            firstSteps.Add(right);
-            firstSteps.Add(left);
+            firstSteps.Add(side);
 
             return firstSteps;
         }
