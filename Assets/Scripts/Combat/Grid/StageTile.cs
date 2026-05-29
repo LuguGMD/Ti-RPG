@@ -38,7 +38,8 @@ namespace RPG.Combat.Grid
 
         private void UpdatePosition()
         {
-            _position = _tile.Position;
+            if(_tile != null)
+                _position = _tile.Position;
         }
     }
 }
