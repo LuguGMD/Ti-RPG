@@ -15,6 +15,7 @@ namespace RPG.Combat.Actions
         {
             _user = user;
             _effects[0].Commands.Add(new DamageEffect(_damage));
+            _effects[1].Commands.Add(new DamageEffect(_damage));
         }
 
         public override IEnumerator Execute(PreviewTileInfo selectedPreviewTile)
@@ -24,7 +25,7 @@ namespace RPG.Combat.Actions
             do
             {
                 yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
-                foreach (Effect effect in root.Effects)
+                foreach (Effect effect in _effects)
                 {
                     effect.Execute(_user);
                 }

@@ -4789,6 +4789,7 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  _spotlightHandler: {fileID: 0}
   _characterDirectionalPunch:
     _actionName: Soco Direcional
     _actionDescription: "Ataca e empurra em uma dire\xE7\xE3o"
@@ -4796,6 +4797,12 @@ MonoBehaviour:
     - _targetList: 01000000
       _canTargetSelf: 0
       _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area:
+      - {x: 0, y: 1}
+    - _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 1
       _isRelativeToMovement: 1
       _area:
       - {x: 0, y: 1}
@@ -4809,6 +4816,19 @@ MonoBehaviour:
     - _targetList: 01000000
       _canTargetSelf: 0
       _doNeedSpotlight: 0
+      _isRelativeToMovement: 0
+      _area:
+      - {x: -1, y: 1}
+      - {x: 0, y: 1}
+      - {x: 1, y: 1}
+      - {x: -1, y: 0}
+      - {x: 1, y: 0}
+      - {x: -1, y: -1}
+      - {x: 0, y: -1}
+      - {x: 1, y: -1}
+    - _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 1
       _isRelativeToMovement: 0
       _area:
       - {x: -1, y: 1}

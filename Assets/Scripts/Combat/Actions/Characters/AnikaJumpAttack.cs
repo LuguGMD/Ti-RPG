@@ -17,6 +17,8 @@ namespace RPG.Combat.Actions
             _user = user;
             _effects[0].Commands.Add(new DamageEffect(_damage));
             _effects[0].Commands.Add(new PushRelativeEffect(_pushAmount));
+
+            _effects[1].Commands.Add(new DamageEffect(_damage));
         }
 
 
@@ -29,7 +31,7 @@ namespace RPG.Combat.Actions
                 _user.Movement.Teleport(Grid.DirectionEnum.Up, _user.Position + root.RelativePosition);
                 yield return new WaitForSeconds(4.5f / CombatManager.CombatSpeed);
                 _user.TileObject.UpdatePosition();
-                foreach (Effect effect in root.Effects)
+                foreach (Effect effect in _effects)
                 {
                     effect.Execute(_user);
                 }

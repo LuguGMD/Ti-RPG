@@ -43,8 +43,9 @@ namespace RPG.Combat.Actions
 
             int movedDistance = Mathf.Abs(startPos.x - _user.Position.x);
             _effects[0].Commands.Add(new DamageEffect(_baseDamage + (_movementDamage * movedDistance)));
+            _effects[1].Commands.Add(new DamageEffect(_baseDamage + (_movementDamage * movedDistance)));
 
-            foreach (Effect effect in selectedPreviewTile.Effects)
+            foreach (Effect effect in _effects)
             {
                 effect.Execute(_user);
             }

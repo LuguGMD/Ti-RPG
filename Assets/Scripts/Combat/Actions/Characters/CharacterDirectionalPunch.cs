@@ -17,6 +17,11 @@ namespace RPG.Combat.Actions
             _user = user;
             _effects[0].Commands.Add(new DamageEffect(_damage));
             _effects[0].Commands.Add(new PushEffect(Grid.DirectionEnum.Up, _pushAmount));
+
+            if(_effects.Count > 1)
+            {
+                _effects[1].Commands.Add(new DamageEffect(_damage));
+            }
         }
 
         public override IEnumerator Execute(PreviewTileInfo selectedPreviewTile)
@@ -26,7 +31,10 @@ namespace RPG.Combat.Actions
             do
             {
                 _user.TileObject.SetDirection(root.Direction);
-                _effects[0].Execute(_user);
+                foreach(Effect effect in _effects)
+                {
+                    effect.Execute(_user);
+                }
                 yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
                 root = root.Child;
             } while (root != null);
