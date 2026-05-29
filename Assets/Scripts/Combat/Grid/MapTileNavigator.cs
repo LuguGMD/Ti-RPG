@@ -27,14 +27,14 @@ namespace RPG.Combat.Grid
         private void OnEnable()
         {
             ActionsManager.Instance.OnPlayerTurnStarted += EnablePreview;
-            ActionsManager.Instance.OnPlayerTurnEnded += DisablePreview;
+            //ActionsManager.Instance.OnPlayerTurnEnded += DisablePreview;
             ActionsManager.Instance.OnTileHovered += SetHoveredTile;
         }
 
         private void OnDisable()
         {
             ActionsManager.Instance.OnPlayerTurnStarted -= EnablePreview;
-            ActionsManager.Instance.OnPlayerTurnEnded -= DisablePreview;
+            //ActionsManager.Instance.OnPlayerTurnEnded -= DisablePreview;
             ActionsManager.Instance.OnTileHovered -= SetHoveredTile;
         }
 

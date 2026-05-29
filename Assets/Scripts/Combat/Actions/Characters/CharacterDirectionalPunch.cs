@@ -26,10 +26,7 @@ namespace RPG.Combat.Actions
             do
             {
                 _user.TileObject.SetDirection(root.Direction);
-                foreach (Effect effect in root.Effects)
-                {
-                    effect.Execute(_user);
-                }
+                _effects[0].Execute(_user);
                 yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
                 root = root.Child;
             } while (root != null);

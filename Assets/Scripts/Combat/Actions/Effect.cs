@@ -52,6 +52,11 @@ namespace RPG.Combat.Actions
                 Vector2Int checkPosition = user.Position;
                 checkPosition += _isRelativeToMovement ? _area[i].RelativeTo(user.Direction) : _area[i];
 
+                /*Debug.Log("User Position: " + user.Position);
+                Debug.Log("User Direction: " + user.Direction);
+                Debug.Log("Check Position: " + checkPosition);
+                Debug.Log(_area[i]);*/
+
                 if (checkedTiles.Contains(checkPosition)) continue;
                 Tile tile = MapManager.Map.GetTile(checkPosition);
 
@@ -59,8 +64,13 @@ namespace RPG.Combat.Actions
                 {
                     EntityController entity = tile.TileObject.GetComponent<EntityController>();
 
+                    //Debug.Log("Tile Occupied: " + entity.name);
+
                     if (CombatManager.CanTarget(user.Info, entity.GetEntityInfo(), this))
                     {
+                        //Debug.Log("Can Target");
+
+
                         if (tile.Position == Map.CENTER_POS)
                         {
                             foreach (EffectCommand command in _commands)
