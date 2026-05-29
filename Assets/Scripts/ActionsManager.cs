@@ -34,6 +34,7 @@ namespace RPG
         public Action<StageEntityController> OnStageEntityDefeated;
 
         public Action<CharacterController> OnCharacterDamageTaken;
+        public Action<CharacterController> OnCharacterHealed;
         public Action<CharacterController> OnCharacterCreated;
         public Action<CharacterController> OnCharacterDefeated;
 

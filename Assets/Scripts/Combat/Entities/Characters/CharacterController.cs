@@ -68,7 +68,7 @@ namespace RPG.Combat
             _currentMotivation += heal;
             _currentMotivation = Mathf.Clamp(_currentMotivation, 0, CombatConstants.MAX_MOTIVATION_APRESENTADOR);
 
-            ActionsManager.Instance.OnCharacterDamageTaken?.Invoke(this);
+            ActionsManager.Instance.OnCharacterHealed?.Invoke(this);
         }
 
         protected override void CheckDefeated()

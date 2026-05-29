@@ -68,11 +68,11 @@ namespace RPG.Combat
             base.OnDisable();
             _tileObject.OnSpotlightStateChange -= _spotlightHandler.UpdateSpotlightEffect;
         }
-
         
 
         public IEnumerator UseSelectedAction(PreviewTileInfo selectedPreviewTile)
         {
+            _hasActed = true;
             _tileObject.CheckSpotlight();
 
             SetAnimationInt("ActionIndex", _selectedActionIndex);

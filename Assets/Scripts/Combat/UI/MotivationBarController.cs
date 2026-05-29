@@ -9,6 +9,9 @@ namespace RPG.Combat.UI
     {
         [SerializeField] private CharacterMotivationSlider _motivationBarPrefab;
         [SerializeField] private Transform _motivationBarContainer;
+        [SerializeField] private Image _apresentadorIcon;
+        [SerializeField] private Sprite _apresentadorIconSprite;
+        [SerializeField] private Sprite _apresentadorUsedIconSprite;
 
         [SerializeField] private Slider _apresentadorSlider;
 
@@ -18,26 +21,34 @@ namespace RPG.Combat.UI
         {
             ActionsManager.Instance.OnCharacterCreated += AddCharacter;
             ActionsManager.Instance.OnCharacterDefeated += RemoveCharacter;
-            ActionsManager.Instance.OnCharacterDamageTaken += UpdateCharacterDamage;
+            ActionsManager.Instance.OnCharacterDamageTaken += UpdateCharacterHealth;
+            ActionsManager.Instance.OnCharacterHealed += UpdateCharacterHealth;
             ActionsManager.Instance.OnApresentadorDamageTaken += UpdateApresentadorDamage;
+            ActionsManager.Instance.OnActionStart += UpdateInfo;
+            ActionsManager.Instance.OnApresentadorActionCompleted += UpdateInfo;
+            ActionsManager.Instance.OnPlayerTurnStarted += UpdateInfo;
         }
 
         private void OnDisable()
         {
             ActionsManager.Instance.OnCharacterCreated -= AddCharacter;
             ActionsManager.Instance.OnCharacterDefeated -= RemoveCharacter;
-            ActionsManager.Instance.OnCharacterDamageTaken -= UpdateCharacterDamage;
+            ActionsManager.Instance.OnCharacterDamageTaken -= UpdateCharacterHealth;
+            ActionsManager.Instance.OnCharacterHealed -= UpdateCharacterHealth;
             ActionsManager.Instance.OnApresentadorDamageTaken -= UpdateApresentadorDamage;
+            ActionsManager.Instance.OnActionStart -= UpdateInfo;
+            ActionsManager.Instance.OnApresentadorActionCompleted -= UpdateInfo;
+            ActionsManager.Instance.OnPlayerTurnStarted -= UpdateInfo;
         }
 
         private void AddCharacter(CharacterController character)
         {
             CharacterMotivationSlider motivationSlider = Instantiate<CharacterMotivationSlider>(_motivationBarPrefab, _motivationBarContainer);
-            motivationSlider.SetInfo(character.CharacterInfo);
+            motivationSlider.SetInfo(character);
 
             _characterSliders.Add(character, motivationSlider);
 
-            UpdateCharacterDamage(character);
+            UpdateCharacterHealth(character);
         }
 
         private void RemoveCharacter(CharacterController character)
@@ -49,7 +60,20 @@ namespace RPG.Combat.UI
             }
         }
 
-        private void UpdateCharacterDamage(CharacterController character)
+        private void UpdateInfo()
+        {
+            foreach(CharacterController character in CombatManager.RemainingCharacters)
+            {
+                if(_characterSliders.TryGetValue(character, out CharacterMotivationSlider slider))
+                {
+                    slider.SetInfo(character);
+                }
+            }
+
+            _apresentadorIcon.sprite = CombatManager.Apresentador.HasActed ? _apresentadorUsedIconSprite : _apresentadorIconSprite;
+        }
+
+        private void UpdateCharacterHealth(CharacterController character)
         {
             if (!_characterSliders.ContainsKey(character)) return;
 

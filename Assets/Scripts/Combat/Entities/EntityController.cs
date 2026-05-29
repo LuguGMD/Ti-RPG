@@ -16,6 +16,7 @@ namespace RPG.Combat
         protected TileObject _tileObject;
         protected CursorTarget _cursorTarget;
         protected Animator[] _animators;
+        protected bool _hasActed = false;
 
         [SerializeField] private EventReference _damagedSFX;
 
@@ -23,6 +24,7 @@ namespace RPG.Combat
         public Vector2Int Position { get { return _tileObject.Position; } }
         public DirectionEnum Direction { get { return _tileObject.Direction; } }
         public TileObject TileObject { get { return _tileObject; } }
+        public bool HasActed { get { return _hasActed; } }
 
         #endregion
 
@@ -49,12 +51,19 @@ namespace RPG.Combat
         {
             ActionsManager.Instance.OnCombatSpeedChanged += AdjsutGameSpeed;
             ActionsManager.Instance.OnPreviewTileSelected += CheckSelected;
+            ActionsManager.Instance.OnEnemyTurnEnded += ResetAction;
         }
 
         protected void OnDisable()
         {
             ActionsManager.Instance.OnCombatSpeedChanged -= AdjsutGameSpeed;
             ActionsManager.Instance.OnPreviewTileSelected -= CheckSelected;
+            ActionsManager.Instance.OnEnemyTurnEnded -= ResetAction;
+        }
+
+        public virtual void ResetAction()
+        {
+            _hasActed = false;
         }
 
         protected void AdjsutGameSpeed()

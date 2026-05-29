@@ -14,7 +14,7 @@ namespace RPG.Combat
         private int _maxRowRotations = 3;
         private int _rowToRotate = 0;
 
-        private bool _hasActed = false;
+        
 
         #region Properties
 
@@ -22,7 +22,6 @@ namespace RPG.Combat
         public float CurrentMotivation { get { return _currentMotivation; } }
         public int RowToRotate { get { return _rowToRotate; } }
         public int MaxRowRotations { get { return _maxRowRotations; } }
-        public bool HasActed { get { return _hasActed; } }
 
         #endregion
 
@@ -105,10 +104,10 @@ namespace RPG.Combat
             _hasActed = true;
         }
 
-        public void ResetAction()
+        public override void ResetAction()
         {
+            base.ResetAction();
             _rowToRotate = 0;
-            _hasActed = false;
         }
     }
 }

@@ -53,6 +53,7 @@ namespace RPG.Combat
         public static float CombatSpeed {  get { return Instance._combatSpeed; } }
         public static ApresentadorController Apresentador { get { return Instance._apresentador; } }
         public static bool HasCombatStarted { get { return Instance._hasCombatStarted; } }
+        public static List<CharacterController> RemainingCharacters {  get { return Instance._remainingCharacters; } }
 
         #endregion
 

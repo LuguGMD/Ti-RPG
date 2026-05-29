@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,9 +16,19 @@ namespace RPG.Combat.UI
 
         #endregion
 
-        public void SetInfo(CharacterScriptable characterInfo)
+
+        public void SetInfo(CharacterController characterController)
         {
-            _characterIcon.sprite = characterInfo.Icon;
+            _characterIcon.sprite = characterController.HasActed? characterController.CharacterInfo.UsedIcon : characterController.CharacterInfo.Icon;
+
+            if(characterController.HasActed)
+            {
+                _characterIcon.rectTransform.DOScale(Vector3.one * 0.8f, 0.2f);
+            }
+            else
+            {
+                _characterIcon.rectTransform.DOScale(Vector3.one, 0.2f);
+            }
         }
     }
 }
