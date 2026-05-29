@@ -40,6 +40,8 @@ namespace RPG.Combat
         {
             _health -= damage;
 
+            CombatManager.Instance.CameraShake(0.1f);
+
             UpdateHealthBar();
             base.TakeDamage(damage);
         }
