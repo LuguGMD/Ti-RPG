@@ -42,6 +42,7 @@ namespace RPG.Combat
         protected void OnDestroy()
         {
             _cursorTarget.Actions.LeftClick.Stop();
+            _cursorTarget.Actions.Hover.Stop();
         }
 
         protected void OnEnable()

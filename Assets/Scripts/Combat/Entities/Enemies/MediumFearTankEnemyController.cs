@@ -8,19 +8,27 @@ namespace RPG.Combat
     public class MediumFearTankEnemyController : EnemyController
     {
         [SerializeField] private BasicFearAttack _attack;
-        private EnemyNothingAction _nothing = new EnemyNothingAction();
+        [SerializeField] private EnemyNothingAction _nothing;
 
         protected override void InitCombatActions()
         {
-            _actions.Add(_attack);
-            _actions.Add(_nothing);
+            if (_actions.Count == 0)
+            {
+                _actions.Add(_attack);
+                _actions.Add(_nothing);
 
-            base.InitCombatActions();
+                base.InitCombatActions();
+            }
         }
 
         public override void PrepareAction()
         {
-            if(CombatManager.TurnCount % 2 == 0)
+            if(_actions.Count == 0)
+            {
+                InitCombatActions();
+            }
+
+            if (CombatManager.TurnCount % 2 == 0)
             {
                 SelectAction(0);
             }
