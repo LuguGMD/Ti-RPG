@@ -12,7 +12,7 @@ namespace RPG.Combat.Preview
         [SerializeField] protected MeshCollider[] _colliders;
         protected bool _canBeSelected = true;
         protected Vector2Int _tilePosition;
-        private CursorTarget[] _cursorTargets;
+        private CursorTarget[] _cursorTargets = new CursorTarget[0];
 
         #region Properties
 

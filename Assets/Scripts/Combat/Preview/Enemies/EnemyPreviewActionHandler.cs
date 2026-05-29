@@ -10,6 +10,8 @@ namespace RPG.Combat.Preview
         {
             base.AddPreviewTile(previewTileInfo, position, ref lastPreviewTile);
 
+            if (_activePreviewTiles.Count == 0) return;
+
             ActionPreviewTile previewTile = _activePreviewTiles[_activePreviewTiles.Count - 1];
 
             previewTile.SetCanBeSelected(false);

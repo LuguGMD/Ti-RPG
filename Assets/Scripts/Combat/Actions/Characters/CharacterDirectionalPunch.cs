@@ -25,6 +25,7 @@ namespace RPG.Combat.Actions
 
             do
             {
+                _user.TileObject.SetDirection(root.Direction);
                 foreach (Effect effect in root.Effects)
                 {
                     effect.Execute(_user);
