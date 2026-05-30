@@ -76,6 +76,8 @@ namespace RPG.Combat
 
         private void OnEnable()
         {
+            //if (Instance != null && Instance != this) return;
+
             ActionsManager.Instance.OnCombatStart += InitializeBattle;
             ActionsManager.Instance.OnCharacterClicked += OnCharacterClicked;
             ActionsManager.Instance.OnApresentadorSelected += OnApresentadorSelected;
@@ -88,6 +90,8 @@ namespace RPG.Combat
 
         private void OnDisable()
         {
+            //if (Instance != null && Instance != this) return;
+
             ActionsManager.Instance.OnCombatStart -= InitializeBattle;
             ActionsManager.Instance.OnCharacterClicked -= OnCharacterClicked;
             ActionsManager.Instance.OnApresentadorSelected -= OnApresentadorSelected;
@@ -96,6 +100,7 @@ namespace RPG.Combat
             ActionsManager.Instance.OnPlayerTurnEnded -= EndPlayerTurn;
             ActionsManager.Instance.OnCharacterDamageTaken -= CharacterDamageTaken;
             ActionsManager.Instance.OnApresentadorDamageTaken -= ApresentadorDamageTaken;
+            ActionsManager.Instance.OnPreviewTileSelected -= PlaceCharacter;
         }
 
         #region Preparation

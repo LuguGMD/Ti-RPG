@@ -66,7 +66,7 @@ namespace RPG.Combat.UI
                     InstantiateActionButton();
                 }
 
-                if(i < _actionButtons.Count)
+                if(i < _actionButtons.Count && i < actions.Count)
                 {
                     _actionButtons[i].Initialize(i, actions[i], character, this);
                     _actionButtons[i].gameObject.SetActive(true);

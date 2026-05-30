@@ -234,19 +234,19 @@ MonoBehaviour:
     _actionName: Acrobacia Esq
     _actionDescription: Salta de 2 em 2 Tiles, acertando quem estiver naquele lugar
     _effects:
-    - _targetList: 
+    - _targetList: 01000000
       _canTargetSelf: 0
       _doNeedSpotlight: 0
       _isRelativeToMovement: 0
       _area:
       - {x: 0, y: 0}
-    - _targetList: 
+    - _targetList: 01000000
       _canTargetSelf: 0
       _doNeedSpotlight: 1
       _isRelativeToMovement: 0
       _area:
       - {x: 0, y: 0}
-    _lastTileNeedsToBeEmpty: 0
+    _lastTileNeedsToBeEmpty: 1
     _damage: 5
     _pushAmount: 2
     _dir: {x: 1, y: 0}
@@ -254,13 +254,13 @@ MonoBehaviour:
     _actionName: Acrobacia Dir
     _actionDescription: Salta de 2 em 2 Tiles, acertando quem estiver naquele lugar
     _effects:
-    - _targetList: 
+    - _targetList: 01000000
       _canTargetSelf: 0
       _doNeedSpotlight: 0
       _isRelativeToMovement: 0
       _area:
       - {x: 0, y: 0}
-    - _targetList: 
+    - _targetList: 01000000
       _canTargetSelf: 0
       _doNeedSpotlight: 1
       _isRelativeToMovement: 0

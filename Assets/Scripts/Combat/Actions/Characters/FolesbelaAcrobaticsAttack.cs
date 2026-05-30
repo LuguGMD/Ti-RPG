@@ -28,7 +28,7 @@ namespace RPG.Combat.Actions
             do
             {
                 yield return _user.Movement.Move(new Movement(root.Direction, root.NeedsToBeEmpty), (int)root.RelativePosition.magnitude);
-                foreach (Effect effect in root.Effects)
+                foreach (Effect effect in _effects)
                 {
                     effect.Execute(_user);
                 }
