@@ -77,12 +77,10 @@ namespace RPG.Combat.UI
 
         private void ShowCanvas()
         {
-            if (@_isCanvasEnabled)
-            {
+            
                 _isCanvasEnabled = true;
                 InitializeDictionary();
                 _rotatedAmount = 0;
-            }
             CombatUIManager.Instance.ChangePanel(_mainPanel);
 
             UpdateText();
