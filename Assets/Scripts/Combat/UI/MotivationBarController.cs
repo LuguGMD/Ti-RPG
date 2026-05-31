@@ -17,6 +17,11 @@ namespace RPG.Combat.UI
 
         private Dictionary<CharacterController, CharacterMotivationSlider> _characterSliders = new Dictionary<CharacterController, CharacterMotivationSlider>();
 
+        private void Start()
+        {
+            _apresentadorSlider.value = 0f;
+            _apresentadorSlider.DOValue(1f, 1.5f);
+        }
         private void OnEnable()
         {
             ActionsManager.Instance.OnCharacterCreated += AddCharacter;

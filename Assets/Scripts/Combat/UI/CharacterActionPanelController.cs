@@ -52,6 +52,7 @@ namespace RPG.Combat.UI
             _selectedCharacter = character;
             PopulateActionButtons(character);
             ShowPanel();
+            OnActionSelected(_selectedCharacter.SelectedActionIndex);
         }
 
         private void PopulateActionButtons(CharacterController character)
@@ -90,7 +91,7 @@ namespace RPG.Combat.UI
 
         public void OnActionButtonClicked()
         {
-            HidePanel();
+            //HidePanel();
         }
 
         public void OnActionButtonHovered(CombatAction action)
@@ -112,6 +113,11 @@ namespace RPG.Combat.UI
             if (_selectedCharacter != null && _selectedCharacter.SelectedActionIndex != actionIndex)
             {
                 _selectedCharacter.SelectAction(actionIndex);
+
+                foreach(ActionButtonHandler actionButton in _actionButtons)
+                {
+                    actionButton.Select(actionIndex);
+                }
             }
         }
 

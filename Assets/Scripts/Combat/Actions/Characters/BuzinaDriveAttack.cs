@@ -55,6 +55,8 @@ namespace RPG.Combat.Actions
 
         public override List<PreviewTileInfo> Preview()
         {
+            PreviewTileInfo up;
+            PreviewTileInfo down;
             PreviewTileInfo right;
             PreviewTileInfo left;
 
@@ -79,6 +81,18 @@ namespace RPG.Combat.Actions
             child = child.CreateChild(Vector2Int.left, Grid.DirectionEnum.Left, true);
             child.Effects.Add(_effects[0]);
 
+            up = new PreviewTileInfo(Vector2Int.up, Grid.DirectionEnum.Up, true);
+            up.Effects.Add(_effects[0]);
+            child = up.CreateChild(Vector2Int.up, Grid.DirectionEnum.Up, true);
+            child.Effects.Add(_effects[0]);
+
+            down = new PreviewTileInfo(Vector2Int.down, Grid.DirectionEnum.Down, true);
+            down.Effects.Add(_effects[0]);
+            child = down.CreateChild(Vector2Int.down, Grid.DirectionEnum.Down, true);
+            child.Effects.Add(_effects[0]);
+
+            firstSteps.Add(up);
+            firstSteps.Add(down);
             firstSteps.Add(right);
             firstSteps.Add(left);
 

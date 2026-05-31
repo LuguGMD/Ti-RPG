@@ -61,7 +61,7 @@ namespace RPG.Combat.UI
 
         private void InitializeDictionary()
         {
-            for(int i =0; i < Map.Rows-1; i++)
+            for (int i = 0; i < Map.Rows - 1; i++)
             {
                 _rowsRotatedAmount[i] = 0;
             }
@@ -69,7 +69,7 @@ namespace RPG.Combat.UI
 
         private void OnEntitySelected(EntityController entitySelected)
         {
-            if(_isCanvasEnabled && CombatManager.Apresentador != entitySelected)
+            if (_isCanvasEnabled && CombatManager.Apresentador != entitySelected)
             {
                 CancelAction();
                 HideCanvas();
@@ -78,6 +78,8 @@ namespace RPG.Combat.UI
 
         private void ShowCanvas()
         {
+            if (_isCanvasEnabled) return;
+
             _isCanvasEnabled = true;
             InitializeDictionary();
             _rotatedAmount = 0;
@@ -127,7 +129,7 @@ namespace RPG.Combat.UI
 
         private void CancelAction()
         {
-            for(int i = 0; i < Map.Rows-1; i++)
+            for (int i = 0; i < Map.Rows - 1; i++)
             {
                 CombatManager.Apresentador.Rotate(i, -_rowsRotatedAmount[i]);
             }

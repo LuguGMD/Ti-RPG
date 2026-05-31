@@ -105,6 +105,7 @@ namespace RPG.Combat.Actions
                 checkPosition += _isRelativeToMovement ? _area[i].RelativeTo(startDirection) : _area[i];
 
                 if (checkedTiles.Contains(checkPosition)) continue;
+                if (checkPosition.y > Map.Rows) continue;
                 Tile tile = MapManager.Map.GetTile(checkPosition);
 
                 if (tile.Position == Map.CENTER_POS)

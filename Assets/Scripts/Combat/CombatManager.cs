@@ -54,6 +54,7 @@ namespace RPG.Combat
         public static ApresentadorController Apresentador { get { return Instance._apresentador; } }
         public static bool HasCombatStarted { get { return Instance._hasCombatStarted; } }
         public static List<CharacterController> RemainingCharacters {  get { return Instance._remainingCharacters; } }
+        public static bool IsActionInProgress { get { return Instance._isActionInProgress; } }
 
         #endregion
 
