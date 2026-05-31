@@ -13,6 +13,7 @@ namespace RPG.Combat.Preview
         private PreviewTileInfo _parent;
         private List<Effect> _effects = new List<Effect>();
         private bool _needsToBeEmpty = false;
+        private bool _doShowParent = false;
 
         #region Properties
 
@@ -22,14 +23,16 @@ namespace RPG.Combat.Preview
         public List<Effect> Effects { get { return _effects; } }
         public DirectionEnum Direction { get { return _direction; } }
         public bool NeedsToBeEmpty { get { return _needsToBeEmpty; } }
+        public bool DoShowParent { get { return _doShowParent; } }
 
         #endregion
 
-        public PreviewTileInfo(Vector2Int relativePosition, DirectionEnum direction, bool needsToBeEmpty)
+        public PreviewTileInfo(Vector2Int relativePosition, DirectionEnum direction, bool needsToBeEmpty, bool doShowParent = true)
         {
             _relativePosition = relativePosition;
             _direction = direction;
             _needsToBeEmpty = needsToBeEmpty;
+            _doShowParent = doShowParent;
         }
 
         public void SetParent(PreviewTileInfo parent)
@@ -37,9 +40,9 @@ namespace RPG.Combat.Preview
             _parent = parent;
         }
 
-        public PreviewTileInfo CreateChild(Vector2Int relativePosition, DirectionEnum direction, bool needsToBeEmpty)
+        public PreviewTileInfo CreateChild(Vector2Int relativePosition, DirectionEnum direction, bool needsToBeEmpty, bool doShowParent = true)
         {
-            PreviewTileInfo child = new PreviewTileInfo(relativePosition, direction, needsToBeEmpty);
+            PreviewTileInfo child = new PreviewTileInfo(relativePosition, direction, needsToBeEmpty, doShowParent);
             _child = child;
             child.SetParent(this);
 

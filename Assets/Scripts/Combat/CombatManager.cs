@@ -210,10 +210,10 @@ namespace RPG.Combat
             CombatUIManager.Instance.ChangePanel(CombatUIManager.DefaultPanelIndex);
             _turnCount = 0;
             _currentTurnState = CombatTurnStateEnum.PlayerTurn;
-            PassTurn();
             _hasCombatStarted = true;
             _hasCombatEnded = false;
             StartPlayerTurn();
+            SwitchTurn();
         }
 
         private void SwitchTurn()

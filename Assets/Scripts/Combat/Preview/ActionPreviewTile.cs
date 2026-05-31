@@ -63,7 +63,7 @@ namespace RPG.Combat.Preview
                 _effectPreviewTiles.AddRange(effect.Preview(_tilePosition, _info.Direction));
             }
 
-            if(_parent != null)
+            if(_parent != null && _info.DoShowParent)
             {
                 _parent.ShowEffects();
             }
@@ -83,7 +83,7 @@ namespace RPG.Combat.Preview
 
             _effectPreviewTiles.Clear();
 
-            if (_parent != null)
+            if (_parent != null && _info.DoShowParent)
             {
                 _parent.HideEffects();
             }

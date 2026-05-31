@@ -56,7 +56,7 @@ namespace RPG.Combat
 
         private void UpdateHealthBar()
         {
-            _healthBar.Slider.value = (_health / _enemyInfo.Health);
+            _healthBar.UpdateHealth(_health / _enemyInfo.Health); 
         }
 
         protected override void CheckDefeated()

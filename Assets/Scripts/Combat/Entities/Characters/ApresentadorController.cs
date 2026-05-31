@@ -46,7 +46,7 @@ namespace RPG.Combat
         protected override void OnSelected()
         {
             if (!CombatManager.HasCombatStarted) return;
-            if (!CombatManager.IsActionInProgress) return;
+            if (CombatManager.IsActionInProgress) return;
 
             base.OnSelected();
 

@@ -3063,7 +3063,6 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
-  _spotlightHandler: {fileID: 0}
 --- !u!114 &591034852514754510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3148,7 +3147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b61c3bb29b6a7d4ca5fc0718f3b43c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.UI.EnemyHealthBar
-  _slider: {fileID: 6893941912188644058}
+  _currentHealthSlider: {fileID: 6893941912188644058}
+  _previousHealthSlider: {fileID: 1148671409496216725}
 --- !u!114 &2549864934641695436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4622,6 +4622,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 594201098f472114da26a28260075b7e, type: 3}
+--- !u!114 &1148671409496216725 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1240885816871272067, guid: 594201098f472114da26a28260075b7e, type: 3}
+  m_PrefabInstance: {fileID: 2218134541191997974}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
 --- !u!224 &6786344436985357976 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4676308524755586190, guid: 594201098f472114da26a28260075b7e, type: 3}

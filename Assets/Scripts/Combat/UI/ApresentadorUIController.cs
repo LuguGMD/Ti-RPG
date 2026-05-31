@@ -72,17 +72,17 @@ namespace RPG.Combat.UI
             if (_isCanvasEnabled && CombatManager.Apresentador != entitySelected)
             {
                 CancelAction();
-                HideCanvas();
             }
         }
 
         private void ShowCanvas()
         {
-            if (_isCanvasEnabled) return;
-
-            _isCanvasEnabled = true;
-            InitializeDictionary();
-            _rotatedAmount = 0;
+            if (@_isCanvasEnabled)
+            {
+                _isCanvasEnabled = true;
+                InitializeDictionary();
+                _rotatedAmount = 0;
+            }
             CombatUIManager.Instance.ChangePanel(_mainPanel);
 
             UpdateText();
