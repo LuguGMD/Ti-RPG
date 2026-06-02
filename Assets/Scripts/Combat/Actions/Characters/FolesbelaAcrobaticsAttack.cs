@@ -46,13 +46,16 @@ namespace RPG.Combat.Actions
 
             List<PreviewTileInfo> firstSteps = new List<PreviewTileInfo>();
 
-            side = new PreviewTileInfo(_dir + _dir, _dir.ToDirection(), false);
+            side = new PreviewTileInfo(_dir + _dir, _dir.ToDirection(), false, true, false);
             side.Effects.Add(_effects[0]);
             side.Effects.Add(_effects[1]);
-            PreviewTileInfo child = side.CreateChild(_dir + _dir, _dir.ToDirection(), false);
+            PreviewTileInfo child = side.CreateChild(_dir + _dir, _dir.ToDirection(), false, true, false);
             child.Effects.Add(_effects[0]);
             child.Effects.Add(_effects[1]);
-            child = child.CreateChild(_dir + _dir, _dir.ToDirection(), false);
+            child = child.CreateChild(_dir + _dir, _dir.ToDirection(), false,true, false);
+            child.Effects.Add(_effects[0]);
+            child.Effects.Add(_effects[1]);
+            child = child.CreateChild(_dir + _dir, _dir.ToDirection(), false,true,false);
             child.Effects.Add(_effects[0]);
             child.Effects.Add(_effects[1]);
 

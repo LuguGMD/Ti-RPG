@@ -1,9 +1,10 @@
+using RPG.Combat.Actions;
 using RPG.Combat.Grid;
 using RPG.Extensions;
+using RPG.Input;
 using System.Collections.Generic;
 using UnityEngine;
-using RPG.Input;
-using RPG.Combat.Actions;
+using static UnityEngine.AdaptivePerformance.Provider.AdaptivePerformanceSubsystemDescriptor;
 
 namespace RPG.Combat.Preview
 {
@@ -53,19 +54,23 @@ namespace RPG.Combat.Preview
                 ActionsManager.Instance.OnActionTileSelected?.Invoke(_info);
         }
 
-        protected void ShowEffects()
+        protected void ShowEffects(bool isFirst = true)
         {
             if (_info == null || _effectPreviewEnabled || !_canBeSelected) return;
             _effectPreviewEnabled = true;
 
-            foreach (Effect effect in _info.Effects)
+            if (_info.DoShowSelf || !isFirst)
             {
-                _effectPreviewTiles.AddRange(effect.Preview(_tilePosition, _info.Direction));
+                foreach (Effect effect in _info.Effects)
+                {
+                    _effectPreviewTiles.AddRange(effect.Preview(_tilePosition, _info.Direction));
+                }
+
             }
 
             if(_parent != null && _info.DoShowParent)
             {
-                _parent.ShowEffects();
+                _parent.ShowEffects(false);
             }
             
         }

@@ -14,6 +14,7 @@ namespace RPG.Combat.Preview
         private List<Effect> _effects = new List<Effect>();
         private bool _needsToBeEmpty = false;
         private bool _doShowParent = false;
+        private bool _doShowSelf = false;
 
         #region Properties
 
@@ -24,15 +25,17 @@ namespace RPG.Combat.Preview
         public DirectionEnum Direction { get { return _direction; } }
         public bool NeedsToBeEmpty { get { return _needsToBeEmpty; } }
         public bool DoShowParent { get { return _doShowParent; } }
+        public bool DoShowSelf { get { return _doShowSelf; } }
 
         #endregion
 
-        public PreviewTileInfo(Vector2Int relativePosition, DirectionEnum direction, bool needsToBeEmpty, bool doShowParent = true)
+        public PreviewTileInfo(Vector2Int relativePosition, DirectionEnum direction, bool needsToBeEmpty, bool doShowParent = true, bool doShowSelf = true)
         {
             _relativePosition = relativePosition;
             _direction = direction;
             _needsToBeEmpty = needsToBeEmpty;
             _doShowParent = doShowParent;
+            _doShowSelf = doShowSelf;
         }
 
         public void SetParent(PreviewTileInfo parent)
@@ -40,9 +43,9 @@ namespace RPG.Combat.Preview
             _parent = parent;
         }
 
-        public PreviewTileInfo CreateChild(Vector2Int relativePosition, DirectionEnum direction, bool needsToBeEmpty, bool doShowParent = true)
+        public PreviewTileInfo CreateChild(Vector2Int relativePosition, DirectionEnum direction, bool needsToBeEmpty, bool doShowParent = true, bool doShowSelf = true)
         {
-            PreviewTileInfo child = new PreviewTileInfo(relativePosition, direction, needsToBeEmpty, doShowParent);
+            PreviewTileInfo child = new PreviewTileInfo(relativePosition, direction, needsToBeEmpty, doShowParent, doShowSelf);
             _child = child;
             child.SetParent(this);
 
@@ -51,7 +54,7 @@ namespace RPG.Combat.Preview
 
         public static PreviewTileInfo GetRoot(PreviewTileInfo previewTileInfo)
         {
-            if(previewTileInfo.Parent == null)
+            if (previewTileInfo.Parent == null)
             {
                 return previewTileInfo;
             }
