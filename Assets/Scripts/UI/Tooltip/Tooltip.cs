@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 
-namespace RPG
+namespace RPG.UI.Tooltip
 {
     public class Tooltip : MonoBehaviour
     {

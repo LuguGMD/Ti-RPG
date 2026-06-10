@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1872603697505390358}
   - component: {fileID: 7169481730860908345}
   - component: {fileID: 1436920783274965480}
+  - component: {fileID: 262185813620506523}
   m_Layer: 5
   m_Name: PlayerAction (Button)
   m_TagString: Untagged
@@ -196,6 +197,20 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &262185813620506523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874845417789585439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a89915ab33af143b952eeb21275557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.UI.Tooltip.TooltipTrigger
+  header: 
+  content: Finalizar Turno
 --- !u!1 &2716919804433357184
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +558,7 @@ GameObject:
   - component: {fileID: 2394872426974812681}
   - component: {fileID: 2045904865067823253}
   - component: {fileID: 6047201151282265513}
+  - component: {fileID: 5906926172439918518}
   m_Layer: 5
   m_Name: CombatSpeedButton
   m_TagString: Untagged
@@ -739,6 +755,20 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &5906926172439918518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3566333351911343058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a89915ab33af143b952eeb21275557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.UI.Tooltip.TooltipTrigger
+  header: 
+  content: Velocidade
 --- !u!1 &5204142915136496256
 GameObject:
   m_ObjectHideFlags: 0

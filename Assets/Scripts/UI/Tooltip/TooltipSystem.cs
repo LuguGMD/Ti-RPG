@@ -1,27 +1,22 @@
+using Lugu.Singleton;
 using UnityEngine;
 
-namespace RPG
+namespace RPG.UI.Tooltip
 {
-    public class TooltipSystem : MonoBehaviour
+    public class TooltipSystem : SingletonMono<TooltipSystem>
     {
-        private static TooltipSystem instance;
         public Tooltip tooltip;
-
-        public void Awake()
-        {
-            instance = this;
-        }
 
         public static void Show(string content, string header = "")
         {
-            instance.tooltip.SetText(content, header);
-            instance.tooltip.gameObject.SetActive(true);
-            instance.tooltip.Show();
+            Instance.tooltip.SetText(content, header);
+            Instance.tooltip.gameObject.SetActive(true);
+            Instance.tooltip.Show();
         }
 
         public static void Hide()
         {
-            instance.tooltip.Hide();
+            Instance.tooltip.Hide();
         }
     }
 }
