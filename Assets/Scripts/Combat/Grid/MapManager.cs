@@ -145,7 +145,7 @@ namespace RPG.Combat.Grid
         public bool IsPositionOnSpotlight(Vector2Int tilePosition)
         {
             Vector2Int distance = tilePosition - _spotlightPosition;
-            return Mathf.Abs(distance.x) <= 1 && Mathf.Abs(distance.y) <= 1;
+            return (Mathf.Abs(distance.x) <= 1 || Mathf.Abs(distance.x) == 11) && Mathf.Abs(distance.y) <= 1;
         }
 
         public float GetCurrentTilePercentage(Vector2Int tilePosition)
