@@ -12,16 +12,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 878482807804951662, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+    - target: {fileID: 965931616274400209, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1331531339565001736, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 878482807804951662, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+    - target: {fileID: 1331531339565001736, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 965931616274400209, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2263448127493250946, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
@@ -70,6 +70,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4087488424257735413, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579346334011412139, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579346334011412139, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4771036368983490718, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
@@ -190,7 +198,6 @@ MonoBehaviour:
       Data3: -128057705
       Data4: 1009727366
     Path: event:/Character/Enemy/Death
-  _spotlightHandler: {fileID: 0}
   _attack:
     _actionName: 
     _actionDescription: 
