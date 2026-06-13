@@ -8,6 +8,7 @@ namespace RPG.Management.Minigames.Rhythm
     public class RhythmMinigameHandler : MonoBehaviour
     {
         [SerializeField] private RhythmNote _notePrefab;
+        [SerializeField] private List<Sprite> _noteSprites;
         [SerializeField] private List<GameObject> _noteSpawnPositions;
         [SerializeField] private List<RhythmHitCircle> _hitCircles;
         [SerializeField] private GameObject _center;
@@ -81,7 +82,8 @@ namespace RPG.Management.Minigames.Rhythm
             Vector3 spawnPosition = _noteSpawnPositions[index].transform.position;
             RhythmNote note = Instantiate<RhythmNote>(_notePrefab, spawnPosition, Quaternion.identity);
             Vector3 direction = _center.transform.position - spawnPosition;
-            note.Init(0.2f, direction);
+            int spriteIndex = Random.Range(0, _noteSprites.Count);
+            note.Init(0.2f, direction, _noteSprites[spriteIndex]);
         }
         
     }
