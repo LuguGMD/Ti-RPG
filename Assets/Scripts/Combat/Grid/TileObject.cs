@@ -6,6 +6,7 @@ namespace RPG.Combat.Grid
     public class TileObject : MonoBehaviour
     {
         private Tile _currentTile;
+        private StageEntityController _entity;
         private DirectionEnum _direction;
         protected bool _isOnSpotlight;
         public Action<bool> OnSpotlightStateChange;
@@ -13,6 +14,7 @@ namespace RPG.Combat.Grid
         #region Properties
 
         public Tile CurrentTile { get { return _currentTile; } }
+        public StageEntityController Entity { get { return _entity; } }
         public Vector2Int Position { get { return _currentTile.Position; }  }
         public DirectionEnum Direction { get { return _direction; } }
         public bool IsOnSpotlight {  get { return _isOnSpotlight; } }
@@ -56,6 +58,11 @@ namespace RPG.Combat.Grid
             {
                 _currentTile.SetTileObject(this);
             }
+        }
+
+        public void SetEntity(StageEntityController entity)
+        {
+            _entity = entity;
         }
 
         public void SetDirection(DirectionEnum direction)

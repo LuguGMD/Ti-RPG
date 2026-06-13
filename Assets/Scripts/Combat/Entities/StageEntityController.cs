@@ -41,6 +41,8 @@ namespace RPG.Combat
             base.Awake();
             _movement = GetComponent<TileObjectMovement>();
             _preview = GetComponent<PreviewActionHandler>();
+
+            _tileObject.SetEntity(this);
         }
 
         protected new void Start()
