@@ -5,17 +5,13 @@ using UnityEngine;
 
 namespace RPG.Dialogue
 {
-    public class TextProgress
+    public class TextWriter
     {
         private readonly char[] textChars;
         private readonly List<(int, string)> tags;
 
-        public float Progress { get; private set; }
-
-        public TextProgress(string text)
+        public TextWriter(string text)
         {
-            Progress = 0;
-
             textChars = new char[text.Length];
             tags = new();
 
@@ -54,32 +50,32 @@ namespace RPG.Dialogue
 
             if (parsedIndex < textChars.Length)
             { Array.Resize(ref textChars, parsedIndex); }
+
+            Progress = 0.0f;
         }
 
-        public void SetProgress(float progress)
+        public float TotalLength => textChars.Length;
+        public int CurrentLength { get; set; }
+        public float Progress
         {
-            this.Progress = progress;
+            get => CurrentLength / textChars.Length;
+            set => CurrentLength = Mathf.FloorToInt(Mathf.Clamp01(value) * textChars.Length);
         }
-        public void SetProgress(int chars)
-        {
-            Progress = (float)chars / textChars.Length;
-        }
+        public string CurrentText => ToString();
 
         public override string ToString()
         {
-            int charShownCount = Mathf.RoundToInt(Mathf.Clamp01(Progress) * textChars.Length);
-
             StringBuilder textBuilder = new();
             textBuilder.Append(textChars);
 
-            textBuilder.Insert(charShownCount, "<color=#0000>");
+            textBuilder.Insert(CurrentLength, "<color=#0000>");
             textBuilder.Append("</color>");
 
             for (int tagIndex = tags.Count - 1; 0 <= tagIndex; --tagIndex)
             {
                 (int tagTextIndex, string tag) = tags[tagIndex];
 
-                if (tagTextIndex <= charShownCount)
+                if (tagTextIndex <= CurrentLength)
                 { textBuilder.Insert(tagTextIndex, tag); }
                 else
                 { break; }
