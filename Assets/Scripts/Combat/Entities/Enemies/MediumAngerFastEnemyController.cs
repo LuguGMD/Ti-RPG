@@ -28,7 +28,6 @@ namespace RPG.Combat
 
             SelectAction(0);
 
-            //TO DO verificar personagem proximo
             _attack.ChangeDirection(Vector2Int.down);
             List<Vector2Int> _closeTargetDirections = new List<Vector2Int>();
             int distance = 3;

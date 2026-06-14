@@ -129,8 +129,82 @@ MonoBehaviour:
   _regularAttack:
     _actionName: 
     _actionDescription: 
-    _effects: []
-    _lastTileNeedsToBeEmpty: 1
+    _effects:
+    - _targetList: 00000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area:
+      - {x: 0, y: 1}
+      - {x: 0, y: -1}
+    - _targetList: 00000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 1
+      _isRelativeToMovement: 1
+      _area:
+      - {x: 0, y: 1}
+      - {x: 0, y: -1}
+    _lastTileNeedsToBeEmpty: 0
+    _damage: 6
+    _attackSFX:
+      Guid:
+        Data1: -604343227
+        Data2: 1338147339
+        Data3: -1551870839
+        Data4: -1019038061
+      Path: event:/Character/Enemy/Attack
+  _screamAttack:
+    _actionName: 
+    _actionDescription: 
+    _effects:
+    - _targetList: 00000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 0
+      _area:
+      - {x: 1, y: 0}
+      - {x: -1, y: 0}
+      - {x: 0, y: 1}
+      - {x: 1, y: 1}
+      - {x: -1, y: 1}
+      - {x: 0, y: -1}
+      - {x: 1, y: -1}
+      - {x: -1, y: -1}
+    - _targetList: 00000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 1
+      _isRelativeToMovement: 0
+      _area:
+      - {x: 1, y: 0}
+      - {x: -1, y: 0}
+      - {x: 0, y: 1}
+      - {x: 1, y: 1}
+      - {x: -1, y: 1}
+      - {x: 0, y: -1}
+      - {x: 1, y: -1}
+      - {x: -1, y: -1}
+    - _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 0
+      _area:
+      - {x: 1, y: 0}
+      - {x: -1, y: 0}
+      - {x: 0, y: 1}
+      - {x: 1, y: 1}
+      - {x: -1, y: 1}
+      - {x: 0, y: -1}
+      - {x: 1, y: -1}
+      - {x: -1, y: -1}
+    _lastTileNeedsToBeEmpty: 0
+    _damage: 10
+    _attackSFX:
+      Guid:
+        Data1: -604343227
+        Data2: 1338147339
+        Data3: -1551870839
+        Data4: -1019038061
+      Path: event:/Character/Enemy/Attack
 --- !u!1001 &6122929841948019349
 PrefabInstance:
   m_ObjectHideFlags: 0
