@@ -4,12 +4,15 @@ using Lugu.Singleton;
 using RPG.Input;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.UI;
 
 namespace RPG.Dialogue
 {
     public class DialogueController : SingletonMono<DialogueController>
     {
+        [SerializeField] private LocalizedStringTable dialogues; 
+
         private PlayerInput player;
         
         [Header("UI")]
@@ -23,6 +26,7 @@ namespace RPG.Dialogue
         {
             base.Awake();
             player = FindAnyObjectByType<PlayerInput>();
+            Dialogue.LocalizationTable = dialogues;
         }
 
         private void EnableInput()
