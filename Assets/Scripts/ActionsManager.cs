@@ -130,6 +130,7 @@ namespace RPG
 
         public Action OnUpgradePanelOpen;
         public Action OnUpgradePanelClose;
+        public Action OnCoinsAmountChanged;
 
         #endregion
 

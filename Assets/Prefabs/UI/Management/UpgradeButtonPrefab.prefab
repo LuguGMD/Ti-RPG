@@ -89,6 +89,8 @@ GameObject:
   - component: {fileID: 2272565279435633267}
   - component: {fileID: 2119242413766088241}
   - component: {fileID: 8581949797383694241}
+  - component: {fileID: 3640111549416742185}
+  - component: {fileID: 8451672018668142426}
   m_Layer: 5
   m_Name: UpgradeButtonPrefab
   m_TagString: Untagged
@@ -146,8 +148,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
+  m_Type: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -199,10 +201,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 3640111549416742185}
+        m_TargetAssemblyTypeName: UpgradeNode, Assembly-CSharp
+        m_MethodName: TryPurchase
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -285,6 +287,36 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &3640111549416742185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3648311005038698630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb0b7a5c2962ff44ba1b405f40ea3861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradeNode
+  iconImage: {fileID: 20716150888892580}
+  lockIcon: {fileID: 7559807684333046644}
+  _tooltip: {fileID: 8451672018668142426}
+  parentNodes: []
+--- !u!114 &8451672018668142426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3648311005038698630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a89915ab33af143b952eeb21275557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.UI.Tooltip.TooltipTrigger
+  header: 
+  content: 
 --- !u!1 &7559807684333046644
 GameObject:
   m_ObjectHideFlags: 0

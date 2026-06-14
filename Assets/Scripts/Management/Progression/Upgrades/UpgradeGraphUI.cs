@@ -1,26 +1,23 @@
+using Lugu.Singleton;
 using RPG;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpgradeGraphUI : MonoBehaviour
+public class UpgradeGraphUI : SingletonMono<UpgradeGraphUI>
 {
-    public static UpgradeGraphUI Instance;
-
     [Header("Configuração")]
     public UpgradeData[] allUpgrades;          
     public GameObject upgradeNodePrefab;
     public RectTransform graphContainer;
-    public GameObject arrowPrefab;             
+    public GameObject arrowPrefab;
 
     [Header("Layout")]
+    [SerializeField] private float _yOffset = 100f;
     public float horizontalSpacing = 160f;
     public float verticalSpacing = 180f;
 
     private Dictionary<UpgradeData, UpgradeNode> nodeMap = new();
     private List<GameObject> arrows = new();
-
-    void Awake() => Instance = this;
-
     void Start()
     {
         BuildGraph();
@@ -52,10 +49,12 @@ public class UpgradeGraphUI : MonoBehaviour
                 var data = upgradesInLayer[i];
                 var nodeGO = Instantiate(upgradeNodePrefab, graphContainer);
                 var node = nodeGO.GetComponent<UpgradeNode>();
-                node.data = data;
+                node.Init(data);
 
                 float x = -totalWidth / 2f + i * horizontalSpacing;
+                x += graphContainer.sizeDelta.x / 2;
                 float y = depth * verticalSpacing;
+                y += _yOffset;
                 nodeGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
 
                 nodeMap[data] = node;

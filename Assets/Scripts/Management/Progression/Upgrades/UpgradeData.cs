@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RPG
 {
-    [CreateAssetMenu(fileName = "NewUpgrade", menuName = "Progression/Upgrade")]
+    [CreateAssetMenu(fileName = "NewUpgrade", menuName = "Scriptable Objects/Upgrade")]
     public class UpgradeData : ScriptableObject
     {
         [Header("identificaaação")]

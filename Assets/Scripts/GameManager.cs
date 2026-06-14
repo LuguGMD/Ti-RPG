@@ -78,15 +78,24 @@ namespace RPG
 
         #region Progression
 
+        [ContextMenu("Add Coins")]
+        private void AddTestCoins()
+        {
+            AddCoins(100);
+        }
+
         public void AddCoins(int coinsAmount)
         {
             _coins += coinsAmount;
+            ActionsManager.Instance.OnCoinsAmountChanged?.Invoke();
         }
 
         public void SpendCoins(int coinsAmount)
         {
             _coins -= coinsAmount;
+            ActionsManager.Instance.OnCoinsAmountChanged?.Invoke();
         }
+
 
         #endregion
 

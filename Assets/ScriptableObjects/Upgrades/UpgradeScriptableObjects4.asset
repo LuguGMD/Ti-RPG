@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bd64513da48d8c4ab3b0b8fba7e1e16, type: 3}
-  m_Name: UpgradeScriptableObjects
+  m_Name: UpgradeScriptableObjects4
   m_EditorClassIdentifier: Assembly-CSharp::RPG.UpgradeData
-  upgradeName: Nome Teste
-  upgradeDescription: Descricao teste
-  priceUpgrade: 100
+  upgradeName: Nome Teste 4
+  upgradeDescription: Descricao teste 4
+  priceUpgrade: 50
   iconUnlocked: {fileID: 1208103396, guid: 7fbf3d39657d9ea4681f9316a3ec42fc, type: 3}
   iconLocked: {fileID: -1569595839, guid: 7fbf3d39657d9ea4681f9316a3ec42fc, type: 3}
   iconGrayscale: {fileID: -1899312903, guid: 7fbf3d39657d9ea4681f9316a3ec42fc, type: 3}
-  parents: []
+  parents:
+  - {fileID: 11400000, guid: 60b0aa457459b0d4488f97dc5e303d17, type: 2}
