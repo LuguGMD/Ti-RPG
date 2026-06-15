@@ -1,21 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG
 {
-    [CreateAssetMenu(fileName = "NewUpgrade", menuName = "Scriptable Objects/Upgrade")]
-    public class UpgradeData : ScriptableObject
+    [System.Serializable]
+    public class UpgradeData
     {
-        [Header("identificaaação")]
         public string upgradeName;
-        [TextArea] public string upgradeDescription;
+        public string upgradeDescription;
         public int priceUpgrade;
 
-        [Header("Texture")]
-        public Sprite iconUnlocked;
-        public Sprite iconLocked;
-        public Sprite iconGrayscale;
+        [SerializeReference] public Sprite icon;
 
-        [Header("Grafo")]
-        public UpgradeData[] parents;
+        public List<UpgradeData> parents;
     }
 }

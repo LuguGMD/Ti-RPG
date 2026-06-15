@@ -1,12 +1,13 @@
 using Lugu.Singleton;
 using RPG;
+using RPG.Management.Progression;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class UpgradeGraphUI : SingletonMono<UpgradeGraphUI>
 {
     [Header("Configuração")]
-    public UpgradeData[] allUpgrades;          
+    public UpgradeGraphRuntime upgradeGraph;
     public GameObject upgradeNodePrefab;
     public RectTransform graphContainer;
     public GameObject arrowPrefab;
@@ -27,7 +28,7 @@ public class UpgradeGraphUI : SingletonMono<UpgradeGraphUI>
     {
 
         Dictionary<UpgradeData, int> depthMap = new();
-        foreach (var upgrade in allUpgrades)
+        foreach (var upgrade in upgradeGraph.AllUpgrades)
             depthMap[upgrade] = GetDepth(upgrade, depthMap);
 
         Dictionary<int, List<UpgradeData>> layers = new();
@@ -66,8 +67,8 @@ public class UpgradeGraphUI : SingletonMono<UpgradeGraphUI>
             var data = kvp.Key;
             var node = kvp.Value;
 
-            node.parentNodes = new UpgradeNode[data.parents.Length];
-            for (int i = 0; i < data.parents.Length; i++)
+            node.parentNodes = new UpgradeNode[data.parents.Count];
+            for (int i = 0; i < data.parents.Count; i++)
             {
                 node.parentNodes[i] = nodeMap[data.parents[i]];
                 DrawArrow(nodeMap[data.parents[i]], node);
@@ -80,7 +81,7 @@ public class UpgradeGraphUI : SingletonMono<UpgradeGraphUI>
     int GetDepth(UpgradeData upgrade, Dictionary<UpgradeData, int> cache)
     {
         if (cache.ContainsKey(upgrade)) return cache[upgrade];
-        if (upgrade.parents == null || upgrade.parents.Length == 0) return 0;
+        if (upgrade.parents == null || upgrade.parents.Count == 0) return 0;
 
         int max = 0;
         foreach (var parent in upgrade.parents)
@@ -92,10 +93,10 @@ public class UpgradeGraphUI : SingletonMono<UpgradeGraphUI>
     void DrawArrow(UpgradeNode from, UpgradeNode to)
     {
         var arrow = Instantiate(arrowPrefab, graphContainer);
-        arrow.transform.SetAsFirstSibling(); 
+        arrow.transform.SetAsFirstSibling();
 
         var fromPos = from.GetComponent<RectTransform>().anchoredPosition;
-        var toPos = to.GetComponent<RectTransform>().anchoredPosition;  
+        var toPos = to.GetComponent<RectTransform>().anchoredPosition;
 
         var arrowRect = arrow.GetComponent<RectTransform>();
         Vector2 dir = toPos - fromPos;

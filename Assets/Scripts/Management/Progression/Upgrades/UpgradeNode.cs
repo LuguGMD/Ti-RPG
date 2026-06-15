@@ -21,6 +21,7 @@ public class UpgradeNode : MonoBehaviour
     public void Init(UpgradeData data)
     {
         _data = data;
+        iconImage.sprite = _data.icon;
         _tooltip.header = _data.upgradeName;
         _tooltip.content = _data.upgradeDescription + "\nPreço: " + _data.priceUpgrade;
 
@@ -44,15 +45,19 @@ public class UpgradeNode : MonoBehaviour
 
         if (isPurchased)
         {
-            iconImage.sprite = _data.iconUnlocked;
+            iconImage.color = Color.white;
         }
         else if (IsUnlocked())
         {
-            iconImage.sprite = _data.iconGrayscale;
+            Color unlockedColor = Color.white;
+            unlockedColor.a = 0.8f;
+            iconImage.color = unlockedColor;
         }
         else
         {
-            iconImage.sprite = _data.iconLocked;
+            Color unlockedColor = Color.white;
+            unlockedColor.a = 0.8f;
+            iconImage.color = unlockedColor;
             lockIcon.SetActive(true);
         }
     }
