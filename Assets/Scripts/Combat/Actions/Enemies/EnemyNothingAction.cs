@@ -1,4 +1,5 @@
 using RPG.Combat.Actions.Effects;
+using RPG.Combat.Grid;
 using RPG.Combat.Preview;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +18,8 @@ namespace RPG.Combat.Actions
         public override IEnumerator Execute(PreviewTileInfo selectedPreviewTile)
         {
             yield return null;
+            if(_user.Position.y < Map.Rows-1)
+                ActionsManager.Instance.OnMapLineStuck?.Invoke(_user.Position.y);
         }
 
         public override List<PreviewTileInfo> Preview()
