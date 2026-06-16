@@ -181,87 +181,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &156510660
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 156510661}
-  - component: {fileID: 156510662}
-  m_Layer: 0
-  m_Name: DialogueManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &156510661
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 156510660}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1235429842}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &156510662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 156510660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29891493419f8a63a9c71b7b5545ef71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPG.Dialogue.DialogueManager
-  dialoguePanel: {fileID: 461627495}
-  dialogueText: {fileID: 1927546666390940303}
-  characterNameText: {fileID: 167341228}
-  characterIcon: {fileID: 1397759665}
-  dialogueIcons:
-  - _key: Apresentador
-    _icon: {fileID: -469943577, guid: f484e21bd27c36f47ac7f15d8c6dc25d, type: 3}
-    _name: Apresentador
-  - _key: Gigos
-    _icon: {fileID: 1039744981, guid: f484e21bd27c36f47ac7f15d8c6dc25d, type: 3}
-    _name: Gigos
-  - _key: Barbara
-    _icon: {fileID: -2077560954, guid: f484e21bd27c36f47ac7f15d8c6dc25d, type: 3}
-    _name: Barbara
-  - _key: DonLipon
-    _icon: {fileID: 1286643165, guid: f484e21bd27c36f47ac7f15d8c6dc25d, type: 3}
-    _name: DonLipon
-  - _key: Folesbela
-    _icon: {fileID: -65060539, guid: f484e21bd27c36f47ac7f15d8c6dc25d, type: 3}
-    _name: Folesbela
-  - _key: Anika
-    _icon: {fileID: 1262804449, guid: f484e21bd27c36f47ac7f15d8c6dc25d, type: 3}
-    _name: Anika
-  - _key: Buzina
-    _icon: {fileID: 2032068210, guid: f484e21bd27c36f47ac7f15d8c6dc25d, type: 3}
-    _name: Buzina
---- !u!114 &167341228 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3325574669965703315, guid: 066444f1549de7e4f9de442137ff5fd6, type: 3}
-  m_PrefabInstance: {fileID: 1927546666390940301}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &262570952
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,11 +639,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402772040}
   m_CullTransparentMesh: 1
---- !u!1 &461627495 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7463070366633926841, guid: 066444f1549de7e4f9de442137ff5fd6, type: 3}
-  m_PrefabInstance: {fileID: 1927546666390940301}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &491418593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,7 +1658,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5967414077643276494}
-  - {fileID: 156510661}
   - {fileID: 1575801956}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1759,17 +1672,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8211f13165bae0d4aaed2c1130bb4470, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.UpgradeStand
---- !u!114 &1397759665 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5409775706461566062, guid: 066444f1549de7e4f9de442137ff5fd6, type: 3}
-  m_PrefabInstance: {fileID: 1927546666390940301}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!1 &1440513378
 GameObject:
   m_ObjectHideFlags: 0
@@ -2494,6 +2396,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GigosManagementPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 6223594105943427731, guid: 289ae4a706830884e91669bc042ba29f, type: 3}
+      propertyPath: graph
+      value: 
+      objectReference: {fileID: 2841676755933307327, guid: 9940ba26fb42e5846a7d93475d34f79e, type: 3}
     - target: {fileID: 8008957854379933838, guid: 289ae4a706830884e91669bc042ba29f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2627,17 +2533,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2909346022324237050, guid: 066444f1549de7e4f9de442137ff5fd6, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 156510662}
     - target: {fileID: 7463070366633926841, guid: 066444f1549de7e4f9de442137ff5fd6, type: 3}
       propertyPath: m_Name
       value: DialogueCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 7463070366633926841, guid: 066444f1549de7e4f9de442137ff5fd6, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2649,17 +2547,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 145404922792901582, guid: 066444f1549de7e4f9de442137ff5fd6, type: 3}
   m_PrefabInstance: {fileID: 1927546666390940301}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1927546666390940303 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6577922462841028738, guid: 066444f1549de7e4f9de442137ff5fd6, type: 3}
-  m_PrefabInstance: {fileID: 1927546666390940301}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &3773196873826125501
 PrefabInstance:
   m_ObjectHideFlags: 0

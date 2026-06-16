@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6411454026617174344}
   - component: {fileID: -3674608178342188119}
-  - component: {fileID: 8587338000990823536}
+  - component: {fileID: 8003285497265661709}
   m_Layer: 0
   m_Name: CharacterManagementPrefab
   m_TagString: Untagged
@@ -56,7 +56,7 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8587338000990823536
+--- !u!114 &8003285497265661709
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -65,10 +65,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1660981728548129449}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3318bf74ae91f145a954ef2f1ef3471, type: 3}
+  m_Script: {fileID: 11500000, guid: f9bb479616245f4f08d75548f481191c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPG.Dialogue.DialogueCharacter
-  _stringTable:
-    m_TableReference:
-      m_TableCollectionName: GUID:efd063da782bf76d3acc955a54622182
-  _entryDialogueKey: LINE_1
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Dialogue.DialogueEntry
+  entry: {fileID: 0}

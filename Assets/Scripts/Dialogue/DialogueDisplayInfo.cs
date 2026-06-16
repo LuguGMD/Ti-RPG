@@ -2,15 +2,10 @@ using UnityEngine;
 
 namespace RPG.Dialogue
 {
-    public class DialogueDisplayInfo
+    [System.Serializable]
+    public class DialogueDisplayInfo : ScriptableObject
     {
-        readonly public string Title;
-        readonly public Sprite Sprite;
-
-        public DialogueDisplayInfo(string title, Sprite sprite)
-        {
-            Title = title;
-            Sprite = sprite;
-        }
+        public string Title;
+        public Sprite Sprite;
     }
 }

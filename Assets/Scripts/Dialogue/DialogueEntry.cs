@@ -1,16 +1,25 @@
 using RPG.Dialogue;
+using RPG.Management.Interaction;
 using UnityEngine;
 
-namespace RPG
+namespace RPG.Dialogue
 {
-    public class DialogueEntry : MonoBehaviour
+    public class DialogueEntry : MonoBehaviour, IInteractable
     {
-        [SerializeField] private DialogueEntrySO entry;
+        [SerializeField] private DialogueGraphRuntime graph;
+
+        public void Interact()
+        {
+            StartDialogue();
+        }
 
         public void StartDialogue()
         {
-            DialogueController.Instance.DialogueSetup(entry.Dialogue);
-            DialogueController.Instance.DialogueStart();
+            if (!DialogueController.Instance.IsRunning)
+            {
+                DialogueController.Instance.DialogueSetup(graph.Entry.Dialogue);
+                DialogueController.Instance.DialogueStart();
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ using System;
 namespace RPG.Management.Progression.Editor
 {
     [Graph(AssetExtension)]
+    [Serializable]
     public class UpgradeGraph : Graph
     {
         public const string AssetExtension = "simpleg";
