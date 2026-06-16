@@ -7,13 +7,16 @@ using UnityEngine;
 
 namespace RPG.Management.Progression.Editor
 {
-    [ScriptedImporter(4, UpgradeGraph.AssetExtension)]
+    [ScriptedImporter(6, UpgradeGraph.AssetExtension)]
     public class UpgradeGraphImporter : ScriptedImporter
     {
         private static Dictionary<UpgradeGraphNode, UpgradeData> _processedNodes;
+        private static AssetImportContext context;
 
         public override void OnImportAsset(AssetImportContext ctx)
         {
+            context = ctx;
+
             var graph = GraphDatabase.LoadGraphForImporter<UpgradeGraph>(ctx.assetPath);
             if (graph == null)
             {
@@ -41,7 +44,7 @@ namespace RPG.Management.Progression.Editor
 
         static void ProcessNode(UpgradeGraphNode node, UpgradeGraphRuntime runtimeAsset)
         {
-            UpgradeData upgradeData = GetUpgradeData(node);
+            UpgradeData upgradeData = GetUpgradeData(node, runtimeAsset);
 
             IPort nameInput = node.GetInputPortByName(UpgradeGraphNode.INPUT_NAME);
             nameInput.TryGetValue<string>(out string name);
@@ -70,14 +73,14 @@ namespace RPG.Management.Progression.Editor
 
                 if (parentNode != null)
                 {
-                    upgradeData.parents.Add(GetUpgradeData(parentNode));
+                    upgradeData.parents.Add(GetUpgradeData(parentNode, runtimeAsset));
                 }
             }
 
             runtimeAsset.AllUpgrades.Add(upgradeData);
         }
 
-        static UpgradeData GetUpgradeData(UpgradeGraphNode node)
+        static UpgradeData GetUpgradeData(UpgradeGraphNode node, UpgradeGraphRuntime runtimeAsset)
         {
             UpgradeData upgradeData = null;
             if (_processedNodes.ContainsKey(node))
@@ -86,7 +89,8 @@ namespace RPG.Management.Progression.Editor
             }
             else
             {
-                upgradeData = new UpgradeData();
+                upgradeData = ScriptableObject.CreateInstance<UpgradeData>();
+                context.AddObjectToAsset("UpgradeData"+ _processedNodes.Count, upgradeData);
                 _processedNodes.Add(node, upgradeData);
             }
 

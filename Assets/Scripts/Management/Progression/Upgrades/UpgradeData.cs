@@ -4,7 +4,7 @@ using UnityEngine;
 namespace RPG
 {
     [System.Serializable]
-    public class UpgradeData
+    public class UpgradeData : ScriptableObject
     {
         public string upgradeName;
         public string upgradeDescription;
