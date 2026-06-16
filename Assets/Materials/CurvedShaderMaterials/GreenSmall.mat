@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Green
+  m_Name: GreenSmall
   m_Shader: {fileID: -6465566751694194690, guid: 82b947b604011484a89550ac928513fa, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -95,6 +95,7 @@ Material:
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _BackStrength: -0.004
+    - _Back_Strength: -0.004
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BumpScale: 1
@@ -112,7 +113,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Grain_Diffuse_Influence: 0.228
-    - _Grain_Tiling: 85.82
+    - _Grain_Tiling: 0.4
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -124,7 +125,8 @@ Material:
     - _Shadow_Noise_Strength: 0.31
     - _Shadow_Threshold: 0.5
     - _SideStrength: 0
-    - _Smoothness: 0.2
+    - _Side_Strength: 0
+    - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
