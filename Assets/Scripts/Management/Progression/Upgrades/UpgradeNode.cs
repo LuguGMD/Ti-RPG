@@ -62,14 +62,19 @@ public class UpgradeNode : MonoBehaviour
         }
     }
 
-    public void TryPurchase()
+    public void OnClick()
+    {
+        if (!IsUnlocked() || isPurchased) return;
+        UpgradeGraphUI.Instance.OpenConfirmPanel(this);
+    }
+
+    public void Purchase()
     {
         if (!CanBuy()) return;
 
         GameManager.Instance.SpendCoins(_data.priceUpgrade);
         isPurchased = true;
         RefreshVisual();
-
         UpgradeGraphUI.Instance.RefreshAll();
     }
 
