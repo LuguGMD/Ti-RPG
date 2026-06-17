@@ -9,10 +9,6 @@ public class UpgradeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [Header("Referências UI")]
     public Image iconImage;
     public GameObject lockIcon;
-    public GameObject tooltip;
-    public TMP_Text tooltipName;
-    public TMP_Text tooltipDescription;
-    public TMP_Text tooltipPrice;
 
     [HideInInspector] public UpgradeData data;
     [HideInInspector] public UpgradeNode[] parentNodes;
@@ -37,13 +33,9 @@ public class UpgradeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         lockIcon.SetActive(false);
 
         if (isPurchased)
-        {
             iconImage.sprite = data.iconUnlocked;
-        }
         else if (IsUnlocked())
-        {
             iconImage.sprite = data.iconGrayscale;
-        }
         else
         {
             iconImage.sprite = data.iconLocked;
@@ -51,27 +43,21 @@ public class UpgradeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         }
     }
 
-    public void TryPurchase()
+    public void OnClick()
+    {
+        if (!IsUnlocked() || isPurchased) return;
+        UpgradeGraphUI.Instance.OpenConfirmPanel(this);
+    }
+
+    public void Purchase()
     {
         if (!CanBuy()) return;
-
         GameManager.Instance.SpendCoins(data.priceUpgrade);
         isPurchased = true;
         RefreshVisual();
-
         UpgradeGraphUI.Instance.RefreshAll();
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        tooltipName.text = data.upgradeName;
-        tooltipDescription.text = data.upgradeDescription;
-        tooltipPrice.text = $"Preço: {data.priceUpgrade}";
-        tooltip.SetActive(true);
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        tooltip.SetActive(false);
-    }
+    public void OnPointerEnter(PointerEventData eventData) { }
+    public void OnPointerExit(PointerEventData eventData) { }
 }
