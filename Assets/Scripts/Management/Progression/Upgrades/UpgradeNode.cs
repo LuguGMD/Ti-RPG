@@ -4,78 +4,85 @@ using UnityEngine.EventSystems;
 using TMPro;
 using RPG;
 using RPG.UI.Tooltip;
+using RPG.Management.Progression;
 
-public class UpgradeNode : MonoBehaviour
+namespace RPG.Management.Progression
 {
-    [Header("Referências UI")]
-    public Image iconImage;
-    public GameObject lockIcon;
-    [SerializeField] private TooltipTrigger _tooltip;
-
-    private UpgradeData _data;
-    [HideInInspector] public UpgradeNode[] parentNodes;
-
-    private bool isPurchased = false;
-    public bool IsPurchased => isPurchased;
-
-    public void Init(UpgradeData data)
+    public class UpgradeNode : MonoBehaviour
     {
-        _data = data;
-        iconImage.sprite = _data.icon;
-        _tooltip.header = _data.upgradeName;
-        _tooltip.content = _data.upgradeDescription + "\nPreço: " + _data.priceUpgrade;
+        [Header("Referências UI")]
+        public Image iconImage;
+        [SerializeField] private TooltipTrigger _tooltip;
 
-    }
+        private UpgradeData _data;
+        [HideInInspector] public UpgradeNode[] parentNodes;
 
-    public bool IsUnlocked()
-    {
-        foreach (UpgradeNode parent in parentNodes)
-            if (!parent.IsPurchased) return false;
-        return true;
-    }
+        private bool isPurchased = false;
+        public bool IsPurchased => isPurchased;
 
-    public bool CanBuy()
-    {
-        return IsUnlocked() && !isPurchased && GameManager.Coins >= _data.priceUpgrade;
-    }
+        #region Properties
 
-    public void RefreshVisual()
-    {
-        lockIcon.SetActive(false);
-
-        if (isPurchased)
+        public UpgradeData Data
         {
-            iconImage.color = Color.white;
+            get { return _data; }
         }
-        else if (IsUnlocked())
+
+        #endregion
+
+        public void Init(UpgradeData data)
         {
-            Color unlockedColor = Color.white;
-            unlockedColor.a = 0.8f;
-            iconImage.color = unlockedColor;
+            _data = data;
+            iconImage.sprite = _data.icon;
+            _tooltip.header = _data.upgradeName;
+            _tooltip.content = _data.upgradeDescription + "\nPreço: " + _data.priceUpgrade;
+
         }
-        else
+
+        public bool IsUnlocked()
         {
-            Color unlockedColor = Color.white;
-            unlockedColor.a = 0.8f;
-            iconImage.color = unlockedColor;
-            lockIcon.SetActive(true);
+            foreach (UpgradeNode parent in parentNodes)
+                if (!parent.IsPurchased) return false;
+            return true;
         }
+
+        public bool CanBuy()
+        {
+            return IsUnlocked() && !isPurchased && GameManager.Coins >= _data.priceUpgrade;
+        }
+
+        public void RefreshVisual()
+        {
+            if (isPurchased)
+            {
+                iconImage.color = Color.white;
+            }
+            else if (IsUnlocked())
+            {
+                Color unlockedColor = Color.gray6;
+                iconImage.color = unlockedColor;
+            }
+            else
+            {
+                Color unlockedColor = Color.gray3;
+                iconImage.color = unlockedColor;
+            }
+        }
+
+        public void OnClick()
+        {
+            if (!IsUnlocked() || !CanBuy()) return;
+            UpgradeGraphUI.Instance.OpenConfirmPanel(this);
+        }
+
+        public void Purchase()
+        {
+            if (!CanBuy()) return;
+
+            GameManager.Instance.SpendCoins(_data.priceUpgrade);
+            isPurchased = true;
+            RefreshVisual();
+            UpgradeGraphUI.Instance.RefreshAll();
+        }
+
     }
-
-    public void OnClick()
-    {
-        if (!IsUnlocked() || isPurchased) return;
-        UpgradeGraphUI.Instance.OpenConfirmPanel(this);
-    }
-
-    public void Purchase()
-    {
-        if (!CanBuy()) return;
-
-        GameManager.Instance.SpendCoins(_data.priceUpgrade);
-        isPurchased = true;
-        RefreshVisual();
-        UpgradeGraphUI.Instance.RefreshAll();
-    }
-
 }

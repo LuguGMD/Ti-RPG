@@ -9,6 +9,7 @@ namespace RPG
         public string upgradeName;
         public string upgradeDescription;
         public int priceUpgrade;
+        public string upgradeKey;
 
         [SerializeReference] public Sprite icon;
 

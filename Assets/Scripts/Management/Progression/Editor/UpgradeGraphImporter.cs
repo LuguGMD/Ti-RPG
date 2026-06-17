@@ -7,15 +7,19 @@ using UnityEngine;
 
 namespace RPG.Management.Progression.Editor
 {
-    [ScriptedImporter(6, UpgradeGraph.AssetExtension)]
+    [ScriptedImporter(7, UpgradeGraph.AssetExtension)]
     public class UpgradeGraphImporter : ScriptedImporter
     {
         private static Dictionary<UpgradeGraphNode, UpgradeData> _processedNodes;
+        private static HashSet<string> _keys = new HashSet<string>();
+        private static bool _wasWarnedKeys = false;
         private static AssetImportContext context;
 
         public override void OnImportAsset(AssetImportContext ctx)
         {
             context = ctx;
+            _keys = new HashSet<string>();
+            _wasWarnedKeys = false;
 
             var graph = GraphDatabase.LoadGraphForImporter<UpgradeGraph>(ctx.assetPath);
             if (graph == null)
@@ -62,6 +66,20 @@ namespace RPG.Management.Progression.Editor
             iconInput.TryGetValue<Sprite>(out Sprite icon);
             upgradeData.icon = icon;
 
+            IPort keyInput = node.GetInputPortByName(UpgradeGraphNode.INPUT_KEY);
+            keyInput.TryGetValue<string>(out string upgradeKey);
+            upgradeData.upgradeKey = upgradeKey;
+
+            if (!_keys.Contains(upgradeKey))
+            {
+                _keys.Add(upgradeKey);
+            }
+            else if(!_wasWarnedKeys)
+            {
+                _wasWarnedKeys = true;
+                Debug.LogWarning("There are more than 1 upgrade with the same Key Value");
+            }
+
 
             upgradeData.parents = new List<UpgradeData>();
             INodeOption parentCountOption = node.GetNodeOptionByName(UpgradeGraphNode.PARENT_COUNT_NAME);
@@ -90,7 +108,7 @@ namespace RPG.Management.Progression.Editor
             else
             {
                 upgradeData = ScriptableObject.CreateInstance<UpgradeData>();
-                context.AddObjectToAsset("UpgradeData"+ _processedNodes.Count, upgradeData);
+                context.AddObjectToAsset("UpgradeData" + _processedNodes.Count, upgradeData);
                 _processedNodes.Add(node, upgradeData);
             }
 

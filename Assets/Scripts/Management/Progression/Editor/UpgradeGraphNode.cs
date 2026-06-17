@@ -13,6 +13,7 @@ namespace RPG.Management.Progression.Editor
         public const string INPUT_PRICE = "Price";
         public const string INPUT_ICON = "Icon";
         public const string INPUT_PARENT = "Parent ";
+        public const string INPUT_KEY = "Key";
         public const string OUTPUT_CHILDS = "Output";
 
         protected override void OnDefineOptions(IOptionDefinitionContext context)
@@ -30,11 +31,14 @@ namespace RPG.Management.Progression.Editor
             context.AddInputPort<int>(INPUT_PRICE).Build();
 
             context.AddInputPort<Sprite>(INPUT_ICON).Build();
+            
 
             for (int i = 0; i < parentCount; i++)
             {
                 context.AddInputPort(INPUT_PARENT + i).Build();
             }
+
+            context.AddInputPort<string>(INPUT_KEY).Build();
 
             context.AddOutputPort(OUTPUT_CHILDS).Build();
         }
