@@ -38,6 +38,8 @@ namespace RPG.Dialogue
             {
                 Destroy(optionButton.gameObject);
             }
+
+            _options.Clear();
         }
     }
 }
