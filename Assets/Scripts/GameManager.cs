@@ -1,6 +1,7 @@
 using Lugu.Singleton;
 using RPG.Combat;
 using RPG.Level;
+using RPG.Save;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,7 +9,7 @@ using CharacterController = RPG.Combat.CharacterController;
 
 namespace RPG
 {
-    public class GameManager : SingletonMonoPersistent<GameManager>
+    public class GameManager : SingletonMonoPersistent<GameManager>, ISavable<GameManager, GameManagerData, GameManagerAdapter>
     {
         [SerializeField] private LevelScriptable _selectedLevel;
         private CharacterScriptable _selectedCharacterMinigame;
@@ -17,6 +18,7 @@ namespace RPG
         private List<CharacterScriptable> _defeatedCharacters = new List<CharacterScriptable>();
 
         private int _coins = 0;
+        private string _key = "GameManager";
 
         #region Properties
 
@@ -26,6 +28,7 @@ namespace RPG
         public static CharacterScriptable[] AvailableCharacters {  get { return Instance._availableCharacters; } }
         public static List<CharacterScriptable> DefeatedCharacters { get { return Instance._defeatedCharacters; } }
         public static int Coins { get { return Instance._coins; } }
+        public string Key { get { return _key; } set { _key = value; } }
 
         #endregion
 

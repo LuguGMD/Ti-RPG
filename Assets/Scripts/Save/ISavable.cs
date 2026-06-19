@@ -4,7 +4,7 @@ namespace RPG.Save
 {
     public interface ISavable<Class, Data, Adapter> : ISavableAbstract where Class : ISavableAbstract where Data : class, new() where Adapter : SaveAdapter<Class, Data>, new()
     {
-        public string Key { get; protected set; }
+        public string Key { get; set; }
 
         public new void Save()
         {
