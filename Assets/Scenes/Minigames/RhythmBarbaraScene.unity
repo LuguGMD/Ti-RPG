@@ -540,6 +540,7 @@ MonoBehaviour:
     _challengeGoal: 25
   - _challengeType: 1
     _challengeGoal: 5
+  _tiersTreshold: 050000000a0000001e00000032000000640000002c010000
 --- !u!114 &431050336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -568,7 +569,20 @@ MonoBehaviour:
   - {fileID: 8825881673198135412}
   - {fileID: 5099045013327702918}
   _center: {fileID: 274727505}
-  _spawnCooldown: 1
+  _tiersCooldowns:
+  - 1
+  - 0.8
+  - 0.7
+  - 0.6
+  - 0.5
+  - 0.5
+  _tiersSpeed:
+  - 0.2
+  - 0.3
+  - 0.4
+  - 0.5
+  - 0.6
+  - 0.7
 --- !u!4 &605286736 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 736528280249569122, guid: a2103491304f8a84ba36b4859e89973e, type: 3}
@@ -2004,6 +2018,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8252782841840727986, guid: 9bca110f6d933e348acd1730f576a864, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 400325219, guid: 110bb8f62368bac4cbe765b8816ac818, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2077,6 +2095,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8252782841840727986, guid: 9bca110f6d933e348acd1730f576a864, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -717879832, guid: 110bb8f62368bac4cbe765b8816ac818, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2282,6 +2304,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8252782841840727986, guid: 9bca110f6d933e348acd1730f576a864, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1150974638, guid: 110bb8f62368bac4cbe765b8816ac818, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
