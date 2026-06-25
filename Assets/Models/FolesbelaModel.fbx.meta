@@ -3,7 +3,17 @@ guid: ad5ca967e609ffc4088ad52bd1de2a39
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cabecas
+    second: {fileID: 2100000, guid: c10923ab2b4326d49a6abbda249cf8f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Corpo
+    second: {fileID: 2100000, guid: c10923ab2b4326d49a6abbda249cf8f8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -60,8 +70,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: FolesbelaBakeAttack
-      takeName: FolesbelaRig|BakeAttack
+      name: FolesbelaAttack
+      takeName: FolesbelaRig|AttackBake
       internalID: 4867833702043026464
       firstFrame: 0
       lastFrame: 60
@@ -90,7 +100,7 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: FolesbelaIdleCombat
-      takeName: FolesbelaRig|BakeIdleCombat
+      takeName: FolesbelaRig|IdleCombatBake
       internalID: 327136939370349715
       firstFrame: 0
       lastFrame: 55
@@ -119,7 +129,7 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: FolesbelaIdleStretching
-      takeName: FolesbelaRig|BakeIdleStretching
+      takeName: FolesbelaRig|IdleStretchingBake
       internalID: -401010308907763764
       firstFrame: 0
       lastFrame: 132
@@ -130,6 +140,35 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: FolesbelaTakeDamage
+      takeName: FolesbelaRig|DamageBake
+      internalID: -3461666460585084415
+      firstFrame: 0
+      lastFrame: 127
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
