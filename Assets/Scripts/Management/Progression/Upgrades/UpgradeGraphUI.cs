@@ -19,6 +19,7 @@ namespace RPG.Management.Progression
         [SerializeField] private float _yOffset = 100f;
         public float horizontalSpacing = 160f;
         public float verticalSpacing = 180f;
+        public float arrowWidth = 10f;
 
         private Dictionary<UpgradeData, UpgradeNode> nodeMap = new();
         private List<GameObject> arrows = new();
@@ -112,7 +113,7 @@ namespace RPG.Management.Progression
             float dist = dir.magnitude;
 
             arrowRect.anchoredPosition = fromPos + dir * 0.5f;
-            arrowRect.sizeDelta = new Vector2(dist, 4f);
+            arrowRect.sizeDelta = new Vector2(dist, arrowWidth);
             arrowRect.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
 
             arrows.Add(arrow);
