@@ -1,3 +1,5 @@
+using DG.Tweening;
+using RPG.UI.Tooltip;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,6 +10,8 @@ namespace RPG.Combat.UI
     {
         [SerializeField] private Slider _slider;
         [SerializeField] private Image _characterIcon;
+        [SerializeField] private Button _characterButton;
+        [SerializeField] private TooltipTrigger _tooltipTrigger;
 
         #region Properties
 
@@ -15,9 +19,31 @@ namespace RPG.Combat.UI
 
         #endregion
 
-        public void SetInfo(CharacterScriptable characterInfo)
+
+        public void SetInfo(CharacterController characterController)
         {
-            _characterIcon.sprite = characterInfo.Icon;
+            CharacterScriptable characterInfo = characterController.CharacterInfo;
+            _characterIcon.sprite = characterController.HasActed ? characterInfo.UsedIcon : characterInfo.Icon;
+            _tooltipTrigger.header = characterInfo.EntityName;
+            _tooltipTrigger.content = "";
+
+            _characterButton.onClick.AddListener(() => { OnSelect(characterController); });
+
+            if (characterController.HasActed)
+            {
+                _characterIcon.rectTransform.DOScale(Vector3.one * 0.8f, 0.2f);
+            }
+            else
+            {
+                _characterIcon.rectTransform.DOScale(Vector3.one, 0.2f);
+            }
+        }
+
+        public void OnSelect(CharacterController characterController)
+        {
+            if (!CombatManager.HasCombatStarted) return;
+            ActionsManager.Instance.OnEntitySelected?.Invoke(characterController);
+            ActionsManager.Instance.OnCharacterClicked?.Invoke(characterController);
         }
     }
 }

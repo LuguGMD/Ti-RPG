@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace RPG.Combat.Grid
@@ -5,12 +6,15 @@ namespace RPG.Combat.Grid
     public class TileObject : MonoBehaviour
     {
         private Tile _currentTile;
+        private StageEntityController _entity;
         private DirectionEnum _direction;
         protected bool _isOnSpotlight;
+        public Action<bool> OnSpotlightStateChange;
 
         #region Properties
 
         public Tile CurrentTile { get { return _currentTile; } }
+        public StageEntityController Entity { get { return _entity; } }
         public Vector2Int Position { get { return _currentTile.Position; }  }
         public DirectionEnum Direction { get { return _direction; } }
         public bool IsOnSpotlight {  get { return _isOnSpotlight; } }
@@ -22,15 +26,22 @@ namespace RPG.Combat.Grid
             SetDirection(DirectionEnum.Up);
         }
 
+        private void Start()
+        {
+            CheckSpotlight();
+        }
+
         private void OnEnable()
         {
             ActionsManager.Instance.OnMapChanged += UpdatePosition;
+            ActionsManager.Instance.OnMapChanged += CheckSpotlight;
             ActionsManager.Instance.OnTurnPassed += CheckSpotlight;
         }
 
         private void OnDisable()
         {
             ActionsManager.Instance.OnMapChanged -= UpdatePosition;
+            ActionsManager.Instance.OnMapChanged -= CheckSpotlight;
             ActionsManager.Instance.OnTurnPassed -= CheckSpotlight;
         }
 
@@ -49,6 +60,11 @@ namespace RPG.Combat.Grid
             }
         }
 
+        public void SetEntity(StageEntityController entity)
+        {
+            _entity = entity;
+        }
+
         public void SetDirection(DirectionEnum direction)
         {
             _direction = direction;
@@ -63,7 +79,15 @@ namespace RPG.Combat.Grid
 
         public void CheckSpotlight()
         {
+            if (MapManager.Instance == null || _currentTile == null) return;
+            UpdatePosition();
+
+            bool previousState = _isOnSpotlight;
             _isOnSpotlight = MapManager.Instance.IsPositionOnSpotlight(Position);
+            if(previousState != _isOnSpotlight)
+            {
+                OnSpotlightStateChange?.Invoke(_isOnSpotlight);
+            }
         }
     }
 }

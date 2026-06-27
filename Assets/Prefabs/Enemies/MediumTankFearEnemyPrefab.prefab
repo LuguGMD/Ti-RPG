@@ -955,7 +955,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4f9288c662fb5f94d9b22504a144e876, type: 2}
+  - {fileID: 2100000, guid: e567dce4e6119c5459b652de291fc85e, type: 2}
+  - {fileID: 2100000, guid: 18f98f679e5528246a7961ebdb8e431b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1788,7 +1789,7 @@ Transform:
   m_GameObject: {fileID: 9053742532493202326}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.7}
+  m_LocalPosition: {x: 0, y: -0.09, z: -0.489}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1890,11 +1891,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 878482807804951662, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+    - target: {fileID: 1331531339565001736, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 878482807804951662, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+    - target: {fileID: 1331531339565001736, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -1938,6 +1939,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4579346334011412139, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579346334011412139, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5875166748602480768, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: _info
       value: 
@@ -1954,6 +1963,7 @@ PrefabInstance:
     - {fileID: 5875166748602480768, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7259633300662510270, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+    - {fileID: 3821419159120949808, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2263448127493250946, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       insertIndex: 0
@@ -1985,4 +1995,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84bbb594f91aadf439d7ee9d2b8b0c08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.MediumFearTankEnemyController
+  _damagedSFX:
+    Guid:
+      Data1: -2050587371
+      Data2: 1092163508
+      Data3: -615420032
+      Data4: -424402750
+    Path: event:/Character/Enemy/Damaged
   _info: {fileID: 11400000, guid: 3d44cf0cff62b634581bfea2c7845f0d, type: 2}
+  _defeatedSFX:
+    Guid:
+      Data1: -1922207554
+      Data2: 1249813310
+      Data3: -128057705
+      Data4: 1009727366
+    Path: event:/Character/Enemy/Death
+  _attack:
+    _actionName: 
+    _actionDescription: 
+    _effects:
+    - _targetList: 00000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 1
+      _area:
+      - {x: 0, y: 1}
+    - _targetList: 00000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 1
+      _isRelativeToMovement: 1
+      _area:
+      - {x: 0, y: 1}
+    _lastTileNeedsToBeEmpty: 0
+    _damage: 8
+    _attackSFX:
+      Guid:
+        Data1: -604343227
+        Data2: 1338147339
+        Data3: -1551870839
+        Data4: -1019038061
+      Path: event:/Character/Enemy/Attack
+  _nothing:
+    _actionName: 
+    _actionDescription: 
+    _effects:
+    - _targetList: 01000000
+      _canTargetSelf: 1
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 0
+      _area:
+      - {x: 0, y: 0}
+    _lastTileNeedsToBeEmpty: 1

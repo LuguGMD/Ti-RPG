@@ -20,6 +20,7 @@ namespace RPG
         public Action OnMapChanged;
         public Action OnRotationAnimationStarted;
         public Action OnRotationAnimationEnded;
+        public Action<int> OnMapLineStuck;
 
         public Action OnCombatWon;
         public Action OnCombatLost;
@@ -34,6 +35,7 @@ namespace RPG
         public Action<StageEntityController> OnStageEntityDefeated;
 
         public Action<CharacterController> OnCharacterDamageTaken;
+        public Action<CharacterController> OnCharacterHealed;
         public Action<CharacterController> OnCharacterCreated;
         public Action<CharacterController> OnCharacterDefeated;
 
@@ -51,9 +53,6 @@ namespace RPG
 
         public Action OnActionStart;
         public Action OnActionEnd;
-        public Action OnPatternEnd;
-        public Action OnTileStepBefore;
-        public Action OnTileStepAfter;
 
         #endregion
 
@@ -113,6 +112,8 @@ namespace RPG
         public Action OnMinigameHit;
         public Action OnMinigamePerfectHit;
 
+        public Action OnMinigameTierChanged;
+
         public Action OnMinigameValuesUpdated;
         public Action<MinigameChallenge> OnMinigameChallengeUpdated;
         public Action OnMinigameChallengeCompleted;
@@ -131,6 +132,7 @@ namespace RPG
 
         public Action OnUpgradePanelOpen;
         public Action OnUpgradePanelClose;
+        public Action OnCoinsAmountChanged;
 
         #endregion
 

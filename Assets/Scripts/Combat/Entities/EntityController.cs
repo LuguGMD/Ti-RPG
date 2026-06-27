@@ -5,6 +5,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using RPG.Input;
+using FMODUnity;
+using RPG.Audio;
 
 namespace RPG.Combat
 {
@@ -14,11 +16,15 @@ namespace RPG.Combat
         protected TileObject _tileObject;
         protected CursorTarget _cursorTarget;
         protected Animator[] _animators;
+        protected bool _hasActed = false;
+
+        [SerializeField] private EventReference _damagedSFX;
 
         #region Properties
         public Vector2Int Position { get { return _tileObject.Position; } }
         public DirectionEnum Direction { get { return _tileObject.Direction; } }
         public TileObject TileObject { get { return _tileObject; } }
+        public bool HasActed { get { return _hasActed; } }
 
         #endregion
 
@@ -38,18 +44,26 @@ namespace RPG.Combat
         protected void OnDestroy()
         {
             _cursorTarget.Actions.LeftClick.Stop();
+            _cursorTarget.Actions.Hover.Stop();
         }
 
         protected void OnEnable()
         {
             ActionsManager.Instance.OnCombatSpeedChanged += AdjsutGameSpeed;
             ActionsManager.Instance.OnPreviewTileSelected += CheckSelected;
+            ActionsManager.Instance.OnEnemyTurnEnded += ResetAction;
         }
 
         protected void OnDisable()
         {
             ActionsManager.Instance.OnCombatSpeedChanged -= AdjsutGameSpeed;
             ActionsManager.Instance.OnPreviewTileSelected -= CheckSelected;
+            ActionsManager.Instance.OnEnemyTurnEnded -= ResetAction;
+        }
+
+        public virtual void ResetAction()
+        {
+            _hasActed = false;
         }
 
         protected void AdjsutGameSpeed()
@@ -114,6 +128,7 @@ namespace RPG.Combat
 
         public virtual void TakeDamage(float damage)
         {
+            AudioManager.Instance.PlayOneShot(_damagedSFX);
             SetAnimationTrigger("TookDamage");
             CheckDefeated();
         }

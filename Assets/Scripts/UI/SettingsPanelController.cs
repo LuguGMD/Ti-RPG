@@ -51,20 +51,17 @@ namespace RPG
         private void OpenPanel()
         {
             settingsPanel.SetActive(true);
-            Time.timeScale = 0f;
             ActionsManager.Instance?.OnPauseToggle?.Invoke(true);
         }
 
         private void ClosePanel()
         {
             settingsPanel.SetActive(false);
-            Time.timeScale = 1f;
             ActionsManager.Instance?.OnPauseToggle?.Invoke(false);
         }
 
         private void GoToMainMenu()
         {
-            Time.timeScale = 1f;
             SceneManager.LoadScene(MainMenuSceneName);
         }
     }

@@ -14,6 +14,9 @@
         },
         {
             "m_Id": "0485f79c16584296bd779a6ff88b1aa8"
+        },
+        {
+            "m_Id": "90ce6bf746164c789db77f306a708945"
         }
     ],
     "m_Keywords": [
@@ -81,6 +84,9 @@
         },
         {
             "m_Id": "22449051138f4233aa0fadd14684feb0"
+        },
+        {
+            "m_Id": "31cb66292a4945a988fceab28e8d016d"
         }
     ],
     "m_GroupDatas": [],
@@ -126,6 +132,20 @@
                     "m_Id": "f779f1f0e385434c835a38fcc497e838"
                 },
                 "m_SlotId": 2
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "31cb66292a4945a988fceab28e8d016d"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "a9dc4ed63bf64aa89cb5a638f51adb66"
+                },
+                "m_SlotId": 0
             }
         },
         {
@@ -657,6 +677,42 @@
         "m_SerializableColors": []
     },
     "m_SerializedDescriptor": "VertexDescription.Tangent"
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "31cb66292a4945a988fceab28e8d016d",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": 370.0,
+            "y": 355.0,
+            "width": 140.0,
+            "height": 34.0
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "b449626f506a4c088c0e3f3bcf254c16"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_DismissedVersion": 0,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "90ce6bf746164c789db77f306a708945"
+    }
 }
 
 {
@@ -1356,6 +1412,50 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "90ce6bf746164c789db77f306a708945",
+    "m_Guid": {
+        "m_GuidSerialized": "715c532f-0a92-4576-8df9-ddd6c5746ad0"
+    },
+    "promotedFromAssetID": "",
+    "promotedFromCategoryName": "",
+    "promotedOrdering": -1,
+    "m_Name": "Smoothness",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Smoothness",
+    "m_DefaultReferenceName": "_Smoothness",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_PerRendererData": false,
+    "m_customAttributes": [],
+    "m_Value": 0.0,
+    "m_FloatType": 1,
+    "m_LiteralFloatMode": false,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 1.0
+    },
+    "m_SliderType": 0,
+    "m_SliderPower": 3.0,
+    "m_EnumType": 0,
+    "m_CSharpEnumString": "",
+    "m_EnumNames": [
+        "Default"
+    ],
+    "m_EnumValues": [
+        0
+    ]
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "9b26eccf4d024e51aa820864b1f36ac8",
@@ -1462,6 +1562,22 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
+    "m_ObjectId": "b449626f506a4c088c0e3f3bcf254c16",
+    "m_Id": 0,
+    "m_DisplayName": "Smoothness",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": 0.0,
+    "m_DefaultValue": 0.0,
+    "m_Labels": [],
+    "m_LiteralMode": false
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "b78f9a295efa4aaa93284b88d9563111",
     "m_Name": "",
@@ -1480,6 +1596,9 @@
         },
         {
             "m_Id": "463d2bdb61bf46f2bcc8502e2ba27e16"
+        },
+        {
+            "m_Id": "90ce6bf746164c789db77f306a708945"
         }
     ]
 }

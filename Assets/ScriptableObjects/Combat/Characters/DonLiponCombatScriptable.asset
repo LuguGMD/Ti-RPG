@@ -13,71 +13,9 @@ MonoBehaviour:
   m_Name: DonLiponCombatScriptable
   m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterScriptable
   _entityName: Don Lipon
-  _actions:
-  - _actionName: Levantamento de Peso
-    _actionDescription: Acerta o alvo em sua frente, causando um dano massivo
-    _effects:
-    - _command: {fileID: 11400000, guid: b10b79f96f3698848be462c146de5f76, type: 2}
-      _triggerCondition: 1
-      _targetList: 01000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 0
-      _isRelativeToMovement: 1
-      _area: 00000000
-    - _command: {fileID: 11400000, guid: b10b79f96f3698848be462c146de5f76, type: 2}
-      _triggerCondition: 1
-      _targetList: 01000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 1
-      _isRelativeToMovement: 1
-      _area: 00000000
-    _movementPatterns:
-    - _pattern:
-      - _direction: 0
-        _needsToBeEmpty: 1
-      _repetition: 2
-      _canMirror: 1
-      Repetition: 2
-    - _pattern:
-      - _direction: 3
-        _needsToBeEmpty: 1
-      _repetition: 2
-      _canMirror: 1
-      Repetition: 2
-    _lastTileNeedsToBeEmpty: 1
-  - _actionName: Soco Direcional
-    _actionDescription: 
-    _effects:
-    - _command: {fileID: 11400000, guid: faaab5275613368488736a1e776f3671, type: 2}
-      _triggerCondition: 0
-      _targetList: 01000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 0
-      _isRelativeToMovement: 1
-      _area: 00000000
-    - _command: {fileID: 11400000, guid: 5bb2fb777cbd3ba4da4a3b23bb4509aa, type: 2}
-      _triggerCondition: 0
-      _targetList: 01000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 0
-      _isRelativeToMovement: 1
-      _area: 00000000
-    _movementPatterns:
-    - _pattern:
-      - _direction: 0
-        _needsToBeEmpty: 1
-      _repetition: 1
-      _canMirror: 1
-      Repetition: 1
-    - _pattern:
-      - _direction: 3
-        _needsToBeEmpty: 1
-      _repetition: 1
-      _canMirror: 1
-      Repetition: 1
-    _lastTileNeedsToBeEmpty: 0
-  _type: 1
-  _spotlightDescription: 'No Holofote: Aumenta o Dano causado'
+  _spotlightDescription: 'No Holofote: Causa mais dano'
   _icon: {fileID: 1286643165, guid: f484e21bd27c36f47ac7f15d8c6dc25d, type: 3}
+  _usedIcon: {fileID: 1044803762, guid: e0f4b8dbfcbd0184a92a5eeaf0610811, type: 3}
   motivation: 90
-  _prefab: {fileID: 3212348313461435027, guid: 61245aac8b3a2ee469796eda827137ad, type: 3}
+  _prefab: {fileID: 7788911528210877111, guid: 61245aac8b3a2ee469796eda827137ad, type: 3}
+  _fmodParameterName: DonLipon

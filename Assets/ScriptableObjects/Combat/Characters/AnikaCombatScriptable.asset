@@ -13,40 +13,9 @@ MonoBehaviour:
   m_Name: AnikaCombatScriptable
   m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterScriptable
   _entityName: Anika
-  _actions:
-  - _actionName: Soco Direcional
-    _actionDescription: 
-    _effects:
-    - _command: {fileID: 11400000, guid: faaab5275613368488736a1e776f3671, type: 2}
-      _triggerCondition: 0
-      _targetList: 01000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 0
-      _isRelativeToMovement: 1
-      _area: 00000000
-    - _command: {fileID: 11400000, guid: 5bb2fb777cbd3ba4da4a3b23bb4509aa, type: 2}
-      _triggerCondition: 0
-      _targetList: 01000000
-      _canTargetSelf: 0
-      _doNeedSpotlight: 0
-      _isRelativeToMovement: 1
-      _area: 00000000
-    _movementPatterns:
-    - _pattern:
-      - _direction: 0
-        _needsToBeEmpty: 1
-      _repetition: 1
-      _canMirror: 1
-      Repetition: 1
-    - _pattern:
-      - _direction: 3
-        _needsToBeEmpty: 1
-      _repetition: 1
-      _canMirror: 1
-      Repetition: 1
-    _lastTileNeedsToBeEmpty: 0
-  _type: 1
-  _spotlightDescription: 'No Holofote: '
+  _spotlightDescription: 'No Holofote: Causa mais dano'
   _icon: {fileID: 1262804449, guid: f484e21bd27c36f47ac7f15d8c6dc25d, type: 3}
-  motivation: 40
-  _prefab: {fileID: 8963018156021965223, guid: 8ac0f4ac5daa4a84fa99c94e77146cc1, type: 3}
+  _usedIcon: {fileID: 483099091, guid: e0f4b8dbfcbd0184a92a5eeaf0610811, type: 3}
+  motivation: 60
+  _prefab: {fileID: 6712933676206287897, guid: 8ac0f4ac5daa4a84fa99c94e77146cc1, type: 3}
+  _fmodParameterName: Anika

@@ -7,12 +7,6 @@
             "m_Id": "7bb7e99b5e9447d4886a12613fd3b50d"
         },
         {
-            "m_Id": "3c8dfbddafe145ec8ece6fff4c0a0b6e"
-        },
-        {
-            "m_Id": "2c3c74be207e43a2ba019d2dcbe25fd2"
-        },
-        {
             "m_Id": "4c97719c6cef490c89584c2958b3b7df"
         }
     ],
@@ -507,50 +501,6 @@
 }
 
 {
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
-    "m_ObjectId": "2c3c74be207e43a2ba019d2dcbe25fd2",
-    "m_Guid": {
-        "m_GuidSerialized": "45195c50-b6f9-4501-8bf3-b01b6d3f48e1"
-    },
-    "promotedFromAssetID": "",
-    "promotedFromCategoryName": "",
-    "promotedOrdering": -1,
-    "m_Name": "End",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "End",
-    "m_DefaultReferenceName": "_End",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_PerRendererData": false,
-    "m_customAttributes": [],
-    "m_Value": 1.0,
-    "m_FloatType": 0,
-    "m_LiteralFloatMode": false,
-    "m_RangeValues": {
-        "x": 0.0,
-        "y": 5.0
-    },
-    "m_SliderType": 0,
-    "m_SliderPower": 3.0,
-    "m_EnumType": 0,
-    "m_CSharpEnumString": "",
-    "m_EnumNames": [
-        "Default"
-    ],
-    "m_EnumValues": [
-        0
-    ]
-}
-
-{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector4MaterialSlot",
     "m_ObjectId": "2f09d8d5433f4c84b5e1052e829a9854",
@@ -603,50 +553,6 @@
         "b": 0.5,
         "a": 1.0
     }
-}
-
-{
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
-    "m_ObjectId": "3c8dfbddafe145ec8ece6fff4c0a0b6e",
-    "m_Guid": {
-        "m_GuidSerialized": "b5ab9f60-1a56-4adb-9edd-ccea8cf19a1b"
-    },
-    "promotedFromAssetID": "",
-    "promotedFromCategoryName": "",
-    "promotedOrdering": -1,
-    "m_Name": "Start",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Start",
-    "m_DefaultReferenceName": "_Start",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_PerRendererData": false,
-    "m_customAttributes": [],
-    "m_Value": 0.0,
-    "m_FloatType": 1,
-    "m_LiteralFloatMode": false,
-    "m_RangeValues": {
-        "x": 0.0,
-        "y": 1.0
-    },
-    "m_SliderType": 0,
-    "m_SliderPower": 3.0,
-    "m_EnumType": 0,
-    "m_CSharpEnumString": "",
-    "m_EnumNames": [
-        "Default"
-    ],
-    "m_EnumValues": [
-        0
-    ]
 }
 
 {
@@ -721,15 +627,15 @@
             "a": 1.0
         },
         "key2": {
-            "r": 0.800000011920929,
-            "g": 0.800000011920929,
-            "b": 0.800000011920929,
-            "a": 0.0
-        },
-        "key3": {
             "r": 1.0,
             "g": 1.0,
             "b": 1.0,
+            "a": 0.0
+        },
+        "key3": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.0,
             "a": 0.0
         },
         "key4": {
@@ -757,9 +663,9 @@
             "a": 0.0
         },
         "ctime0": 655,
-        "ctime1": 22937,
-        "ctime2": 34734,
-        "ctime3": 65535,
+        "ctime1": 26214,
+        "ctime2": 65535,
+        "ctime3": 0,
         "ctime4": 0,
         "ctime5": 0,
         "ctime6": 0,
@@ -774,7 +680,7 @@
         "atime7": 0,
         "m_Mode": 2,
         "m_ColorSpace": 1,
-        "m_NumColorKeys": 4,
+        "m_NumColorKeys": 3,
         "m_NumAlphaKeys": 2
     }
 }
@@ -1676,12 +1582,6 @@
     "m_ChildObjectList": [
         {
             "m_Id": "7bb7e99b5e9447d4886a12613fd3b50d"
-        },
-        {
-            "m_Id": "3c8dfbddafe145ec8ece6fff4c0a0b6e"
-        },
-        {
-            "m_Id": "2c3c74be207e43a2ba019d2dcbe25fd2"
         },
         {
             "m_Id": "4c97719c6cef490c89584c2958b3b7df"

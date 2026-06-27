@@ -23,6 +23,7 @@ namespace RPG.Combat.UI
         private Dictionary<int, int> _rowsRotatedAmount = new Dictionary<int, int>();
         private int _rotatedAmount = 0;
         private int _confirmedRotatedAmount = 0;
+        private List<int> _linesStuck = new List<int>();
 
         private bool _isCanvasEnabled = false;
 
@@ -31,6 +32,8 @@ namespace RPG.Combat.UI
             ActionsManager.Instance.OnApresentadorSelected += ShowCanvas;
             ActionsManager.Instance.OnEntitySelected += OnEntitySelected;
             ActionsManager.Instance.OnTurnPassed += ResetValues;
+            ActionsManager.Instance.OnEnemyTurnStarted += FreeLines;
+            ActionsManager.Instance.OnMapLineStuck += StuckLine;
         }
 
         private void OnDisable()
@@ -38,6 +41,8 @@ namespace RPG.Combat.UI
             ActionsManager.Instance.OnApresentadorSelected -= ShowCanvas;
             ActionsManager.Instance.OnEntitySelected -= OnEntitySelected;
             ActionsManager.Instance.OnTurnPassed -= ResetValues;
+            ActionsManager.Instance.OnEnemyTurnStarted -= FreeLines;
+            ActionsManager.Instance.OnMapLineStuck -= StuckLine;
         }
 
         private void Start()
@@ -61,7 +66,7 @@ namespace RPG.Combat.UI
 
         private void InitializeDictionary()
         {
-            for(int i =0; i < Map.Rows-1; i++)
+            for (int i = 0; i < Map.Rows - 1; i++)
             {
                 _rowsRotatedAmount[i] = 0;
             }
@@ -69,15 +74,15 @@ namespace RPG.Combat.UI
 
         private void OnEntitySelected(EntityController entitySelected)
         {
-            if(_isCanvasEnabled && CombatManager.Apresentador != entitySelected)
+            if (_isCanvasEnabled && CombatManager.Apresentador != entitySelected)
             {
                 CancelAction();
-                HideCanvas();
             }
         }
 
         private void ShowCanvas()
         {
+
             _isCanvasEnabled = true;
             InitializeDictionary();
             _rotatedAmount = 0;
@@ -106,7 +111,14 @@ namespace RPG.Combat.UI
 
         private void Rotate(int amount)
         {
-            int rowRotatedAmount = _rowsRotatedAmount[CombatManager.Apresentador.RowToRotate];
+            int rowIndex = CombatManager.Apresentador.RowToRotate;
+            if(_linesStuck.Contains(rowIndex))
+            {
+                CombatManager.Instance.CameraShake(0.9f);
+                return;
+            }
+
+            int rowRotatedAmount = _rowsRotatedAmount[rowIndex];
             bool isRemovingRotations = Mathf.Sign(amount) != Mathf.Sign(rowRotatedAmount) && rowRotatedAmount != 0;
 
             if (_rotatedAmount + _confirmedRotatedAmount < CombatManager.Apresentador.MaxRowRotations || isRemovingRotations)
@@ -120,6 +132,16 @@ namespace RPG.Combat.UI
             }
         }
 
+        private void StuckLine(int lineIndex)
+        {
+            _linesStuck.Add(lineIndex);
+        }
+
+        private void FreeLines()
+        {
+            _linesStuck.Clear();
+        }
+
         private void UpdateText()
         {
             _rotationsLeftText.text = $"Rotações restantes: {CombatManager.Apresentador.MaxRowRotations - (_rotatedAmount + _confirmedRotatedAmount)}";
@@ -127,7 +149,7 @@ namespace RPG.Combat.UI
 
         private void CancelAction()
         {
-            for(int i = 0; i < Map.Rows-1; i++)
+            for (int i = 0; i < Map.Rows - 1; i++)
             {
                 CombatManager.Apresentador.Rotate(i, -_rowsRotatedAmount[i]);
             }
@@ -166,7 +188,10 @@ namespace RPG.Combat.UI
         {
             GameObject selectedRow = MapManager.RowGameObjects[CombatManager.Apresentador.RowToRotate];
             selectedRow.transform.DOKill(true);
-            selectedRow.transform.DOLocalMove(Vector3.zero, 0.25f);
+            selectedRow.transform.DOLocalMove(Vector3.zero, 0.25f).OnComplete(() =>
+            {
+                ActionsManager.Instance.OnMapChanged?.Invoke();
+            });
         }
     }
 }

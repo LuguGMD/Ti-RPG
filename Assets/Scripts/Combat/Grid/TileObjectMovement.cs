@@ -12,15 +12,11 @@ namespace RPG.Combat.Grid
     public class TileObjectMovement : MonoBehaviour
     {
         private TileObject _tileObject;
-        private Queue<Movement> _movementQueue = new Queue<Movement>();
-        private int _patternMovementCount = 0;
-        private int _movementCount = 0;
 
 
         #region Properties
 
         public TileObject TileObject { get { return _tileObject; } }
-        public Queue<Movement> MovementQueue { get { return _movementQueue; } }
 
         #endregion
 
@@ -37,40 +33,48 @@ namespace RPG.Combat.Grid
             _tileObject.SetCurrentTile(nextTile, doReplace);
         }
 
-        public IEnumerator Move(bool isMirrored)
+        private void ChangeTile(Vector2Int position, bool doReplace)
+        {
+            Tile nextTile = MapManager.Map.GetTile(position);
+
+            _tileObject.SetCurrentTile(nextTile, doReplace);
+        }
+
+        public IEnumerator Move(Movement movement, int count)
+        {
+            for (int i = 0; i < count; i++)
+            {
+                transform.parent = null;
+                DirectionEnum direction = movement.Direction;
+                _tileObject.SetDirection(direction);
+
+                if (MapManager.IsMovementValid(_tileObject.Position, movement))
+                {
+
+                    if (direction.IsSideways())
+                    {
+                        yield return MoveAlongSpline(0.3f, direction);
+                    }
+                    else
+                    {
+                        yield return MoveAlongPoints(0.3f, direction);
+                    }
+
+                    ChangeTile(direction, movement.NeedsToBeEmpty);
+                }
+            }
+        }
+
+        public void Teleport(DirectionEnum direction, Vector2Int position)
         {
             transform.parent = null;
-            Movement movement = _movementQueue.Dequeue();
-            DirectionEnum direction = isMirrored ? movement.Direction.Mirror() : movement.Direction;
-            _tileObject.SetDirection(direction);
 
-            if (MapManager.IsMovementValid(_tileObject.Position, movement, isMirrored))
+            if (MapManager.IsPositionValid(position))
             {
-                ActionsManager.Instance.OnTileStepBefore?.Invoke();
+                _tileObject.SetDirection(direction);
 
-                if(direction.IsSideways())
-                {
-                    yield return MoveAlongSpline(0.3f, direction);
-                }
-                else
-                {
-                    yield return MoveAlongPoints(0.3f, direction);
-                }
-                
-                ChangeTile(direction, movement.NeedsToBeEmpty);
-
-                ActionsManager.Instance.OnTileStepAfter?.Invoke();
+                ChangeTile(position, true);
             }
-
-            _movementCount++;
-
-
-
-            if (_movementCount % _patternMovementCount == 0)
-            {
-                ActionsManager.Instance.OnPatternEnd?.Invoke();
-            }
-
         }
 
         private IEnumerator MoveAlongSpline(float time, DirectionEnum direction)
@@ -106,24 +110,11 @@ namespace RPG.Combat.Grid
 
         public void Push(Movement movement)
         {
-            if (MapManager.IsMovementValid(_tileObject.Position, movement, false))
+            if (MapManager.IsMovementValid(_tileObject.Position, movement))
             {
                 ChangeTile(movement.Direction, true);
                 _tileObject.UpdatePosition();
             }
-        }
-
-        public void EnqueuePattern(List<Movement> pattern, int repetitions)
-        {
-            _patternMovementCount = pattern.Count;
-            for (int i = 0; i < repetitions; i++)
-            {
-                for (int j = 0; j < pattern.Count; j++)
-                {
-                    _movementQueue.Enqueue(pattern[j]);
-                }
-            }
-            _movementCount = 0;
         }
 
     }

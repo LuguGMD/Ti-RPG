@@ -9,6 +9,7 @@ using System.Linq;
 using RPG.Combat.Wave;
 using RPG.Combat.Grid;
 using RPG.Combat.UI;
+using Unity.Cinemachine;
 
 namespace RPG.Combat
 {
@@ -20,6 +21,7 @@ namespace RPG.Combat
         [SerializeField] private ActionPreviewTile _previewTilePrefab;
         [SerializeField] private PreviewTileGroup _characterPreviewGroups;
         [SerializeField] private PreviewTileGroup _enemyPreviewGroups;
+        private CinemachineImpulseSource _impulseSource;
 
         private CombatTurnStateEnum _currentTurnState;
         private int _turnCount;
@@ -51,35 +53,55 @@ namespace RPG.Combat
         public static float CombatSpeed {  get { return Instance._combatSpeed; } }
         public static ApresentadorController Apresentador { get { return Instance._apresentador; } }
         public static bool HasCombatStarted { get { return Instance._hasCombatStarted; } }
+        public static List<CharacterController> RemainingCharacters {  get { return Instance._remainingCharacters; } }
+        public static bool IsActionInProgress { get { return Instance._isActionInProgress; } }
 
         #endregion
 
+        protected override void Awake()
+        {
+            base.Awake();
+
+            if(Instance == this)
+                _impulseSource = GetComponent<CinemachineImpulseSource>();
+        }
+
         private void Start()
         {
+            if (Instance != this) return;
+
             _apresentador = GameObject.FindAnyObjectByType<ApresentadorController>(FindObjectsInactive.Include);
             _apresentador.gameObject.SetActive(true);
-
             ActionsManager.Instance.OnPreviewTileSelected += PlaceCharacter;
         }
 
         private void OnEnable()
         {
+            //if (Instance != null && Instance != this) return;
+
             ActionsManager.Instance.OnCombatStart += InitializeBattle;
             ActionsManager.Instance.OnCharacterClicked += OnCharacterClicked;
             ActionsManager.Instance.OnApresentadorSelected += OnApresentadorSelected;
             ActionsManager.Instance.OnActionTileSelected += OnCombatActionSelected;
             ActionsManager.Instance.OnApresentadorActionCompleted += CheckEndPlayerTurn;
             ActionsManager.Instance.OnPlayerTurnEnded += EndPlayerTurn;
+            ActionsManager.Instance.OnCharacterDamageTaken += CharacterDamageTaken;
+            ActionsManager.Instance.OnApresentadorDamageTaken += ApresentadorDamageTaken;
         }
 
         private void OnDisable()
         {
+            //if (Instance != null && Instance != this) return;
+
             ActionsManager.Instance.OnCombatStart -= InitializeBattle;
             ActionsManager.Instance.OnCharacterClicked -= OnCharacterClicked;
             ActionsManager.Instance.OnApresentadorSelected -= OnApresentadorSelected;
             ActionsManager.Instance.OnActionTileSelected -= OnCombatActionSelected;
             ActionsManager.Instance.OnApresentadorActionCompleted -= CheckEndPlayerTurn;
             ActionsManager.Instance.OnPlayerTurnEnded -= EndPlayerTurn;
+            ActionsManager.Instance.OnCharacterDamageTaken -= CharacterDamageTaken;
+            ActionsManager.Instance.OnApresentadorDamageTaken -= ApresentadorDamageTaken;
+            ActionsManager.Instance.OnPreviewTileSelected -= PlaceCharacter;
         }
 
         #region Preparation
@@ -109,40 +131,6 @@ namespace RPG.Combat
 
         #region Control
 
-        public static bool IsTargetWeak(CombatTypeEnum user, CombatTypeEnum target)
-        {
-            return CombatConstants.TypeChart[user] == target;
-        }
-
-        public static void SubscribeEffectTriggerAction(EffectTriggerEnum effectTrigger, Action action)
-        {
-            switch (effectTrigger)
-            {
-                case EffectTriggerEnum.ActionStart:
-                    ActionsManager.Instance.OnActionStart += action;
-                    break;
-                case EffectTriggerEnum.ActionEnd:
-                    ActionsManager.Instance.OnActionEnd += action;
-                    break;
-                case EffectTriggerEnum.PatternEnd:
-                    ActionsManager.Instance.OnPatternEnd += action;
-                    break;
-                case EffectTriggerEnum.BeforeTileStep:
-                    ActionsManager.Instance.OnTileStepBefore += action;
-                    break;
-                case EffectTriggerEnum.AfterTileStep:
-                    ActionsManager.Instance.OnTileStepAfter += action;
-                    break;
-            }
-        }
-        public static void UnsubscribeEffectTriggerAction()
-        {
-            ActionsManager.Instance.OnActionStart = null;
-            ActionsManager.Instance.OnActionEnd = null;
-            ActionsManager.Instance.OnPatternEnd = null;
-            ActionsManager.Instance.OnTileStepBefore = null;
-            ActionsManager.Instance.OnTileStepAfter = null;
-        }
 
         public static bool CanTarget(EntityScriptable user, EntityScriptable target, Effect effect)
         {
@@ -153,6 +141,26 @@ namespace RPG.Combat
 
             return effect.TargetList.Contains(target.Team);
         }
+
+        #endregion
+
+        #region Feedback
+
+        private void CharacterDamageTaken(CharacterController character)
+        {
+            CameraShake(0.1f);
+        }
+
+        private void ApresentadorDamageTaken()
+        {
+            CameraShake(0.25f);
+        }
+
+        public void CameraShake(float force)
+        {
+            _impulseSource.GenerateImpulse(force);
+        }
+
 
         #endregion
 
@@ -202,10 +210,10 @@ namespace RPG.Combat
             CombatUIManager.Instance.ChangePanel(CombatUIManager.DefaultPanelIndex);
             _turnCount = 0;
             _currentTurnState = CombatTurnStateEnum.PlayerTurn;
-            PassTurn();
             _hasCombatStarted = true;
             _hasCombatEnded = false;
             StartPlayerTurn();
+            SwitchTurn();
         }
 
         private void SwitchTurn()
@@ -253,10 +261,6 @@ namespace RPG.Combat
 
         private IEnumerator PlayerActionCoroutine(PreviewTileInfo previewTileInfo)
         {
-            int patternIndex = previewTileInfo.PatternIndex;
-            int repetition = previewTileInfo.PatternRepetitionCount;
-            bool isMirrored = previewTileInfo.IsMirrored;
-
             _usedCharacters.Add(_selectedCharacter);
 
             _canSelectCharacter = false;
@@ -264,7 +268,7 @@ namespace RPG.Combat
             _selectedCharacter.Preview.HidePreview();
             HideAllEnemiesPreviews();
 
-            yield return _selectedCharacter.UseSelectedAction(patternIndex, repetition, isMirrored);
+            yield return _selectedCharacter.UseSelectedAction(previewTileInfo);
 
             ShowAllEnemiesPreviews();
             DeselectCharacter();

@@ -60,6 +60,10 @@ Material:
     - _Blend: 0
     - _CastShadows: 0
     - _Cull: 2
+    - _DecalMeshBiasType: 0
+    - _DecalMeshDepthBias: 0
+    - _DecalMeshViewBias: 0
+    - _DrawOrder: 0
     - _DstBlend: 10
     - _DstBlendAlpha: 10
     - _Outline_Width: 0.02
@@ -73,7 +77,7 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _Color: {r: 1, g: 0.96078426, b: 0.36862743, a: 0.21960784}
+    - _Color: {r: 1, g: 0.96078426, b: 0.36862743, a: 0.14901961}
     - _Outline_Color: {r: 1, g: 0.97613186, b: 0.638, a: 0.8784314}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

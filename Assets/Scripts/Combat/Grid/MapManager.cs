@@ -1,9 +1,12 @@
 using DG.Tweening;
+using FMODUnity;
 using Lugu.Singleton;
+using RPG.Audio;
 using RPG.Combat.Actions;
 using RPG.Extensions;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -23,7 +26,8 @@ namespace RPG.Combat.Grid
         [SerializeField] private GameObject[] _rowGameObjects;
         private Coroutine _rotationAnimationCoroutine;
         private Vector2Int _spotlightPosition;
-        
+        [SerializeField] private EventReference _rotationSFX;
+
 
         #region Properties
 
@@ -98,10 +102,9 @@ namespace RPG.Combat.Grid
             return worldPosition;
         }
 
-        public static bool IsMovementValid(Vector2Int currentPos, Movement movement, bool isMirrored)
+        public static bool IsMovementValid(Vector2Int currentPos, Movement movement)
         {
-            DirectionEnum movementDirection = isMirrored ? movement.Direction.Mirror() : movement.Direction;
-            Vector2Int addedMovement = movementDirection.ToVector2Int();
+            Vector2Int addedMovement = movement.Direction.ToVector2Int();
             Vector2Int finalPos = (currentPos + addedMovement).ClampMap();
 
             if (finalPos == Map.CENTER_POS || finalPos.y >= Map.Rows - 1)
@@ -142,7 +145,7 @@ namespace RPG.Combat.Grid
         public bool IsPositionOnSpotlight(Vector2Int tilePosition)
         {
             Vector2Int distance = tilePosition - _spotlightPosition;
-            return Mathf.Abs(distance.x) <= 1 && Mathf.Abs(distance.y) <= 1;
+            return (Mathf.Abs(distance.x) <= 1 || Mathf.Abs(distance.x) == 11) && Mathf.Abs(distance.y) <= 1;
         }
 
         public float GetCurrentTilePercentage(Vector2Int tilePosition)
@@ -159,6 +162,8 @@ namespace RPG.Combat.Grid
 
         public void RotateRow(int rowToRotate, int amount)
         {
+            AudioManager.Instance.PlayOneShot(_rotationSFX);
+
             _map.RotateRow(rowToRotate, amount);
 
             if (_rotationAnimationCoroutine != null) StopCoroutine(_rotationAnimationCoroutine);
@@ -178,6 +183,7 @@ namespace RPG.Combat.Grid
             rowTransform.DORotate(endValue, 0.5f / CombatManager.CombatSpeed, RotateMode.FastBeyond360);
 
             yield return new WaitForSeconds(0.5f / CombatManager.CombatSpeed);
+            ActionsManager.Instance.OnMapChanged?.Invoke();
             ActionsManager.Instance.OnRotationAnimationEnded?.Invoke();
         }
 
