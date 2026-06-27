@@ -30,6 +30,7 @@ namespace RPG.Management.Progression
         void Start()
         {
             BuildGraph();
+            Load();
         }
 
         void BuildGraph()
@@ -129,6 +130,8 @@ namespace RPG.Management.Progression
             pendingNode?.Purchase();
             confirmPanel.gameObject.SetActive(false);
             pendingNode = null;
+
+            SaveManager.Instance.SaveAll();
         }
 
         public void CancelPurchase()
@@ -166,6 +169,18 @@ namespace RPG.Management.Progression
         private string GetUpgradeID(UpgradeData data)
         {
             return string.IsNullOrEmpty(data.upgradeKey) ? data.name : data.upgradeKey;
+        }
+
+        public void Save()
+        {
+            ISavable<UpgradeGraphUI, UpgradeGraphData, UpgradeGraphAdapter> savable = (ISavable<UpgradeGraphUI, UpgradeGraphData, UpgradeGraphAdapter>)this;
+            savable.SaveInfo();
+        }
+
+        public void Load()
+        {
+            ISavable<UpgradeGraphUI, UpgradeGraphData, UpgradeGraphAdapter> savable = (ISavable<UpgradeGraphUI, UpgradeGraphData, UpgradeGraphAdapter>)this;
+            savable.LoadInfo();
         }
     }
 
