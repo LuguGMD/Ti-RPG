@@ -60,9 +60,10 @@ namespace RPG.Save
 
         public static void Save(string key, string json)
         {
+            Debug.Log("Salvando: " + key);
             JsonEntry existing = Instance._saveData.Entries.Find(x => x.Key == key);
 
-            if (existing == null)
+            if (existing != null)
             {
                 existing.Json = json;
             }

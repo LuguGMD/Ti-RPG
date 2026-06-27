@@ -1,11 +1,12 @@
 using Lugu.Singleton;
+using RPG.Save;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Management.Progression
 {
 
-    public class UpgradeGraphUI : SingletonMono<UpgradeGraphUI>
+    public class UpgradeGraphUI : SingletonMono<UpgradeGraphUI>, ISavable<UpgradeGraphUI, UpgradeGraphData, UpgradeGraphAdapter>
     {
         [Header("Configuração")]
         public UpgradeGraphRuntime upgradeGraph;
@@ -18,14 +19,19 @@ namespace RPG.Management.Progression
         [SerializeField] private float _yOffset = 100f;
         public float horizontalSpacing = 160f;
         public float verticalSpacing = 180f;
+        public float arrowWidth = 10f;
 
         private Dictionary<UpgradeData, UpgradeNode> nodeMap = new();
         private List<GameObject> arrows = new();
         private UpgradeNode pendingNode;
 
+        private string _key = "UpgradeGraph";
+        public string Key { get { return _key; } set { _key = value; } }
+
         void Start()
         {
             BuildGraph();
+            Load();
         }
 
         void BuildGraph()
@@ -107,7 +113,7 @@ namespace RPG.Management.Progression
             float dist = dir.magnitude;
 
             arrowRect.anchoredPosition = fromPos + dir * 0.5f;
-            arrowRect.sizeDelta = new Vector2(dist, 4f);
+            arrowRect.sizeDelta = new Vector2(dist, arrowWidth);
             arrowRect.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
 
             arrows.Add(arrow);
@@ -125,6 +131,8 @@ namespace RPG.Management.Progression
             pendingNode?.Purchase();
             confirmPanel.gameObject.SetActive(false);
             pendingNode = null;
+
+            SaveManager.Instance.SaveAll();
         }
 
         public void CancelPurchase()
@@ -137,6 +145,43 @@ namespace RPG.Management.Progression
         {
             foreach (var node in nodeMap.Values)
                 node.RefreshVisual();
+        }
+
+        public List<string> GetPurchasedUpgradeIDs()
+        {
+            List<string> ids = new();
+            foreach (var kvp in nodeMap)
+                if (kvp.Value.IsPurchased)
+                    ids.Add(GetUpgradeID(kvp.Key));
+            return ids;
+        }
+
+        public void ApplyPurchasedUpgradeIDs(List<string> ids)
+        {
+            if (ids == null) return;
+
+            HashSet<string> purchased = new(ids);
+            foreach (var kvp in nodeMap)
+                kvp.Value.SetPurchasedFromSave(purchased.Contains(GetUpgradeID(kvp.Key)));
+
+            RefreshAll();
+        }
+
+        private string GetUpgradeID(UpgradeData data)
+        {
+            return string.IsNullOrEmpty(data.upgradeKey) ? data.name : data.upgradeKey;
+        }
+
+        public void Save()
+        {
+            ISavable<UpgradeGraphUI, UpgradeGraphData, UpgradeGraphAdapter> savable = (ISavable<UpgradeGraphUI, UpgradeGraphData, UpgradeGraphAdapter>)this;
+            savable.SaveInfo();
+        }
+
+        public void Load()
+        {
+            ISavable<UpgradeGraphUI, UpgradeGraphData, UpgradeGraphAdapter> savable = (ISavable<UpgradeGraphUI, UpgradeGraphData, UpgradeGraphAdapter>)this;
+            savable.LoadInfo();
         }
     }
 

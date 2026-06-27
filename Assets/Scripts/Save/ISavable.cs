@@ -6,15 +6,15 @@ namespace RPG.Save
     {
         public string Key { get; set; }
 
-        public new void Save()
+        public void SaveInfo()
         {
             Adapter adapter = new Adapter();
             Data data = new Data();
-            adapter.DataToClass((Class)this, data);
+            adapter.ClassToData((Class)this, data);
             SaveManager.Save(Key, JsonUtility.ToJson(data, true));
         }
 
-        public new void Load()
+        public void LoadInfo()
         {
             Adapter adapter = new Adapter();
             string json = SaveManager.Load(Key);
@@ -22,7 +22,7 @@ namespace RPG.Save
             if (json != null)
             {
                 Data data = JsonUtility.FromJson<Data>(json);
-                adapter.ClassToData((Class)this, data);
+                adapter.DataToClass((Class)this, data);
             }
         }
     }

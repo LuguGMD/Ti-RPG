@@ -38,11 +38,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Diffuse_Map:
-        m_Texture: {fileID: 2800000, guid: d473cfd9f25f8884b9e9cc9e0cf13c71, type: 3}
+        m_Texture: {fileID: 2800000, guid: 82af027c67633a04d9a8b629ceb296c5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Grain_Texture:
-        m_Texture: {fileID: 2800000, guid: 1d5e6263c1e6c3a41b5fc04fefc1e4f6, type: 3}
+        m_Texture: {fileID: 2800000, guid: b569916608e905c40b1d1380a79955c4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Shadow_Map:
@@ -63,11 +63,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Grain_Diffuse_Influence: 0.7
+    - _Grain_TIlling: 0.56
+    - _Projection_Blend: 4.34
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Shadow_Noise_Scale: 47.1
-    - _Shadow_Noise_Softness: 0.079
-    - _Shadow_Noise_Strength: 0.31
+    - _Shadow_Noise_Softness: 0.136
+    - _Shadow_Noise_Strength: 0.292
     - _Shadow_Threshold: 0.5
     - _Softness: 0.125
     m_Colors:

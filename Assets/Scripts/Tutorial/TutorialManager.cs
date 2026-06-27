@@ -46,5 +46,17 @@ namespace RPG.Tutorial
             _tutorialData[tutorialKey] = isCompleted;
         }
 
+        public void Save()
+        {
+            ISavable<TutorialManager, TutorialManagerData, TutorialManagerAdapter> savable = (ISavable<TutorialManager, TutorialManagerData, TutorialManagerAdapter>)this;
+            savable.SaveInfo();
+        }
+
+        public void Load()
+        {
+            ISavable<TutorialManager, TutorialManagerData, TutorialManagerAdapter> savable = (ISavable<TutorialManager, TutorialManagerData, TutorialManagerAdapter>)this;
+            savable.LoadInfo();
+        }
+
     }
 }

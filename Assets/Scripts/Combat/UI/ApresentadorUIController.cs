@@ -114,7 +114,7 @@ namespace RPG.Combat.UI
             int rowIndex = CombatManager.Apresentador.RowToRotate;
             if(_linesStuck.Contains(rowIndex))
             {
-                CombatManager.Instance.CameraShake(2);
+                CombatManager.Instance.CameraShake(0.9f);
                 return;
             }
 
