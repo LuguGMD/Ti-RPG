@@ -1,11 +1,12 @@
 using RPG.Camera;
 using RPG.Input;
+using RPG.Save;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Level
 {
-    public class WorldNavigationManager : MonoBehaviour
+    public class WorldNavigationManager : MonoBehaviour, ISavable<WorldNavigationManager, LevelManagerData, LevelManagerAdapter>
     {
         private PlayerInput _playerInput;
 
@@ -20,12 +21,29 @@ namespace RPG.Level
         [Header("Current Level")]
         [SerializeField]
         private int currentLevel = 0;
+        private string _key = "WorldNavigationManager";
 
         #region Properties
+
+        public string Key
+        {
+            set { _key = value; }
+            get { return _key; }
+        }
 
         private LevelNode CurrentLevel
         {
             get { return levels[currentLevel]; }
+        }
+        
+        public int MaxUnlockedLevel
+        {
+            get { return maxUnlockedLevel; }
+        }
+
+        public int CurrentLevelIndex
+        {
+            get { return currentLevel; }
         }
 
         #endregion
@@ -90,7 +108,7 @@ namespace RPG.Level
             ChangeCurrentLevel(previousIndex);
         }
 
-        private void ChangeCurrentLevel(int levelIndex)
+        public void ChangeCurrentLevel(int levelIndex)
         {
             currentLevel = levelIndex;
 
@@ -100,6 +118,12 @@ namespace RPG.Level
 
             UpdateLoadedLevels();
         }
+
+        public void SetMaxUnlockedLevel(int levelIndex)
+        {
+            maxUnlockedLevel = levelIndex;
+        }
+
 
         private void SelectCurrentLevel()
         {
@@ -130,6 +154,18 @@ namespace RPG.Level
             {
                 maxUnlockedLevel++;
             }
+        }
+
+        public void Save()
+        {
+            ISavable<WorldNavigationManager, LevelManagerData, LevelManagerAdapter> savable = (ISavable<WorldNavigationManager, LevelManagerData, LevelManagerAdapter>)this;
+            savable.SaveInfo();
+        }
+
+        public void Load()
+        {
+            ISavable<WorldNavigationManager, LevelManagerData, LevelManagerAdapter> savable = (ISavable<WorldNavigationManager, LevelManagerData, LevelManagerAdapter>)this;
+            savable.LoadInfo();
         }
 
         #endregion
