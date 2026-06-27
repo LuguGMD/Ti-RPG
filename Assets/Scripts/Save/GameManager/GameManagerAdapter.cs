@@ -7,6 +7,7 @@ namespace RPG.Save
         public override void ClassToData(GameManager classSave, GameManagerData dataSave)
         {
             dataSave.Coins = GameManager.Coins;
+            Debug.Log("Moedas: " + dataSave.Coins);
         }
 
         public override void DataToClass(GameManager classSave, GameManagerData dataSave)

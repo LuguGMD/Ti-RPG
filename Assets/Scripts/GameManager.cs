@@ -32,6 +32,11 @@ namespace RPG
 
         #endregion
 
+        private void Start()
+        {
+            SaveManager.Instance.LoadAll();
+        }
+
         private void OnEnable()
         {
             ActionsManager.Instance.OnLevelSelected += SelectLevel;
@@ -127,6 +132,18 @@ namespace RPG
         public static void UnloadAdditiveScene(ScenesEnum scene)
         {
             SceneManager.UnloadSceneAsync((int)scene);
+        }
+
+        public void Save()
+        {
+            ISavable<GameManager, GameManagerData, GameManagerAdapter> savable = (ISavable<GameManager, GameManagerData, GameManagerAdapter>)this;
+            savable.SaveInfo();
+        }
+
+        public void Load()
+        {
+            ISavable<GameManager, GameManagerData, GameManagerAdapter> savable = (ISavable<GameManager, GameManagerData, GameManagerAdapter>)this;
+            savable.LoadInfo();
         }
 
         #endregion

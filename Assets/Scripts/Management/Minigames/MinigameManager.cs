@@ -19,6 +19,8 @@ namespace RPG.Management.Minigames
 
         [SerializeField] private List<MinigameChallenge> _challenges;
         private int _currentChallengeIndex = 0;
+        [SerializeField] private List<int> _tiersTreshold;
+        int _currentTier = 0;
 
         #region Properties
 
@@ -33,6 +35,8 @@ namespace RPG.Management.Minigames
 
         public static bool IsPaused { get { return Instance._isPaused; } }
         public static int CurrentChallengeIndex { get { return Instance._currentChallengeIndex; } }
+
+        public static int CurrentTier {  get { return Instance._currentTier; } }
 
         #endregion
 
@@ -96,6 +100,8 @@ namespace RPG.Management.Minigames
             _totalHits++;
             _currentCombo++;
 
+            ChangeTier();
+
             ActionsManager.Instance.OnMinigameValuesUpdated?.Invoke();
         }
 
@@ -112,7 +118,30 @@ namespace RPG.Management.Minigames
             ResetPerfectCombo();
             ResetCombo();
 
+            ChangeTier();
+
             ActionsManager.Instance.OnMinigameValuesUpdated?.Invoke();
+        }
+
+        private void ChangeTier()
+        {
+            int previousTier = _currentTier;
+
+            for(int i =0; i < _tiersTreshold.Count; i++) 
+            {
+                if (_currentCombo > _tiersTreshold[i]) continue;
+                else
+                {
+                    _currentTier = i;
+
+                    if (previousTier != _currentTier)
+                    {
+                        ActionsManager.Instance.OnMinigameTierChanged?.Invoke();
+                    }
+
+                    return;
+                }
+            }
         }
 
         public void TogglePause(bool doPaused)

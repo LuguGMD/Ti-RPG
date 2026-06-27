@@ -13,7 +13,8 @@ namespace RPG.Management.Minigames.Rhythm
         [SerializeField] private List<RhythmHitCircle> _hitCircles;
         [SerializeField] private GameObject _center;
 
-        [SerializeField] private float _spawnCooldown = 0.1f;
+        [SerializeField] private List<float> _tiersCooldowns;
+        [SerializeField] private List<float> _tiersSpeed;
 
         public const float HIT_RADIUS = 0.4f;
         public const float PERFECT_DISTANCE = 0.2f;
@@ -59,7 +60,7 @@ namespace RPG.Management.Minigames.Rhythm
         {
             while(true)
             {
-                float nextSpawnTime = _spawnCooldown;
+                float nextSpawnTime = _tiersCooldowns[MinigameManager.CurrentTier];
                 while (nextSpawnTime > 0)
                 {
                     if (!MinigameManager.IsPaused)
@@ -83,7 +84,7 @@ namespace RPG.Management.Minigames.Rhythm
             RhythmNote note = Instantiate<RhythmNote>(_notePrefab, spawnPosition, Quaternion.identity);
             Vector3 direction = _center.transform.position - spawnPosition;
             int spriteIndex = Random.Range(0, _noteSprites.Count);
-            note.Init(0.2f, direction, _noteSprites[spriteIndex]);
+            note.Init(_tiersSpeed[MinigameManager.CurrentTier], direction, _noteSprites[spriteIndex]);
         }
         
     }

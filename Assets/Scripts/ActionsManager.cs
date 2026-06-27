@@ -112,6 +112,8 @@ namespace RPG
         public Action OnMinigameHit;
         public Action OnMinigamePerfectHit;
 
+        public Action OnMinigameTierChanged;
+
         public Action OnMinigameValuesUpdated;
         public Action<MinigameChallenge> OnMinigameChallengeUpdated;
         public Action OnMinigameChallengeCompleted;

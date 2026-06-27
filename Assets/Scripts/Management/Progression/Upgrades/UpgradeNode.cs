@@ -20,6 +20,11 @@ namespace RPG.Management.Progression
         private bool isPurchased = false;
         public bool IsPurchased => isPurchased;
 
+        public void SetPurchasedFromSave(bool value)
+        {
+            isPurchased = value;
+        }
+
         #region Properties
 
         public UpgradeData Data

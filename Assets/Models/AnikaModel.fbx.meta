@@ -3,7 +3,12 @@ guid: 0a140b2c4985d45429098049096b61d0
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TextureMaterial
+    second: {fileID: 2100000, guid: c10923ab2b4326d49a6abbda249cf8f8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -90,7 +95,7 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: AnikaIdle
-      takeName: AnikaRig|Idle
+      takeName: AnikaRig|IdleCombat.002
       internalID: -3849232467687202499
       firstFrame: 0
       lastFrame: 254
@@ -177,7 +182,7 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: TrapezeIdle
-      takeName: TrapezeArmature|Idle
+      takeName: TrapezeArmature|IdleCombat.002
       internalID: 3739461379599738680
       firstFrame: 0
       lastFrame: 254

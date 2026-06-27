@@ -6,9 +6,11 @@ namespace RPG.Management.Minigames.Rhythm
     public class RhythmHitCircle : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer _visual;
+        [SerializeField] private SpriteRenderer _keyPreview;
 
         public void TryHit()
         {
+            _keyPreview.enabled = false;
             transform.DOKill(true);
 
             transform.DOScale(Vector3.one * 1.1f, 0.1f).SetEase(Ease.InBack).From(Vector3.one).OnComplete(()=>
