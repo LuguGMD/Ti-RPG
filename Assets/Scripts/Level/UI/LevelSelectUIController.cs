@@ -126,7 +126,7 @@ namespace RPG.Level
             _partyMemberNameText.text = character.EntityName;
 
             float motivationValue = character.Motivation / CombatConstants.MAX_MOTIVATION_APRESENTADOR;
-            motivationValue = GameManager.DefeatedCharacters.Contains(character) ? 0 : motivationValue;
+            motivationValue = GameManager.DefeatedCharacters.Contains(character) ? motivationValue/2 : motivationValue;
 
             _motivationBarSlider.value = motivationValue;
         }
@@ -157,7 +157,7 @@ namespace RPG.Level
 
             foreach(CharacterScriptable character in GameManager.CurrentParty)
             {
-                if (GameManager.DefeatedCharacters.Contains(character))
+                if (character == null)
                     isPartyValid = false;
             }
 

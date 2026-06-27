@@ -7,12 +7,13 @@ namespace RPG.Save
         public override void ClassToData(GameManager classSave, GameManagerData dataSave)
         {
             dataSave.Coins = GameManager.Coins;
-            Debug.Log("Moedas: " + dataSave.Coins);
+            dataSave.DefeatedCharacters = GameManager.DefeatedCharacters.ToArray();
         }
 
         public override void DataToClass(GameManager classSave, GameManagerData dataSave)
         {
             classSave.AddCoins(dataSave.Coins);
+            GameManager.Instance.LoadCharacterDemotivated(dataSave.DefeatedCharacters);
         }
     }
 }

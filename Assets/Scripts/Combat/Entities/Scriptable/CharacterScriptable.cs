@@ -4,6 +4,7 @@ using CharacterController = RPG.Combat.CharacterController;
 
 namespace RPG.Combat
 {
+    [System.Serializable]
     [CreateAssetMenu(fileName = "CharacterScriptable", menuName = "Scriptable Objects/Combat/Entity/Character")]
     public class CharacterScriptable : StageEntityScriptable
     {

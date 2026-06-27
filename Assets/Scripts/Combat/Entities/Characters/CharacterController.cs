@@ -48,7 +48,10 @@ namespace RPG.Combat
         private void Initialize()
         {
             _characterInfo = (CharacterScriptable)_info;
-            _currentMotivation = _characterInfo.Motivation;
+            float motivation = _characterInfo.Motivation;
+            motivation = GameManager.DefeatedCharacters.Contains(_characterInfo) ? motivation/2 : motivation;
+
+            _currentMotivation = motivation;
         }
 
         #region Health

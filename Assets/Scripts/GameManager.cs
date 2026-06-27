@@ -3,6 +3,7 @@ using RPG.Combat;
 using RPG.Level;
 using RPG.Save;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using CharacterController = RPG.Combat.CharacterController;
@@ -68,9 +69,13 @@ namespace RPG
         {
             if(!_defeatedCharacters.Contains(character.CharacterInfo))
             {
-                //TO DO Adicionar dnv depois
-                //_defeatedCharacters.Add(character.CharacterInfo);
+                _defeatedCharacters.Add(character.CharacterInfo);
             }
+        }
+
+        public void LoadCharacterDemotivated(CharacterScriptable[] characters)
+        {
+            _defeatedCharacters = characters.ToList();
         }
 
         private void CharacterMotivated(CharacterScriptable character)

@@ -1,3 +1,4 @@
+using RPG.Combat;
 using UnityEngine;
 
 namespace RPG.Save
@@ -6,5 +7,6 @@ namespace RPG.Save
     public class GameManagerData
     {
         public int Coins;
+        public CharacterScriptable[] DefeatedCharacters;
     }
 }
