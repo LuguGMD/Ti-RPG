@@ -1,11 +1,12 @@
 using Lugu.Singleton;
+using RPG.Save;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Management.Progression
 {
 
-    public class UpgradeGraphUI : SingletonMono<UpgradeGraphUI>
+    public class UpgradeGraphUI : SingletonMono<UpgradeGraphUI>, ISavable<UpgradeGraphUI, UpgradeGraphData, UpgradeGraphAdapter>
     {
         [Header("Configuração")]
         public UpgradeGraphRuntime upgradeGraph;
@@ -22,6 +23,9 @@ namespace RPG.Management.Progression
         private Dictionary<UpgradeData, UpgradeNode> nodeMap = new();
         private List<GameObject> arrows = new();
         private UpgradeNode pendingNode;
+
+        private string _key = "UpgradeGraph";
+        public string Key { get { return _key; } set { _key = value; } }
 
         void Start()
         {
@@ -137,6 +141,31 @@ namespace RPG.Management.Progression
         {
             foreach (var node in nodeMap.Values)
                 node.RefreshVisual();
+        }
+
+        public List<string> GetPurchasedUpgradeIDs()
+        {
+            List<string> ids = new();
+            foreach (var kvp in nodeMap)
+                if (kvp.Value.IsPurchased)
+                    ids.Add(GetUpgradeID(kvp.Key));
+            return ids;
+        }
+
+        public void ApplyPurchasedUpgradeIDs(List<string> ids)
+        {
+            if (ids == null) return;
+
+            HashSet<string> purchased = new(ids);
+            foreach (var kvp in nodeMap)
+                kvp.Value.SetPurchasedFromSave(purchased.Contains(GetUpgradeID(kvp.Key)));
+
+            RefreshAll();
+        }
+
+        private string GetUpgradeID(UpgradeData data)
+        {
+            return string.IsNullOrEmpty(data.upgradeKey) ? data.name : data.upgradeKey;
         }
     }
 
