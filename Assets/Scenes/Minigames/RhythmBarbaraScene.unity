@@ -434,8 +434,8 @@ Camera:
   near clip plane: 0.1
   far clip plane: 5000
   field of view: 60.000004
-  orthographic: 0
-  orthographic size: 10
+  orthographic: 1
+  orthographic size: 2.74
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -553,6 +553,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.RhythmMinigameHandler
   _notePrefab: {fileID: 6808803166080848580, guid: ce3c88de289edd648b415673cdcc2728, type: 3}
+  _noteSprites:
+  - {fileID: 550671308, guid: 7fbf3d39657d9ea4681f9316a3ec42fc, type: 3}
+  - {fileID: -614303353, guid: 7fbf3d39657d9ea4681f9316a3ec42fc, type: 3}
+  - {fileID: 432007362, guid: 7fbf3d39657d9ea4681f9316a3ec42fc, type: 3}
+  - {fileID: 842218031, guid: 7fbf3d39657d9ea4681f9316a3ec42fc, type: 3}
+  - {fileID: -884391026, guid: 7fbf3d39657d9ea4681f9316a3ec42fc, type: 3}
   _noteSpawnPositions:
   - {fileID: 1289600613}
   - {fileID: 1020393394}
@@ -842,7 +848,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 60.000004
-    OrthographicSize: 10
+    OrthographicSize: 2.74
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -2174,7 +2180,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 33f2e1e4f63e7134d82c1e2265fe3c4b, type: 2}
+  - {fileID: 2100000, guid: c9cf544449c8d8d47a7fa254b5954a03, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

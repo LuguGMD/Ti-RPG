@@ -6,6 +6,7 @@ using RPG.Combat.Actions;
 using RPG.Extensions;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Splines;
 
@@ -25,7 +26,6 @@ namespace RPG.Combat.Grid
         [SerializeField] private GameObject[] _rowGameObjects;
         private Coroutine _rotationAnimationCoroutine;
         private Vector2Int _spotlightPosition;
-
         [SerializeField] private EventReference _rotationSFX;
 
 
@@ -145,7 +145,7 @@ namespace RPG.Combat.Grid
         public bool IsPositionOnSpotlight(Vector2Int tilePosition)
         {
             Vector2Int distance = tilePosition - _spotlightPosition;
-            return Mathf.Abs(distance.x) <= 1 && Mathf.Abs(distance.y) <= 1;
+            return (Mathf.Abs(distance.x) <= 1 || Mathf.Abs(distance.x) == 11) && Mathf.Abs(distance.y) <= 1;
         }
 
         public float GetCurrentTilePercentage(Vector2Int tilePosition)

@@ -87,7 +87,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6108933886631140461, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       insertIndex: 1
-      addedObject: {fileID: -3376593613523441933}
+      addedObject: {fileID: 583105211850591069}
   m_SourcePrefab: {fileID: 100100000, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
 --- !u!4 &3663262841060177251 stripped
 Transform:
@@ -99,7 +99,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6108933886631140461, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
   m_PrefabInstance: {fileID: 3296604352680405729}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &-3376593613523441933
+--- !u!114 &583105211850591069
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,9 +108,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8752938503240382092}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84bbb594f91aadf439d7ee9d2b8b0c08, type: 3}
+  m_Script: {fileID: 11500000, guid: aa678377616416f47b86bf5772e3bdbf, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.MediumFearTankEnemyController
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.MediumSadnessControlEnemyController
   _damagedSFX:
     Guid:
       Data1: -2050587371
@@ -118,7 +118,7 @@ MonoBehaviour:
       Data3: -615420032
       Data4: -424402750
     Path: event:/Character/Enemy/Damaged
-  _info: {fileID: 11400000, guid: 3d44cf0cff62b634581bfea2c7845f0d, type: 2}
+  _info: {fileID: 11400000, guid: fdc02838e3df6d54bbeddcf8c4e242d5, type: 2}
   _defeatedSFX:
     Guid:
       Data1: -1922207554
@@ -126,7 +126,7 @@ MonoBehaviour:
       Data3: -128057705
       Data4: 1009727366
     Path: event:/Character/Enemy/Death
-  _attack:
+  _regularAttack:
     _actionName: 
     _actionDescription: 
     _effects:
@@ -136,14 +136,16 @@ MonoBehaviour:
       _isRelativeToMovement: 1
       _area:
       - {x: 0, y: 1}
+      - {x: 0, y: -1}
     - _targetList: 00000000
       _canTargetSelf: 0
       _doNeedSpotlight: 1
       _isRelativeToMovement: 1
       _area:
       - {x: 0, y: 1}
+      - {x: 0, y: -1}
     _lastTileNeedsToBeEmpty: 0
-    _damage: 8
+    _damage: 6
     _attackSFX:
       Guid:
         Data1: -604343227
@@ -151,17 +153,58 @@ MonoBehaviour:
         Data3: -1551870839
         Data4: -1019038061
       Path: event:/Character/Enemy/Attack
-  _nothing:
+  _screamAttack:
     _actionName: 
     _actionDescription: 
     _effects:
-    - _targetList: 01000000
-      _canTargetSelf: 1
+    - _targetList: 00000000
+      _canTargetSelf: 0
       _doNeedSpotlight: 0
       _isRelativeToMovement: 0
       _area:
-      - {x: 0, y: 0}
-    _lastTileNeedsToBeEmpty: 1
+      - {x: 1, y: 0}
+      - {x: -1, y: 0}
+      - {x: 0, y: 1}
+      - {x: 1, y: 1}
+      - {x: -1, y: 1}
+      - {x: 0, y: -1}
+      - {x: 1, y: -1}
+      - {x: -1, y: -1}
+    - _targetList: 00000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 1
+      _isRelativeToMovement: 0
+      _area:
+      - {x: 1, y: 0}
+      - {x: -1, y: 0}
+      - {x: 0, y: 1}
+      - {x: 1, y: 1}
+      - {x: -1, y: 1}
+      - {x: 0, y: -1}
+      - {x: 1, y: -1}
+      - {x: -1, y: -1}
+    - _targetList: 01000000
+      _canTargetSelf: 0
+      _doNeedSpotlight: 0
+      _isRelativeToMovement: 0
+      _area:
+      - {x: 1, y: 0}
+      - {x: -1, y: 0}
+      - {x: 0, y: 1}
+      - {x: 1, y: 1}
+      - {x: -1, y: 1}
+      - {x: 0, y: -1}
+      - {x: 1, y: -1}
+      - {x: -1, y: -1}
+    _lastTileNeedsToBeEmpty: 0
+    _damage: 10
+    _attackSFX:
+      Guid:
+        Data1: -604343227
+        Data2: 1338147339
+        Data3: -1551870839
+        Data4: -1019038061
+      Path: event:/Character/Enemy/Attack
 --- !u!1001 &6122929841948019349
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -210,6 +253,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4467084274275715854, guid: 86e5de949db0ea841913bebb59001403, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -4467084274275715854, guid: 86e5de949db0ea841913bebb59001403, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8745f24108eb75549ab99a7224a271f4, type: 2}
+    - target: {fileID: -4467084274275715854, guid: 86e5de949db0ea841913bebb59001403, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 18f98f679e5528246a7961ebdb8e431b, type: 2}
     - target: {fileID: 919132149155446097, guid: 86e5de949db0ea841913bebb59001403, type: 3}
       propertyPath: m_Name
       value: ControlEnemyModel

@@ -105,8 +105,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8008957854379933838}
-  - component: {fileID: 2440370321080432472}
   - component: {fileID: 2611775017998876609}
+  - component: {fileID: 6223594105943427731}
   m_Layer: 0
   m_Name: GigosManagementPrefab
   m_TagString: Untagged
@@ -130,22 +130,6 @@ Transform:
   - {fileID: 5407511690471183751}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -32.779, z: 0}
---- !u!114 &2440370321080432472
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620580509359725116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c3318bf74ae91f145a954ef2f1ef3471, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPG.Dialogue.DialogueCharacter
-  _stringTable:
-    m_TableReference:
-      m_TableCollectionName: GUID:efd063da782bf76d3acc955a54622182
-  _entryDialogueKey: LINE_1
 --- !u!136 &2611775017998876609
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -169,6 +153,19 @@ CapsuleCollider:
   m_Height: 2.4083874
   m_Direction: 1
   m_Center: {x: 0, y: 0.7041937, z: 0}
+--- !u!114 &6223594105943427731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620580509359725116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9bb479616245f4f08d75548f481191c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.DialogueEntry
+  graph: {fileID: 0}
 --- !u!1 &668166564446406164
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +479,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f07370d80e3a0b244a90ddfdd41b4fdb, type: 2}
+  - {fileID: 2100000, guid: c10923ab2b4326d49a6abbda249cf8f8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -686,7 +683,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f07370d80e3a0b244a90ddfdd41b4fdb, type: 2}
+  - {fileID: 2100000, guid: c10923ab2b4326d49a6abbda249cf8f8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -7,6 +7,9 @@ namespace RPG.Dialogue
     public class DialogueChoiceController : MonoBehaviour
     {
         private IReadOnlyList<Dialogue> choices;
+        [SerializeField] private DialogueOptionButton _dialogueOptionButtonPrefab;
+        private List<DialogueOptionButton> _options = new List<DialogueOptionButton>();
+
         public void Setup(IReadOnlyList<Dialogue> choices)
         {
             this.choices = choices;
@@ -15,10 +18,14 @@ namespace RPG.Dialogue
         private static readonly WaitForSeconds choiceDelay = new(0.1f);
         public IEnumerator Display()
         {
+            _options = new List<DialogueOptionButton>();
+
             gameObject.SetActive(true);
             foreach (Dialogue choice in choices)
             {
-                // TODO: mostrar botão de cada escolha
+                DialogueOptionButton optionButton = Instantiate<DialogueOptionButton>(_dialogueOptionButtonPrefab, transform);
+                optionButton.Init(choice, _options.Count);
+                _options.Add(optionButton);
                 yield return choiceDelay;
             }
         }
@@ -26,6 +33,11 @@ namespace RPG.Dialogue
         public void Hide()
         {
             gameObject.SetActive(false);
+
+            foreach(DialogueOptionButton optionButton in _options)
+            {
+                Destroy(optionButton.gameObject);
+            }
         }
     }
 }

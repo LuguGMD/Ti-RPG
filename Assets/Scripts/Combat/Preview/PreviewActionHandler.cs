@@ -113,7 +113,7 @@ namespace RPG.Combat.Preview
 
         protected virtual void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position, ref ActionPreviewTile lastPreviewTile)
         {
-            if (position.y < 0 || position.y > Map.Rows)
+            if (position.y < 0 || position.y >= Map.Rows)
             {
                 return;
             }

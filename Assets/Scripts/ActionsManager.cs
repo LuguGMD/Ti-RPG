@@ -20,6 +20,7 @@ namespace RPG
         public Action OnMapChanged;
         public Action OnRotationAnimationStarted;
         public Action OnRotationAnimationEnded;
+        public Action<int> OnMapLineStuck;
 
         public Action OnCombatWon;
         public Action OnCombatLost;
@@ -129,6 +130,7 @@ namespace RPG
 
         public Action OnUpgradePanelOpen;
         public Action OnUpgradePanelClose;
+        public Action OnCoinsAmountChanged;
 
         #endregion
 

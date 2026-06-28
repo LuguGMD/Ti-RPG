@@ -61,5 +61,15 @@ namespace RPG.Combat.Preview
 
             return GetRoot(previewTileInfo.Parent);
         }
+
+        public static PreviewTileInfo GetLeaf(PreviewTileInfo previewTileInfo)
+        {
+            if(previewTileInfo.Child == null) 
+            {
+                return previewTileInfo;
+            }
+
+            return GetLeaf(previewTileInfo.Child);
+        }
     }
 }

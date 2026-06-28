@@ -64,6 +64,8 @@ namespace RPG.Combat.Grid
         {
             position = position.ClampMap();
 
+            if (!_grid.ContainsKey(position)) return null;
+
             return _grid[position];
         }
 

@@ -11,22 +11,30 @@ namespace RPG.Dialogue
 {
     public class DialogueController : SingletonMono<DialogueController>
     {
-        [SerializeField] private LocalizedStringTable dialogues; 
+        [SerializeField] private LocalizedStringTable dialogues;
 
         private PlayerInput player;
-        
+
         [Header("UI")]
         [SerializeField] private GameObject dialoguePanel;
         [SerializeField] private DialogueChoiceController choicesPanel;
         [SerializeField] private Image dialogueSprite;
         [SerializeField] private TextMeshProUGUI dialogueTitle;
         [SerializeField] private TextMeshProUGUI dialogueText;
+        [SerializeField] private Button skipDialogueButton;
+
+        public bool IsRunning { get { return dialoguePanel.activeSelf; } }
 
         protected new void Awake()
         {
             base.Awake();
-            player = FindAnyObjectByType<PlayerInput>();
             Dialogue.LocalizationTable = dialogues;
+        }
+
+        private void Start()
+        {
+            player = FindAnyObjectByType<PlayerInput>();
+            EnableInput();
         }
 
         private void EnableInput()
@@ -38,22 +46,32 @@ namespace RPG.Dialogue
         private void DisableInput()
         {
             player.Actions.Interact.Remove.OnStart(HandleInput);
-            player.Actions.Jump.Remove.OnStart(HandleInput);   
+            player.Actions.Jump.Remove.OnStart(HandleInput);
         }
 
-        private void HandleInput()
+        public void HandleInput()
         {
-            if (textWriter.Progress < 1.0f)
-            { textWriter.Progress = 1.0f; }
+            if (!dialoguePanel.activeSelf) return;
+
+            if (textWriter != null && textWriter.Progress < 1.0f)
+            {
+                textProgressTween.Kill(true);
+            }
             else if (IsDisplayFinished)
             { DialogueNext(); }
         }
 
         protected void OnEnable()
-        { EnableInput(); }
+        {
+            if (!didStart) return;
+            EnableInput();
+        }
 
         protected void OnDisable()
-        { DisableInput(); }
+        {
+            if (!didStart) return;
+            DisableInput();
+        }
 
         private const float CHAR_DURATION = 0.04f;
 
@@ -70,10 +88,12 @@ namespace RPG.Dialogue
                 dialogueSprite.sprite = CurrentDialogue.DisplayInfo.Sprite;
                 dialogueTitle.text = CurrentDialogue.DisplayInfo.Title;
 
+                dialogueSprite.enabled = dialogueSprite.sprite != null;
+
                 textWriter = new TextWriter(CurrentDialogue.LocalizedText);
             }
         }
-        
+
         public void PanelShow()
         {
             dialoguePanel.SetActive(true);
@@ -95,22 +115,25 @@ namespace RPG.Dialogue
                 DisplayUpdate();
                 yield return null;
             }
-            
-            if (CurrentDialogue is Dialogue.WithChoice)
-            {
-                Dialogue.WithChoice current = CurrentDialogue as Dialogue.WithChoice;
 
+            skipDialogueButton.gameObject.SetActive(!(CurrentDialogue is DialogueWithChoice));
+
+            if (CurrentDialogue is DialogueWithChoice)
+            {
+                DialogueWithChoice current = CurrentDialogue as DialogueWithChoice;
+                current.Select(0);
                 choicesPanel.Setup(current.Choices);
                 yield return choicesPanel.Display();
             }
-            
+
             yield return displayDelay;
-            
+
             DisplayFinish();
         }
 
         private void DisplayStart()
         {
+            PanelShow();
             textProgressTween = DOTween.To(
                 getter: () => textWriter.Progress,
                 setter: (value) => textWriter.Progress = value,
@@ -130,6 +153,7 @@ namespace RPG.Dialogue
             textProgressTween = null;
             textWriter = null;
             dialogueText.text = CurrentDialogue.LocalizedText;
+            choicesPanel.Hide();
         }
         private bool IsDisplayFinished => textWriter == null;
 
@@ -137,7 +161,10 @@ namespace RPG.Dialogue
         {
             Dialogue nextDialogue = CurrentDialogue.Next;
             if (nextDialogue != null)
-            { DialogueSetup(nextDialogue); }
+            { 
+                DialogueSetup(nextDialogue);
+                DialogueStart();
+            }
             else
             { DialogueFinish(); }
         }
@@ -155,11 +182,11 @@ namespace RPG.Dialogue
             PanelHide();
 
             //TO DO - REMOVER DEPOIS
-            if (CurrentDialogue.DisplayInfo is CharacterDisplayInfo)
+            /*if (CurrentDialogue.DisplayInfo is CharacterDisplayInfo)
             {
                 var character = (CurrentDialogue.DisplayInfo as CharacterDisplayInfo).Character;
                 ActionsManager.Instance.OnCharacterMinigameSelected?.Invoke(character);
-            }
+            }*/
         }
 
         private void PanelHide()
