@@ -54,6 +54,7 @@ namespace RPG.Combat
         public static ApresentadorController Apresentador { get { return Instance._apresentador; } }
         public static bool HasCombatStarted { get { return Instance._hasCombatStarted; } }
         public static List<CharacterController> RemainingCharacters {  get { return Instance._remainingCharacters; } }
+        public static bool IsActionInProgress { get { return Instance._isActionInProgress; } }
 
         #endregion
 
@@ -76,6 +77,8 @@ namespace RPG.Combat
 
         private void OnEnable()
         {
+            //if (Instance != null && Instance != this) return;
+
             ActionsManager.Instance.OnCombatStart += InitializeBattle;
             ActionsManager.Instance.OnCharacterClicked += OnCharacterClicked;
             ActionsManager.Instance.OnApresentadorSelected += OnApresentadorSelected;
@@ -88,6 +91,8 @@ namespace RPG.Combat
 
         private void OnDisable()
         {
+            //if (Instance != null && Instance != this) return;
+
             ActionsManager.Instance.OnCombatStart -= InitializeBattle;
             ActionsManager.Instance.OnCharacterClicked -= OnCharacterClicked;
             ActionsManager.Instance.OnApresentadorSelected -= OnApresentadorSelected;
@@ -96,6 +101,7 @@ namespace RPG.Combat
             ActionsManager.Instance.OnPlayerTurnEnded -= EndPlayerTurn;
             ActionsManager.Instance.OnCharacterDamageTaken -= CharacterDamageTaken;
             ActionsManager.Instance.OnApresentadorDamageTaken -= ApresentadorDamageTaken;
+            ActionsManager.Instance.OnPreviewTileSelected -= PlaceCharacter;
         }
 
         #region Preparation
@@ -204,10 +210,10 @@ namespace RPG.Combat
             CombatUIManager.Instance.ChangePanel(CombatUIManager.DefaultPanelIndex);
             _turnCount = 0;
             _currentTurnState = CombatTurnStateEnum.PlayerTurn;
-            PassTurn();
             _hasCombatStarted = true;
             _hasCombatEnded = false;
             StartPlayerTurn();
+            SwitchTurn();
         }
 
         private void SwitchTurn()

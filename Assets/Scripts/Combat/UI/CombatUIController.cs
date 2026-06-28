@@ -72,13 +72,14 @@ namespace RPG.Combat.UI
         {
             bool isPlayerTurn = CombatManager.CurrentTurnState == CombatTurnStateEnum.PlayerTurn;
             bool isEnemyTurn = CombatManager.CurrentTurnState == CombatTurnStateEnum.EnemyTurn;
+            bool isPlayerActing = CombatManager.IsActionInProgress;
 
             if (playerActionButton != null)
             {
-                playerActionButton.interactable = isPlayerTurn;
+                playerActionButton.interactable = isPlayerTurn && !isPlayerActing;
                 if (playerActionButtonText != null)
                 {
-                    playerActionButtonText.text = isPlayerTurn ? "Finalizar Turno" : "Aguarde...";
+                    playerActionButtonText.text = playerActionButton.interactable ? "Finalizar Turno" : "Aguarde...";
                 }
             }
         }
@@ -87,8 +88,8 @@ namespace RPG.Combat.UI
         {
             return state switch
             {
-                CombatTurnStateEnum.PlayerTurn => "Turno do Player",
-                CombatTurnStateEnum.EnemyTurn => "Turno do Enemy",
+                CombatTurnStateEnum.PlayerTurn => "Turno do Jogador",
+                CombatTurnStateEnum.EnemyTurn => "Turno do Inimigo",
                 CombatTurnStateEnum.BattleEnd => "Fim da Batalha",
                 _ => "Desconhecido"
             };

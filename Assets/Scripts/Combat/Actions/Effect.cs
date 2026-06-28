@@ -37,14 +37,14 @@ namespace RPG.Combat.Actions
 
         #endregion
 
-        public void Execute(StageEntityController user)
+        public bool Execute(StageEntityController user)
         {
-           
+            bool didExecute = false;
             List<Vector2Int> checkedTiles = new List<Vector2Int>();
 
             if (_doNeedSpotlight && !user.TileObject.IsOnSpotlight)
             {
-                return;
+                return false;
             }
 
             for (int i = 0; i < _area.Count; i++)
@@ -75,14 +75,16 @@ namespace RPG.Combat.Actions
                         {
                             foreach (EffectCommand command in _commands)
                             {
-                                command.ExecuteApresentador(user, entity as ApresentadorController);
+                                bool commandWorked = command.ExecuteApresentador(user, entity as ApresentadorController);
+                                if(!didExecute) didExecute = commandWorked;
                             }
                         }
                         else
                         {
                             foreach (EffectCommand command in _commands)
                             {
-                                command.Execute(user, entity as StageEntityController);
+                                bool commandWorked = command.Execute(user, entity as StageEntityController);
+                                if(!didExecute) didExecute = commandWorked;
                             }
                         }
                     }
@@ -91,6 +93,8 @@ namespace RPG.Combat.Actions
 
                 checkedTiles.Add(checkPosition);
             }
+
+            return didExecute;
         }
 
         public List<ActionPreviewTile> Preview(Vector2Int startPosition, DirectionEnum startDirection)
@@ -105,6 +109,7 @@ namespace RPG.Combat.Actions
                 checkPosition += _isRelativeToMovement ? _area[i].RelativeTo(startDirection) : _area[i];
 
                 if (checkedTiles.Contains(checkPosition)) continue;
+                if (checkPosition.y >= Map.Rows) continue;
                 Tile tile = MapManager.Map.GetTile(checkPosition);
 
                 if (tile.Position == Map.CENTER_POS)

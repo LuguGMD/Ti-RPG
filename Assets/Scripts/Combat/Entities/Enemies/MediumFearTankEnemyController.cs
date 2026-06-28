@@ -30,11 +30,11 @@ namespace RPG.Combat
 
             if (CombatManager.TurnCount % 2 == 0)
             {
-                SelectAction(0);
+                SelectAction(1);
             }
             else
             {
-                SelectAction(1);
+                SelectAction(0);
             }
 
             List<PreviewTileInfo> tiles = _attack.Preview();

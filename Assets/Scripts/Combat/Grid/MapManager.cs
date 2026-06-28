@@ -183,6 +183,7 @@ namespace RPG.Combat.Grid
             rowTransform.DORotate(endValue, 0.5f / CombatManager.CombatSpeed, RotateMode.FastBeyond360);
 
             yield return new WaitForSeconds(0.5f / CombatManager.CombatSpeed);
+            ActionsManager.Instance.OnMapChanged?.Invoke();
             ActionsManager.Instance.OnRotationAnimationEnded?.Invoke();
         }
 
