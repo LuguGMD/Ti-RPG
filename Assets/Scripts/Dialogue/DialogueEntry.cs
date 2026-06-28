@@ -16,6 +16,7 @@ namespace RPG.Dialogue
         [SerializeField] private CharacterScriptable _characterInfo;
 
         private DialogueGraphRuntime _graphPicked;
+        private bool _isTalking = false;
 
 
         private void OnEnable()
@@ -46,6 +47,7 @@ namespace RPG.Dialogue
         {
             if (!DialogueController.Instance.IsRunning)
             {
+                _isTalking = true;
                 DialogueController.Instance.DialogueSetup(_graphPicked.Entry.Dialogue);
                 DialogueController.Instance.DialogueStart();
                 CameraManager.Instance.SwitchCamera(_camera);
@@ -54,10 +56,14 @@ namespace RPG.Dialogue
 
         private void OnDialogueEnd()
         {
-            CameraManager.Instance.DisableCamera(_camera);
-            if(_characterInfo != null && GameManager.DefeatedCharacters.Contains(_characterInfo))
+            if (_isTalking)
             {
-                ActionsManager.Instance.OnCharacterMinigameSelected?.Invoke(_characterInfo);
+                CameraManager.Instance.DisableCamera(_camera);
+                if (_characterInfo != null && GameManager.DefeatedCharacters.Contains(_characterInfo))
+                {
+                    ActionsManager.Instance.OnCharacterMinigameSelected?.Invoke(_characterInfo);
+                }
+                _isTalking = false;
             }
         }
     }

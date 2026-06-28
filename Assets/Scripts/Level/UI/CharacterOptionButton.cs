@@ -46,8 +46,6 @@ namespace RPG.Level
             _character = character;
             _characterIcon.sprite = character.Icon;
 
-            Debug.Log("Estou desmotivado: " + GameManager.DefeatedCharacters.Contains(character));
-
             _demotivatedIcon.enabled = GameManager.DefeatedCharacters.Contains(character);
         }
     }
