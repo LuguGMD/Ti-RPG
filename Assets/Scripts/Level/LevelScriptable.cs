@@ -12,6 +12,7 @@ namespace RPG.Level
         [SerializeField] private ChallengeScriptable[] _challenges;
         [SerializeField] public string levelName;
         [SerializeField] private int _coinsReward = 50;
+        [SerializeField] private string _levelKey;
         //TO DO adicionar desafios e outras informacoes necessaria para compor uma fase
 
         #region Properties
@@ -19,6 +20,7 @@ namespace RPG.Level
         public WaveInfo[] Waves { get { return _waves; } }
         public ChallengeScriptable[] Challenges { get { return _challenges; } }
         public int CoinsReward { get { return _coinsReward; } }
+        public string LevelKey { get { return _levelKey; } }
 
         #endregion
     }

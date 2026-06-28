@@ -9,6 +9,7 @@ namespace RPG.Combat.Challenge
         [SerializeField] private string _challengeName;
         [SerializeField] private float _targetValue;
         [SerializeField] private int _coinsReward;
+        [SerializeField] private string _challengeKey;
 
         #region Properties
         public ChallengeTypeEnum ChallengeType
@@ -29,6 +30,11 @@ namespace RPG.Combat.Challenge
         public int CoinsReward
         {
             get { return _coinsReward; }
+        }
+
+        public string ChallengeKey
+        {
+            get { return _challengeKey; }
         }
 
         #endregion
