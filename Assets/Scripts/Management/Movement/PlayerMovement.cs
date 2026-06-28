@@ -8,6 +8,7 @@ namespace RPG.Management.Movement
         [Header("Configurações de Movimento")]
         [SerializeField] private float maxSpeed = 5f;
         [SerializeField] private float rotationSpeed = 10f;
+        [SerializeField] private float gravity;
 
         [Header("Referências")]
         private CharacterController controller;
@@ -67,7 +68,7 @@ namespace RPG.Management.Movement
 
         private void ApplyMovement()
         {
-            controller.Move(moveDirection * (currentSpeed * Time.deltaTime));
+            controller.Move(moveDirection * (currentSpeed * Time.deltaTime) + (Vector3.down * gravity * Time.deltaTime));
         }
 
         private void ApplyRotation()

@@ -4,12 +4,14 @@ using RPG.Combat;
 using RPG.Management.Interaction;
 using Unity.Cinemachine;
 using UnityEngine;
+using RPG.Save;
 
 namespace RPG.Dialogue
 {
     public class DialogueEntry : MonoBehaviour, IInteractable
     {
         [SerializeField] private DialogueGraphRuntime _graph;
+        [SerializeField] private DialogueGraphRuntime _graphDemotivated;
         [SerializeField] private CinemachineCamera _camera;
         [SerializeField] private CharacterScriptable _characterInfo;
 
