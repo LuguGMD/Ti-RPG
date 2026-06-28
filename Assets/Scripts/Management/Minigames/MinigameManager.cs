@@ -1,10 +1,11 @@
 using Lugu.Singleton;
+using RPG.Save;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Management.Minigames
 {
-    public class MinigameManager : SingletonMono<MinigameManager>
+    public class MinigameManager : SingletonMono<MinigameManager>, ISavable<MinigameManager, MinigameManagerData, MinigameManagerAdapter>
     {
         private int _totalHits;
         private int _totalPerfectHits;
@@ -15,12 +16,17 @@ namespace RPG.Management.Minigames
         private int _currentPerfectCombo;
         private int _currentComboDuration;
 
+        private int _comboRecord;
+        private int _comboPerfectRecord;
+
         private bool _isPaused = false;
 
         [SerializeField] private List<MinigameChallenge> _challenges;
         private int _currentChallengeIndex = 0;
         [SerializeField] private List<int> _tiersTreshold;
         int _currentTier = 0;
+
+        [SerializeField] private string _key = "DefaultMinigameSaveKey";
 
         #region Properties
 
@@ -38,10 +44,16 @@ namespace RPG.Management.Minigames
 
         public static int CurrentTier {  get { return Instance._currentTier; } }
 
+        public static int ComboRecord {  get { return Instance._comboRecord; } }
+        public static int ComboPerfectRecord { get { return Instance._comboPerfectRecord; }  }
+
+        public string Key { get { return _key; } set { _key = value; } }
+
         #endregion
 
         private void Start()
         {
+            Load();
             Init();
         }
 
@@ -75,12 +87,21 @@ namespace RPG.Management.Minigames
             ActionsManager.Instance.OnMinigameStart?.Invoke();
         }
 
+        public void Init(MinigameManagerData data)
+        {
+            _comboRecord = data.ComboRecord;
+            _comboPerfectRecord = data.ComboPerfectRecord;
+            _currentChallengeIndex = data.CompletedChallengesCount;
+        }
+
         public void EndMinigame()
         {
             ActionsManager.Instance.OnMinigameEnd?.Invoke();
 
             //TO DO adicionar uma condição depois
             ActionsManager.Instance.OnCharacterMotivated?.Invoke(GameManager.SelectedCharacterMinigame);
+
+            SaveManager.Instance.SaveAll();
         }
 
         private void ResetPerfectCombo()
@@ -163,6 +184,18 @@ namespace RPG.Management.Minigames
             {
                 _challenges[_currentChallengeIndex].AddListeners();
             }
+        }
+
+        public void Save()
+        {
+            ISavable<MinigameManager, MinigameManagerData, MinigameManagerAdapter> savable = (ISavable<MinigameManager, MinigameManagerData, MinigameManagerAdapter>)this;
+            savable.SaveInfo();
+        }
+
+        public void Load()
+        {
+            ISavable<MinigameManager, MinigameManagerData, MinigameManagerAdapter> savable = (ISavable<MinigameManager, MinigameManagerData, MinigameManagerAdapter>)this;
+            savable.LoadInfo();
         }
     }
 }
