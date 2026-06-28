@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.TextCore.Text;
 using CharacterController = RPG.Combat.CharacterController;
 
 namespace RPG
@@ -85,9 +86,18 @@ namespace RPG
             }
         }
 
-        public void LoadCharacterDemotivated(CharacterScriptable[] characters)
+        public void LoadCharacterDemotivated(string[] characters)
         {
-            _defeatedCharacters = characters.ToList();
+            _defeatedCharacters = new List<CharacterScriptable>();
+
+            foreach (string name in characters)
+            {
+                foreach(CharacterScriptable character in _availableCharacters)
+                {
+                    if(character.EntityName == name)
+                        _defeatedCharacters.Add(character);
+                }
+            }
         }
 
         private void CharacterMotivated(CharacterScriptable character)

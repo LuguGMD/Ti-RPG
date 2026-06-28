@@ -7,7 +7,7 @@ namespace RPG.Save
     public class GameManagerData
     {
         public int Coins;
-        public CharacterScriptable[] DefeatedCharacters;
+        public string[] DefeatedCharacters;
         public string[] CompletedChallenges;
         public string[] CompletedLevels;
         public string[] CompletedTutorials;

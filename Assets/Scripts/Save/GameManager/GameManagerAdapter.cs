@@ -7,7 +7,13 @@ namespace RPG.Save
         public override void ClassToData(GameManager classSave, GameManagerData dataSave)
         {
             dataSave.Coins = GameManager.Coins;
-            dataSave.DefeatedCharacters = GameManager.DefeatedCharacters.ToArray();
+
+            dataSave.DefeatedCharacters = new string[GameManager.DefeatedCharacters.Count];
+            for(int i = 0; i < GameManager.DefeatedCharacters.Count; i++)
+            {
+                dataSave.DefeatedCharacters[i] = GameManager.DefeatedCharacters[i].EntityName;
+            }
+
             dataSave.CompletedChallenges = GameManager.CompletedChallenges.ToArray();
             dataSave.CompletedLevels = GameManager.CompletedLevels.ToArray();
             dataSave.CompletedTutorials = GameManager.CompletedTutorials.ToArray();
