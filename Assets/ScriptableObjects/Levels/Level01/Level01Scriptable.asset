@@ -10,33 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be2b84d18fc2854488b969ea24137abb, type: 3}
-  m_Name: Level03Scriptable
+  m_Name: Level01Scriptable
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Level.LevelScriptable
   _waves:
   - _turnCount: 0
     _spawns:
-    - _enemyInfo: {fileID: 11400000, guid: 3d44cf0cff62b634581bfea2c7845f0d, type: 2}
+    - _enemyInfo: {fileID: 11400000, guid: a879eb0f54812e54ab5986ff28e4a6d1, type: 2}
       _spawnPosition: 0
   - _turnCount: 2
     _spawns:
     - _enemyInfo: {fileID: 11400000, guid: 2a205814f321f0b4d8eb4dac1e8284ba, type: 2}
       _spawnPosition: 7
-    - _enemyInfo: {fileID: 11400000, guid: a879eb0f54812e54ab5986ff28e4a6d1, type: 2}
-      _spawnPosition: 8
-    - _enemyInfo: {fileID: 11400000, guid: a879eb0f54812e54ab5986ff28e4a6d1, type: 2}
-      _spawnPosition: 12
-  - _turnCount: 5
+  - _turnCount: 3
     _spawns:
     - _enemyInfo: {fileID: 11400000, guid: 5901e4549cf0eab43a3bfae22b31a327, type: 2}
-      _spawnPosition: 2
+      _spawnPosition: 5
     - _enemyInfo: {fileID: 11400000, guid: 5901e4549cf0eab43a3bfae22b31a327, type: 2}
-      _spawnPosition: 4
-  - _turnCount: 6
-    _spawns:
-    - _enemyInfo: {fileID: 11400000, guid: 3d44cf0cff62b634581bfea2c7845f0d, type: 2}
-      _spawnPosition: 3
+      _spawnPosition: 7
   _challenges:
   - {fileID: 11400000, guid: bae7697a1146d65468ffb5abe468407f, type: 2}
   - {fileID: 11400000, guid: b509e3106bb231b4fb2ac2149264142f, type: 2}
-  levelName: Fase 3
+  levelName: Fase 1
   _coinsReward: 50
+  _levelKey: Level01
