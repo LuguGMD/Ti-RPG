@@ -15,6 +15,9 @@ namespace RPG.Dialogue
         [SerializeField] private CinemachineCamera _camera;
         [SerializeField] private CharacterScriptable _characterInfo;
 
+        private DialogueGraphRuntime _graphPicked;
+
+
         private void OnEnable()
         {
             ActionsManager.Instance.OnDialogueEnd += OnDialogueEnd;
@@ -27,14 +30,23 @@ namespace RPG.Dialogue
 
         public void Interact()
         {
+            PickDialogue();
             StartDialogue();
+        }
+
+        private void PickDialogue()
+        {
+            if (!GameManager.DefeatedCharacters.Contains(_characterInfo))
+            { _graphPicked = _graph; }
+            else
+            { _graphPicked = _graphDemotivated; }
         }
 
         public void StartDialogue()
         {
             if (!DialogueController.Instance.IsRunning)
             {
-                DialogueController.Instance.DialogueSetup(_graph.Entry.Dialogue);
+                DialogueController.Instance.DialogueSetup(_graphPicked.Entry.Dialogue);
                 DialogueController.Instance.DialogueStart();
                 CameraManager.Instance.SwitchCamera(_camera);
             }
