@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 790b4d75d92f4b0984310a268dbd952f, type: 3}
-  m_Name: DialogueTestDemotivated
+  m_Name: DialogueDemotivatedBuzina
   m_EditorClassIdentifier: Unity.GraphToolkit.Editor::Unity.GraphToolkit.Editor.Implementation.GraphObjectImp
   m_GraphModel:
     rid: 5220764431267135562
@@ -28,7 +28,7 @@ MonoBehaviour:
         m_HashGuid:
           serializedVersion: 2
           Hash: 0eda9b03ff8adf8986ced86cc06848d3
-        m_Name: 
+        m_Name: DialogueDemotivatedBuzina
         m_GraphNodeModels:
         - rid: 5220764431267135567
         - rid: 5220764431267135574
@@ -168,11 +168,11 @@ MonoBehaviour:
     - rid: 5220764431267135568
       type: {class: 'Constant`1[[System.String, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
       data:
-        m_Value: silence
+        m_Value: buzina_sad
     - rid: 5220764431267135569
       type: {class: 'Constant`1[[RPG.Management.EntityScriptable, Assembly-CSharp]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
       data:
-        m_Value: {fileID: 0}
+        m_Value: {fileID: 11400000, guid: 9f54c7b82c54be74f9dd12acfc3c5e25, type: 2}
     - rid: 5220764431267135570
       type: {class: DialogueEntryNode, ns: RPG.Dialogue.Editor, asm: Assembly-CSharp-Editor}
       data: 
@@ -298,11 +298,11 @@ MonoBehaviour:
     - rid: 5220764431267135580
       type: {class: 'Constant`1[[System.String, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
       data:
-        m_Value: motivated
+        m_Value: buzina_motivated
     - rid: 5220764431267135581
       type: {class: 'Constant`1[[RPG.Management.EntityScriptable, Assembly-CSharp]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
       data:
-        m_Value: {fileID: 0}
+        m_Value: {fileID: 11400000, guid: 9f54c7b82c54be74f9dd12acfc3c5e25, type: 2}
     - rid: 5220764431267135582
       type: {class: DialogueNode, ns: RPG.Dialogue.Editor, asm: Assembly-CSharp-Editor}
       data: 
