@@ -14,6 +14,7 @@ namespace RPG.Level
         private float scaleMultiplier = 1.25f;
 
         [SerializeField] private Image _characterIcon;
+        [SerializeField] private Image _demotivatedIcon;
 
         private void Start()
         {
@@ -45,6 +46,8 @@ namespace RPG.Level
         {
             _character = character;
             _characterIcon.sprite = character.Icon;
+
+            _demotivatedIcon.enabled = GameManager.DefeatedCharacters.Contains(character);
         }
     }
 }

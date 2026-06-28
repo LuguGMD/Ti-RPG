@@ -9,6 +9,7 @@ namespace RPG.Level
     {
         private CharacterScriptable _character;
         [SerializeField] private Image _characterIcon;
+        [SerializeField] private Image _demotivatedIcon;
 
         private Vector3 originalScale;
         private float scaleMultiplier = 1.1f;
@@ -44,6 +45,8 @@ namespace RPG.Level
         {
             _character = character;
             _characterIcon.sprite = character.Icon;
+
+            _demotivatedIcon.enabled = GameManager.DefeatedCharacters.Contains(character);
         }
     }
 }
