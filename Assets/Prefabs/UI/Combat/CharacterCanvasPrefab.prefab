@@ -893,6 +893,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7659326981076802802}
+  - component: {fileID: 1814742886464202540}
   m_Layer: 5
   m_Name: CharacterOptionsPanel
   m_TagString: Untagged
@@ -924,6 +925,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1814742886464202540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5989211975576280247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3796a242714984db6e5c610452cf8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.MenuController
+  _firstSelected: {fileID: 1717372499489550318}
 --- !u!1 &8197705405570164380
 GameObject:
   m_ObjectHideFlags: 0

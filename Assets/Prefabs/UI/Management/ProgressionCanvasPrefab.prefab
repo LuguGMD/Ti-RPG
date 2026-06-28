@@ -220,6 +220,7 @@ GameObject:
   - component: {fileID: 287791109040974633}
   - component: {fileID: 6457765986290547392}
   - component: {fileID: 255028648626846812}
+  - component: {fileID: 8968650195411609275}
   m_Layer: 5
   m_Name: ConfirmUpgradePanel
   m_TagString: Untagged
@@ -301,6 +302,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Management.Progression.UpgradeConfirmPanel
   _confirmName: {fileID: 6026629007168871852}
   _confirmPrice: {fileID: 983510863721232621}
+--- !u!114 &8968650195411609275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146819542914637533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b3796a242714984db6e5c610452cf8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.MenuController
+  _firstSelected: {fileID: 7286871131857147381}
 --- !u!1 &2455571649039833878
 GameObject:
   m_ObjectHideFlags: 0
