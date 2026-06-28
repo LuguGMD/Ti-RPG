@@ -14,6 +14,8 @@ namespace RPG.Camera
         private CinemachineCamera currentCamera;
         private CinemachineCamera previousCamera;
 
+        private CinemachineBrain _brain;
+
         [SerializeField]
         [Tooltip("Selecione a câmera pelo índice no inspetor")]
         private int cameraNumber = 0;
@@ -27,6 +29,13 @@ namespace RPG.Camera
         #endregion
 
         #region Unity Methods
+
+        protected override void Awake()
+        {
+            base.Awake();
+            if (Instance == this)
+                _brain = UnityEngine.Camera.main.GetComponent<CinemachineBrain>();
+        }
 
         private void Start()
         {
@@ -80,9 +89,6 @@ namespace RPG.Camera
                 return;
             }
 
-            if (currentCamera == newCamera)
-                return;
-
             if (currentCamera != null)
             {
                 previousCamera = currentCamera;
@@ -95,11 +101,18 @@ namespace RPG.Camera
             cameraNumber = cameras.IndexOf(currentCamera);
         }
 
+        public void SwitchCameraNoBlend(CinemachineCamera newCamera)
+        {
+            currentCamera.gameObject.SetActive(true);
+            UnityEngine.Camera.main.transform.position = newCamera.transform.position;
+            UnityEngine.Camera.main.transform.rotation = newCamera.transform.rotation;
+        }
+
         public void DisableCamera(CinemachineCamera camera)
         {
-            if(currentCamera == camera)
+            if (currentCamera == camera)
             {
-                if(previousCamera != null)
+                if (previousCamera != null)
                 {
                     SwitchCamera(previousCamera);
                 }

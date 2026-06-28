@@ -76,6 +76,11 @@ namespace RPG.Save
             }
         }
 
+        public static void Save()
+        {
+            File.WriteAllText(GetSaveFilePath(), JsonUtility.ToJson(Instance._saveData, true));
+        }
+
         public static string Load(string key)
         {
             string path = GetSaveFilePath();

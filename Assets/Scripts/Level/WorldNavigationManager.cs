@@ -62,6 +62,13 @@ namespace RPG.Level
 
             _playerInput.Actions.Move.OnUpdate(NavigationInput);
             _playerInput.Actions.Interact.OnStart(SelectCurrentLevel);
+
+            CameraManager.Instance.SwitchCameraNoBlend(CurrentLevel.LevelCamera);
+        }
+
+        private void OnDestroy()
+        {
+            SaveManager.Save();
         }
 
         private void NavigationInput(Vector2 input)

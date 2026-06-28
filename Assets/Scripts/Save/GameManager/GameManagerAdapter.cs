@@ -33,7 +33,7 @@ namespace RPG.Save
             {
                 foreach (string challengeKey in dataSave.CompletedLevels)
                 {
-                    GameManager.Instance.CompleteChallenge(challengeKey);
+                    GameManager.Instance.CompleteLevel(challengeKey);
                 }
             }
 

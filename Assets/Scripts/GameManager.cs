@@ -61,6 +61,11 @@ namespace RPG
             ActionsManager.Instance.OnCharacterMotivated -= CharacterMotivated;
         }
 
+        private void OnDestroy()
+        {
+            SaveManager.Instance.SaveAll();
+        }
+
         private void SelectLevel(LevelScriptable selectedLevel)
         {
             _selectedLevel = selectedLevel;
@@ -123,7 +128,7 @@ namespace RPG
 
         public void CompleteLevel(string levelKey)
         {
-            _completedChallenges.Add(levelKey);
+            _completedLevels.Add(levelKey);
         }
 
 

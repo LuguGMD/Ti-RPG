@@ -55,7 +55,7 @@ namespace RPG.Dialogue
         private void OnDialogueEnd()
         {
             CameraManager.Instance.DisableCamera(_camera);
-            if(_characterInfo != null)
+            if(_characterInfo != null && GameManager.DefeatedCharacters.Contains(_characterInfo))
             {
                 ActionsManager.Instance.OnCharacterMinigameSelected?.Invoke(_characterInfo);
             }
