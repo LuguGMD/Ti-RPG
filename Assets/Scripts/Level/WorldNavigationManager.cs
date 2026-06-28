@@ -130,7 +130,7 @@ namespace RPG.Level
 
             UpdateLoadedLevels();
 
-            if(currentLevel == maxUnlockedLevel && currentLevel < levels.Count-1 && GameManager.CompletedLevels.Contains(CurrentLevel.LevelData.LevelKey))
+            if (currentLevel == maxUnlockedLevel && currentLevel < levels.Count-1 && GameManager.CompletedLevels.Contains(CurrentLevel.LevelData.LevelKey))
             {
                 UnlockNextLevel();
             }
@@ -139,6 +139,10 @@ namespace RPG.Level
         public void SetMaxUnlockedLevel(int levelIndex)
         {
             maxUnlockedLevel = levelIndex;
+            if (currentLevel == maxUnlockedLevel && currentLevel < levels.Count - 1 && GameManager.CompletedLevels.Contains(CurrentLevel.LevelData.LevelKey))
+            {
+                UnlockNextLevel();
+            }
         }
 
 
@@ -169,7 +173,7 @@ namespace RPG.Level
         {
             if (maxUnlockedLevel < levels.Count - 1)
             {
-                maxUnlockedLevel++;
+                maxUnlockedLevel = currentLevel+1;
             }
         }
 
