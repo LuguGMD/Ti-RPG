@@ -743,6 +743,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 20.1
       objectReference: {fileID: 0}
+    - target: {fileID: 1207663914153691611, guid: 5b874dff7e408f645bb677772c74d73c, type: 3}
+      propertyPath: 'm_BlendShapeWeights.Array.data[0]'
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 1344170057783938616, guid: 5b874dff7e408f645bb677772c74d73c, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
@@ -1465,7 +1469,7 @@ MonoBehaviour:
   - {fileID: 1477736265}
   - {fileID: 1050267736}
   - {fileID: 2029022645}
-  maxUnlockedLevel: 4
+  maxUnlockedLevel: 1
   currentLevel: 0
 --- !u!4 &783572854
 Transform:
