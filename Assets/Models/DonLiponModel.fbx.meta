@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 34075fab43f6bc34393869da0e709f87
+guid: 1e49eb8e24a3f4b4695abf2e7b9d40f9
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: DonLiponMaterial
+    second: {fileID: 2100000, guid: c10923ab2b4326d49a6abbda249cf8f8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -31,69 +36,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: DonLiponAttack
-      takeName: CatRig|Attack
-      internalID: -2444107976900633382
+      name: DonLiponIdleCombat
+      takeName: CatRig|Idle2
+      internalID: 8656229036711653092
       firstFrame: 0
-      lastFrame: 92
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: DonLiponTakeDamage
-      takeName: CatRig|Damage
-      internalID: -7181218429975475364
-      firstFrame: 0
-      lastFrame: 105
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: DonLiponIdleManagement
-      takeName: CatRig|Idle1
-      internalID: 3433813901101408208
-      firstFrame: 0
-      lastFrame: 344
+      lastFrame: 375
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

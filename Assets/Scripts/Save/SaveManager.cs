@@ -1,6 +1,7 @@
 using Lugu.Singleton;
 using System;
 using System.IO;
+using System.Linq;
 using UnityEngine;
 
 namespace RPG.Save
@@ -14,71 +15,80 @@ namespace RPG.Save
         public Action _onLoadEnded;
 
         public const string SAVE_FILE = "save";
+        private SaveData _saveData = new SaveData();
 
-        public void RegisterSavable(ISavable savable)
+        public void FindSavables()
         {
-            _onSave += savable.Save;
-        }
+            _onSave = null;
+            _onLoad = null;
 
-        public void UnregisterSavable(ISavable savable)
-        {
-            _onSave -= savable.Save;
-        }
+            var isavables = GameObject.FindObjectsByType<MonoBehaviour>(FindObjectsSortMode.None).OfType<ISavableAbstract>();
 
-        public void RegisterLoadable(ILoadable loadable)
-        {
-            _onLoad += loadable.Load;
-        }
-
-        public void UnregisterLoadable(ILoadable loadable)
-        {
-            _onLoad -= loadable.Load;
+            foreach (ISavableAbstract isavable in isavables)
+            {
+                _onSave += isavable.Save;
+                _onLoad += isavable.Load;
+            }
         }
 
         public void SaveAll()
         {
+            FindSavables();
+
             _onSave?.Invoke();
             _onSaveEnded?.Invoke();
+
+            File.WriteAllText(GetSaveFilePath(), JsonUtility.ToJson(_saveData, true));
         }
 
         public void LoadAll()
         {
-            _onLoad?.Invoke();
-            _onLoadEnded?.Invoke();
-        }
+            FindSavables();
 
-        public static void Save(string json, string path = "")
-        {
-            if (string.IsNullOrEmpty(path))
-            {
-                path = SAVE_FILE;
-            }
-
-            path = Path.Combine(Application.persistentDataPath, path);
-            path += ".json";
-
-            File.WriteAllText(path, json);
-
-        }
-
-        public static string Load(string path = "")
-        {
-            if (string.IsNullOrEmpty(path))
-            {
-                path = SAVE_FILE;
-            }
-
-            path = Path.Combine(Application.persistentDataPath, path);
-            path += ".json";
-
+            string path = GetSaveFilePath();
             string json = null;
 
             if (File.Exists(path))
             {
                 json = File.ReadAllText(path);
+                _saveData = JsonUtility.FromJson<SaveData>(json);
             }
 
-            return json;
+            _onLoad?.Invoke();
+            _onLoadEnded?.Invoke();
+        }
+
+        public static void Save(string key, string json)
+        {
+            JsonEntry existing = Instance._saveData.Entries.Find(x => x.Key == key);
+
+            if (existing != null)
+            {
+                existing.Json = json;
+            }
+            else
+            {
+                Instance._saveData.Entries.Add(new JsonEntry
+                {
+                    Key = key,
+                    Json = json
+                });
+            }
+        }
+
+        public static string Load(string key)
+        {
+            string path = GetSaveFilePath();
+            JsonEntry entry = Instance._saveData.Entries.Find(x => x.Key == key);
+
+            return entry?.Json;
+        }
+
+        private static string GetSaveFilePath()
+        {
+            string path = Path.Combine(Application.persistentDataPath, SAVE_FILE);
+            path += ".json";
+            return path;
         }
     }
 }

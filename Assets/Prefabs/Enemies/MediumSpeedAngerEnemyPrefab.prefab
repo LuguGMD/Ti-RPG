@@ -80,6 +80,7 @@ PrefabInstance:
     - {fileID: 5875166748602480768, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
     m_RemovedGameObjects:
     - {fileID: 7259633300662510270, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+    - {fileID: 3821419159120949808, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2263448127493250946, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       insertIndex: 0
@@ -218,10 +219,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a2493c075ce2f964abdbdc85b411466b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6152356024527272923}
   m_SourcePrefab: {fileID: 100100000, guid: a2493c075ce2f964abdbdc85b411466b, type: 3}
 --- !u!4 &5066607246866814324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a2493c075ce2f964abdbdc85b411466b, type: 3}
   m_PrefabInstance: {fileID: 4745260253276795551}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5556286211575435214 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a2493c075ce2f964abdbdc85b411466b, type: 3}
+  m_PrefabInstance: {fileID: 4745260253276795551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6152356024527272923
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5556286211575435214}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b782b43b25cc574388a5067e9cb92ba, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

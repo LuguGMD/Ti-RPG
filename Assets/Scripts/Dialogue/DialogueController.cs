@@ -39,14 +39,14 @@ namespace RPG.Dialogue
 
         private void EnableInput()
         {
-            player.Actions.Interact.OnStart(HandleInput);
-            player.Actions.Jump.OnStart(HandleInput);
+            player.Actions.Interact.OnCancel(HandleInput);
+            player.Actions.Jump.OnCancel(HandleInput);
         }
 
         private void DisableInput()
         {
-            player.Actions.Interact.Remove.OnStart(HandleInput);
-            player.Actions.Jump.Remove.OnStart(HandleInput);
+            player.Actions.Interact.Remove.OnCancel(HandleInput);
+            player.Actions.Jump.Remove.OnCancel(HandleInput);
         }
 
         public void HandleInput()
@@ -153,12 +153,13 @@ namespace RPG.Dialogue
             textProgressTween = null;
             textWriter = null;
             dialogueText.text = CurrentDialogue.LocalizedText;
-            choicesPanel.Hide();
         }
         private bool IsDisplayFinished => textWriter == null;
 
         private void DialogueNext()
         {
+            choicesPanel.Hide();
+
             Dialogue nextDialogue = CurrentDialogue.Next;
             if (nextDialogue != null)
             { 

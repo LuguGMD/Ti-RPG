@@ -1,14 +1,16 @@
 using Lugu.Singleton;
 using RPG.Combat;
 using RPG.Level;
+using RPG.Save;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using CharacterController = RPG.Combat.CharacterController;
 
 namespace RPG
 {
-    public class GameManager : SingletonMonoPersistent<GameManager>
+    public class GameManager : SingletonMonoPersistent<GameManager>, ISavable<GameManager, GameManagerData, GameManagerAdapter>
     {
         [SerializeField] private LevelScriptable _selectedLevel;
         private CharacterScriptable _selectedCharacterMinigame;
@@ -17,6 +19,7 @@ namespace RPG
         private List<CharacterScriptable> _defeatedCharacters = new List<CharacterScriptable>();
 
         private int _coins = 0;
+        private string _key = "GameManager";
 
         #region Properties
 
@@ -26,8 +29,14 @@ namespace RPG
         public static CharacterScriptable[] AvailableCharacters {  get { return Instance._availableCharacters; } }
         public static List<CharacterScriptable> DefeatedCharacters { get { return Instance._defeatedCharacters; } }
         public static int Coins { get { return Instance._coins; } }
+        public string Key { get { return _key; } set { _key = value; } }
 
         #endregion
+
+        private void Start()
+        {
+            SaveManager.Instance.LoadAll();
+        }
 
         private void OnEnable()
         {
@@ -60,9 +69,13 @@ namespace RPG
         {
             if(!_defeatedCharacters.Contains(character.CharacterInfo))
             {
-                //TO DO Adicionar dnv depois
-                //_defeatedCharacters.Add(character.CharacterInfo);
+                _defeatedCharacters.Add(character.CharacterInfo);
             }
+        }
+
+        public void LoadCharacterDemotivated(CharacterScriptable[] characters)
+        {
+            _defeatedCharacters = characters.ToList();
         }
 
         private void CharacterMotivated(CharacterScriptable character)
@@ -124,6 +137,18 @@ namespace RPG
         public static void UnloadAdditiveScene(ScenesEnum scene)
         {
             SceneManager.UnloadSceneAsync((int)scene);
+        }
+
+        public void Save()
+        {
+            ISavable<GameManager, GameManagerData, GameManagerAdapter> savable = (ISavable<GameManager, GameManagerData, GameManagerAdapter>)this;
+            savable.SaveInfo();
+        }
+
+        public void Load()
+        {
+            ISavable<GameManager, GameManagerData, GameManagerAdapter> savable = (ISavable<GameManager, GameManagerData, GameManagerAdapter>)this;
+            savable.LoadInfo();
         }
 
         #endregion
