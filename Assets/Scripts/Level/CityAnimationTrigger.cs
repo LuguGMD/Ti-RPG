@@ -20,5 +20,20 @@ namespace RPG
                 timeline.Play();
             }
         }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Player"))
+            {
+                Invoke("ResetAnimation", 2);
+            }
+        }
+
+        void ResetAnimation()
+        {
+            timeline.time = 0;
+            timeline.Evaluate();
+            timeline.Stop();
+        }
     }
 }

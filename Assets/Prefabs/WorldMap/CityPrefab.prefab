@@ -62,7 +62,7 @@ PlayableDirector:
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: d4f54b7dcce819a4ea6eabac05c0ecb0, type: 2}
   m_InitialState: 0
-  m_WrapMode: 2
+  m_WrapMode: 0
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
@@ -76,6 +76,8 @@ PlayableDirector:
     value: {fileID: 5518453419141292632}
   - key: {fileID: 4092450783779990461, guid: d4f54b7dcce819a4ea6eabac05c0ecb0, type: 2}
     value: {fileID: 4216697491280482357}
+  - key: {fileID: 0}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!65 &4117976562910632115
@@ -97,8 +99,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 14.59, y: 8.27, z: 1}
-  m_Center: {x: 25.47, y: -5.3, z: -46.3}
+  m_Size: {x: 14.59, y: 8.27, z: 55.05684}
+  m_Center: {x: 25.47, y: -5.3, z: -19.271584}
 --- !u!1001 &1082584149113371050
 PrefabInstance:
   m_ObjectHideFlags: 0
