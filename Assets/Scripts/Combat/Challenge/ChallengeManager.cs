@@ -32,9 +32,7 @@ namespace RPG.Combat.Challenge
             ChallengeScriptable[] challenges = GameManager.SelectedLevel.Challenges;
             for (int i = 0; i < challenges.Length; i++)
             {
-                //TO DO - Get from save later 
-                //Challenge ID = $"{LevelNumber} + {i}"
-                bool isCompleted = false;
+                bool isCompleted = GameManager.CompletedChallenges.Contains(_challengeHandlers[i].Info.ChallengeKey);
 
                 if (!isCompleted)
                 {
@@ -52,8 +50,7 @@ namespace RPG.Combat.Challenge
                 {
                     int reward = _challengeHandlers[i].Info.CoinsReward;
                     GameManager.Instance.AddCoins(reward);
-                    //TO DO - Send to save later
-                    //Challenge ID = $"{LevelNumber} + {i}"
+                    GameManager.Instance.CompleteChallenge(_challengeHandlers[i].Info.ChallengeKey);
                 }
             }
         }

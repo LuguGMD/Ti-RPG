@@ -2,6 +2,7 @@ using RPG.Camera;
 using RPG.Input;
 using RPG.Save;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace RPG.Level
@@ -57,6 +58,8 @@ namespace RPG.Level
 
         private void Start()
         {
+            Load();
+
             _playerInput.Actions.Move.OnUpdate(NavigationInput);
             _playerInput.Actions.Interact.OnStart(SelectCurrentLevel);
         }
@@ -116,7 +119,14 @@ namespace RPG.Level
 
             CameraManager.Instance.SwitchCamera(CurrentLevel.LevelCamera);
 
+            Save();
+
             UpdateLoadedLevels();
+
+            if(currentLevel == maxUnlockedLevel && currentLevel < levels.Count-1 && GameManager.CompletedLevels.Contains(CurrentLevel.LevelData.LevelKey))
+            {
+                UnlockNextLevel();
+            }
         }
 
         public void SetMaxUnlockedLevel(int levelIndex)

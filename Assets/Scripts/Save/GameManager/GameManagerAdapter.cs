@@ -8,6 +8,8 @@ namespace RPG.Save
         {
             dataSave.Coins = GameManager.Coins;
             dataSave.DefeatedCharacters = GameManager.DefeatedCharacters.ToArray();
+            dataSave.CompletedChallenges = GameManager.CompletedChallenges.ToArray();
+            dataSave.CompletedLevels = GameManager.CompletedLevels.ToArray();
         }
 
         public override void DataToClass(GameManager classSave, GameManagerData dataSave)
@@ -16,6 +18,22 @@ namespace RPG.Save
             if (dataSave.DefeatedCharacters != null)
             {
                 GameManager.Instance.LoadCharacterDemotivated(dataSave.DefeatedCharacters);
+            }
+
+            if(dataSave.CompletedChallenges != null)
+            {
+                foreach(string challengeKey in dataSave.CompletedChallenges) 
+                { 
+                    GameManager.Instance.CompleteChallenge(challengeKey);
+                }
+            }
+
+            if (dataSave.CompletedLevels != null)
+            {
+                foreach (string challengeKey in dataSave.CompletedLevels)
+                {
+                    GameManager.Instance.CompleteChallenge(challengeKey);
+                }
             }
         }
     }

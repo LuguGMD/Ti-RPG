@@ -17,6 +17,8 @@ namespace RPG
         [SerializeField] private CharacterScriptable[] _currentParty = new CharacterScriptable[CombatConstants.MAX_CHARACTERS_COUNT];
         [SerializeField] private CharacterScriptable[] _availableCharacters;
         private List<CharacterScriptable> _defeatedCharacters = new List<CharacterScriptable>();
+        private List<string> _completedChallenges = new List<string>();
+        private List<string> _completedLevels = new List<string>();
 
         private int _coins = 0;
         private string _key = "GameManager";
@@ -30,6 +32,8 @@ namespace RPG
         public static List<CharacterScriptable> DefeatedCharacters { get { return Instance._defeatedCharacters; } }
         public static int Coins { get { return Instance._coins; } }
         public string Key { get { return _key; } set { _key = value; } }
+        public static List<string> CompletedChallenges { get  { return Instance._completedChallenges; } }
+        public static List<string> CompletedLevels { get  { return Instance._completedLevels; } }
 
         #endregion
 
@@ -107,6 +111,16 @@ namespace RPG
         {
             _coins -= coinsAmount;
             ActionsManager.Instance.OnCoinsAmountChanged?.Invoke();
+        }
+
+        public void CompleteChallenge(string challengeKey)
+        {
+            _completedChallenges.Add(challengeKey);
+        }
+
+        public void CompleteLevel(string levelKey)
+        {
+            _completedChallenges.Add(levelKey);
         }
 
 

@@ -8,5 +8,7 @@ namespace RPG.Save
     {
         public int Coins;
         public CharacterScriptable[] DefeatedCharacters;
+        public string[] CompletedChallenges;
+        public string[] CompletedLevels;
     }
 }
