@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace RPG.Management.Progression.Editor
 {
-    [ScriptedImporter(7, UpgradeGraph.AssetExtension)]
+    [ScriptedImporter(8, UpgradeGraph.AssetExtension)]
     public class UpgradeGraphImporter : ScriptedImporter
     {
         private static Dictionary<UpgradeGraphNode, UpgradeData> _processedNodes;
@@ -67,7 +67,8 @@ namespace RPG.Management.Progression.Editor
             upgradeData.icon = icon;
 
             IPort keyInput = node.GetInputPortByName(UpgradeGraphNode.INPUT_KEY);
-            keyInput.TryGetValue<string>(out string upgradeKey);
+            keyInput.TryGetValue<UpgradeConstants.UpgradeKey>(out UpgradeConstants.UpgradeKey upgradeKeyEnum);
+            string upgradeKey = UpgradeConstants.UpgradeKeys[upgradeKeyEnum];
             upgradeData.upgradeKey = upgradeKey;
 
             if (!_keys.Contains(upgradeKey))

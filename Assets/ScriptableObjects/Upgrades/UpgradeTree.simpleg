@@ -121,7 +121,7 @@ MonoBehaviour:
           - rid: 2583291929656557816
           - rid: 2583291929656557817
           - rid: 2583291929656557836
-          - rid: 2583291974696304732
+          - rid: 2583292221434101924
         m_InputPortInfos:
           expandedPortsById:
             m_KeyList: []
@@ -160,10 +160,6 @@ MonoBehaviour:
       type: {class: 'Constant`1[[UnityEngine.Sprite, UnityEngine.CoreModule]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
       data:
         m_Value: {fileID: 751424078, guid: 9663878930c877e40a238b9b2ca5d60f, type: 3}
-    - rid: 2583291974696304732
-      type: {class: 'Constant`1[[System.String, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
-      data:
-        m_Value: UpgradeSpotlight
     - rid: 2583292203142480002
       type: {class: UserNodeModelImp, ns: Unity.GraphToolkit.Editor.Implementation, asm: Unity.GraphToolkit.Editor}
       data:
@@ -194,7 +190,7 @@ MonoBehaviour:
           - rid: 2583292203142480005
           - rid: 2583292203142480006
           - rid: 2583292203142480007
-          - rid: 2583292203142480008
+          - rid: 2583292221434101925
         m_InputPortInfos:
           expandedPortsById:
             m_KeyList: []
@@ -230,10 +226,6 @@ MonoBehaviour:
       type: {class: 'Constant`1[[UnityEngine.Sprite, UnityEngine.CoreModule]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
       data:
         m_Value: {fileID: -2029478946, guid: 9663878930c877e40a238b9b2ca5d60f, type: 3}
-    - rid: 2583292203142480008
-      type: {class: 'Constant`1[[System.String, mscorlib]]', ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
-      data:
-        m_Value: UpgradeTest
     - rid: 2583292203142480009
       type: {class: UpgradeGraphNode, ns: RPG.Management.Progression.Editor, asm: Assembly-CSharp-Editor}
       data: 
@@ -269,3 +261,25 @@ MonoBehaviour:
           m_PortDirection: 1
           m_PortOrientation: 0
           m_Title: Parent 0
+    - rid: 2583292221434101924
+      type: {class: EnumConstant, ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Value:
+          m_EnumType:
+            m_Identification: RPG.Management.Progression.UpgradeConstants+UpgradeKey,
+              Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+          m_Value: 1
+        m_EnumType:
+          m_Identification: RPG.Management.Progression.UpgradeConstants+UpgradeKey,
+            Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    - rid: 2583292221434101925
+      type: {class: EnumConstant, ns: Unity.GraphToolkit.Editor, asm: Unity.GraphToolkit.Internal.Editor}
+      data:
+        m_Value:
+          m_EnumType:
+            m_Identification: RPG.Management.Progression.UpgradeConstants+UpgradeKey,
+              Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+          m_Value: 0
+        m_EnumType:
+          m_Identification: RPG.Management.Progression.UpgradeConstants+UpgradeKey,
+            Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null

@@ -10,6 +10,7 @@ namespace RPG.Save
             dataSave.DefeatedCharacters = GameManager.DefeatedCharacters.ToArray();
             dataSave.CompletedChallenges = GameManager.CompletedChallenges.ToArray();
             dataSave.CompletedLevels = GameManager.CompletedLevels.ToArray();
+            dataSave.CompletedTutorials = GameManager.CompletedTutorials.ToArray();
         }
 
         public override void DataToClass(GameManager classSave, GameManagerData dataSave)
@@ -33,6 +34,14 @@ namespace RPG.Save
                 foreach (string challengeKey in dataSave.CompletedLevels)
                 {
                     GameManager.Instance.CompleteChallenge(challengeKey);
+                }
+            }
+
+            if(dataSave.CompletedTutorials != null)
+            {
+                foreach(string tutorialKey in dataSave.CompletedTutorials)
+                {
+                    GameManager.Instance.CompleteTutorial(tutorialKey);
                 }
             }
         }

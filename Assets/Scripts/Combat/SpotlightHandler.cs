@@ -1,6 +1,7 @@
 using DG.Tweening;
 using RPG.Combat.Grid;
 using RPG.Extensions;
+using RPG.Management.Progression;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -33,7 +34,7 @@ namespace RPG.Combat
 
         private void CheckChangePosition()
         {
-            if(CombatManager.TurnCount >= _lastChangeTurn + CombatConstants.SPOTLIGHT_CHANGE_TURNS)
+            if (CombatManager.TurnCount >= _lastChangeTurn + CombatConstants.SPOTLIGHT_CHANGE_TURNS)
             {
                 ChangePosition();
             }
@@ -54,7 +55,7 @@ namespace RPG.Combat
         private IEnumerator UpdateSpotlightPosition()
         {
             Vector2Int previousSpotlightPosition = _currentSpotlightPosition;
-            _currentSpotlightPosition = new Vector2Int(_currentPosition * (Map.Columns/CombatConstants.MAP_SECTIONS), 1);
+            _currentSpotlightPosition = new Vector2Int(_currentPosition * (Map.Columns / CombatConstants.MAP_SECTIONS), 1);
             transform.position = MapManager.Instance.GetWorldPosition(_currentSpotlightPosition);
             ActionsManager.Instance.OnSpotlightPositionChanged?.Invoke(_currentSpotlightPosition);
             ActionsManager.Instance.OnMapChanged?.Invoke();
@@ -82,9 +83,16 @@ namespace RPG.Combat
 
         private void Init()
         {
-            _currentPosition = UnityEngine.Random.Range(0, CombatConstants.MAP_SECTIONS);
-            _visual.SetActive(false);
-            StartCoroutine(UpdateSpotlightPosition());
+            if (CombatManager.HasUpgrade(UpgradeConstants.UpgradeKey.Spotlight))
+            {
+                _currentPosition = UnityEngine.Random.Range(0, CombatConstants.MAP_SECTIONS);
+                _visual.SetActive(false);
+                StartCoroutine(UpdateSpotlightPosition());
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

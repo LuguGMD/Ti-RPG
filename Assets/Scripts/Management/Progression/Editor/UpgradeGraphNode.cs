@@ -38,7 +38,7 @@ namespace RPG.Management.Progression.Editor
                 context.AddInputPort(INPUT_PARENT + i).Build();
             }
 
-            context.AddInputPort<string>(INPUT_KEY).Build();
+            context.AddInputPort<UpgradeConstants.UpgradeKey>(INPUT_KEY).Build();
 
             context.AddOutputPort(OUTPUT_CHILDS).Build();
         }

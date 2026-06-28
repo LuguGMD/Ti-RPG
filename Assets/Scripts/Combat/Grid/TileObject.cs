@@ -1,3 +1,4 @@
+using RPG.Management.Progression;
 using System;
 using UnityEngine;
 
@@ -79,7 +80,7 @@ namespace RPG.Combat.Grid
 
         public void CheckSpotlight()
         {
-            if (MapManager.Instance == null || _currentTile == null) return;
+            if (MapManager.Instance == null || _currentTile == null || !CombatManager.HasUpgrade(UpgradeConstants.UpgradeKey.Spotlight)) return;
             UpdatePosition();
 
             bool previousState = _isOnSpotlight;

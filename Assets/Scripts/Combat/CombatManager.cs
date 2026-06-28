@@ -10,6 +10,8 @@ using RPG.Combat.Wave;
 using RPG.Combat.Grid;
 using RPG.Combat.UI;
 using Unity.Cinemachine;
+using RPG.Save;
+using RPG.Management.Progression;
 
 namespace RPG.Combat
 {
@@ -39,6 +41,8 @@ namespace RPG.Combat
         private bool _isActionInProgress = false;
         private float _combatSpeed = 1;
 
+        private HashSet<string> _combatUpgrades = new HashSet<string>();
+
         #region Properties
 
         public static EnemySpawnWarning EnemySpawnWarningPrefab { get { return Instance._enemySpawnWarningPrefab; } }
@@ -46,15 +50,16 @@ namespace RPG.Combat
         {
             get { return Instance._previewTilePrefab; }
         }
-        public static PreviewTileGroup CharacterPreviewGroups { get  { return Instance._characterPreviewGroups; } }
+        public static PreviewTileGroup CharacterPreviewGroups { get { return Instance._characterPreviewGroups; } }
         public static PreviewTileGroup EnemyPreviewGroups { get { return Instance._enemyPreviewGroups; } }
         public static CombatTurnStateEnum CurrentTurnState { get { return Instance._currentTurnState; } }
         public static int TurnCount { get { return Instance._turnCount; } }
-        public static float CombatSpeed {  get { return Instance._combatSpeed; } }
+        public static float CombatSpeed { get { return Instance._combatSpeed; } }
         public static ApresentadorController Apresentador { get { return Instance._apresentador; } }
         public static bool HasCombatStarted { get { return Instance._hasCombatStarted; } }
-        public static List<CharacterController> RemainingCharacters {  get { return Instance._remainingCharacters; } }
+        public static List<CharacterController> RemainingCharacters { get { return Instance._remainingCharacters; } }
         public static bool IsActionInProgress { get { return Instance._isActionInProgress; } }
+        public static HashSet<string> CombatUpgrades { get { return Instance._combatUpgrades; }  }
 
         #endregion
 
@@ -62,8 +67,12 @@ namespace RPG.Combat
         {
             base.Awake();
 
-            if(Instance == this)
+
+            if (Instance == this)
+            {
+                GetCombatUpgrades();
                 _impulseSource = GetComponent<CinemachineImpulseSource>();
+            }
         }
 
         private void Start()
@@ -106,6 +115,19 @@ namespace RPG.Combat
 
         #region Preparation
 
+        private void GetCombatUpgrades()
+        {
+            string json = SaveManager.Load(SaveConstants.SaveKeys[SaveConstants.SaveKey.Upgrade]);
+            UpgradeGraphData data = JsonUtility.FromJson<UpgradeGraphData>(json);
+
+            if (data == null) return;
+
+            foreach(string upgradeKey in data.PurchasedUpgradeIDs)
+            {
+                _combatUpgrades.Add(upgradeKey);
+            }
+        }
+
         private void PlaceCharacter(Vector2Int position)
         {
             if (MapManager.Map.GetTile(position).IsOccupied)
@@ -113,7 +135,7 @@ namespace RPG.Combat
                 //TO DO mostrar erro ao jogador
                 Debug.Log("Tile ocupado");
             }
-            else if(position.y >= Map.Rows-1)
+            else if (position.y >= Map.Rows - 1)
             {
                 //TO DO mostrar erro ao jogador
                 Debug.Log("Tile Invalido");
@@ -124,7 +146,7 @@ namespace RPG.Combat
                 CharacterSpawnInfo characterSpawnInfo = new CharacterSpawnInfo(characterInfo, position);
                 CombatFactory.InstantiateCharacter(characterSpawnInfo);
             }
-            
+
         }
 
         #endregion
@@ -134,7 +156,7 @@ namespace RPG.Combat
 
         public static bool CanTarget(EntityScriptable user, EntityScriptable target, Effect effect)
         {
-            if(user == target)
+            if (user == target)
             {
                 return effect.CanTargetSelf;
             }
@@ -166,7 +188,7 @@ namespace RPG.Combat
 
         private void OnCharacterClicked(CharacterController selectedCharacter)
         {
-            if(_hasCombatEnded || !_hasCombatStarted)
+            if (_hasCombatEnded || !_hasCombatStarted)
             {
 
             }
@@ -174,7 +196,7 @@ namespace RPG.Combat
             {
 
             }
-            else if(!_canSelectCharacter)
+            else if (!_canSelectCharacter)
             {
 
             }
@@ -282,7 +304,7 @@ namespace RPG.Combat
 
         private void CheckEndPlayerTurn()
         {
-            if(_usedCharacters.Count >= _remainingCharacters.Count && _apresentador.HasActed)
+            if (_usedCharacters.Count >= _remainingCharacters.Count && _apresentador.HasActed)
             {
                 EndPlayerTurn();
             }
@@ -290,7 +312,7 @@ namespace RPG.Combat
 
         private void EndPlayerTurn()
         {
-            if(!_isActionInProgress && _currentTurnState == CombatTurnStateEnum.PlayerTurn)
+            if (!_isActionInProgress && _currentTurnState == CombatTurnStateEnum.PlayerTurn)
             {
                 _apresentador.CompleteAction();
                 SwitchTurn();
@@ -322,7 +344,7 @@ namespace RPG.Combat
                 _remainingCharacters.Add(character);
             }
 
-            if(_remainingCharacters.Count >= CombatConstants.MAX_CHARACTERS_COUNT)
+            if (_remainingCharacters.Count >= CombatConstants.MAX_CHARACTERS_COUNT)
             {
                 ActionsManager.Instance.OnCombatStart?.Invoke();
             }
@@ -340,7 +362,7 @@ namespace RPG.Combat
 
         private void CheckPlayerLost()
         {
-            if(_remainingCharacters.Count <= 0)
+            if (_remainingCharacters.Count <= 0)
             {
                 ActionsManager.Instance.OnCombatLost?.Invoke();
                 _hasCombatEnded = true;
@@ -352,7 +374,7 @@ namespace RPG.Combat
 
         private void CheckPlayerWon()
         {
-            if(WaveManager.AreAllWavesSpawned && _remainingEnemies.Count == 0)
+            if (WaveManager.AreAllWavesSpawned && _remainingEnemies.Count == 0)
             {
                 ActionsManager.Instance.OnCombatWon?.Invoke();
                 _hasCombatEnded = true;
@@ -371,7 +393,7 @@ namespace RPG.Combat
 
         private IEnumerator EnemyTurnCoroutine()
         {
-            for(int i = 0; i< _remainingEnemies.Count; i++)
+            for (int i = 0; i < _remainingEnemies.Count; i++)
             {
                 if (!_hasCombatEnded)
                 {
@@ -431,5 +453,10 @@ namespace RPG.Combat
         #endregion
 
         #endregion
+
+        public static bool HasUpgrade(UpgradeConstants.UpgradeKey upgradeKey)
+        {
+            return CombatUpgrades.Contains(UpgradeConstants.UpgradeKeys[upgradeKey]);
+        }
     }
 }

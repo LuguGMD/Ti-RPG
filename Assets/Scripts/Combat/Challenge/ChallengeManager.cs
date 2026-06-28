@@ -32,7 +32,7 @@ namespace RPG.Combat.Challenge
             ChallengeScriptable[] challenges = GameManager.SelectedLevel.Challenges;
             for (int i = 0; i < challenges.Length; i++)
             {
-                bool isCompleted = GameManager.CompletedChallenges.Contains(_challengeHandlers[i].Info.ChallengeKey);
+                bool isCompleted = GameManager.CompletedChallenges.Contains(challenges[i].ChallengeKey);
 
                 if (!isCompleted)
                 {
