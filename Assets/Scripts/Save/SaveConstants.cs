@@ -13,6 +13,7 @@ namespace RPG.Save
             Level,
             MinigameRhythm,
             Audio,
+            Tutorial,
         }
 
         public static Dictionary<SaveKey, string> SaveKeys = new Dictionary<SaveKey, string>()
@@ -23,6 +24,7 @@ namespace RPG.Save
             {SaveKey.Level, "WorldNavigationManager"},
             {SaveKey.MinigameRhythm, "RhythmMinigame"},
             {SaveKey.Audio, "AudioManager"},
+            {SaveKey.Tutorial, "Tutorial"},
         };
 
     }

@@ -102,6 +102,8 @@ namespace RPG.Management.Minigames
             ActionsManager.Instance.OnCharacterMotivated?.Invoke(GameManager.SelectedCharacterMinigame);
 
             SaveManager.Instance.SaveAll();
+
+            GameManager.ChangeScene(ScenesEnum.Management);
         }
 
         private void ResetPerfectCombo()

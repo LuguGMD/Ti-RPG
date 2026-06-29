@@ -3,6 +3,7 @@ using RPG.Combat;
 using RPG.Level;
 using RPG.Management.Progression;
 using RPG.Save;
+using RPG.Tutorial;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -21,7 +22,6 @@ namespace RPG
         private List<CharacterScriptable> _defeatedCharacters = new List<CharacterScriptable>();
         private List<string> _completedChallenges = new List<string>();
         private List<string> _completedLevels = new List<string>();
-        private List<string> _completedTutorials = new List<string>();
 
         private int _coins = 0;
         private string _key = "GameManager";
@@ -37,7 +37,6 @@ namespace RPG
         public string Key { get { return _key; } set { _key = value; } }
         public static List<string> CompletedChallenges { get  { return Instance._completedChallenges; } }
         public static List<string> CompletedLevels { get  { return Instance._completedLevels; } }
-        public static List<string> CompletedTutorials { get { return Instance._completedTutorials; } }
 
         #endregion
 
@@ -80,9 +79,14 @@ namespace RPG
 
         private void CharacterDemotivated(CharacterController character)
         {
-            if(!_defeatedCharacters.Contains(character.CharacterInfo))
+            CharacterDemotivated(character.CharacterInfo);
+        }
+
+        public void CharacterDemotivated(CharacterScriptable character)
+        {
+            if (!_defeatedCharacters.Contains(character))
             {
-                _defeatedCharacters.Add(character.CharacterInfo);
+                _defeatedCharacters.Add(character);
             }
         }
 
@@ -100,15 +104,12 @@ namespace RPG
             }
         }
 
-        private void CharacterMotivated(CharacterScriptable character)
+        public void CharacterMotivated(CharacterScriptable character)
         {
             if (_defeatedCharacters.Contains(character))
             {
                 _defeatedCharacters.Remove(character);
             }
-
-            //TO DO mover para outro lugar
-            ChangeScene(ScenesEnum.Management);
         }
 
         #region Progression
@@ -169,16 +170,6 @@ namespace RPG
         public static void UnloadAdditiveScene(ScenesEnum scene)
         {
             SceneManager.UnloadSceneAsync((int)scene);
-        }
-
-        public void CompleteTutorial(string tutorialKey)
-        {
-            _completedTutorials.Add(tutorialKey);
-        }
-
-        public static void ResetTutorials()
-        {
-            Instance._completedTutorials = new List<string>();
         }
 
         public void Save()

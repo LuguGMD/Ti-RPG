@@ -75,6 +75,7 @@ namespace RPG
         public Action OnCharacterDeselected;
 
         public Action OnApresentadorSelected;
+        public Action OnApresentadorUIOpen;
 
         #endregion
 

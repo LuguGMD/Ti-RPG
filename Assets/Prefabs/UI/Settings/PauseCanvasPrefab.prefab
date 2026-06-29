@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 413.1, y: -263.3}
-  m_SizeDelta: {x: 686.2, y: 170}
+  m_AnchoredPosition: {x: 604.93, y: -263.3}
+  m_SizeDelta: {x: 1069.86, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6170883419709964771
 CanvasRenderer:
@@ -1022,11 +1022,11 @@ RectTransform:
   - {fileID: 7805339033640646141}
   m_Father: {fileID: 4913567946515488167}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 20.000017, y: 0}
-  m_SizeDelta: {x: 826.2, y: 500}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1209.86, y: 500}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3338211305678283239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4246,7 +4246,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 20
   m_TargetDisplay: 0
 --- !u!114 &3676331022214970222
 MonoBehaviour:
@@ -6332,8 +6332,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 413.1, y: -118.1}
-  m_SizeDelta: {x: 686.2, y: 116.2}
+  m_AnchoredPosition: {x: 604.93, y: -118.1}
+  m_SizeDelta: {x: 1069.86, y: 116.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7057146157372217236
 CanvasRenderer:
@@ -6363,8 +6363,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Cheats\nF1 - Desbloquear todas as fases (Na navega\xE7\xE3o de fases)\nF2
-    - Recuperar Vida"
+  m_text: "Cheats\nF1 - Recuperar 10 Vida e Motivar todos / F2 - Tomar 10 Dano e
+    Desmotivar todos\nF3 - Desbloquear todas as fases (Na navega\xE7\xE3o de fases)
+    / F4 - Ganhar 50 Moedas"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8865b8e6abe247240ba70586f6604cb5, type: 2}
   m_sharedMaterial: {fileID: -8947200110883534818, guid: 8865b8e6abe247240ba70586f6604cb5, type: 2}

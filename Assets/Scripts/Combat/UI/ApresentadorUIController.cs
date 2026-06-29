@@ -82,7 +82,7 @@ namespace RPG.Combat.UI
 
         private void ShowCanvas()
         {
-
+            ActionsManager.Instance.OnApresentadorUIOpen?.Invoke();
             _isCanvasEnabled = true;
             InitializeDictionary();
             _rotatedAmount = 0;

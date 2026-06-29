@@ -10,6 +10,7 @@ namespace RPG.Tutorial.Handlers
         public abstract IEnumerator TutorialLoop();
         public override void Show()
         {
+            base.Show();
             StartCoroutine(TutorialLoop());
         }
     }

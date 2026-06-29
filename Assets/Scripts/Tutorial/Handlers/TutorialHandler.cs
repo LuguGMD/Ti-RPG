@@ -1,11 +1,16 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RPG.Tutorial.Handlers
 {
     public abstract class TutorialHandler : MonoBehaviour
     {
         protected bool _isCompleted = false;
-        protected string _tutorialKey = "TutorialDefaultKey";
+        [SerializeField] protected string _tutorialKey = "TutorialDefaultKey";
+        protected TutorialUIHandler _uiHandler;
+        [SerializeField] private string _titleString;
+        [TextArea] [SerializeField] private string _descriptionString;
 
         #region Properties
 
@@ -13,6 +18,11 @@ namespace RPG.Tutorial.Handlers
         public string TutorialKey {  get { return _tutorialKey; } }
 
         #endregion
+
+        protected virtual void Awake()
+        {
+            _uiHandler = GetComponent<TutorialUIHandler>();
+        }
 
         protected virtual void OnEnable()
         {
@@ -27,9 +37,18 @@ namespace RPG.Tutorial.Handlers
         public abstract void SubscribeCallbacks();
         public abstract void UnsubscribeCallbacks();
 
-        public abstract void Show();
-        public abstract void Hide();
-        protected void Complete()
+        public virtual void Show()
+        {
+            if (TutorialManager.Instance == null) return;
+
+            if (!TutorialManager.Instance.IsTutorialComplete(_tutorialKey))
+            {
+
+                _uiHandler.Show(_titleString, _descriptionString);
+            }
+        }
+
+        public void Complete()
         {
             _isCompleted = true;
             TutorialManager.Instance.SetTutorialCompletion(_tutorialKey, true);

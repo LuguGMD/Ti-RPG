@@ -10,6 +10,5 @@ namespace RPG.Save
         public string[] DefeatedCharacters;
         public string[] CompletedChallenges;
         public string[] CompletedLevels;
-        public string[] CompletedTutorials;
     }
 }

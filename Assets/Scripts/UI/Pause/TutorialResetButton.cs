@@ -1,4 +1,5 @@
 using RPG.Save;
+using RPG.Tutorial;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +9,7 @@ namespace RPG.UI
     {
         protected override void OnClick()
         {
-            GameManager.ResetTutorials();
-            SaveManager.Instance.SaveAll();
+            TutorialManager.Instance.ResetTutorials();
         }
     }
 }

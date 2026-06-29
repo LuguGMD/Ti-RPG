@@ -6,11 +6,11 @@ using UnityEngine;
 
 namespace RPG.Tutorial
 {
-    public class TutorialManager : SingletonMono<TutorialManager>, ISavable<TutorialManager, TutorialManagerData, TutorialManagerAdapter>
+    public class TutorialManager : SingletonMonoPersistent<TutorialManager>, ISavable<TutorialManager, TutorialManagerData, TutorialManagerAdapter>
     {
         private string _key = "Tutorial";
         private Dictionary<string, bool> _tutorialData = new Dictionary<string, bool>();
-        [SerializeField] TutorialHandler[] _handlers;
+        TutorialHandler[] _handlers;
 
         #region Properties
         public string Key { get => _key; set { _key = value; } }
@@ -19,11 +19,18 @@ namespace RPG.Tutorial
 
         private void Start()
         {
-            foreach (TutorialHandler handler in _handlers)
+            /*foreach (TutorialHandler handler in _handlers)
             {
                 bool isComplete = IsTutorialComplete(handler.TutorialKey);
                 handler.enabled = !isComplete;
-            }
+            }*/
+        }
+
+        public void ResetTutorials()
+        {
+            _tutorialData.Clear();
+            Save();
+            SaveManager.Save();
         }
 
         public bool IsTutorialComplete(string tutorialKey)

@@ -145,6 +145,11 @@ namespace RPG.Level
             }
         }
 
+        public void UnlockAllLevels()
+        {
+            maxUnlockedLevel = levels.Count-1;
+        }
+
 
         private void SelectCurrentLevel()
         {
