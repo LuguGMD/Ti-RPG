@@ -77,6 +77,8 @@ namespace RPG.Combat
             _hasActed = true;
             _tileObject.CheckSpotlight();
 
+            SetAnimationBool("IsHolding", false);
+
             SetAnimationInt("ActionIndex", _selectedActionIndex);
             SetAnimationBool("IsActionRunning", true);
 

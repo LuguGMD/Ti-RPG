@@ -18,8 +18,11 @@ namespace RPG.Combat.Actions
         public override IEnumerator Execute(PreviewTileInfo selectedPreviewTile)
         {
             yield return null;
-            if(_user.Position.y < Map.Rows-1)
+            if (_user.Position.y < Map.Rows - 1)
+            {
                 ActionsManager.Instance.OnMapLineStuck?.Invoke(_user.Position.y);
+                _user.SetAnimationBool("IsHolding", true);
+            }
         }
 
         public override List<PreviewTileInfo> Preview()

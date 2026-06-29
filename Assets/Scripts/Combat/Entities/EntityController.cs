@@ -92,21 +92,21 @@ namespace RPG.Combat
             ActionsManager.Instance.OnEntityHovered?.Invoke(this);
         }
 
-        protected void SetAnimationTrigger(string trigger)
+        public void SetAnimationTrigger(string trigger)
         {
             foreach (Animator animator in _animators)
             {
                 animator.SetTrigger(trigger);
             }
         }
-        protected void SetAnimationInt(string intName, int intValue)
+        public void SetAnimationInt(string intName, int intValue)
         {
             foreach(Animator animator in _animators)
             {
                 animator.SetInteger(intName, intValue);
             }
         }
-        protected void SetAnimationBool(string boolName, bool boolValue)
+        public void SetAnimationBool(string boolName, bool boolValue)
         {
             foreach (Animator animator in _animators)
             {
