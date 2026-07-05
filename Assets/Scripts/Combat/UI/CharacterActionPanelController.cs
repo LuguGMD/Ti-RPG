@@ -23,7 +23,7 @@ namespace RPG.Combat.UI
         private void Start()
         {
             HidePanel();
-            _cancelButton.onClick.AddListener(HidePanel);
+            _cancelButton.onClick.AddListener(OnCancelButtonClicked);
         }
 
         private void OnEnable()
@@ -92,6 +92,13 @@ namespace RPG.Combat.UI
         public void OnActionButtonClicked()
         {
             //HidePanel();
+        }
+
+        private void OnCancelButtonClicked()
+        {
+            HidePanel();
+            //TO DO Remover comentario
+            //ActionsManager.Instance.OnCharacterDeselected?.Invoke();
         }
 
         public void OnActionButtonHovered(CombatAction action)
