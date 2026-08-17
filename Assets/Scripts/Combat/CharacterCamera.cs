@@ -9,19 +9,25 @@ namespace RPG
 
         private void OnEnable()
         {
-            ActionsManager.Instance.OnCharacterSelected += EnableCamera;
-            ActionsManager.Instance.OnCharacterDeselected += DisableCamera;
+            ActionsManager.Instance.OnCharacterSelected += ChangeCameraTarget;
+            ActionsManager.Instance.OnActionStart += EnableCamera;
+            ActionsManager.Instance.OnActionEnd += DisableCamera;
         }
 
         private void OnDisable()
         {
-            ActionsManager.Instance.OnCharacterSelected -= EnableCamera;
-            ActionsManager.Instance.OnCharacterDeselected -= DisableCamera;
+            ActionsManager.Instance.OnCharacterSelected -= ChangeCameraTarget;
+            ActionsManager.Instance.OnActionStart -= EnableCamera;
+            ActionsManager.Instance.OnActionEnd -= DisableCamera;
         }
 
-        private void EnableCamera(Combat.CharacterController character)
+        private void ChangeCameraTarget(Combat.CharacterController character)
         {
             _camera.Target.TrackingTarget = character.transform;
+        }
+
+        private void EnableCamera()
+        {   
             _camera.enabled = true;
         }
 
