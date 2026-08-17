@@ -1,15 +1,22 @@
+using Lugu.Singleton;
 using TMPro;
 using UnityEngine;
 
-namespace RPG
+namespace RPG.UI
 {
-    public class CurrentVersionText : MonoBehaviour
+    public class CurrentVersionText : SingletonMonoPersistent<CurrentVersionText>
     {
         [SerializeField] private TextMeshProUGUI _currentVersionText;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             _currentVersionText.text = "v" + Application.version;
+
+#if UNITY_EDITOR
+            _currentVersionText.text += "*";
+#endif
         }
     }
 }
