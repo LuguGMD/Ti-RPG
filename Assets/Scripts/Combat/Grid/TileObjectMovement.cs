@@ -12,6 +12,7 @@ namespace RPG.Combat.Grid
     public class TileObjectMovement : MonoBehaviour
     {
         private TileObject _tileObject;
+        [HideInInspector] public bool CanGoToLastRow = true;
 
 
         #region Properties
@@ -110,7 +111,7 @@ namespace RPG.Combat.Grid
 
         public void Push(Movement movement)
         {
-            if (MapManager.IsMovementValid(_tileObject.Position, movement))
+            if (MapManager.IsMovementValid(_tileObject.Position, movement, CanGoToLastRow))
             {
                 ChangeTile(movement.Direction, true);
                 _tileObject.UpdatePosition();

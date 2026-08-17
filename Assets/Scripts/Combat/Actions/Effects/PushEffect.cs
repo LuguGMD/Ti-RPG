@@ -33,7 +33,7 @@ namespace RPG.Combat.Actions.Effects
 
             Movement movement = new Movement(pushDirection, true);
 
-            if (!MapManager.IsMovementValid(target.Position, movement))
+            if (!MapManager.IsMovementValid(target.Position, movement, target.Movement.CanGoToLastRow))
             {
                 return false;
             }

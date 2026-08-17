@@ -31,6 +31,7 @@ namespace RPG.Combat
             base.Start();
             Initialize();
             ActionsManager.Instance.OnCharacterCreated?.Invoke(this);
+            Movement.CanGoToLastRow = false;
         }
 
         protected new void OnEnable()
