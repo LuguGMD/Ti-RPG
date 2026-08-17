@@ -81,6 +81,16 @@ namespace RPG.Save
             File.WriteAllText(GetSaveFilePath(), JsonUtility.ToJson(Instance._saveData, true));
         }
 
+        public static void ResetSave()
+        {
+            if (File.Exists(GetSaveFilePath()))
+            {
+                File.Delete(GetSaveFilePath());
+            }
+
+            Instance._saveData = new SaveData();
+        }
+
         public static string Load(string key)
         {
             string path = GetSaveFilePath();

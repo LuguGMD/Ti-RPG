@@ -40,11 +40,6 @@ namespace RPG
 
         #endregion
 
-        private void Start()
-        {
-            SaveManager.Instance.LoadAll();
-        }
-
         private void OnEnable()
         {
             ActionsManager.Instance.OnLevelSelected += SelectLevel;
