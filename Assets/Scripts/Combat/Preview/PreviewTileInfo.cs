@@ -15,6 +15,7 @@ namespace RPG.Combat.Preview
         private bool _needsToBeEmpty = false;
         private bool _doShowParent = false;
         private bool _doShowSelf = false;
+        private bool _alwaysShowEffect = false;
 
         #region Properties
 
@@ -26,16 +27,18 @@ namespace RPG.Combat.Preview
         public bool NeedsToBeEmpty { get { return _needsToBeEmpty; } }
         public bool DoShowParent { get { return _doShowParent; } }
         public bool DoShowSelf { get { return _doShowSelf; } }
+        public bool AlwaysShowEffect {  get { return _alwaysShowEffect; } }
 
         #endregion
 
-        public PreviewTileInfo(Vector2Int relativePosition, DirectionEnum direction, bool needsToBeEmpty, bool doShowParent = true, bool doShowSelf = true)
+        public PreviewTileInfo(Vector2Int relativePosition, DirectionEnum direction, bool needsToBeEmpty, bool doShowParent = true, bool doShowSelf = true, bool alwaysShowEffect = false)
         {
             _relativePosition = relativePosition;
             _direction = direction;
             _needsToBeEmpty = needsToBeEmpty;
             _doShowParent = doShowParent;
             _doShowSelf = doShowSelf;
+            _alwaysShowEffect = alwaysShowEffect;
         }
 
         public void SetParent(PreviewTileInfo parent)
@@ -43,9 +46,9 @@ namespace RPG.Combat.Preview
             _parent = parent;
         }
 
-        public PreviewTileInfo CreateChild(Vector2Int relativePosition, DirectionEnum direction, bool needsToBeEmpty, bool doShowParent = true, bool doShowSelf = true)
+        public PreviewTileInfo CreateChild(Vector2Int relativePosition, DirectionEnum direction, bool needsToBeEmpty, bool doShowParent = true, bool doShowSelf = true, bool alwaysShowEffect = false)
         {
-            PreviewTileInfo child = new PreviewTileInfo(relativePosition, direction, needsToBeEmpty, doShowParent, doShowSelf);
+            PreviewTileInfo child = new PreviewTileInfo(relativePosition, direction, needsToBeEmpty, doShowParent, doShowSelf, alwaysShowEffect);
             _child = child;
             child.SetParent(this);
 

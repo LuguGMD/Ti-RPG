@@ -6,7 +6,7 @@ namespace RPG.Combat.Preview
     {
         //TO DO adicionar logica da IA do inimigo para qual opção escolher
 
-        protected override void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position, ref ActionPreviewTile lastPreviewTile)
+        protected override void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position, ref ActionPreviewTile lastPreviewTile, bool canBeSelected = false)
         {
             base.AddPreviewTile(previewTileInfo, position, ref lastPreviewTile);
 
@@ -14,7 +14,7 @@ namespace RPG.Combat.Preview
 
             ActionPreviewTile previewTile = _activePreviewTiles[_activePreviewTiles.Count - 1];
 
-            previewTile.SetCanBeSelected(false);
+            previewTile.SetCanBeSelected(canBeSelected);
             previewTile.SetMeshes(CombatManager.EnemyPreviewGroups.Effect);
         }
     }

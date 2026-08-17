@@ -12,6 +12,7 @@ namespace RPG
             ActionsManager.Instance.OnCharacterSelected += ChangeCameraTarget;
             ActionsManager.Instance.OnActionStart += EnableCamera;
             ActionsManager.Instance.OnActionEnd += DisableCamera;
+            ActionsManager.Instance.OnCharacterDeselected += DisableCamera;
         }
 
         private void OnDisable()
@@ -19,6 +20,7 @@ namespace RPG
             ActionsManager.Instance.OnCharacterSelected -= ChangeCameraTarget;
             ActionsManager.Instance.OnActionStart -= EnableCamera;
             ActionsManager.Instance.OnActionEnd -= DisableCamera;
+            ActionsManager.Instance.OnCharacterDeselected -= DisableCamera;
         }
 
         private void ChangeCameraTarget(Combat.CharacterController character)
@@ -27,8 +29,11 @@ namespace RPG
         }
 
         private void EnableCamera()
-        {   
-            _camera.enabled = true;
+        {
+            if (_camera.Target.TrackingTarget != null)
+            {
+                _camera.enabled = true;
+            }
         }
 
         private void DisableCamera()

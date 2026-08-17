@@ -91,6 +91,23 @@ namespace RPG.Combat.Preview
         {
             _filter[_tilePosition.y].mesh = info.PreviewLinesMeshs[_tilePosition.y];
             _renderer[_tilePosition.y].material = info.Material;
+            ShowMeshes();
+        }
+
+        public void HideMeshes()
+        {
+            foreach(Renderer renderer in _renderer)
+            {
+                renderer.enabled = false;
+            }
+        }
+
+        public void ShowMeshes()
+        {
+            foreach (Renderer renderer in _renderer)
+            {
+                renderer.enabled = true;
+            }
         }
 
         public void SetCanBeSelected(bool canBeSelected)

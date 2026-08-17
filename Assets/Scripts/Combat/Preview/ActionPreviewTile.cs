@@ -43,7 +43,7 @@ namespace RPG.Combat.Preview
             _info = info;
         }
 
-        public void SeParent(ActionPreviewTile parent)
+        public void SetParent(ActionPreviewTile parent)
         {
             _parent = parent;
         }
@@ -56,10 +56,10 @@ namespace RPG.Combat.Preview
 
         protected void ShowEffects(bool isFirst = true)
         {
-            if (_info == null || _effectPreviewEnabled || !_canBeSelected) return;
+            if (_info == null || ((_effectPreviewEnabled || !_canBeSelected) && !_info.AlwaysShowEffect)) return;
             _effectPreviewEnabled = true;
 
-            if (_info.DoShowSelf || !isFirst)
+            if (_info.DoShowSelf || !isFirst || _info.AlwaysShowEffect)
             {
                 foreach (Effect effect in _info.Effects)
                 {
@@ -68,7 +68,7 @@ namespace RPG.Combat.Preview
 
             }
 
-            if(_parent != null && _info.DoShowParent)
+            if (_parent != null && _info.DoShowParent)
             {
                 _parent.ShowEffects(false);
             }
