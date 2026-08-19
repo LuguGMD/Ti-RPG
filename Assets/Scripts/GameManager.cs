@@ -13,7 +13,7 @@ using CharacterController = RPG.Combat.CharacterController;
 
 namespace RPG
 {
-    public class GameManager : SingletonMonoPersistent<GameManager>, ISavable<GameManager, GameManagerData, GameManagerAdapter>
+    public class GameManager : SingletonMonoPersistent<GameManager>, ISavable<GameManager, GameManagerAdapter>
     {
         [SerializeField] private LevelScriptable _selectedLevel;
         private CharacterScriptable _selectedCharacterMinigame;
@@ -169,13 +169,13 @@ namespace RPG
 
         public void Save()
         {
-            ISavable<GameManager, GameManagerData, GameManagerAdapter> savable = (ISavable<GameManager, GameManagerData, GameManagerAdapter>)this;
+            ISavable<GameManager, GameManagerAdapter> savable = (ISavable<GameManager, GameManagerAdapter>)this;
             savable.SaveInfo();
         }
 
         public void Load()
         {
-            ISavable<GameManager, GameManagerData, GameManagerAdapter> savable = (ISavable<GameManager, GameManagerData, GameManagerAdapter>)this;
+            ISavable<GameManager, GameManagerAdapter> savable = (ISavable<GameManager, GameManagerAdapter>)this;
             savable.LoadInfo();
         }
 

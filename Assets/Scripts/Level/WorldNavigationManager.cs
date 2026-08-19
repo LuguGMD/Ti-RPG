@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace RPG.Level
 {
-    public class WorldNavigationManager : MonoBehaviour, ISavable<WorldNavigationManager, LevelManagerData, LevelManagerAdapter>
+    public class WorldNavigationManager : MonoBehaviour, ISavable<WorldNavigationManager, LevelManagerAdapter>
     {
         private PlayerInput _playerInput;
 
@@ -184,13 +184,13 @@ namespace RPG.Level
 
         public void Save()
         {
-            ISavable<WorldNavigationManager, LevelManagerData, LevelManagerAdapter> savable = (ISavable<WorldNavigationManager, LevelManagerData, LevelManagerAdapter>)this;
+            ISavable<WorldNavigationManager, LevelManagerAdapter> savable = (ISavable<WorldNavigationManager, LevelManagerAdapter>)this;
             savable.SaveInfo();
         }
 
         public void Load()
         {
-            ISavable<WorldNavigationManager, LevelManagerData, LevelManagerAdapter> savable = (ISavable<WorldNavigationManager, LevelManagerData, LevelManagerAdapter>)this;
+            ISavable<WorldNavigationManager, LevelManagerAdapter> savable = (ISavable<WorldNavigationManager, LevelManagerAdapter>)this;
             savable.LoadInfo();
         }
 

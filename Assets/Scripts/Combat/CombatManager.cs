@@ -117,8 +117,7 @@ namespace RPG.Combat
 
         private void GetCombatUpgrades()
         {
-            string json = SaveManager.Load(SaveConstants.SaveKeys[SaveConstants.SaveKey.Upgrade]);
-            UpgradeGraphData data = JsonUtility.FromJson<UpgradeGraphData>(json);
+            UpgradeGraphData data = SaveManager.SaveData.UpgradeGraphData;
 
             if (data == null) return;
 

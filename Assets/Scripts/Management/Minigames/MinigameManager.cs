@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace RPG.Management.Minigames
 {
-    public class MinigameManager : SingletonMono<MinigameManager>, ISavable<MinigameManager, MinigameManagerData, MinigameManagerAdapter>
+    public class MinigameManager : SingletonMono<MinigameManager>, ISavable<MinigameManager, MinigameManagerAdapter>
     {
         private int _totalHits;
         private int _totalPerfectHits;
@@ -190,13 +190,13 @@ namespace RPG.Management.Minigames
 
         public void Save()
         {
-            ISavable<MinigameManager, MinigameManagerData, MinigameManagerAdapter> savable = (ISavable<MinigameManager, MinigameManagerData, MinigameManagerAdapter>)this;
+            ISavable<MinigameManager, MinigameManagerAdapter> savable = (ISavable<MinigameManager, MinigameManagerAdapter>)this;
             savable.SaveInfo();
         }
 
         public void Load()
         {
-            ISavable<MinigameManager, MinigameManagerData, MinigameManagerAdapter> savable = (ISavable<MinigameManager, MinigameManagerData, MinigameManagerAdapter>)this;
+            ISavable<MinigameManager, MinigameManagerAdapter> savable = (ISavable<MinigameManager, MinigameManagerAdapter>)this;
             savable.LoadInfo();
         }
     }

@@ -4,10 +4,11 @@ using UnityEngine;
 
 namespace RPG.Tutorial
 {
-    public class TutorialManagerAdapter : SaveAdapter<TutorialManager, TutorialManagerData>
+    public class TutorialManagerAdapter : SaveAdapter<TutorialManager>
     {
-        public override void ClassToData(TutorialManager classSave, TutorialManagerData dataSave)
+        public override void ClassToData(TutorialManager classSave)
         {
+            TutorialManagerData dataSave = SaveManager.SaveData.TutorialManagerData;
             dataSave.TutorialDatas = new TutorialData[classSave.TutorialData.Count];
             int tutorialCount = 0;
 
@@ -23,8 +24,9 @@ namespace RPG.Tutorial
 
         }
 
-        public override void DataToClass(TutorialManager classSave, TutorialManagerData dataSave)
+        public override void DataToClass(TutorialManager classSave)
         {
+            TutorialManagerData dataSave = SaveManager.SaveData.TutorialManagerData;
             TutorialData[] tutorialDatas = dataSave.TutorialDatas;
             foreach (TutorialData tutorialData in tutorialDatas)
             {

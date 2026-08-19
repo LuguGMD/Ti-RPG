@@ -6,7 +6,7 @@ using UnityEngine;
 namespace RPG.Management.Progression
 {
 
-    public class UpgradeGraphUI : SingletonMono<UpgradeGraphUI>, ISavable<UpgradeGraphUI, UpgradeGraphData, UpgradeGraphAdapter>
+    public class UpgradeGraphUI : SingletonMono<UpgradeGraphUI>, ISavable<UpgradeGraphUI, UpgradeGraphAdapter>
     {
         [Header("Configuração")]
         public UpgradeGraphRuntime upgradeGraph;
@@ -174,13 +174,13 @@ namespace RPG.Management.Progression
 
         public void Save()
         {
-            ISavable<UpgradeGraphUI, UpgradeGraphData, UpgradeGraphAdapter> savable = (ISavable<UpgradeGraphUI, UpgradeGraphData, UpgradeGraphAdapter>)this;
+            ISavable<UpgradeGraphUI, UpgradeGraphAdapter> savable = (ISavable<UpgradeGraphUI, UpgradeGraphAdapter>)this;
             savable.SaveInfo();
         }
 
         public void Load()
         {
-            ISavable<UpgradeGraphUI, UpgradeGraphData, UpgradeGraphAdapter> savable = (ISavable<UpgradeGraphUI, UpgradeGraphData, UpgradeGraphAdapter>)this;
+            ISavable<UpgradeGraphUI, UpgradeGraphAdapter> savable = (ISavable<UpgradeGraphUI, UpgradeGraphAdapter>)this;
             savable.LoadInfo();
         }
     }
