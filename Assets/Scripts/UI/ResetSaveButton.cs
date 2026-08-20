@@ -3,11 +3,13 @@ using UnityEngine;
 
 namespace RPG.UI
 {
-    public class ResetSaveButton : UIButtonHandler
+    public class ResetSaveButton : PlayButton
     {
         protected override void OnClick()
         {
             SaveManager.ResetSave();
+
+            base.OnClick();
         }
     }
 }
