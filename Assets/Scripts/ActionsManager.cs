@@ -26,6 +26,7 @@ namespace RPG
 
         public Action OnCombatSpeedChanged;
         public Action OnApresentadorDamageTaken;
+        public Action OnApresentadorHealed;
 
         public Action OnApresentadorActionCompleted;
         public Action OnApresentadorActionCanceled;

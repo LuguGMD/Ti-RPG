@@ -88,7 +88,7 @@ namespace RPG.Combat
             _currentMotivation += heal;
             _currentMotivation = Mathf.Clamp(_currentMotivation, 0, CombatConstants.MAX_MOTIVATION_APRESENTADOR);
 
-            ActionsManager.Instance.OnApresentadorDamageTaken?.Invoke();
+            ActionsManager.Instance.OnApresentadorHealed?.Invoke();
         }
 
         public void Rotate(int amount)
