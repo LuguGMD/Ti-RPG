@@ -74,7 +74,7 @@ namespace RPG.Combat.UI
 
         private void OnEntitySelected(EntityController entitySelected)
         {
-            if (_isCanvasEnabled && CombatManager.Apresentador != entitySelected)
+            if (_isCanvasEnabled && CombatManager.Apresentador.name != entitySelected.name)
             {
                 CancelAction();
             }
@@ -83,17 +83,21 @@ namespace RPG.Combat.UI
         private void ShowCanvas()
         {
             ActionsManager.Instance.OnApresentadorUIOpen?.Invoke();
-            _isCanvasEnabled = true;
+            CombatUIManager.Instance.ChangePanel(_mainPanel);
+            
+            if (_isCanvasEnabled) return;
             InitializeDictionary();
             _rotatedAmount = 0;
-            CombatUIManager.Instance.ChangePanel(_mainPanel);
-
             UpdateText();
             SelectRow();
+
+            _isCanvasEnabled = true;
         }
 
         private void HideCanvas()
         {
+            if (!_isCanvasEnabled) return;
+
             _isCanvasEnabled = false;
             CombatUIManager.Instance.DisablePanel(_mainPanel);
 
