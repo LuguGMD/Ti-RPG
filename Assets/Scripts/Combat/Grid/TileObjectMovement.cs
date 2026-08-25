@@ -88,6 +88,12 @@ namespace RPG.Combat.Grid
             float startPercentage = MapManager.Instance.GetCurrentTilePercentage(_tileObject.Position);
             float endPercentage = MapManager.Instance.GetCurrentTilePercentage(targetTile);
 
+            if (endPercentage < 0)
+            {
+                startPercentage += 1;
+                endPercentage += 1;
+            }
+
             DOVirtual.Float(0f, 1f, time / CombatManager.CombatSpeed, t => {
                 float currentPercentage = Mathf.Lerp(startPercentage, endPercentage, t);
                 Vector3 position = spline.EvaluatePosition(currentPercentage);
@@ -101,6 +107,7 @@ namespace RPG.Combat.Grid
         private IEnumerator MoveAlongPoints(float time, DirectionEnum direction)
         {
             Vector2Int targetTile = _tileObject.Position + direction.ToVector2Int();
+            targetTile = targetTile.ClampMap();
             Vector3 targetPos = MapManager.Instance.GetWorldPosition(targetTile);
 
             transform.LookAt(targetPos);
