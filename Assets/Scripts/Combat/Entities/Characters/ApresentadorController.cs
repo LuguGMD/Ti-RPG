@@ -1,7 +1,9 @@
 using FMODUnity;
 using RPG.Combat.Actions;
 using RPG.Combat.Grid;
+using RPG.Combat.Preview;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -13,6 +15,8 @@ namespace RPG.Combat
 
         private int _maxRowRotations = 3;
         private int _rowToRotate = 0;
+        private int _superCharge = 0;
+        private SuperHandler _equippedSuper;
 
         
 
@@ -22,6 +26,8 @@ namespace RPG.Combat
         public float CurrentMotivation { get { return _currentMotivation; } }
         public int RowToRotate { get { return _rowToRotate; } }
         public int MaxRowRotations { get { return _maxRowRotations; } }
+        public int SuperCharge { get { return _superCharge; } }
+        public SuperHandler EquippedSuper { get { return _equippedSuper; } }
 
         #endregion
 
@@ -36,6 +42,9 @@ namespace RPG.Combat
             _currentMotivation = CombatConstants.MAX_MOTIVATION_APRESENTADOR;
             MapManager.Instance.AddTileObject(_tileObject, Map.CENTER_POS);
             AdjsutGameSpeed();
+
+            //TO DO remover depois DEBUG
+            EquipSuper(new SuperHealHandler());
         }
 
         public override EntityScriptable GetEntityInfo()
@@ -99,6 +108,35 @@ namespace RPG.Combat
             _rowToRotate += (Map.Rows - 1);
             _rowToRotate %= (Map.Rows - 1);
         }
+
+        #region Super
+
+        public void ChargeSuper(int amount)
+        {
+            _superCharge += amount;
+        }
+
+        public bool UseSuper()
+        {
+            if(_superCharge >= _equippedSuper.ChargeAmount)
+            {
+                _superCharge = 0;
+
+                List<PreviewTileInfo> _tiles = _equippedSuper.Preview();
+                _equippedSuper.Execute(_tiles[0]);
+                return true;
+            }
+
+            return false;
+        }
+
+        public void EquipSuper(SuperHandler super)
+        {
+            _equippedSuper = super;
+            _equippedSuper.Init(null);
+        }
+
+        #endregion
 
         public void CompleteAction()
         {

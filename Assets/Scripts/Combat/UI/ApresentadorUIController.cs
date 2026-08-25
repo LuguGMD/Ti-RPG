@@ -19,6 +19,8 @@ namespace RPG.Combat.UI
         [SerializeField] private Button _cancelActionButton;
         [SerializeField] private Button _confirmActionButton;
         [SerializeField] private TextMeshProUGUI _rotationsLeftText;
+        [SerializeField] private Image _superBarFill;
+        [SerializeField] private Button _superButton;
 
         private Dictionary<int, int> _rowsRotatedAmount = new Dictionary<int, int>();
         private int _rotatedAmount = 0;
@@ -56,6 +58,8 @@ namespace RPG.Combat.UI
             _cancelActionButton.onClick.AddListener(CancelAction);
             _confirmActionButton.onClick.AddListener(ConfirmAction);
 
+            _superButton.onClick.AddListener(UseSuper);
+
             InitializeDictionary();
         }
 
@@ -82,9 +86,10 @@ namespace RPG.Combat.UI
 
         private void ShowCanvas()
         {
+            UpdateSuperUI();
             ActionsManager.Instance.OnApresentadorUIOpen?.Invoke();
             CombatUIManager.Instance.ChangePanel(_mainPanel);
-            
+
             if (_isCanvasEnabled) return;
             InitializeDictionary();
             _rotatedAmount = 0;
@@ -116,7 +121,7 @@ namespace RPG.Combat.UI
         private void Rotate(int amount)
         {
             int rowIndex = CombatManager.Apresentador.RowToRotate;
-            if(_linesStuck.Contains(rowIndex))
+            if (_linesStuck.Contains(rowIndex))
             {
                 CombatManager.Instance.CameraShake(0.9f);
                 return;
@@ -133,7 +138,17 @@ namespace RPG.Combat.UI
                 UpdateText();
 
                 CombatManager.Apresentador.Rotate(amount);
+                if(isRemovingRotations)
+                {
+                    CombatManager.Apresentador.ChargeSuper(-Mathf.Abs(amount));
+                }
+                else
+                {
+                    CombatManager.Apresentador.ChargeSuper(Mathf.Abs(amount));
+                }
             }
+
+            UpdateSuperUI();
         }
 
         private void StuckLine(int lineIndex)
@@ -156,8 +171,10 @@ namespace RPG.Combat.UI
             for (int i = 0; i < Map.Rows - 1; i++)
             {
                 CombatManager.Apresentador.Rotate(i, -_rowsRotatedAmount[i]);
+                CombatManager.Apresentador.ChargeSuper(-Mathf.Abs(_rowsRotatedAmount[i]));
             }
             ActionsManager.Instance.OnApresentadorActionCanceled?.Invoke();
+            UpdateSuperUI();
             HideCanvas();
         }
 
@@ -165,20 +182,25 @@ namespace RPG.Combat.UI
         {
             if (_rotatedAmount > 0)
             {
-                _confirmedRotatedAmount += _rotatedAmount;
-
-                if (_confirmedRotatedAmount >= CombatManager.Apresentador.MaxRowRotations)
-                {
-                    CombatManager.Apresentador.CompleteAction();
-                    ActionsManager.Instance.OnApresentadorActionCompleted?.Invoke();
-                }
-
-                HideCanvas();
+                CompleteAction();
             }
             else
             {
                 CancelAction();
             }
+        }
+
+        private void CompleteAction()
+        {
+            _confirmedRotatedAmount += _rotatedAmount;
+
+            if (_confirmedRotatedAmount >= CombatManager.Apresentador.MaxRowRotations)
+            {
+                CombatManager.Apresentador.CompleteAction();
+                ActionsManager.Instance.OnApresentadorActionCompleted?.Invoke();
+            }
+
+            HideCanvas();
         }
 
         private void SelectRow()
@@ -196,6 +218,25 @@ namespace RPG.Combat.UI
             {
                 ActionsManager.Instance.OnMapChanged?.Invoke();
             });
+        }
+
+        private void UpdateSuperUI()
+        {
+            float amount = (float)CombatManager.Apresentador.SuperCharge / (float)CombatManager.Apresentador.EquippedSuper.ChargeAmount;
+            amount = Mathf.Clamp01(amount);
+            _superBarFill.DOKill(true);
+            _superBarFill.DOFillAmount(amount, 0.5f);
+
+            _superButton.interactable = amount >= 1;
+        }
+
+        private void UseSuper()
+        {
+            if (CombatManager.Apresentador.UseSuper())
+            {
+                UpdateSuperUI();
+                CompleteAction();
+            }
         }
     }
 }
