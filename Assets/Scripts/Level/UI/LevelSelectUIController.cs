@@ -126,7 +126,6 @@ namespace RPG.Level
             _partyMemberNameText.text = character.EntityName;
 
             float motivationValue = character.Motivation / CombatConstants.MAX_MOTIVATION_APRESENTADOR;
-            motivationValue = GameManager.DefeatedCharacters.Contains(character) ? motivationValue/2 : motivationValue;
 
             _motivationBarSlider.value = motivationValue;
         }

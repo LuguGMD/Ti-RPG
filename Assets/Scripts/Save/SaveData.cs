@@ -9,7 +9,6 @@ namespace RPG.Save
     {
         public GameManagerData GameManagerData = new GameManagerData();
         public LevelManagerData LevelManagerData = new LevelManagerData();
-        public MinigameManagerData MinigameManagerData = new MinigameManagerData();
         public UpgradeGraphData UpgradeGraphData = new UpgradeGraphData();
         public TutorialManagerData TutorialManagerData = new TutorialManagerData();
     }

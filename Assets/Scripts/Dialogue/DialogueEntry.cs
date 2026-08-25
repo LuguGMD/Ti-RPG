@@ -37,10 +37,9 @@ namespace RPG.Dialogue
 
         private void PickDialogue()
         {
-            if (!GameManager.DefeatedCharacters.Contains(_characterInfo))
-            { _graphPicked = _graph; }
-            else
-            { _graphPicked = _graphDemotivated; }
+            //TO DO adicioanr verificacao de vitoria ou derrota de uma fase
+            _graphPicked = _graph; 
+            //_graphPicked = _graphDemotivated; 
         }
 
         public void StartDialogue()
@@ -59,10 +58,6 @@ namespace RPG.Dialogue
             if (_isTalking)
             {
                 CameraManager.Instance.DisableCamera(_camera);
-                if (_characterInfo != null && GameManager.DefeatedCharacters.Contains(_characterInfo))
-                {
-                    ActionsManager.Instance.OnCharacterMinigameSelected?.Invoke(_characterInfo);
-                }
                 _isTalking = false;
             }
         }

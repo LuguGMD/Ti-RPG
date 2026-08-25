@@ -50,8 +50,6 @@ namespace RPG.Combat
         {
             _characterInfo = (CharacterScriptable)_info;
             float motivation = _characterInfo.Motivation;
-            motivation = GameManager.DefeatedCharacters.Contains(_characterInfo) ? motivation/2 : motivation;
-
             _currentMotivation = motivation;
         }
 
