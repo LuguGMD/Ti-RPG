@@ -76,7 +76,7 @@ namespace RPG.Combat.UI
         {
             if (_isCanvasEnabled && CombatManager.Apresentador.name != entitySelected.name)
             {
-                CancelAction();
+                ConfirmAction();
             }
         }
 
