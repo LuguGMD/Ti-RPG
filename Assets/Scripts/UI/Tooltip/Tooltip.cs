@@ -3,6 +3,8 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using DG.Tweening;
+using System;
+using Unity.VisualScripting;
 
 namespace RPG.UI.Tooltip
 {
@@ -39,21 +41,10 @@ namespace RPG.UI.Tooltip
 
         private void Update()
         {
-            if (Application.isEditor)
-            {
-                int headerLength = headerField.text.Length;
-                int contentLength = contentField.text.Length;
+            int headerLength = headerField.text.Length;
+            int contentLength = contentField.text.Length;
 
-                layoutElement.enabled = (headerLength > characterWrapLimit || contentLength > characterWrapLimit) ? true : false;
-            }
-
-            Vector2 position = Mouse.current.position.ReadValue();
-
-            float pivotX = position.x / Screen.width;
-            float pivotY = position.y / Screen.height;
-            rectTransform.pivot = new Vector2(pivotX, pivotY);
-
-            transform.position = position;
+            layoutElement.enabled = (headerLength > characterWrapLimit || contentLength > characterWrapLimit) ? true : false;
         }
 
         public void Hide()
