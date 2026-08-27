@@ -8,7 +8,7 @@ namespace RPG.Combat.Actions
     public abstract class SuperHandler : CombatAction
     {
         protected int _upgradeTier = 0;
-        protected int _chargeAmount = 10;
+        protected int _chargeAmount = 1 /*10*/;
 
         #region Properties
 

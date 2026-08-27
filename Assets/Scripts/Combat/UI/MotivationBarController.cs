@@ -29,6 +29,7 @@ namespace RPG.Combat.UI
             ActionsManager.Instance.OnCharacterDamageTaken += UpdateCharacterHealth;
             ActionsManager.Instance.OnCharacterHealed += UpdateCharacterHealth;
             ActionsManager.Instance.OnApresentadorDamageTaken += UpdateApresentadorDamage;
+            ActionsManager.Instance.OnApresentadorHealed += UpdateApresentadorDamage;
             ActionsManager.Instance.OnActionStart += UpdateInfo;
             ActionsManager.Instance.OnApresentadorActionCompleted += UpdateInfo;
             ActionsManager.Instance.OnPlayerTurnStarted += UpdateInfo;
@@ -41,6 +42,7 @@ namespace RPG.Combat.UI
             ActionsManager.Instance.OnCharacterDamageTaken -= UpdateCharacterHealth;
             ActionsManager.Instance.OnCharacterHealed -= UpdateCharacterHealth;
             ActionsManager.Instance.OnApresentadorDamageTaken -= UpdateApresentadorDamage;
+            ActionsManager.Instance.OnApresentadorHealed -= UpdateApresentadorDamage;
             ActionsManager.Instance.OnActionStart -= UpdateInfo;
             ActionsManager.Instance.OnApresentadorActionCompleted -= UpdateInfo;
             ActionsManager.Instance.OnPlayerTurnStarted -= UpdateInfo;

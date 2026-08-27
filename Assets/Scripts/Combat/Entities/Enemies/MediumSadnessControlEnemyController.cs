@@ -49,13 +49,13 @@ namespace RPG.Combat
                     StageEntityController entity;
 
                     entity = MapManager.Map.GetTile(Position + (Vector2Int.left * i))?.TileObject?.Entity;
-                    if (entity != null && entity.Info.Team == TeamEnum.Circus) _closeTargetDirections.Add((Vector2Int.left));
+                    if (entity != null && entity.Info.Team == TeamEnum.Circus && entity != CombatManager.Apresentador) _closeTargetDirections.Add((Vector2Int.left));
                     entity = MapManager.Map.GetTile(Position + (Vector2Int.right * i))?.TileObject?.Entity;
-                    if (entity != null && entity.Info.Team == TeamEnum.Circus) _closeTargetDirections.Add((Vector2Int.right));
+                    if (entity != null && entity.Info.Team == TeamEnum.Circus && entity != CombatManager.Apresentador) _closeTargetDirections.Add((Vector2Int.right));
                     entity = MapManager.Map.GetTile(Position + (Vector2Int.up * i))?.TileObject?.Entity;
-                    if (entity != null && entity.Info.Team == TeamEnum.Circus) _closeTargetDirections.Add((Vector2Int.up));
+                    if (entity != null && entity.Info.Team == TeamEnum.Circus && entity != CombatManager.Apresentador) _closeTargetDirections.Add((Vector2Int.up));
                     entity = MapManager.Map.GetTile(Position + (Vector2Int.down * i))?.TileObject?.Entity;
-                    if (entity != null && entity.Info.Team == TeamEnum.Circus) _closeTargetDirections.Add((Vector2Int.down));
+                    if (entity != null && entity.Info.Team == TeamEnum.Circus && entity != CombatManager.Apresentador) _closeTargetDirections.Add((Vector2Int.down));
 
                     if (_closeTargetDirections.Count > 0) break;
                 }

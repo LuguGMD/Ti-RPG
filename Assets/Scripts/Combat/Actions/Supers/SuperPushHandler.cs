@@ -1,4 +1,5 @@
 using RPG.Combat.Actions.Effects;
+using RPG.Combat.Grid;
 using RPG.Combat.Preview;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,25 +7,28 @@ using UnityEngine;
 
 namespace RPG.Combat.Actions
 {
-    public class SuperHealHandler : SuperHandler
+    public class SuperPushHandler : SuperHandler
     {
-        private HealingEffect _healEffect;
-        private float[] _healAmountTiers = new float[3]
+        private PushEffect _pushEffect;
+        private int[] _pushAmountTiers = new int[3]
         {
-            10,
-            20,
-            30,
+            1,
+            2,
+            3,
         };
 
         public override void Init(StageEntityController user)
         {
             _user = user;
-            _healEffect = new HealingEffect(_healAmountTiers[_upgradeTier], true);
+            _pushEffect = new PushEffect(Grid.DirectionEnum.Up, _pushAmountTiers[_upgradeTier], false);
             _effects.Add(new Effect());
-            _effects[0].CanTargetSelf = true;
-            _effects[0].TargetList.Add(TeamEnum.Circus);
-            _effects[0].Area.Add(Vector2Int.zero);
-            _effects[0].Commands.Add(_healEffect);
+            _effects[0].Commands.Add(_pushEffect);
+            _effects[0].TargetList.Add(TeamEnum.Enemies);
+            _effects[0].Area.Add(Vector2Int.up);
+            for (int i = 1; i < Map.Columns; i++)
+            {
+                _effects[0].Area.Add(Vector2Int.up + Vector2Int.right * i);
+            }
         }
 
         public override IEnumerator Execute(PreviewTileInfo selectedPreviewTile)
@@ -49,8 +53,8 @@ namespace RPG.Combat.Actions
         {
             List<PreviewTileInfo> firstSteps = new List<PreviewTileInfo>();
 
-            PreviewTileInfo none = new PreviewTileInfo(Vector2Int.zero, Grid.DirectionEnum.None, false);
-            firstSteps.Add(none);
+            PreviewTileInfo up = new PreviewTileInfo(Vector2Int.up, Grid.DirectionEnum.Up, false, false, false, true);
+            firstSteps.Add(up);
 
             return firstSteps;
         }

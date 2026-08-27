@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6897388919457165343}
   - component: {fileID: 1622492231221614679}
   - component: {fileID: 7223013535671135403}
+  - component: {fileID: 4813831413307516384}
+  - component: {fileID: 1329873075862929121}
   m_Layer: 0
   m_Name: ApresentadorCombatPrefab
   m_TagString: Untagged
@@ -60,6 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f697d92db671c54c99521c7a7e3e5dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.ApresentadorController
+  _info: {fileID: 11400000, guid: 7622bddbf325a7b429ee5f710f262d27, type: 2}
   _damagedSFX:
     Guid:
       Data1: -57277573
@@ -67,7 +70,13 @@ MonoBehaviour:
       Data3: 314102462
       Data4: 801854642
     Path: event:/Character/Player/Damaged
-  _info: {fileID: 11400000, guid: 2c08009a18e60c74b8e7198a01627ff7, type: 2}
+  _defeatedSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!114 &1622492231221614679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,6 +113,31 @@ CapsuleCollider:
   m_Height: 2.4129481
   m_Direction: 1
   m_Center: {x: 0, y: 0.70647407, z: 0}
+--- !u!114 &4813831413307516384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4262187507087816196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e4ebc8453335f845aacadf204dcc22c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Grid.TileObjectMovement
+  CanGoToLastRow: 1
+--- !u!114 &1329873075862929121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4262187507087816196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79da4ee4a2e2bae4c9a758b3da5cc706, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Preview.PreviewActionHandler
 --- !u!1001 &1415703926236979772
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -112,22 +146,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9112049658482845592}
     m_Modifications:
-    - target: {fileID: -3774331571344233442, guid: 8535cfd47565b4441aa181eb9c2c90eb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5461001540648871524, guid: 8535cfd47565b4441aa181eb9c2c90eb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7228686438847010856, guid: 8535cfd47565b4441aa181eb9c2c90eb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9103371582672437221, guid: 8535cfd47565b4441aa181eb9c2c90eb, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: -9190230132223756316, guid: bcf043fc64c0c0b4095544da4ec9affd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 26.222727
@@ -1683,6 +1701,22 @@ PrefabInstance:
     - target: {fileID: 9207878186299328608, guid: bcf043fc64c0c0b4095544da4ec9affd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.4092975
+      objectReference: {fileID: 0}
+    - target: {fileID: -3774331571344233442, guid: 8535cfd47565b4441aa181eb9c2c90eb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5461001540648871524, guid: 8535cfd47565b4441aa181eb9c2c90eb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7228686438847010856, guid: 8535cfd47565b4441aa181eb9c2c90eb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9103371582672437221, guid: 8535cfd47565b4441aa181eb9c2c90eb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

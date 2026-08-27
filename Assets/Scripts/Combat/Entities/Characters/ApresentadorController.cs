@@ -8,9 +8,8 @@ using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class ApresentadorController : EntityController
+    public class ApresentadorController : StageEntityController
     {
-        [SerializeField] protected EntityScriptable _info;
         private float _currentMotivation;
 
         private int _maxRowRotations = 3;
@@ -22,7 +21,6 @@ namespace RPG.Combat
 
         #region Properties
 
-        public EntityScriptable Info { get { return _info; } }
         public float CurrentMotivation { get { return _currentMotivation; } }
         public int RowToRotate { get { return _rowToRotate; } }
         public int MaxRowRotations { get { return _maxRowRotations; } }
@@ -35,6 +33,20 @@ namespace RPG.Combat
         {
             base.Start();
             Initialize();
+        }
+
+        protected new void OnEnable()
+        {
+            ActionsManager.Instance.OnCombatSpeedChanged += AdjsutGameSpeed;
+            ActionsManager.Instance.OnPreviewTileSelected += CheckSelected;
+            ActionsManager.Instance.OnEnemyTurnEnded += ResetAction;
+        }
+
+        protected new void OnDisable()
+        {
+            ActionsManager.Instance.OnCombatSpeedChanged -= AdjsutGameSpeed;
+            ActionsManager.Instance.OnPreviewTileSelected -= CheckSelected;
+            ActionsManager.Instance.OnEnemyTurnEnded -= ResetAction;
         }
 
         private void Initialize()
@@ -123,7 +135,7 @@ namespace RPG.Combat
                 _superCharge = 0;
 
                 List<PreviewTileInfo> _tiles = _equippedSuper.Preview();
-                _equippedSuper.Execute(_tiles[0]);
+                StartCoroutine(CombatManager.Instance.SuperActionCoroutine(_tiles[0]));
                 return true;
             }
 
@@ -133,7 +145,7 @@ namespace RPG.Combat
         public void EquipSuper(SuperHandler super)
         {
             _equippedSuper = super;
-            _equippedSuper.Init(null);
+            _equippedSuper.Init(this);
         }
 
         #endregion
@@ -147,6 +159,10 @@ namespace RPG.Combat
         {
             base.ResetAction();
             _rowToRotate = 0;
+        }
+
+        public override void SelectAction(int actionIndex)
+        {
         }
     }
 }

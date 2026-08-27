@@ -14,7 +14,7 @@ namespace RPG.Combat
     [RequireComponent(typeof(TileObjectMovement), typeof(PreviewActionHandler))]
     public abstract class StageEntityController : EntityController
     {
-        [SerializeField] protected StageEntityScriptable _info;
+        
         protected List<CombatAction> _actions = new List<CombatAction>();
 
         protected TileObjectMovement _movement;
@@ -29,7 +29,6 @@ namespace RPG.Combat
         #region Properties
 
         public TileObjectMovement Movement { get { return _movement; } }
-        public StageEntityScriptable Info { get { return _info; } }
         public PreviewActionHandler Preview { get { return _preview; } }
         public int SelectedActionIndex {  get { return _selectedActionIndex; } }
         public List<CombatAction> Actions => _actions;
@@ -98,7 +97,7 @@ namespace RPG.Combat
             TileObject.CheckSpotlight();
         }
 
-        public void SelectAction(int actionIndex)
+        public virtual void SelectAction(int actionIndex)
         {
             _selectedActionIndex = actionIndex;
             _preview.ChangeActionToPreview(_actions[actionIndex]);

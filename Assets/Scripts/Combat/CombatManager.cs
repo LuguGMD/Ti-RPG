@@ -301,6 +301,23 @@ namespace RPG.Combat
 
         }
 
+        public IEnumerator SuperActionCoroutine(PreviewTileInfo previewTileInfo)
+        {
+            _canSelectCharacter = false;
+            _isActionInProgress = true;
+            HideAllEnemiesPreviews();
+
+            yield return Apresentador.EquippedSuper.Execute(previewTileInfo);
+
+            ShowAllEnemiesPreviews();
+            DeselectCharacter();
+            _canSelectCharacter = true;
+            _isActionInProgress = false;
+
+
+            CheckEndPlayerTurn();
+        }
+
         private void CheckEndPlayerTurn()
         {
             if (_usedCharacters.Count >= _remainingCharacters.Count && _apresentador.HasActed)
