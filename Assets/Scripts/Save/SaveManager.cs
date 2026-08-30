@@ -72,12 +72,12 @@ namespace RPG.Save
 
         public static void ResetSave()
         {
-            if (File.Exists(GetSaveFilePath()))
-            {
-                File.Delete(GetSaveFilePath());
-            }
-
+            SaveData previousSave = Instance._saveData;
             Instance._saveData = new SaveData();
+
+            Instance._saveData.AudioManagerData = previousSave.AudioManagerData;
+
+            Save();
         }
 
         private static string GetSaveFilePath()

@@ -17,7 +17,7 @@ namespace RPG.Save
         public override void DataToClass(GameManager classSave)
         {
             GameManagerData dataSave = SaveManager.SaveData.GameManagerData;
-            classSave.AddCoins(dataSave.Coins);
+            classSave.SetCoins(dataSave.Coins);
 
             if(dataSave.CompletedChallenges != null)
             {

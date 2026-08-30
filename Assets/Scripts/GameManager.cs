@@ -36,6 +36,12 @@ namespace RPG
 
         #endregion
 
+        protected override void Awake()
+        {
+            base.Awake();
+            SaveManager.Instance.LoadAll();
+        }
+
         private void OnEnable()
         {
             ActionsManager.Instance.OnLevelSelected += SelectLevel;
@@ -48,7 +54,8 @@ namespace RPG
 
         private void OnDestroy()
         {
-            SaveManager.Instance.SaveAll();
+            if(Instance == this)
+                SaveManager.Instance.SaveAll();
         }
 
         private void SelectLevel(LevelScriptable selectedLevel)
@@ -64,10 +71,15 @@ namespace RPG
             AddCoins(100);
         }
 
+        public void SetCoins(int coinsAmount)
+        {
+            _coins = coinsAmount;
+            ActionsManager.Instance.OnCoinsAmountChanged?.Invoke();
+        }
+
         public void AddCoins(int coinsAmount)
         {
-            _coins += coinsAmount;
-            ActionsManager.Instance.OnCoinsAmountChanged?.Invoke();
+            SetCoins(_coins + coinsAmount);
         }
 
         public void SpendCoins(int coinsAmount)

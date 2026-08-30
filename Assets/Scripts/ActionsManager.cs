@@ -62,7 +62,6 @@ namespace RPG
         public Action<PreviewTileInfo> OnActionTileSelected;
         public Action<Vector2Int> OnPreviewTileSelected;
         public Action<Vector2Int> OnTileHovered;
-        public Action <Vector2Int> OnTileSelected;
 
         #endregion
 

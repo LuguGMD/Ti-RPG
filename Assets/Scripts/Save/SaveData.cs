@@ -11,5 +11,6 @@ namespace RPG.Save
         public LevelManagerData LevelManagerData = new LevelManagerData();
         public UpgradeGraphData UpgradeGraphData = new UpgradeGraphData();
         public TutorialManagerData TutorialManagerData = new TutorialManagerData();
+        public AudioManagerData AudioManagerData = new AudioManagerData();
     }
 }

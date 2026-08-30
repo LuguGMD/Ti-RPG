@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Lugu.Singleton;
 using RPG.Combat.Grid;
 using RPG.Extensions;
 using RPG.Management.Progression;
@@ -10,7 +11,7 @@ using UnityEngine.UIElements;
 
 namespace RPG.Combat
 {
-    public class SpotlightHandler : MonoBehaviour
+    public class SpotlightHandler : SingletonMono<SpotlightHandler>
     {
         private int _lastChangeTurn = 0;
         private int _currentPosition = 0;
@@ -23,6 +24,7 @@ namespace RPG.Combat
         #region Properties
 
         public Vector2Int CurrentSpotlightPosition { get { return _currentSpotlightPosition; } }
+        public bool IsSuperActive { get { return _isSuperActive; } }
 
         #endregion
 
@@ -36,7 +38,7 @@ namespace RPG.Combat
             ActionsManager.Instance.OnPlayerTurnStarted += CheckChangePosition;
             ActionsManager.Instance.OnSpotlightSuper += HandleSpotlightSuper;
             ActionsManager.Instance.OnTileHovered += OnTileHovered;
-            ActionsManager.Instance.OnTileSelected += OnTileSelected;
+            ActionsManager.Instance.OnPreviewTileSelected += OnTileSelected;
         }
 
         private void OnDisable()
@@ -44,7 +46,7 @@ namespace RPG.Combat
             ActionsManager.Instance.OnPlayerTurnStarted -= CheckChangePosition;
             ActionsManager.Instance.OnSpotlightSuper -= HandleSpotlightSuper;
             ActionsManager.Instance.OnTileHovered -= OnTileHovered;
-            ActionsManager.Instance.OnTileSelected -= OnTileSelected;
+            ActionsManager.Instance.OnPreviewTileSelected -= OnTileSelected;
         }
 
         private void CheckChangePosition()
@@ -52,8 +54,8 @@ namespace RPG.Combat
             if (CombatManager.TurnCount >= _lastChangeTurn + CombatConstants.SPOTLIGHT_CHANGE_TURNS)
             {
                 float chance = UnityEngine.Random.Range(0f, 1f);
-                int position = _currentPosition + chance > 0.5f ? 1 : -1;
-                ChangePosition(position);
+                int position = chance > 0.5f ? 1 : -1;
+                ChangePosition(_currentPosition + (position * (Map.Columns / CombatConstants.MAP_SECTIONS)));
             }
         }
 
@@ -63,15 +65,15 @@ namespace RPG.Combat
 
             _currentPosition = position;
 
-            _currentPosition += CombatConstants.MAP_SECTIONS;
-            _currentPosition %= CombatConstants.MAP_SECTIONS;
+            _currentPosition += Map.Columns;
+            _currentPosition %= Map.Columns;
             StartCoroutine(UpdateSpotlightPosition());
         }
 
         private IEnumerator UpdateSpotlightPosition()
         {
             Vector2Int previousSpotlightPosition = _currentSpotlightPosition;
-            _currentSpotlightPosition = new Vector2Int(_currentPosition * (Map.Columns / CombatConstants.MAP_SECTIONS), 1);
+            _currentSpotlightPosition = new Vector2Int(_currentPosition, 1);
             ChangeVisualPosition(_currentSpotlightPosition);
             ActionsManager.Instance.OnSpotlightPositionChanged?.Invoke(_currentSpotlightPosition);
             ActionsManager.Instance.OnMapChanged?.Invoke();
@@ -131,6 +133,7 @@ namespace RPG.Combat
             if (CombatManager.HasUpgrade(UpgradeConstants.UpgradeKey.Spotlight))
             {
                 _currentPosition = UnityEngine.Random.Range(0, CombatConstants.MAP_SECTIONS);
+                _currentPosition *= (Map.Columns / CombatConstants.MAP_SECTIONS);
                 _visual.SetActive(false);
                 StartCoroutine(UpdateSpotlightPosition());
             }
