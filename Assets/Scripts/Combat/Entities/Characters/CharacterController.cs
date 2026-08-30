@@ -31,6 +31,7 @@ namespace RPG.Combat
             base.Start();
             Initialize();
             ActionsManager.Instance.OnCharacterCreated?.Invoke(this);
+            Movement.CanGoToLastRow = false;
         }
 
         protected new void OnEnable()
@@ -49,8 +50,6 @@ namespace RPG.Combat
         {
             _characterInfo = (CharacterScriptable)_info;
             float motivation = _characterInfo.Motivation;
-            motivation = GameManager.DefeatedCharacters.Contains(_characterInfo) ? motivation/2 : motivation;
-
             _currentMotivation = motivation;
         }
 

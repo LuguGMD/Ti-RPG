@@ -5,10 +5,11 @@ using FMOD.Studio;
 using Lugu.Singleton;
 using RPG.Combat;
 using CharacterController = RPG.Combat.CharacterController;
+using RPG.Save;
 
 namespace RPG.Audio
 {
-    public class AudioManager : SingletonMonoPersistent<AudioManager>
+    public class AudioManager : SingletonMonoPersistent<AudioManager>, ISavable<AudioManager, AudioManagerAdapter>
     {
         [Header("FMOD Busses Paths")]
         private string masterBusPath = "bus:/";
@@ -61,7 +62,6 @@ namespace RPG.Audio
 
         public void PlayOneShot(EventReference sfxRef)
         {
-
             RuntimeManager.PlayOneShot(sfxRef);
         }
 
@@ -86,6 +86,8 @@ namespace RPG.Audio
         public void SetVolume(FMODBusEnum type, float volume)
         {
             GetBusType(type).setVolume(volume);
+
+            Save();
         }
 
         public bool IsMusicPlaying()
@@ -135,6 +137,18 @@ namespace RPG.Audio
             if (string.IsNullOrEmpty(paramName)) return;
 
             RuntimeManager.StudioSystem.setParameterByName(paramName, 0f);
+        }
+
+        public void Save()
+        {
+            ISavable<AudioManager, AudioManagerAdapter> savable = (ISavable<AudioManager, AudioManagerAdapter>)this;
+            savable.SaveInfo();
+        }
+
+        public void Load()
+        {
+            ISavable<AudioManager, AudioManagerAdapter> savable = (ISavable<AudioManager, AudioManagerAdapter>)this;
+            savable.LoadInfo();
         }
     }
 }

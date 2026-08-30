@@ -5,6 +5,6 @@ namespace RPG.Tutorial
     [System.Serializable]
     public class TutorialManagerData
     {
-        public TutorialData[] TutorialDatas;
+        public TutorialData[] TutorialDatas = new TutorialData[0];
     }
 }

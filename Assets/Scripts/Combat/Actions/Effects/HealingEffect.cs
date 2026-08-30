@@ -6,6 +6,7 @@ namespace RPG.Combat.Actions.Effects
     public class HealingEffect : EffectCommand
     {
         [SerializeField] private float _healAmount = 10;
+        private bool _targetsApresentador = false;
 
         #region Properties
 
@@ -13,9 +14,10 @@ namespace RPG.Combat.Actions.Effects
 
         #endregion
 
-        public HealingEffect(float healAmount)
+        public HealingEffect(float healAmount, bool targetsApresentador = false)
         {
             _healAmount = healAmount;
+            _targetsApresentador = targetsApresentador;
         }
 
         public override bool Execute(StageEntityController user, StageEntityController target)
@@ -29,7 +31,11 @@ namespace RPG.Combat.Actions.Effects
 
         public override bool ExecuteApresentador(StageEntityController user, ApresentadorController target)
         {
-            return false;
+            if (target == null || !_targetsApresentador) return false;
+
+            target.Heal(_healAmount);
+
+            return true;
         }
     }
 }

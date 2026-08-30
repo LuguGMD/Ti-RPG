@@ -2,9 +2,9 @@ using UnityEngine;
 
 namespace RPG.Save
 {
-    public abstract class SaveAdapter<Class, Data>
+    public abstract class SaveAdapter<Class>
     {
-        public abstract void DataToClass(Class classSave, Data dataSave);
-        public abstract void ClassToData(Class classSave, Data dataSave);
+        public abstract void DataToClass(Class classSave);
+        public abstract void ClassToData(Class classSave);
     }
 }

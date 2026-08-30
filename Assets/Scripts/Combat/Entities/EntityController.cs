@@ -13,6 +13,7 @@ namespace RPG.Combat
     [RequireComponent(typeof(TileObject), typeof(CursorTarget))]
     public abstract class EntityController : MonoBehaviour
     {
+        [SerializeField] protected StageEntityScriptable _info;
         protected TileObject _tileObject;
         protected CursorTarget _cursorTarget;
         protected Animator[] _animators;
@@ -22,6 +23,7 @@ namespace RPG.Combat
 
         #region Properties
         public Vector2Int Position { get { return _tileObject.Position; } }
+        public StageEntityScriptable Info { get { return _info; } }
         public DirectionEnum Direction { get { return _tileObject.Direction; } }
         public TileObject TileObject { get { return _tileObject; } }
         public bool HasActed { get { return _hasActed; } }
@@ -74,7 +76,7 @@ namespace RPG.Combat
             }
         }
 
-        private void CheckSelected(Vector2Int selectedPositon)
+        protected void CheckSelected(Vector2Int selectedPositon)
         {
             if(selectedPositon == Position)
             {

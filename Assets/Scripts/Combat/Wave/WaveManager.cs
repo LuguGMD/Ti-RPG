@@ -10,7 +10,7 @@ namespace RPG.Combat.Wave
     {
         private List<WaveInfo> _spawnedWaves = new List<WaveInfo>();
         private bool _areAllWavesSpawned = false;
-        private List<EnemySpawnInfo> _queuedSpawns = new List<EnemySpawnInfo>();
+        private List<EnemySpawnInfo> _pendingEnemySpawns = new List<EnemySpawnInfo>();
 
         #region Properties
 
@@ -46,7 +46,7 @@ namespace RPG.Combat.Wave
                 }
             }
 
-            _areAllWavesSpawned = waves.Length == _spawnedWaves.Count && _queuedSpawns.Count == 0;
+            _areAllWavesSpawned = (waves.Length == _spawnedWaves.Count) && (_pendingEnemySpawns.Count == 0);
         }
 
         private void SpawnWave(WaveInfo wave)
@@ -62,24 +62,24 @@ namespace RPG.Combat.Wave
         private bool SpawnEnemy(EnemySpawnInfo spawn)
         {
             EnemySpawnWarning enemyInstance = CombatFactory.InstantiateEnemyWarning(spawn);
+            bool spawnedSuccessfully = enemyInstance != null;
 
-            if (enemyInstance == null && !_queuedSpawns.Contains(spawn))
+            if (!spawnedSuccessfully && !_pendingEnemySpawns.Contains(spawn))
             {
-                _queuedSpawns.Add(spawn);
+                _pendingEnemySpawns.Add(spawn);
             }
 
-            return enemyInstance == null;
+            return spawnedSuccessfully;
         }
 
         private void TrySpawnQueuedEnemies()
         {
-            for(int i = 0; i < _queuedSpawns.Count && _queuedSpawns.Count != 0; i++)
-            { 
-                bool hasSpawned = SpawnEnemy(_queuedSpawns[i]);
-
-                if(hasSpawned)
+            for (int i = 0; i < _pendingEnemySpawns.Count; i++)
+            {
+                bool spawnedSuccessfully = SpawnEnemy(_pendingEnemySpawns[i]);
+                if (spawnedSuccessfully)
                 {
-                    _queuedSpawns.RemoveAt(i);
+                    _pendingEnemySpawns.RemoveAt(i);
                     i--;
                 }
             }

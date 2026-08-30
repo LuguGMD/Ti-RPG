@@ -117,8 +117,7 @@ namespace RPG.Combat
 
         private void GetCombatUpgrades()
         {
-            string json = SaveManager.Load(SaveConstants.SaveKeys[SaveConstants.SaveKey.Upgrade]);
-            UpgradeGraphData data = JsonUtility.FromJson<UpgradeGraphData>(json);
+            UpgradeGraphData data = SaveManager.SaveData.UpgradeGraphData;
 
             if (data == null) return;
 
@@ -300,6 +299,23 @@ namespace RPG.Combat
 
             CheckEndPlayerTurn();
 
+        }
+
+        public IEnumerator SuperActionCoroutine(PreviewTileInfo previewTileInfo)
+        {
+            _canSelectCharacter = false;
+            _isActionInProgress = true;
+            HideAllEnemiesPreviews();
+
+            yield return Apresentador.EquippedSuper.Execute(previewTileInfo);
+
+            ShowAllEnemiesPreviews();
+            DeselectCharacter();
+            _canSelectCharacter = true;
+            _isActionInProgress = false;
+
+
+            CheckEndPlayerTurn();
         }
 
         private void CheckEndPlayerTurn()

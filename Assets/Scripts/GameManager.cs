@@ -13,13 +13,11 @@ using CharacterController = RPG.Combat.CharacterController;
 
 namespace RPG
 {
-    public class GameManager : SingletonMonoPersistent<GameManager>, ISavable<GameManager, GameManagerData, GameManagerAdapter>
+    public class GameManager : SingletonMonoPersistent<GameManager>, ISavable<GameManager, GameManagerAdapter>
     {
         [SerializeField] private LevelScriptable _selectedLevel;
-        private CharacterScriptable _selectedCharacterMinigame;
         [SerializeField] private CharacterScriptable[] _currentParty = new CharacterScriptable[CombatConstants.MAX_CHARACTERS_COUNT];
         [SerializeField] private CharacterScriptable[] _availableCharacters;
-        private List<CharacterScriptable> _defeatedCharacters = new List<CharacterScriptable>();
         private List<string> _completedChallenges = new List<string>();
         private List<string> _completedLevels = new List<string>();
 
@@ -29,10 +27,8 @@ namespace RPG
         #region Properties
 
         public static LevelScriptable SelectedLevel { get { return Instance._selectedLevel; } }
-        public static CharacterScriptable SelectedCharacterMinigame { get { return Instance._selectedCharacterMinigame; } }
         public static CharacterScriptable[] CurrentParty { get { return Instance._currentParty; } }
         public static CharacterScriptable[] AvailableCharacters {  get { return Instance._availableCharacters; } }
-        public static List<CharacterScriptable> DefeatedCharacters { get { return Instance._defeatedCharacters; } }
         public static int Coins { get { return Instance._coins; } }
         public string Key { get { return _key; } set { _key = value; } }
         public static List<string> CompletedChallenges { get  { return Instance._completedChallenges; } }
@@ -40,76 +36,31 @@ namespace RPG
 
         #endregion
 
-        private void Start()
+        protected override void Awake()
         {
+            base.Awake();
             SaveManager.Instance.LoadAll();
         }
 
         private void OnEnable()
         {
             ActionsManager.Instance.OnLevelSelected += SelectLevel;
-            ActionsManager.Instance.OnCharacterMinigameSelected += SelectCharacterMinigame;
-            ActionsManager.Instance.OnCharacterDefeated += CharacterDemotivated;
-            ActionsManager.Instance.OnCharacterMotivated += CharacterMotivated;
         }
 
         private void OnDisable()
         {
             ActionsManager.Instance.OnLevelSelected -= SelectLevel;
-            ActionsManager.Instance.OnCharacterMinigameSelected -= SelectCharacterMinigame;
-            ActionsManager.Instance.OnCharacterDefeated -= CharacterDemotivated;
-            ActionsManager.Instance.OnCharacterMotivated -= CharacterMotivated;
         }
 
         private void OnDestroy()
         {
-            SaveManager.Instance.SaveAll();
+            if(Instance == this)
+                SaveManager.Instance.SaveAll();
         }
 
         private void SelectLevel(LevelScriptable selectedLevel)
         {
             _selectedLevel = selectedLevel;
-        }
-
-        private void SelectCharacterMinigame(CharacterScriptable character)
-        {
-            _selectedCharacterMinigame = character;
-            ChangeScene(ScenesEnum.MinigameDefault);
-        }
-
-        private void CharacterDemotivated(CharacterController character)
-        {
-            CharacterDemotivated(character.CharacterInfo);
-        }
-
-        public void CharacterDemotivated(CharacterScriptable character)
-        {
-            if (!_defeatedCharacters.Contains(character))
-            {
-                _defeatedCharacters.Add(character);
-            }
-        }
-
-        public void LoadCharacterDemotivated(string[] characters)
-        {
-            _defeatedCharacters = new List<CharacterScriptable>();
-
-            foreach (string name in characters)
-            {
-                foreach(CharacterScriptable character in _availableCharacters)
-                {
-                    if(character.EntityName == name)
-                        _defeatedCharacters.Add(character);
-                }
-            }
-        }
-
-        public void CharacterMotivated(CharacterScriptable character)
-        {
-            if (_defeatedCharacters.Contains(character))
-            {
-                _defeatedCharacters.Remove(character);
-            }
         }
 
         #region Progression
@@ -120,10 +71,15 @@ namespace RPG
             AddCoins(100);
         }
 
+        public void SetCoins(int coinsAmount)
+        {
+            _coins = coinsAmount;
+            ActionsManager.Instance.OnCoinsAmountChanged?.Invoke();
+        }
+
         public void AddCoins(int coinsAmount)
         {
-            _coins += coinsAmount;
-            ActionsManager.Instance.OnCoinsAmountChanged?.Invoke();
+            SetCoins(_coins + coinsAmount);
         }
 
         public void SpendCoins(int coinsAmount)
@@ -174,13 +130,13 @@ namespace RPG
 
         public void Save()
         {
-            ISavable<GameManager, GameManagerData, GameManagerAdapter> savable = (ISavable<GameManager, GameManagerData, GameManagerAdapter>)this;
+            ISavable<GameManager, GameManagerAdapter> savable = (ISavable<GameManager, GameManagerAdapter>)this;
             savable.SaveInfo();
         }
 
         public void Load()
         {
-            ISavable<GameManager, GameManagerData, GameManagerAdapter> savable = (ISavable<GameManager, GameManagerData, GameManagerAdapter>)this;
+            ISavable<GameManager, GameManagerAdapter> savable = (ISavable<GameManager, GameManagerAdapter>)this;
             savable.LoadInfo();
         }
 

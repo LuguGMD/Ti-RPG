@@ -72,6 +72,10 @@ namespace RPG.Combat.Preview
                         AddPreviewTile(currentPreviewTileInfo, position, ref lastPreviewTile);
                         doCancelPattern = true;
                     }
+                    else if(currentPreviewTileInfo.AlwaysShowEffect)
+                    {
+                        AddPreviewTile(currentPreviewTileInfo, position, ref lastPreviewTile, false);
+                    }
 
                     currentPreviewTileInfo = currentPreviewTileInfo.Child;
                 } while (currentPreviewTileInfo != null && !doCancelPattern);
@@ -111,7 +115,7 @@ namespace RPG.Combat.Preview
             _activePreviewTiles.Clear();
         }
 
-        protected virtual void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position, ref ActionPreviewTile lastPreviewTile)
+        protected virtual void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position, ref ActionPreviewTile lastPreviewTile, bool canBeSelected = true)
         {
             if (position.y < 0 || position.y >= Map.Rows)
             {
@@ -120,13 +124,18 @@ namespace RPG.Combat.Preview
 
             PreviewTilesPool.Pool.Get(out ActionPreviewTile previewTile);
             previewTile.SetInfo(previewTileInfo);
-            previewTile.SetCanBeSelected(true);
+            previewTile.SetCanBeSelected(canBeSelected);
             previewTile.SetPosition(position);
             previewTile.SetMeshes(CombatManager.CharacterPreviewGroups.Movement);
 
+            if(!canBeSelected)
+            {
+                previewTile.HideMeshes();
+            }
+
             if (lastPreviewTile != null)
             {
-                previewTile.SeParent(lastPreviewTile);
+                previewTile.SetParent(lastPreviewTile);
             }
 
             lastPreviewTile = previewTile;

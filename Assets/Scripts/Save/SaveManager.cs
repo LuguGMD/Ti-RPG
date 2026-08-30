@@ -10,12 +10,19 @@ namespace RPG.Save
     {
         private Action _onSave;
         private Action _onLoad;
-
         public Action _onSaveEnded;
         public Action _onLoadEnded;
 
         public const string SAVE_FILE = "save";
         private SaveData _saveData = new SaveData();
+
+        public static SaveData SaveData
+        { 
+            get 
+            {
+                return Instance._saveData; 
+            }
+        }
 
         public void FindSavables()
         {
@@ -58,35 +65,19 @@ namespace RPG.Save
             _onLoadEnded?.Invoke();
         }
 
-        public static void Save(string key, string json)
-        {
-            JsonEntry existing = Instance._saveData.Entries.Find(x => x.Key == key);
-
-            if (existing != null)
-            {
-                existing.Json = json;
-            }
-            else
-            {
-                Instance._saveData.Entries.Add(new JsonEntry
-                {
-                    Key = key,
-                    Json = json
-                });
-            }
-        }
-
         public static void Save()
         {
             File.WriteAllText(GetSaveFilePath(), JsonUtility.ToJson(Instance._saveData, true));
         }
 
-        public static string Load(string key)
+        public static void ResetSave()
         {
-            string path = GetSaveFilePath();
-            JsonEntry entry = Instance._saveData.Entries.Find(x => x.Key == key);
+            SaveData previousSave = Instance._saveData;
+            Instance._saveData = new SaveData();
 
-            return entry?.Json;
+            Instance._saveData.AudioManagerData = previousSave.AudioManagerData;
+
+            Save();
         }
 
         private static string GetSaveFilePath()

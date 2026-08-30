@@ -14,12 +14,6 @@ namespace RPG
         {
             if(UnityEngine.Input.GetKeyDown(KeyCode.F1))
             {
-                foreach (CharacterScriptable character in GameManager.AvailableCharacters)
-                {
-                    GameManager.Instance.CharacterMotivated(character);
-                    GameManager.Instance.Save();
-                }
-
                 if (CombatManager.Instance == null) return;
 
                 List<CharacterController> characters = CombatManager.RemainingCharacters;
@@ -33,12 +27,6 @@ namespace RPG
 
             if (UnityEngine.Input.GetKeyDown(KeyCode.F2))
             {
-                foreach (CharacterScriptable character in GameManager.AvailableCharacters)
-                {
-                    GameManager.Instance.CharacterDemotivated(character);
-                    GameManager.Instance.Save();
-                }
-
                 if (CombatManager.Instance == null) return;
 
                 List<CharacterController> characters = CombatManager.RemainingCharacters;

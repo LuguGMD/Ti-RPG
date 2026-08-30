@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace RPG.Tutorial
 {
-    public class TutorialManager : SingletonMonoPersistent<TutorialManager>, ISavable<TutorialManager, TutorialManagerData, TutorialManagerAdapter>
+    public class TutorialManager : SingletonMonoPersistent<TutorialManager>, ISavable<TutorialManager, TutorialManagerAdapter>
     {
         private string _key = "Tutorial";
         private Dictionary<string, bool> _tutorialData = new Dictionary<string, bool>();
@@ -55,13 +55,13 @@ namespace RPG.Tutorial
 
         public void Save()
         {
-            ISavable<TutorialManager, TutorialManagerData, TutorialManagerAdapter> savable = (ISavable<TutorialManager, TutorialManagerData, TutorialManagerAdapter>)this;
+            ISavable<TutorialManager, TutorialManagerAdapter> savable = (ISavable<TutorialManager, TutorialManagerAdapter>)this;
             savable.SaveInfo();
         }
 
         public void Load()
         {
-            ISavable<TutorialManager, TutorialManagerData, TutorialManagerAdapter> savable = (ISavable<TutorialManager, TutorialManagerData, TutorialManagerAdapter>)this;
+            ISavable<TutorialManager, TutorialManagerAdapter> savable = (ISavable<TutorialManager, TutorialManagerAdapter>)this;
             savable.LoadInfo();
         }
 

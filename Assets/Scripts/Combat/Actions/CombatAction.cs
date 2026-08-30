@@ -10,7 +10,7 @@ namespace RPG.Combat.Actions
     {
         [SerializeField] protected string _actionName;
         [SerializeField] protected string _actionDescription;
-        [SerializeField] protected List<Effect> _effects;
+        [SerializeField] protected List<Effect> _effects = new List<Effect>();
         [SerializeField] protected bool _lastTileNeedsToBeEmpty = true;
         protected StageEntityController _user;
 

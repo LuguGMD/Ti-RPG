@@ -102,12 +102,14 @@ namespace RPG.Combat.Grid
             return worldPosition;
         }
 
-        public static bool IsMovementValid(Vector2Int currentPos, Movement movement)
+        public static bool IsMovementValid(Vector2Int currentPos, Movement movement, bool canGoToLastRow = false)
         {
             Vector2Int addedMovement = movement.Direction.ToVector2Int();
             Vector2Int finalPos = (currentPos + addedMovement).ClampMap();
 
-            if (finalPos == Map.CENTER_POS || finalPos.y >= Map.Rows - 1)
+            int lastRow = canGoToLastRow ? Map.Rows : Map.Rows - 1;
+
+            if (finalPos == Map.CENTER_POS || finalPos.y >= lastRow)
             {
                 return false;
             }

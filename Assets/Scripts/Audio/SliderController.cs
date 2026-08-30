@@ -1,3 +1,4 @@
+using RPG.Save;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,6 +38,11 @@ namespace RPG.Audio
         private void OnDestroy()
         {
             slider.onValueChanged.RemoveListener(OnSliderValueChanged);
+        }
+
+        private void OnDisable()
+        {
+            SaveManager.Instance.SaveAll();
         }
     }
 }

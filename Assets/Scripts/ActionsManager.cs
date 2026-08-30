@@ -4,7 +4,6 @@ using RPG.Combat.Actions;
 using RPG.Combat.Preview;
 using RPG.Level;
 using RPG.Combat.Challenge;
-using RPG.Management.Minigames;
 using System;
 using UnityEngine;
 using CharacterController = RPG.Combat.CharacterController;
@@ -27,6 +26,8 @@ namespace RPG
 
         public Action OnCombatSpeedChanged;
         public Action OnApresentadorDamageTaken;
+        public Action OnApresentadorHealed;
+        public Action OnSpotlightSuper;
 
         public Action OnApresentadorActionCompleted;
         public Action OnApresentadorActionCanceled;
@@ -101,27 +102,6 @@ namespace RPG
         #endregion
 
         #region Management
-
-        #region Minigames
-
-        public Action<CharacterScriptable> OnCharacterMinigameSelected;
-
-        public Action OnMinigameStart;
-        public Action OnMinigameEnd;
-
-        public Action OnMinigameMiss;
-        public Action OnMinigameHit;
-        public Action OnMinigamePerfectHit;
-
-        public Action OnMinigameTierChanged;
-
-        public Action OnMinigameValuesUpdated;
-        public Action<MinigameChallenge> OnMinigameChallengeUpdated;
-        public Action OnMinigameChallengeCompleted;
-
-        public Action<CharacterScriptable> OnCharacterMotivated;
-
-        #endregion
 
         #region Level
 

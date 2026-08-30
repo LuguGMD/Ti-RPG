@@ -1,27 +1,31 @@
 using FMODUnity;
 using RPG.Combat.Actions;
 using RPG.Combat.Grid;
+using RPG.Combat.Preview;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat
 {
-    public class ApresentadorController : EntityController
+    public class ApresentadorController : StageEntityController
     {
-        [SerializeField] protected EntityScriptable _info;
         private float _currentMotivation;
 
         private int _maxRowRotations = 3;
         private int _rowToRotate = 0;
+        private int _superCharge = 0;
+        private SuperHandler _equippedSuper;
 
         
 
         #region Properties
 
-        public EntityScriptable Info { get { return _info; } }
         public float CurrentMotivation { get { return _currentMotivation; } }
         public int RowToRotate { get { return _rowToRotate; } }
         public int MaxRowRotations { get { return _maxRowRotations; } }
+        public int SuperCharge { get { return _superCharge; } }
+        public SuperHandler EquippedSuper { get { return _equippedSuper; } }
 
         #endregion
 
@@ -31,11 +35,28 @@ namespace RPG.Combat
             Initialize();
         }
 
+        protected new void OnEnable()
+        {
+            ActionsManager.Instance.OnCombatSpeedChanged += AdjsutGameSpeed;
+            ActionsManager.Instance.OnPreviewTileSelected += CheckSelected;
+            ActionsManager.Instance.OnEnemyTurnEnded += ResetAction;
+        }
+
+        protected new void OnDisable()
+        {
+            ActionsManager.Instance.OnCombatSpeedChanged -= AdjsutGameSpeed;
+            ActionsManager.Instance.OnPreviewTileSelected -= CheckSelected;
+            ActionsManager.Instance.OnEnemyTurnEnded -= ResetAction;
+        }
+
         private void Initialize()
         {
             _currentMotivation = CombatConstants.MAX_MOTIVATION_APRESENTADOR;
             MapManager.Instance.AddTileObject(_tileObject, Map.CENTER_POS);
             AdjsutGameSpeed();
+
+            //TO DO remover depois DEBUG
+            EquipSuper(new SuperSpotlight());
         }
 
         public override EntityScriptable GetEntityInfo()
@@ -79,7 +100,7 @@ namespace RPG.Combat
             _currentMotivation += heal;
             _currentMotivation = Mathf.Clamp(_currentMotivation, 0, CombatConstants.MAX_MOTIVATION_APRESENTADOR);
 
-            ActionsManager.Instance.OnApresentadorDamageTaken?.Invoke();
+            ActionsManager.Instance.OnApresentadorHealed?.Invoke();
         }
 
         public void Rotate(int amount)
@@ -100,6 +121,35 @@ namespace RPG.Combat
             _rowToRotate %= (Map.Rows - 1);
         }
 
+        #region Super
+
+        public void ChargeSuper(int amount)
+        {
+            _superCharge += amount;
+        }
+
+        public bool UseSuper()
+        {
+            if(_superCharge >= _equippedSuper.ChargeAmount)
+            {
+                _superCharge = 0;
+
+                List<PreviewTileInfo> _tiles = _equippedSuper.Preview();
+                StartCoroutine(CombatManager.Instance.SuperActionCoroutine(_tiles[0]));
+                return true;
+            }
+
+            return false;
+        }
+
+        public void EquipSuper(SuperHandler super)
+        {
+            _equippedSuper = super;
+            _equippedSuper.Init(this);
+        }
+
+        #endregion
+
         public void CompleteAction()
         {
             _hasActed = true;
@@ -109,6 +159,10 @@ namespace RPG.Combat
         {
             base.ResetAction();
             _rowToRotate = 0;
+        }
+
+        public override void SelectAction(int actionIndex)
+        {
         }
     }
 }

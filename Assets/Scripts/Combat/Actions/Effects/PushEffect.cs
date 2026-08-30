@@ -31,9 +31,10 @@ namespace RPG.Combat.Actions.Effects
             DirectionEnum facing = user.Direction;
             DirectionEnum pushDirection = _isPushDirectionRelative ? _pushDirection.RelativeTo(facing) : _pushDirection;
 
+
             Movement movement = new Movement(pushDirection, true);
 
-            if (!MapManager.IsMovementValid(target.Position, movement))
+            if (!MapManager.IsMovementValid(target.Position, movement, target.Movement.CanGoToLastRow))
             {
                 return false;
             }
