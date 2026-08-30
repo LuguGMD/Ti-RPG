@@ -56,7 +56,7 @@ namespace RPG.Combat
             AdjsutGameSpeed();
 
             //TO DO remover depois DEBUG
-            EquipSuper(new SuperHealHandler());
+            EquipSuper(new SuperSpotlight());
         }
 
         public override EntityScriptable GetEntityInfo()

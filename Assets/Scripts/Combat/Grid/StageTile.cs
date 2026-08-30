@@ -18,12 +18,14 @@ namespace RPG.Combat.Grid
         private void Start()
         {
             _cursorTarget.Actions.Hover.OnStart(OnHover);
+            _cursorTarget.Actions.LeftClick.OnStart(OnClick);
             _tile = MapManager.Map.GetTile(_position);
         }
 
         private void OnDestroy()
         {
             _cursorTarget.Actions.Hover.Stop();
+            _cursorTarget.Actions.LeftClick.Stop();
         }
 
         private void OnEnable()
@@ -39,6 +41,11 @@ namespace RPG.Combat.Grid
         private void OnHover()
         {
             ActionsManager.Instance.OnTileHovered?.Invoke(_position);
+        }
+
+        private void OnClick()
+        {
+            ActionsManager.Instance.OnTileSelected?.Invoke(_position);
         }
 
         private void UpdatePosition()

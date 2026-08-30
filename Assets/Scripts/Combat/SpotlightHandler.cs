@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Splines;
+using UnityEngine.UIElements;
 
 namespace RPG.Combat
 {
@@ -17,6 +18,14 @@ namespace RPG.Combat
         [SerializeField] private GameObject _visual;
         private const float SPOTLIGHT_MOVE_DURATION = 0.3f;
 
+        private bool _isSuperActive = false;
+
+        #region Properties
+
+        public Vector2Int CurrentSpotlightPosition { get { return _currentSpotlightPosition; } }
+
+        #endregion
+
         private void Start()
         {
             Init();
@@ -25,27 +34,34 @@ namespace RPG.Combat
         private void OnEnable()
         {
             ActionsManager.Instance.OnPlayerTurnStarted += CheckChangePosition;
+            ActionsManager.Instance.OnSpotlightSuper += HandleSpotlightSuper;
+            ActionsManager.Instance.OnTileHovered += OnTileHovered;
+            ActionsManager.Instance.OnTileSelected += OnTileSelected;
         }
 
         private void OnDisable()
         {
             ActionsManager.Instance.OnPlayerTurnStarted -= CheckChangePosition;
+            ActionsManager.Instance.OnSpotlightSuper -= HandleSpotlightSuper;
+            ActionsManager.Instance.OnTileHovered -= OnTileHovered;
+            ActionsManager.Instance.OnTileSelected -= OnTileSelected;
         }
 
         private void CheckChangePosition()
         {
             if (CombatManager.TurnCount >= _lastChangeTurn + CombatConstants.SPOTLIGHT_CHANGE_TURNS)
             {
-                ChangePosition();
+                float chance = UnityEngine.Random.Range(0f, 1f);
+                int position = _currentPosition + chance > 0.5f ? 1 : -1;
+                ChangePosition(position);
             }
         }
 
-        private void ChangePosition()
+        private void ChangePosition(int position)
         {
             _lastChangeTurn = CombatManager.TurnCount;
 
-            float chance = UnityEngine.Random.Range(0f, 1f);
-            _currentPosition += chance > 0.5f ? 1 : -1;
+            _currentPosition = position;
 
             _currentPosition += CombatConstants.MAP_SECTIONS;
             _currentPosition %= CombatConstants.MAP_SECTIONS;
@@ -56,11 +72,9 @@ namespace RPG.Combat
         {
             Vector2Int previousSpotlightPosition = _currentSpotlightPosition;
             _currentSpotlightPosition = new Vector2Int(_currentPosition * (Map.Columns / CombatConstants.MAP_SECTIONS), 1);
-            transform.position = MapManager.Instance.GetWorldPosition(_currentSpotlightPosition);
+            ChangeVisualPosition(_currentSpotlightPosition);
             ActionsManager.Instance.OnSpotlightPositionChanged?.Invoke(_currentSpotlightPosition);
             ActionsManager.Instance.OnMapChanged?.Invoke();
-
-            transform.LookAt(Vector3.zero);
 
             /*Spline spline = MapManager.Instance.GetCurrentSpline(previousSpotlightPosition);
 
@@ -80,6 +94,37 @@ namespace RPG.Combat
 
             _visual.SetActive(true);
         }
+
+        private void ChangeVisualPosition(Vector2Int spotlightPosition)
+        {
+            transform.position = MapManager.Instance.GetWorldPosition(spotlightPosition);
+            transform.LookAt(Vector3.zero);
+        }
+
+        #region Super
+
+        private void HandleSpotlightSuper()
+        {
+            _isSuperActive = true;
+        }
+
+        private void OnTileHovered(Vector2Int tile)
+        {
+            if (!_isSuperActive) return;
+
+            Vector2Int position = tile;
+            position.y = 1;
+            ChangeVisualPosition(position);
+        }
+
+        private void OnTileSelected(Vector2Int tile)
+        {
+            if (!_isSuperActive) return;
+            ChangePosition(tile.x);
+            _isSuperActive = false;
+        }
+
+        #endregion
 
         private void Init()
         {

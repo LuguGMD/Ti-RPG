@@ -56,6 +56,15 @@ namespace RPG.Combat.Actions
             PreviewTileInfo up = new PreviewTileInfo(Vector2Int.up, Grid.DirectionEnum.Up, false, false, false, true);
             firstSteps.Add(up);
 
+            PreviewTileInfo child = up.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, false, false, false, true);
+            firstSteps.Add(child);
+
+            for (int i = 2; i < Map.Columns; i++)
+            {
+                child = child.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, false, false, false, true);
+                firstSteps.Add(child);
+            }
+
             return firstSteps;
         }
     }

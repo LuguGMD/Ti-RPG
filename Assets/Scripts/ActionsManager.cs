@@ -27,6 +27,7 @@ namespace RPG
         public Action OnCombatSpeedChanged;
         public Action OnApresentadorDamageTaken;
         public Action OnApresentadorHealed;
+        public Action OnSpotlightSuper;
 
         public Action OnApresentadorActionCompleted;
         public Action OnApresentadorActionCanceled;
@@ -61,6 +62,7 @@ namespace RPG
         public Action<PreviewTileInfo> OnActionTileSelected;
         public Action<Vector2Int> OnPreviewTileSelected;
         public Action<Vector2Int> OnTileHovered;
+        public Action <Vector2Int> OnTileSelected;
 
         #endregion
 
