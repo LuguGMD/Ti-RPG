@@ -10,6 +10,7 @@ namespace RPG.Combat.UI
         [SerializeField] private CharacterMotivationSlider _motivationBarPrefab;
         [SerializeField] private Transform _motivationBarContainer;
         [SerializeField] private Image _apresentadorIcon;
+        [SerializeField] private Button _apresentadorButton;
         [SerializeField] private Sprite _apresentadorIconSprite;
         [SerializeField] private Sprite _apresentadorUsedIconSprite;
 
@@ -21,6 +22,8 @@ namespace RPG.Combat.UI
         {
             _apresentadorSlider.value = 0f;
             _apresentadorSlider.DOValue(1f, 1.5f);
+
+            _apresentadorButton.onClick.AddListener(OnApresentadorClicked);
         }
         private void OnEnable()
         {
@@ -89,6 +92,15 @@ namespace RPG.Combat.UI
         private void UpdateApresentadorDamage()
         {
             _apresentadorSlider.DOValue(CombatManager.Apresentador.CurrentMotivation / CombatConstants.MAX_MOTIVATION_APRESENTADOR, 0.2f);
+        }
+
+        private void OnApresentadorClicked()
+        {
+            if (!CombatManager.HasCombatStarted) return;
+            if (CombatManager.IsActionInProgress) return;
+            if (CombatManager.Apresentador.HasActed) return;
+
+            ActionsManager.Instance.OnApresentadorSelected?.Invoke();
         }
     }
 }
