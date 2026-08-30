@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 5652854305578377939}
   - component: {fileID: 3786337399904880345}
   - component: {fileID: 5846676705636952870}
+  - component: {fileID: 4796663407661077897}
   m_Layer: 5
   m_Name: DefaultButton
   m_TagString: Untagged
@@ -322,3 +323,18 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &4796663407661077897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6660194052023011656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24844eaeb942d8f4fbfaf2eb429d4b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.UI.UIButtonAnimator
+  _hoverScale: 1.1
+  _clickScale: 0.95
+  _animationDuration: 0.15
