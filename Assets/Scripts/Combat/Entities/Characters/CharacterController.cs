@@ -1,4 +1,6 @@
 using RPG.Combat.Actions;
+using RPG.Combat.Preview;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -96,6 +98,20 @@ namespace RPG.Combat
 
         #endregion
 
+        protected override void CheckHovered(Vector2Int hoveredPositon)
+        {
+            if (!_isHovered && hoveredPositon == Position)
+            {
+                _isHovered = true;
+                ActionsManager.Instance.OnCharacterHoverEnter?.Invoke(this);
+            }
+            else if (_isHovered && hoveredPositon != Position)
+            {
+                _isHovered = false;
+                ActionsManager.Instance.OnCharacterHoverExit?.Invoke(this);
+            }
+        }
+
         protected override void OnSelected()
         {
             if (!CombatManager.HasCombatStarted) return;
@@ -108,6 +124,18 @@ namespace RPG.Combat
             _actions.Add(_characterDirectionalPunch);
 
             base.InitCombatActions();
+        }
+
+        public override void ResetAction()
+        {
+            base.ResetAction();
+            ActionsManager.Instance.OnCharacterActionReset?.Invoke(this);
+        }
+
+        public override IEnumerator UseSelectedAction(PreviewTileInfo selectedPreviewTile)
+        {
+            ActionsManager.Instance.OnCharacterActionUsed?.Invoke(this);
+            return base.UseSelectedAction(selectedPreviewTile);
         }
     }
 }

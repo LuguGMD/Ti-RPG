@@ -6,6 +6,7 @@ namespace RPG
     public class CharacterCamera : MonoBehaviour
     {
         [SerializeField] CinemachineCamera _camera;
+        [SerializeField] CinemachineOrbitalFollow _orbitalFollow;
 
         private void OnEnable()
         {
@@ -26,6 +27,7 @@ namespace RPG
         private void ChangeCameraTarget(Combat.CharacterController character)
         {
             _camera.Target.TrackingTarget = character.transform;
+            _orbitalFollow.Radius = character.Actions[character.SelectedActionIndex].FollowRadius;
         }
 
         private void EnableCamera()

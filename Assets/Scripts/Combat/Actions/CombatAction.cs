@@ -10,6 +10,7 @@ namespace RPG.Combat.Actions
     {
         [SerializeField] protected string _actionName;
         [SerializeField] protected string _actionDescription;
+        [SerializeField] protected float _followRadius = 5;
         [SerializeField] protected List<Effect> _effects = new List<Effect>();
         [SerializeField] protected bool _lastTileNeedsToBeEmpty = true;
         protected StageEntityController _user;
@@ -18,7 +19,7 @@ namespace RPG.Combat.Actions
 
         public string ActionName { get { return  _actionName; }  }
         public string ActionDescription { get { return _actionDescription; } }
-
+        public float FollowRadius { get { return _followRadius; } }
         public List<Effect> Effects
         {
             get {  return _effects; }

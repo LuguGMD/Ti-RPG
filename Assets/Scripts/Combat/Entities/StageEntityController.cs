@@ -71,7 +71,7 @@ namespace RPG.Combat
         }
         
 
-        public IEnumerator UseSelectedAction(PreviewTileInfo selectedPreviewTile)
+        public virtual IEnumerator UseSelectedAction(PreviewTileInfo selectedPreviewTile)
         {
             _hasActed = true;
             _tileObject.CheckSpotlight();

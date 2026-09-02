@@ -22,7 +22,6 @@ namespace RPG
         private List<string> _completedLevels = new List<string>();
 
         private int _coins = 0;
-        private string _key = "GameManager";
 
         #region Properties
 
@@ -30,7 +29,6 @@ namespace RPG
         public static CharacterScriptable[] CurrentParty { get { return Instance._currentParty; } }
         public static CharacterScriptable[] AvailableCharacters {  get { return Instance._availableCharacters; } }
         public static int Coins { get { return Instance._coins; } }
-        public string Key { get { return _key; } set { _key = value; } }
         public static List<string> CompletedChallenges { get  { return Instance._completedChallenges; } }
         public static List<string> CompletedLevels { get  { return Instance._completedLevels; } }
 
