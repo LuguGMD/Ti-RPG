@@ -6,6 +6,8 @@ namespace RPG.Combat.Actions.Effects
     public class DamageEffect : EffectCommand
     {
         private float _damage;
+        private float _originalDamage;
+        private float _damageMultiplier = 1f;
 
         #region Properties
 
@@ -16,11 +18,11 @@ namespace RPG.Combat.Actions.Effects
         public DamageEffect(float damage)
         {
             _damage = damage;
+            _originalDamage = damage;
         }
 
         public override bool Execute(StageEntityController user, StageEntityController target)
         {
-
             if (target == null || user == null)
                 return false;
 
@@ -39,6 +41,18 @@ namespace RPG.Combat.Actions.Effects
             target.TakeDamage(_damage);
 
             return true;
+        }
+
+        public void ApplyDamageMultiplier(float multiplier)
+        {
+            _damageMultiplier = multiplier;
+            _damage = _originalDamage * _damageMultiplier;
+        }
+
+        public void RemoveDamageMultiplier(float multiplier)
+        {
+            _damageMultiplier = 1f;
+            _damage = _originalDamage;
         }
     }
 }

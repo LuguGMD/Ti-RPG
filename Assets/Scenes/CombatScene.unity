@@ -3035,6 +3035,80 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!1 &1044893102 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6525578027906566768, guid: 81693da597ca4d1449d7f90399596854, type: 3}
+  m_PrefabInstance: {fileID: 1441832705}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1044893104 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7851328936454728798, guid: 81693da597ca4d1449d7f90399596854, type: 3}
+  m_PrefabInstance: {fileID: 1441832705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044893102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!114 &1044893106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044893102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a89915ab33af143b952eeb21275557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.UI.Tooltip.TooltipTrigger
+  header: Apresentador
+  content: 
+--- !u!114 &1044893107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044893102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1044893104}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1055416230
 GameObject:
   m_ObjectHideFlags: 0
@@ -4201,6 +4275,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 126192901}
     m_Modifications:
+    - target: {fileID: 382802059366366090, guid: 81693da597ca4d1449d7f90399596854, type: 3}
+      propertyPath: _apresentadorButton
+      value: 
+      objectReference: {fileID: 1044893107}
     - target: {fileID: 1569425824373807951, guid: 81693da597ca4d1449d7f90399596854, type: 3}
       propertyPath: m_Name
       value: MotivationBarCanvas
@@ -4300,7 +4378,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3077217500224947624, guid: 81693da597ca4d1449d7f90399596854, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2099380577}
+    - targetCorrespondingSourceObject: {fileID: 6525578027906566768, guid: 81693da597ca4d1449d7f90399596854, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1044893107}
+    - targetCorrespondingSourceObject: {fileID: 6525578027906566768, guid: 81693da597ca4d1449d7f90399596854, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1044893106}
   m_SourcePrefab: {fileID: 100100000, guid: 81693da597ca4d1449d7f90399596854, type: 3}
 --- !u!224 &1441832706 stripped
 RectTransform:
@@ -8585,6 +8672,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5451397538392090851, guid: 2d6b998c7bc70d1498cc954fab24ab34, type: 3}
   m_PrefabInstance: {fileID: 2078960499}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2099380574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3077217500224947624, guid: 81693da597ca4d1449d7f90399596854, type: 3}
+  m_PrefabInstance: {fileID: 1441832705}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2099380576 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7622968916543592963, guid: 81693da597ca4d1449d7f90399596854, type: 3}
+  m_PrefabInstance: {fileID: 1441832705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099380574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!114 &2099380577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099380574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a6d42a298aa1443931eb55aa725777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.UI.CharacterMotivationSlider
+  _slider: {fileID: 2099380576}
+  _characterIcon: {fileID: 1044893104}
+  _characterButton: {fileID: 1044893107}
+  _tooltipTrigger: {fileID: 1044893106}
 --- !u!1 &2100582132
 GameObject:
   m_ObjectHideFlags: 0
