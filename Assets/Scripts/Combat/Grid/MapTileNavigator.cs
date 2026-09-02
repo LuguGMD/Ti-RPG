@@ -29,6 +29,7 @@ namespace RPG.Combat.Grid
             ActionsManager.Instance.OnPlayerTurnStarted += EnablePreview;
             //ActionsManager.Instance.OnPlayerTurnEnded += DisablePreview;
             ActionsManager.Instance.OnTileHovered += SetHoveredTile;
+            ActionsManager.Instance.OnEntityHovered += SetHoveredEntity;
         }
 
         private void OnDisable()
@@ -36,11 +37,18 @@ namespace RPG.Combat.Grid
             ActionsManager.Instance.OnPlayerTurnStarted -= EnablePreview;
             //ActionsManager.Instance.OnPlayerTurnEnded -= DisablePreview;
             ActionsManager.Instance.OnTileHovered -= SetHoveredTile;
+            ActionsManager.Instance.OnEntityHovered -= SetHoveredEntity;
         }
 
         private void SetHoveredTile(Vector2Int hoveredTilePosition)
         {
             _currentHoveredTile = hoveredTilePosition;
+            UpdatePosition();
+        }
+
+        private void SetHoveredEntity(EntityController entity)
+        {
+            _currentHoveredTile = entity.Position;
             UpdatePosition();
         }
 
