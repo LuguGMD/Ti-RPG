@@ -22,6 +22,7 @@ namespace RPG.Combat
         protected int _selectedActionIndex;
 
         [SerializeField] private EventReference _defeatedSFX;
+        [SerializeField] private EventReference _spawnedSFX;
         
         private SpotlightSparkleEffect _spotlightHandler;
         
@@ -49,6 +50,8 @@ namespace RPG.Combat
             base.Start();
             AdjsutGameSpeed();
             ActionsManager.Instance.OnStageEntityCreated?.Invoke(this);
+
+            AudioManager.Instance.PlayOneShot(_spawnedSFX);
 
             InitCombatActions();
 
