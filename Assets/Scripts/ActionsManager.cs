@@ -131,5 +131,11 @@ namespace RPG
         public Action OnDialogueEnd;
 
         #endregion
+
+        #region Audio
+
+        public Action OnError;
+
+        #endregion
     }
 }

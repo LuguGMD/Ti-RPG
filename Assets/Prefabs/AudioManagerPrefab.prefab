@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2611845094782187988}
   - component: {fileID: 4085615801838357445}
+  - component: {fileID: -5360018302908161238}
   m_Layer: 0
   m_Name: AudioManagerPrefab
   m_TagString: Untagged
@@ -44,3 +45,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb4772b734ee1f340838826a4a7907d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Audio.AudioManager
+--- !u!114 &-5360018302908161238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135414191373231100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da282548299d82f49a730b89fe417487, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Audio.AudioActionsListener
+  _errorSFX:
+    Guid:
+      Data1: 313395670
+      Data2: 1210993674
+      Data3: 597630138
+      Data4: -489641446
+    Path: event:/UI/UIError
