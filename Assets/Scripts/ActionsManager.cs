@@ -40,6 +40,12 @@ namespace RPG
         public Action<CharacterController> OnCharacterCreated;
         public Action<CharacterController> OnCharacterDefeated;
 
+        public Action<CharacterController> OnCharacterActionUsed;
+        public Action<CharacterController> OnCharacterActionReset;
+
+        public Action<CharacterController> OnCharacterHoverEnter;
+        public Action<CharacterController> OnCharacterHoverExit;
+
         public Action<EnemyController> OnEnemyDefeated;
 
         public Action<Vector2Int> OnSpotlightPositionChanged;

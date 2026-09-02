@@ -18,6 +18,7 @@ namespace RPG.Combat
         protected CursorTarget _cursorTarget;
         protected Animator[] _animators;
         protected bool _hasActed = false;
+        protected bool _isHovered = false;
 
         [SerializeField] private EventReference _damagedSFX;
 
@@ -73,6 +74,18 @@ namespace RPG.Combat
             foreach (Animator animator in _animators)
             {
                 animator.SetFloat("GameSpeed", CombatManager.CombatSpeed);
+            }
+        }
+
+        protected virtual void CheckHovered(Vector2Int hoveredPositon)
+        {
+            if(!_isHovered && hoveredPositon == Position)
+            {
+                _isHovered = true;
+            }
+            else if(_isHovered && hoveredPositon != Position)
+            {
+                _isHovered = false;
             }
         }
 
