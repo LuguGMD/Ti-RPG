@@ -55,6 +55,7 @@ namespace RPG.Combat
             ActionsManager.Instance.OnCombatSpeedChanged += AdjsutGameSpeed;
             ActionsManager.Instance.OnPreviewTileSelected += CheckSelected;
             ActionsManager.Instance.OnEnemyTurnEnded += ResetAction;
+            ActionsManager.Instance.OnTileHovered += CheckHovered;
         }
 
         protected void OnDisable()
@@ -62,6 +63,7 @@ namespace RPG.Combat
             ActionsManager.Instance.OnCombatSpeedChanged -= AdjsutGameSpeed;
             ActionsManager.Instance.OnPreviewTileSelected -= CheckSelected;
             ActionsManager.Instance.OnEnemyTurnEnded -= ResetAction;
+            ActionsManager.Instance.OnTileHovered -= CheckHovered;
         }
 
         public virtual void ResetAction()
