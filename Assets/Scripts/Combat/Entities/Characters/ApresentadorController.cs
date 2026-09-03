@@ -115,7 +115,7 @@ namespace RPG.Combat
 
         public void ChangeRow(int amount)
         {
-            _rowToRotate += amount;
+            _rowToRotate = amount;
 
             _rowToRotate += (Map.Rows - 1);
             _rowToRotate %= (Map.Rows - 1);

@@ -11,9 +11,7 @@ namespace RPG.Combat.UI
     public class ApresentadorUIController : MonoBehaviour
     {
         [SerializeField] private GameObject _mainPanel;
-
-        [SerializeField] private Button _changeRowUpButton;
-        [SerializeField] private Button _changeRowDownButton;
+        [SerializeField] private GameObject _rowSelector;
         [SerializeField] private Button _rotateLeftButton;
         [SerializeField] private Button _rotateRightButton;
         [SerializeField] private Button _cancelActionButton;
@@ -49,9 +47,6 @@ namespace RPG.Combat.UI
 
         private void Start()
         {
-            _changeRowDownButton.onClick.AddListener(() => ChangeRow(-1));
-            _changeRowUpButton.onClick.AddListener(() => ChangeRow(1));
-
             _rotateLeftButton.onClick.AddListener(() => Rotate(1));
             _rotateRightButton.onClick.AddListener(() => Rotate(-1));
 
@@ -89,6 +84,7 @@ namespace RPG.Combat.UI
             UpdateSuperUI();
             ActionsManager.Instance.OnApresentadorUIOpen?.Invoke();
             CombatUIManager.Instance.ChangePanel(_mainPanel);
+            _rowSelector.SetActive(true);
 
             if (_isCanvasEnabled) return;
             InitializeDictionary();
@@ -105,11 +101,12 @@ namespace RPG.Combat.UI
 
             _isCanvasEnabled = false;
             CombatUIManager.Instance.DisablePanel(_mainPanel);
+            _rowSelector.SetActive(false);
 
             DeselectRow();
         }
 
-        private void ChangeRow(int amount)
+        public void ChangeRow(int amount)
         {
             DeselectRow();
 
