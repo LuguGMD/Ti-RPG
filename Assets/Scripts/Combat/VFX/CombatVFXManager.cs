@@ -12,14 +12,28 @@ namespace RPG.Combat.VFX
         {
             ActionsManager.Instance.OnStageEntityCreated += PlaySpawnVFX;
             ActionsManager.Instance.OnStageEntityDefeated += PlaySpawnVFX;
+
             ActionsManager.Instance.OnCharacterHealed += PlayHealVFX;
             ActionsManager.Instance.OnApresentadorHealed += PlayHealVFXApresentador;
+
+            ActionsManager.Instance.OnCharacterHoverEnter += ActivateCharacterOutline;
+            ActionsManager.Instance.OnCharacterHoverExit += DeactivateCharacterOutline;
+            ActionsManager.Instance.OnCharacterActionUsed += DeactivateIndicator;
+            ActionsManager.Instance.OnCharacterActionReset += ActivateIndicator;
         }
 
         void OnDisable()
         {
             ActionsManager.Instance.OnStageEntityCreated -= PlaySpawnVFX;
             ActionsManager.Instance.OnStageEntityDefeated -= PlaySpawnVFX;
+
+            ActionsManager.Instance.OnCharacterHealed -= PlayHealVFX;
+            ActionsManager.Instance.OnApresentadorHealed -= PlayHealVFXApresentador;
+
+            ActionsManager.Instance.OnCharacterHoverEnter -= ActivateCharacterOutline;
+            ActionsManager.Instance.OnCharacterHoverExit -= DeactivateCharacterOutline;
+            ActionsManager.Instance.OnCharacterActionUsed -= DeactivateIndicator;
+            ActionsManager.Instance.OnCharacterActionReset -= ActivateIndicator;
         }
 
         void PlaySpawnVFX(StageEntityController entity)
@@ -35,6 +49,26 @@ namespace RPG.Combat.VFX
         void PlayHealVFXApresentador()
         {
             Instantiate(healVFX, CombatManager.Apresentador.transform.position, Quaternion.identity);
+        }
+
+        void ActivateCharacterOutline(CharacterController entity)
+        {
+            entity.GetComponent<AvailableActionVFXController>().ActivateOutline();
+        }
+
+        void DeactivateCharacterOutline(CharacterController entity)
+        {
+            entity.GetComponent<AvailableActionVFXController>().DeactivateOutline();
+        }
+
+        void ActivateIndicator(CharacterController entity)
+        {
+            entity.GetComponent<AvailableActionVFXController>().ActivateIndicator();
+        }
+
+        void DeactivateIndicator(CharacterController entity)
+        {
+            entity.GetComponent<AvailableActionVFXController>().DeactivateIndicator();
         }
     }
 }

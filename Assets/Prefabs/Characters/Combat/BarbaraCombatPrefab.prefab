@@ -52,6 +52,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7571961425806664224, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      propertyPath: canOutline.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571961425806664224, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      propertyPath: 'canOutline.Array.data[0]'
+      value: 
+      objectReference: {fileID: 3614475056946963926}
+    - target: {fileID: 7571961425806664224, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      propertyPath: 'canOutline.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8628511884237942387}
     - target: {fileID: 8653750175042908985, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
       propertyPath: _info
       value: 
@@ -91,6 +103,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2c12152801298c4b81b5ddaa2dbd450, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.BarbaraCombatController
+  _info: {fileID: 11400000, guid: 5ffce755d859269439f95831192bd7b1, type: 2}
   _damagedSFX:
     Guid:
       Data1: -57277573
@@ -98,7 +111,6 @@ MonoBehaviour:
       Data3: 314102462
       Data4: 801854642
     Path: event:/Character/Player/Damaged
-  _info: {fileID: 11400000, guid: 5ffce755d859269439f95831192bd7b1, type: 2}
   _defeatedSFX:
     Guid:
       Data1: -1206591370
@@ -116,6 +128,7 @@ MonoBehaviour:
   _characterDirectionalPunch:
     _actionName: Soco Direcional
     _actionDescription: "Ataca e empurra na dire\xE7\xE3o do ataque"
+    _followRadius: 5
     _effects:
     - _targetList: 01000000
       _canTargetSelf: 0
@@ -129,6 +142,7 @@ MonoBehaviour:
   _songAttack:
     _actionName: Cancao Motivadora
     _actionDescription: Canta, motivando todos os aliados ao seu redor
+    _followRadius: 5
     _effects:
     - _targetList: 00000000
       _canTargetSelf: 1
@@ -199,6 +213,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5796235115366199931, guid: de47bb8a5a66c274394be943e8f5b23c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 554691047139153636, guid: de47bb8a5a66c274394be943e8f5b23c, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -223,6 +241,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 61b1311d00483074ba93cf89bbbd2f57, type: 2}
+    - target: {fileID: 7644916311073195552, guid: de47bb8a5a66c274394be943e8f5b23c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2478417623011553671, guid: 05d638ba08420364a91bd551da6764de, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -247,6 +269,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5244920133356773012}
   m_SourcePrefab: {fileID: 100100000, guid: de47bb8a5a66c274394be943e8f5b23c, type: 3}
+--- !u!1 &3614475056946963926 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7644916311073195552, guid: de47bb8a5a66c274394be943e8f5b23c, type: 3}
+  m_PrefabInstance: {fileID: 6354863884671575030}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6120509375946940071 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: de47bb8a5a66c274394be943e8f5b23c, type: 3}
@@ -277,5 +304,10 @@ Animator:
 --- !u!4 &6898312269805093917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: de47bb8a5a66c274394be943e8f5b23c, type: 3}
+  m_PrefabInstance: {fileID: 6354863884671575030}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8628511884237942387 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5796235115366199931, guid: de47bb8a5a66c274394be943e8f5b23c, type: 3}
   m_PrefabInstance: {fileID: 6354863884671575030}
   m_PrefabAsset: {fileID: 0}

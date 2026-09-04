@@ -52,6 +52,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7571961425806664224, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      propertyPath: canOutline.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571961425806664224, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      propertyPath: 'canOutline.Array.data[0]'
+      value: 
+      objectReference: {fileID: 6702984039443043938}
+    - target: {fileID: 7571961425806664224, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      propertyPath: 'canOutline.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1392080613180038460}
     - target: {fileID: 8653750175042908985, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
       propertyPath: _info
       value: 
@@ -90,6 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc457ea79ebb4e1459adf8117b26701e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.DonLiponCombatController
+  _info: {fileID: 11400000, guid: 99de96255f8ebcc4ba100d2e0ec53840, type: 2}
   _damagedSFX:
     Guid:
       Data1: -57277573
@@ -97,7 +110,6 @@ MonoBehaviour:
       Data3: 314102462
       Data4: 801854642
     Path: event:/Character/Player/Damaged
-  _info: {fileID: 11400000, guid: 99de96255f8ebcc4ba100d2e0ec53840, type: 2}
   _defeatedSFX:
     Guid:
       Data1: -1206591370
@@ -115,6 +127,7 @@ MonoBehaviour:
   _characterDirectionalPunch:
     _actionName: Soco Direcional
     _actionDescription: "Ataca e empurra em uma dire\xE7\xE3o"
+    _followRadius: 5
     _effects:
     - _targetList: 01000000
       _canTargetSelf: 0
@@ -134,6 +147,7 @@ MonoBehaviour:
   _weightAttack:
     _actionName: Levantamento de Peso
     _actionDescription: 
+    _followRadius: 5
     _effects:
     - _targetList: 01000000
       _canTargetSelf: 0
@@ -241,6 +255,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7349386340794890859}
   m_SourcePrefab: {fileID: 100100000, guid: 1e49eb8e24a3f4b4695abf2e7b9d40f9, type: 3}
+--- !u!1 &1392080613180038460 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4962662508526189029, guid: 1e49eb8e24a3f4b4695abf2e7b9d40f9, type: 3}
+  m_PrefabInstance: {fileID: 6309334940468634841}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5766291761327145778 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1e49eb8e24a3f4b4695abf2e7b9d40f9, type: 3}
@@ -273,3 +292,8 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &6702984039443043938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8463799943167315269, guid: 1e49eb8e24a3f4b4695abf2e7b9d40f9, type: 3}
+  m_PrefabInstance: {fileID: 6309334940468634841}
+  m_PrefabAsset: {fileID: 0}

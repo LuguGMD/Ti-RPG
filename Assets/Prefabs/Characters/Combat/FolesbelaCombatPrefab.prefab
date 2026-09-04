@@ -156,9 +156,19 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4898195295462728884}
   m_SourcePrefab: {fileID: 100100000, guid: ad5ca967e609ffc4088ad52bd1de2a39, type: 3}
+--- !u!1 &108384884072085249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 199081492623974607, guid: ad5ca967e609ffc4088ad52bd1de2a39, type: 3}
+  m_PrefabInstance: {fileID: 234830301561853902}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &344791003370811429 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ad5ca967e609ffc4088ad52bd1de2a39, type: 3}
+  m_PrefabInstance: {fileID: 234830301561853902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &369697890077926477 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 460254124132922243, guid: ad5ca967e609ffc4088ad52bd1de2a39, type: 3}
   m_PrefabInstance: {fileID: 234830301561853902}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1117773672608344735 stripped
@@ -188,6 +198,31 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &4430461380161500156 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4738242226720906190, guid: ad5ca967e609ffc4088ad52bd1de2a39, type: 3}
+  m_PrefabInstance: {fileID: 234830301561853902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4659444991862789293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4329115503917022365, guid: ad5ca967e609ffc4088ad52bd1de2a39, type: 3}
+  m_PrefabInstance: {fileID: 234830301561853902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5794441546919210638 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -3230289258640705216, guid: ad5ca967e609ffc4088ad52bd1de2a39, type: 3}
+  m_PrefabInstance: {fileID: 234830301561853902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6709216116040274033 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6798645883219969983, guid: ad5ca967e609ffc4088ad52bd1de2a39, type: 3}
+  m_PrefabInstance: {fileID: 234830301561853902}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7842918281612217775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1182779336051238303, guid: ad5ca967e609ffc4088ad52bd1de2a39, type: 3}
+  m_PrefabInstance: {fileID: 234830301561853902}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6156098801913985770
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -240,6 +275,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7571961425806664224, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      propertyPath: canOutline.Array.size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7571961425806664224, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      propertyPath: 'canOutline.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4430461380161500156}
+    - target: {fileID: 7571961425806664224, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      propertyPath: 'canOutline.Array.data[1]'
+      value: 
+      objectReference: {fileID: 4659444991862789293}
+    - target: {fileID: 7571961425806664224, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      propertyPath: 'canOutline.Array.data[2]'
+      value: 
+      objectReference: {fileID: 108384884072085249}
+    - target: {fileID: 7571961425806664224, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      propertyPath: 'canOutline.Array.data[3]'
+      value: 
+      objectReference: {fileID: 7842918281612217775}
+    - target: {fileID: 7571961425806664224, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      propertyPath: 'canOutline.Array.data[4]'
+      value: 
+      objectReference: {fileID: 369697890077926477}
+    - target: {fileID: 7571961425806664224, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      propertyPath: 'canOutline.Array.data[5]'
+      value: 
+      objectReference: {fileID: 6709216116040274033}
+    - target: {fileID: 7571961425806664224, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      propertyPath: 'canOutline.Array.data[6]'
+      value: 
+      objectReference: {fileID: 5794441546919210638}
     m_RemovedComponents:
     - {fileID: 8653750175042908985, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
     m_RemovedGameObjects: []
@@ -274,6 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4274903060abc7245b889179e7fc4e10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.FolesbelaCombatController
+  _info: {fileID: 11400000, guid: 1e543e771f1dcc242a52dba744570440, type: 2}
   _damagedSFX:
     Guid:
       Data1: -57277573
@@ -281,7 +349,6 @@ MonoBehaviour:
       Data3: 314102462
       Data4: 801854642
     Path: event:/Character/Player/Damaged
-  _info: {fileID: 11400000, guid: 1e543e771f1dcc242a52dba744570440, type: 2}
   _defeatedSFX:
     Guid:
       Data1: -1206591370
@@ -299,6 +366,7 @@ MonoBehaviour:
   _characterDirectionalPunch:
     _actionName: Soco Direcional
     _actionDescription: "Ataca e empurra na dire\xE7\xE3o do ataque"
+    _followRadius: 5
     _effects:
     - _targetList: 01000000
       _canTargetSelf: 0
@@ -318,6 +386,7 @@ MonoBehaviour:
   _acrobaticsLeftAttack:
     _actionName: Acrobacia Esq
     _actionDescription: Salta de 2 em 2 Tiles, acertando quem estiver naquele lugar
+    _followRadius: 5
     _effects:
     - _targetList: 01000000
       _canTargetSelf: 0
@@ -337,6 +406,7 @@ MonoBehaviour:
   _acrobaticsRightAttack:
     _actionName: Acrobacia Dir
     _actionDescription: Salta de 2 em 2 Tiles, acertando quem estiver naquele lugar
+    _followRadius: 5
     _effects:
     - _targetList: 01000000
       _canTargetSelf: 0
