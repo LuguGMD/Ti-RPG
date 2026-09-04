@@ -33,7 +33,7 @@ namespace RPG.Combat.Actions
         {
             Vector2Int previousSpotlightPosition = MapManager.SpotlightPosition;
 
-            ActionsManager.Instance.OnSpotlightSuper?.Invoke();
+            ActionsManager.Instance.OnSpotlightSuperStarted?.Invoke();
             if(SpotlightHandler.Instance != null)
                 yield return new WaitUntil(() => SpotlightHandler.Instance.IsSuperActive == false);
             yield return new WaitForSeconds(1f);

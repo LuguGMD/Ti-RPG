@@ -2,16 +2,18 @@ using DG.Tweening;
 using RPG.UI.Tooltip;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace RPG.Combat.UI
 {
-    public class CharacterMotivationSlider : MonoBehaviour
+    public class CharacterMotivationSlider : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private Slider _slider;
         [SerializeField] private Image _characterIcon;
         [SerializeField] private Button _characterButton;
         [SerializeField] private TooltipTrigger _tooltipTrigger;
+        private CharacterController _characterController;
 
         #region Properties
 
@@ -23,6 +25,7 @@ namespace RPG.Combat.UI
         public void SetInfo(CharacterController characterController)
         {
             CharacterScriptable characterInfo = characterController.CharacterInfo;
+            _characterController = characterController;
             _characterIcon.sprite = characterController.HasActed ? characterInfo.UsedIcon : characterInfo.Icon;
             _tooltipTrigger.header = characterInfo.EntityName;
             _tooltipTrigger.content = "";
@@ -44,6 +47,17 @@ namespace RPG.Combat.UI
             if (!CombatManager.HasCombatStarted) return;
             ActionsManager.Instance.OnEntitySelected?.Invoke(characterController);
             ActionsManager.Instance.OnCharacterClicked?.Invoke(characterController);
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            ActionsManager.Instance.OnCharacterHoverEnter?.Invoke(_characterController);
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            ActionsManager.Instance.OnCharacterHoverExit?.Invoke(_characterController);
+
         }
     }
 }

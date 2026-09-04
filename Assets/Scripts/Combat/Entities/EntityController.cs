@@ -41,7 +41,8 @@ namespace RPG.Combat
         protected void Start()
         {
             _cursorTarget.Actions.LeftClick.OnStart(OnSelected);
-            _cursorTarget.Actions.Hover.OnStart(OnHover);
+            _cursorTarget.Actions.Hover.OnStart(OnHoverStart);
+            _cursorTarget.Actions.Hover.OnCancel(OnHoverEnd);
         }
 
         protected void OnDestroy()
@@ -104,9 +105,14 @@ namespace RPG.Combat
             ActionsManager.Instance.OnEntitySelected?.Invoke(this);
         }
 
-        protected virtual void OnHover()
+        protected virtual void OnHoverStart()
         {
             ActionsManager.Instance.OnEntityHovered?.Invoke(this);
+        }
+
+        protected virtual void OnHoverEnd()
+        {
+            
         }
 
         public void SetAnimationTrigger(string trigger)

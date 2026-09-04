@@ -36,7 +36,7 @@ namespace RPG.Combat
         private void OnEnable()
         {
             ActionsManager.Instance.OnPlayerTurnStarted += CheckChangePosition;
-            ActionsManager.Instance.OnSpotlightSuper += HandleSpotlightSuper;
+            ActionsManager.Instance.OnSpotlightSuperStarted += HandleSpotlightSuper;
             ActionsManager.Instance.OnTileHovered += OnTileHovered;
             ActionsManager.Instance.OnPreviewTileSelected += OnTileSelected;
         }
@@ -44,7 +44,7 @@ namespace RPG.Combat
         private void OnDisable()
         {
             ActionsManager.Instance.OnPlayerTurnStarted -= CheckChangePosition;
-            ActionsManager.Instance.OnSpotlightSuper -= HandleSpotlightSuper;
+            ActionsManager.Instance.OnSpotlightSuperStarted -= HandleSpotlightSuper;
             ActionsManager.Instance.OnTileHovered -= OnTileHovered;
             ActionsManager.Instance.OnPreviewTileSelected -= OnTileSelected;
         }
@@ -124,6 +124,7 @@ namespace RPG.Combat
             if (!_isSuperActive) return;
             ChangePosition(tile.x);
             _isSuperActive = false;
+            ActionsManager.Instance.OnSpotlightSuperEnded?.Invoke();
         }
 
         #endregion
