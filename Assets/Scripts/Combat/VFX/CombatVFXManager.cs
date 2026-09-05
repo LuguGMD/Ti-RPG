@@ -12,6 +12,12 @@ namespace RPG.Combat.VFX
 
         CharacterController selectedCharacter;
         GameObject spotlightPreviousPosition;
+        AvailableActionVFXController apresentadorAvailableActionVFX;
+
+        void Start()
+        {
+            apresentadorAvailableActionVFX = FindAnyObjectByType<ApresentadorController>(FindObjectsInactive.Include).GetComponent<AvailableActionVFXController>();
+        }
 
         void OnEnable()
         {
@@ -28,6 +34,8 @@ namespace RPG.Combat.VFX
             ActionsManager.Instance.OnCharacterHoverExit += DeactivateCharacterOutline;
             ActionsManager.Instance.OnCharacterActionUsed += DeactivateIndicator;
             ActionsManager.Instance.OnCharacterActionReset += ActivateIndicator;
+            ActionsManager.Instance.OnApresentadorActionCompleted += DeactivateIndicatorApresentador;
+            ActionsManager.Instance.OnPlayerTurnStarted += ActivateIndicatorApresentador;
             // ActionsManager.Instance.OnCharacterSelected += LockCharacterOutline;
             // ActionsManager.Instance.OnCharacterDeselected += UnLockCharacterOutline;
 
@@ -51,6 +59,8 @@ namespace RPG.Combat.VFX
             ActionsManager.Instance.OnCharacterHoverExit -= DeactivateCharacterOutline;
             ActionsManager.Instance.OnCharacterActionUsed -= DeactivateIndicator;
             ActionsManager.Instance.OnCharacterActionReset -= ActivateIndicator;
+            ActionsManager.Instance.OnApresentadorActionCompleted -= DeactivateIndicatorApresentador;
+            ActionsManager.Instance.OnPlayerTurnStarted -=ActivateIndicatorApresentador;
             // ActionsManager.Instance.OnCharacterSelected -= LockCharacterOutline;
             // ActionsManager.Instance.OnCharacterDeselected -= UnLockCharacterOutline;
 
@@ -106,6 +116,16 @@ namespace RPG.Combat.VFX
         void DeactivateIndicator(CharacterController entity)
         {
             entity?.GetComponent<AvailableActionVFXController>().DeactivateIndicator();
+        }
+
+        void ActivateIndicatorApresentador()
+        {
+            apresentadorAvailableActionVFX.ActivateIndicator();
+        }
+
+        void DeactivateIndicatorApresentador()
+        {
+            apresentadorAvailableActionVFX.DeactivateIndicator();
         }
 #endregion
 
