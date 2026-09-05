@@ -10,23 +10,16 @@ namespace RPG.Management.Progression
     {
         [Header("Configuração")]
         public UpgradeGraphRuntime upgradeGraph;
-        public GameObject upgradeNodePrefab;
         public RectTransform graphContainer;
         public GameObject arrowPrefab;
         [SerializeField] private UpgradeConfirmPanel confirmPanel;
 
-        [Header("Layout")]
-        [SerializeField] private float _yOffset = 100f;
-        public float horizontalSpacing = 160f;
-        public float verticalSpacing = 180f;
         public float arrowWidth = 10f;
 
         private Dictionary<UpgradeData, UpgradeNode> nodeMap = new();
+        [SerializeField] private List<UpgradeNode> _nodes;
         private List<GameObject> arrows = new();
         private UpgradeNode pendingNode;
-
-        private string _key = "UpgradeGraph";
-        public string Key { get { return _key; } set { _key = value; } }
 
         void Start()
         {
@@ -36,40 +29,13 @@ namespace RPG.Management.Progression
 
         void BuildGraph()
         {
-
-            Dictionary<UpgradeData, int> depthMap = new();
-            foreach (var upgrade in upgradeGraph.AllUpgrades)
-                depthMap[upgrade] = GetDepth(upgrade, depthMap);
-
-            Dictionary<int, List<UpgradeData>> layers = new();
-            foreach (var kvp in depthMap)
+            for (int i = 0; i < _nodes.Count; i++)
             {
-                if (!layers.ContainsKey(kvp.Value))
-                    layers[kvp.Value] = new List<UpgradeData>();
-                layers[kvp.Value].Add(kvp.Key);
-            }
+                var node = _nodes[i];
+                var data = node.Data;
+                node.Init(data);
 
-            foreach (var layer in layers)
-            {
-                int depth = layer.Key;
-                var upgradesInLayer = layer.Value;
-                float totalWidth = (upgradesInLayer.Count - 1) * horizontalSpacing;
-
-                for (int i = 0; i < upgradesInLayer.Count; i++)
-                {
-                    var data = upgradesInLayer[i];
-                    var nodeGO = Instantiate(upgradeNodePrefab, graphContainer);
-                    var node = nodeGO.GetComponent<UpgradeNode>();
-                    node.Init(data);
-
-                    float x = -totalWidth / 2f + i * horizontalSpacing;
-                    x += graphContainer.sizeDelta.x / 2;
-                    float y = depth * verticalSpacing;
-                    y += _yOffset;
-                    nodeGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
-
-                    nodeMap[data] = node;
-                }
+                nodeMap[data] = node;
             }
 
             foreach (var kvp in nodeMap)
