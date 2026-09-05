@@ -64,6 +64,18 @@ namespace RPG.Combat
             return _info;
         }
 
+        protected override void OnHoverStart()
+        {
+            base.OnHoverStart();
+            ActionsManager.Instance.OnApresentadorHoverEnter?.Invoke();
+        }
+
+        protected override void OnHoverEnd()
+        {
+            base.OnHoverEnd();
+            ActionsManager.Instance.OnApresentadorHoverExit?.Invoke();
+        }
+
         protected override void OnSelected()
         {
             if (!CombatManager.HasCombatStarted) return;

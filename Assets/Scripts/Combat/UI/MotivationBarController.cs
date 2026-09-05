@@ -1,11 +1,12 @@
-using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
 using DG.Tweening;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace RPG.Combat.UI
 {
-    public class MotivationBarController : MonoBehaviour
+    public class MotivationBarController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         [SerializeField] private CharacterMotivationSlider _motivationBarPrefab;
         [SerializeField] private Transform _motivationBarContainer;
@@ -103,6 +104,17 @@ namespace RPG.Combat.UI
             if (CombatManager.Apresentador.HasActed) return;
 
             ActionsManager.Instance.OnApresentadorSelected?.Invoke();
+        }
+
+        public void OnPointerEnter(PointerEventData eventData)
+        {
+            ActionsManager.Instance.OnApresentadorHoverEnter?.Invoke();
+        }
+
+        public void OnPointerExit(PointerEventData eventData)
+        {
+            ActionsManager.Instance.OnApresentadorHoverExit?.Invoke();
+
         }
     }
 }

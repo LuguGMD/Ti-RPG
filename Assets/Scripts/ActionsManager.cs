@@ -33,6 +33,9 @@ namespace RPG
         public Action OnApresentadorActionCompleted;
         public Action OnApresentadorActionCanceled;
 
+        public Action OnApresentadorHoverEnter;
+        public Action OnApresentadorHoverExit;
+
         public Action<StageEntityController> OnStageEntityCreated;
         public Action<StageEntityController> OnStageEntityDefeated;
 
