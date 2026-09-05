@@ -33,11 +33,12 @@ namespace RPG.Combat.VFX
             ActionsManager.Instance.OnCharacterHoverEnter += ActivateCharacterOutline;
             ActionsManager.Instance.OnCharacterHoverExit += DeactivateCharacterOutline;
             ActionsManager.Instance.OnCharacterActionUsed += DeactivateIndicator;
+            ActionsManager.Instance.OnCharacterActionUsed += DeactivateIndicator;
             ActionsManager.Instance.OnCharacterActionReset += ActivateIndicator;
             ActionsManager.Instance.OnApresentadorActionCompleted += DeactivateIndicatorApresentador;
             ActionsManager.Instance.OnPlayerTurnStarted += ActivateIndicatorApresentador;
-            // ActionsManager.Instance.OnCharacterSelected += LockCharacterOutline;
-            // ActionsManager.Instance.OnCharacterDeselected += UnLockCharacterOutline;
+            ActionsManager.Instance.OnCharacterSelected += LockCharacterOutline;
+            ActionsManager.Instance.OnCharacterDeselected += UnLockCharacterOutline;
 
             // Spotlight Super
             ActionsManager.Instance.OnSpotlightSuperStarted += AddSpotlightSuperPreview;
@@ -61,8 +62,8 @@ namespace RPG.Combat.VFX
             ActionsManager.Instance.OnCharacterActionReset -= ActivateIndicator;
             ActionsManager.Instance.OnApresentadorActionCompleted -= DeactivateIndicatorApresentador;
             ActionsManager.Instance.OnPlayerTurnStarted -=ActivateIndicatorApresentador;
-            // ActionsManager.Instance.OnCharacterSelected -= LockCharacterOutline;
-            // ActionsManager.Instance.OnCharacterDeselected -= UnLockCharacterOutline;
+            ActionsManager.Instance.OnCharacterSelected -= LockCharacterOutline;
+            ActionsManager.Instance.OnCharacterDeselected -= UnLockCharacterOutline;
 
             // Spotlight Super
             ActionsManager.Instance.OnSpotlightSuperStarted -= AddSpotlightSuperPreview;
@@ -96,11 +97,13 @@ namespace RPG.Combat.VFX
         {
             selectedCharacter = entity;
             selectedCharacter?.GetComponent<AvailableActionVFXController>().LockOutline();
+            ActivateCharacterOutline(selectedCharacter);
         }
 
         void UnLockCharacterOutline()
         {
             selectedCharacter?.GetComponent<AvailableActionVFXController>().UnlockOutline();
+            DeactivateCharacterOutline(selectedCharacter);
         }
 
         void DeactivateCharacterOutline(CharacterController entity)

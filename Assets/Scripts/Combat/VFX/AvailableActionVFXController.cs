@@ -43,6 +43,8 @@ namespace RPG
         {
             indicator.SetActive(false);
             actionAvailable = false;
+            UnlockOutline();
+            DeactivateOutline();
         }
 
         public void LockOutline()
