@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace RPG
@@ -9,6 +8,7 @@ namespace RPG
         [SerializeField] GameObject indicator;
 
         bool actionAvailable = true;
+        bool lockOutline = false;
 
         public void ActivateOutline()
         {
@@ -23,10 +23,14 @@ namespace RPG
 
         public void DeactivateOutline()
         {
-            foreach (GameObject g in canOutline)
+            if (!lockOutline)
             {
-                g.layer = LayerMask.NameToLayer("Default");
-            }    
+                foreach (GameObject g in canOutline)
+                {
+                    g.layer = LayerMask.NameToLayer("Default");
+                }  
+            }
+              
         }
 
         public void ActivateIndicator()
@@ -39,6 +43,16 @@ namespace RPG
         {
             indicator.SetActive(false);
             actionAvailable = false;
+        }
+
+        public void LockOutline()
+        {
+            lockOutline = true;
+        }
+
+        public void UnlockOutline()
+        {
+            lockOutline = false;
         }
     }
 }

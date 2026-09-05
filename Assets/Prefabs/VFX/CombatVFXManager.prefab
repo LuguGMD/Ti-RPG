@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3988617716082400298}
   - component: {fileID: 9093550376619923180}
   m_Layer: 0
-  m_Name: VFXManager
+  m_Name: CombatVFXManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,5 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7ab6d71adedf4c41b387354ced1ca36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.VFXManager
-  spawnVFX: {fileID: 2790084606861560026, guid: acc88058d79e50a40b724dc52692465f, type: 3}
-  healVFX: {fileID: 5248938225053436589, guid: 0b1d093b980d33b4397c904b9c4c774c, type: 3}
+  spawnVFXPrefab: {fileID: 2790084606861560026, guid: acc88058d79e50a40b724dc52692465f, type: 3}
+  healVFXPrefab: {fileID: 5248938225053436589, guid: 0b1d093b980d33b4397c904b9c4c774c, type: 3}
+  spotlightPreviousPositionPrefab: {fileID: 2362538448608397180, guid: 72b04ed3908b01b4f8fa45b80a97509d, type: 3}
