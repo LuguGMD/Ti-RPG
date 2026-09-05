@@ -99,6 +99,8 @@ namespace RPG.Combat.UI
         {
             if (!_isCanvasEnabled) return;
 
+            ActionsManager.Instance.OnApresentadorUIClose?.Invoke();
+
             _isCanvasEnabled = false;
             CombatUIManager.Instance.DisablePanel(_mainPanel);
             _rowSelector.SetActive(false);

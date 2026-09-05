@@ -87,6 +87,7 @@ namespace RPG
 
         public Action OnApresentadorSelected;
         public Action OnApresentadorUIOpen;
+        public Action OnApresentadorUIClose;
 
         #endregion
 
