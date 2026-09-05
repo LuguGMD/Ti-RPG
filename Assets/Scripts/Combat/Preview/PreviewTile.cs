@@ -78,7 +78,8 @@ namespace RPG.Combat.Preview
         protected void RemoveParent()
         {
             transform.parent = null;
-            transform.GetChild(_tilePosition.y)?.gameObject.SetActive(false);
+            if(_tilePosition.y < transform.childCount)
+                transform.GetChild(_tilePosition.y)?.gameObject.SetActive(false);
         }
 
         protected void AddParent()
