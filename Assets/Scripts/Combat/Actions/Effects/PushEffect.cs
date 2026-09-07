@@ -11,6 +11,9 @@ namespace RPG.Combat.Actions.Effects
         private DirectionEnum _pushDirection = DirectionEnum.Up;
         private int _pushAmount = 1;
 
+        // TO-DO: Substituir valor de dano 
+        private float _damageOnCollision = 10f;
+
         #region Properties
 
         public bool IsPushDirectionRelative { get { return _isPushDirectionRelative; } }
@@ -36,6 +39,15 @@ namespace RPG.Combat.Actions.Effects
 
             if (!MapManager.IsMovementValid(target.Position, movement, target.Movement.CanGoToLastRow))
             {
+                Vector2Int nextPosition = (target.Position + pushDirection.ToVector2Int()).ClampMap();
+                Tile nextTile = MapManager.Map.GetTile(nextPosition);
+
+                if (nextTile != null && nextTile.IsOccupied && nextTile.TileObject.Entity != null)
+                {
+                    nextTile.TileObject.Entity.TakeDamage(_damageOnCollision);
+                    return true;
+                }
+
                 return false;
             }
             else
