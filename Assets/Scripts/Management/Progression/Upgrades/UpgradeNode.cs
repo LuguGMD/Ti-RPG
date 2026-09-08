@@ -14,7 +14,7 @@ namespace RPG.Management.Progression
         public Image iconImage;
         [SerializeField] private TooltipTrigger _tooltip;
 
-        [SerializeField] private UpgradeData _data;
+        private UpgradeData _data;
         [HideInInspector] public UpgradeNode[] parentNodes;
 
         private bool isPurchased = false;
