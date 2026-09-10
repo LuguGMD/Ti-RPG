@@ -10,23 +10,16 @@ namespace RPG.Management.Progression
     {
         [Header("Configuração")]
         public UpgradeGraphRuntime upgradeGraph;
-        public GameObject upgradeNodePrefab;
         public RectTransform graphContainer;
         public GameObject arrowPrefab;
         [SerializeField] private UpgradeConfirmPanel confirmPanel;
 
-        [Header("Layout")]
-        [SerializeField] private float _yOffset = 100f;
-        public float horizontalSpacing = 160f;
-        public float verticalSpacing = 180f;
         public float arrowWidth = 10f;
 
         private Dictionary<UpgradeData, UpgradeNode> nodeMap = new();
+        [SerializeField] private List<UpgradeNode> _nodes;
         private List<GameObject> arrows = new();
         private UpgradeNode pendingNode;
-
-        private string _key = "UpgradeGraph";
-        public string Key { get { return _key; } set { _key = value; } }
 
         void Start()
         {
@@ -49,27 +42,13 @@ namespace RPG.Management.Progression
                 layers[kvp.Value].Add(kvp.Key);
             }
 
-            foreach (var layer in layers)
+            for (int i = 0; i < _nodes.Count; i++)
             {
-                int depth = layer.Key;
-                var upgradesInLayer = layer.Value;
-                float totalWidth = (upgradesInLayer.Count - 1) * horizontalSpacing;
+                var node = _nodes[i];
+                var data = node.Data;
+                node.Init(data);
 
-                for (int i = 0; i < upgradesInLayer.Count; i++)
-                {
-                    var data = upgradesInLayer[i];
-                    var nodeGO = Instantiate(upgradeNodePrefab, graphContainer);
-                    var node = nodeGO.GetComponent<UpgradeNode>();
-                    node.Init(data);
-
-                    float x = -totalWidth / 2f + i * horizontalSpacing;
-                    x += graphContainer.sizeDelta.x / 2;
-                    float y = depth * verticalSpacing;
-                    y += _yOffset;
-                    nodeGO.GetComponent<RectTransform>().anchoredPosition = new Vector2(x, y);
-
-                    nodeMap[data] = node;
-                }
+                nodeMap[data] = node;
             }
 
             foreach (var kvp in nodeMap)
@@ -105,14 +84,14 @@ namespace RPG.Management.Progression
             var arrow = Instantiate(arrowPrefab, graphContainer);
             arrow.transform.SetAsFirstSibling();
 
-            var fromPos = from.GetComponent<RectTransform>().anchoredPosition;
-            var toPos = to.GetComponent<RectTransform>().anchoredPosition;
+            var fromPos = from.GetComponent<RectTransform>().position;
+            var toPos = to.GetComponent<RectTransform>().position;
 
             var arrowRect = arrow.GetComponent<RectTransform>();
-            Vector2 dir = toPos - fromPos;
+            Vector3 dir = toPos - fromPos;
             float dist = dir.magnitude;
 
-            arrowRect.anchoredPosition = fromPos + dir * 0.5f;
+            arrowRect.position = fromPos + dir * 0.5f;
             arrowRect.sizeDelta = new Vector2(dist, arrowWidth);
             arrowRect.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
 

@@ -53,6 +53,7 @@ namespace RPG.Management.Progression.Editor
             IPort nameInput = node.GetInputPortByName(UpgradeGraphNode.INPUT_NAME);
             nameInput.TryGetValue<string>(out string name);
             upgradeData.upgradeName = name;
+            upgradeData.name = name;
 
             IPort descriptionInput = node.GetInputPortByName(UpgradeGraphNode.INPUT_DESCRIPTION);
             descriptionInput.TryGetValue<string>(out string description);
