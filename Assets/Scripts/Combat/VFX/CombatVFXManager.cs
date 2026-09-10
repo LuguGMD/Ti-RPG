@@ -145,7 +145,6 @@ namespace RPG.Combat.VFX
 
         void LockApresentadorOutline()
         {
-            //selectedCharacter = entity;
             apresentadorAvailableActionVFX.LockOutline();
             ActivateApresentadorOutline();
         }
