@@ -7,6 +7,7 @@ using UnityEngine;
 using System.Collections;
 using System.Linq;
 using RPG.Combat.Wave;
+using RPG.Combat.Cameras;
 using RPG.Combat.Grid;
 using RPG.Combat.UI;
 using Unity.Cinemachine;
@@ -413,10 +414,13 @@ namespace RPG.Combat
             {
                 if (!_hasCombatEnded)
                 {
+                    yield return CombatCameraDirector.FocusEntity(_remainingEnemies[i]);
                     yield return _remainingEnemies[i].UsePreparedAction();
                     yield return new WaitForSeconds(0.1f / _combatSpeed);
                 }
             }
+
+            yield return CombatCameraDirector.ReturnToPlayerView();
 
             SwitchTurn();
         }
