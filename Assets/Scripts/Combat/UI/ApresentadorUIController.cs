@@ -119,8 +119,6 @@ namespace RPG.Combat.UI
 
         private void Rotate(int amount)
         {
-            ActionsManager.Instance.OnRowRotated?.Invoke();
-
             int rowIndex = CombatManager.Apresentador.RowToRotate;
             if (_linesStuck.Contains(rowIndex))
             {
