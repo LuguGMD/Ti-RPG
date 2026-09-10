@@ -1447,7 +1447,7 @@ GameObject:
   - component: {fileID: 602029807}
   - component: {fileID: 602029806}
   - component: {fileID: 602029805}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4999,6 +4999,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4507279427250603122, guid: 6d9811e819b38014194cc6af01665645, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507279427250603122, guid: 6d9811e819b38014194cc6af01665645, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5505938794268133190, guid: 6d9811e819b38014194cc6af01665645, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -5036,6 +5044,10 @@ PrefabInstance:
     - target: {fileID: 4155014204745474996, guid: c2fde55211ec00a41a789430fffa3a0f, type: 3}
       propertyPath: gravity
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4155014204745474996, guid: c2fde55211ec00a41a789430fffa3a0f, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6293911206743334705, guid: c2fde55211ec00a41a789430fffa3a0f, type: 3}
       propertyPath: m_LocalPosition.x
