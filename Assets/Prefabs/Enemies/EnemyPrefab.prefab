@@ -55,6 +55,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef9ebd7b99f91c24580ecaf6fc751bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.EnemyController
+  _info: {fileID: 11400000, guid: 77c2de23c2f84a842befc3e2976b3120, type: 2}
   _damagedSFX:
     Guid:
       Data1: 0
@@ -62,8 +63,14 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
-  _info: {fileID: 11400000, guid: 77c2de23c2f84a842befc3e2976b3120, type: 2}
   _defeatedSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  _spawnedSFX:
     Guid:
       Data1: 0
       Data2: 0
@@ -94,6 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e4ebc8453335f845aacadf204dcc22c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Grid.TileObjectMovement
+  CanGoToLastRow: 1
 --- !u!114 &5000773616101672634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -416,6 +424,10 @@ PrefabInstance:
     - target: {fileID: 2882303336977644983, guid: b58dee8ea92dd764d9cc61be13c2fc22, type: 3}
       propertyPath: m_Name
       value: SpectatorPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2882303336977644983, guid: b58dee8ea92dd764d9cc61be13c2fc22, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5445041296464937057, guid: b58dee8ea92dd764d9cc61be13c2fc22, type: 3}
       propertyPath: m_LocalPosition.x
