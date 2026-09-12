@@ -1,24 +1,21 @@
 using DG.Tweening;
 using UnityEngine;
-using RPG.Combat;
 using RPG.Input;
+using RPG.Combat;
 
 namespace RPG.UI.Tooltip
 {
-    public class EnemyTooltipTrigger : MonoBehaviour
+    public class Tooltip3DSystem : MonoBehaviour
     {
         [SerializeField] private Vector2 _offset;
         [SerializeField] private Vector2 _pivot;
 
         private CursorTarget _cursorTarget;
-        private EnemyController _enemyController;
-
         private Tween _delay;
 
         private void Awake()
         {
             _cursorTarget = GetComponent<CursorTarget>();
-            _enemyController = GetComponent<EnemyController>();
         }
 
         private void OnEnable()
@@ -43,11 +40,20 @@ namespace RPG.UI.Tooltip
             {
                 EnemyController enemyController = GetComponent<EnemyController>();
 
+                if (enemyController == null)
+                {
+                    Debug.Log("Não encontrou EnemyController!");
+                    return;
+                }
+
                 EnemyScriptable enemy =
                     enemyController.GetEntityInfo() as EnemyScriptable;
 
                 if (enemy == null)
+                {
+                    Debug.Log("Não encontrou EnemyScriptable!");
                     return;
+                }
 
                 TooltipSystem.ShowEnemy(
                     enemy,
@@ -62,9 +68,5 @@ namespace RPG.UI.Tooltip
             _delay?.Kill();
             TooltipSystem.Hide();
         }
-
-
     }
-
-
 }
