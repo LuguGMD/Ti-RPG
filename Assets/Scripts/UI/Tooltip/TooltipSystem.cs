@@ -1,5 +1,6 @@
 using Lugu.Singleton;
 using UnityEngine;
+using RPG.Combat;
 
 namespace RPG.UI.Tooltip
 {
@@ -14,6 +15,18 @@ namespace RPG.UI.Tooltip
             Instance.tooltip.rectTransform.position = position;
             Instance.tooltip.rectTransform.pivot = pivot;
             Instance.tooltip.Show();
+        }
+
+        public static void ShowEnemy(EnemyScriptable enemy, Vector2 position = default, Vector2 pivot = default)
+        {
+            EnemyTooltip enemyTooltip = Instance.tooltip as EnemyTooltip;
+
+            enemyTooltip.SetEnemy(enemy);
+
+            enemyTooltip.gameObject.SetActive(true);
+            enemyTooltip.rectTransform.position = position;
+            enemyTooltip.rectTransform.pivot = pivot;
+            enemyTooltip.Show();
         }
 
         public static void Hide()

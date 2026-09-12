@@ -40,11 +40,11 @@ namespace RPG.Input
 
         private void Singleton()
         {
-            if(Instance == null)
+            if (Instance == null)
             {
                 Instance = this;
             }
-            else if(Instance != this)
+            else if (Instance != this)
             {
                 Destroy(gameObject);
             }
