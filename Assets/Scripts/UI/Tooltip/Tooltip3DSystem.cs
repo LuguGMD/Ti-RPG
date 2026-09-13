@@ -1,72 +1,83 @@
-using DG.Tweening;
 using UnityEngine;
-using RPG.Input;
 using RPG.Combat;
 
 namespace RPG.UI.Tooltip
 {
     public class Tooltip3DSystem : MonoBehaviour
     {
-        [SerializeField] private Vector2 _offset;
-        [SerializeField] private Vector2 _pivot;
+        [SerializeField] private EnemyTooltip _enemyTooltip;
 
-        private CursorTarget _cursorTarget;
-        private Tween _delay;
+        private static Tooltip3DSystem _instance;
 
         private void Awake()
         {
-            _cursorTarget = GetComponent<CursorTarget>();
-        }
+            _instance = this;
 
-        private void OnEnable()
-        {
-            _cursorTarget.Actions.Hover.OnStart(ShowTooltip);
-            _cursorTarget.Actions.Hover.OnCancel(HideTooltip);
-        }
-
-        private void OnDisable()
-        {
-            _cursorTarget.Actions.Hover.Remove.OnStart(ShowTooltip);
-            _cursorTarget.Actions.Hover.Remove.OnCancel(HideTooltip);
-
-            _delay?.Kill();
-        }
-
-        private void ShowTooltip()
-        {
-            _delay?.Kill();
-
-            _delay = DOVirtual.DelayedCall(0.3f, () =>
+            // Procura o EnemyTooltip mesmo que ele esteja desativado na cena.
+            if (_enemyTooltip == null)
             {
-                EnemyController enemyController = GetComponent<EnemyController>();
+                _enemyTooltip =
+                    FindFirstObjectByType<EnemyTooltip>(
+                        FindObjectsInactive.Include
+                    );
+            }
 
-                if (enemyController == null)
-                {
-                    Debug.Log("Não encontrou EnemyController!");
-                    return;
-                }
-
-                EnemyScriptable enemy =
-                    enemyController.GetEntityInfo() as EnemyScriptable;
-
-                if (enemy == null)
-                {
-                    Debug.Log("Não encontrou EnemyScriptable!");
-                    return;
-                }
-
-                TooltipSystem.ShowEnemy(
-                    enemy,
-                    transform.position + new Vector3(_offset.x, _offset.y, 0),
-                    _pivot
-                );
-            });
+            if (_enemyTooltip == null)
+            {
+                Debug.LogWarning("EnemyTooltip não foi encontrado na cena!");
+            }
+            else
+            {
+                Debug.Log("EnemyTooltip encontrado!");
+            }
         }
 
-        private void HideTooltip()
+        public static void ShowEnemy(
+            EnemyScriptable enemy,
+            Vector3 worldPosition,
+            Vector2 pivot
+        )
         {
-            _delay?.Kill();
-            TooltipSystem.Hide();
+            Debug.Log("ShowEnemy do Tooltip3DSystem foi chamado!");
+
+            if (_instance == null)
+            {
+                Debug.LogWarning("Tooltip3DSystem não foi encontrado na cena!");
+                return;
+            }
+
+            if (_instance._enemyTooltip == null)
+            {
+                Debug.LogWarning("EnemyTooltip não foi configurado!");
+                return;
+            }
+
+            // Converte a posição do inimigo 3D para uma posição na tela.
+            Vector3 screenPosition =
+                UnityEngine.Camera.main.WorldToScreenPoint(worldPosition);
+
+            // Preenche as informações do inimigo.
+            _instance._enemyTooltip.SetEnemy(enemy, true);
+
+            // Mostra o painel.
+            _instance._enemyTooltip.gameObject.SetActive(true);
+
+            // Coloca o painel na posição do inimigo na tela.
+            _instance._enemyTooltip.rectTransform.position = screenPosition;
+            _instance._enemyTooltip.rectTransform.pivot = pivot;
+
+            _instance._enemyTooltip.Show();
+        }
+
+        public static void Hide()
+        {
+            if (_instance == null)
+                return;
+
+            if (_instance._enemyTooltip == null)
+                return;
+
+            _instance._enemyTooltip.Hide();
         }
     }
 }

@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
-using RPG.Combat;
 using RPG.Input;
+using RPG.Combat;
 
 namespace RPG.UI.Tooltip
 {
@@ -37,19 +37,22 @@ namespace RPG.UI.Tooltip
 
         private void ShowTooltip()
         {
+            Debug.Log("HOVER NO INIMIGO!");
+
             _delay?.Kill();
 
             _delay = DOVirtual.DelayedCall(0.3f, () =>
             {
-                EnemyController enemyController = GetComponent<EnemyController>();
-
                 EnemyScriptable enemy =
-                    enemyController.GetEntityInfo() as EnemyScriptable;
+                    _enemyController.GetEntityInfo() as EnemyScriptable;
 
                 if (enemy == null)
+                {
+                    Debug.LogWarning("EnemyScriptable não encontrado!");
                     return;
+                }
 
-                TooltipSystem.ShowEnemy(
+                Tooltip3DSystem.ShowEnemy(
                     enemy,
                     transform.position + new Vector3(_offset.x, _offset.y, 0),
                     _pivot
@@ -60,11 +63,8 @@ namespace RPG.UI.Tooltip
         private void HideTooltip()
         {
             _delay?.Kill();
-            TooltipSystem.Hide();
+
+            Tooltip3DSystem.Hide();
         }
-
-
     }
-
-
 }

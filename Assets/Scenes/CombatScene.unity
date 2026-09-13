@@ -407,12 +407,13 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1464364350}
-  - {fileID: 2060938833}
   - {fileID: 1441832706}
   - {fileID: 2134049113}
   - {fileID: 1476670810}
   - {fileID: 261358477}
   - {fileID: 1618547759}
+  - {fileID: 2060938833}
+  - {fileID: 472503050}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &129328721
@@ -1065,7 +1066,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 126192901}
     m_Modifications:
     - target: {fileID: 973582600203368930, guid: 0dbc2d0516b9c7b4e909178053d33bf9, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1097,7 +1098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1228818605325181711, guid: 0dbc2d0516b9c7b4e909178053d33bf9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1719028516964439519, guid: 0dbc2d0516b9c7b4e909178053d33bf9, type: 3}
       propertyPath: m_Pivot.x
@@ -1181,11 +1182,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2021913666081061094, guid: 0dbc2d0516b9c7b4e909178053d33bf9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 450
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2021913666081061094, guid: 0dbc2d0516b9c7b4e909178053d33bf9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 375.14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5193751431413433577, guid: 0dbc2d0516b9c7b4e909178053d33bf9, type: 3}
       propertyPath: m_AnchorMax.y
@@ -1217,7 +1218,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5763500756154753116, guid: 0dbc2d0516b9c7b4e909178053d33bf9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9084993346690792081, guid: 0dbc2d0516b9c7b4e909178053d33bf9, type: 3}
       propertyPath: tooltip
@@ -1263,8 +1264,8 @@ MonoBehaviour:
   background: {fileID: 308945131}
   fadeTime: 0.2
   characterWrapLimit: 80
-  rectTransform: {fileID: 0}
-  combatField: {fileID: 0}
+  rectTransform: {fileID: 308945124}
+  combatField: {fileID: 1724938754}
 --- !u!114 &308945128 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 907690732948660760, guid: 0dbc2d0516b9c7b4e909178053d33bf9, type: 3}
@@ -1836,6 +1837,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3548215825127524377, guid: b23b08134a535184b9d267eb813bf4c8, type: 3}
   m_PrefabInstance: {fileID: 469702718}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &472503050 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1719028516964439519, guid: 0dbc2d0516b9c7b4e909178053d33bf9, type: 3}
+  m_PrefabInstance: {fileID: 308945123}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &525276432
 GameObject:
@@ -5609,6 +5615,51 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1608919183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1608919185}
+  - component: {fileID: 1608919184}
+  m_Layer: 0
+  m_Name: Tooltip3DSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1608919184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608919183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6da7c6ee35d354443a82770587dc2d01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.UI.Tooltip.Tooltip3DSystem
+  _enemyTooltip: {fileID: 308945126}
+--- !u!4 &1608919185
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1608919183}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -37.85987, y: -0, z: -26.61809}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -9558,4 +9609,4 @@ SceneRoots:
   - {fileID: 278378029}
   - {fileID: 437889648}
   - {fileID: 525631566}
-  - {fileID: 308945123}
+  - {fileID: 1608919185}
