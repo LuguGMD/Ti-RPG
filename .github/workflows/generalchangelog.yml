@@ -92,7 +92,7 @@ jobs:
                 categories["other"].append(commit)
 
         # Escreve o arquivo Markdown
-        with open("CHANGELOG_RELEASE.md", "w", encoding="utf-8") as f:
+        with open("GENERAL_CHANGELOG_RELEASE.md", "w", encoding="utf-8") as f:
             f.write("# Changes\n\n")
             
             for category in categories_names:
