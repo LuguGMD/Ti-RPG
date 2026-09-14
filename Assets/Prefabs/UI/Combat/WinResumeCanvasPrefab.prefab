@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Moedas Recebidas: '
+  m_text: 'Moedas Recebidas: 100'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8865b8e6abe247240ba70586f6604cb5, type: 2}
   m_sharedMaterial: {fileID: -8947200110883534818, guid: 8865b8e6abe247240ba70586f6604cb5, type: 2}
@@ -666,7 +666,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RPG.WinResumeHandler
   _challengePreviewPrefab: {fileID: 1620044379356014053, guid: 9fefa964e97c52f4a87c1947d89b4dcf, type: 3}
   _challengesContainer: {fileID: 840766779575664107}
-  _coinsEarnedText: {fileID: 0}
+  _coinsEarnedText: {fileID: 2131300791015827342}
 --- !u!1 &7240046279880782159
 GameObject:
   m_ObjectHideFlags: 0
@@ -974,10 +974,10 @@ MonoBehaviour:
     m_Right: 80
     m_Top: 60
     m_Bottom: 60
-  m_ChildAlignment: 4
-  m_Spacing: -9.86
+  m_ChildAlignment: 1
+  m_Spacing: 2
   m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
+  m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 1
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
