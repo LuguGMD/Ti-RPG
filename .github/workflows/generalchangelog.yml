@@ -40,7 +40,7 @@ jobs:
 
         print(f"Analisando commits no intervalo: {git_range}")
 
-        categories_names = ["feat", "style", "fix", "refactor", "other"]
+        categories_names = ["feat", "style", "fix", "refactor", "core", "other"]
         
         # Define as categorias
         categories = {
@@ -63,6 +63,7 @@ jobs:
 
         
         # Executa o comando no terminal do sistema
+        cmd = f'git log --pretty=format:"%s" {git_range}'
         process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         out, err = process.communicate()
         
