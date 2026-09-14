@@ -1,4 +1,4 @@
-name: Changelog Generator
+name: General Changelog Generator
 # Executa quando há um Push na branch main (simulando um merge aceito)
 on:
   push:
@@ -108,4 +108,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: Release-Notes
-        path: CHANGELOG_RELEASE.md
+        path: GENERAL_CHANGELOG_RELEASE.md
