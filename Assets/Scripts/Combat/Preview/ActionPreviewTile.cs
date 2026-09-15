@@ -48,6 +48,14 @@ namespace RPG.Combat.Preview
             _parent = parent;
         }
 
+        public void SetColor(Color color)
+        {
+            foreach (MeshRenderer renderer in _renderer)
+            {
+                renderer.material.SetColor("_Tint_Color", color);
+            }
+        }
+
         protected override void Select()
         {
             if (_canBeSelected)
