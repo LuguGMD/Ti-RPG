@@ -1,0 +1,380 @@
+name: General Changelog Generator
+
+on:
+  push:
+    branches:
+      - main
+      - development
+
+jobs:
+  build-changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    # ---------------------------------------------------------
+    # Baixa todo o histórico do repositório
+    # ---------------------------------------------------------
+    - name: Code Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+
+    # ---------------------------------------------------------
+    # Gera o Changelog
+    # ---------------------------------------------------------
+    - name: Generating Changelog
+      shell: python
+      run: |
+        import subprocess
+        import sys
+        import re
+
+
+        # -----------------------------------------------------
+        # Categorias dos commits
+        # -----------------------------------------------------
+
+        categories_names = [
+            "feat",
+            "style",
+            "fix",
+            "refactor",
+            "core",
+            "other"
+        ]
+
+
+        descriptions = {
+            "feat": "New Feature",
+            "fix": "Fixes",
+            "style": "Art Addition",
+            "refactor": "Refactoring",
+            "core": "Core",
+            "other": "Other Changes"
+        }
+
+
+        # Arquivo do Unity onde a versão do projeto é armazenada
+        PROJECT_SETTINGS = "ProjectSettings/ProjectSettings.asset"
+
+
+        # -----------------------------------------------------
+        # Executa comandos do Git
+        # -----------------------------------------------------
+
+        def git_command(args):
+
+            process = subprocess.run(
+                ["git"] + args,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                text=True
+            )
+
+            if process.returncode != 0:
+
+                print("Git error:")
+                print(process.stderr)
+
+                return None
+
+            return process.stdout
+
+
+        # -----------------------------------------------------
+        # Obtém a versão do projeto em um determinado commit
+        # -----------------------------------------------------
+
+        def get_version(commit_hash):
+
+            content = git_command([
+                "show",
+                f"{commit_hash}:{PROJECT_SETTINGS}"
+            ])
+
+
+            # O arquivo não existia nesse commit
+            if content is None:
+
+                return "Unknown"
+
+
+            # Procura:
+            #
+            # bundleVersion: 1.2.3
+            #
+            match = re.search(
+                r"^\s*bundleVersion:\s*(.+?)\s*$",
+                content,
+                re.MULTILINE
+            )
+
+
+            if match:
+
+                return match.group(1).strip()
+
+
+            return "Unknown"
+
+
+        # -----------------------------------------------------
+        # Obtém todos os commits da MAIN
+        #
+        # %H = Hash do commit
+        # %P = Parents
+        # %s = Mensagem
+        #
+        # Exemplo:
+        #
+        # HASH    PARENT    feat: Add inventory
+        #
+        # Um merge terá múltiplos parents:
+        #
+        # HASH    PARENT1 PARENT2    Merge branch...
+        # -----------------------------------------------------
+
+        log = git_command([
+            "log",
+            "main",
+            "--reverse",
+            "--format=%H%x09%P%x09%s"
+        ])
+
+
+        if log is None:
+
+            print("Não foi possível obter o histórico do Git.")
+
+            sys.exit(1)
+
+
+        commits = log.splitlines()
+
+
+        if not commits:
+
+            print("Nenhum commit encontrado.")
+
+            with open(
+                "CHANGELOG_RELEASE.md",
+                "w",
+                encoding="utf-8"
+            ) as f:
+
+                f.write(
+                    "# Changes\n\n"
+                    "No changes detected.\n"
+                )
+
+            sys.exit(0)
+
+
+        # -----------------------------------------------------
+        # Estrutura das versões
+        #
+        # {
+        #     "1.0.0": {
+        #         "feat": [],
+        #         "fix": [],
+        #         ...
+        #     }
+        # }
+        # -----------------------------------------------------
+
+        versions = {}
+
+
+        # Contador de commits ignorados
+        merge_commits = 0
+
+
+        # -----------------------------------------------------
+        # Processa os commits
+        # -----------------------------------------------------
+
+        for line in commits:
+
+            if "\t" not in line:
+
+                continue
+
+
+            try:
+
+                commit_hash, parents, message = line.split(
+                    "\t",
+                    2
+                )
+
+            except ValueError:
+
+                continue
+
+
+            # -------------------------------------------------
+            # Ignora commits de MERGE
+            #
+            # Um commit normal possui apenas um parent.
+            #
+            # Um commit de merge possui dois ou mais parents.
+            # -------------------------------------------------
+
+            parent_list = parents.split()
+
+
+            if len(parent_list) > 1:
+
+                merge_commits += 1
+
+                continue
+
+
+            # -------------------------------------------------
+            # Descobre a versão do Unity naquele commit
+            # -------------------------------------------------
+
+            version = get_version(commit_hash)
+
+
+            # -------------------------------------------------
+            # Cria a estrutura da versão caso ela ainda não
+            # exista
+            # -------------------------------------------------
+
+            if version not in versions:
+
+                versions[version] = {
+
+                    "feat": [],
+                    "fix": [],
+                    "style": [],
+                    "refactor": [],
+                    "core": [],
+                    "other": []
+
+                }
+
+
+            # -------------------------------------------------
+            # Identifica a categoria do commit
+            # -------------------------------------------------
+
+            lower_message = message.lower().strip()
+
+            added = False
+
+
+            for category in categories_names:
+
+                # "other" é o fallback
+                if category == "other":
+
+                    continue
+
+
+                if lower_message.startswith(category):
+
+                    versions[version][category].append(
+                        message
+                    )
+
+                    added = True
+
+                    break
+
+
+            # -------------------------------------------------
+            # Caso não tenha nenhuma categoria conhecida
+            # -------------------------------------------------
+
+            if not added:
+
+                versions[version]["other"].append(
+                    message
+                )
+
+
+        # -----------------------------------------------------
+        # Gera o arquivo CHANGELOG_RELEASE.md
+        # -----------------------------------------------------
+
+        with open(
+            "CHANGELOG_RELEASE.md",
+            "w",
+            encoding="utf-8"
+        ) as f:
+
+            f.write("# Changes\n\n")
+
+
+            # -------------------------------------------------
+            # As versões foram encontradas em ordem cronológica.
+            #
+            # reversed() faz a versão mais recente aparecer
+            # primeiro.
+            # -------------------------------------------------
+
+            for version in reversed(list(versions.keys())):
+
+                f.write(
+                    f"## Version {version}\n\n"
+                )
+
+
+                # -------------------------------------------------
+                # Cada versão possui TODAS as categorias
+                # -------------------------------------------------
+
+                for category in categories_names:
+
+                    f.write(
+                        f"### {descriptions[category]}\n\n"
+                    )
+
+
+                    # Commits pertencentes à categoria
+
+                    for commit in versions[version][category]:
+
+                        f.write(
+                            f"- {commit}\n"
+                        )
+
+
+                    f.write("\n")
+
+
+        # -----------------------------------------------------
+        # Informações no log da Action
+        # -----------------------------------------------------
+
+        total_commits = len(commits)
+
+        processed_commits = (
+            total_commits - merge_commits
+        )
+
+
+        print("")
+        print("========================================")
+        print("Changelog generated successfully!")
+        print("========================================")
+        print(f"Total commits found: {total_commits}")
+        print(f"Merge commits ignored: {merge_commits}")
+        print(f"Commits processed: {processed_commits}")
+        print(f"Versions found: {len(versions)}")
+        print("========================================")
+        print("")
+
+
+    # ---------------------------------------------------------
+    # Disponibiliza o Changelog como Artifact
+    # ---------------------------------------------------------
+    - name: Uploading Changelog
+      uses: actions/upload-artifact@v4
+      with:
+        name: Release-Notes
+        path: CHANGELOG_RELEASE.md
