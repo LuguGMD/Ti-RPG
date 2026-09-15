@@ -22,6 +22,8 @@ namespace RPG.Level
         [SerializeField]
         private int currentLevel = 0;
 
+        [SerializeField] private GameObject _navigationPanel;
+
         #region Properties
 
         private LevelNode CurrentLevel
@@ -48,9 +50,24 @@ namespace RPG.Level
             Load();
         }
 
+        private void OnEnable()
+        {
+            ActionsManager.Instance.OnLevelSelected += OnLevelSelected;
+        }
+
+        private void OnDisable()
+        {
+            ActionsManager.Instance.OnLevelSelected -= OnLevelSelected;
+        }
+
         private void OnDestroy()
         {
             SaveManager.Save();
+        }
+
+        private void OnLevelSelected(LevelScriptable selectedLevel)
+        {
+            _navigationPanel.SetActive(false);
         }
 
         public void ChangeCurrentLevel(int levelIndex)

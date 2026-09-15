@@ -1,5 +1,7 @@
 using Lugu.Singleton;
 using RPG.Combat;
+using RPG.Combat.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -21,14 +23,17 @@ namespace RPG.Level
         [SerializeField] private RectTransform _characterOptionsContainer;
         private List<CharacterOptionButton> _characterOptions = new List<CharacterOptionButton>();
 
-        [SerializeField] private List<PartyCharacterButton> _partyButtonCharacters;
+        [SerializeField] private RectTransform _partyMemberModelPreview;
 
+        [SerializeField] private RectTransform _partyMemberDescriptionPanel;
         [SerializeField] private TextMeshProUGUI _partyMemberNameText;
+        [SerializeField] private TextMeshProUGUI _partyMemberDescriptionText;
         [SerializeField] private Slider _motivationBarSlider;
-        [SerializeField] private RectTransform _characterOptionsPanel;
         [SerializeField] private TextMeshProUGUI _levelNameText;
+        [SerializeField] private TextMeshProUGUI _selectedCharactersCountText;
+        [SerializeField] private TextMeshProUGUI _selectedButtonCharactersCountText;
 
-        private int _selectedPartyIndex = -1;
+        private int _selectedPartyIndex = 0;
 
         private static bool _isActive = false;
 
@@ -62,10 +67,9 @@ namespace RPG.Level
             _selectedLevel = selectedLevel;
             UpdateChallenges();
             UpdateCharacterOptions();
-            UpdatePartyOptions();
+            UpdateCharacterCount();
 
             _levelNameText.text = _selectedLevel.levelName;
-            _characterOptionsPanel.gameObject.SetActive(false);
             UpdateCharacterInfo(GameManager.CurrentParty[0]);
         }
 
@@ -98,7 +102,7 @@ namespace RPG.Level
         {
             foreach(CharacterOptionButton characterOption in _characterOptions)
             {
-                characterOption.gameObject.SetActive(!GameManager.CurrentParty.Contains(characterOption.Character));
+                characterOption.UpdateVisual(GameManager.CurrentParty.Contains(characterOption.Character));
             }
         }
 
@@ -112,36 +116,63 @@ namespace RPG.Level
             }
         }
 
-        private void UpdatePartyOptions()
-        {
-            for (int i = 0; i < GameManager.CurrentParty.Length; i++)
-            {
-                _partyButtonCharacters[i].SetIndex(i);
-                _partyButtonCharacters[i].UpdateInfo(GameManager.CurrentParty[i]);
-            }
-        }
-
         public void UpdateCharacterInfo(CharacterScriptable character)
         {
+            _partyMemberDescriptionPanel.gameObject.SetActive(character != null);
+            if (character == null) return;
+
             _partyMemberNameText.text = character.EntityName;
+            _partyMemberDescriptionText.text = character.EntityDescription;
 
             float motivationValue = character.Motivation / CombatConstants.MAX_MOTIVATION_APRESENTADOR;
 
             _motivationBarSlider.value = motivationValue;
+
+            if(character.PreviewModelPrefab != null)
+            {
+                foreach (Transform child in _partyMemberModelPreview)
+                {
+                    Destroy(child.gameObject);
+                }
+                GameObject characterModel = Instantiate(character.PreviewModelPrefab.gameObject, _partyMemberModelPreview);
+                characterModel.transform.localPosition = Vector3.zero;
+                characterModel.transform.localRotation = Quaternion.identity;
+            }
         }
 
-        public void SelectPartyMember(int index)
+        public void RemovePartyMember(CharacterScriptable character)
         {
-            _selectedPartyIndex = index;
+            int index = Array.IndexOf(GameManager.CurrentParty, character);
+            if (index >= 0)
+            {
+                _selectedPartyIndex = index;
+                GameManager.CurrentParty[index] = null;
+            }
             UpdateCharacterOptions();
-            _characterOptionsPanel.gameObject.SetActive(true);
+            UpdateCharacterCount();
         }
 
-        public void ReplaceCharacter(CharacterScriptable character)
+        public void AddPartyMember(CharacterScriptable character)
         {
             GameManager.CurrentParty[_selectedPartyIndex] = character;
-            _partyButtonCharacters[_selectedPartyIndex].UpdateInfo(character);
-            _characterOptionsPanel.gameObject.SetActive(false);
+
+            UpdateCharacterOptions();
+            UpdateCharacterCount();
+
+            for (int i = 0; i < GameManager.CurrentParty.Length; i++)
+            {
+                if (GameManager.CurrentParty[i] == null)
+                {
+                    _selectedPartyIndex = i;
+                    break;
+                }
+            }
+        }
+
+        private void UpdateCharacterCount()
+        {
+            _selectedCharactersCountText.text = GameManager.CurrentParty.Count(c => c != null) + "/" + CombatConstants.MAX_CHARACTERS_COUNT;
+            _selectedButtonCharactersCountText.text = "Circenses " + GameManager.CurrentParty.Count(c => c != null) + "/" + CombatConstants.MAX_CHARACTERS_COUNT;
         }
 
         public void ClosePanel()
@@ -160,8 +191,10 @@ namespace RPG.Level
                     isPartyValid = false;
             }
 
-            if(isPartyValid)
+            if (isPartyValid)
                 GameManager.ChangeScene(ScenesEnum.Combat);
+            else
+                ActionsManager.Instance.OnError?.Invoke();
         }
     }
 }

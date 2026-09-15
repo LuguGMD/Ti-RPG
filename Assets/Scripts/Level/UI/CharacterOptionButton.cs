@@ -9,6 +9,7 @@ namespace RPG.Level
     {
         private CharacterScriptable _character;
         [SerializeField] private Image _characterIcon;
+        private bool _isSelected = false;
 
         private Vector3 originalScale;
         private float scaleMultiplier = 1.1f;
@@ -37,13 +38,27 @@ namespace RPG.Level
 
         public void OnClick()
         {
-            LevelSelectUIController.Instance.ReplaceCharacter(_character);
+            if (!_isSelected)
+            {
+                LevelSelectUIController.Instance.AddPartyMember(_character);
+            }
+            else
+            {
+                LevelSelectUIController.Instance.RemovePartyMember(_character);
+            }
+
         }
 
         public void UpdateInfo(CharacterScriptable character)
         {
             _character = character;
             _characterIcon.sprite = character.Icon;
+        }
+
+        public void UpdateVisual(bool isSelected)
+        {
+            _isSelected = isSelected;
+            _characterIcon.sprite = isSelected ? _character.Icon : _character.UsedIcon;
         }
     }
 }
