@@ -13,16 +13,28 @@ namespace RPG.UI.Tooltip
 
         public void SetEnemy(EnemyScriptable enemy)
         {
+            if (enemy == null)
+            {
+                Debug.LogWarning("EnemyTooltip: EnemyScriptable está vazio!");
+                return;
+            }
+
+            // Nome do inimigo.
             headerField.gameObject.SetActive(true);
             headerField.text = enemy.EntityName;
 
+            // Descrição do personagem.
             contentField.text = enemy.SpotlightDescription;
 
-            combatField.gameObject.SetActive(_combatUnlocked);
-
-            if (_combatUnlocked)
+            // Descrição do combate.
+            if (combatField != null)
             {
-                combatField.text = enemy.CombatDescription;
+                combatField.gameObject.SetActive(_combatUnlocked);
+
+                if (_combatUnlocked)
+                {
+                    combatField.text = enemy.CombatDescription;
+                }
             }
         }
 
