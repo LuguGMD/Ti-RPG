@@ -45,5 +45,11 @@ namespace RPG.UI
         {
             transform.DOKill();
         }
+
+        private void OnDisable()
+        {
+            transform.DOKill();
+            transform.localScale = _originalScale;
+        }
     }
 }

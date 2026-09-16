@@ -63,7 +63,7 @@ namespace RPG.Management.Progression
             }
             else if (IsUnlocked())
             {
-                Color unlockedColor = Color.gray6;
+                Color unlockedColor = Color.gray8;
                 iconImage.color = unlockedColor;
             }
             else
