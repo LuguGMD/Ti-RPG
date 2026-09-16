@@ -407,13 +407,13 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1464364350}
+  - {fileID: 472503050}
   - {fileID: 1441832706}
   - {fileID: 2134049113}
   - {fileID: 1476670810}
   - {fileID: 261358477}
   - {fileID: 1618547759}
   - {fileID: 2060938833}
-  - {fileID: 472503050}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &129328721
@@ -1182,11 +1182,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2021913666081061094, guid: 0dbc2d0516b9c7b4e909178053d33bf9, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: 450
       objectReference: {fileID: 0}
     - target: {fileID: 2021913666081061094, guid: 0dbc2d0516b9c7b4e909178053d33bf9, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 375.14
       objectReference: {fileID: 0}
     - target: {fileID: 5193751431413433577, guid: 0dbc2d0516b9c7b4e909178053d33bf9, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5649,7 +5649,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da7c6ee35d354443a82770587dc2d01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.UI.Tooltip.Tooltip3DSystem
-  _enemyTooltip: {fileID: 308945126}
+  enemyTooltip: {fileID: 308945126}
 --- !u!4 &1608919185
 Transform:
   m_ObjectHideFlags: 0

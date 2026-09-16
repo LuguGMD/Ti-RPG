@@ -5,79 +5,73 @@ namespace RPG.UI.Tooltip
 {
     public class Tooltip3DSystem : MonoBehaviour
     {
-        [SerializeField] private EnemyTooltip _enemyTooltip;
+        [Header("Tooltip 3D")]
+        [SerializeField] private EnemyTooltip enemyTooltip;
 
-        private static Tooltip3DSystem _instance;
-
-        private void Awake()
+        private EnemyTooltip GetEnemyTooltip()
         {
-            _instance = this;
-
-            // Procura o EnemyTooltip mesmo que ele esteja desativado na cena.
-            if (_enemyTooltip == null)
+            if (enemyTooltip == null)
             {
-                _enemyTooltip =
-                    FindFirstObjectByType<EnemyTooltip>(
-                        FindObjectsInactive.Include
-                    );
+                enemyTooltip = FindFirstObjectByType<EnemyTooltip>(
+                    FindObjectsInactive.Include
+                );
             }
 
-            if (_enemyTooltip == null)
-            {
-                Debug.LogWarning("EnemyTooltip não foi encontrado na cena!");
-            }
-            else
-            {
-                Debug.Log("EnemyTooltip encontrado!");
-            }
+            return enemyTooltip;
         }
 
-        public static void ShowEnemy(
+        public void ShowEnemy(
             EnemyScriptable enemy,
             Vector3 worldPosition,
             Vector2 pivot
         )
         {
-            Debug.Log("ShowEnemy do Tooltip3DSystem foi chamado!");
+            if (enemy == null)
+                return;
 
-            if (_instance == null)
+            EnemyTooltip tooltip = GetEnemyTooltip();
+
+            if (tooltip == null)
             {
-                Debug.LogWarning("Tooltip3DSystem não foi encontrado na cena!");
+                Debug.LogError(
+                    "Tooltip3DSystem: EnemyTooltip não encontrado!"
+                );
+
                 return;
             }
 
-            if (_instance._enemyTooltip == null)
-            {
-                Debug.LogWarning("EnemyTooltip não foi configurado!");
-                return;
-            }
+            Debug.Log("Tooltip3DSystem: MOSTRANDO TOOLTIP!");
 
-            // Converte a posição do inimigo 3D para uma posição na tela.
+            tooltip.SetEnemy(enemy);
+
+            tooltip.gameObject.SetActive(true);
+
+            // Converte a posição 3D do inimigo para posição na tela.
             Vector3 screenPosition =
                 UnityEngine.Camera.main.WorldToScreenPoint(worldPosition);
 
-            // Preenche as informações do inimigo.
-            _instance._enemyTooltip.SetEnemy(enemy, true);
+            tooltip.rectTransform.position = screenPosition;
+            tooltip.rectTransform.pivot = pivot;
 
-            // Mostra o painel.
-            _instance._enemyTooltip.gameObject.SetActive(true);
-
-            // Coloca o painel na posição do inimigo na tela.
-            _instance._enemyTooltip.rectTransform.position = screenPosition;
-            _instance._enemyTooltip.rectTransform.pivot = pivot;
-
-            _instance._enemyTooltip.Show();
+            tooltip.Show();
         }
 
-        public static void Hide()
+        public void Hide()
         {
-            if (_instance == null)
-                return;
+            EnemyTooltip tooltip = GetEnemyTooltip();
 
-            if (_instance._enemyTooltip == null)
-                return;
+            if (tooltip == null)
+            {
+                Debug.LogError(
+                    "Tooltip3DSystem: Não encontrou EnemyTooltip para esconder!"
+                );
 
-            _instance._enemyTooltip.Hide();
+                return;
+            }
+
+            Debug.Log("Tooltip3DSystem: ESCONDENDO TOOLTIP!");
+
+            tooltip.Hide();
         }
     }
 }

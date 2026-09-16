@@ -9,22 +9,26 @@ namespace RPG.UI.Tooltip
         [Header("Enemy Tooltip")]
         public TextMeshProUGUI combatField;
 
-        public void SetEnemy(EnemyScriptable enemy, bool combatUnlocked)
+        private bool _combatUnlocked;
+
+        public void SetEnemy(EnemyScriptable enemy)
         {
-            // Mostra o nome do inimigo.
             headerField.gameObject.SetActive(true);
             headerField.text = enemy.EntityName;
 
-            // Mostra a descrição do personagem.
             contentField.text = enemy.SpotlightDescription;
 
-            // Mostra ou esconde a descrição de combate.
-            combatField.gameObject.SetActive(combatUnlocked);
+            combatField.gameObject.SetActive(_combatUnlocked);
 
-            if (combatUnlocked)
+            if (_combatUnlocked)
             {
                 combatField.text = enemy.CombatDescription;
             }
+        }
+
+        public void UnlockCombatDescription()
+        {
+            _combatUnlocked = true;
         }
     }
 }

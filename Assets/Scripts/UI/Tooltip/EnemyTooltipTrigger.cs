@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
-using RPG.Input;
 using RPG.Combat;
+using RPG.Input;
 
 namespace RPG.UI.Tooltip
 {
@@ -12,6 +12,7 @@ namespace RPG.UI.Tooltip
 
         private CursorTarget _cursorTarget;
         private EnemyController _enemyController;
+        private Tooltip3DSystem _tooltip3DSystem;
 
         private Tween _delay;
 
@@ -19,6 +20,8 @@ namespace RPG.UI.Tooltip
         {
             _cursorTarget = GetComponent<CursorTarget>();
             _enemyController = GetComponent<EnemyController>();
+
+            _tooltip3DSystem = FindFirstObjectByType<Tooltip3DSystem>();
         }
 
         private void OnEnable()
@@ -37,22 +40,26 @@ namespace RPG.UI.Tooltip
 
         private void ShowTooltip()
         {
-            Debug.Log("HOVER NO INIMIGO!");
+            Debug.Log("1 - HOVER DO INIMIGO DETECTADO!");
 
             _delay?.Kill();
 
             _delay = DOVirtual.DelayedCall(0.3f, () =>
             {
+                Debug.Log("2 - DELAY DO TOOLTIP EXECUTADO!");
+
                 EnemyScriptable enemy =
                     _enemyController.GetEntityInfo() as EnemyScriptable;
 
                 if (enemy == null)
                 {
-                    Debug.LogWarning("EnemyScriptable não encontrado!");
+                    Debug.LogError("3 - INIMIGO É NULL!");
                     return;
                 }
 
-                Tooltip3DSystem.ShowEnemy(
+                Debug.Log("3 - ENEMY ENCONTRADO: " + enemy.EntityName);
+
+                _tooltip3DSystem.ShowEnemy(
                     enemy,
                     transform.position + new Vector3(_offset.x, _offset.y, 0),
                     _pivot
@@ -62,9 +69,11 @@ namespace RPG.UI.Tooltip
 
         private void HideTooltip()
         {
+            Debug.Log("HOVER SAIU DO INIMIGO!");
+
             _delay?.Kill();
 
-            Tooltip3DSystem.Hide();
+            _tooltip3DSystem.Hide();
         }
     }
 }
