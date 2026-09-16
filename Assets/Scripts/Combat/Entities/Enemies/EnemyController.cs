@@ -44,6 +44,7 @@ namespace RPG.Combat
 
             UpdateHealthBar();
             base.TakeDamage(damage);
+            ActionsManager.Instance.OnEnemyDamageTaken?.Invoke(this);
         }
 
         public override void Heal(float heal)
