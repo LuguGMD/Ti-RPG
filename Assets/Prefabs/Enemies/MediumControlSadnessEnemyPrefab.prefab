@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa678377616416f47b86bf5772e3bdbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.MediumSadnessControlEnemyController
+  _info: {fileID: 11400000, guid: fdc02838e3df6d54bbeddcf8c4e242d5, type: 2}
   _damagedSFX:
     Guid:
       Data1: -2050587371
@@ -119,7 +120,6 @@ MonoBehaviour:
       Data3: -615420032
       Data4: -424402750
     Path: event:/Character/Enemy/Damaged
-  _info: {fileID: 11400000, guid: fdc02838e3df6d54bbeddcf8c4e242d5, type: 2}
   _defeatedSFX:
     Guid:
       Data1: -1922207554
@@ -127,9 +127,17 @@ MonoBehaviour:
       Data3: -128057705
       Data4: 1009727366
     Path: event:/Character/Enemy/Death
+  _spawnedSFX:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   _regularAttack:
     _actionName: 
     _actionDescription: 
+    _followRadius: 5
     _effects:
     - _targetList: 00000000
       _canTargetSelf: 0
@@ -157,6 +165,7 @@ MonoBehaviour:
   _screamAttack:
     _actionName: 
     _actionDescription: 
+    _followRadius: 5
     _effects:
     - _targetList: 00000000
       _canTargetSelf: 0
@@ -266,17 +275,63 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
       objectReference: {fileID: 2100000, guid: 18f98f679e5528246a7961ebdb8e431b, type: 2}
+    - target: {fileID: -3517582845071531476, guid: 86e5de949db0ea841913bebb59001403, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.97
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 86e5de949db0ea841913bebb59001403, type: 3}
       propertyPath: m_Name
       value: ControlEnemyModel
       objectReference: {fileID: 0}
+    - target: {fileID: 4081141598756992217, guid: 86e5de949db0ea841913bebb59001403, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4081141598756992217, guid: 86e5de949db0ea841913bebb59001403, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8745f24108eb75549ab99a7224a271f4, type: 2}
+    - target: {fileID: 4081141598756992217, guid: 86e5de949db0ea841913bebb59001403, type: 3}
+      propertyPath: 'm_Materials.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8745f24108eb75549ab99a7224a271f4, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 86e5de949db0ea841913bebb59001403, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 747224649028036101}
   m_SourcePrefab: {fileID: 100100000, guid: 86e5de949db0ea841913bebb59001403, type: 3}
 --- !u!4 &6013357998692248958 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 86e5de949db0ea841913bebb59001403, type: 3}
   m_PrefabInstance: {fileID: 6122929841948019349}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6356951346825820100 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 86e5de949db0ea841913bebb59001403, type: 3}
+  m_PrefabInstance: {fileID: 6122929841948019349}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &747224649028036101
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6356951346825820100}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c157cde7e2504714b89f8b8605157131, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

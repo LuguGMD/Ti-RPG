@@ -134,6 +134,8 @@ namespace RPG.Combat.UI
             ActionsManager.Instance.OnTurnPassed += HidePanel;
             ActionsManager.Instance.OnActionStart += HidePanel;
 
+            _spotlightDescriptionText.transform.parent.gameObject.SetActive(SpotlightHandler.Instance != null);
+
             _selectedCharacter.SelectAction(_selectedCharacter.SelectedActionIndex);
         }
 
