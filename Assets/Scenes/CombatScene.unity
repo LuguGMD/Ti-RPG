@@ -573,7 +573,7 @@ PrefabInstance:
     - target: {fileID: 3053061976877411, guid: 90ae1b87327be87499e1a802694983b9, type: 3}
       propertyPath: m_Navigation.m_SelectOnRight
       value: 
-      objectReference: {fileID: 1247914948}
+      objectReference: {fileID: 0}
     - target: {fileID: 2131922204237088504, guid: 90ae1b87327be87499e1a802694983b9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4159,17 +4159,6 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 10fc4df2da32a41aaa32d77bc913491c, type: 2}
---- !u!114 &1247914948 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8126838748445089466, guid: facf261e4d9103e4db797dad52aae38e, type: 3}
-  m_PrefabInstance: {fileID: 2134049112}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &1258117052
 PrefabInstance:
   m_ObjectHideFlags: 0

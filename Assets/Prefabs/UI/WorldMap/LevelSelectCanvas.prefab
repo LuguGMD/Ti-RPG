@@ -1187,10 +1187,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4116134725025902031}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 300, y: -560.99994}
+  m_SizeDelta: {x: 540, y: 530.99994}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &3003176254082654008
 MonoBehaviour:
@@ -3518,7 +3518,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8487351208605323794, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 53.333332
       objectReference: {fileID: 0}
     - target: {fileID: 8487351208605323794, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3527,8 +3527,71 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7237630034971312701, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9102681871758875626}
+    - targetCorrespondingSourceObject: {fileID: 306252312615842442, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7628113691496596712}
+    - targetCorrespondingSourceObject: {fileID: 1287024386955883528, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4648001487190510408}
   m_SourcePrefab: {fileID: 100100000, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
+--- !u!1 &3172088223633076810 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7237630034971312701, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
+  m_PrefabInstance: {fileID: 5221008172309852279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9102681871758875626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3172088223633076810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee154be3b22937748ab0af0fe63764f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Level.UI.SuperUpgradeOptionButton
+  _info: {fileID: 11400000, guid: cd12ff43f5162c140a685c8a574b101c, type: 2}
+--- !u!1 &5491217935385707261 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 306252312615842442, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
+  m_PrefabInstance: {fileID: 5221008172309852279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7628113691496596712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5491217935385707261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee154be3b22937748ab0af0fe63764f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Level.UI.SuperUpgradeOptionButton
+  _info: {fileID: 11400000, guid: 4783d49b7aa2f4044af500de08102242, type: 2}
+--- !u!1 &6460645220810065023 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1287024386955883528, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
+  m_PrefabInstance: {fileID: 5221008172309852279}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4648001487190510408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6460645220810065023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee154be3b22937748ab0af0fe63764f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Level.UI.SuperUpgradeOptionButton
+  _info: {fileID: 11400000, guid: b25dd2b2eaa1d0b4782ab05a0fd7f908, type: 2}
 --- !u!224 &6851883725020874401 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1685041928163751638, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
@@ -3818,7 +3881,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8487351208605323794, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 53.333332
       objectReference: {fileID: 0}
     - target: {fileID: 8487351208605323794, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -3836,13 +3899,40 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 28278353161872423, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3252737676073105465}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7237630034971312701, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4782125842026886067}
+    - targetCorrespondingSourceObject: {fileID: 306252312615842442, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7843267916898836180}
+    - targetCorrespondingSourceObject: {fileID: 1287024386955883528, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6825789867706504247}
   m_SourcePrefab: {fileID: 100100000, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
 --- !u!224 &2416798219781606420 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8487351208605323794, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
   m_PrefabInstance: {fileID: 6071716349670202886}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3472886582467353659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7237630034971312701, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
+  m_PrefabInstance: {fileID: 6071716349670202886}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4782125842026886067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3472886582467353659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4adcd8f1c360b346b2b27089b74c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Level.UI.TileUpgradeOptionButton
+  _info: {fileID: 11400000, guid: 5e5e2d08b53fe6748ac55afd8071256a, type: 2}
 --- !u!224 &4736394678446013603 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1583046073932653221, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
@@ -3853,6 +3943,42 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1685041928163751638, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
   m_PrefabInstance: {fileID: 6071716349670202886}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5016864873762728462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1287024386955883528, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
+  m_PrefabInstance: {fileID: 6071716349670202886}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6825789867706504247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5016864873762728462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4adcd8f1c360b346b2b27089b74c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Level.UI.TileUpgradeOptionButton
+  _info: {fileID: 11400000, guid: af5d5ea442790d6408675aa1827aa5dc, type: 2}
+--- !u!1 &5765477248914025612 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 306252312615842442, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
+  m_PrefabInstance: {fileID: 6071716349670202886}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7843267916898836180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5765477248914025612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4adcd8f1c360b346b2b27089b74c787, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Level.UI.TileUpgradeOptionButton
+  _info: {fileID: 11400000, guid: dea690744351c7d459697923bd1daeb7, type: 2}
 --- !u!224 &6063928513726904865 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 28278353161872423, guid: 03998d1347e5eaa499a52726ea66419f, type: 3}
