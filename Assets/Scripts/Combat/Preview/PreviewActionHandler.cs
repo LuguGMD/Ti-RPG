@@ -1,8 +1,10 @@
 using RPG.Combat.Actions;
+using RPG.Combat.Actions.Effects;
 using RPG.Combat.Grid;
 using RPG.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UIElements;
@@ -123,16 +125,31 @@ namespace RPG.Combat.Preview
 
         protected virtual void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position, ref ActionPreviewTile lastPreviewTile, bool canBeSelected = true)
         {
-            if (position.y >= Map.Rows)
+            if (position.y < Map.CENTER_POS.y || position.y >= Map.Rows)
             {
                 return;
             }
 
             if (position.y == Map.CENTER_POS.y)
             {
-                ActionPreviewMaterial previewMaterial = MapManager.StageCenterLights[position.x];
-                previewMaterial.StartPreview();
-                _activePreviewMaterials.Add(previewMaterial);
+                bool isDamageOnCircus = previewTileInfo.Effects.Any((effect) =>
+                    effect.Commands.Any(command => command is DamageEffect)
+                    && effect.TargetList.Contains(TeamEnum.Circus)
+                );
+                if (isDamageOnCircus)
+                {
+                    if (position.x > MapManager.StageCenterLights.Length)
+                    {
+                        Debug.LogError(
+                            $"{gameObject.name}: Tentativa de acesso a uma luz do apresentador fora dos índices.\n" +
+                            $"Confira se o {MapManager.Instance.name} possui todas as referências na lista."
+                        );
+                        return;
+                    }
+                    ActionPreviewMaterial previewMaterial = MapManager.StageCenterLights[position.x];
+                    previewMaterial.StartPreview();
+                    _activePreviewMaterials.Add(previewMaterial);
+                }
             }
             else
             {
