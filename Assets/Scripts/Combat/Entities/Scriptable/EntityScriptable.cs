@@ -7,7 +7,7 @@ namespace RPG.Combat
     {
         [Header("Identity")]
         [SerializeField] private string _entityName = "Entity";
-        [SerializeField] private string _entityDescription = "Description";
+        [TextArea] [SerializeField] private string _entityDescription = "Description";
         [SerializeField] private GameObject _previewModelPrefab;
         [ColorUsage(false, true)] [SerializeField] private Color _entityColor = Color.white;
         [ColorUsage(false, true)] [SerializeField] private Color _entitySecondaryColor = Color.white;
