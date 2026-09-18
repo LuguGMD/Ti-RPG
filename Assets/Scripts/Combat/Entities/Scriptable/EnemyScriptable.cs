@@ -1,4 +1,5 @@
 using UnityEngine;
+using RPG.Level;
 
 namespace RPG.Combat
 {
@@ -12,10 +13,14 @@ namespace RPG.Combat
         [TextArea]
         [SerializeField] private string _combatDescription;
 
+        [Header("Save")]
+        [SerializeField] private LevelScriptable _level;
+
         #region Properties
 
         public EnemyController Prefab { get { return _prefab; } }
         public float Health { get { return _health; } }
+        public LevelScriptable Level { get { return _level; } }
         public string CombatDescription { get { return _combatDescription; } }
         public override TeamEnum Team { get { return TeamEnum.Enemies; } }
 

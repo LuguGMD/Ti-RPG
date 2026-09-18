@@ -9,8 +9,6 @@ namespace RPG.UI.Tooltip
         [Header("Enemy Tooltip")]
         public TextMeshProUGUI combatField;
 
-        private bool _combatUnlocked;
-
         public void SetEnemy(EnemyScriptable enemy)
         {
             if (enemy == null)
@@ -19,28 +17,32 @@ namespace RPG.UI.Tooltip
                 return;
             }
 
-            // Nome do inimigo.
+            // Mostra o nome do inimigo.
             headerField.gameObject.SetActive(true);
             headerField.text = enemy.EntityName;
 
-            // Descrição do personagem.
+            // Mostra a descrição do inimigo.
             contentField.text = enemy.SpotlightDescription;
 
-            // Descrição do combate.
+            // Verifica se a fase desse inimigo já foi concluída.
+            bool combatUnlocked = false;
+
+            if (enemy.Level != null)
+            {
+                combatUnlocked =
+                    GameManager.CompletedLevels.Contains(enemy.Level.LevelKey);
+            }
+
+            // Mostra a descrição de combate somente se a fase estiver completa.
             if (combatField != null)
             {
-                combatField.gameObject.SetActive(_combatUnlocked);
+                combatField.gameObject.SetActive(combatUnlocked);
 
-                if (_combatUnlocked)
+                if (combatUnlocked)
                 {
                     combatField.text = enemy.CombatDescription;
                 }
             }
-        }
-
-        public void UnlockCombatDescription()
-        {
-            _combatUnlocked = true;
         }
     }
 }
