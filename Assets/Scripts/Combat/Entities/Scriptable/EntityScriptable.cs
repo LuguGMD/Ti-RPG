@@ -10,6 +10,7 @@ namespace RPG.Combat
         [SerializeField] private string _entityDescription = "Description";
         [SerializeField] private GameObject _previewModelPrefab;
         [SerializeField] private Color _entityColor;
+        [SerializeField] private Color _entitySecondaryColor;
 
         #region Properties
 
@@ -18,6 +19,7 @@ namespace RPG.Combat
         public abstract TeamEnum Team { get; }
         public GameObject PreviewModelPrefab => _previewModelPrefab;
         public Color EntityColor => _entityColor;
+        public Color EntitySecondaryColor => _entitySecondaryColor;
 
         #endregion
     }
