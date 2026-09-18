@@ -31,7 +31,7 @@ namespace RPG.Level
         [SerializeField] private Slider _motivationBarSlider;
         [SerializeField] private TextMeshProUGUI _levelNameText;
         [SerializeField] private TextMeshProUGUI _selectedCharactersCountText;
-        [SerializeField] private TextMeshProUGUI _selectedButtonCharactersCountText;
+        [SerializeField] private Transform[] _partyMemberModelPreviews;
 
         private int _selectedPartyIndex = 0;
 
@@ -84,7 +84,7 @@ namespace RPG.Level
                 }
 
                 _challengePanels[i].gameObject.SetActive(i < _selectedLevel.Challenges.Length);
-                if(i < _selectedLevel.Challenges.Length)
+                if (i < _selectedLevel.Challenges.Length)
                 {
                     _challengePanels[i].UpdateInfo(_selectedLevel.Challenges[i]);
                 }
@@ -100,7 +100,7 @@ namespace RPG.Level
 
         private void UpdateCharacterOptions()
         {
-            foreach(CharacterOptionButton characterOption in _characterOptions)
+            foreach (CharacterOptionButton characterOption in _characterOptions)
             {
                 characterOption.UpdateVisual(GameManager.CurrentParty.Contains(characterOption.Character));
             }
@@ -128,7 +128,7 @@ namespace RPG.Level
 
             _motivationBarSlider.value = motivationValue;
 
-            if(character.PreviewModelPrefab != null)
+            if (character.PreviewModelPrefab != null)
             {
                 foreach (Transform child in _partyMemberModelPreview)
                 {
@@ -148,6 +148,15 @@ namespace RPG.Level
                 _selectedPartyIndex = index;
                 GameManager.CurrentParty[index] = null;
             }
+
+            if (_partyMemberModelPreviews[index].childCount > 0)
+            {
+                foreach (Transform child in _partyMemberModelPreviews[index])
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+
             UpdateCharacterOptions();
             UpdateCharacterCount();
         }
@@ -158,6 +167,14 @@ namespace RPG.Level
 
             UpdateCharacterOptions();
             UpdateCharacterCount();
+
+            foreach (Transform child in _partyMemberModelPreviews[_selectedPartyIndex])
+            {
+                Destroy(child.gameObject);
+            }
+            GameObject characterModel = Instantiate(character.PreviewModelPrefab.gameObject, _partyMemberModelPreviews[_selectedPartyIndex]);
+            characterModel.transform.localPosition = Vector3.zero;
+            characterModel.transform.localRotation = Quaternion.identity;
 
             for (int i = 0; i < GameManager.CurrentParty.Length; i++)
             {
@@ -172,7 +189,6 @@ namespace RPG.Level
         private void UpdateCharacterCount()
         {
             _selectedCharactersCountText.text = GameManager.CurrentParty.Count(c => c != null) + "/" + CombatConstants.MAX_CHARACTERS_COUNT;
-            _selectedButtonCharactersCountText.text = "Circenses " + GameManager.CurrentParty.Count(c => c != null) + "/" + CombatConstants.MAX_CHARACTERS_COUNT;
         }
 
         public void ClosePanel()
@@ -185,7 +201,7 @@ namespace RPG.Level
         {
             bool isPartyValid = true;
 
-            foreach(CharacterScriptable character in GameManager.CurrentParty)
+            foreach (CharacterScriptable character in GameManager.CurrentParty)
             {
                 if (character == null)
                     isPartyValid = false;
