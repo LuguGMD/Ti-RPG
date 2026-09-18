@@ -1,8 +1,10 @@
 using RPG.Combat.Actions;
+using RPG.Combat.Actions.Effects;
 using RPG.Combat.Grid;
 using RPG.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UIElements;
@@ -18,6 +20,7 @@ namespace RPG.Combat.Preview
 
         protected List<PreviewTileInfo> _previewTileInfos = new List<PreviewTileInfo>();
         protected List<ActionPreviewTile> _activePreviewTiles = new List<ActionPreviewTile>();
+        protected List<ActionPreviewMaterial> _activePreviewMaterials = new List<ActionPreviewMaterial>();
 
         private bool _isPreviewing = false;
 
@@ -52,7 +55,7 @@ namespace RPG.Combat.Preview
             HidePreview();
 
             _isPreviewing = true;
-            
+
             for (int i = 0; i < _previewTileInfos.Count; i++)
             {
                 PreviewTileInfo currentPreviewTileInfo = _previewTileInfos[i];
@@ -72,7 +75,7 @@ namespace RPG.Combat.Preview
                         AddPreviewTile(currentPreviewTileInfo, position, ref lastPreviewTile);
                         doCancelPattern = true;
                     }
-                    else if(currentPreviewTileInfo.AlwaysShowEffect)
+                    else if (currentPreviewTileInfo.AlwaysShowEffect)
                     {
                         AddPreviewTile(currentPreviewTileInfo, position, ref lastPreviewTile, false);
                     }
@@ -89,8 +92,7 @@ namespace RPG.Combat.Preview
 
             Tile tile = MapManager.Map.GetTile(position);
 
-            if (tile.Position == Map.CENTER_POS) return false;
-            if (tile.IsOccupied)
+            if (tile.Position != Map.CENTER_POS && tile.IsOccupied)
             {
                 if (tile.TileObject.TryGetComponent<StageEntityController>(out StageEntityController stageEntity))
                 {
@@ -111,36 +113,67 @@ namespace RPG.Combat.Preview
             {
                 PreviewTilesPool.Pool.Release(_activePreviewTiles[i]);
             }
-
             _activePreviewTiles.Clear();
+
+            for (int i = 0; i < _activePreviewMaterials.Count; i++)
+            {
+                _activePreviewMaterials[i].StopPreview();
+            }
+            _activePreviewMaterials.Clear();
+
         }
 
         protected virtual void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position, ref ActionPreviewTile lastPreviewTile, bool canBeSelected = true)
         {
-            if (position.y < 0 || position.y >= Map.Rows)
+            if (position.y < Map.CENTER_POS.y || position.y >= Map.Rows)
             {
                 return;
             }
 
-            PreviewTilesPool.Pool.Get(out ActionPreviewTile previewTile);
-            previewTile.SetInfo(previewTileInfo);
-            previewTile.SetCanBeSelected(canBeSelected);
-            previewTile.SetPosition(position);
-            previewTile.SetMeshes(CombatManager.CharacterPreviewGroups.Movement);
-            previewTile.SetColor(_stageEntityController.Info.EntityColor, _stageEntityController.Info.EntitySecondaryColor);
 
-            if (!canBeSelected)
+            if (position.y == Map.CENTER_POS.y)
             {
-                previewTile.HideMeshes();
+                bool isDamageOnCircus = previewTileInfo.Effects.Any((effect) =>
+                    effect.Commands.Any(command => command is DamageEffect)
+                    && effect.TargetList.Contains(TeamEnum.Circus)
+                );
+                if (isDamageOnCircus)
+                {
+                    if (position.x > MapManager.StageCenterLights.Length)
+                    {
+                        Debug.LogError(
+                            $"{gameObject.name}: Tentativa de acesso a uma luz do apresentador fora dos índices.\n" +
+                            $"Confira se o {MapManager.Instance.name} possui todas as referências na lista."
+                        );
+                        return;
+                    }
+                    ActionPreviewMaterial previewMaterial = MapManager.StageCenterLights[position.x];
+                    previewMaterial.StartPreview();
+                    _activePreviewMaterials.Add(previewMaterial);
+                }
             }
-
-            if (lastPreviewTile != null)
+            else
             {
-                previewTile.SetParent(lastPreviewTile);
-            }
+                PreviewTilesPool.Pool.Get(out ActionPreviewTile previewTile);
+                previewTile.SetInfo(previewTileInfo);
+                previewTile.SetCanBeSelected(canBeSelected);
+                previewTile.SetPosition(position);
+                previewTile.SetMeshes(CombatManager.CharacterPreviewGroups.Movement);
+                previewTile.SetColor(_stageEntityController.Info.EntityColor, _stageEntityController.Info.EntitySecondaryColor);
 
-            lastPreviewTile = previewTile;
-            _activePreviewTiles.Add(previewTile);
+                if (!canBeSelected)
+                {
+                    previewTile.HideMeshes();
+                }
+
+                if (lastPreviewTile != null)
+                {
+                    previewTile.SetParent(lastPreviewTile);
+                }
+
+                lastPreviewTile = previewTile;
+                _activePreviewTiles.Add(previewTile);
+            }
         }
 
         private void UpdatePreview()

@@ -58,6 +58,7 @@ namespace RPG.Combat
         public static float CombatSpeed { get { return Instance._combatSpeed; } }
         public static ApresentadorController Apresentador { get { return Instance._apresentador; } }
         public static bool HasCombatStarted { get { return Instance._hasCombatStarted; } }
+        public static List<EnemyController> RemainingEnemies { get { return Instance._remainingEnemies; } }
         public static List<CharacterController> RemainingCharacters { get { return Instance._remainingCharacters; } }
         public static bool IsActionInProgress { get { return Instance._isActionInProgress; } }
         public static HashSet<string> CombatUpgrades { get { return Instance._combatUpgrades; }  }
