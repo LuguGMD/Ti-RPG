@@ -14,8 +14,9 @@ namespace RPG.Combat.Preview
 
             ActionPreviewTile previewTile = _activePreviewTiles[_activePreviewTiles.Count - 1];
 
-            previewTile.SetCanBeSelected(canBeSelected);
-            previewTile.SetMeshes(CombatManager.EnemyPreviewGroups.Effect);
+            previewTile.SetCanBeSelected(false);
+            previewTile.SetMeshes(CombatManager.EnemyPreviewGroups.Movement);
+            previewTile.SetColor(_stageEntityController.Info.EntityColor, _stageEntityController.Info.EntityColorHDR, _stageEntityController.Info.EntitySecondaryColor);
         }
     }
 }

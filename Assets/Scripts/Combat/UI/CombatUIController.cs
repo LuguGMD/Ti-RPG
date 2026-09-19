@@ -77,10 +77,6 @@ namespace RPG.Combat.UI
             if (playerActionButton != null)
             {
                 playerActionButton.interactable = isPlayerTurn && !isPlayerActing;
-                if (playerActionButtonText != null)
-                {
-                    playerActionButtonText.text = playerActionButton.interactable ? "Finalizar Turno" : "Aguarde...";
-                }
             }
         }
 

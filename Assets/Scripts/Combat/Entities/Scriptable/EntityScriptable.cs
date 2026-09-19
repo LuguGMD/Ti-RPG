@@ -7,9 +7,11 @@ namespace RPG.Combat
     {
         [Header("Identity")]
         [SerializeField] private string _entityName = "Entity";
-        [SerializeField] private string _entityDescription = "Description";
+        [TextArea] [SerializeField] private string _entityDescription = "Description";
         [SerializeField] private GameObject _previewModelPrefab;
-        [SerializeField] private Color _entityColor;
+        [SerializeField] private Color _entityColor = Color.white;
+        [ColorUsage(false, true)] [SerializeField] private Color _entityColorHDR = Color.white;
+        [ColorUsage(false, true)] [SerializeField] private Color _entitySecondaryColor = Color.white;
 
         #region Properties
 
@@ -18,6 +20,8 @@ namespace RPG.Combat
         public abstract TeamEnum Team { get; }
         public GameObject PreviewModelPrefab => _previewModelPrefab;
         public Color EntityColor => _entityColor;
+        public Color EntityColorHDR => _entityColorHDR;
+        public Color EntitySecondaryColor => _entitySecondaryColor;
 
         #endregion
     }

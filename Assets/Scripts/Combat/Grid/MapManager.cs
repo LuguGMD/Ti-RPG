@@ -23,6 +23,7 @@ namespace RPG.Combat.Grid
         [SerializeField] private float _rowRadius = 2f;
         [SerializeField] private float _centerOffset = 3f;
 
+        [SerializeField] private ActionPreviewMaterial _stageCenterLights;
         [SerializeField] private GameObject[] _rowGameObjects;
         private Coroutine _rotationAnimationCoroutine;
         private Vector2Int _spotlightPosition;
@@ -36,6 +37,7 @@ namespace RPG.Combat.Grid
             get { return Instance._map; }
         }
 
+        public static ActionPreviewMaterial StageCenterLights { get { return Instance._stageCenterLights; } }
         public static GameObject[] RowGameObjects { get { return Instance._rowGameObjects; } }
         public static Vector2Int SpotlightPosition { get { return Instance._spotlightPosition; } }
 
@@ -57,7 +59,7 @@ namespace RPG.Combat.Grid
         }
 
         private void OnDisable()
-        {   
+        {
             ActionsManager.Instance.OnSpotlightPositionChanged -= UpdateSpotlightPosition;
         }
 

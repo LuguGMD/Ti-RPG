@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 8581949797383694241}
   - component: {fileID: 3640111549416742185}
   - component: {fileID: 8451672018668142426}
+  - component: {fileID: 5280343763276683188}
   m_Layer: 5
   m_Name: UpgradeButtonPrefab
   m_TagString: Untagged
@@ -376,6 +377,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeNode
   iconImage: {fileID: 6511987174697931877}
   _tooltip: {fileID: 8451672018668142426}
+  _data: {fileID: 0}
   parentNodes: []
 --- !u!114 &8451672018668142426
 MonoBehaviour:
@@ -391,3 +393,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RPG.UI.Tooltip.TooltipTrigger
   header: 
   content: 
+  _offset: {x: 0, y: 50}
+  _pivot: {x: 0, y: 1}
+--- !u!114 &5280343763276683188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3648311005038698630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24844eaeb942d8f4fbfaf2eb429d4b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.UI.UIButtonAnimator
+  _hoverScale: 1.1
+  _clickScale: 0.95
+  _animationDuration: 0.15

@@ -21,6 +21,9 @@ namespace RPG
         private List<string> _completedChallenges = new List<string>();
         private List<string> _completedLevels = new List<string>();
 
+        private UpgradeConstants.UpgradeKey _currentSuperEqquiped; 
+        private UpgradeConstants.UpgradeKey _currentTileEqquiped;
+
         private int _coins = 0;
 
         #region Properties
@@ -59,6 +62,16 @@ namespace RPG
         private void SelectLevel(LevelScriptable selectedLevel)
         {
             _selectedLevel = selectedLevel;
+        }
+
+        public void SetCurrentSuper(UpgradeConstants.UpgradeKey superKey)
+        {
+            _currentSuperEqquiped = superKey;
+        }
+
+        public void SetCurrentTile(UpgradeConstants.UpgradeKey tileKey)
+        {
+            _currentTileEqquiped = tileKey;
         }
 
         #region Progression

@@ -1,6 +1,7 @@
 using RPG.Management.Progression;
 using System;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace RPG.Combat.Grid
 {
@@ -75,7 +76,12 @@ namespace RPG.Combat.Grid
         {
             transform.parent = _currentTile.Transform;
             transform.localPosition = Vector3.zero;
-            transform.LookAt(transform.position + (transform.position.normalized));
+
+            Vector3 lookPosition = (transform.position);
+            lookPosition.y = 0;
+            lookPosition.Normalize();
+
+            transform.LookAt(transform.position + lookPosition);
         }
 
         public void CheckSpotlight()

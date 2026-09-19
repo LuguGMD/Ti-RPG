@@ -17,6 +17,7 @@ namespace RPG.Combat.Preview
         #region Properties
 
         public bool CanBeSelected { get { return _canBeSelected; } }
+        public Vector2Int TilePosition { get { return _tilePosition; } }
 
         #endregion
 
