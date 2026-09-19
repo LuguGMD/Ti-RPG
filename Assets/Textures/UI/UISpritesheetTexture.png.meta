@@ -180,7 +180,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 504
-        y: 974
+        y: 975
         width: 247
         height: 78
       alignment: 0
@@ -536,7 +536,7 @@ TextureImporter:
         width: 455
         height: 134
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 32, y: 32, z: 32, w: 32}
       customData: 
       outline: []
@@ -545,6 +545,28 @@ TextureImporter:
       bones: []
       spriteID: 842ee4ffe857de842b3e4c0d25aa915a
       internalID: 196126206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ButtonBigGray01
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 115
+        width: 245
+        height: 77
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 30, y: 15, z: 30, w: 15}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 650fe02bd2507a94fad02963c3183aea
+      internalID: 2126209700
       vertices: []
       indices: 
       edges: []
@@ -565,6 +587,7 @@ TextureImporter:
     nameFileIdTable:
       ButtonBig01: 1444239918
       ButtonBig02: 1018962693
+      ButtonBigGray01: 2126209700
       ButtonEndTurn: 400422607
       ButtonSmall01: -1425260191
       ButtonSmall02: -549903454

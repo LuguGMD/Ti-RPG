@@ -33,6 +33,8 @@ namespace RPG.Level
         [SerializeField] private TextMeshProUGUI _selectedCharactersCountText;
         [SerializeField] private Transform[] _partyMemberModelPreviews;
 
+        [SerializeField] private Button _confirmPlayButton;
+
         private int _selectedPartyIndex = 0;
 
         private static bool _isActive = false;
@@ -45,6 +47,7 @@ namespace RPG.Level
 
         private void Start()
         {
+            _confirmPlayButton.onClick.AddListener(ConfirmButton);
             CreateCharacterOptions();
         }
 
@@ -188,6 +191,7 @@ namespace RPG.Level
 
         private void UpdateCharacterCount()
         {
+            _confirmPlayButton.interactable = GameManager.CurrentParty.Count(c => c != null) == CombatConstants.MAX_CHARACTERS_COUNT;
             _selectedCharactersCountText.text = GameManager.CurrentParty.Count(c => c != null) + "/" + CombatConstants.MAX_CHARACTERS_COUNT;
         }
 

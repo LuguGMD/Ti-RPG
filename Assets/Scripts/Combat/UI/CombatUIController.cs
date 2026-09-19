@@ -62,7 +62,7 @@ namespace RPG.Combat.UI
             if (turnInfoText != null)
             {
                 var turnState = CombatManager.CurrentTurnState;
-                turnInfoText.text = $"Turno {CombatManager.TurnCount} - {GetTurnStateName(turnState)}";
+                turnInfoText.text = $"Turno {CombatManager.TurnCount}";
             }
 
             UpdateButtonStates();

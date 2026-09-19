@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 30, y: 30}
-  m_SizeDelta: {x: 491.16, y: 50}
+  m_SizeDelta: {x: 120, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &6554150400243060434
 CanvasRenderer:
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Turno 00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: efc67b6a4700ccb44a6e1abe4bbad4f5, type: 2}
   m_sharedMaterial: {fileID: -324199672324954334, guid: efc67b6a4700ccb44a6e1abe4bbad4f5, type: 2}
@@ -332,7 +332,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

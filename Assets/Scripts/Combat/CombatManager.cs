@@ -133,13 +133,11 @@ namespace RPG.Combat
         {
             if (MapManager.Map.GetTile(position).IsOccupied)
             {
-                //TO DO mostrar erro ao jogador
-                Debug.Log("Tile ocupado");
+                ActionsManager.Instance.OnError?.Invoke();
             }
             else if (position.y >= Map.Rows - 1)
             {
-                //TO DO mostrar erro ao jogador
-                Debug.Log("Tile Invalido");
+                ActionsManager.Instance.OnError?.Invoke();
             }
             else
             {
@@ -195,7 +193,7 @@ namespace RPG.Combat
             }
             else if (_usedCharacters.Contains(selectedCharacter))
             {
-
+                ActionsManager.Instance.OnError?.Invoke();
             }
             else if (!_canSelectCharacter)
             {
@@ -379,12 +377,17 @@ namespace RPG.Combat
         {
             if (_remainingCharacters.Count <= 0)
             {
-                ActionsManager.Instance.OnCombatLost?.Invoke();
-                _hasCombatEnded = true;
-
-                //TO DO remover depois
-                GameManager.ChangeScene(ScenesEnum.Lose);
+                EndCombat();
             }
+        }
+
+        public void EndCombat()
+        {
+            ActionsManager.Instance.OnCombatLost?.Invoke();
+            _hasCombatEnded = true;
+
+            //TO DO remover depois
+            GameManager.ChangeScene(ScenesEnum.Lose);
         }
 
         private void CheckPlayerWon()

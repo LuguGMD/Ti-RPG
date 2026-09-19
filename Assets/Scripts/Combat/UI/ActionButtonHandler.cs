@@ -27,6 +27,8 @@ namespace RPG.Combat.UI
             _character = character;
             _panelController = panelController;
 
+            _button.GetComponent<Image>().color = character.Info.EntityColor;
+
             _rect.DOScale(Vector3.one, 0.2f);
 
             _buttonText.text = action.ActionName;

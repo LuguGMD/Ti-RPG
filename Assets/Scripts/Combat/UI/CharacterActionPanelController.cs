@@ -12,7 +12,6 @@ namespace RPG.Combat.UI
         [SerializeField] private TextMeshProUGUI _characterNameText;
         [SerializeField] private RectTransform _actionsDescriptionPanel;
         [SerializeField] private TextMeshProUGUI _actionDescriptionText;
-        [SerializeField] private TextMeshProUGUI _spotlightDescriptionText;
         [SerializeField] private ActionButtonHandler _actionButtonPrefab;
         [SerializeField] private RectTransform _actionsPanel;
         [SerializeField] private Button _cancelButton;
@@ -80,7 +79,6 @@ namespace RPG.Combat.UI
             }
 
             _characterNameText.text = character.CharacterInfo.EntityName;
-            _spotlightDescriptionText.text = character.CharacterInfo.SpotlightDescription;
             _actionsDescriptionPanel.gameObject.SetActive(false);
 
             _characterNameText.GetComponentInParent<Image>(true).color = _selectedCharacter.Info.EntityColor;
@@ -143,8 +141,6 @@ namespace RPG.Combat.UI
             CombatUIManager.Instance.ChangePanel(_panel);
             ActionsManager.Instance.OnTurnPassed += HidePanel;
             ActionsManager.Instance.OnActionStart += HidePanel;
-
-            _spotlightDescriptionText.transform.parent.gameObject.SetActive(SpotlightHandler.Instance != null);
 
             _selectedCharacter.SelectAction(_selectedCharacter.SelectedActionIndex);
         }

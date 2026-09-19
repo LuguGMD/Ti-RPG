@@ -12,7 +12,7 @@ namespace RPG.Combat.Actions.Effects
         private int _pushAmount = 1;
 
         // TO-DO: Substituir valor de dano 
-        private float _damageOnCollision = 10f;
+        private float _damageOnCollision = 2f;
 
         #region Properties
 
