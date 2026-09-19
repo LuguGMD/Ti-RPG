@@ -160,7 +160,7 @@ namespace RPG.Combat.Preview
                 previewTile.SetCanBeSelected(canBeSelected);
                 previewTile.SetPosition(position);
                 previewTile.SetMeshes(CombatManager.CharacterPreviewGroups.Movement);
-                previewTile.SetColor(_stageEntityController.Info.EntityColor, _stageEntityController.Info.EntitySecondaryColor);
+                previewTile.SetColor(_stageEntityController.Info.EntityColor, _stageEntityController.Info.EntityColorHDR, _stageEntityController.Info.EntitySecondaryColor);
 
                 if (!canBeSelected)
                 {

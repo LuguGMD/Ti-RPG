@@ -17,6 +17,7 @@ namespace RPG.Combat.Preview
         private bool _effectPreviewEnabled = false;
 
         private Color _color;
+        private Color _colorHDR;
         private Color _secondaryColor;
 
         #region Properties
@@ -25,6 +26,7 @@ namespace RPG.Combat.Preview
         public List<DamagePreviewHandler> DamagePreviews { get { return _damagePreviews; } }
 
         public Color Color { get { return _color; } }
+        public Color ColorHDR { get { return _colorHDR; } }
         public Color SecondaryColor { get { return _secondaryColor; } }
 
         #endregion
@@ -56,14 +58,15 @@ namespace RPG.Combat.Preview
             _parent = parent;
         }
 
-        public void SetColor(Color color, Color secondaryColor)
+        public void SetColor(Color color, Color colorHDR, Color secondaryColor)
         {
             _color = color;
+            _colorHDR = colorHDR;
             _secondaryColor = secondaryColor;
 
             foreach (MeshRenderer renderer in _renderer)
             {
-                renderer.material.SetColor("_Tint_Color", color);
+                renderer.material.SetColor("_Tint_Color", colorHDR);
             }
         }
 
@@ -90,7 +93,7 @@ namespace RPG.Combat.Preview
                     ActionPreviewTile preview = _effectPreviewTiles[i];
                     if (preview.gameObject.activeSelf)
                     {
-                        preview.SetColor(_color, _secondaryColor);
+                        preview.SetColor(_color, _colorHDR, _secondaryColor);
                         DamagePreviewHandler damagePreview = preview.DamagePreviews[preview._tilePosition.y];
                         damagePreview.Init(this, preview);
                         damagePreview.gameObject.SetActive(true);
