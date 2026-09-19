@@ -20,7 +20,7 @@ namespace RPG.Combat.Preview
 
         protected List<PreviewTileInfo> _previewTileInfos = new List<PreviewTileInfo>();
         protected List<ActionPreviewTile> _activePreviewTiles = new List<ActionPreviewTile>();
-        protected List<ActionPreviewMaterial> _activePreviewMaterials = new List<ActionPreviewMaterial>();
+        protected List<int> _activePreviewMaterial = new List<int>();
 
         private bool _isPreviewing = false;
 
@@ -115,11 +115,12 @@ namespace RPG.Combat.Preview
             }
             _activePreviewTiles.Clear();
 
-            for (int i = 0; i < _activePreviewMaterials.Count; i++)
+            for (int i = 0; i < _activePreviewMaterial.Count; i++)
             {
-                _activePreviewMaterials[i].StopPreview();
+                ActionPreviewMaterial previewMaterial = MapManager.StageCenterLights;
+                previewMaterial.StopPreview(_activePreviewMaterial[i]);
             }
-            _activePreviewMaterials.Clear();
+            _activePreviewMaterial.Clear();
 
         }
 
@@ -139,17 +140,17 @@ namespace RPG.Combat.Preview
                 );
                 if (isDamageOnCircus)
                 {
-                    if (position.x > MapManager.StageCenterLights.Length)
+                    if (position.x >= Map.Columns)
                     {
                         Debug.LogError(
-                            $"{gameObject.name}: Tentativa de acesso a uma luz do apresentador fora dos índices.\n" +
+                            $"{gameObject.name}: Tentativa de acesso a uma luz do apresentador fora dos índices {position.x}.\n" +
                             $"Confira se o {MapManager.Instance.name} possui todas as referências na lista."
                         );
                         return;
                     }
-                    ActionPreviewMaterial previewMaterial = MapManager.StageCenterLights[position.x];
-                    previewMaterial.StartPreview();
-                    _activePreviewMaterials.Add(previewMaterial);
+                    ActionPreviewMaterial previewMaterial = MapManager.StageCenterLights;
+                    previewMaterial.StartPreview(position.x);
+                    _activePreviewMaterial.Add(position.x);
                 }
             }
             else

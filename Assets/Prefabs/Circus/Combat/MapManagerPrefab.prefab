@@ -52,6 +52,7 @@ MonoBehaviour:
   _mapSplineContainer: {fileID: 3424219564092023215}
   _rowRadius: 2
   _centerOffset: 4
+  _stageCenterLights: {fileID: 6564736228739272418}
   _rowGameObjects:
   - {fileID: 4417257641041009244}
   - {fileID: 2881770444647922306}
@@ -524,11 +525,51 @@ PrefabInstance:
     m_TransformParent: {fileID: 5294250839399833816}
     m_Modifications:
     - target: {fileID: 1062847318175946200, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 37bbae6738df58d44a38c8bfd446fb52, type: 2}
+      propertyPath: m_Materials.Array.size
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 1062847318175946200, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
+      propertyPath: 'm_Materials.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 471ba5b477de10e4d8db829731b6361a, type: 2}
+    - target: {fileID: 1062847318175946200, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
+      propertyPath: 'm_Materials.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 471ba5b477de10e4d8db829731b6361a, type: 2}
+    - target: {fileID: 1062847318175946200, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
+      propertyPath: 'm_Materials.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 471ba5b477de10e4d8db829731b6361a, type: 2}
+    - target: {fileID: 1062847318175946200, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
+      propertyPath: 'm_Materials.Array.data[5]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 471ba5b477de10e4d8db829731b6361a, type: 2}
+    - target: {fileID: 1062847318175946200, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
+      propertyPath: 'm_Materials.Array.data[6]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 471ba5b477de10e4d8db829731b6361a, type: 2}
+    - target: {fileID: 1062847318175946200, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
+      propertyPath: 'm_Materials.Array.data[7]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 471ba5b477de10e4d8db829731b6361a, type: 2}
+    - target: {fileID: 1062847318175946200, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
+      propertyPath: 'm_Materials.Array.data[8]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 471ba5b477de10e4d8db829731b6361a, type: 2}
+    - target: {fileID: 1062847318175946200, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
+      propertyPath: 'm_Materials.Array.data[9]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 471ba5b477de10e4d8db829731b6361a, type: 2}
+    - target: {fileID: 1062847318175946200, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
+      propertyPath: 'm_Materials.Array.data[10]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 471ba5b477de10e4d8db829731b6361a, type: 2}
+    - target: {fileID: 1062847318175946200, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
+      propertyPath: 'm_Materials.Array.data[11]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 471ba5b477de10e4d8db829731b6361a, type: 2}
+    - target: {fileID: 1062847318175946200, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
+      propertyPath: 'm_Materials.Array.data[12]'
       value: 
       objectReference: {fileID: 2100000, guid: 471ba5b477de10e4d8db829731b6361a, type: 2}
     - target: {fileID: 3201766736409551275, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
@@ -551,6 +592,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Circus
       objectReference: {fileID: 0}
+    - target: {fileID: 5759359649044101632, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 7438059862750729362, guid: 7217f6a928f68204e8daaa0793fe1520, type: 3}
     - target: {fileID: 8365109717965475917, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -621,3 +666,14 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3649851365377718805, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
   m_PrefabInstance: {fileID: 7355221410444935067}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6564736228739272418 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4397868625299419513, guid: 0d17af40801c3b542a6e103e16d4b09d, type: 3}
+  m_PrefabInstance: {fileID: 7355221410444935067}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef18d49969eeda0394d50e9ad4cb4fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.PreviewMaterial

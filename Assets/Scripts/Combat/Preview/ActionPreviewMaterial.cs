@@ -6,7 +6,6 @@ namespace RPG
     [RequireComponent(typeof(MeshRenderer))]
     public class ActionPreviewMaterial : MonoBehaviour
     {
-        [SerializeField] private int index;
         [SerializeField] private Material material;
         private Material defaultMaterial;
         private MeshRenderer mesh;
@@ -14,15 +13,15 @@ namespace RPG
         protected void Start()
         {
             mesh = GetComponent<MeshRenderer>();
-            defaultMaterial = mesh.materials[index];
+            defaultMaterial = mesh.materials[1];
         }
-        public void StartPreview()
+        public void StartPreview(int index)
         {
-            Utility.Get(mesh).SetMaterial(material, index);
+            Utility.Get(mesh).SetMaterial(material, index + 1);
         }
-        public void StopPreview()
+        public void StopPreview(int index)
         {
-            Utility.Get(mesh).SetMaterial(defaultMaterial, index);
+            Utility.Get(mesh).SetMaterial(defaultMaterial, index + 1);
         }        
     }
 }
