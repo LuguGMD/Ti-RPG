@@ -18,7 +18,7 @@ namespace RPG.Combat.UI
         [SerializeField] private TextMeshProUGUI _buttonText;
         [SerializeField] private RectTransform _rect;
 
-        private float _selectScale = 1.1f;
+        private float _selectScale = 1.3f;
 
         public void Initialize(int actionIndex, CombatAction action, CharacterController character, CharacterActionPanelController panelController)
         {
@@ -26,6 +26,8 @@ namespace RPG.Combat.UI
             _action = action;
             _character = character;
             _panelController = panelController;
+
+            _rect.DOScale(Vector3.one, 0.2f);
 
             _buttonText.text = action.ActionName;
             _button.onClick.AddListener(OnButtonClick);

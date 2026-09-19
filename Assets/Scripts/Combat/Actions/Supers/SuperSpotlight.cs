@@ -9,18 +9,11 @@ namespace RPG.Combat.Actions
 {
     public class SuperSpotlight : SuperHandler
     {
-        /*private int[] _chargeAmountTiers = new int[3]
+        private int[] _chargeAmountTiers = new int[3]
         {
             10,
             6,
             3,
-        };*/
-
-        private int[] _chargeAmountTiers = new int[3]
-        {
-            1,
-            1,
-            1,
         };
 
         public override void Init(StageEntityController user)

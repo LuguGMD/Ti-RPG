@@ -207,9 +207,6 @@ namespace RPG.Combat
 
                 _selectedCharacter = selectedCharacter;
                 ActionsManager.Instance.OnCharacterSelected?.Invoke(_selectedCharacter);
-
-                //TO DO passar para quando acao for selecionada
-                _selectedCharacter.Preview.ShowPreview();
             }
         }
 
