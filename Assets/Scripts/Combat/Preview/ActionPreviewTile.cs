@@ -66,7 +66,7 @@ namespace RPG.Combat.Preview
 
             foreach (MeshRenderer renderer in _renderer)
             {
-                renderer.material.SetColor("_Tint_Color", colorHDR);
+                renderer.material.SetColor("_TintColor", colorHDR);
             }
         }
 
