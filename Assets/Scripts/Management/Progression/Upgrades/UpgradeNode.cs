@@ -17,13 +17,15 @@ namespace RPG.Management.Progression
         [SerializeField] private UpgradeData _data;
         [HideInInspector] public UpgradeNode[] parentNodes;
 
+        [SerializeField] private Image _lockImage;
+        [SerializeField] private Sprite _closedLockIcon;
+        [SerializeField] private Sprite _openLockIcon;
+
+        private Button _button;
+
         private bool isPurchased = false;
         public bool IsPurchased => isPurchased;
 
-        public void SetPurchasedFromSave(bool value)
-        {
-            isPurchased = value;
-        }
 
         #region Properties
 
@@ -33,6 +35,11 @@ namespace RPG.Management.Progression
         }
 
         #endregion
+
+        public void SetPurchasedFromSave(bool value)
+        {
+            isPurchased = value;
+        }
 
         public void Init(UpgradeData data)
         {
@@ -57,19 +64,32 @@ namespace RPG.Management.Progression
 
         public void RefreshVisual()
         {
+            if (_button == null) _button = GetComponent<Button>();
+
             if (isPurchased)
             {
                 iconImage.color = Color.white;
+
+                _lockImage.enabled = false;
+                _button.interactable = true;
             }
             else if (IsUnlocked())
             {
-                Color unlockedColor = Color.gray8;
+                Color unlockedColor = Color.gray5;
                 iconImage.color = unlockedColor;
+                _lockImage.enabled = false;
+
+                _button.interactable = true;
             }
             else
             {
-                Color unlockedColor = Color.gray3;
+                Color unlockedColor = Color.gray2;
                 iconImage.color = unlockedColor;
+
+                _button.interactable = false;
+
+                _lockImage.sprite = _closedLockIcon;
+                _lockImage.enabled = true;
             }
         }
 
