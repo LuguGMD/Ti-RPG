@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 namespace RPG.Level
@@ -74,6 +75,11 @@ namespace RPG.Level
 
             _levelNameText.text = _selectedLevel.levelName;
             UpdateCharacterInfo(GameManager.CurrentParty[0]);
+
+            for(int i = 0; i < GameManager.CurrentParty.Length; i++)
+            {
+                AddPartyMemberPreview(GameManager.CurrentParty[i], i);
+            }
         }
 
         private void UpdateChallenges()
@@ -171,13 +177,7 @@ namespace RPG.Level
             UpdateCharacterOptions();
             UpdateCharacterCount();
 
-            foreach (Transform child in _partyMemberModelPreviews[_selectedPartyIndex])
-            {
-                Destroy(child.gameObject);
-            }
-            GameObject characterModel = Instantiate(character.PreviewModelPrefab.gameObject, _partyMemberModelPreviews[_selectedPartyIndex]);
-            characterModel.transform.localPosition = Vector3.zero;
-            characterModel.transform.localRotation = Quaternion.identity;
+            AddPartyMemberPreview(character, _selectedPartyIndex);
 
             for (int i = 0; i < GameManager.CurrentParty.Length; i++)
             {
@@ -187,6 +187,19 @@ namespace RPG.Level
                     break;
                 }
             }
+        }
+
+        private void AddPartyMemberPreview(CharacterScriptable character, int partyMemberIndex)
+        {
+            if (character == null) return;
+
+            foreach (Transform child in _partyMemberModelPreviews[partyMemberIndex])
+            {
+                Destroy(child.gameObject);
+            }
+            GameObject characterModel = Instantiate(character.PreviewModelPrefab.gameObject, _partyMemberModelPreviews[partyMemberIndex]);
+            characterModel.transform.localPosition = Vector3.zero;
+            characterModel.transform.localRotation = Quaternion.identity;
         }
 
         private void UpdateCharacterCount()
