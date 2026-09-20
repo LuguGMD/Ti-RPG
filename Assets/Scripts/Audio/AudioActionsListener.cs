@@ -1,6 +1,7 @@
 using UnityEngine;
 using Lugu.Singleton;
 using FMODUnity;
+using UnityEngine.TextCore.Text;
 
 namespace RPG.Audio
 {
@@ -8,6 +9,8 @@ namespace RPG.Audio
     {
         [SerializeField] private EventReference _errorSFX;
         [SerializeField] private EventReference _healSFX;
+        [SerializeField] private EventReference _spotlightBuffSFX;
+        [SerializeField] private EventReference _spotlightEnemyBuffSFX;
         private bool _didPlayHealSound = false;
 
         private void OnEnable()
@@ -15,6 +18,8 @@ namespace RPG.Audio
             ActionsManager.Instance.OnError += PlayErrorSound;
             ActionsManager.Instance.OnCharacterHealed += PlayHealSound;
             ActionsManager.Instance.OnActionEnd += OnActionEnd;
+            ActionsManager.Instance.OnCharacterActionUsed += OnCharacterActionUsed;
+            ActionsManager.Instance.OnEnemyActionUsed += OnEnemyActionUsed;
         }
 
         private void OnDisable()
@@ -22,11 +27,29 @@ namespace RPG.Audio
             ActionsManager.Instance.OnError -= PlayErrorSound;
             ActionsManager.Instance.OnCharacterHealed -= PlayHealSound;
             ActionsManager.Instance.OnActionEnd -= OnActionEnd;
+            ActionsManager.Instance.OnCharacterActionUsed -= OnCharacterActionUsed;
+            ActionsManager.Instance.OnEnemyActionUsed -= OnEnemyActionUsed;
         }
 
         private void OnActionEnd()
         {
             _didPlayHealSound = false;
+        }
+
+        private void OnCharacterActionUsed(RPG.Combat.CharacterController character)
+        {
+            if (character.TileObject.IsOnSpotlight == true)
+            {
+                AudioManager.Instance.PlayOneShot(_spotlightBuffSFX);
+            }
+        }
+
+        private void OnEnemyActionUsed(RPG.Combat.EnemyController enemy)
+        {
+            if (enemy.TileObject.IsOnSpotlight == true)
+            {
+                AudioManager.Instance.PlayOneShot(_spotlightEnemyBuffSFX);
+            }
         }
 
         private void PlayErrorSound()
