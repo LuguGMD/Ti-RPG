@@ -228,9 +228,9 @@ namespace RPG.Combat.UI
 
         private void UpdateSuperUI()
         {
-            if (!_superButton.gameObject.activeSelf) return;
-
             InitSuperButton();
+
+            if (!_superButton.gameObject.activeSelf) return;
 
             float amount = (float)CombatManager.Apresentador.SuperCharge / (float)CombatManager.Apresentador.EquippedSuper.ChargeAmount;
             amount = Mathf.Clamp01(amount);
