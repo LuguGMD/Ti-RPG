@@ -81,6 +81,7 @@ namespace RPG.Combat
         public IEnumerator UsePreparedAction()
         {
             //TO DO guardar acao preparada e usar aqui
+            ActionsManager.Instance.OnEnemyActionUsed?.Invoke(this);
             yield return UseSelectedAction(_preparedAction);
         }
 

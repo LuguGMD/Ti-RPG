@@ -54,6 +54,7 @@ namespace RPG
 
         public Action<EnemyController> OnEnemyDefeated;
         public Action<EnemyController> OnEnemyDamageTaken;
+        public Action<EnemyController> OnEnemyActionUsed;
 
         public Action<Vector2Int> OnSpotlightPositionChanged;
 
