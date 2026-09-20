@@ -75,7 +75,7 @@ namespace RPG.Management.Progression
             }
             else if (IsUnlocked())
             {
-                Color unlockedColor = Color.gray5;
+                Color unlockedColor = Color.gray3;
                 iconImage.color = unlockedColor;
                 _lockImage.enabled = false;
 

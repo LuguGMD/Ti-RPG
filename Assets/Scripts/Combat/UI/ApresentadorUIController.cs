@@ -249,6 +249,8 @@ namespace RPG.Combat.UI
             if(buttonSprite == null)
             {
                 _superButton.gameObject.SetActive(false);
+                _superBarFill.transform.parent.gameObject.SetActive(false);
+                return;
             }
             else
             {

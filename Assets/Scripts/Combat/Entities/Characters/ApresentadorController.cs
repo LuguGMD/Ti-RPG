@@ -80,7 +80,8 @@ namespace RPG.Combat
             if(super != null)
             {
                 string upgradeName = GameManager.CurrentSuperEqquiped.ToString();
-                int upgradeTier = (int)upgradeName[upgradeName.Length - 1];
+                string upgradeTierName = ""+upgradeName[upgradeName.Length - 1];
+                int upgradeTier = int.Parse(upgradeTierName);
                 super.SetUpgradeTier(upgradeTier-1);
                 EquipSuper(super);
             }
