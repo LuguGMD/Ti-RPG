@@ -99,7 +99,6 @@ namespace RPG.Combat
             }).SetEase(Ease.Linear);*/
 
             _visual.SetActive(false);
-            Debug.Log("TESTE SFX");
 
             AudioManager.Instance.PlayOneShot(_spotlightOffSFX);
 
