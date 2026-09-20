@@ -8,6 +8,7 @@ namespace RPG.Combat.VFX
     {
         [SerializeField] GameObject spawnVFXPrefab;
         [SerializeField] GameObject healVFXPrefab;
+        [SerializeField] GameObject hitVFXPrefab;
         [SerializeField] GameObject spotlightPreviousPositionPrefab;
 
         CharacterController selectedCharacter;
@@ -28,6 +29,10 @@ namespace RPG.Combat.VFX
             // Heal VFX
             ActionsManager.Instance.OnCharacterHealed += PlayHealVFX;
             ActionsManager.Instance.OnApresentadorHealed += PlayHealVFXApresentador;
+
+            // Hit VFX
+            ActionsManager.Instance.OnCharacterDamageTaken += PlayHitVFX;
+            ActionsManager.Instance.OnEnemyDamageTaken += PlayHitVFX;
 
             // Available Action Display
             ActionsManager.Instance.OnCharacterHoverEnter += ActivateCharacterOutline;
@@ -59,6 +64,9 @@ namespace RPG.Combat.VFX
             ActionsManager.Instance.OnCharacterHealed -= PlayHealVFX;
             ActionsManager.Instance.OnApresentadorHealed -= PlayHealVFXApresentador;
 
+            // Hit VFX
+            ActionsManager.Instance.OnCharacterDamageTaken -= PlayHitVFX;
+
             // Available Action Display
             ActionsManager.Instance.OnCharacterHoverEnter -= ActivateCharacterOutline;
             ActionsManager.Instance.OnCharacterHoverExit -= DeactivateCharacterOutline;
@@ -79,12 +87,14 @@ namespace RPG.Combat.VFX
             ActionsManager.Instance.OnSpotlightSuperEnded -= RemoveSpotlightSuperPreview;
         }
 
+        #region Spawn VFX
         void PlaySpawnVFX(StageEntityController entity)
         {
             Instantiate(spawnVFXPrefab, entity.transform.position, Quaternion.identity);
         }
+        #endregion
 
-#region Heal VFX
+        #region Heal VFX
         void PlayHealVFX(CharacterController entity)
         {
             Instantiate(healVFXPrefab, entity.transform.position, Quaternion.identity);
@@ -96,7 +106,14 @@ namespace RPG.Combat.VFX
         }
 #endregion
 
-#region Available Action Indicator
+        #region Hit VFX
+        void PlayHitVFX(StageEntityController entity)
+        {
+            Instantiate(hitVFXPrefab, entity.transform.position, Quaternion.identity, entity.transform);
+        }
+        #endregion
+
+        #region Available Action Indicator
         
         // Circenses
         void ActivateCharacterOutline(CharacterController entity)
@@ -164,9 +181,9 @@ namespace RPG.Combat.VFX
         {
             apresentadorAvailableActionVFX.DeactivateIndicator();
         }
-#endregion
+        #endregion
 
-#region Spotlight Super Preview
+        #region Spotlight Super Preview
         void AddSpotlightSuperPreview()
         {
             spotlightPreviousPosition = Instantiate(spotlightPreviousPositionPrefab, MapManager.Instance.GetWorldPosition(MapManager.SpotlightPosition), Quaternion.identity);
@@ -177,7 +194,7 @@ namespace RPG.Combat.VFX
         {
             Destroy(spotlightPreviousPosition);
         }
-#endregion
+        #endregion
 
     }
 }
