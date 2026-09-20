@@ -107,6 +107,7 @@ GameObject:
   - component: {fileID: 8008957854379933838}
   - component: {fileID: 2611775017998876609}
   - component: {fileID: 6223594105943427731}
+  - component: {fileID: 2769741230318543734}
   m_Layer: 0
   m_Name: GigosManagementPrefab
   m_TagString: Untagged
@@ -170,6 +171,22 @@ MonoBehaviour:
   _graphDemotivated: {fileID: 2841676755933307327, guid: bc361b23b9e8a7c2baf7d2d54dd82c92, type: 3}
   _camera: {fileID: 3928841493899914423}
   _characterInfo: {fileID: 0}
+--- !u!208 &2769741230318543734
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620580509359725116}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.5, y: 1, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &668166564446406164
 GameObject:
   m_ObjectHideFlags: 0

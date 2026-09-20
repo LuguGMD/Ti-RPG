@@ -1601,6 +1601,7 @@ GameObject:
   - component: {fileID: 602029807}
   - component: {fileID: 602029806}
   - component: {fileID: 602029805}
+  - component: {fileID: 602029808}
   m_Layer: 3
   m_Name: Floor
   m_TagString: Untagged
@@ -1702,6 +1703,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 602029803}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &602029808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 602029803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 7617efdc2a2c7d142abf859ed14e4b46, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &622003789 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7752549523127767482, guid: 036909061b85b1245a2b26674bda5fdc, type: 3}
@@ -3845,13 +3878,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 977461423}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.009882888, y: -0.9819047, z: 0.05337488, w: -0.18142965}
-  m_LocalPosition: {x: -2.67, y: 2.14, z: -16.54}
+  m_LocalRotation: {x: 0.019760815, y: 0.97721416, z: -0.105293505, w: 0.18323575}
+  m_LocalPosition: {x: -3.2, y: 2.89, z: -14.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1440513379}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 12.3, y: 158.76, z: 0.002}
 --- !u!1 &979892079 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8103875200300686746, guid: 02eea88449fc5b1459ae8ad01c63702b, type: 3}
@@ -6818,18 +6851,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 766478956}
     m_Modifications:
-    - target: {fileID: 2171968915690823437, guid: c2fde55211ec00a41a789430fffa3a0f, type: 3}
-      propertyPath: m_SlopeLimit
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4155014204745474996, guid: c2fde55211ec00a41a789430fffa3a0f, type: 3}
-      propertyPath: gravity
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4155014204745474996, guid: c2fde55211ec00a41a789430fffa3a0f, type: 3}
-      propertyPath: groundLayer.m_Bits
-      value: 8
-      objectReference: {fileID: 0}
+    - target: {fileID: 798462049078267007, guid: c2fde55211ec00a41a789430fffa3a0f, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 701645365}
     - target: {fileID: 6293911206743334705, guid: c2fde55211ec00a41a789430fffa3a0f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.3399658

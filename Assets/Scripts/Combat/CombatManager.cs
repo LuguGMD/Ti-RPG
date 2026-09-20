@@ -13,6 +13,7 @@ using RPG.Combat.UI;
 using Unity.Cinemachine;
 using RPG.Save;
 using RPG.Management.Progression;
+using RPG.Combat.Upgrades;
 
 namespace RPG.Combat
 {
@@ -24,6 +25,11 @@ namespace RPG.Combat
         [SerializeField] private ActionPreviewTile _previewTilePrefab;
         [SerializeField] private PreviewTileGroup _characterPreviewGroups;
         [SerializeField] private PreviewTileGroup _enemyPreviewGroups;
+
+        [SerializeField] private CombatUpgradeScriptable _superHealInfo;
+        [SerializeField] private CombatUpgradeScriptable _superPushInfo;
+        [SerializeField] private CombatUpgradeScriptable _superSpotlightInfo;
+
         private CinemachineImpulseSource _impulseSource;
 
         private CombatTurnStateEnum _currentTurnState;
@@ -62,6 +68,10 @@ namespace RPG.Combat
         public static List<CharacterController> RemainingCharacters { get { return Instance._remainingCharacters; } }
         public static bool IsActionInProgress { get { return Instance._isActionInProgress; } }
         public static HashSet<string> CombatUpgrades { get { return Instance._combatUpgrades; }  }
+
+        public static CombatUpgradeScriptable SuperHealInfo { get { return Instance._superHealInfo; } }
+        public static CombatUpgradeScriptable SuperPushInfo { get { return Instance._superPushInfo; } }
+        public static CombatUpgradeScriptable SuperSpotlightInfo { get { return Instance._superSpotlightInfo; } }
 
         #endregion
 

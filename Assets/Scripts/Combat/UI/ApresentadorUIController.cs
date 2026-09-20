@@ -1,5 +1,7 @@
 using DG.Tweening;
+using RPG.Combat.Actions;
 using RPG.Combat.Grid;
+using RPG.Management.Progression;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -223,6 +225,36 @@ namespace RPG.Combat.UI
 
         private void UpdateSuperUI()
         {
+            Sprite buttonSprite = null;
+
+            switch (GameManager.CurrentSuperEqquiped)
+            {
+                case UpgradeConstants.UpgradeKey.SuperSpotlight1:
+                case UpgradeConstants.UpgradeKey.SuperSpotlight2:
+                case UpgradeConstants.UpgradeKey.SuperSpotlight3:
+                    buttonSprite = CombatManager.SuperSpotlightInfo.UpgradeIcon;
+                    break;
+                case UpgradeConstants.UpgradeKey.SuperHeal1:
+                case UpgradeConstants.UpgradeKey.SuperHeal2:
+                case UpgradeConstants.UpgradeKey.SuperHeal3:
+                    buttonSprite = CombatManager.SuperHealInfo.UpgradeIcon;
+                    break;
+                case UpgradeConstants.UpgradeKey.SuperPush1:
+                case UpgradeConstants.UpgradeKey.SuperPush2:
+                case UpgradeConstants.UpgradeKey.SuperPush3:
+                    buttonSprite = CombatManager.SuperPushInfo.UpgradeIcon;
+                    break;
+            }
+
+            if(buttonSprite == null)
+            {
+                _superButton.gameObject.SetActive(false);
+            }
+            else
+            {
+                _superButton.GetComponent<Image>().sprite = buttonSprite;
+            }
+
             float amount = (float)CombatManager.Apresentador.SuperCharge / (float)CombatManager.Apresentador.EquippedSuper.ChargeAmount;
             amount = Mathf.Clamp01(amount);
             _superBarFill.DOKill(true);

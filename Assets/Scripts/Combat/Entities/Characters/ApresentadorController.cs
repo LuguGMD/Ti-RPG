@@ -2,6 +2,7 @@ using FMODUnity;
 using RPG.Combat.Actions;
 using RPG.Combat.Grid;
 using RPG.Combat.Preview;
+using RPG.Management.Progression;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,8 +56,35 @@ namespace RPG.Combat
             MapManager.Instance.AddTileObject(_tileObject, Map.CENTER_POS);
             AdjsutGameSpeed();
 
-            //TO DO remover depois DEBUG
-            EquipSuper(new SuperSpotlight());
+            SuperHandler super = null;
+
+            switch(GameManager.CurrentSuperEqquiped)
+            {
+                case UpgradeConstants.UpgradeKey.SuperSpotlight1:
+                case UpgradeConstants.UpgradeKey.SuperSpotlight2:
+                case UpgradeConstants.UpgradeKey.SuperSpotlight3:
+                    super = new SuperSpotlight();
+                    break;
+                case UpgradeConstants.UpgradeKey.SuperHeal1:
+                case UpgradeConstants.UpgradeKey.SuperHeal2:
+                case UpgradeConstants.UpgradeKey.SuperHeal3:
+                    super = new SuperHealHandler();
+                    break;
+                case UpgradeConstants.UpgradeKey.SuperPush1:
+                case UpgradeConstants.UpgradeKey.SuperPush2:
+                case UpgradeConstants.UpgradeKey.SuperPush3:
+                    super = new SuperPushHandler();
+                    break;
+            }
+
+            if(super != null)
+            {
+                string upgradeName = GameManager.CurrentSuperEqquiped.ToString();
+                int upgradeTier = (int)upgradeName[upgradeName.Length - 1];
+                super.SetUpgradeTier(upgradeTier-1);
+                EquipSuper(super);
+            }
+            
         }
 
         public override EntityScriptable GetEntityInfo()
