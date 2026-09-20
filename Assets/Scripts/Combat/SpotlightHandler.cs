@@ -8,6 +8,8 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Splines;
 using UnityEngine.UIElements;
+using FMODUnity;
+using RPG.Audio;
 
 namespace RPG.Combat
 {
@@ -16,6 +18,10 @@ namespace RPG.Combat
         private int _lastChangeTurn = 0;
         private int _currentPosition = 0;
         private Vector2Int _currentSpotlightPosition = new Vector2Int(0, 1);
+
+        [SerializeField] private EventReference _spotlightOnSFX;
+        [SerializeField] private EventReference _spotlightOffSFX;
+
         [SerializeField] private GameObject _visual;
         private const float SPOTLIGHT_MOVE_DURATION = 0.3f;
 
@@ -92,7 +98,14 @@ namespace RPG.Combat
                 transform.position = position;
             }).SetEase(Ease.Linear);*/
 
+            _visual.SetActive(false);
+            Debug.Log("TESTE SFX");
+
+            AudioManager.Instance.PlayOneShot(_spotlightOffSFX);
+
             yield return new WaitForSeconds(SPOTLIGHT_MOVE_DURATION / CombatManager.CombatSpeed);
+
+            AudioManager.Instance.PlayOneShot(_spotlightOnSFX);
 
             _visual.SetActive(true);
         }
