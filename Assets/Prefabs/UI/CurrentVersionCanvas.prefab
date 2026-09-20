@@ -586,216 +586,244 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<size=120%><b>VERS\xC3O 0.5.0</b></size>\r\n\r\n<b>Novidades</b>\r\n\r\n\u2022
-    Sistema de melhorias de personagem atualizado\r\n\u2022 Shader de granulado curvo
-    recebeu suporte a Normal Map\r\n\u2022 Sistema de salvamento de fases implementado\r\n\u2022
-    A primeira op\xE7\xE3o dos menus agora \xE9 selecionada automaticamente\r\n\u2022
-    Sistema de salvamento das fases conclu\xEDdo\r\n\u2022 Novo conceito de di\xE1logos
-    condicionais\r\n\u2022 Salvamento do progresso dos minigames\r\n\u2022 Novos
-    di\xE1logos para situa\xE7\xF5es de derrota\r\n\u2022 Sistema de di\xE1logos
-    de derrota implementado\r\n\u2022 Integra\xE7\xE3o entre o sistema de melhorias
-    e o combate\r\n\u2022 \xCDcones de desmotiva\xE7\xE3o adicionados\r\n\u2022 Novo
-    conte\xFAdo para o Level 05 e materiais individuais para inimigos intermedi\xE1rios\r\n\u2022
-    Anima\xE7\xF5es do Inimigo Tanque implementadas\r\n\u2022 Implementa\xE7\xF5es
-    finais da TI5\r\n\u2022 Sistema de gera\xE7\xE3o autom\xE1tica do changelog\r\n\r\n\r\n<b>Adi\xE7\xF5es
-    Visuais</b>\r\n\r\n\u2022 Novo cursor e painel de melhorias\r\n\u2022 Novo fundo
-    para os bot\xF5es de melhorias\r\n\u2022 Melhor espa\xE7amento entre as op\xE7\xF5es
-    de melhorias\r\n\u2022 Nova logo adicionada\r\n\u2022 Texturas e Normal Maps
-    adicionados aos personagens\r\n\u2022 Novo cursor\r\n\u2022 Cores do World Map
-    ajustadas\r\n\u2022 Apresentador atualizado\r\n\u2022 Novas texturas importadas\r\n\u2022
-    Anima\xE7\xE3o dos pop-ups dos pr\xE9dios aprimorada\r\n\u2022 Enquadramento
-    dos pr\xE9dios ajustado\r\n\r\n\r\n<b>Corre\xE7\xF5es</b>\r\n\r\n\u2022 Corrigido
-    problema que prendia a c\xE2mera durante o Camera Shake\r\n\u2022 Sistema de
-    salvamento substitu\xEDdo\r\n\u2022 Corrigidos conflitos entre cenas\r\n\u2022
-    Corrigido o desligamento dos Canvas durante o combate\r\n\u2022 Prefabs de di\xE1logos
-    e gerenciamento atualizados\r\n\u2022 Corrigido problema da c\xE2mera ao carregar
-    pela primeira vez\r\n\u2022 Salvamento de personagens corrigido para utilizar
-    seus nomes\r\n\u2022 Corrigido o acionamento do di\xE1logo final\r\n\u2022 Corrigido
-    o desbloqueio de fases\r\n\u2022 Corrigido problema no comando do workflow\r\n\u2022
-    Corrigido o nome do arquivo do workflow\r\n\r\n\r\n<b>Core</b>\r\n\r\n\u2022
-    Sistema de chaves para desafios e fases atualizado\r\n\r\n\r\n<b>Outras Altera\xE7\xF5es</b>\r\n\r\n\u2022
-    Sistema autom\xE1tico de gera\xE7\xE3o do changelog adicionado\r\n\u2022 Nome
-    do arquivo de changelog atualizado\r\n\u2022 Workflow do gerador de changelog
-    atualizado\r\n\r\n\r\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\r\n\r\n\r\n<size=120%><b>VERS\xC3O
-    0.4.0</b></size>\r\n\r\n<b>Novidades</b>\r\n\r\n\u2022 Sistema de melhorias totalmente
-    integrado\r\n\u2022 Novo Inimigo Tanque implementado\r\n\u2022 Editor de melhorias
-    iniciado\r\n\u2022 Editor de melhorias conclu\xEDdo\r\n\u2022 Editor de di\xE1logos
-    implementado\r\n\u2022 Sistema de salvamento integrado ao projeto\r\n\u2022 Integra\xE7\xE3o
-    das melhorias conclu\xEDda\r\n\u2022 Sistema de salvamento atualizado\r\n\u2022
-    Sistema gen\xE9rico de salvamento conclu\xEDdo\r\n\u2022 Testes do salvamento
-    atrav\xE9s do Game Manager\r\n\u2022 Sistema de tutorial iniciado\r\n\u2022 Shader
-    de granulado com suporte a Normal Map\r\n\u2022 Navega\xE7\xE3o da interface
-    atrav\xE9s de controle\r\n\r\n\r\n<b>Adi\xE7\xF5es Visuais</b>\r\n\r\n\u2022
-    Novas anima\xE7\xF5es de dano para Anika e Barbara\r\n\u2022 Novos materiais
-    aplicados\r\n\u2022 Diversos ajustes visuais\r\n\u2022 Novo material para a tenda
-    de melhorias\r\n\u2022 Reestrutura\xE7\xE3o inicial da sele\xE7\xE3o de fases\r\n\u2022
-    Novos modelos e anima\xE7\xF5es importados\r\n\u2022 Inimigos e Barbara atualizados\r\n\u2022
-    Don Lipon e Buzina atualizados\r\n\u2022 Anika atualizada\r\n\u2022 Nova anima\xE7\xE3o
-    de pop-up da cidade\r\n\u2022 Folesbela atualizada\r\n\u2022 Proje\xE7\xE3o de
-    granulado adicionada aos objetos com UV\r\n\r\n\r\n<b>Corre\xE7\xF5es</b>\r\n\r\n\u2022
-    Propriedades dos shaders ajustadas\r\n\u2022 Organiza\xE7\xE3o dos modelos dos
-    pr\xE9dios corrigida\r\n\r\n\r\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\r\n\r\n\r\n<size=120%><b>VERS\xC3O
-    0.3.0</b></size>\r\n\r\n<b>Novidades</b>\r\n\r\n\u2022 Adicionada indica\xE7\xE3o
-    da a\xE7\xE3o utilizada\r\n\u2022 Efeitos restantes do Holofote implementados\r\n\u2022
-    Efeito da Folesbela atualizado\r\n\u2022 A\xE7\xF5es agora podem ser selecionadas
-    atrav\xE9s de clique\r\n\u2022 Template base para minigames preparado\r\n\u2022
-    Folesbela agora mostra seu \xFAltimo efeito\r\n\u2022 Interface de configura\xE7\xF5es
-    finalizada\r\n\u2022 Sistema de Tooltips implementado\r\n\u2022 Ferramenta de
-    preview do Global Volume integrada\r\n\u2022 Novo Inimigo Intermedi\xE1rio: Raiva\r\n\u2022
-    Novo inimigo: Tristeza\r\n\u2022 Sistema de configura\xE7\xF5es implementado\r\n\r\n\r\n<b>Adi\xE7\xF5es
-    Visuais</b>\r\n\r\n\u2022 Build do FMOD atualizada\r\n\u2022 Assets do World
-    Map importados\r\n\u2022 Shader global para os assets\r\n\u2022 Novos inimigos
-    importados\r\n\u2022 Novos elementos de interface adicionados\r\n\u2022 Interface
-    do menu de pausa ajustada\r\n\u2022 Novas anima\xE7\xF5es importadas\r\n\u2022
-    Elementos visuais do minigame da Barbara adicionados\r\n\u2022 Vers\xE3o gen\xE9rica
-    do shader de granulado criada\r\n\r\n\r\n<b>Corre\xE7\xF5es</b>\r\n\r\n\u2022
-    Corrigidas diferen\xE7as de cores entre resolu\xE7\xF5es\r\n\u2022 Corrigido
-    posicionamento do preview de ataques\r\n\u2022 Corrigidos problemas da Folesbela\r\n\u2022
-    Rota\xE7\xE3o do Apresentador corrigida\r\n\u2022 Corrigido problema que ativava
-    a pausa por padr\xE3o\r\n\u2022 Corrigido Holofote no final do mapa\r\n\r\n\r\n<b>Refatora\xE7\xF5es</b>\r\n\r\n\u2022
-    Novo sistema de di\xE1logos implementado\r\n\u2022 Sistema de di\xE1logos reorganizado\r\n\u2022
-    Sistema de Scriptable Objects criado para armazenar di\xE1logos\r\n\r\n\r\n<b>Core</b>\r\n\r\n\u2022
-    Balanceamento geral realizado\r\n\u2022 Feedbacks do segundo dia no Museu aplicados\r\n\u2022
-    Feedbacks adicionais do segundo dia no Museu aplicados\r\n\u2022 Novas fases
-    adicionadas\r\n\r\n\r\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\r\n\r\n\r\n<size=120%><b>VERS\xC3O
-    0.1.0</b></size>\r\n\r\n<b>Novidades</b>\r\n\r\n\u2022 Sistema de desafios criado\r\n\u2022
-    Estrutura base do projeto implementada\r\n\u2022 Sistema inicial de batalha\r\n\u2022
-    Sistema de movimenta\xE7\xE3o em grid iniciado\r\n\u2022 Sistema de offsets dos
-    tiles e separa\xE7\xE3o das classes de inimigos\r\n\u2022 Sistema inicial de
-    a\xE7\xF5es de combate\r\n\u2022 Sistema de progresso das a\xE7\xF5es de combate\r\n\u2022
-    Efeitos das a\xE7\xF5es de combate implementados\r\n\u2022 Apresentador adicionado
-    com valida\xE7\xE3o dos tiles\r\n\u2022 Efeito de empurr\xE3o implementado\r\n\u2022
-    Sistema de valida\xE7\xE3o de alvos\r\n\u2022 Sistema de a\xE7\xF5es derivadas\r\n\u2022
-    Detec\xE7\xE3o de comandos do mouse\r\n\u2022 Sistema de sele\xE7\xE3o de objetos
-    por clique\r\n\u2022 Movimenta\xE7\xE3o animada entre tiles\r\n\u2022 Sistema
-    de preview das a\xE7\xF5es\r\n\u2022 Sistema de input do combate iniciado\r\n\u2022
-    Base da c\xE2mera e Camera Manager implementados\r\n\u2022 Sistema de troca de
-    c\xE2mera\r\n\u2022 Sele\xE7\xE3o de personagens integrada \xE0 c\xE2mera\r\n\u2022
-    Sistemas de combate e turnos integrados\r\n\u2022 Turnos dos inimigos implementados\r\n\u2022
-    Sistema de ondas de inimigos\r\n\u2022 Sistema de vit\xF3ria e derrota com controle
-    da velocidade de combate\r\n\u2022 Rota\xE7\xE3o do palco e a\xE7\xF5es do Apresentador\r\n\u2022
-    Balanceamento e defini\xE7\xE3o inicial dos personagens\r\n\u2022 Barra de motiva\xE7\xE3o
-    implementada\r\n\u2022 Barra de vida adicionada ao combate\r\n\u2022 Preview
-    de inimigos e personagens com troca de materiais\r\n\u2022 Sistema de altern\xE2ncia
-    da rota\xE7\xE3o do palco\r\n\u2022 Anima\xE7\xE3o de rota\xE7\xE3o do palco\r\n\u2022
-    Efeito de cura e a\xE7\xF5es da Barbara e Don Lipon\r\n\u2022 A\xE7\xE3o da Folesbela
-    implementada\r\n\u2022 Interface de combate preparada\r\n\u2022 Sistema inicial
-    de di\xE1logos\r\n\u2022 Movimenta\xE7\xE3o do jogador\r\n\u2022 Anima\xE7\xF5es
-    de combate ativadas\r\n\u2022 Sistemas de combate e desafios integrados\r\n\u2022
-    Interface de combate implementada\r\n\u2022 Sistema de sele\xE7\xE3o do ponto
-    de surgimento dos personagens\r\n\u2022 Interfaces de sele\xE7\xE3o de fase e
-    equipe\r\n\u2022 Interface de combate atualizada\r\n\u2022 Integra\xE7\xE3o da
-    interface de combate\r\n\u2022 Controles do Apresentador e c\xE2mera ajustados\r\n\u2022
-    Navega\xE7\xE3o entre cenas\r\n\u2022 VFXs iniciais conectados\r\n\u2022 Anima\xE7\xE3o
-    do Apresentador implementada\r\n\u2022 Holofote implementado\r\n\u2022 Sele\xE7\xE3o
-    por mouse e controle durante o combate\r\n\u2022 Controle da c\xE2mera pelo mouse\r\n\u2022
-    Sistema base de minigames\r\n\u2022 Interface de progress\xE3o\r\n\u2022 Sistema
-    de di\xE1logos\r\n\u2022 Intera\xE7\xE3o do jogador\r\n\u2022 Sistema de troca
-    de cena atrav\xE9s de intera\xE7\xE3o\r\n\u2022 Integra\xE7\xE3o inicial da interface
-    de progress\xE3o\r\n\u2022 Gerenciamento de troca de c\xE2mera\r\n\u2022 Build
-    do FMOD integrada\r\n\u2022 A\xE7\xF5es integradas \xE0s anima\xE7\xF5es\r\n\u2022
-    Sistema de fases\r\n\u2022 Template para cenas de minigames\r\n\u2022 Interface
-    de di\xE1logos\r\n\u2022 Ajustes na interface de di\xE1logos\r\n\u2022 Sistema
-    de navega\xE7\xE3o entre fases\r\n\u2022 Interface dos minigames\r\n\u2022 Ajustes
-    adicionais na interface de di\xE1logos\r\n\u2022 Integra\xE7\xE3o do sistema
-    de di\xE1logos\r\n\u2022 Input pausado durante intera\xE7\xF5es\r\n\u2022 IA
-    do Inimigo Intermedi\xE1rio Tanque\r\n\u2022 Sistema de sele\xE7\xE3o de personagens\r\n\u2022
-    Sistema integrado de sele\xE7\xE3o de fases e equipe\r\n\u2022 Sistema de recompensa
-    em dinheiro\r\n\u2022 Minigame da Barbara\r\n\u2022 Di\xE1logos de teste adicionados\r\n\u2022
-    Scroll no menu principal\r\n\u2022 Feedback visual dos minigames\r\n\u2022 Efeitos
-    de Holofote e descri\xE7\xF5es\r\n\u2022 Efeitos removidos dos Scriptable Objects\r\n\u2022
-    M\xFAsica de batalha integrada ao FMOD\r\n\u2022 Preview de ataques\r\n\u2022
-    Interface de configura\xE7\xF5es\r\n\u2022 Sistema de melhorias\r\n\u2022 A\xE7\xF5es
-    dos inimigos\r\n\u2022 M\xFAsica importada\r\n\u2022 Bancos de efeitos sonoros
-    do FMOD\r\n\u2022 Ataque da Anika\r\n\u2022 Ataque da Barbara\r\n\u2022 Ataque
-    da Folesbela\r\n\u2022 Ataque da Buzina\r\n\u2022 Sistema de configura\xE7\xF5es\r\n\u2022
-    Camera Shake e movimenta\xE7\xE3o da barra de vida\r\n\u2022 Efeitos sonoros
-    da interface\r\n\u2022 Efeitos sonoros do menu principal\r\n\u2022 Sistema de
-    pausa implementado\r\n\u2022 Efeito de empurr\xE3o relativo ao jogador\r\n\u2022
-    Intera\xE7\xE3o ao passar o mouse sobre a \xFAltima linha\r\n\u2022 Navega\xE7\xE3o
-    do sistema de gerenciamento\r\n\u2022 Efeito visual do Holofote implementado\r\n\u2022
-    Minigame Target Practice\r\n\r\n\r\n<b>Adi\xE7\xF5es Visuais</b>\r\n\r\n\u2022
-    Primeiro bloqueio visual do mundo e sistema de troca de fases\r\n\u2022 Inimigos
-    e Folesbela importados\r\n\u2022 Personagens importados\r\n\u2022 Placeholders
-    dos principais assets do cen\xE1rio\r\n\u2022 Anima\xE7\xE3o Idle da Anika\r\n\u2022
-    \xC1rea de combate do circo criada\r\n\u2022 Materiais tempor\xE1rios adicionados\r\n\u2022
-    Novos tiles aplicados\r\n\u2022 Pasta de prefabs reorganizada\r\n\u2022 Cenas
-    de vit\xF3ria e derrota\r\n\u2022 Apresentador importado\r\n\u2022 Folesbela
-    com bake importado\r\n\u2022 Assets finalizados da barraca de melhorias e do
-    canh\xE3o\r\n\u2022 Efeito de distor\xE7\xE3o configur\xE1vel\r\n\u2022 \xC1rea
-    de gerenciamento criada\r\n\u2022 Barraca de melhorias e canh\xE3o receberam
-    UVs\r\n\u2022 Assets com transforma\xE7\xF5es incorretas substitu\xEDdos\r\n\u2022
-    Corre\xE7\xF5es visuais nos assets substitu\xEDdos\r\n\u2022 Cidade montada com
-    placeholders\r\n\u2022 Animator Controllers configurados\r\n\u2022 NPCs importados\r\n\u2022
-    Don Lipon importado\r\n\u2022 Rota\xE7\xF5es dos assets importados ajustadas\r\n\u2022
-    Personagens e anima\xE7\xF5es do gerenciamento adicionados\r\n\u2022 Samples
-    de ilumina\xE7\xE3o da Unity importados\r\n\u2022 Interface de sele\xE7\xE3o
-    de fases ajustada\r\n\u2022 \xCDcones dos personagens adicionados\r\n\u2022 VFX
-    inicial do Holofote\r\n\u2022 Previews importados\r\n\u2022 Modelo de espectador
-    importado\r\n\u2022 Sistema inicial de spawn e despawn\r\n\u2022 VFX Manager
-    adicionado \xE0 cena de combate\r\n\u2022 Ajuste visual da barra de motiva\xE7\xE3o\r\n\u2022
-    Inimigo Tanque importado\r\n\u2022 Modelos placeholders importados\r\n\u2022
-    Diferen\xE7as visuais entre os inimigos base\r\n\u2022 Concepts importados\r\n\u2022
-    Buzina importada\r\n\u2022 VFX inicial do buff do Holofote\r\n\u2022 Sprites
-    da interface importados\r\n\u2022 Texto do painel de desafios ajustado\r\n\u2022
-    Fonte e Canvas atualizados\r\n\u2022 Efeitos sonoros dos personagens e inimigos\r\n\u2022
-    Preview dos efeitos\r\n\u2022 Interface do minigame\r\n\u2022 Controle da intensidade
-    do efeito Fresnel\r\n\r\n\r\n<b>Corre\xE7\xF5es</b>\r\n\r\n\u2022 Nome das cenas
-    corrigido\r\n\u2022 Vers\xE3o da Unity atualizada\r\n\u2022 Gera\xE7\xE3o das
-    Input Actions corrigida\r\n\u2022 A\xE7\xF5es derivadas OnCancel corrigidas\r\n\u2022
-    Gera\xE7\xE3o autom\xE1tica das Input Actions corrigida\r\n\u2022 Cena de testes
-    corrigida\r\n\u2022 Corrigida a detec\xE7\xE3o do alvo pelo cursor\r\n\u2022
-    Input ajustado para n\xE3o depender da ordem de inicializa\xE7\xE3o\r\n\u2022
-    Escala dos tiles do palco corrigida\r\n\u2022 Cena inicial definida corretamente\r\n\u2022
-    Problema que impedia a cria\xE7\xE3o do build corrigido\r\n\u2022 Barra de vida
-    interativa corrigida\r\n\u2022 Layer do Cursor Input corrigida\r\n\u2022 Organiza\xE7\xE3o
-    das pastas da interface corrigida\r\n\u2022 Animator do espectador removido\r\n\u2022
-    Assets ausentes corrigidos\r\n\u2022 Anima\xE7\xF5es do gerenciamento corrigidas\r\n\u2022
-    Inst\xE2ncia do Input Global corrigida\r\n\u2022 Segunda corre\xE7\xE3o da inst\xE2ncia
-    do Input Global\r\n\u2022 Cena de testes corrigida\r\n\u2022 Navega\xE7\xE3o
-    do World Map corrigida\r\n\u2022 Cursor Input impedido de atravessar elementos
-    da interface\r\n\u2022 Loop incorreto das anima\xE7\xF5es de combate corrigido\r\n\u2022
-    Holofote e VFX de spawn ajustados\r\n\u2022 Interface corrigida para desligar
-    durante a\xE7\xF5es\r\n\u2022 Preview de tiles fora dos limites corrigido\r\n\u2022
-    Refer\xEAncia nula em GameObjects corrigida\r\n\u2022 Desativa\xE7\xE3o de pain\xE9is
-    corrigida\r\n\u2022 Efeito do Holofote durante movimentos corrigido\r\n\u2022
-    Altera\xE7\xF5es de arquivos corrigidas\r\n\u2022 Leitura da curva de anima\xE7\xE3o
-    dos di\xE1logos corrigida\r\n\u2022 Sobreposi\xE7\xE3o de tiles corrigida\r\n\u2022
-    Posicionamento das artes na tela de Features corrigido\r\n\u2022 Collider do
-    Holofote removido\r\n\u2022 Par\xE2metro do Audio Manager corrigido\r\n\u2022
-    Cores do VFX do Holofote ajustadas\r\n\u2022 Altera\xE7\xF5es de arquivos corrigidas\r\n\u2022
-    Hover em linhas rotacionadas corrigido\r\n\u2022 Configura\xE7\xE3o do ataque
-    do Inimigo Tanque corrigida\r\n\u2022 Problemas de build corrigidos\r\n\u2022
-    Loop da m\xFAsica corrigido\r\n\u2022 Holofote corrigido\r\n\u2022 Soco direcional
-    corrigido\r\n\u2022 Cursor Input Singleton corrigido\r\n\u2022 Pausa dos minigames
-    corrigida\r\n\u2022 Loop da m\xFAsica corrigido novamente\r\n\u2022 Cena do minigame
-    corrigida\r\n\u2022 Cena template corrigida\r\n\r\n\r\n<b>Refatora\xE7\xF5es</b>\r\n\r\n\u2022
-    Sistema base de inputs reorganizado\r\n\u2022 Sistema de alvos dos efeitos atualizado\r\n\u2022
-    Scripts do projeto reorganizados\r\n\u2022 Action Handler substitu\xEDdo pelo
-    Input Handler\r\n\u2022 Sistema de Singleton simplificado e nomes atualizados\r\n\u2022
-    Scripts de combate e gerenciamento de turnos aprimorados\r\n\u2022 Classes utilit\xE1rias
-    reorganizadas\r\n\u2022 Pastas e scripts reorganizados\r\n\u2022 Pastas e scripts
-    reorganizados novamente\r\n\u2022 Audio Manager simplificado\r\n\u2022 Scriptable
-    Objects de combate reorganizados\r\n\u2022 Utilities separadas em scripts individuais\r\n\u2022
-    Camada ignorada pelo Cursor Input configurada\r\n\u2022 Scripts do sistema de
-    melhorias reorganizados\r\n\r\n\r\n<b>Core</b>\r\n\r\n\u2022 Arquivos do VS Code
-    adicionados \xE0 lista de ignorados\r\n\u2022 Dire\xE7\xE3o da barra de motiva\xE7\xE3o
-    ajustada\r\n\u2022 Arquivos de crash locais adicionados \xE0 lista de ignorados\r\n\u2022
-    Pastas do projeto reorganizadas\r\n\u2022 Tela de cr\xE9ditos adicionada\r\n\u2022
-    Colisor da barraca de gerenciamento adicionado\r\n\r\n\r\n<b>Outras Altera\xE7\xF5es</b>\r\n\r\n\u2022
-    Projeto criado\r\n\u2022 Pacotes da Unity importados\r\n\u2022 Cenas privadas
-    adicionadas\r\n\u2022 Workflow de build autom\xE1tico criado\r\n\u2022 Workflow
-    de gera\xE7\xE3o do changelog adicionado\r\n\u2022 Branch de desenvolvimento
-    adicionada ao workflow de build\r\n\u2022 Arquivo de teste criado\r\n\u2022 Arquivo
-    de teste removido\r\n\u2022 Sistema inicial de inputs\r\n\u2022 Audio Manager
-    integrado ao FMOD\r\n\u2022 Audio Manager atualizado\r\n\u2022 Altera\xE7\xE3o
-    visual revertida\r\n\u2022 Scripts removidos\r\n\u2022 Camera Manager atualizado\r\n\u2022
-    Cena de teste criada\r\n\u2022 Altera\xE7\xE3o da cena de teste revertida\r\n\u2022
-    Scripts corrigidos\r\n\u2022 Cena de teste criada\r\n\u2022 Altera\xE7\xE3o de
-    merge revertida\r\n\u2022 Altera\xE7\xE3o de merge reaplicada\r\n\u2022 Camera
-    Manager atualizado\r\n\u2022 Fade-Out ajustado\r\n\u2022 Cena Ivan atualizada\r\n\r\n\r\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\r\n\r\n\r\n<size=120%><b>VERS\xC3O
-    DESCONHECIDA</b></size>\r\n\r\n<b>Outras Altera\xE7\xF5es</b>\r\n\r\n\u2022 Commit
-    inicial do projeto\r\n\u2022 Mensagem inicial de teste adicionada ao README"
+  m_text: "<size=120%><b>VERS\xC3O 0.5.3</b></size>\r\n\r\n<b>Novidades</b>\r\n\r\n\u2022
+    UI Gerenciamento\r\n\u2022 Upgrades tela de fases\r\n\u2022 Finalizacao tela
+    selecao fase\r\n\u2022 Preview acerto\r\n\u2022 Descricoes personagens\r\n\u2022
+    Integracao preview acerto apresentador\r\n\u2022 Ajustes UI selecao acao\r\n\u2022
+    Preview de Personagens\r\n\u2022 Preview Upgrade selecionado\r\n\u2022 Cadeado
+    Upgrades\r\n\u2022 Movimento Apresentador\r\n\u2022 Descricao Super\r\n\u2022
+    Acao inimigo atacando\r\n\u2022 SFX Buff Holofote (Inimigo e Player)\r\n<b>Adi\xE7\xF5es
+    Visuais</b>\r\n\r\n\u2022 Tamanho fonte Changelog\r\n\u2022 Interface Selecao
+    de Fase\r\n\u2022 paleta do circo aplicada\r\n\u2022 Implementacao paleta personagens\r\n\u2022
+    Cores dos previews\r\n\u2022 Ajustes UI tela Derrota & Vitoria\r\n\u2022 Novo
+    modelo Tiles\r\n\u2022 Troca de materiais\r\n\u2022 Assets finais de arm\xE1rio
+    e arara de roupas\r\n\u2022 Substitui\xE7\xE3o dos arquivos de arm\xE1rio e arara
+    de roupas\r\n<b>Corre\xE7\xF5es</b>\r\n\r\n\u2022 Botao de CombatSpeed\r\n\u2022
+    Posicionamento tiles\r\n\u2022 Mesh closet\r\n\u2022 Audio Resetando\r\n<b>Refatora\xE7\xF5es</b>\r\n\r\n<b>Core</b>\r\n\r\n<b>Outras
+    Altera\xE7\xF5es</b>\r\n\r\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\r\n\r\n<size=120%><b>VERS\xC3O
+    0.5.2</b></size>\r\n\r\n<b>Novidades</b>\r\n\r\n\u2022 Adicao da tela de changelog\r\n\u2022
+    Remocao Navegacao\r\n\u2022 Atualizada Selecao de Party\r\n\u2022 Adicao previews
+    acao novos\r\n\u2022 Action dano inimigo\r\n\u2022 Combat UI\r\n<b>Adi\xE7\xF5es
+    Visuais</b>\r\n\r\n\u2022 Correcao UI Resumo de Combate\r\n\u2022 Substitu\xE7\xE3o
+    de fbx dos inimigos Raiva e Tristeza\r\n\u2022 Animacao Inimigo Tristeza\r\n<b>Corre\xE7\xF5es</b>\r\n\r\n<b>Refatora\xE7\xF5es</b>\r\n\r\n<b>Core</b>\r\n\r\n\u2022
+    Atualizacao versao build\r\n<b>Outras Altera\xE7\xF5es</b>\r\n\r\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\r\n\r\n<size=120%><b>VERS\xC3O
+    0.5.0</b></size>\r\n\r\n<b>Novidades</b>\r\n\r\n\u2022 UpgradeSave\r\n\u2022
+    CurvedGranularShader com normal map\r\n\u2022 Save dos Levels\r\n\u2022 Seleciona
+    primeira op\xE7\xE3o no menu\r\n\u2022 Salvamento de fases implementado\r\n\u2022
+    Conceito di\xE1logo condicional\r\n\u2022 Minigame save\r\n\u2022 Di\xE1logos
+    de derrota\r\n\u2022 implementa\xE7\xE3o dos di\xE1logos de derrota\r\n\u2022
+    Integracao Upgrade e Combate\r\n\u2022 Icone de desmotivacao implementado\r\n\u2022
+    Level 05 and Individual materials for Intermediary enemies\r\n\u2022 Animacoes
+    Inimigo Tank Implementadas\r\n\u2022 Commit Final TI5\r\n\u2022 Camera Personagem
+    teste\r\n\u2022 Balanceamento Buzina Parte 1\r\n\u2022 Adicao botao Novo Jogo\r\n\u2022
+    Atualizacao Versao atual\r\n\u2022 Cria\xE7\xE3o prefab padr\xE3o para os bot\xF5es\r\n\u2022
+    Remocao minigame e desmotivacao\r\n\u2022 confirmacao automatica Apresentador\r\n\u2022
+    Sistema super Inicio\r\n\u2022 action de heal apresentador\r\n\u2022 Sistema
+    de Tooltip fixado\r\n\u2022 Adaptacao Sistema para Supers & Super empurrar\r\n\u2022
+    Integra\xE7\xE3o do efeito de cura \xE0 gameplay\r\n\u2022 Anima\xE7\xF5es B\xE1sica
+    UI\r\n\u2022 Super holofote\r\n\u2022 Save de Audio\r\n\u2022 Tornar \xEDcone
+    do apresentador clic\xE1vel durante a batalha\r\n\u2022 VFX de Cura ativado com
+    Super do Apresentador\r\n\u2022 Scripts de funcionalidade de buff Holofote Sombrio\r\n\u2022
+    diferenca de raio para acoes\r\n\u2022 Planejamento IA do boss\r\n\u2022 SFX
+    de Spawn\r\n\u2022 SFX Erro de UI (N\xE3o implementado)\r\n\u2022 Implementa\xE7\xE3o
+    Action SFX Erro\r\n\u2022 Adicionada as acoes necessarias para feedback de acao
+    e selecao\r\n\u2022 traducao hover colisor para tile\r\n\u2022 UI Rotacao Apresentador
+    World Position\r\n\u2022 acao de hover\r\n\u2022 Indicador de A\xE7\xE3o do Apresentador
+    ativa e desativa\r\n\u2022 Acoes de Hover Apresentador\r\n\u2022 Outline do Personagem
+    permanece ao ser selecionado\r\n\u2022 Acao selecao Apresentador\r\n\u2022 Posicionamento
+    manual upgrades\r\n\u2022 Acao rotacao da linha\r\n\u2022 Controle C\xE2mera
+    combate #179\r\n\u2022 Movimento por clique em ManagementScene\r\n\u2022 Empurrar
+    um inimigo para cima do outro causa dano\r\n\u2022 Atualizado Merge Combate\r\n\u2022
+    Implementa\xE7\xE3o M\xFAsica de Menu\r\n\u2022 Merge Parte 1\r\n\u2022 Base
+    do sistema de a\xE7\xF5es do boss\r\n\u2022 Adicao de creditos\r\n\u2022 listar
+    todos os commits\r\n\u2022 Cenas para evitar conflitos\r\n\u2022 preview ataque
+    no apresentador\r\n\u2022 SFX de Cura de Movimenta\xE7\xE3o do Holofote\r\n<b>Adi\xE7\xF5es
+    Visuais</b>\r\n\r\n\u2022 Cursor & Painel Upgrade\r\n\u2022 Fundo Botao Upgrades\r\n\u2022
+    Espacamento entro upgrades\r\n\u2022 Nova Logo Implementada\r\n\u2022 Personagens
+    com textura e normal map\r\n\u2022 Cursor Novo\r\n\u2022 Ajuste de cores no world
+    map\r\n\u2022 Apresentador Atualizado\r\n\u2022 Texturas Importadas\r\n\u2022
+    ajustes na anima\xE7\xE3o de pop up dos pr\xE9dios\r\n\u2022 Ajuste no enquadramento
+    dos pr\xE9dios\r\n\u2022 Textura Inimigos\r\n\u2022 Correcao de tipo dos sprites
+    de cursor\r\n\u2022 Modelo Final do Inimigo Medo\r\n\u2022 blocagem do efeito
+    de cura\r\n\u2022 Nova Textura de Glitter\r\n\u2022 Indica\xE7\xE3o de A\xE7\xE3o
+    Dispon\xEDvel\r\n\u2022 Preview do Super de Holofote\r\n\u2022 Outline de Sele\xE7\xE3o
+    para o Apresentador\r\n\u2022 UV aberto dos tiles e as Texturas deles\r\n\u2022
+    Corre\xE7\xE3o dos nomes dos tiles\r\n\u2022 Corre\xE7\xE3o da orienta\xE7\xE3o
+    da UV\r\n\u2022 Polimento das cameras\r\n\u2022 Polimento de Height e Radius\r\n\u2022
+    Vers\xE3o 2 da Indica\xE7\xE3o de A\xE7\xE3o Dispon\xEDvel (em progresso)\r\n\u2022
+    Prefab dos personagens com vers\xE3o 2 da indica\xE7\xE3o de a\xE7\xE3o\r\n\u2022
+    Arte dos previews de tile selecion\xE1veis e dano\r\n<b>Corre\xE7\xF5es</b>\r\n\r\n\u2022
+    Camera Shake linha presa\r\n\u2022 Sistema de save trocado\r\n\u2022 Correcao
+    de conflito de cena\r\n\u2022 Canvas desligados Combate\r\n\u2022 Atualizacao
+    prefabs dialogo gerenciamento\r\n\u2022 Camera nao trocando primeiro Load\r\n\u2022
+    Salvamento de personagens por nome\r\n\u2022 final dialogo trigger\r\n\u2022
+    Desbloqueio de fase\r\n\u2022 Inimigos empurrados para ultima linha\r\n\u2022
+    Posicao Invalida ataque Anika\r\n\u2022 Preview Ataque Folesbela\r\n\u2022 Novo
+    Jogo mudando cena\r\n\u2022 BUG Wave verifica se os inimigos acabaram antes de
+    spawnar a ultima wave\r\n\u2022 reset de rotacao apresentador\r\n\u2022 movimento
+    personagens inicio para fim do mapa\r\n\u2022 Efeito de Cura vis\xEDvel de diferentes
+    \xE2ngulos\r\n\u2022 Game Manager atualizado para novo save\r\n\u2022 referencia
+    orbital follow\r\n\u2022 Ajustes nos volumes dos SFXs\r\n\u2022 Action Tile Hover\r\n\u2022
+    Rotacao tiles\r\n\u2022 Colisores Tiles\r\n\u2022 Colisores Tiles 2\r\n\u2022
+    PC_Renderer Layer Mask\r\n\u2022 comando yml nao determinado\r\n\u2022 Nome arquivo
+    yml\r\n\u2022 Deletei alguns materiais e texturas temporarias\r\n\u2022 preview
+    no apresentador\r\n<b>Refatora\xE7\xF5es</b>\r\n\r\n\u2022 Altera\xE7\xF5es no
+    SaveData\r\n<b>Core</b>\r\n\r\n\u2022 Troca de keys desafios e fases\r\n\u2022
+    Creditos atualizados\r\n\u2022 Troca de VSCode\r\n<b>Outras Altera\xE7\xF5es</b>\r\n\r\n\u2022
+    Adi\xE7\xE3o da Fase 5\r\n\u2022 Adi\xE7\xE3o da Fase 5\r\n\u2022 Revert \"Merge
+    branch 'luiz' into lucca\"\r\n\u2022 Add changelog generator workflow\r\n\u2022
+    Rename changelog file in workflow\r\n\u2022 Update changelog generator workflow
+    and comments\r\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\r\n\r\n<size=120%><b>VERS\xC3O
+    0.4.0</b></size>\r\n\r\n<b>Novidades</b>\r\n\r\n\u2022 Sistema de upgrades integrado\r\n\u2022
+    Inimigo Tanque implementado\r\n\u2022 Inicio Editor de Upgrades\r\n\u2022 Editor
+    de Upgrades Finalizado\r\n\u2022 Editor de Dialogo Implementado\r\n\u2022 Sistema
+    de Save Importado\r\n\u2022 Merge Upgrades Completo\r\n\u2022 Sistema de Save
+    alterado\r\n\u2022 Sistema de Save Generico finalizado\r\n\u2022 Teste GameManager
+    Save\r\n\u2022 Sistema de Tutorial inicio\r\n\u2022 Granular shader com normal
+    map\r\n\u2022 Suporte de navega\xE7\xE3o de UI pelo Controle\r\n<b>Adi\xE7\xF5es
+    Visuais</b>\r\n\r\n\u2022 Animacoes dano Anika & Barbara\r\n\u2022 Materiais
+    aplicados\r\n\u2022 Ajustes visuais\r\n\u2022 Troca material tenda de upgrades\r\n\u2022
+    Reestruturacao Selecao de Fases Inicio\r\n\u2022 Modelos e Animacoes Importados\r\n\u2022
+    Inimigos e Barbara Atualizados\r\n\u2022 DonLipon e Buzina Atualizados\r\n\u2022
+    Anika Atualizada\r\n\u2022 Animacao de Pop Up da Cidade\r\n\u2022 Folesbela Atualizada\r\n\u2022
+    proje\xE7\xE3o de granulado para objetos com uv\r\n<b>Corre\xE7\xF5es</b>\r\n\r\n\u2022
+    Ajuste nas propriedades dos shaders\r\n\u2022 Reorganiza\xE7\xE3o dos modelos
+    dos pr\xE9dios\r\n<b>Refatora\xE7\xF5es</b>\r\n\r\n<b>Core</b>\r\n\r\n<b>Outras
+    Altera\xE7\xF5es</b>\r\n\r\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\r\n\r\n<size=120%><b>VERS\xC3O
+    0.3.0</b></size>\r\n\r\n<b>Novidades</b>\r\n\r\n\u2022 Indicacao de acao usada\r\n\u2022
+    Efeitos Holofote Restantes\r\n\u2022 Troca Efeito Folesbela\r\n\u2022 Selecao
+    de Acao por clique\r\n\u2022 Minigame Template Preparado\r\n\u2022 Folesbela
+    mostrar ultimo efeito\r\n\u2022 Finaliza\xE7\xE3o Interface de Configura\xE7\xF5es\r\n\u2022
+    fun\xE7\xE3o de Tooltip\r\n\u2022 Integrado Sistema de Tooltip\r\n\u2022 Integrada
+    a Tool de preview de Global Volume\r\n\u2022 Inimigo Intermediario Raiva Implementado\r\n\u2022
+    Inimigo Tristeza Implementado\r\n\u2022 C\xF3digo configura\xE7oes\r\n<b>Adi\xE7\xF5es
+    Visuais</b>\r\n\r\n\u2022 Build FMOD\r\n\u2022 Importacao Assets World Map\r\n\u2022
+    Shader global para assets\r\n\u2022 Inimigos importados\r\n\u2022 Implementacao
+    Elementos UI\r\n\u2022 Ajustes UI Pause\r\n\u2022 Animacoes Importadas\r\n\u2022
+    Implementado elementos visuais Minigame Barbara\r\n\u2022 Vers\xE3o gen\xE9rica
+    do Shader de granulado\r\n<b>Corre\xE7\xF5es</b>\r\n\r\n\u2022 Correcao de cor
+    em diferentes resolucoes\r\n\u2022 Preview de ataque flutuando\r\n\u2022 Correcao
+    Folesbela\r\n\u2022 Rota\xE7\xE3o Apresentador\r\n\u2022 Pause ligado por padrao\r\n\u2022
+    Holofote no fim do mapa\r\n<b>Refatora\xE7\xF5es</b>\r\n\r\n\u2022 Novo sistema
+    de di\xE1logo (incompleto)\r\n\u2022 novo sistema de di\xE1logo\r\n\u2022 SO
+    para guardar um di\xE1logo\r\n<b>Core</b>\r\n\r\n\u2022 Balanceamento\r\n\u2022
+    Aplicacoes de Feedbacks Dia 2 Museu\r\n\u2022 Aplicacoes de Feedbacks Dia 2 Museu
+    (2)\r\n\u2022 Novas fases adicionadas\r\n<b>Outras Altera\xE7\xF5es</b>\r\n\r\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\r\n\r\n<size=120%><b>VERS\xC3O
+    0.1.0</b></size>\r\n\r\n<b>Novidades</b>\r\n\r\n\u2022 Challenge System\r\n\u2022
+    Estrutura base do projeto\r\n\u2022 Base do sistema de batalha\r\n\u2022 Comeco
+    sistema de grid\r\n\u2022 Tile Offset e separacao de clase para inimigos\r\n\u2022
+    Sistema de Actions de Combate Inicializado\r\n\u2022 Sistema de Actions de Combate
+    progresso\r\n\u2022 Actions de Combate - Efeitos\r\n\u2022 Actions de Combate
+    - Efeitos\r\n\u2022 Apresentador Adicionado e Validacao de Tiles\r\n\u2022 Adicionado
+    efeito de empurrar\r\n\u2022 Validacao de alvo\r\n\u2022 A\xE7\xF5es Derivadas\r\n\u2022
+    Detec\xE7\xE3o de inputs do mouse\r\n\u2022 Adicionados signals de clique em
+    objeto\r\n\u2022 Movimento entre Tiles animados\r\n\u2022 Sistema de Preview
+    de acoes\r\n\u2022 Combat comeco implementacao input\r\n\u2022 BaseCamera + CameraManager\r\n\u2022
+    CameraSwitch\r\n\u2022 Selecao Personagens & Camera\r\n\u2022 Integracao sistema
+    de Combate e Turnos\r\n\u2022 Turno dos inimigos\r\n\u2022 Sistema de Waves\r\n\u2022
+    Verificacao de Vitoria e Derrota & Velocidade de Combate\r\n\u2022 Rotacao do
+    Palco & Acao Apresentador\r\n\u2022 Balanceamento e definicao de personagens\r\n\u2022
+    Barra de motiva\xE7\xE3o\r\n\u2022 Barra de vida implementada no Combate\r\n\u2022
+    Troca de material Preview Inimigo e Personagens\r\n\u2022 Alternancia entre rotacao
+    do Palco\r\n\u2022 Animacao Rotacao\r\n\u2022 Efeito Cura & Acao Barbara & Acao
+    Don Lipon\r\n\u2022 Acao Folesbela\r\n\u2022 Preparacao Interface de Combate\r\n\u2022
+    Preparacao Sistema Dialogo\r\n\u2022 Movimento jogador\r\n\u2022 Ativacao de
+    Animacoes de Combate\r\n\u2022 Integracao Combate e Sistema de Desafios\r\n\u2022
+    Interface de combate\r\n\u2022 Selecao Spawn Personagens\r\n\u2022 Interface
+    Sele\xE7\xE3o de Fase e de Time\r\n\u2022 Interface combate\r\n\u2022 Integracao
+    Interface de Combate\r\n\u2022 Ajustes Controle Apresentador & Camera\r\n\u2022
+    Navegacao entre cenas\r\n\u2022 Conexao VFXs placeholders\r\n\u2022 Implementado
+    Animacao Apresentador\r\n\u2022 Holofote Implementado\r\n\u2022 Selecao por Mouse
+    e Controle (Combate)\r\n\u2022 Controle de Camera Mouse\r\n\u2022 Base Sistema
+    de Minigames\r\n\u2022 Interface da Progress\xE3o\r\n\u2022 Sistema de Di\xE1logo\r\n\u2022
+    Intera\xE7\xE3o do player\r\n\u2022 Interacao Troca de Cena\r\n\u2022 Ajustes
+    e Inicio Integracao Interface de Progressao\r\n\u2022 Implementacao Troca de
+    Camera Gerenciamento\r\n\u2022 Build FMOD\r\n\u2022 Acoes integradas com animacoes\r\n\u2022
+    Sistema de Level\r\n\u2022 Template Cena de Minigames\r\n\u2022 Interface de
+    Di\xE1logo\r\n\u2022 Interface de Di\xE1logo ajuste\r\n\u2022 Implementado Sistema
+    de Navegacao de fase\r\n\u2022 Minigames UI\r\n\u2022 Ajustes Interface de Dialogo\r\n\u2022
+    Integracao Sistema de Dialogo\r\n\u2022 Pausa de Input na Interacao\r\n\u2022
+    IA Inimigo Intermediario Tanque\r\n\u2022 Sele\xE7\xE3o de personagens\r\n\u2022
+    Sistema de Selecao de Fase e de Party Integrado\r\n\u2022 Ganho de dinheiro\r\n\u2022
+    Minigame Barbara\r\n\u2022 Dialogos teste adicionados\r\n\u2022 Scroll Menu principal\r\n\u2022
+    Feedback Visual Minigame\r\n\u2022 Efeitos de Holofote e Descricoes\r\n\u2022
+    Removido efeitos como Scriptable Objects\r\n\u2022 Musica de batalha com FMOD\r\n\u2022
+    Preview de Ataques\r\n\u2022 Interface de Configura\xE7\xF5es\r\n\u2022 UpgradesSystem\r\n\u2022
+    Enemy Actions\r\n\u2022 Musica Importada\r\n\u2022 FMOD SFX banks\r\n\u2022 Ataque
+    Anika\r\n\u2022 Ataque Barbara\r\n\u2022 Ataque Folesbela\r\n\u2022 Ataque Buzina\r\n\u2022
+    Sistema de Configuracoes\r\n\u2022 Camera Shake & Movimento de Vida\r\n\u2022
+    Implementa\xE7\xE3o SFX UI\r\n\u2022 SFX UI menu principal\r\n\u2022 Pause Implementado\r\n\u2022
+    Efeito de Empurrar relativo ao usuario\r\n\u2022 Hover ultima linha\r\n\u2022
+    Navegacao Gerenciamento\r\n\u2022 Efeito Visual de Holofote Implementado\r\n\u2022
+    Minigame TargetPractice\r\n<b>Adi\xE7\xF5es Visuais</b>\r\n\r\n\u2022 Blocagem
+    do Mundo (Troca de Fases)\r\n\u2022 Enemy & Folesbela Importados\r\n\u2022 Personagens
+    Importados\r\n\u2022 Placeholders de Assets do Cen\xE1rio (UpgradeStand, Cannon,
+    Closet e ClothesRack)\r\n\u2022 Animacao Idle Anika\r\n\u2022 Blocagem da \xE1rea
+    de combate do circo\r\n\u2022 Materiais temporarios adicionados\r\n\u2022 Aplicacao
+    novos tiles\r\n\u2022 Pasta Prefabs Organizadas\r\n\u2022 Cenas de Derrota e
+    Vitoria\r\n\u2022 Apresentador Importado\r\n\u2022 Folesbela Bake importado\r\n\u2022
+    Assets finalizados: Barraca de upgrades e Canh\xE3o\r\n\u2022 Toggle Efeito Distor\xE7\xE3o\r\n\u2022
+    Blocagem do gerenciamento\r\n\u2022 Barraca de upgrades e canh\xE3o com UV aberto
+    + Substitui\xE7\xE3o de assets com transform errado\r\n\u2022 Substitui\xE7\xE3o
+    corrigida dos assets\r\n\u2022 Montagem da cidade com placeholders\r\n\u2022
+    Animator Controllers configurados\r\n\u2022 NPCs importados\r\n\u2022 Don Lipon
+    Importado\r\n\u2022 Ajustes rotacoes imports\r\n\u2022 Personagens & Animacoes
+    Gerenciamento\r\n\u2022 Importacao samples de iluminacao da Unity\r\n\u2022 Ajustes
+    UI Selecao de Fases\r\n\u2022 Icones Personagens\r\n\u2022 VFX Placeholder Holofote\r\n\u2022
+    Previews Importados\r\n\u2022 Modelo Espectador Importado\r\n\u2022 spawn/despawn
+    placeholder\r\n\u2022 Adicionado VFXManager na cena de combate\r\n\u2022 Barra
+    de Motivacao sumindo\r\n\u2022 Inimigo tanque importado\r\n\u2022 Modelos Placeholders
+    importados\r\n\u2022 Diferenca visual entre inimigos base\r\n\u2022 Concepts
+    Importados\r\n\u2022 Buzina Importado\r\n\u2022 VFX Placeholder Buff do Holofote\r\n\u2022
+    Importados Sprites UI\r\n\u2022 Ajuste texto painel desafio\r\n\u2022 Fonte e
+    Canvas atualizados\r\n\u2022 SFX Personagens & Inimigos\r\n\u2022 Preview de
+    Efeitos\r\n\u2022 Interface Minigame\r\n\u2022 Controle de intensidade do fresnel
+    (buff vfx)\r\n<b>Corre\xE7\xF5es</b>\r\n\r\n\u2022 Scene Name\r\n\u2022 Updated
+    Unity Version\r\n\u2022 Gerar InputActions na pasta certa\r\n\u2022 A\xE7\xF5es
+    derivadas OnCancel\r\n\u2022 Gerar Input Actions automaticamente\r\n\u2022 Cena
+    de testes\r\n\u2022 Cursor n\xE3o detectava o target correto\r\n\u2022 input
+    n\xE3o depender da ordem de inicializa\xE7\xE3o\r\n\u2022 Corre\xE7\xE3o da escala
+    das tiles do palco\r\n\u2022 Cena inicial definida\r\n\u2022 Unity Editor impedindo
+    build\r\n\u2022 Barra de Vida Interativa\r\n\u2022 Layer do Cursor Input\r\n\u2022
+    Organizacao de Pastas UI\r\n\u2022 Removido Animator do Espectador\r\n\u2022
+    Assets nao enviados\r\n\u2022 Animacoes Gerenciamento\r\n\u2022 Instancia de
+    Input Global\r\n\u2022 Instancia Input Global 2\r\n\u2022 Cena de testes\r\n\u2022
+    Erro de navegacao WorldMap\r\n\u2022 CursorInput n\xE3o atravessar UI\r\n\u2022
+    Animacao de Combate Loopando\r\n\u2022 ajustes holofote e vfx de spawn\r\n\u2022
+    Interface nao desligando na acao\r\n\u2022 Preview do Tile Out of Bound\r\n\u2022
+    gameobject sem coalesce nulll\r\n\u2022 Desativacao de Painel\r\n\u2022 Efeito
+    do Holofote ativando em movimento\r\n\u2022 mudancas nao enviadas\r\n\u2022 Curva
+    de animacao leitura dialogo\r\n\u2022 Tiles se sobrepondo\r\n\u2022 Posicionamento
+    Artes tela de Features\r\n\u2022 Remocao Collider Holofote\r\n\u2022 Troca de
+    parametro AudioManager\r\n\u2022 Ajuste nas cores do vfx do Holofote\r\n\u2022
+    Mudancas nao enviadas\r\n\u2022 Hover em linhas rotacionadas\r\n\u2022 Configuracao
+    ataque Inimigo Tanque\r\n\u2022 Problemas de Build\r\n\u2022 loop da m\xFAsica\r\n\u2022
+    Holofote\r\n\u2022 Soco Direcional\r\n\u2022 Cursor Input Singleton\r\n\u2022
+    Pause Minigame\r\n\u2022 Loop da m\xFAsica (agr de vdd)\r\n\u2022 Scene Minigame\r\n\u2022
+    Scene Template\r\n<b>Refatora\xE7\xF5es</b>\r\n\r\n\u2022 sistema base de inputs
+    completo\r\n\u2022 Target de efeitos\r\n\u2022 Organiza\xE7\xE3o dos scripts
+    no projeto\r\n\u2022 ActionHandler > Inputhandler\r\n\u2022 Singleton sem heran\xE7a
+    & renomes\r\n\u2022 Melhorias e ajustes nos scripts de combate (turnos)\r\n\u2022
+    classes utilit\xE1rias\r\n\u2022 Organizacao Pastas e Scripts\r\n\u2022 Organizacao
+    Pastas e Scripts Lucas\r\n\u2022 Simplifica\xE7\xE3o AudioManager\r\n\u2022 Organizacao
+    Scriptable Objects de Combate\r\n\u2022 Utilities em scripts separados\r\n\u2022
+    CursorInput ignore layer\r\n\u2022 Upgrade Scripts\r\n<b>Core</b>\r\n\r\n\u2022
+    Ignorar arquivos VSCode\r\n\u2022 Troca de Direcao Barra de Motivacao\r\n\u2022
+    Ignorar arquivos de crash local\r\n\u2022 Organizacao Pastas\r\n\u2022 Tela de
+    Creditos\r\n\u2022 Colisor Barraca Gerenciamento\r\n<b>Outras Altera\xE7\xF5es</b>\r\n\r\n\u2022
+    Created Project\r\n\u2022 Imported Packages\r\n\u2022 Add Private Scenes\r\n\u2022
+    Add GitHub Actions workflow for building project\r\n\u2022 Add changelog generator
+    workflow\r\n\u2022 Add 'development' branch to build workflow\r\n\u2022 Create
+    Novo(a) Documento de Texto.txt\r\n\u2022 Revert \"Create Novo(a) Documento de
+    Texto.txt\"\r\n\u2022 inicio input system\r\n\u2022 Adicionado o AudioManager
+    com FMOD\r\n\u2022 Mudan\xE7as no AudioManager\r\n\u2022 Revert \"Style: Barraca
+    de upgrades e canh\xE3o com UV aberto + Substitui\xE7\xE3o de assets com transform
+    errado\"\r\n\u2022 Remo\xE7\xE3o dos Scripts\r\n\u2022 Refact: Script CameraManager\r\n\u2022
+    Teste na Scene\r\n\u2022 Revert \"Teste na Scene\"\r\n\u2022 Corre\xE7\xF5es
+    Scripts\r\n\u2022 Scene de Teste\r\n\u2022 Revert \"Merge branch 'lucas' into
+    luiz\"\r\n\u2022 Reapply \"Merge branch 'lucas' into luiz\"\r\n\u2022 Update
+    CameraManager.cs\r\n\u2022 Ajustes de Fade-Out\r\n\u2022 Update Ivan.unity\r\n\u2022
+    Initial commit\r\n\u2022 Add initial test commit message to README\r\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: efc67b6a4700ccb44a6e1abe4bbad4f5, type: 2}
   m_sharedMaterial: {fileID: -324199672324954334, guid: efc67b6a4700ccb44a6e1abe4bbad4f5, type: 2}
