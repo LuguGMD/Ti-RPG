@@ -26,6 +26,13 @@ namespace RPG.Combat
         [SerializeField] private PreviewTileGroup _characterPreviewGroups;
         [SerializeField] private PreviewTileGroup _enemyPreviewGroups;
 
+        [Header("Tile Upgrades")]
+        [SerializeField] private Material _tileMaterial;
+        [SerializeField] private Texture _tilePushImage;
+        [SerializeField] private Texture _tileWeaknessImage;
+        [SerializeField] private Texture _tileResistenceImage;
+
+        [Header("Super")]
         [SerializeField] private CombatUpgradeScriptable _superHealInfo;
         [SerializeField] private CombatUpgradeScriptable _superPushInfo;
         [SerializeField] private CombatUpgradeScriptable _superSpotlightInfo;
@@ -68,6 +75,11 @@ namespace RPG.Combat
         public static List<CharacterController> RemainingCharacters { get { return Instance._remainingCharacters; } }
         public static bool IsActionInProgress { get { return Instance._isActionInProgress; } }
         public static HashSet<string> CombatUpgrades { get { return Instance._combatUpgrades; }  }
+
+        public static Material TileMaterial { get { return Instance._tileMaterial; } }
+        public static Texture TilePushImage { get { return Instance._tilePushImage; } }
+        public static Texture TileWeaknessImage { get { return Instance._tileWeaknessImage; } }
+        public static Texture TileResistenceImage { get { return Instance._tileResistenceImage; } }
 
         public static CombatUpgradeScriptable SuperHealInfo { get { return Instance._superHealInfo; } }
         public static CombatUpgradeScriptable SuperPushInfo { get { return Instance._superPushInfo; } }

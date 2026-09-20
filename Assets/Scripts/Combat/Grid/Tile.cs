@@ -1,3 +1,4 @@
+using RPG.Management.Progression;
 using UnityEngine;
 
 namespace RPG.Combat.Grid
@@ -8,6 +9,7 @@ namespace RPG.Combat.Grid
         private Vector2Int _position;
         private Transform _transform;
         private TileObject _tileObject;
+        private UpgradeConstants.UpgradeKey _tileUpgrade = UpgradeConstants.UpgradeKey.Test;
 
         #region Properties
 
@@ -15,6 +17,7 @@ namespace RPG.Combat.Grid
         public Transform Transform { get { return _transform; } }
 
         public TileObject TileObject { get { return _tileObject; } }
+        public UpgradeConstants.UpgradeKey TileUpgrade { get { return _tileUpgrade; } }
 
         public bool IsOccupied { get { return _tileObject != null; } }
 
@@ -43,6 +46,10 @@ namespace RPG.Combat.Grid
             _position = position;
         }
 
+        public void SetUpgrade(UpgradeConstants.UpgradeKey upgrade)
+        {
+            _tileUpgrade = upgrade;
+        }
 
     }
 }

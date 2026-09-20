@@ -1,4 +1,5 @@
 using RPG.Extensions;
+using RPG.Management.Progression;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -43,7 +44,29 @@ namespace RPG.Combat.Grid
         private void AddTile(Vector2Int position)
         {
             Transform tileTransform = new GameObject("TileTransform").transform;
-            _grid.Add(position, new Tile(position, tileTransform));
+            Tile tile = new Tile(position, tileTransform);
+            _grid.Add(position, tile);
+
+            //TO DO adicionar uma logica de posicionamento de upgrade depois
+
+            bool isInUpgradeArea = false;
+
+            switch(GameManager.CurrentTileEqquiped)
+            {
+                case UpgradeConstants.UpgradeKey.TileDamageIncrease1:
+                case UpgradeConstants.UpgradeKey.TileDamageReduction1:
+                case UpgradeConstants.UpgradeKey.TilePushBlock1:
+                    isInUpgradeArea = position.x == 0; 
+                    break;
+                case UpgradeConstants.UpgradeKey.TileDamageIncrease2:
+                case UpgradeConstants.UpgradeKey.TileDamageReduction2:
+                case UpgradeConstants.UpgradeKey.TilePushBlock2:
+                    isInUpgradeArea = position.x == 0 || position.x == 1 || position.x == 11;
+                    break;
+            }
+
+            if (isInUpgradeArea && position.y < Map.Rows-1)
+                tile.SetUpgrade(GameManager.CurrentTileEqquiped);
 
             tileTransform.position = MapManager.Instance.GetWorldPosition(position);
             if(position.y < MapManager.RowGameObjects.Length && position.y >= 0)
