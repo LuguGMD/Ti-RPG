@@ -12,7 +12,6 @@ namespace RPG.Combat.UI
         [SerializeField] private TextMeshProUGUI _characterNameText;
         [SerializeField] private RectTransform _actionsDescriptionPanel;
         [SerializeField] private TextMeshProUGUI _actionDescriptionText;
-        [SerializeField] private TextMeshProUGUI _spotlightDescriptionText;
         [SerializeField] private ActionButtonHandler _actionButtonPrefab;
         [SerializeField] private RectTransform _actionsPanel;
         [SerializeField] private Button _cancelButton;
@@ -52,7 +51,8 @@ namespace RPG.Combat.UI
             _selectedCharacter = character;
             PopulateActionButtons(character);
             ShowPanel();
-            OnActionSelected(_selectedCharacter.SelectedActionIndex);
+            _selectedCharacter.Preview.HidePreview();
+            //OnActionSelected(_selectedCharacter.SelectedActionIndex);
         }
 
         private void PopulateActionButtons(CharacterController character)
@@ -79,8 +79,10 @@ namespace RPG.Combat.UI
             }
 
             _characterNameText.text = character.CharacterInfo.EntityName;
-            _spotlightDescriptionText.text = character.CharacterInfo.SpotlightDescription;
             _actionsDescriptionPanel.gameObject.SetActive(false);
+
+            _characterNameText.GetComponentInParent<Image>(true).color = _selectedCharacter.Info.EntityColor;
+            _actionsDescriptionPanel.GetComponent<Image>().color = _selectedCharacter.Info.EntityColor;
         }
 
         private void InstantiateActionButton()
@@ -96,6 +98,7 @@ namespace RPG.Combat.UI
 
         private void OnCancelButtonClicked()
         {
+            _selectedCharacter.Preview.HidePreview();
             HidePanel();
             //TO DO Remover comentario
             //ActionsManager.Instance.OnCharacterDeselected?.Invoke();
@@ -117,9 +120,14 @@ namespace RPG.Combat.UI
 
         public void OnActionSelected(int actionIndex)
         {
-            if (_selectedCharacter != null && _selectedCharacter.SelectedActionIndex != actionIndex)
+            if (_selectedCharacter != null)
             {
-                _selectedCharacter.SelectAction(actionIndex);
+                if (_selectedCharacter.SelectedActionIndex != actionIndex)
+                {
+                    _selectedCharacter.SelectAction(actionIndex);
+                }
+
+                _selectedCharacter.Preview.ShowPreview();
 
                 foreach(ActionButtonHandler actionButton in _actionButtons)
                 {
@@ -133,8 +141,6 @@ namespace RPG.Combat.UI
             CombatUIManager.Instance.ChangePanel(_panel);
             ActionsManager.Instance.OnTurnPassed += HidePanel;
             ActionsManager.Instance.OnActionStart += HidePanel;
-
-            _spotlightDescriptionText.transform.parent.gameObject.SetActive(SpotlightHandler.Instance != null);
 
             _selectedCharacter.SelectAction(_selectedCharacter.SelectedActionIndex);
         }

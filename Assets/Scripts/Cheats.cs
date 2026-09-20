@@ -48,7 +48,7 @@ namespace RPG
 
             if(UnityEngine.Input.GetKeyDown(KeyCode.F4))
             {
-                GameManager.Instance.AddCoins(50);
+                GameManager.Instance.AddCoins(1);
             }
         }
     }

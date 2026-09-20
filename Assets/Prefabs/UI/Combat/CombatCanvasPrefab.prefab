@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 30, y: 30}
-  m_SizeDelta: {x: 491.16, y: 50}
+  m_SizeDelta: {x: 120, y: 50}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &6554150400243060434
 CanvasRenderer:
@@ -194,6 +194,7 @@ MonoBehaviour:
   _mainPanel: {fileID: 5204142915136496256}
   playerActionButton: {fileID: 8014335650352893229}
   playerActionButtonText: {fileID: 0}
+  _speedButton: {fileID: 3993446619412258039}
   turnInfoText: {fileID: 8266006815706848904}
 --- !u!1 &5204142915136496256
 GameObject:
@@ -298,7 +299,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: Turno 00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: efc67b6a4700ccb44a6e1abe4bbad4f5, type: 2}
   m_sharedMaterial: {fileID: -324199672324954334, guid: efc67b6a4700ccb44a6e1abe4bbad4f5, type: 2}
@@ -332,7 +333,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -408,11 +409,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 155
+      value: 125
       objectReference: {fileID: 0}
     - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 85
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_LocalPosition.x
@@ -444,11 +445,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -5
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -5
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -478,6 +479,14 @@ PrefabInstance:
       propertyPath: _pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8236831213436776605, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: _offset.x
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8236831213436776605, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: _offset.y
+      value: -50
+      objectReference: {fileID: 0}
     - target: {fileID: 8390243550810007786, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_Type
       value: 0
@@ -486,6 +495,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 400422607, guid: 763e8937b6945f54ab96823bb889e2c6, type: 3}
+    - target: {fileID: 8390243550810007786, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2967351389644644483, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
@@ -671,6 +684,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
   m_PrefabInstance: {fileID: 8726123953602706980}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3993446619412258039 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5652854305578377939, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+  m_PrefabInstance: {fileID: 8726123953602706980}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2698967564637468524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!114 &7323879382310074384 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2070194569464645172, guid: 82427beb431f55f40bb22350e29bf223, type: 3}

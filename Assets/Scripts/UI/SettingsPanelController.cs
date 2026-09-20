@@ -40,7 +40,7 @@ namespace RPG
                 _playerInput.Actions.Pause.Remove.OnStart(TogglePausePanel);
         }
 
-        private void TogglePausePanel()
+        public void TogglePausePanel()
         {
             if (settingsPanel.activeSelf)
                 ClosePanel();

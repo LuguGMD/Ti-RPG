@@ -121,7 +121,6 @@ namespace RPG.Combat.Preview
                 previewMaterial.StopPreview(_activePreviewMaterial[i]);
             }
             _activePreviewMaterial.Clear();
-
         }
 
         protected virtual void AddPreviewTile(PreviewTileInfo previewTileInfo, Vector2Int position, ref ActionPreviewTile lastPreviewTile, bool canBeSelected = true)

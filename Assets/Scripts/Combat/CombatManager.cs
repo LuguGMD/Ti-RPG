@@ -13,6 +13,7 @@ using RPG.Combat.UI;
 using Unity.Cinemachine;
 using RPG.Save;
 using RPG.Management.Progression;
+using RPG.Combat.Upgrades;
 
 namespace RPG.Combat
 {
@@ -24,6 +25,11 @@ namespace RPG.Combat
         [SerializeField] private ActionPreviewTile _previewTilePrefab;
         [SerializeField] private PreviewTileGroup _characterPreviewGroups;
         [SerializeField] private PreviewTileGroup _enemyPreviewGroups;
+
+        [SerializeField] private CombatUpgradeScriptable _superHealInfo;
+        [SerializeField] private CombatUpgradeScriptable _superPushInfo;
+        [SerializeField] private CombatUpgradeScriptable _superSpotlightInfo;
+
         private CinemachineImpulseSource _impulseSource;
 
         private CombatTurnStateEnum _currentTurnState;
@@ -62,6 +68,10 @@ namespace RPG.Combat
         public static List<CharacterController> RemainingCharacters { get { return Instance._remainingCharacters; } }
         public static bool IsActionInProgress { get { return Instance._isActionInProgress; } }
         public static HashSet<string> CombatUpgrades { get { return Instance._combatUpgrades; }  }
+
+        public static CombatUpgradeScriptable SuperHealInfo { get { return Instance._superHealInfo; } }
+        public static CombatUpgradeScriptable SuperPushInfo { get { return Instance._superPushInfo; } }
+        public static CombatUpgradeScriptable SuperSpotlightInfo { get { return Instance._superSpotlightInfo; } }
 
         #endregion
 
@@ -133,13 +143,11 @@ namespace RPG.Combat
         {
             if (MapManager.Map.GetTile(position).IsOccupied)
             {
-                //TO DO mostrar erro ao jogador
-                Debug.Log("Tile ocupado");
+                ActionsManager.Instance.OnError?.Invoke();
             }
             else if (position.y >= Map.Rows - 1)
             {
-                //TO DO mostrar erro ao jogador
-                Debug.Log("Tile Invalido");
+                ActionsManager.Instance.OnError?.Invoke();
             }
             else
             {
@@ -195,7 +203,7 @@ namespace RPG.Combat
             }
             else if (_usedCharacters.Contains(selectedCharacter))
             {
-
+                ActionsManager.Instance.OnError?.Invoke();
             }
             else if (!_canSelectCharacter)
             {
@@ -207,9 +215,6 @@ namespace RPG.Combat
 
                 _selectedCharacter = selectedCharacter;
                 ActionsManager.Instance.OnCharacterSelected?.Invoke(_selectedCharacter);
-
-                //TO DO passar para quando acao for selecionada
-                _selectedCharacter.Preview.ShowPreview();
             }
         }
 
@@ -382,12 +387,17 @@ namespace RPG.Combat
         {
             if (_remainingCharacters.Count <= 0)
             {
-                ActionsManager.Instance.OnCombatLost?.Invoke();
-                _hasCombatEnded = true;
-
-                //TO DO remover depois
-                GameManager.ChangeScene(ScenesEnum.Lose);
+                EndCombat();
             }
+        }
+
+        public void EndCombat()
+        {
+            ActionsManager.Instance.OnCombatLost?.Invoke();
+            _hasCombatEnded = true;
+
+            //TO DO remover depois
+            GameManager.ChangeScene(ScenesEnum.Lose);
         }
 
         private void CheckPlayerWon()

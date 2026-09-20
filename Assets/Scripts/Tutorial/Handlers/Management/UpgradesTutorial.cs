@@ -6,7 +6,7 @@ namespace RPG.Tutorial.Handlers
     {
         private void Start()
         {
-            if(GameManager.Coins >= 50)
+            if(GameManager.Coins >= 1)
             {
                 Show();
             }

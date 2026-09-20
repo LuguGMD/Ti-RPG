@@ -9,16 +9,14 @@ namespace RPG.Level
     {
         private ChallengeScriptable _info;
         [SerializeField] private TextMeshProUGUI _challengeNameText;
-        [SerializeField] private TextMeshProUGUI _challengeRewardText;
         [SerializeField] private Image _completedIcon;
         public void UpdateInfo(ChallengeScriptable info)
         {
             _info = info;
 
-            _completedIcon.enabled = GameManager.CompletedChallenges.Contains(info.ChallengeKey);
+            _completedIcon.color = GameManager.CompletedChallenges.Contains(info.ChallengeKey) ? Color.white : Color.gray3;
 
             _challengeNameText.text = _info.ChallengeName;
-            _challengeRewardText.text = _info.CoinsReward.ToString() + " Moedas";
         }
     }
 }
