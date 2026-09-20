@@ -35,7 +35,14 @@ namespace RPG.Level.UI
 
         protected override void OnClick()
         {
-            GameManager.Instance.SetCurrentTile(_info.UpgradeKey);
+            if(GameManager.CurrentTileEqquiped == _info.UpgradeKey)
+            {
+                GameManager.Instance.SetCurrentTile(UpgradeConstants.UpgradeKey.Test);
+            }
+            else
+            {
+                GameManager.Instance.SetCurrentTile(_info.UpgradeKey);
+            }
         }
 
         private void CheckSelected(UpgradeConstants.UpgradeKey upgradeKey)

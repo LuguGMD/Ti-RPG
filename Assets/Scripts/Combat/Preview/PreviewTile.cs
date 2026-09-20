@@ -73,7 +73,7 @@ namespace RPG.Combat.Preview
             transform.position = MapManager.Instance.GetWorldPosition(_tilePosition);
             AddParent();
             transform.LookAt(transform.position - (transform.position.normalized));
-            transform.localPosition = new Vector3(transform.localPosition.x, 0.05f, transform.localPosition.z);
+            transform.localPosition = new Vector3(transform.localPosition.x, 0.08f, transform.localPosition.z);
         }
 
         protected void RemoveParent()

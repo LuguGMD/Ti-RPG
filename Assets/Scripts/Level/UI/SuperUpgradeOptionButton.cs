@@ -37,7 +37,14 @@ namespace RPG.Level.UI
 
         protected override void OnClick()
         {
-            GameManager.Instance.SetCurrentSuper(_info.UpgradeKey);
+            if (GameManager.CurrentSuperEqquiped == _info.UpgradeKey)
+            {
+                GameManager.Instance.SetCurrentSuper(UpgradeConstants.UpgradeKey.Test);
+            }
+            else
+            {
+                GameManager.Instance.SetCurrentSuper(_info.UpgradeKey);
+            }
         }
 
         private void CheckSelected(UpgradeConstants.UpgradeKey upgradeKey)

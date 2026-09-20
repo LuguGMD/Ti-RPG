@@ -711,7 +711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070194569464645172, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_fontSize
-      value: 31.8
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2070194569464645172, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_margin.x
@@ -719,6 +719,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070194569464645172, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_margin.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070194569464645172, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070194569464645172, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_enableAutoSizing
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
@@ -747,11 +755,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_LocalPosition.x
@@ -813,6 +821,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1444239918, guid: 763e8937b6945f54ab96823bb889e2c6, type: 3}
+    - target: {fileID: 8390243550810007786, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -848,7 +860,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070194569464645172, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_fontSize
-      value: 31.8
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070194569464645172, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_margin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070194569464645172, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_margin.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070194569464645172, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070194569464645172, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_enableAutoSizing
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_Pivot.x

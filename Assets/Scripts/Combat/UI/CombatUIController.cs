@@ -16,6 +16,8 @@ namespace RPG.Combat.UI
         [SerializeField] private Button playerActionButton;
         [SerializeField] private TextMeshProUGUI playerActionButtonText;
 
+        [SerializeField] private Button _speedButton;
+
         [Header("Battle Info")]
         [SerializeField] private TextMeshProUGUI turnInfoText;
 
@@ -23,6 +25,29 @@ namespace RPG.Combat.UI
         {
             SetupUI();
             UpdateUI();
+        }
+
+        private void Update()
+        {
+            UpdateUI();
+        }
+
+        private void OnEnable()
+        {
+            ActionsManager.Instance.OnApresentadorActionCanceled += ShowCanvas;
+            ActionsManager.Instance.OnApresentadorActionCompleted += ShowCanvas;
+            ActionsManager.Instance.OnApresentadorSelected += HideCanvas;
+            ActionsManager.Instance.OnActionStart += DisableSpeedButton;
+            ActionsManager.Instance.OnActionEnd += EnableSpeedButton;
+        }
+
+        private void OnDisable()
+        {
+            ActionsManager.Instance.OnApresentadorActionCanceled -= ShowCanvas;
+            ActionsManager.Instance.OnApresentadorActionCompleted -= ShowCanvas;
+            ActionsManager.Instance.OnApresentadorSelected -= HideCanvas;
+            ActionsManager.Instance.OnActionStart -= DisableSpeedButton;
+            ActionsManager.Instance.OnActionEnd -= EnableSpeedButton;
         }
 
         private void SetupUI()
@@ -36,25 +61,6 @@ namespace RPG.Combat.UI
         private void OnEndTurnClicked()
         {
             ActionsManager.Instance.OnPlayerTurnEnded?.Invoke();
-        }
-
-        private void Update()
-        {
-            UpdateUI();
-        }
-
-        private void OnEnable()
-        {
-            ActionsManager.Instance.OnApresentadorActionCanceled += ShowCanvas;
-            ActionsManager.Instance.OnApresentadorActionCompleted += ShowCanvas;
-            ActionsManager.Instance.OnApresentadorSelected += HideCanvas;
-        }
-
-        private void OnDisable()
-        {
-            ActionsManager.Instance.OnApresentadorActionCanceled -= ShowCanvas;
-            ActionsManager.Instance.OnApresentadorActionCompleted -= ShowCanvas;
-            ActionsManager.Instance.OnApresentadorSelected -= HideCanvas;
         }
 
         private void UpdateUI()
@@ -89,6 +95,16 @@ namespace RPG.Combat.UI
                 CombatTurnStateEnum.BattleEnd => "Fim da Batalha",
                 _ => "Desconhecido"
             };
+        }
+
+        private void EnableSpeedButton()
+        {
+            _speedButton.interactable = true;
+        }
+
+        private void DisableSpeedButton()
+        {
+            _speedButton.interactable = false;
         }
 
         private void ShowCanvas()
