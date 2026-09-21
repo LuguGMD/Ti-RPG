@@ -1,6 +1,7 @@
 using RPG.Combat.Grid;
 using RPG.Combat.Preview;
 using RPG.Combat.UI;
+using RPG.Management.Progression;
 using System.Collections;
 using UnityEngine;
 
@@ -38,6 +39,12 @@ namespace RPG.Combat
 
         public override void TakeDamage(float damage)
         {
+            if (_tileObject.CurrentTile.TileUpgrade == UpgradeConstants.UpgradeKey.TileDamageIncrease1 ||
+            _tileObject.CurrentTile.TileUpgrade == UpgradeConstants.UpgradeKey.TileDamageIncrease1) damage *= 1.5f;
+
+            if (_tileObject.CurrentTile.TileUpgrade == UpgradeConstants.UpgradeKey.TileDamageReduction1 ||
+            _tileObject.CurrentTile.TileUpgrade == UpgradeConstants.UpgradeKey.TileDamageReduction1) damage /= 1.5f;
+
             _health -= damage;
 
             CombatManager.Instance.CameraShake(0.1f);
