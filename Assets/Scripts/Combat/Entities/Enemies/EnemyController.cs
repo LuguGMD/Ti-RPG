@@ -9,6 +9,8 @@ namespace RPG.Combat
     [RequireComponent(typeof(EnemyHealthBar))]
     public class EnemyController : StageEntityController
     {
+        private const float shakeCameraDamage = 0.12f;
+
         protected EnemyScriptable _enemyInfo;
 
         private EnemyHealthBar _healthBar;
@@ -40,7 +42,7 @@ namespace RPG.Combat
         {
             _health -= damage;
 
-            CombatManager.Instance.CameraShake(0.1f);
+            CombatManager.Instance.CameraShake(shakeCameraDamage);
 
             UpdateHealthBar();
             base.TakeDamage(damage);

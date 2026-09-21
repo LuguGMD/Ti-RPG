@@ -10,6 +10,8 @@ namespace RPG.Combat.UI
 {
     public class ApresentadorUIController : MonoBehaviour
     {
+        private const float shakeCameraForce = 0.2f;
+
         [SerializeField] private GameObject _mainPanel;
         [SerializeField] private GameObject _rowSelector;
         [SerializeField] private Button _rotateLeftButton;
@@ -124,7 +126,7 @@ namespace RPG.Combat.UI
             int rowIndex = CombatManager.Apresentador.RowToRotate;
             if (_linesStuck.Contains(rowIndex))
             {
-                CombatManager.Instance.CameraShake(0.9f);
+                CombatManager.Instance.CameraShake(shakeCameraForce);
                 return;
             }
 

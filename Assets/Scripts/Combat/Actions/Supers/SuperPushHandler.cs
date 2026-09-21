@@ -9,6 +9,8 @@ namespace RPG.Combat.Actions
 {
     public class SuperPushHandler : SuperHandler
     {
+        private const float shakeCameraForce = 0.5f;
+
         private PushEffect _pushEffect;
         private int[] _pushAmountTiers = new int[3]
         {
@@ -36,6 +38,8 @@ namespace RPG.Combat.Actions
             PreviewTileInfo root = PreviewTileInfo.GetRoot(selectedPreviewTile);
 
             yield return new WaitForSeconds(1);
+
+            CombatManager.Instance.CameraShake(shakeCameraForce);
 
             do
             {

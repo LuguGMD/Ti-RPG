@@ -9,6 +9,8 @@ namespace RPG.Combat.Actions
 {
     public class SuperSpotlight : SuperHandler
     {
+        private const float shakeCameraForce = 0.45f;
+
         /*private int[] _chargeAmountTiers = new int[3]
         {
             10,
@@ -34,6 +36,8 @@ namespace RPG.Combat.Actions
             Vector2Int previousSpotlightPosition = MapManager.SpotlightPosition;
 
             ActionsManager.Instance.OnSpotlightSuperStarted?.Invoke();
+            CombatManager.Instance.CameraShake(shakeCameraForce);
+
             if(SpotlightHandler.Instance != null)
                 yield return new WaitUntil(() => SpotlightHandler.Instance.IsSuperActive == false);
             yield return new WaitForSeconds(1f);

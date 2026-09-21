@@ -11,6 +11,10 @@ namespace RPG.Combat.Actions
     [System.Serializable]
     public class BuzinaDriveAttack : CombatAction
     {
+        private const float shakeCameraForce = 0.15f;
+        private const float shakeCameraForceMovement = 0.05f;
+        private const float shakeCameraForceMax = 0.35f;
+
         [SerializeField] private float _baseDamage = 2;
         [SerializeField] private float _movementDamage = 2;
         [SerializeField] private int _pushAmount = 1;
@@ -42,6 +46,10 @@ namespace RPG.Combat.Actions
             } while (root != null);
 
             int movedDistance = Mathf.Abs(startPos.x - _user.Position.x);
+            float force = shakeCameraForce + (shakeCameraForceMovement * movedDistance);
+
+            CombatManager.Instance.CameraShake(Mathf.Min(force, shakeCameraForceMax));
+
             _effects[0].Commands.Add(new DamageEffect(_baseDamage + (_movementDamage * movedDistance)));
             _effects[1].Commands.Add(new DamageEffect(_baseDamage + (_movementDamage * movedDistance)));
 

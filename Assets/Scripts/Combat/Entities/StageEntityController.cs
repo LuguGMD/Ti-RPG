@@ -14,7 +14,8 @@ namespace RPG.Combat
     [RequireComponent(typeof(TileObjectMovement), typeof(PreviewActionHandler))]
     public abstract class StageEntityController : EntityController
     {
-        
+        private const float shakeCameraForce = 0.3f;
+
         protected List<CombatAction> _actions = new List<CombatAction>();
 
         protected TileObjectMovement _movement;
@@ -110,6 +111,7 @@ namespace RPG.Combat
         {
             base.Defeated();
             AudioManager.Instance.PlayOneShot(_defeatedSFX);
+            CombatManager.Instance.CameraShake(shakeCameraForce);
             ActionsManager.Instance.OnStageEntityDefeated?.Invoke(this);
         }
 

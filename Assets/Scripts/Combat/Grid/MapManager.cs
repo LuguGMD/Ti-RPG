@@ -14,6 +14,8 @@ namespace RPG.Combat.Grid
 {
     public class MapManager : SingletonMono<MapManager>
     {
+        private const float shakeCameraForce = 0.12f;
+
         private Map _map;
 
         [SerializeField] private int _rows;
@@ -176,6 +178,7 @@ namespace RPG.Combat.Grid
         private IEnumerator RotateAnimationCoroutine(int rowToRotate, int amount)
         {
             ActionsManager.Instance.OnRotationAnimationStarted?.Invoke();
+            CombatManager.Instance.CameraShake(shakeCameraForce);
 
             Transform rowTransform = _rowGameObjects[rowToRotate].transform;
             rowTransform.DOKill(true);

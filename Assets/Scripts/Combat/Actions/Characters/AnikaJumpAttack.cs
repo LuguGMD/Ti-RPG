@@ -9,6 +9,8 @@ namespace RPG.Combat.Actions
     [System.Serializable]
     public class AnikaJumpAttack : CombatAction
     {
+        private const float shakeCameraForce = 0.3f;
+
         [SerializeField] private float _damage;
         [SerializeField] private int _pushAmount;
 
@@ -31,6 +33,7 @@ namespace RPG.Combat.Actions
                 _user.Movement.Teleport(Grid.DirectionEnum.Up, _user.Position + root.RelativePosition);
                 Debug.Log(_user.Position + root.RelativePosition);
                 yield return new WaitForSeconds(4.5f / CombatManager.CombatSpeed);
+                CombatManager.Instance.CameraShake(shakeCameraForce);
                 _user.TileObject.UpdatePosition();
                 foreach (Effect effect in _effects)
                 {

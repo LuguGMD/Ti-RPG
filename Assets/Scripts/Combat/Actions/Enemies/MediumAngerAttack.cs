@@ -12,6 +12,8 @@ namespace RPG.Combat.Actions
     [System.Serializable]
     public class MediumAngerAttack : CombatAction
     {
+        private const float shakeCameraForce = 0.25f;
+
         [SerializeField] private float _damage;
         [SerializeField] private EventReference _attackSFX;
         private Vector2Int _direction;
@@ -37,6 +39,8 @@ namespace RPG.Combat.Actions
                 if (root == selectedPreviewTile) break;
                 root = root.Child;
             } while (root != null);
+
+            CombatManager.Instance.CameraShake(shakeCameraForce);
 
             _effects[0].Execute(_user);
             _effects[1].Execute(_user);

@@ -18,6 +18,9 @@ namespace RPG.Combat
 {
     public class CombatManager : SingletonMono<CombatManager>
     {
+        private const float shakeCameraDamage = 0.22f;
+        private const float shakeCameraDamageApresentador = 0.45f;
+
         [Header("Enemies")]
         [SerializeField] private EnemySpawnWarning _enemySpawnWarningPrefab;
         [Header("Tiles")]
@@ -170,16 +173,18 @@ namespace RPG.Combat
 
         private void CharacterDamageTaken(CharacterController character)
         {
-            CameraShake(0.1f);
+            CameraShake(shakeCameraDamage);
         }
 
         private void ApresentadorDamageTaken()
         {
-            CameraShake(0.25f);
+            CameraShake(shakeCameraDamageApresentador);
         }
 
         public void CameraShake(float force)
         {
+            if (_impulseSource == null) return;
+
             _impulseSource.GenerateImpulse(force);
         }
 
