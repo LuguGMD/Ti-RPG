@@ -35,6 +35,7 @@ namespace RPG.Level
         [SerializeField] private Transform[] _partyMemberModelPreviews;
 
         [SerializeField] private Button _confirmPlayButton;
+        [SerializeField] private Button _confirmPlayButton2;
 
         private int _selectedPartyIndex = 0;
 
@@ -49,6 +50,7 @@ namespace RPG.Level
         private void Start()
         {
             _confirmPlayButton.onClick.AddListener(ConfirmButton);
+            _confirmPlayButton2.onClick.AddListener(ConfirmButton);
             CreateCharacterOptions();
         }
 
@@ -205,6 +207,7 @@ namespace RPG.Level
         private void UpdateCharacterCount()
         {
             _confirmPlayButton.interactable = GameManager.CurrentParty.Count(c => c != null) == CombatConstants.MAX_CHARACTERS_COUNT;
+            _confirmPlayButton2.interactable = GameManager.CurrentParty.Count(c => c != null) == CombatConstants.MAX_CHARACTERS_COUNT;
             _selectedCharactersCountText.text = GameManager.CurrentParty.Count(c => c != null) + "/" + CombatConstants.MAX_CHARACTERS_COUNT;
         }
 
