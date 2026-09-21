@@ -30,6 +30,7 @@ namespace RPG.Combat.Cameras
         [SerializeField] private float _returnSettleTime = 0.15f;
 
         private CinemachineBrain _brain;
+        private CinemachineBlendDefinition.Styles _returnBlendStyle;
         private bool _isEnemyViewLive;
         private static float CombatSpeed
         {
@@ -44,6 +45,8 @@ namespace RPG.Combat.Cameras
             UnityEngine.Camera main = UnityEngine.Camera.main;
 
             if (main != null) _brain = main.GetComponent<CinemachineBrain>();
+
+            if (_brain != null) _returnBlendStyle = _brain.DefaultBlend.Style;
 
             ApplyBlendTime();
         }
@@ -85,7 +88,9 @@ namespace RPG.Combat.Cameras
         {
             if (Instance == null || entity == null) yield break;
 
-            Instance._enemyFocus.SetTarget(entity.transform, true);
+            Instance.ApplyBlendStyle(CinemachineBlendDefinition.Styles.Cut);
+
+            Instance._enemyFocus.SetEntityTarget(entity, true);
             Instance._enemyCamera.PreviousStateIsValid = false;
             Instance._enemyCamera.Priority = EnemyLivePriority;
             Instance._isEnemyViewLive = true;
@@ -95,6 +100,8 @@ namespace RPG.Combat.Cameras
         public static IEnumerator ReturnToPlayerView()
         {
             if (Instance == null || !Instance._isEnemyViewLive) yield break;
+
+            Instance.ApplyBlendStyle(Instance._returnBlendStyle);
 
             Instance._enemyCamera.Priority = StandbyPriority;
             Instance._enemyFocus.SetTarget(null);
@@ -165,6 +172,12 @@ namespace RPG.Combat.Cameras
             if (_brain == null) return;
 
             _brain.DefaultBlend.Time = _baseBlendTime / CombatSpeed;
+        }
+        private void ApplyBlendStyle(CinemachineBlendDefinition.Styles style)
+        {
+            if (_brain == null) return;
+
+            _brain.DefaultBlend.Style = style;
         }
         #endregion
     }
