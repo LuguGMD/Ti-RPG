@@ -92,7 +92,7 @@ namespace RPG.Management.Progression
             float dist = dir.magnitude;
 
             arrowRect.position = fromPos + dir * 0.5f;
-            arrowRect.sizeDelta = new Vector2(dist, arrowWidth);
+            arrowRect.sizeDelta = new Vector2(dist * 0.9f, arrowWidth);
             arrowRect.localEulerAngles = new Vector3(0, 0, Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg);
 
             arrows.Add(arrow);
