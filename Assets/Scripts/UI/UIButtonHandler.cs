@@ -8,7 +8,7 @@ namespace RPG.UI
     {
         protected Button _button;
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             _button = GetComponent<Button>();
             _button.onClick.AddListener(OnClick);

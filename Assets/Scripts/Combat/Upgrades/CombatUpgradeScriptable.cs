@@ -10,6 +10,7 @@ namespace RPG.Combat.Upgrades
         [SerializeField] private string _upgradeName;
         [SerializeField] private string _upgradeDescription;
         [SerializeField] private Sprite _upgradeIcon;
+        [SerializeField] private CombatUpgradeScriptable _nextUpgrade;
 
         #region Properties
 
@@ -17,6 +18,7 @@ namespace RPG.Combat.Upgrades
         public string UpgradeName { get { return _upgradeName; } }
         public string UpgradeDescription { get { return _upgradeDescription; } }
         public Sprite UpgradeIcon { get { return _upgradeIcon; } }
+        public CombatUpgradeScriptable NextUpgrade { get { return _nextUpgrade; } }
 
         #endregion
     }
