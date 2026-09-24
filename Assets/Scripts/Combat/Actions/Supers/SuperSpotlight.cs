@@ -11,18 +11,11 @@ namespace RPG.Combat.Actions
     {
         private const float shakeCameraForce = 0.45f;
 
-        /*private int[] _chargeAmountTiers = new int[3]
+        private int[] _chargeAmountTiers = new int[3]
         {
             10,
             6,
             3,
-        };*/
-
-        private int[] _chargeAmountTiers = new int[3]
-        {
-            1,
-            1,
-            1,
         };
 
         public override void Init(StageEntityController user)

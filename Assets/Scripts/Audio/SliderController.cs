@@ -19,11 +19,6 @@ namespace RPG.Audio
 
         private void Start()
         {
-            if (AudioManager.Instance != null)
-            {
-                slider.value = AudioManager.Instance.GetVolume(busType);
-            }
-
             slider.onValueChanged.AddListener(OnSliderValueChanged);
         }
 
@@ -35,13 +30,41 @@ namespace RPG.Audio
             }
         }
 
+        private void Load()
+        {
+            float value = 1;
+
+            switch (busType)
+            {
+                case FMODBusEnum.Master:
+                    value = SaveManager.SaveData.AudioManagerData.MasterVolume;
+                    break;
+                case FMODBusEnum.Music:
+                    value = SaveManager.SaveData.AudioManagerData.MusicVolume;
+                    break;
+                case FMODBusEnum.SFX:
+                    value = SaveManager.SaveData.AudioManagerData.SoundEffectVolume;
+                    break;
+            }
+
+            slider.value = value;
+        }
+
         private void OnDestroy()
         {
             slider.onValueChanged.RemoveListener(OnSliderValueChanged);
         }
 
+        private void OnEnable()
+        {
+            //if (!didStart) return;
+            Load();
+        }
+
         private void OnDisable()
         {
+            if (!didStart) return;
+
             SaveManager.Instance.SaveAll();
         }
     }

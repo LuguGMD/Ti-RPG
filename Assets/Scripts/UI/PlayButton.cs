@@ -8,7 +8,7 @@ namespace RPG.UI
         protected override void OnClick()
         {
             SaveManager.Instance.LoadAll();
-            GameManager.ChangeScene(ScenesEnum.WorldMap);
+            GameManager.ChangeScene(ScenesEnum.Management);
         }
     }
 }

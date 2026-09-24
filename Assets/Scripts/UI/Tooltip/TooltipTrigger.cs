@@ -23,6 +23,8 @@ namespace RPG.UI.Tooltip
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+            if (string.IsNullOrEmpty(content) && string.IsNullOrEmpty(header)) return;
+
             delay = DOVirtual.DelayedCall(0.3f, () =>
             {
                 TooltipSystem.Show(content, header, rectTransform.position + new Vector3(_offset.x, _offset.y, 0), _pivot);
@@ -31,6 +33,8 @@ namespace RPG.UI.Tooltip
 
         public void OnPointerExit(PointerEventData eventData)
         {
+            if (string.IsNullOrEmpty(content) && string.IsNullOrEmpty(header)) return;
+
             delay?.Kill();
             TooltipSystem.Hide();
         }

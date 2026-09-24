@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9566da0b086ab344b79ec6b5ea93254, type: 3}
+  m_Name: ResistenceTileUpgradeScriptable
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.Upgrades.CombatUpgradeScriptable
+  _upgradeKey: 11
+  _upgradeName: "Tile de Resist\xEAncia"
+  _upgradeDescription: 
+  _upgradeIcon: {fileID: 1876879527, guid: 0873a77b6bfa1934d86a2f15e5d9fddd, type: 3}
+  _nextUpgrade: {fileID: 11400000, guid: a595890e43dd3ca4a8d5c194ffecc037, type: 2}

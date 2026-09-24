@@ -1,11 +1,12 @@
-using System.Collections.Generic;
-using UnityEngine;
-using FMODUnity;
 using FMOD.Studio;
+using FMODUnity;
 using Lugu.Singleton;
 using RPG.Combat;
-using CharacterController = RPG.Combat.CharacterController;
 using RPG.Save;
+using System.Collections.Generic;
+using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
+using CharacterController = RPG.Combat.CharacterController;
 
 namespace RPG.Audio
 {
@@ -87,7 +88,18 @@ namespace RPG.Audio
         {
             GetBusType(type).setVolume(volume);
 
-            Save();
+            switch (type)
+            {
+                case FMODBusEnum.Master:
+                    SaveManager.SaveData.AudioManagerData.MasterVolume = volume;
+                    break;
+                case FMODBusEnum.Music:
+                    SaveManager.SaveData.AudioManagerData.MusicVolume = volume;
+                    break;
+                case FMODBusEnum.SFX:
+                    SaveManager.SaveData.AudioManagerData.SoundEffectVolume = volume;
+                    break;
+            }
         }
 
         public bool IsMusicPlaying()

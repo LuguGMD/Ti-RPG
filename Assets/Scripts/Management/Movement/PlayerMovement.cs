@@ -1,5 +1,8 @@
 using UnityEngine;
 using RPG.Input;
+using UnityEngine.AI;
+using UnityEngine.EventSystems;
+using LucasRozado.Utility;
 
 namespace RPG.Management.Movement
 {
@@ -18,6 +21,7 @@ namespace RPG.Management.Movement
         [Header("Movimento por Clique")]
         [SerializeField] private LayerMask groundLayer;
         [SerializeField] private float clickStopDistance = 0.1f;
+        private NavMeshAgent _agent;
 
         private Vector2 inputDirection;
         private Vector3 moveDirection;
@@ -39,6 +43,7 @@ namespace RPG.Management.Movement
         {
             controller = GetComponent<CharacterController>();
             playerInput = GetComponent<PlayerInput>();
+            _agent = GetComponent<NavMeshAgent>();
         }
 
         private void Start()
@@ -67,14 +72,18 @@ namespace RPG.Management.Movement
 
         private void HandleMouseClick()
         {
-            if (UnityEngine.Input.GetMouseButtonDown(0))
+            if (UnityEngine.Input.GetMouseButton(0) && !ManagementManager.IsInteractionRunning)
             {
                 Ray ray = UnityEngine.Camera.main.ScreenPointToRay(UnityEngine.Input.mousePosition);
 
-                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer))
+                var eventSystemUtility = Utility.Get(EventSystem.current);
+                bool isCursorOverUI = eventSystemUtility.IsCursorOverUIElement(UnityEngine.Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, groundLayer) && !isCursorOverUI)
                 {
                     clickTarget = hit.point;
                     hasClickTarget = true;
+                    _agent.enabled = true;
+                    _agent.SetDestination(hit.point);
                 }
             }
         }
@@ -91,22 +100,21 @@ namespace RPG.Management.Movement
                 moveDirection = moveDirection.normalized;
 
                 hasClickTarget = false;
+                _agent.enabled = false;
             }
             else if (hasClickTarget)
             {
-                Vector3 directionToTarget = clickTarget - transform.position;
-                directionToTarget.y = 0;
+                currentSpeed = maxSpeed;
+                moveDirection = _agent.velocity.normalized;
 
-                if (directionToTarget.magnitude <= clickStopDistance)
+                float distanceToTarget = (_agent.destination - transform.position).magnitude;
+
+                if (distanceToTarget <= clickStopDistance)
                 {
                     moveDirection = Vector3.zero;
                     hasClickTarget = false;
+                    _agent.enabled = false;
                     currentSpeed = 0;
-                }
-                else
-                {
-                    moveDirection = directionToTarget.normalized;
-                    currentSpeed = maxSpeed;
                 }
             }
             else

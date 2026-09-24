@@ -1,3 +1,4 @@
+using RPG.Save;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -46,5 +47,11 @@ namespace RPG.Management.Progression
             {UpgradeKey.TilePushBlock1, "UpgradeTilePushBlock1"},
             {UpgradeKey.TilePushBlock2, "UpgradeTilePushBlock2"},
         };
+
+        public static bool HasUpgrade(UpgradeKey key)
+        {
+            string upgradeID = UpgradeKeys[key];
+            return SaveManager.SaveData.UpgradeGraphData.PurchasedUpgradeIDs.Contains(upgradeID);
+        }
     }
 }

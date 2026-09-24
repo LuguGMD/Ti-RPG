@@ -21,6 +21,9 @@ namespace RPG
         private List<string> _completedChallenges = new List<string>();
         private List<string> _completedLevels = new List<string>();
 
+        private UpgradeConstants.UpgradeKey _currentSuperEqquiped; 
+        private UpgradeConstants.UpgradeKey _currentTileEqquiped;
+
         private int _coins = 0;
 
         #region Properties
@@ -31,6 +34,8 @@ namespace RPG
         public static int Coins { get { return Instance._coins; } }
         public static List<string> CompletedChallenges { get  { return Instance._completedChallenges; } }
         public static List<string> CompletedLevels { get  { return Instance._completedLevels; } }
+        public static UpgradeConstants.UpgradeKey CurrentSuperEqquiped { get { return Instance._currentSuperEqquiped; } }
+        public static UpgradeConstants.UpgradeKey CurrentTileEqquiped { get { return Instance._currentTileEqquiped; } }
 
         #endregion
 
@@ -59,6 +64,18 @@ namespace RPG
         private void SelectLevel(LevelScriptable selectedLevel)
         {
             _selectedLevel = selectedLevel;
+        }
+
+        public void SetCurrentSuper(UpgradeConstants.UpgradeKey superKey)
+        {
+            _currentSuperEqquiped = superKey;
+            ActionsManager.Instance.OnCurrentSuperUpgradeSet?.Invoke(superKey);
+        }
+
+        public void SetCurrentTile(UpgradeConstants.UpgradeKey tileKey)
+        {
+            _currentTileEqquiped = tileKey;
+            ActionsManager.Instance.OnCurrentTileUpgradeSet?.Invoke(tileKey);
         }
 
         #region Progression

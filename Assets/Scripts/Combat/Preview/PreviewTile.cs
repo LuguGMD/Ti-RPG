@@ -17,6 +17,7 @@ namespace RPG.Combat.Preview
         #region Properties
 
         public bool CanBeSelected { get { return _canBeSelected; } }
+        public Vector2Int TilePosition { get { return _tilePosition; } }
 
         #endregion
 
@@ -72,7 +73,7 @@ namespace RPG.Combat.Preview
             transform.position = MapManager.Instance.GetWorldPosition(_tilePosition);
             AddParent();
             transform.LookAt(transform.position - (transform.position.normalized));
-            transform.localPosition = new Vector3(transform.localPosition.x, 0, transform.localPosition.z);
+            transform.localPosition = new Vector3(transform.localPosition.x, 0.0f, transform.localPosition.z);
         }
 
         protected void RemoveParent()

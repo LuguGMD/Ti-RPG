@@ -7,6 +7,7 @@ using RPG.Combat.Challenge;
 using System;
 using UnityEngine;
 using CharacterController = RPG.Combat.CharacterController;
+using RPG.Management.Progression;
 
 namespace RPG
 {
@@ -52,6 +53,8 @@ namespace RPG
         public Action<CharacterController> OnCharacterHoverExit;
 
         public Action<EnemyController> OnEnemyDefeated;
+        public Action<EnemyController> OnEnemyDamageTaken;
+        public Action<EnemyController> OnEnemyActionUsed;
 
         public Action<Vector2Int> OnSpotlightPositionChanged;
 
@@ -126,6 +129,9 @@ namespace RPG
         public Action OnUpgradePanelOpen;
         public Action OnUpgradePanelClose;
         public Action OnCoinsAmountChanged;
+
+        public Action<UpgradeConstants.UpgradeKey> OnCurrentSuperUpgradeSet;
+        public Action<UpgradeConstants.UpgradeKey> OnCurrentTileUpgradeSet;
 
         #endregion
 

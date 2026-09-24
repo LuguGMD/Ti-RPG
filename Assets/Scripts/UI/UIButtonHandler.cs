@@ -6,9 +6,9 @@ namespace RPG.UI
     [RequireComponent(typeof(Button))]
     public abstract class UIButtonHandler : MonoBehaviour
     {
-        private Button _button;
+        protected Button _button;
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             _button = GetComponent<Button>();
             _button.onClick.AddListener(OnClick);

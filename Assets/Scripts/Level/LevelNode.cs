@@ -1,43 +1,40 @@
+using RPG.UI;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RPG.Level
 {
-    public class LevelNode : MonoBehaviour
+    public class LevelNode : UIButtonHandler
     {
         [Header("Level Data")]
         [SerializeField] 
-        private LevelScriptable levelData;
-
-        [Header("visualization")]
-        [SerializeField]
-        private GameObject visualMapsObjects;
-
-        [Header("Camera")]
-        [SerializeField]
-        private CinemachineCamera levelCamera;
+        private LevelScriptable _levelData;
 
         #region Properties
         
         public LevelScriptable LevelData
         {
-            get { return levelData; }
-        }
-
-        public CinemachineCamera LevelCamera
-        {
-            get { return levelCamera; }
+            get { return _levelData; }
         }
 
         #endregion
 
-        #region Methods
-
-        public void SetVisualActive(bool value)
+        public void SetEnabled()
         {
-            visualMapsObjects.SetActive(value);
+            if(_button == null) _button = GetComponent<Button>();
+            _button.interactable = true;
         }
 
-        #endregion
+        public void SetDisabled()
+        {
+            if(_button == null) _button = GetComponent<Button>();
+            _button.interactable = false;
+        }   
+
+        protected override void OnClick()
+        {
+            ActionsManager.Instance.OnLevelSelected?.Invoke(_levelData);
+        }
     }
 }

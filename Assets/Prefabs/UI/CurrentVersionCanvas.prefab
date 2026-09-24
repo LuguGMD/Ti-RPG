@@ -1,5 +1,83 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &135941607634060615
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7604998414290149274}
+  - component: {fileID: 6875170364003055314}
+  - component: {fileID: 3354911234040546106}
+  m_Layer: 5
+  m_Name: ChangelogPanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &7604998414290149274
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135941607634060615}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 280515689681789944}
+  - {fileID: 3001557734293867933}
+  - {fileID: 3065741210204985291}
+  m_Father: {fileID: 7497597371567741976}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &6875170364003055314
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135941607634060615}
+  m_CullTransparentMesh: 1
+--- !u!114 &3354911234040546106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135941607634060615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: e9a5a7e6861bdc94180919738023a1dd, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &619203200990249780
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,7 +110,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4828430587020704309}
+  - {fileID: 7797867012163734985}
+  - {fileID: 7604998414290149274}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -141,17 +220,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545876176349894674}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7497597371567741976}
+  m_Father: {fileID: 7797867012163734985}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: 0}
-  m_SizeDelta: {x: 200, y: 50}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 58, y: 25}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &6687692330568393918
 CanvasRenderer:
@@ -190,6 +269,570 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
+    rgba: 3439329279
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.8}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 16
+  m_fontSizeBase: 16
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1699273782121155486
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 159816163679436746}
+  - component: {fileID: 9085078132224565642}
+  - component: {fileID: 1719895002815455866}
+  m_Layer: 5
+  m_Name: Handle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &159816163679436746
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699273782121155486}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3371063790521865822}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0.000061035156}
+  m_SizeDelta: {x: 20, y: 20}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &9085078132224565642
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699273782121155486}
+  m_CullTransparentMesh: 1
+--- !u!114 &1719895002815455866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699273782121155486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2779425999228724023
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3371063790521865822}
+  m_Layer: 5
+  m_Name: Sliding Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3371063790521865822
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2779425999228724023}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 159816163679436746}
+  m_Father: {fileID: 9176561085370731436}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0.000061035156}
+  m_SizeDelta: {x: -20, y: -20}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2913599490116545275
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2605748525548875394}
+  - component: {fileID: 4984692903330244386}
+  - component: {fileID: 435788388589363905}
+  m_Layer: 5
+  m_Name: Content
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2605748525548875394
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913599490116545275}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7859548648611265236}
+  m_Father: {fileID: 8100320077738405878}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0.00045776367}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
+--- !u!114 &4984692903330244386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913599490116545275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 0
+  m_VerticalFit: 2
+--- !u!114 &435788388589363905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2913599490116545275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
+  m_Padding:
+    m_Left: 30
+    m_Right: 30
+    m_Top: 30
+    m_Bottom: 30
+  m_ChildAlignment: 0
+  m_Spacing: 200
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 1
+  m_ChildControlHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
+--- !u!1 &3197674709050317631
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7859548648611265236}
+  - component: {fileID: 22204365575829973}
+  - component: {fileID: 4771734458948693820}
+  m_Layer: 5
+  m_Name: Log
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7859548648611265236
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197674709050317631}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2605748525548875394}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &22204365575829973
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197674709050317631}
+  m_CullTransparentMesh: 1
+--- !u!114 &4771734458948693820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3197674709050317631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: "<size=120%><b>VERS\xC3O 0.5.3</b></size>\r\n\r\n<b>Novidades</b>\r\n\n\u2022
+    Sistema de Upgrade de Tiles\r\n\u2022 UI Gerenciamento\r\n\u2022 Upgrades tela
+    de fases\r\n\u2022 Finalizacao tela selecao fase\r\n\u2022 Preview acerto\r\n\u2022
+    Descricoes personagens\r\n\u2022 Integracao preview acerto apresentador\r\n\u2022
+    Ajustes UI selecao acao\r\n\u2022 Preview de Personagens\r\n\u2022 Preview Upgrade
+    selecionado\r\n\u2022 Cadeado Upgrades\r\n\u2022 Movimento Apresentador\r\n\u2022
+    Descricao Super\r\n\u2022 Acao inimigo atacando\r\n\u2022 SFX Buff Holofote (Inimigo
+    e Player)\r\n<b>Adi\xE7\xF5es Visuais</b>\r\n\r\n\u2022 Tamanho fonte Changelog\r\n\u2022
+    Interface Selecao de Fase\r\n\u2022 paleta do circo aplicada\r\n\u2022 Implementacao
+    paleta personagens\r\n\u2022 Cores dos previews\r\n\u2022 Ajustes UI tela Derrota
+    & Vitoria\r\n\u2022 Novo modelo Tiles\r\n\u2022 Troca de materiais\r\n\u2022
+    Assets finais de arm\xE1rio e arara de roupas\r\n\u2022 Substitui\xE7\xE3o dos
+    arquivos de arm\xE1rio e arara de roupas\r\n<b>Corre\xE7\xF5es</b>\r\n\r\n\u2022
+    Botao de CombatSpeed\r\n\u2022 Posicionamento tiles\r\n\u2022 Mesh closet\r\n\u2022
+    Audio Resetando\r\n<b>Refatora\xE7\xF5es</b>\r\n\r\n<b>Core</b>\r\n\r\n<b>Outras
+    Altera\xE7\xF5es</b>\r\n\r\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\r\n\r\n<size=120%><b>VERS\xC3O
+    0.5.2</b></size>\r\n\r\n<b>Novidades</b>\r\n\r\n\u2022 Adicao da tela de changelog\r\n\u2022
+    Remocao Navegacao\r\n\u2022 Atualizada Selecao de Party\r\n\u2022 Adicao previews
+    acao novos\r\n\u2022 Action dano inimigo\r\n\u2022 Combat UI\r\n<b>Adi\xE7\xF5es
+    Visuais</b>\r\n\r\n\u2022 Correcao UI Resumo de Combate\r\n\u2022 Substitu\xE7\xE3o
+    de fbx dos inimigos Raiva e Tristeza\r\n\u2022 Animacao Inimigo Tristeza\r\n<b>Corre\xE7\xF5es</b>\r\n\r\n<b>Refatora\xE7\xF5es</b>\r\n\r\n<b>Core</b>\r\n\r\n\u2022
+    Atualizacao versao build\r\n<b>Outras Altera\xE7\xF5es</b>\r\n\r\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\r\n\r\n<size=120%><b>VERS\xC3O
+    0.5.0</b></size>\r\n\r\n<b>Novidades</b>\r\n\r\n\u2022 UpgradeSave\r\n\u2022
+    CurvedGranularShader com normal map\r\n\u2022 Save dos Levels\r\n\u2022 Seleciona
+    primeira op\xE7\xE3o no menu\r\n\u2022 Salvamento de fases implementado\r\n\u2022
+    Conceito di\xE1logo condicional\r\n\u2022 Minigame save\r\n\u2022 Di\xE1logos
+    de derrota\r\n\u2022 implementa\xE7\xE3o dos di\xE1logos de derrota\r\n\u2022
+    Integracao Upgrade e Combate\r\n\u2022 Icone de desmotivacao implementado\r\n\u2022
+    Level 05 and Individual materials for Intermediary enemies\r\n\u2022 Animacoes
+    Inimigo Tank Implementadas\r\n\u2022 Commit Final TI5\r\n\u2022 Camera Personagem
+    teste\r\n\u2022 Balanceamento Buzina Parte 1\r\n\u2022 Adicao botao Novo Jogo\r\n\u2022
+    Atualizacao Versao atual\r\n\u2022 Cria\xE7\xE3o prefab padr\xE3o para os bot\xF5es\r\n\u2022
+    Remocao minigame e desmotivacao\r\n\u2022 confirmacao automatica Apresentador\r\n\u2022
+    Sistema super Inicio\r\n\u2022 action de heal apresentador\r\n\u2022 Sistema
+    de Tooltip fixado\r\n\u2022 Adaptacao Sistema para Supers & Super empurrar\r\n\u2022
+    Integra\xE7\xE3o do efeito de cura \xE0 gameplay\r\n\u2022 Anima\xE7\xF5es B\xE1sica
+    UI\r\n\u2022 Super holofote\r\n\u2022 Save de Audio\r\n\u2022 Tornar \xEDcone
+    do apresentador clic\xE1vel durante a batalha\r\n\u2022 VFX de Cura ativado com
+    Super do Apresentador\r\n\u2022 Scripts de funcionalidade de buff Holofote Sombrio\r\n\u2022
+    diferenca de raio para acoes\r\n\u2022 Planejamento IA do boss\r\n\u2022 SFX
+    de Spawn\r\n\u2022 SFX Erro de UI (N\xE3o implementado)\r\n\u2022 Implementa\xE7\xE3o
+    Action SFX Erro\r\n\u2022 Adicionada as acoes necessarias para feedback de acao
+    e selecao\r\n\u2022 traducao hover colisor para tile\r\n\u2022 UI Rotacao Apresentador
+    World Position\r\n\u2022 acao de hover\r\n\u2022 Indicador de A\xE7\xE3o do Apresentador
+    ativa e desativa\r\n\u2022 Acoes de Hover Apresentador\r\n\u2022 Outline do Personagem
+    permanece ao ser selecionado\r\n\u2022 Acao selecao Apresentador\r\n\u2022 Posicionamento
+    manual upgrades\r\n\u2022 Acao rotacao da linha\r\n\u2022 Controle C\xE2mera
+    combate #179\r\n\u2022 Movimento por clique em ManagementScene\r\n\u2022 Empurrar
+    um inimigo para cima do outro causa dano\r\n\u2022 Atualizado Merge Combate\r\n\u2022
+    Implementa\xE7\xE3o M\xFAsica de Menu\r\n\u2022 Merge Parte 1\r\n\u2022 Base
+    do sistema de a\xE7\xF5es do boss\r\n\u2022 Adicao de creditos\r\n\u2022 listar
+    todos os commits\r\n\u2022 Cenas para evitar conflitos\r\n\u2022 preview ataque
+    no apresentador\r\n\u2022 SFX de Cura de Movimenta\xE7\xE3o do Holofote\r\n<b>Adi\xE7\xF5es
+    Visuais</b>\r\n\r\n\u2022 Cursor & Painel Upgrade\r\n\u2022 Fundo Botao Upgrades\r\n\u2022
+    Espacamento entro upgrades\r\n\u2022 Nova Logo Implementada\r\n\u2022 Personagens
+    com textura e normal map\r\n\u2022 Cursor Novo\r\n\u2022 Ajuste de cores no world
+    map\r\n\u2022 Apresentador Atualizado\r\n\u2022 Texturas Importadas\r\n\u2022
+    ajustes na anima\xE7\xE3o de pop up dos pr\xE9dios\r\n\u2022 Ajuste no enquadramento
+    dos pr\xE9dios\r\n\u2022 Textura Inimigos\r\n\u2022 Correcao de tipo dos sprites
+    de cursor\r\n\u2022 Modelo Final do Inimigo Medo\r\n\u2022 blocagem do efeito
+    de cura\r\n\u2022 Nova Textura de Glitter\r\n\u2022 Indica\xE7\xE3o de A\xE7\xE3o
+    Dispon\xEDvel\r\n\u2022 Preview do Super de Holofote\r\n\u2022 Outline de Sele\xE7\xE3o
+    para o Apresentador\r\n\u2022 UV aberto dos tiles e as Texturas deles\r\n\u2022
+    Corre\xE7\xE3o dos nomes dos tiles\r\n\u2022 Corre\xE7\xE3o da orienta\xE7\xE3o
+    da UV\r\n\u2022 Polimento das cameras\r\n\u2022 Polimento de Height e Radius\r\n\u2022
+    Vers\xE3o 2 da Indica\xE7\xE3o de A\xE7\xE3o Dispon\xEDvel (em progresso)\r\n\u2022
+    Prefab dos personagens com vers\xE3o 2 da indica\xE7\xE3o de a\xE7\xE3o\r\n\u2022
+    Arte dos previews de tile selecion\xE1veis e dano\r\n<b>Corre\xE7\xF5es</b>\r\n\r\n\u2022
+    Camera Shake linha presa\r\n\u2022 Sistema de save trocado\r\n\u2022 Correcao
+    de conflito de cena\r\n\u2022 Canvas desligados Combate\r\n\u2022 Atualizacao
+    prefabs dialogo gerenciamento\r\n\u2022 Camera nao trocando primeiro Load\r\n\u2022
+    Salvamento de personagens por nome\r\n\u2022 final dialogo trigger\r\n\u2022
+    Desbloqueio de fase\r\n\u2022 Inimigos empurrados para ultima linha\r\n\u2022
+    Posicao Invalida ataque Anika\r\n\u2022 Preview Ataque Folesbela\r\n\u2022 Novo
+    Jogo mudando cena\r\n\u2022 BUG Wave verifica se os inimigos acabaram antes de
+    spawnar a ultima wave\r\n\u2022 reset de rotacao apresentador\r\n\u2022 movimento
+    personagens inicio para fim do mapa\r\n\u2022 Efeito de Cura vis\xEDvel de diferentes
+    \xE2ngulos\r\n\u2022 Game Manager atualizado para novo save\r\n\u2022 referencia
+    orbital follow\r\n\u2022 Ajustes nos volumes dos SFXs\r\n\u2022 Action Tile Hover\r\n\u2022
+    Rotacao tiles\r\n\u2022 Colisores Tiles\r\n\u2022 Colisores Tiles 2\r\n\u2022
+    PC_Renderer Layer Mask\r\n\u2022 comando yml nao determinado\r\n\u2022 Nome arquivo
+    yml\r\n\u2022 Deletei alguns materiais e texturas temporarias\r\n\u2022 preview
+    no apresentador\r\n<b>Refatora\xE7\xF5es</b>\r\n\r\n\u2022 Altera\xE7\xF5es no
+    SaveData\r\n<b>Core</b>\r\n\r\n\u2022 Troca de keys desafios e fases\r\n\u2022
+    Creditos atualizados\r\n\u2022 Troca de VSCode\r\n<b>Outras Altera\xE7\xF5es</b>\r\n\r\n\u2022
+    Adi\xE7\xE3o da Fase 5\r\n\u2022 Adi\xE7\xE3o da Fase 5\r\n\u2022 Revert \"Merge
+    branch 'luiz' into lucca\"\r\n\u2022 Add changelog generator workflow\r\n\u2022
+    Rename changelog file in workflow\r\n\u2022 Update changelog generator workflow
+    and comments\r\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\r\n\r\n<size=120%><b>VERS\xC3O
+    0.4.0</b></size>\r\n\r\n<b>Novidades</b>\r\n\r\n\u2022 Sistema de upgrades integrado\r\n\u2022
+    Inimigo Tanque implementado\r\n\u2022 Inicio Editor de Upgrades\r\n\u2022 Editor
+    de Upgrades Finalizado\r\n\u2022 Editor de Dialogo Implementado\r\n\u2022 Sistema
+    de Save Importado\r\n\u2022 Merge Upgrades Completo\r\n\u2022 Sistema de Save
+    alterado\r\n\u2022 Sistema de Save Generico finalizado\r\n\u2022 Teste GameManager
+    Save\r\n\u2022 Sistema de Tutorial inicio\r\n\u2022 Granular shader com normal
+    map\r\n\u2022 Suporte de navega\xE7\xE3o de UI pelo Controle\r\n<b>Adi\xE7\xF5es
+    Visuais</b>\r\n\r\n\u2022 Animacoes dano Anika & Barbara\r\n\u2022 Materiais
+    aplicados\r\n\u2022 Ajustes visuais\r\n\u2022 Troca material tenda de upgrades\r\n\u2022
+    Reestruturacao Selecao de Fases Inicio\r\n\u2022 Modelos e Animacoes Importados\r\n\u2022
+    Inimigos e Barbara Atualizados\r\n\u2022 DonLipon e Buzina Atualizados\r\n\u2022
+    Anika Atualizada\r\n\u2022 Animacao de Pop Up da Cidade\r\n\u2022 Folesbela Atualizada\r\n\u2022
+    proje\xE7\xE3o de granulado para objetos com uv\r\n<b>Corre\xE7\xF5es</b>\r\n\r\n\u2022
+    Ajuste nas propriedades dos shaders\r\n\u2022 Reorganiza\xE7\xE3o dos modelos
+    dos pr\xE9dios\r\n<b>Refatora\xE7\xF5es</b>\r\n\r\n<b>Core</b>\r\n\r\n<b>Outras
+    Altera\xE7\xF5es</b>\r\n\r\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\r\n\r\n<size=120%><b>VERS\xC3O
+    0.3.0</b></size>\r\n\r\n<b>Novidades</b>\r\n\r\n\u2022 Indicacao de acao usada\r\n\u2022
+    Efeitos Holofote Restantes\r\n\u2022 Troca Efeito Folesbela\r\n\u2022 Selecao
+    de Acao por clique\r\n\u2022 Minigame Template Preparado\r\n\u2022 Folesbela
+    mostrar ultimo efeito\r\n\u2022 Finaliza\xE7\xE3o Interface de Configura\xE7\xF5es\r\n\u2022
+    fun\xE7\xE3o de Tooltip\r\n\u2022 Integrado Sistema de Tooltip\r\n\u2022 Integrada
+    a Tool de preview de Global Volume\r\n\u2022 Inimigo Intermediario Raiva Implementado\r\n\u2022
+    Inimigo Tristeza Implementado\r\n\u2022 C\xF3digo configura\xE7oes\r\n<b>Adi\xE7\xF5es
+    Visuais</b>\r\n\r\n\u2022 Build FMOD\r\n\u2022 Importacao Assets World Map\r\n\u2022
+    Shader global para assets\r\n\u2022 Inimigos importados\r\n\u2022 Implementacao
+    Elementos UI\r\n\u2022 Ajustes UI Pause\r\n\u2022 Animacoes Importadas\r\n\u2022
+    Implementado elementos visuais Minigame Barbara\r\n\u2022 Vers\xE3o gen\xE9rica
+    do Shader de granulado\r\n<b>Corre\xE7\xF5es</b>\r\n\r\n\u2022 Correcao de cor
+    em diferentes resolucoes\r\n\u2022 Preview de ataque flutuando\r\n\u2022 Correcao
+    Folesbela\r\n\u2022 Rota\xE7\xE3o Apresentador\r\n\u2022 Pause ligado por padrao\r\n\u2022
+    Holofote no fim do mapa\r\n<b>Refatora\xE7\xF5es</b>\r\n\r\n\u2022 Novo sistema
+    de di\xE1logo (incompleto)\r\n\u2022 novo sistema de di\xE1logo\r\n\u2022 SO
+    para guardar um di\xE1logo\r\n<b>Core</b>\r\n\r\n\u2022 Balanceamento\r\n\u2022
+    Aplicacoes de Feedbacks Dia 2 Museu\r\n\u2022 Aplicacoes de Feedbacks Dia 2 Museu
+    (2)\r\n\u2022 Novas fases adicionadas\r\n<b>Outras Altera\xE7\xF5es</b>\r\n\r\n\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\r\n\r\n<size=120%><b>VERS\xC3O
+    0.1.0</b></size>\r\n\r\n<b>Novidades</b>\r\n\r\n\u2022 Challenge System\r\n\u2022
+    Estrutura base do projeto\r\n\u2022 Base do sistema de batalha\r\n\u2022 Comeco
+    sistema de grid\r\n\u2022 Tile Offset e separacao de clase para inimigos\r\n\u2022
+    Sistema de Actions de Combate Inicializado\r\n\u2022 Sistema de Actions de Combate
+    progresso\r\n\u2022 Actions de Combate - Efeitos\r\n\u2022 Actions de Combate
+    - Efeitos\r\n\u2022 Apresentador Adicionado e Validacao de Tiles\r\n\u2022 Adicionado
+    efeito de empurrar\r\n\u2022 Validacao de alvo\r\n\u2022 A\xE7\xF5es Derivadas\r\n\u2022
+    Detec\xE7\xE3o de inputs do mouse\r\n\u2022 Adicionados signals de clique em
+    objeto\r\n\u2022 Movimento entre Tiles animados\r\n\u2022 Sistema de Preview
+    de acoes\r\n\u2022 Combat comeco implementacao input\r\n\u2022 BaseCamera + CameraManager\r\n\u2022
+    CameraSwitch\r\n\u2022 Selecao Personagens & Camera\r\n\u2022 Integracao sistema
+    de Combate e Turnos\r\n\u2022 Turno dos inimigos\r\n\u2022 Sistema de Waves\r\n\u2022
+    Verificacao de Vitoria e Derrota & Velocidade de Combate\r\n\u2022 Rotacao do
+    Palco & Acao Apresentador\r\n\u2022 Balanceamento e definicao de personagens\r\n\u2022
+    Barra de motiva\xE7\xE3o\r\n\u2022 Barra de vida implementada no Combate\r\n\u2022
+    Troca de material Preview Inimigo e Personagens\r\n\u2022 Alternancia entre rotacao
+    do Palco\r\n\u2022 Animacao Rotacao\r\n\u2022 Efeito Cura & Acao Barbara & Acao
+    Don Lipon\r\n\u2022 Acao Folesbela\r\n\u2022 Preparacao Interface de Combate\r\n\u2022
+    Preparacao Sistema Dialogo\r\n\u2022 Movimento jogador\r\n\u2022 Ativacao de
+    Animacoes de Combate\r\n\u2022 Integracao Combate e Sistema de Desafios\r\n\u2022
+    Interface de combate\r\n\u2022 Selecao Spawn Personagens\r\n\u2022 Interface
+    Sele\xE7\xE3o de Fase e de Time\r\n\u2022 Interface combate\r\n\u2022 Integracao
+    Interface de Combate\r\n\u2022 Ajustes Controle Apresentador & Camera\r\n\u2022
+    Navegacao entre cenas\r\n\u2022 Conexao VFXs placeholders\r\n\u2022 Implementado
+    Animacao Apresentador\r\n\u2022 Holofote Implementado\r\n\u2022 Selecao por Mouse
+    e Controle (Combate)\r\n\u2022 Controle de Camera Mouse\r\n\u2022 Base Sistema
+    de Minigames\r\n\u2022 Interface da Progress\xE3o\r\n\u2022 Sistema de Di\xE1logo\r\n\u2022
+    Intera\xE7\xE3o do player\r\n\u2022 Interacao Troca de Cena\r\n\u2022 Ajustes
+    e Inicio Integracao Interface de Progressao\r\n\u2022 Implementacao Troca de
+    Camera Gerenciamento\r\n\u2022 Build FMOD\r\n\u2022 Acoes integradas com animacoes\r\n\u2022
+    Sistema de Level\r\n\u2022 Template Cena de Minigames\r\n\u2022 Interface de
+    Di\xE1logo\r\n\u2022 Interface de Di\xE1logo ajuste\r\n\u2022 Implementado Sistema
+    de Navegacao de fase\r\n\u2022 Minigames UI\r\n\u2022 Ajustes Interface de Dialogo\r\n\u2022
+    Integracao Sistema de Dialogo\r\n\u2022 Pausa de Input na Interacao\r\n\u2022
+    IA Inimigo Intermediario Tanque\r\n\u2022 Sele\xE7\xE3o de personagens\r\n\u2022
+    Sistema de Selecao de Fase e de Party Integrado\r\n\u2022 Ganho de dinheiro\r\n\u2022
+    Minigame Barbara\r\n\u2022 Dialogos teste adicionados\r\n\u2022 Scroll Menu principal\r\n\u2022
+    Feedback Visual Minigame\r\n\u2022 Efeitos de Holofote e Descricoes\r\n\u2022
+    Removido efeitos como Scriptable Objects\r\n\u2022 Musica de batalha com FMOD\r\n\u2022
+    Preview de Ataques\r\n\u2022 Interface de Configura\xE7\xF5es\r\n\u2022 UpgradesSystem\r\n\u2022
+    Enemy Actions\r\n\u2022 Musica Importada\r\n\u2022 FMOD SFX banks\r\n\u2022 Ataque
+    Anika\r\n\u2022 Ataque Barbara\r\n\u2022 Ataque Folesbela\r\n\u2022 Ataque Buzina\r\n\u2022
+    Sistema de Configuracoes\r\n\u2022 Camera Shake & Movimento de Vida\r\n\u2022
+    Implementa\xE7\xE3o SFX UI\r\n\u2022 SFX UI menu principal\r\n\u2022 Pause Implementado\r\n\u2022
+    Efeito de Empurrar relativo ao usuario\r\n\u2022 Hover ultima linha\r\n\u2022
+    Navegacao Gerenciamento\r\n\u2022 Efeito Visual de Holofote Implementado\r\n\u2022
+    Minigame TargetPractice\r\n<b>Adi\xE7\xF5es Visuais</b>\r\n\r\n\u2022 Blocagem
+    do Mundo (Troca de Fases)\r\n\u2022 Enemy & Folesbela Importados\r\n\u2022 Personagens
+    Importados\r\n\u2022 Placeholders de Assets do Cen\xE1rio (UpgradeStand, Cannon,
+    Closet e ClothesRack)\r\n\u2022 Animacao Idle Anika\r\n\u2022 Blocagem da \xE1rea
+    de combate do circo\r\n\u2022 Materiais temporarios adicionados\r\n\u2022 Aplicacao
+    novos tiles\r\n\u2022 Pasta Prefabs Organizadas\r\n\u2022 Cenas de Derrota e
+    Vitoria\r\n\u2022 Apresentador Importado\r\n\u2022 Folesbela Bake importado\r\n\u2022
+    Assets finalizados: Barraca de upgrades e Canh\xE3o\r\n\u2022 Toggle Efeito Distor\xE7\xE3o\r\n\u2022
+    Blocagem do gerenciamento\r\n\u2022 Barraca de upgrades e canh\xE3o com UV aberto
+    + Substitui\xE7\xE3o de assets com transform errado\r\n\u2022 Substitui\xE7\xE3o
+    corrigida dos assets\r\n\u2022 Montagem da cidade com placeholders\r\n\u2022
+    Animator Controllers configurados\r\n\u2022 NPCs importados\r\n\u2022 Don Lipon
+    Importado\r\n\u2022 Ajustes rotacoes imports\r\n\u2022 Personagens & Animacoes
+    Gerenciamento\r\n\u2022 Importacao samples de iluminacao da Unity\r\n\u2022 Ajustes
+    UI Selecao de Fases\r\n\u2022 Icones Personagens\r\n\u2022 VFX Placeholder Holofote\r\n\u2022
+    Previews Importados\r\n\u2022 Modelo Espectador Importado\r\n\u2022 spawn/despawn
+    placeholder\r\n\u2022 Adicionado VFXManager na cena de combate\r\n\u2022 Barra
+    de Motivacao sumindo\r\n\u2022 Inimigo tanque importado\r\n\u2022 Modelos Placeholders
+    importados\r\n\u2022 Diferenca visual entre inimigos base\r\n\u2022 Concepts
+    Importados\r\n\u2022 Buzina Importado\r\n\u2022 VFX Placeholder Buff do Holofote\r\n\u2022
+    Importados Sprites UI\r\n\u2022 Ajuste texto painel desafio\r\n\u2022 Fonte e
+    Canvas atualizados\r\n\u2022 SFX Personagens & Inimigos\r\n\u2022 Preview de
+    Efeitos\r\n\u2022 Interface Minigame\r\n\u2022 Controle de intensidade do fresnel
+    (buff vfx)\r\n<b>Corre\xE7\xF5es</b>\r\n\r\n\u2022 Scene Name\r\n\u2022 Updated
+    Unity Version\r\n\u2022 Gerar InputActions na pasta certa\r\n\u2022 A\xE7\xF5es
+    derivadas OnCancel\r\n\u2022 Gerar Input Actions automaticamente\r\n\u2022 Cena
+    de testes\r\n\u2022 Cursor n\xE3o detectava o target correto\r\n\u2022 input
+    n\xE3o depender da ordem de inicializa\xE7\xE3o\r\n\u2022 Corre\xE7\xE3o da escala
+    das tiles do palco\r\n\u2022 Cena inicial definida\r\n\u2022 Unity Editor impedindo
+    build\r\n\u2022 Barra de Vida Interativa\r\n\u2022 Layer do Cursor Input\r\n\u2022
+    Organizacao de Pastas UI\r\n\u2022 Removido Animator do Espectador\r\n\u2022
+    Assets nao enviados\r\n\u2022 Animacoes Gerenciamento\r\n\u2022 Instancia de
+    Input Global\r\n\u2022 Instancia Input Global 2\r\n\u2022 Cena de testes\r\n\u2022
+    Erro de navegacao WorldMap\r\n\u2022 CursorInput n\xE3o atravessar UI\r\n\u2022
+    Animacao de Combate Loopando\r\n\u2022 ajustes holofote e vfx de spawn\r\n\u2022
+    Interface nao desligando na acao\r\n\u2022 Preview do Tile Out of Bound\r\n\u2022
+    gameobject sem coalesce nulll\r\n\u2022 Desativacao de Painel\r\n\u2022 Efeito
+    do Holofote ativando em movimento\r\n\u2022 mudancas nao enviadas\r\n\u2022 Curva
+    de animacao leitura dialogo\r\n\u2022 Tiles se sobrepondo\r\n\u2022 Posicionamento
+    Artes tela de Features\r\n\u2022 Remocao Collider Holofote\r\n\u2022 Troca de
+    parametro AudioManager\r\n\u2022 Ajuste nas cores do vfx do Holofote\r\n\u2022
+    Mudancas nao enviadas\r\n\u2022 Hover em linhas rotacionadas\r\n\u2022 Configuracao
+    ataque Inimigo Tanque\r\n\u2022 Problemas de Build\r\n\u2022 loop da m\xFAsica\r\n\u2022
+    Holofote\r\n\u2022 Soco Direcional\r\n\u2022 Cursor Input Singleton\r\n\u2022
+    Pause Minigame\r\n\u2022 Loop da m\xFAsica (agr de vdd)\r\n\u2022 Scene Minigame\r\n\u2022
+    Scene Template\r\n<b>Refatora\xE7\xF5es</b>\r\n\r\n\u2022 sistema base de inputs
+    completo\r\n\u2022 Target de efeitos\r\n\u2022 Organiza\xE7\xE3o dos scripts
+    no projeto\r\n\u2022 ActionHandler > Inputhandler\r\n\u2022 Singleton sem heran\xE7a
+    & renomes\r\n\u2022 Melhorias e ajustes nos scripts de combate (turnos)\r\n\u2022
+    classes utilit\xE1rias\r\n\u2022 Organizacao Pastas e Scripts\r\n\u2022 Organizacao
+    Pastas e Scripts Lucas\r\n\u2022 Simplifica\xE7\xE3o AudioManager\r\n\u2022 Organizacao
+    Scriptable Objects de Combate\r\n\u2022 Utilities em scripts separados\r\n\u2022
+    CursorInput ignore layer\r\n\u2022 Upgrade Scripts\r\n<b>Core</b>\r\n\r\n\u2022
+    Ignorar arquivos VSCode\r\n\u2022 Troca de Direcao Barra de Motivacao\r\n\u2022
+    Ignorar arquivos de crash local\r\n\u2022 Organizacao Pastas\r\n\u2022 Tela de
+    Creditos\r\n\u2022 Colisor Barraca Gerenciamento\r\n<b>Outras Altera\xE7\xF5es</b>\r\n\r\n\u2022
+    Created Project\r\n\u2022 Imported Packages\r\n\u2022 Add Private Scenes\r\n\u2022
+    Add GitHub Actions workflow for building project\r\n\u2022 Add changelog generator
+    workflow\r\n\u2022 Add 'development' branch to build workflow\r\n\u2022 Create
+    Novo(a) Documento de Texto.txt\r\n\u2022 Revert \"Create Novo(a) Documento de
+    Texto.txt\"\r\n\u2022 inicio input system\r\n\u2022 Adicionado o AudioManager
+    com FMOD\r\n\u2022 Mudan\xE7as no AudioManager\r\n\u2022 Revert \"Style: Barraca
+    de upgrades e canh\xE3o com UV aberto + Substitui\xE7\xE3o de assets com transform
+    errado\"\r\n\u2022 Remo\xE7\xE3o dos Scripts\r\n\u2022 Refact: Script CameraManager\r\n\u2022
+    Teste na Scene\r\n\u2022 Revert \"Teste na Scene\"\r\n\u2022 Corre\xE7\xF5es
+    Scripts\r\n\u2022 Scene de Teste\r\n\u2022 Revert \"Merge branch 'lucas' into
+    luiz\"\r\n\u2022 Reapply \"Merge branch 'lucas' into luiz\"\r\n\u2022 Update
+    CameraManager.cs\r\n\u2022 Ajustes de Fade-Out\r\n\u2022 Update Ivan.unity\r\n\u2022
+    Initial commit\r\n\u2022 Add initial test commit message to README\r\n"
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: efc67b6a4700ccb44a6e1abe4bbad4f5, type: 2}
+  m_sharedMaterial: {fileID: -324199672324954334, guid: efc67b6a4700ccb44a6e1abe4bbad4f5, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
     rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
@@ -208,8 +851,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -253,3 +896,766 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &4634920823619276084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8100320077738405878}
+  - component: {fileID: 6113084480998831281}
+  - component: {fileID: 5465246147316007608}
+  - component: {fileID: 5776645290406474753}
+  m_Layer: 5
+  m_Name: Viewport
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &8100320077738405878
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4634920823619276084}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2605748525548875394}
+  m_Father: {fileID: 3001557734293867933}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
+  m_Pivot: {x: 0, y: 1}
+--- !u!222 &6113084480998831281
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4634920823619276084}
+  m_CullTransparentMesh: 1
+--- !u!114 &5465246147316007608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4634920823619276084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5776645290406474753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4634920823619276084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Mask
+  m_ShowMaskGraphic: 0
+--- !u!1 &5991967913645456622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9176561085370731436}
+  - component: {fileID: 7459081073621941733}
+  - component: {fileID: 4824998313046825727}
+  - component: {fileID: 2534916817767901439}
+  m_Layer: 5
+  m_Name: Scrollbar Vertical
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &9176561085370731436
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991967913645456622}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3371063790521865822}
+  m_Father: {fileID: 3001557734293867933}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.000061035156, y: 0}
+  m_SizeDelta: {x: 20, y: -17}
+  m_Pivot: {x: 1, y: 1}
+--- !u!222 &7459081073621941733
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991967913645456622}
+  m_CullTransparentMesh: 1
+--- !u!114 &4824998313046825727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991967913645456622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2534916817767901439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5991967913645456622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a4db7a114972834c8e4117be1d82ba3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Scrollbar
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1719895002815455866}
+  m_HandleRect: {fileID: 159816163679436746}
+  m_Direction: 2
+  m_Value: 1
+  m_Size: 0.03809466
+  m_NumberOfSteps: 0
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1 &7543982661251140277
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 280515689681789944}
+  - component: {fileID: 8169510602562147111}
+  - component: {fileID: 5331841567900372108}
+  m_Layer: 5
+  m_Name: TitleText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &280515689681789944
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543982661251140277}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7604998414290149274}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 600, y: 100}
+  m_Pivot: {x: 0.5, y: 1}
+--- !u!222 &8169510602562147111
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543982661251140277}
+  m_CullTransparentMesh: 1
+--- !u!114 &5331841567900372108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7543982661251140277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Changelog
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: c9a343f6edddad348a15e04ec59120de, type: 2}
+  m_sharedMaterial: {fileID: -7721841168683215720, guid: c9a343f6edddad348a15e04ec59120de, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 144
+  m_fontSizeBase: 144
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &7914620876113199204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7797867012163734985}
+  - component: {fileID: 5748605576036012716}
+  - component: {fileID: 3577567259198258767}
+  - component: {fileID: 6491719145702387831}
+  - component: {fileID: 2805243921923726753}
+  - component: {fileID: 8547547510163781924}
+  m_Layer: 5
+  m_Name: ChangelogButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7797867012163734985
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7914620876113199204}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4828430587020704309}
+  m_Father: {fileID: 7497597371567741976}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 2.5, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 1}
+--- !u!222 &5748605576036012716
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7914620876113199204}
+  m_CullTransparentMesh: 1
+--- !u!114 &3577567259198258767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7914620876113199204}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6491719145702387831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7914620876113199204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ContentSizeFitter
+  m_HorizontalFit: 2
+  m_VerticalFit: 2
+--- !u!114 &2805243921923726753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7914620876113199204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 3577567259198258767}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 135941607634060615}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &8547547510163781924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7914620876113199204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24844eaeb942d8f4fbfaf2eb429d4b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.UI.UIButtonAnimator
+  _hoverScale: 1.1
+  _clickScale: 0.95
+  _animationDuration: 0.15
+--- !u!1 &8167081452877534659
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3001557734293867933}
+  - component: {fileID: 8547693872491466007}
+  - component: {fileID: 177534210276514522}
+  - component: {fileID: 8756558030637693616}
+  m_Layer: 5
+  m_Name: Scroll View
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3001557734293867933
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8167081452877534659}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8100320077738405878}
+  - {fileID: 9176561085370731436}
+  m_Father: {fileID: 7604998414290149274}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 30}
+  m_SizeDelta: {x: 800, y: 550}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!222 &8547693872491466007
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8167081452877534659}
+  m_CullTransparentMesh: 1
+--- !u!114 &177534210276514522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8167081452877534659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8756558030637693616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8167081452877534659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.ScrollRect
+  m_Content: {fileID: 2605748525548875394}
+  m_Horizontal: 0
+  m_Vertical: 1
+  m_MovementType: 2
+  m_Elasticity: 0.1
+  m_Inertia: 0
+  m_DecelerationRate: 0.135
+  m_ScrollSensitivity: 10
+  m_Viewport: {fileID: 8100320077738405878}
+  m_HorizontalScrollbar: {fileID: 0}
+  m_VerticalScrollbar: {fileID: 2534916817767901439}
+  m_HorizontalScrollbarVisibility: 2
+  m_VerticalScrollbarVisibility: 2
+  m_HorizontalScrollbarSpacing: -3
+  m_VerticalScrollbarSpacing: -3
+  m_OnValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!1001 &7448507998332636844
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7604998414290149274}
+    m_Modifications:
+    - target: {fileID: 2070194569464645172, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_text
+      value: Voltar
+      objectReference: {fileID: 0}
+    - target: {fileID: 2070194569464645172, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_fontSize
+      value: 32.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_Pivot.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 160
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652854305578377939, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652854305578377939, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652854305578377939, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 135941607634060615}
+    - target: {fileID: 5652854305578377939, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652854305578377939, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652854305578377939, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652854305578377939, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660194052023011656, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_Name
+      value: DefaultButtonPrefab
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+--- !u!224 &3065741210204985291 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+  m_PrefabInstance: {fileID: 7448507998332636844}
+  m_PrefabAsset: {fileID: 0}

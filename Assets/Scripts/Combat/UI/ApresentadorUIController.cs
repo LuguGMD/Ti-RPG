@@ -1,5 +1,9 @@
 using DG.Tweening;
+using RPG.Combat.Actions;
 using RPG.Combat.Grid;
+using RPG.Combat.Upgrades;
+using RPG.Management.Progression;
+using RPG.UI.Tooltip;
 using System;
 using System.Collections.Generic;
 using TMPro;
@@ -28,6 +32,7 @@ namespace RPG.Combat.UI
         private List<int> _linesStuck = new List<int>();
 
         private bool _isCanvasEnabled = false;
+        private bool _isSuperButtonInitialized = false;
 
         private void OnEnable()
         {
@@ -225,12 +230,62 @@ namespace RPG.Combat.UI
 
         private void UpdateSuperUI()
         {
+            InitSuperButton();
+
+            if (!_superButton.gameObject.activeSelf) return;
+
             float amount = (float)CombatManager.Apresentador.SuperCharge / (float)CombatManager.Apresentador.EquippedSuper.ChargeAmount;
             amount = Mathf.Clamp01(amount);
             _superBarFill.DOKill(true);
             _superBarFill.DOFillAmount(amount, 0.5f);
 
             _superButton.interactable = amount >= 1;
+        }
+
+        private void InitSuperButton()
+        {
+            if(!_isSuperButtonInitialized)
+            {
+                Sprite buttonSprite = null;
+                CombatUpgradeScriptable info = null;
+
+                switch (GameManager.CurrentSuperEqquiped)
+                {
+                    case UpgradeConstants.UpgradeKey.SuperSpotlight1:
+                    case UpgradeConstants.UpgradeKey.SuperSpotlight2:
+                    case UpgradeConstants.UpgradeKey.SuperSpotlight3:
+                        info = CombatManager.SuperSpotlightInfo;
+                        buttonSprite = info.UpgradeIcon;
+                        break;
+                    case UpgradeConstants.UpgradeKey.SuperHeal1:
+                    case UpgradeConstants.UpgradeKey.SuperHeal2:
+                    case UpgradeConstants.UpgradeKey.SuperHeal3:
+                        info = CombatManager.SuperHealInfo;
+                        buttonSprite = info.UpgradeIcon;
+                        break;
+                    case UpgradeConstants.UpgradeKey.SuperPush1:
+                    case UpgradeConstants.UpgradeKey.SuperPush2:
+                    case UpgradeConstants.UpgradeKey.SuperPush3:
+                        info = CombatManager.SuperPushInfo;
+                        buttonSprite = info.UpgradeIcon;
+                        break;
+                }
+
+                if (buttonSprite == null)
+                {
+                    _superButton.gameObject.SetActive(false);
+                    _superBarFill.transform.parent.gameObject.SetActive(false);
+                    return;
+                }
+                else
+                {
+                    _superButton.GetComponent<Image>().sprite = buttonSprite;
+                    _superButton.GetComponent<TooltipTrigger>().content = info.UpgradeName;
+                    _superButton.GetComponent<TooltipTrigger>().header = "";
+                }
+
+                _isSuperButtonInitialized = true;
+            }
         }
 
         private void UseSuper()

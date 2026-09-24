@@ -1,6 +1,7 @@
 using DG.Tweening;
 using RPG.Combat.Actions;
 using RPG.Extensions;
+using RPG.Management.Progression;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -118,6 +119,9 @@ namespace RPG.Combat.Grid
 
         public void Push(Movement movement)
         {
+            if (_tileObject.CurrentTile.TileUpgrade == UpgradeConstants.UpgradeKey.TilePushBlock1 ||
+                _tileObject.CurrentTile.TileUpgrade == UpgradeConstants.UpgradeKey.TilePushBlock2) return;
+
             if (MapManager.IsMovementValid(_tileObject.Position, movement, CanGoToLastRow))
             {
                 ChangeTile(movement.Direction, true);

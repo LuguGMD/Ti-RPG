@@ -5,13 +5,11 @@ using UnityEngine.UI;
 
 namespace RPG.Level
 {
-    public class CharacterOptionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class CharacterOptionButton : MonoBehaviour, IPointerEnterHandler
     {
         private CharacterScriptable _character;
         [SerializeField] private Image _characterIcon;
-
-        private Vector3 originalScale;
-        private float scaleMultiplier = 1.1f;
+        private bool _isSelected = false;
 
         #region Properties
 
@@ -19,31 +17,34 @@ namespace RPG.Level
 
         #endregion
 
-        private void Start()
-        {
-            originalScale = transform.localScale;
-        }
-
         public void OnPointerEnter(PointerEventData eventData)
         {
-            transform.localScale = originalScale * scaleMultiplier;
             LevelSelectUIController.Instance.UpdateCharacterInfo(_character);
-        }
-
-        public void OnPointerExit(PointerEventData eventData)
-        {
-            transform.localScale = originalScale;
         }
 
         public void OnClick()
         {
-            LevelSelectUIController.Instance.ReplaceCharacter(_character);
+            if (!_isSelected)
+            {
+                LevelSelectUIController.Instance.AddPartyMember(_character);
+            }
+            else
+            {
+                LevelSelectUIController.Instance.RemovePartyMember(_character);
+            }
+
         }
 
         public void UpdateInfo(CharacterScriptable character)
         {
             _character = character;
             _characterIcon.sprite = character.Icon;
+        }
+
+        public void UpdateVisual(bool isSelected)
+        {
+            _isSelected = isSelected;
+            _characterIcon.sprite = isSelected ? _character.Icon : _character.UsedIcon;
         }
     }
 }

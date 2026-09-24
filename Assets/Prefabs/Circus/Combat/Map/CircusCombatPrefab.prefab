@@ -835,6 +835,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6934995367352359869}
   - component: {fileID: 5759359649044101632}
+  - component: {fileID: 4397868625299419513}
   - component: {fileID: 1062847318175946200}
   - component: {fileID: 1678238949859301501}
   m_Layer: 0
@@ -867,6 +868,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6946305240317163778}
   m_Mesh: {fileID: 7438059862750729362, guid: 88c7622979173e8498de10be6d2148f9, type: 3}
+--- !u!114 &4397868625299419513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6946305240317163778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef18d49969eeda0394d50e9ad4cb4fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.PreviewMaterial
+  material: {fileID: 2100000, guid: 82989b366846da959b9156dc97684665, type: 2}
 --- !u!23 &1062847318175946200
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -892,8 +906,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: abccc074ef1fd764caa35503fdc48a27, type: 2}
+  - {fileID: 2100000, guid: 471ba5b477de10e4d8db829731b6361a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

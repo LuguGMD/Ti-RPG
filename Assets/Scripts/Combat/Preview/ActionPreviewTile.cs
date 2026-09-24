@@ -12,12 +12,22 @@ namespace RPG.Combat.Preview
     {
         private PreviewTileInfo _info;
         private List<ActionPreviewTile> _effectPreviewTiles = new List<ActionPreviewTile>();
+        [SerializeField] private List<DamagePreviewHandler> _damagePreviews;
         private ActionPreviewTile _parent;
         private bool _effectPreviewEnabled = false;
+
+        private Color _color;
+        private Color _colorHDR;
+        private Color _secondaryColor;
 
         #region Properties
 
         public PreviewTileInfo Info { get { return _info; } }
+        public List<DamagePreviewHandler> DamagePreviews { get { return _damagePreviews; } }
+
+        public Color Color { get { return _color; } }
+        public Color ColorHDR { get { return _colorHDR; } }
+        public Color SecondaryColor { get { return _secondaryColor; } }
 
         #endregion
 
@@ -48,6 +58,18 @@ namespace RPG.Combat.Preview
             _parent = parent;
         }
 
+        public void SetColor(Color color, Color colorHDR, Color secondaryColor)
+        {
+            _color = color;
+            _colorHDR = colorHDR;
+            _secondaryColor = secondaryColor;
+
+            foreach (MeshRenderer renderer in _renderer)
+            {
+                renderer.material.SetColor("_TintColor", colorHDR);
+            }
+        }
+
         protected override void Select()
         {
             if (_canBeSelected)
@@ -66,25 +88,41 @@ namespace RPG.Combat.Preview
                     _effectPreviewTiles.AddRange(effect.Preview(_tilePosition, _info.Direction));
                 }
 
+                for (int i = 0; i < _effectPreviewTiles.Count; i++)
+                {
+                    ActionPreviewTile preview = _effectPreviewTiles[i];
+                    if (preview.gameObject.activeSelf)
+                    {
+                        preview.SetColor(_color, _colorHDR, _secondaryColor);
+                        DamagePreviewHandler damagePreview = preview.DamagePreviews[preview._tilePosition.y];
+                        damagePreview.Init(this, preview);
+                        damagePreview.gameObject.SetActive(true);
+                    }
+                }
+
             }
 
             if (_parent != null && _info.DoShowParent)
             {
                 _parent.ShowEffects(false);
             }
-            
+
         }
 
         protected void HideEffects()
         {
             if (!_effectPreviewEnabled) return;
 
-            for (int i =0; i< _effectPreviewTiles.Count; i++)
+            for (int i = 0; i < _effectPreviewTiles.Count; i++)
             {
                 ActionPreviewTile preview = _effectPreviewTiles[i];
+
+                preview.DamagePreviews[preview._tilePosition.y].gameObject.SetActive(false);
+
                 if (preview.gameObject.activeSelf)
                     PreviewTilesPool.Pool.Release(preview);
             }
+            
 
             _effectPreviewTiles.Clear();
 
@@ -98,7 +136,7 @@ namespace RPG.Combat.Preview
 
         private void CheckSelected(Vector2Int selectedPosition)
         {
-            if(_tilePosition == selectedPosition)
+            if (_tilePosition == selectedPosition)
             {
                 Select();
             }
