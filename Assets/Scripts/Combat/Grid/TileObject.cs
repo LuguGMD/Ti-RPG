@@ -33,6 +33,11 @@ namespace RPG.Combat.Grid
             CheckSpotlight();
         }
 
+        private void Update()
+        {
+            UpdatePosition();
+        }
+
         private void OnEnable()
         {
             ActionsManager.Instance.OnMapChanged += UpdatePosition;
@@ -77,11 +82,10 @@ namespace RPG.Combat.Grid
             transform.parent = _currentTile.Transform;
             transform.localPosition = Vector3.zero;
 
-            Vector3 lookPosition = (transform.position);
+            Vector3 lookPosition = (UnityEngine.Camera.main.transform.position);
             lookPosition.y = 0;
-            lookPosition.Normalize();
 
-            transform.LookAt(transform.position + lookPosition);
+            transform.LookAt(lookPosition);
         }
 
         public void CheckSpotlight()

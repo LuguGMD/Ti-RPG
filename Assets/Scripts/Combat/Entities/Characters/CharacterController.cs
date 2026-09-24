@@ -37,6 +37,19 @@ namespace RPG.Combat
             Movement.CanGoToLastRow = false;
         }
 
+        private void Update()
+        {
+            if (!UnityEngine.Input.GetKey(KeyCode.LeftShift)) return;
+
+            if (UnityEngine.Input.GetKeyUp(KeyCode.Alpha1) || UnityEngine.Input.GetKeyUp(KeyCode.Alpha2) || UnityEngine.Input.GetKeyUp(KeyCode.Alpha3) || UnityEngine.Input.GetKeyUp(KeyCode.Alpha4) || UnityEngine.Input.GetKeyUp(KeyCode.Alpha5))
+            {
+                if (GameManager.CurrentParty[CombatManager.PlaceIndex] == _info)
+                {
+                    Defeated();
+                }
+            }
+        }
+
         protected new void OnEnable()
         {
             base.OnEnable();

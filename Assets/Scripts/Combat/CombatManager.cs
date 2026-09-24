@@ -55,6 +55,9 @@ namespace RPG.Combat
         private bool _isActionInProgress = false;
         private float _combatSpeed = 1;
 
+        private int _placeIndex = 0;
+        public static int PlaceIndex { get { return Instance._placeIndex; } }
+
         private HashSet<string> _combatUpgrades = new HashSet<string>();
 
         #region Properties
@@ -74,7 +77,7 @@ namespace RPG.Combat
         public static List<EnemyController> RemainingEnemies { get { return Instance._remainingEnemies; } }
         public static List<CharacterController> RemainingCharacters { get { return Instance._remainingCharacters; } }
         public static bool IsActionInProgress { get { return Instance._isActionInProgress; } }
-        public static HashSet<string> CombatUpgrades { get { return Instance._combatUpgrades; }  }
+        public static HashSet<string> CombatUpgrades { get { return Instance._combatUpgrades; } }
 
         public static Material TileMaterial { get { return Instance._tileMaterial; } }
         public static Texture TilePushImage { get { return Instance._tilePushImage; } }
@@ -106,6 +109,53 @@ namespace RPG.Combat
             _apresentador = GameObject.FindAnyObjectByType<ApresentadorController>(FindObjectsInactive.Include);
             _apresentador.gameObject.SetActive(true);
             ActionsManager.Instance.OnPreviewTileSelected += PlaceCharacter;
+        }
+
+        private void Update()
+        {
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                _placeIndex = 2;
+            }
+            else if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                _placeIndex = 3;
+            }
+            else if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                _placeIndex = 1;
+            }
+            else if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                _placeIndex = 4;
+            }
+            else if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                _placeIndex = 0;
+            }
+
+            if (UnityEngine.Input.GetKey(KeyCode.LeftShift)) return;
+
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                PlaceCharacter(new Vector2Int(10, 1));
+            }
+            else if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                PlaceCharacter(new Vector2Int(8, 1));
+            }
+            else if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                PlaceCharacter(new Vector2Int(9, 1));
+            }
+            else if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                PlaceCharacter(new Vector2Int(8, 0));
+            }
+            else if (UnityEngine.Input.GetKeyDown(KeyCode.Alpha5))
+            {
+                PlaceCharacter(new Vector2Int(10, 0));
+            }
         }
 
         private void OnEnable()
@@ -145,7 +195,7 @@ namespace RPG.Combat
 
             if (data == null) return;
 
-            foreach(string upgradeKey in data.PurchasedUpgradeIDs)
+            foreach (string upgradeKey in data.PurchasedUpgradeIDs)
             {
                 _combatUpgrades.Add(upgradeKey);
             }
@@ -163,7 +213,7 @@ namespace RPG.Combat
             }
             else
             {
-                CharacterScriptable characterInfo = GameManager.CurrentParty[_remainingCharacters.Count];
+                CharacterScriptable characterInfo = GameManager.CurrentParty[_placeIndex];
                 CharacterSpawnInfo characterSpawnInfo = new CharacterSpawnInfo(characterInfo, position);
                 CombatFactory.InstantiateCharacter(characterSpawnInfo);
             }
@@ -209,25 +259,12 @@ namespace RPG.Combat
 
         private void OnCharacterClicked(CharacterController selectedCharacter)
         {
-            if (_hasCombatEnded || !_hasCombatStarted)
-            {
 
-            }
-            else if (_usedCharacters.Contains(selectedCharacter))
-            {
-                ActionsManager.Instance.OnError?.Invoke();
-            }
-            else if (!_canSelectCharacter)
-            {
+            DeselectCharacter();
 
-            }
-            else
-            {
-                DeselectCharacter();
+            _selectedCharacter = selectedCharacter;
+            ActionsManager.Instance.OnCharacterSelected?.Invoke(_selectedCharacter);
 
-                _selectedCharacter = selectedCharacter;
-                ActionsManager.Instance.OnCharacterSelected?.Invoke(_selectedCharacter);
-            }
         }
 
         private void OnApresentadorSelected()
@@ -379,10 +416,10 @@ namespace RPG.Combat
                 _remainingCharacters.Add(character);
             }
 
-            if (_remainingCharacters.Count >= CombatConstants.MAX_CHARACTERS_COUNT)
+            /*if (_remainingCharacters.Count >= CombatConstants.MAX_CHARACTERS_COUNT)
             {
                 ActionsManager.Instance.OnCombatStart?.Invoke();
-            }
+            }*/
         }
 
         public void RemoveCharacter(CharacterController character)
@@ -405,15 +442,17 @@ namespace RPG.Combat
 
         public void EndCombat()
         {
+            /*
             ActionsManager.Instance.OnCombatLost?.Invoke();
             _hasCombatEnded = true;
 
             //TO DO remover depois
-            GameManager.ChangeScene(ScenesEnum.Lose);
+            GameManager.ChangeScene(ScenesEnum.Lose);*/
         }
 
         private void CheckPlayerWon()
         {
+            /*
             if (WaveManager.AreAllWavesSpawned && _remainingEnemies.Count == 0)
             {
                 ActionsManager.Instance.OnCombatWon?.Invoke();
@@ -424,7 +463,7 @@ namespace RPG.Combat
 
                 //TO DO remover depois
                 GameManager.ChangeScene(ScenesEnum.Win);
-            }
+            }*/
         }
 
         #endregion

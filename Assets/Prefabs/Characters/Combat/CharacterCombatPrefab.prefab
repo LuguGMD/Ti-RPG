@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 6528647309577072793}
   - component: {fileID: 2426029175546086407}
   - component: {fileID: 1859410682183151354}
-  - component: {fileID: 7571961425806664224}
   m_Layer: 0
   m_Name: CharacterCombatPrefab
   m_TagString: Untagged
@@ -174,20 +173,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.SpotlightSparkleEffect
   _effect: {fileID: 9200454259504860975}
---- !u!114 &7571961425806664224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1658439040625981792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aee0ed3f96c325c4cbbe6e0f723872cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPG.AvailableActionVFXController
-  canOutline: []
-  indicator: {fileID: 0}
 --- !u!1001 &3255003641637269282
 PrefabInstance:
   m_ObjectHideFlags: 0

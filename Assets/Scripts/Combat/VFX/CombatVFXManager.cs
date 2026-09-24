@@ -34,20 +34,6 @@ namespace RPG.Combat.VFX
             ActionsManager.Instance.OnCharacterDamageTaken += PlayHitVFX;
             ActionsManager.Instance.OnEnemyDamageTaken += PlayHitVFX;
 
-            // Available Action Display
-            ActionsManager.Instance.OnCharacterHoverEnter += ActivateCharacterOutline;
-            ActionsManager.Instance.OnCharacterHoverExit += DeactivateCharacterOutline;
-            ActionsManager.Instance.OnCharacterActionUsed += DeactivateIndicator;
-            ActionsManager.Instance.OnCharacterActionReset += ActivateIndicator;
-            ActionsManager.Instance.OnCharacterSelected += LockCharacterOutline;
-            ActionsManager.Instance.OnCharacterDeselected += UnLockCharacterOutline;
-            
-            ActionsManager.Instance.OnApresentadorHoverEnter += ActivateApresentadorOutline;
-            ActionsManager.Instance.OnApresentadorHoverExit += DeactivateApresentadorOutline;
-            ActionsManager.Instance.OnApresentadorActionCompleted += DeactivateIndicatorApresentador;
-            ActionsManager.Instance.OnPlayerTurnStarted += ActivateIndicatorApresentador;
-            ActionsManager.Instance.OnApresentadorSelected += LockApresentadorOutline;
-            ActionsManager.Instance.OnApresentadorUIClose += UnLockApresentadorOutline;
 
             // Spotlight Super
             ActionsManager.Instance.OnSpotlightSuperStarted += AddSpotlightSuperPreview;
@@ -66,21 +52,6 @@ namespace RPG.Combat.VFX
 
             // Hit VFX
             ActionsManager.Instance.OnCharacterDamageTaken -= PlayHitVFX;
-
-            // Available Action Display
-            ActionsManager.Instance.OnCharacterHoverEnter -= ActivateCharacterOutline;
-            ActionsManager.Instance.OnCharacterHoverExit -= DeactivateCharacterOutline;
-            ActionsManager.Instance.OnCharacterActionUsed -= DeactivateIndicator;
-            ActionsManager.Instance.OnCharacterActionReset -= ActivateIndicator;
-            ActionsManager.Instance.OnCharacterSelected -= LockCharacterOutline;
-            ActionsManager.Instance.OnCharacterDeselected -= UnLockCharacterOutline;
-            
-            ActionsManager.Instance.OnApresentadorHoverEnter -= ActivateApresentadorOutline;
-            ActionsManager.Instance.OnApresentadorHoverExit -= DeactivateApresentadorOutline;
-            ActionsManager.Instance.OnApresentadorActionCompleted -= DeactivateIndicatorApresentador;
-            ActionsManager.Instance.OnPlayerTurnStarted -= ActivateIndicatorApresentador;
-            ActionsManager.Instance.OnApresentadorSelected -= LockApresentadorOutline;
-            ActionsManager.Instance.OnApresentadorUIClose -= UnLockApresentadorOutline;
 
             // Spotlight Super
             ActionsManager.Instance.OnSpotlightSuperStarted -= AddSpotlightSuperPreview;
@@ -113,75 +84,6 @@ namespace RPG.Combat.VFX
         }
         #endregion
 
-        #region Available Action Indicator
-        
-        // Circenses
-        void ActivateCharacterOutline(CharacterController entity)
-        {
-            entity?.GetComponent<AvailableActionVFXController>().ActivateOutline();
-        }
-
-        void DeactivateCharacterOutline(CharacterController entity)
-        {
-            entity?.GetComponent<AvailableActionVFXController>().DeactivateOutline();
-        }
-
-        void LockCharacterOutline(CharacterController entity)
-        {
-            selectedCharacter = entity;
-            selectedCharacter?.GetComponent<AvailableActionVFXController>().LockOutline();
-            ActivateCharacterOutline(selectedCharacter);
-        }
-
-        void UnLockCharacterOutline()
-        {
-            selectedCharacter?.GetComponent<AvailableActionVFXController>().UnlockOutline();
-            DeactivateCharacterOutline(selectedCharacter);
-        }
-
-        void ActivateIndicator(CharacterController entity)
-        {
-            entity?.GetComponent<AvailableActionVFXController>().ActivateIndicator();
-        }
-
-        void DeactivateIndicator(CharacterController entity)
-        {
-            entity?.GetComponent<AvailableActionVFXController>().DeactivateIndicator();
-        }
-
-        // Apresentador
-        void ActivateApresentadorOutline()
-        {
-            apresentadorAvailableActionVFX.ActivateOutline();
-        }
-
-        void DeactivateApresentadorOutline()
-        {
-            apresentadorAvailableActionVFX.DeactivateOutline();
-        }
-
-        void LockApresentadorOutline()
-        {
-            apresentadorAvailableActionVFX.LockOutline();
-            ActivateApresentadorOutline();
-        }
-
-        void UnLockApresentadorOutline()
-        {
-            apresentadorAvailableActionVFX.UnlockOutline();
-            DeactivateApresentadorOutline();
-        }
-
-        void ActivateIndicatorApresentador()
-        {
-            apresentadorAvailableActionVFX.ActivateIndicator();
-        }
-
-        void DeactivateIndicatorApresentador()
-        {
-            apresentadorAvailableActionVFX.DeactivateIndicator();
-        }
-        #endregion
 
         #region Spotlight Super Preview
         void AddSpotlightSuperPreview()
