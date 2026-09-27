@@ -38,9 +38,6 @@ namespace RPG
         public Action OnApresentadorHoverEnter;
         public Action OnApresentadorHoverExit;
 
-        public Action<StageEntityController> OnStageEntityCreated;
-        public Action<StageEntityController> OnStageEntityDefeated;
-
         public Action<CharacterController> OnCharacterDamageTaken;
         public Action<CharacterController> OnCharacterHealed;
         public Action<CharacterController> OnCharacterCreated;
@@ -52,9 +49,13 @@ namespace RPG
         public Action<CharacterController> OnCharacterHoverEnter;
         public Action<CharacterController> OnCharacterHoverExit;
 
+        public Action<StageEntityController> OnStageEntityCreated;
+        public Action<StageEntityController> OnStageEntityDefeated;
+
         public Action<EnemyController> OnEnemyDefeated;
         public Action<EnemyController> OnEnemyDamageTaken;
         public Action<EnemyController> OnEnemyActionUsed;
+        public Action<EnemyController> OnEnemySpawnedWithSpotlight;
 
         public Action<Vector2Int> OnSpotlightPositionChanged;
 
