@@ -18,6 +18,8 @@ namespace RPG.Combat
         private int _superCharge = 0;
         private SuperHandler _equippedSuper;
 
+        [SerializeField] private float _damageMultiplier = 1;
+
         
 
         #region Properties
@@ -124,6 +126,7 @@ namespace RPG.Combat
 
         public override void TakeDamage(float damage)
         {
+            damage *= _damageMultiplier;
             _currentMotivation -= damage;
             _currentMotivation = Mathf.Clamp(_currentMotivation, 0, CombatConstants.MAX_MOTIVATION_APRESENTADOR);
             ActionsManager.Instance.OnApresentadorDamageTaken?.Invoke();
