@@ -14,6 +14,8 @@ namespace RPG.Combat.Grid
 {
     public class MapManager : SingletonMono<MapManager>
     {
+        private const float shakeCameraForce = 0.12f;
+
         private Map _map;
 
         [SerializeField] private int _rows;
@@ -152,6 +154,27 @@ namespace RPG.Combat.Grid
             return (Mathf.Abs(distance.x) <= 1 || Mathf.Abs(distance.x) == 11) && Mathf.Abs(distance.y) <= 1;
         }
 
+        public Vector3 GetWorldDirection(Vector2Int tilePosition, DirectionEnum direction)
+        {
+            Vector2Int step = direction.ToVector2Int();
+
+            if (step == Vector2Int.zero) return Vector3.zero;
+            if (tilePosition.y < 0 || tilePosition.y >= Map.Rows) return Vector3.zero;
+
+            Vector2Int targetPosition = tilePosition + step;
+
+            targetPosition.x += Map.Columns;
+            targetPosition.x %= Map.Columns;
+
+            if (targetPosition.y < 0 || targetPosition.y >= Map.Rows) targetPosition.y = tilePosition.y;
+            if (targetPosition == tilePosition) return Vector3.zero;
+
+            Vector3 worldDirection = GetWorldPosition(targetPosition) - GetWorldPosition(tilePosition);
+            worldDirection.y = 0f;
+
+            return worldDirection;
+        }
+
         public float GetCurrentTilePercentage(Vector2Int tilePosition)
         {
             Spline spline = _mapSplineContainer[tilePosition.y];
@@ -178,6 +201,7 @@ namespace RPG.Combat.Grid
         private IEnumerator RotateAnimationCoroutine(int rowToRotate, int amount)
         {
             ActionsManager.Instance.OnRotationAnimationStarted?.Invoke();
+            CombatManager.Instance.CameraShake(shakeCameraForce);
 
             Transform rowTransform = _rowGameObjects[rowToRotate].transform;
             rowTransform.DOKill(true);

@@ -12,6 +12,8 @@ namespace RPG.Combat.Actions
     [System.Serializable]
     public class MediumSadnessScreamAttack : CombatAction
     {
+        private const float shakeCameraForce = 0.3f;
+
         [SerializeField] private float _damage;
         [SerializeField] private EventReference _attackSFX;
 
@@ -28,6 +30,8 @@ namespace RPG.Combat.Actions
         {
             AudioManager.Instance.PlayOneShot(_attackSFX);
             yield return new WaitForSeconds(0.3f / CombatManager.CombatSpeed);
+
+            CombatManager.Instance.CameraShake(shakeCameraForce);
 
             foreach (Effect effect in _effects)
             {

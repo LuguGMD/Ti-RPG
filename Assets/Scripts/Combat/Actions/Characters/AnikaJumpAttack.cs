@@ -12,6 +12,8 @@ namespace RPG.Combat.Actions
     [System.Serializable]
     public class AnikaJumpAttack : CombatAction
     {
+        private const float shakeCameraForce = 0.3f;
+
         [SerializeField] private float _damage;
         [SerializeField] private int _pushAmount;
         [SerializeField] private EventReference _jumpFlyingSound;
@@ -39,6 +41,7 @@ namespace RPG.Combat.Actions
                 AudioManager.Instance.PlayOneShot(_jumpFlyingSound);
                 yield return new WaitForSeconds(4.5f / CombatManager.CombatSpeed);
                 AudioManager.Instance.PlayOneShot(_jumpUmbrellaSound);
+                CombatManager.Instance.CameraShake(shakeCameraForce);
                 _user.TileObject.UpdatePosition();
                 foreach (Effect effect in _effects)
                 {

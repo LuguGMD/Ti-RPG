@@ -9889,7 +9889,39 @@ MonoBehaviour:
   _localOffset: {x: 0, y: 1.2, z: 0}
   _positionSmoothTime: 0.18
   _rotationSmoothTime: 0.25
-  _copyTargetYaw: 0
+  _copyTargetYaw: 1
+--- !u!1 &2099380574 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3077217500224947624, guid: 81693da597ca4d1449d7f90399596854, type: 3}
+  m_PrefabInstance: {fileID: 1441832705}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2099380576 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7622968916543592963, guid: 81693da597ca4d1449d7f90399596854, type: 3}
+  m_PrefabInstance: {fileID: 1441832705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099380574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!114 &2099380577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099380574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23a6d42a298aa1443931eb55aa725777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.UI.CharacterMotivationSlider
+  _slider: {fileID: 2099380576}
+  _characterIcon: {fileID: 1044893104}
+  _characterButton: {fileID: 1044893107}
+  _tooltipTrigger: {fileID: 1044893106}
 --- !u!1 &2100582132
 GameObject:
   m_ObjectHideFlags: 0

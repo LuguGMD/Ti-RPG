@@ -9,6 +9,8 @@ namespace RPG.Combat.Actions
     [System.Serializable]
     public class DonLiponWeightAttack : CombatAction
     {
+        private const float shakeCameraForce = 0.4f;
+
         [SerializeField] private float _damage;
 
         public override void Init(StageEntityController user)
@@ -30,6 +32,8 @@ namespace RPG.Combat.Actions
             } while (root != null);
 
             yield return new WaitForSeconds(1.15f / CombatManager.CombatSpeed);
+            CombatManager.Instance.CameraShake(shakeCameraForce);
+
             foreach (Effect effect in _effects)
             {
                 effect.Execute(_user);
