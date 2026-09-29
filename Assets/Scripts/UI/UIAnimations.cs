@@ -6,7 +6,7 @@ namespace RPG.UI
 {
     public static class UIAnimations
     {
-        public static IEnumerator RevealRectTransform(RectTransform rect, float shakeDuration = 1f, float scaleDuration = 1f, float initialScale = 0.1f)
+        public static IEnumerator RevealRectTransformScale(RectTransform rect, float shakeDuration = 1f, float scaleDuration = 1f, float initialScale = 0.1f)
         {
             Vector2 anchorPos = rect.anchoredPosition;
             rect.localScale = Vector3.one * initialScale;

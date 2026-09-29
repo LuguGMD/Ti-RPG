@@ -33,11 +33,11 @@ namespace RPG.Combat
 
             _challengesContainer.gameObject.SetActive(false);
 
-            yield return StartCoroutine(UIAnimations.RevealRectTransform(_titleText.rectTransform));
+            yield return StartCoroutine(UIAnimations.RevealRectTransformScale(_titleText.rectTransform));
 
             _challengesContainer.gameObject.SetActive(true);
 
-            yield return StartCoroutine(UIAnimations.RevealRectTransform(_challengesContainer));
+            yield return StartCoroutine(UIAnimations.RevealRectTransformScale(_challengesContainer));
 
             SaveManager.Instance.SaveAll();
             yield return StartCoroutine(PopulateChallenges());
