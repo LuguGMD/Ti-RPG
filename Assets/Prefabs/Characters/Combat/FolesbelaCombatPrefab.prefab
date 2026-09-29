@@ -475,8 +475,8 @@ MonoBehaviour:
     _damage: 2
     _pushAmount: 1
   _acrobaticsLeftAttack:
-    _actionName: Acrobacia Esq
-    _actionDescription: Salta de 2 em 2 Tiles, acertando quem estiver naquele lugar
+    _actionName: "Pra l\xE1"
+    _actionDescription: Salta de 2 em 2 Tiles, acertando quem estiver no caminho
     _followRadius: 5
     _effects:
     - _targetList: 01000000
@@ -495,8 +495,8 @@ MonoBehaviour:
     _damage: 5
     _dir: {x: 1, y: 0}
   _acrobaticsRightAttack:
-    _actionName: Acrobacia Dir
-    _actionDescription: Salta de 2 em 2 Tiles, acertando quem estiver naquele lugar
+    _actionName: "Pra c\xE1"
+    _actionDescription: Salta de 2 em 2 Tiles, acertando quem estiver no caminho
     _followRadius: 5
     _effects:
     - _targetList: 01000000
