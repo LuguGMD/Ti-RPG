@@ -421,15 +421,20 @@ namespace RPG.Combat
         {
             if (WaveManager.AreAllWavesSpawned && _remainingEnemies.Count == 0)
             {
-                ActionsManager.Instance.OnCombatWon?.Invoke();
-                _hasCombatEnded = true;
-
-                if(!GameManager.CompletedLevels.Contains(GameManager.SelectedLevel.LevelKey))
-                    GameManager.Instance.AddCoins(GameManager.SelectedLevel.CoinsReward);
-
-                //TO DO remover depois
-                GameManager.ChangeScene(ScenesEnum.Win);
+                WinCombat();
             }
+        }
+
+        public void WinCombat()
+        {
+            ActionsManager.Instance.OnCombatWon?.Invoke();
+            _hasCombatEnded = true;
+
+            if (!GameManager.CompletedLevels.Contains(GameManager.SelectedLevel.LevelKey))
+                GameManager.Instance.AddCoins(GameManager.SelectedLevel.CoinsReward);
+
+            //TO DO remover depois
+            GameManager.ChangeScene(ScenesEnum.Win);
         }
 
         #endregion

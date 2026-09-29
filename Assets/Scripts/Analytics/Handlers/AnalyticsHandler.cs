@@ -28,7 +28,7 @@ namespace RPG.Analytics
         protected abstract void RemoveListeners();
         protected virtual void RecordEvent()
         {
-            if (!AnalyticsManager.Instance.HasConsented) return;
+            if (!AnalyticsManager.HasConsented) return;
             
             AnalyticsService.Instance.RecordEvent(_event);
         }

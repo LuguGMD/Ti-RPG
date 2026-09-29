@@ -50,6 +50,12 @@ namespace RPG
             {
                 GameManager.Instance.AddCoins(1);
             }
+
+            if(UnityEngine.Input.GetKeyDown(KeyCode.F5))
+            {
+                if(CombatManager.Instance != null)
+                    CombatManager.Instance.WinCombat();
+            }
         }
     }
 }

@@ -20,7 +20,15 @@ namespace RPG.Analytics
 
         #region Properties
 
-        public bool HasConsented { get { return _hasConsented; } }
+        public static bool HasConsented
+        {
+            get
+            {
+                if (Instance == null) return false;
+
+                return Instance._hasConsented;
+            }
+        }
 
         #endregion
 
@@ -28,13 +36,13 @@ namespace RPG.Analytics
         {
             if (Instance != this) return;
 
-            if(UnityServices.State == ServicesInitializationState.Uninitialized)
+            if (UnityServices.State == ServicesInitializationState.Uninitialized)
                 await UnityServices.InitializeAsync();
 
             _consentButton?.onClick.AddListener(ConsentToAnalytics);
             _denyButton?.onClick.AddListener(DenyAnalytics);
 
-            if(_hasConsented)
+            if (_hasConsented)
             {
                 ConsentToAnalytics();
             }
@@ -54,7 +62,7 @@ namespace RPG.Analytics
                 AdsIntent = ConsentStatus.Denied
             });
 
-            if(_consentPanel!= null)
+            if (_consentPanel != null)
                 _consentPanel.SetActive(false);
         }
 
@@ -63,6 +71,6 @@ namespace RPG.Analytics
             if (_consentPanel != null)
                 _consentPanel?.SetActive(false);
         }
-        
+
     }
 }
