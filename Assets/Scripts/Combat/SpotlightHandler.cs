@@ -21,6 +21,7 @@ namespace RPG.Combat
 
         [SerializeField] private EventReference _spotlightOnSFX;
         [SerializeField] private EventReference _spotlightOffSFX;
+        private bool _isInitialized = false;
 
         [SerializeField] private GameObject _visual;
         private const float SPOTLIGHT_MOVE_DURATION = 0.3f;
@@ -84,24 +85,13 @@ namespace RPG.Combat
             ActionsManager.Instance.OnSpotlightPositionChanged?.Invoke(_currentSpotlightPosition);
             ActionsManager.Instance.OnMapChanged?.Invoke();
 
-            /*Spline spline = MapManager.Instance.GetCurrentSpline(previousSpotlightPosition);
-
-            Vector2Int targetTile = _currentSpotlightPosition;
-            Vector3 targetPos = MapManager.Instance.GetWorldPosition(targetTile);
-
-            float startPercentage = MapManager.Instance.GetCurrentTilePercentage(previousSpotlightPosition);
-            float endPercentage = MapManager.Instance.GetCurrentTilePercentage(targetTile);
-
-            DOVirtual.Float(0f, 1f, SPOTLIGHT_MOVE_DURATION / CombatManager.CombatSpeed, t => {
-                float currentPercentage = Mathf.Lerp(startPercentage, endPercentage, t);
-                Vector3 position = spline.EvaluatePosition(currentPercentage);
-                transform.position = position;
-            }).SetEase(Ease.Linear);*/
-
             _visual.SetActive(false);
 
-            AudioManager.Instance.PlayOneShot(_spotlightOffSFX);
-
+            if (_isInitialized == true)
+            {
+                AudioManager.Instance.PlayOneShot(_spotlightOffSFX);
+            }
+            
             yield return new WaitForSeconds(SPOTLIGHT_MOVE_DURATION / CombatManager.CombatSpeed);
 
             AudioManager.Instance.PlayOneShot(_spotlightOnSFX);
@@ -149,6 +139,7 @@ namespace RPG.Combat
                 _currentPosition *= (Map.Columns / CombatConstants.MAP_SECTIONS);
                 _visual.SetActive(false);
                 StartCoroutine(UpdateSpotlightPosition());
+                _isInitialized = true;
             }
             else
             {

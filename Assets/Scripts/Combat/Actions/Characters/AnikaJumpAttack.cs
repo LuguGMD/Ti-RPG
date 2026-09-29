@@ -3,6 +3,9 @@ using RPG.Combat.Preview;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using RPG.Audio;
+using Unity.VisualScripting;
 
 namespace RPG.Combat.Actions
 {
@@ -11,6 +14,9 @@ namespace RPG.Combat.Actions
     {
         [SerializeField] private float _damage;
         [SerializeField] private int _pushAmount;
+        [SerializeField] private EventReference _jumpFlyingSound;
+        [SerializeField] private EventReference _jumpUmbrellaSound;
+
 
         public override void Init(StageEntityController user)
         {
@@ -30,7 +36,9 @@ namespace RPG.Combat.Actions
             {
                 _user.Movement.Teleport(Grid.DirectionEnum.Up, _user.Position + root.RelativePosition);
                 Debug.Log(_user.Position + root.RelativePosition);
+                AudioManager.Instance.PlayOneShot(_jumpFlyingSound);
                 yield return new WaitForSeconds(4.5f / CombatManager.CombatSpeed);
+                AudioManager.Instance.PlayOneShot(_jumpUmbrellaSound);
                 _user.TileObject.UpdatePosition();
                 foreach (Effect effect in _effects)
                 {
