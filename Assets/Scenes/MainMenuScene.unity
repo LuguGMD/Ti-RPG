@@ -1496,63 +1496,6 @@ MonoBehaviour:
       Data3: 653947062
       Data4: -1202327520
     Path: event:/Environment/Music/Menu
---- !u!1001 &1461633858029732827
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3307728798597513473, guid: 0bdcfa1c58fe57f4e9480da819a427ae, type: 3}
-      propertyPath: m_Name
-      value: AnalyticsManagerPrefab
-      objectReference: {fileID: 0}
-    - target: {fileID: 7460022248506642565, guid: 0bdcfa1c58fe57f4e9480da819a427ae, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7460022248506642565, guid: 0bdcfa1c58fe57f4e9480da819a427ae, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7460022248506642565, guid: 0bdcfa1c58fe57f4e9480da819a427ae, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7460022248506642565, guid: 0bdcfa1c58fe57f4e9480da819a427ae, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7460022248506642565, guid: 0bdcfa1c58fe57f4e9480da819a427ae, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7460022248506642565, guid: 0bdcfa1c58fe57f4e9480da819a427ae, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7460022248506642565, guid: 0bdcfa1c58fe57f4e9480da819a427ae, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7460022248506642565, guid: 0bdcfa1c58fe57f4e9480da819a427ae, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7460022248506642565, guid: 0bdcfa1c58fe57f4e9480da819a427ae, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7460022248506642565, guid: 0bdcfa1c58fe57f4e9480da819a427ae, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 0bdcfa1c58fe57f4e9480da819a427ae, type: 3}
 --- !u!1001 &1501697949325741958
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1876,6 +1819,20 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7522474156635374509, guid: 407bf508feb165e62b405d5b14ff85e1, type: 3}
+      propertyPath: m_text
+      value: '<size=50%>UNTITLED</size>
+
+        CIRCUS GAME'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7522474156635374509, guid: 407bf508feb165e62b405d5b14ff85e1, type: 3}
+      propertyPath: m_fontSize
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 7522474156635374509, guid: 407bf508feb165e62b405d5b14ff85e1, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 8025031437034380824, guid: 407bf508feb165e62b405d5b14ff85e1, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1960,10 +1917,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenuCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 8617082000820250054, guid: 407bf508feb165e62b405d5b14ff85e1, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1975,7 +1928,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 1573538502}
   - {fileID: 290527303}
-  - {fileID: 1461633858029732827}
   - {fileID: 1242368729}
   - {fileID: 687276572}
   - {fileID: 151933203}
