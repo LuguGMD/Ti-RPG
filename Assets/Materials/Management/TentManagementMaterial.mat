@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FloorMaterial
+  m_Name: TentManagementMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 12f74de2dc713704dafb954abda7741c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -118,10 +118,10 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Grain_Base_Color_Influence: 0.194
-    - _Grain_Diffuse_Influence: 0.212
-    - _Grain_Scale: 1.52
-    - _Grain_Tiling: 1.94
+    - _Grain_Base_Color_Influence: 0.4
+    - _Grain_Diffuse_Influence: 0.4
+    - _Grain_Scale: 0.015
+    - _Grain_Tiling: 0.015
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -131,7 +131,7 @@ Material:
     - _ReceiveShadows: 1
     - _Shadow_Distortion_Strength: 0.2
     - _Shadow_Noise_Softness: 0.143
-    - _Shadow_Noise_Strength: 0
+    - _Shadow_Noise_Strength: 0.31
     - _Shadow_Softness: 0.2
     - _Shadow_Threshold: 0.5
     - _Smoothness: 0.5
@@ -148,13 +148,13 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_Tint: {r: 0.3962264, g: 0.314026, b: 0.18876824, a: 1}
+    - _Color_Tint: {r: 0.6226415, g: 0.20747419, b: 0.16153437, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Shadow_Color: {r: 0.48627448, g: 0.4470588, b: 0.6509804, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &4554484788904605987
+--- !u!114 &968029690836831202
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
