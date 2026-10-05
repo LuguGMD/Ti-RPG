@@ -971,6 +971,158 @@ Transform:
   - {fileID: 1823261914}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &297014077
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297014079}
+  - component: {fileID: 297014078}
+  m_Layer: 0
+  m_Name: InnerCircle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &297014078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297014077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineContainer
+  m_Spline:
+    m_EditModeType: 1
+    m_Knots: []
+    m_MetaData: []
+    m_Closed: 0
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
+  m_Splines:
+  - m_EditModeType: 1
+    m_Knots:
+    - Position:
+        x: -6
+        y: 0
+        z: 0
+      TangentIn:
+        x: -0
+        y: -0
+        z: -3.313708
+      TangentOut:
+        x: 0
+        y: 0
+        z: 3.313708
+      Rotation:
+        value:
+          x: 0
+          y: 0
+          z: 0
+          w: 1
+    - Position:
+        x: -0.0000004768372
+        y: 0
+        z: 6
+      TangentIn:
+        x: -0
+        y: -0
+        z: -3.313708
+      TangentOut:
+        x: 0
+        y: 0
+        z: 3.313708
+      Rotation:
+        value:
+          x: 0
+          y: 0.70710677
+          z: 0
+          w: 0.70710677
+    - Position:
+        x: 5.999998
+        y: 0
+        z: 0
+      TangentIn:
+        x: -0
+        y: -0
+        z: -3.313708
+      TangentOut:
+        x: 0
+        y: 0
+        z: 3.313708
+      Rotation:
+        value:
+          x: 0
+          y: 0.99999994
+          z: 0
+          w: 0
+    - Position:
+        x: -0.0000009536743
+        y: 0
+        z: -5.999999
+      TangentIn:
+        x: -0
+        y: -0
+        z: -3.313708
+      TangentOut:
+        x: 0
+        y: 0
+        z: 3.313708
+      Rotation:
+        value:
+          x: 0
+          y: 0.7071067
+          z: 0
+          w: -0.7071067
+    m_MetaData:
+    - Mode: 4
+      Tension: 0.5
+    - Mode: 4
+      Tension: 0.5
+    - Mode: 4
+      Tension: 0.5
+    - Mode: 4
+      Tension: 0.5
+    m_Closed: 1
+    m_IntData:
+      m_Data: []
+    m_FloatData:
+      m_Data: []
+    m_Float4Data:
+      m_Data: []
+    m_ObjectData:
+      m_Data: []
+  m_Knots:
+    m_KnotsLink: []
+--- !u!4 &297014079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297014077}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.51, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 663807927}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &297653578
 GameObject:
   m_ObjectHideFlags: 0
@@ -2851,8 +3003,24 @@ PrefabInstance:
       value: -59.946
       objectReference: {fileID: 0}
     - target: {fileID: 6673131687263235691, guid: 02eea88449fc5b1459ae8ad01c63702b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6673131687263235691, guid: 02eea88449fc5b1459ae8ad01c63702b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6673131687263235691, guid: 02eea88449fc5b1459ae8ad01c63702b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6673131687263235691, guid: 02eea88449fc5b1459ae8ad01c63702b, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.51
+      objectReference: {fileID: 0}
+    - target: {fileID: 6673131687263235691, guid: 02eea88449fc5b1459ae8ad01c63702b, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6807904116418323884, guid: 02eea88449fc5b1459ae8ad01c63702b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3401,6 +3569,9 @@ PrefabInstance:
     - {fileID: 3046401916449414788, guid: 02eea88449fc5b1459ae8ad01c63702b, type: 3}
     - {fileID: 869058058480358829, guid: 02eea88449fc5b1459ae8ad01c63702b, type: 3}
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7501413088289711928, guid: 02eea88449fc5b1459ae8ad01c63702b, type: 3}
+      insertIndex: 2
+      addedObject: {fileID: 297014079}
     - targetCorrespondingSourceObject: {fileID: 6673131687263235691, guid: 02eea88449fc5b1459ae8ad01c63702b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1535771302}
@@ -4050,17 +4221,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3329902420748629119, guid: 3242fe929eff6a64195cceb2b08f69d8, type: 3}
---- !u!114 &894397485 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2041028108926359796, guid: 02eea88449fc5b1459ae8ad01c63702b, type: 3}
-  m_PrefabInstance: {fileID: 663807926}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dab5c7d4c32e743048dfca98e2d5914f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineContainer
 --- !u!1 &977461423
 GameObject:
   m_ObjectHideFlags: 0
@@ -4298,7 +4458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineSplineDolly
   m_SplineSettings:
-    Spline: {fileID: 894397485}
+    Spline: {fileID: 297014078}
     Position: 27.602335
     Units: 0
   SplineOffset: {x: 0, y: 4, z: 0}
