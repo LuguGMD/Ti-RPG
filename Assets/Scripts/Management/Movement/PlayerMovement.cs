@@ -63,6 +63,13 @@ namespace RPG.Management.Movement
 
         private void Update()
         {
+            if (ManagementManager.IsInteractionRunning)
+            {
+                StopMovement();
+                ApplyMovement();
+                return;
+            }
+
             HandleMouseClick();
 
             CalculateMoveDirection();
@@ -86,6 +93,15 @@ namespace RPG.Management.Movement
                     _agent.SetDestination(hit.point);
                 }
             }
+        }
+
+        private void StopMovement()
+        {
+            inputDirection = Vector2.zero;
+            moveDirection = Vector3.zero;
+            currentSpeed = 0;
+            hasClickTarget = false;
+            _agent.enabled = false;
         }
 
         private void CalculateMoveDirection()

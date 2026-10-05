@@ -22,6 +22,11 @@ namespace RPG.Combat.UI
         #endregion
 
 
+        private void Awake()
+        {
+            _characterButton.onClick.AddListener(() => { OnSelect(_characterController); });
+        }
+
         public void SetInfo(CharacterController characterController)
         {
             CharacterScriptable characterInfo = characterController.CharacterInfo;
@@ -29,8 +34,6 @@ namespace RPG.Combat.UI
             _characterIcon.sprite = characterController.HasActed ? characterInfo.UsedIcon : characterInfo.Icon;
             _tooltipTrigger.header = characterInfo.EntityName;
             _tooltipTrigger.content = "";
-
-            _characterButton.onClick.AddListener(() => { OnSelect(characterController); });
 
             if (characterController.HasActed)
             {
@@ -45,6 +48,9 @@ namespace RPG.Combat.UI
         public void OnSelect(CharacterController characterController)
         {
             if (!CombatManager.HasCombatStarted) return;
+            if (CombatManager.IsActionInProgress) return;
+            if (characterController == null) return;
+
             ActionsManager.Instance.OnEntitySelected?.Invoke(characterController);
             ActionsManager.Instance.OnCharacterClicked?.Invoke(characterController);
         }
