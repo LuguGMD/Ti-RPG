@@ -3,6 +3,8 @@ using RPG.Combat.Preview;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using RPG.Audio;
 
 namespace RPG.Combat.Actions
 {
@@ -12,6 +14,8 @@ namespace RPG.Combat.Actions
         private const float shakeCameraForce = 0.4f;
 
         [SerializeField] private float _damage;
+        [SerializeField] private EventReference _weightWindSound;
+        [SerializeField] private EventReference _weightImpactSound;
 
         public override void Init(StageEntityController user)
         {
@@ -26,6 +30,7 @@ namespace RPG.Combat.Actions
 
             do
             {
+                AudioManager.Instance.PlayOneShot(_weightWindSound);
                 yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
                 if (root == selectedPreviewTile) break;
                 root = root.Child;
@@ -38,7 +43,7 @@ namespace RPG.Combat.Actions
             {
                 effect.Execute(_user);
             }
-
+            AudioManager.Instance.PlayOneShot(_weightImpactSound);
         }
 
         public override List<PreviewTileInfo> Preview()
