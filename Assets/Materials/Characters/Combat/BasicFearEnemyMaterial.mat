@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: IntermediarySadnessEnemyMaterial
+  m_Name: BasicFearEnemyMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 12f74de2dc713704dafb954abda7741c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -59,7 +59,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Diffuse_Map:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: ebdf8984beb4c1e40a8d77ff3604e12a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _EmissionMap:
@@ -79,7 +79,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Normal_Map:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 1d6f1487d8db007479c59ce364c8b3dd, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -142,11 +142,11 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Shadow_Distortion_Strength: 0.2
+    - _Shadow_Distortion_Strength: 0.142
     - _Shadow_Noise_Softness: 0.119
     - _Shadow_Noise_Strength: 0.335
-    - _Shadow_Softness: 0.2
-    - _Shadow_Threshold: 0.5
+    - _Shadow_Softness: 0.152
+    - _Shadow_Threshold: 0.336
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -161,9 +161,9 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Color_Tint: {r: 0.2392157, g: 0.34117648, b: 0.5294118, a: 1}
+    - _Color_Tint: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _Shadow_Color: {r: 0.48627448, g: 0.4470588, b: 0.6509804, a: 1}
+    - _Shadow_Color: {r: 0.61390567, g: 0.5724902, b: 0.7830189, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
