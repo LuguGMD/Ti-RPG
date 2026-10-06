@@ -3385,8 +3385,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734972467}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.16123655, y: -0.1391901, z: 0.022976005, w: 0.97678095}
-  m_LocalPosition: {x: 1.5999756, y: 3.2000122, z: -5.5}
+  m_LocalRotation: {x: 0.020293117, y: 0.9794996, z: -0.15153392, w: 0.13117264}
+  m_LocalPosition: {x: -3, y: 5.5, z: 11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3487,7 +3487,7 @@ MonoBehaviour:
     AngularDampingMode: 0
     RotationDamping: {x: 0, y: 0.6, z: 0}
     QuaternionDamping: 1
-  FollowOffset: {x: 1.6, y: 3.2, z: -5.5}
+  FollowOffset: {x: -3, y: 5.5, z: 11}
 --- !u!114 &734972473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10716,6 +10716,14 @@ PrefabInstance:
     - target: {fileID: 1043985202058996132, guid: 74eb6cef4e8bdf042b36820b35a6d0dc, type: 3}
       propertyPath: m_Name
       value: SpectatorSplinesPrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 3742864233872939757, guid: 74eb6cef4e8bdf042b36820b35a6d0dc, type: 3}
+      propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[1].TangentOut.x
+      value: 0.019553691
+      objectReference: {fileID: 0}
+    - target: {fileID: 3742864233872939757, guid: 74eb6cef4e8bdf042b36820b35a6d0dc, type: 3}
+      propertyPath: m_Splines.Array.data[0].m_Knots.Array.data[1].TangentOut.z
+      value: 0.23046021
       objectReference: {fileID: 0}
     - target: {fileID: 3802324479124602338, guid: 74eb6cef4e8bdf042b36820b35a6d0dc, type: 3}
       propertyPath: m_LocalPosition.x

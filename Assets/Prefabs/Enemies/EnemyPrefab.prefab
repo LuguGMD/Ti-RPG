@@ -37,7 +37,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 4486632886945376394}
+  - {fileID: 4242168822501758555}
   - {fileID: 948483508250963960}
   - {fileID: 6786344436985357976}
   - {fileID: 1623821583320707200}
@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
---- !u!1001 &4163861167003635553
+--- !u!1001 &4419596303634870704
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -339,7 +339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 53e19335b82ebc243a2cdc9656e8e937, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.535
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 53e19335b82ebc243a2cdc9656e8e937, type: 3}
       propertyPath: m_LocalRotation.w
@@ -379,21 +379,21 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 53e19335b82ebc243a2cdc9656e8e937, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3808953391140590912}
+      addedObject: {fileID: 6651879433028813495}
   m_SourcePrefab: {fileID: 100100000, guid: 53e19335b82ebc243a2cdc9656e8e937, type: 3}
---- !u!1 &3821419159120949808 stripped
+--- !u!1 &3572734107941342433 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 53e19335b82ebc243a2cdc9656e8e937, type: 3}
-  m_PrefabInstance: {fileID: 4163861167003635553}
+  m_PrefabInstance: {fileID: 4419596303634870704}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &3808953391140590912
+--- !u!95 &6651879433028813495
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3821419159120949808}
+  m_GameObject: {fileID: 3572734107941342433}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 2f9024e6bf744bc40841d3c401fadf6e, type: 2}
@@ -408,10 +408,10 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!4 &4486632886945376394 stripped
+--- !u!4 &4242168822501758555 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 53e19335b82ebc243a2cdc9656e8e937, type: 3}
-  m_PrefabInstance: {fileID: 4163861167003635553}
+  m_PrefabInstance: {fileID: 4419596303634870704}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5096135843110547353
 PrefabInstance:
