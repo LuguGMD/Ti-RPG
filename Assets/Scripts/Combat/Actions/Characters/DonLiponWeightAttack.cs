@@ -38,12 +38,18 @@ namespace RPG.Combat.Actions
 
             yield return new WaitForSeconds(1.15f / CombatManager.CombatSpeed);
             CombatManager.Instance.CameraShake(shakeCameraForce);
-
+            bool didHit = false;
             foreach (Effect effect in _effects)
             {
-                effect.Execute(_user);
+                if(effect.Execute(_user))
+                {
+                    didHit = true;
+                }
             }
-            AudioManager.Instance.PlayOneShot(_weightImpactSound);
+            if(didHit)
+            {
+                AudioManager.Instance.PlayOneShot(_weightImpactSound);
+            }
         }
 
         public override List<PreviewTileInfo> Preview()
