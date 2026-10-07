@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &140416232910178553
+--- !u!1 &4131773501386034235
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,55 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6497543599220940062}
-  - component: {fileID: 6020819902784107674}
-  m_Layer: 0
-  m_Name: DamageOuterPreview
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6497543599220940062
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140416232910178553}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7738007218929109326}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6020819902784107674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140416232910178553}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f6719347f882624da5e6e7e25169a7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RPG.PreviewFillHandler
-  fills:
-  - {fileID: 641488863647045906}
---- !u!1 &641488863647045906
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7955530774960401815}
-  - component: {fileID: 4742835519174064999}
+  - component: {fileID: 7083729904553185475}
+  - component: {fileID: 2662412104707441733}
   m_Layer: 0
   m_Name: KaboomFill
   m_TagString: Untagged
@@ -64,29 +17,29 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!4 &7955530774960401815
+--- !u!4 &7083729904553185475
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 641488863647045906}
+  m_GameObject: {fileID: 4131773501386034235}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7738007218929109326}
+  m_Father: {fileID: 3236306496125850051}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 1.162}
---- !u!212 &4742835519174064999
+--- !u!212 &2662412104707441733
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 641488863647045906}
+  m_GameObject: {fileID: 4131773501386034235}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -138,7 +91,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!1 &8617126173530896402
+--- !u!1 &7966016275723347202
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,8 +99,55 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7738007218929109326}
-  - component: {fileID: 2812921298405911263}
+  - component: {fileID: 3411391294643436612}
+  - component: {fileID: 7664450950183756219}
+  m_Layer: 0
+  m_Name: DamageOutsidePreview
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3411391294643436612
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7966016275723347202}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3236306496125850051}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7664450950183756219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7966016275723347202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6719347f882624da5e6e7e25169a7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.PreviewFillHandler
+  fills:
+  - {fileID: 4131773501386034235}
+--- !u!1 &7983960425026719477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3236306496125850051}
+  - component: {fileID: 456227873087551436}
   m_Layer: 0
   m_Name: KaboomOutline
   m_TagString: Untagged
@@ -155,30 +155,30 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7738007218929109326
+--- !u!4 &3236306496125850051
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8617126173530896402}
+  m_GameObject: {fileID: 7983960425026719477}
   serializedVersion: 2
   m_LocalRotation: {x: -0.70707047, y: 0.007167859, z: 0.007167859, w: 0.70707047}
-  m_LocalPosition: {x: -0, y: 0.05, z: -0.14}
-  m_LocalScale: {x: 0.4203992, y: 0.2363453, z: 0.21189637}
+  m_LocalPosition: {x: -0, y: 0.05, z: -0.45}
+  m_LocalScale: {x: 0.5117121, y: 0.28284594, z: 0.23999383}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7955530774960401815}
-  m_Father: {fileID: 6497543599220940062}
+  - {fileID: 7083729904553185475}
+  m_Father: {fileID: 3411391294643436612}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 1.162}
---- !u!212 &2812921298405911263
+--- !u!212 &456227873087551436
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8617126173530896402}
+  m_GameObject: {fileID: 7983960425026719477}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
