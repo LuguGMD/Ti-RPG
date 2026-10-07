@@ -139,6 +139,8 @@ namespace RPG.Combat.UI
         private void ShowPanel()
         {
             CombatUIManager.Instance.ChangePanel(_panel);
+            ActionsManager.Instance.OnTurnPassed -= HidePanel;
+            ActionsManager.Instance.OnActionStart -= HidePanel;
             ActionsManager.Instance.OnTurnPassed += HidePanel;
             ActionsManager.Instance.OnActionStart += HidePanel;
 
