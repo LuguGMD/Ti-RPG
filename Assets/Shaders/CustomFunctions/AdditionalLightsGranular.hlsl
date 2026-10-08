@@ -35,7 +35,7 @@ void AllAdditionalLightsGranular_float(float3 WorldPosition, float3 Normals, flo
         float diffuse = smoothstep(edge1, edge2, halfLambert);
 
         Shadows += diffuse * atten;
-        Color += Shadows * light.color;
+        Color += Shadows * light.color * dot(Normals, light.direction);
     LIGHT_LOOP_END
 #endif
 }
