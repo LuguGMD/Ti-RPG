@@ -5,6 +5,8 @@ using RPG.Extensions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using RPG.Audio;
 
 namespace RPG.Combat.Actions
 {
@@ -18,6 +20,8 @@ namespace RPG.Combat.Actions
         [SerializeField] private float _baseDamage = 2;
         [SerializeField] private float _movementDamage = 2;
         [SerializeField] private int _pushAmount = 1;
+        [SerializeField] private EventReference _honkSound;
+        [SerializeField] private EventReference _motorSound;
 
         public override void Init(StageEntityController user)
         {
@@ -35,10 +39,12 @@ namespace RPG.Combat.Actions
             Vector3 targetPos = MapManager.Instance.GetWorldPosition(targetTile);
             _user.transform.LookAt(targetPos);
 
+            AudioManager.Instance.PlayOneShot(_honkSound);
             yield return new WaitForSeconds(1.09f / CombatManager.CombatSpeed);
 
             do
             {
+                AudioManager.Instance.PlayOneShot(_motorSound);
                 yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
                 
                 if (root == selectedPreviewTile) break;
