@@ -287,14 +287,14 @@ MonoBehaviour:
       _doNeedSpotlight: 0
       _isRelativeToMovement: 1
       _area:
-      - {x: 0, y: 0}
+      - {x: 0, y: 1}
     - _targetList: 01000000
       _canTargetSelf: 0
       _doNeedSpotlight: 1
       _isRelativeToMovement: 1
       _area:
-      - {x: 0, y: 0}
-    _lastTileNeedsToBeEmpty: 1
+      - {x: 0, y: 1}
+    _lastTileNeedsToBeEmpty: 0
     _baseDamage: 3
     _movementDamage: 2
     _pushAmount: 1
