@@ -86,13 +86,17 @@ namespace RPG.Combat.Preview
         protected void AddParent()
         {
             transform.parent = MapManager.Map.GetTile(_tilePosition).Transform;
-            transform.GetChild(_tilePosition.y)?.gameObject.SetActive(true);
+            if (_tilePosition.y < transform.childCount && _tilePosition.y >= 0)
+                transform.GetChild(_tilePosition.y)?.gameObject.SetActive(true);
         }
 
         public void SetMeshes(PreviewTileModels info)
         {
-            _filter[_tilePosition.y].mesh = info.PreviewLinesMeshs[_tilePosition.y];
-            _renderer[_tilePosition.y].material = info.Material;
+            if (_tilePosition.y < transform.childCount && _tilePosition.y >= 0)
+            {
+                _filter[_tilePosition.y].mesh = info.PreviewLinesMeshs[_tilePosition.y];
+                _renderer[_tilePosition.y].material = info.Material;
+            }
             ShowMeshes();
         }
 

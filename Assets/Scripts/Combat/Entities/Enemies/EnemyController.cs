@@ -106,5 +106,30 @@ namespace RPG.Combat
             List<ActionTargetInfo> targets = new List<ActionTargetInfo>();
             return targets;
         }
+
+        protected override void OnHoverStart()
+        {
+            base.OnHoverStart();
+            _preview.ShowPreview();
+        }
+
+        protected override void OnHoverEnd()
+        {
+            if(!_isHovered)
+                _preview.HidePreview();
+        }
+
+        protected override void CheckHovered(Vector2Int hoveredPositon)
+        {
+            base.CheckHovered(hoveredPositon);
+            if (_isHovered)
+            {
+                _preview.ShowPreview();
+            }
+            else
+            {
+                _preview.HidePreview();
+            }
+        }
     }
 }

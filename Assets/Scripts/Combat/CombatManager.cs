@@ -315,7 +315,7 @@ namespace RPG.Combat
 
             yield return _selectedCharacter.UseSelectedAction(previewTileInfo);
 
-            ShowAllEnemiesPreviews();
+            //ShowAllEnemiesPreviews();
             DeselectCharacter();
             _canSelectCharacter = true;
             _isActionInProgress = false;
@@ -333,7 +333,7 @@ namespace RPG.Combat
 
             yield return Apresentador.EquippedSuper.Execute(previewTileInfo);
 
-            ShowAllEnemiesPreviews();
+            //ShowAllEnemiesPreviews();
             DeselectCharacter();
             _canSelectCharacter = true;
             _isActionInProgress = false;
@@ -370,7 +370,7 @@ namespace RPG.Combat
 
         private void StartPlayerTurn()
         {
-            ShowAllEnemiesPreviews();
+            //ShowAllEnemiesPreviews();
 
             _apresentador.ResetAction();
             _usedCharacters.Clear();
