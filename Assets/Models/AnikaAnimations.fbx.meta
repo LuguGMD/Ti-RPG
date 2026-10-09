@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ad5ca967e609ffc4088ad52bd1de2a39
+guid: 64b3962309935584795df180fc5d59f2
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,13 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Cabecas
-    second: {fileID: 2100000, guid: 23a7da6f798db2842a8dd89e7dfc0e79, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Corpo
-    second: {fileID: 2100000, guid: a9bb78cff8e1bd14d877804848bc4ce0, type: 2}
+      name: TextureMaterial
+    second: {fileID: 2100000, guid: baaba4bcd8121564b989cb8c169ad474, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -41,18 +36,18 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: FolesbelaAttackRoot
-      takeName: Attack
-      internalID: -3836753386204407498
+      name: AnikaDeath
+      takeName: AnikaRig|Death
+      internalID: -6101355455145990300
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 156
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -70,18 +65,18 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: FolesbelaAttack
-      takeName: Attack
-      internalID: 4867833702043026464
+      name: TrapezeAttack
+      takeName: TrapezeArmature|Attack
+      internalID: -2785618247368153098
       firstFrame: 0
-      lastFrame: 60
+      lastFrame: 238
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -99,18 +94,18 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: FolesbelaIdleCombat
-      takeName: FolesbelaRig|IdleCombatBake
-      internalID: 327136939370349715
+      name: AnikaTakeDamage
+      takeName: AnikaRig|Death
+      internalID: 5462420494609791214
       firstFrame: 0
-      lastFrame: 55
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -128,40 +123,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: FolesbelaIdleStretching
-      takeName: FolesbelaRig|IdleStretchingBake
-      internalID: -401010308907763764
+      name: TrapezeTakeDamage
+      takeName: TrapezeArmature|Death
+      internalID: -7236821223551918413
       firstFrame: 0
-      lastFrame: 132
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: FolesbelaTakeDamage
-      takeName: FolesbelaRig|DamageBake
-      internalID: -3461666460585084415
-      firstFrame: 0
-      lastFrame: 127
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

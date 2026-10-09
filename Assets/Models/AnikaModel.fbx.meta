@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: TextureMaterial
     second: {fileID: 2100000, guid: baaba4bcd8121564b989cb8c169ad474, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TextureMaterial.001
+    second: {fileID: 2100000, guid: baaba4bcd8121564b989cb8c169ad474, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -65,35 +70,6 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: AnikaDeath
-      takeName: AnikaRig|Death
-      internalID: -6101355455145990300
-      firstFrame: 0
-      lastFrame: 156
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
       name: AnikaIdleCombat
       takeName: IdleCombat
       internalID: -3849232467687202499
@@ -106,35 +82,6 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: TrapezeAttack
-      takeName: Attack
-      internalID: -2785618247368153098
-      firstFrame: 0
-      lastFrame: 1
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -210,11 +157,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: AnikaTakeDamage
-      takeName: AnikaRig|Death
-      internalID: 5462420494609791214
+      name: AnikaPunch
+      takeName: AnikaRig|AnikaPunch
+      internalID: 7433677284510173857
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 70
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -239,11 +186,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: TrapezeTakeDamage
-      takeName: TrapezeArmature|Death
-      internalID: -7236821223551918413
+      name: TrapezePunch
+      takeName: IdleCombat
+      internalID: -2840600799558426460
       firstFrame: 0
-      lastFrame: 30
+      lastFrame: 255
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
