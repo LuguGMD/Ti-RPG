@@ -1,10 +1,13 @@
+using FMODUnity;
+using RPG.Audio;
 using RPG.Combat.Actions.Effects;
+using RPG.Combat.Grid;
 using RPG.Combat.Preview;
+using RPG.Extensions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FMODUnity;
-using RPG.Audio;
+using UnityEngine.UIElements;
 
 namespace RPG.Combat.Actions
 {
@@ -28,6 +31,13 @@ namespace RPG.Combat.Actions
         {
             PreviewTileInfo root = PreviewTileInfo.GetRoot(selectedPreviewTile);
 
+            _user.TileObject.SetDirection(root.Direction);
+            Vector2Int targetTile = _user.TileObject.Position + root.Direction.ToVector2Int();
+            targetTile = targetTile.ClampMap();
+            Vector3 targetPos = MapManager.Instance.GetWorldPosition(targetTile);
+
+            _user.transform.LookAt(targetPos);
+
             AudioManager.Instance.PlayOneShot(_weightWindSound);
             yield return new WaitForSeconds(1.45f / CombatManager.CombatSpeed);
             CombatManager.Instance.CameraShake(shakeCameraForce);
@@ -44,7 +54,7 @@ namespace RPG.Combat.Actions
                 AudioManager.Instance.PlayOneShot(_weightImpactSound);
             }
 
-            _user.Movement.Move(new Movement(root.Direction, true), 1);
+            yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
         }
 
         public override List<PreviewTileInfo> Preview()
