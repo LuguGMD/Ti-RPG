@@ -98,5 +98,10 @@ namespace RPG.Combat
         {
 
         }
+
+        public virtual void GetActionTargets()
+        {
+
+        }
     }
 }
