@@ -3,6 +3,8 @@ using RPG.Combat.Preview;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using RPG.Audio;
 
 namespace RPG.Combat.Actions
 {
@@ -12,6 +14,8 @@ namespace RPG.Combat.Actions
         private const float shakeCameraForce = 0.4f;
 
         [SerializeField] private float _damage;
+        [SerializeField] private EventReference _weightWindSound;
+        [SerializeField] private EventReference _weightImpactSound;
 
         public override void Init(StageEntityController user)
         {
@@ -24,21 +28,23 @@ namespace RPG.Combat.Actions
         {
             PreviewTileInfo root = PreviewTileInfo.GetRoot(selectedPreviewTile);
 
-            do
-            {
-                yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
-                if (root == selectedPreviewTile) break;
-                root = root.Child;
-            } while (root != null);
-
-            yield return new WaitForSeconds(1.15f / CombatManager.CombatSpeed);
+            AudioManager.Instance.PlayOneShot(_weightWindSound);
+            yield return new WaitForSeconds(1.45f / CombatManager.CombatSpeed);
             CombatManager.Instance.CameraShake(shakeCameraForce);
-
+            bool didHit = false;
             foreach (Effect effect in _effects)
             {
-                effect.Execute(_user);
+                if (effect.Execute(_user))
+                {
+                    didHit = true;
+                }
+            }
+            if (didHit)
+            {
+                AudioManager.Instance.PlayOneShot(_weightImpactSound);
             }
 
+            _user.Movement.Move(new Movement(root.Direction, true), 1);
         }
 
         public override List<PreviewTileInfo> Preview()
@@ -50,27 +56,30 @@ namespace RPG.Combat.Actions
 
             List<PreviewTileInfo> firstSteps = new List<PreviewTileInfo>();
 
+            Effect previewEffect = Effect.Clone(_effects[0]);
+            previewEffect.Area[0] = Vector2Int.zero;
+
             up = new PreviewTileInfo(Vector2Int.up, Grid.DirectionEnum.Up, false, false);
-            up.Effects.Add(_effects[0]);
+            up.Effects.Add(previewEffect);
             /*PreviewTileInfo child = up.CreateChild(Vector2Int.up, Grid.DirectionEnum.Up, false, false);
-            child.Effects.Add(_effects[0]);*/
+            child.Effects.Add(previewEffect);*/
 
             down = new PreviewTileInfo(Vector2Int.down, Grid.DirectionEnum.Down, false, false);
-            down.Effects.Add(_effects[0]);
+            down.Effects.Add(previewEffect);
             /*child = down.CreateChild(Vector2Int.down, Grid.DirectionEnum.Down, false, false);
-            child.Effects.Add(_effects[0]);*/
+            child.Effects.Add(previewEffect);*/
 
 
             right = new PreviewTileInfo(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
-            right.Effects.Add(_effects[0]);
+            right.Effects.Add(previewEffect);
             /*child = right.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
-            child.Effects.Add(_effects[0]);*/
+            child.Effects.Add(previewEffect);*/
 
 
             left = new PreviewTileInfo(Vector2Int.left, Grid.DirectionEnum.Left, false, false);
-            left.Effects.Add(_effects[0]);
+            left.Effects.Add(previewEffect);
             /*child = left.CreateChild(Vector2Int.left, Grid.DirectionEnum.Left, false, false);
-            child.Effects.Add(_effects[0]);*/
+            child.Effects.Add(previewEffect);*/
 
             firstSteps.Add(up);
             firstSteps.Add(down);

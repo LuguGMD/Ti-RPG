@@ -224,7 +224,7 @@ MonoBehaviour:
       Data4: 238582261
     Path: event:/Character/Player/Spawn
   _characterDirectionalPunch:
-    _actionName: Soco Direcional
+    _actionName: Investida
     _actionDescription: "Ataca e empurra em uma dire\xE7\xE3o"
     _followRadius: 5
     _effects:
@@ -245,7 +245,7 @@ MonoBehaviour:
     _pushAmount: 1
   _weightAttack:
     _actionName: "Trap\xE9zio Superior"
-    _actionDescription: Pula 1 tile e acerta o inimigo com o peso
+    _actionDescription: Pula 1 casa e acerta o inimigo com o peso
     _followRadius: 5
     _effects:
     - _targetList: 01000000
@@ -253,15 +253,29 @@ MonoBehaviour:
       _doNeedSpotlight: 0
       _isRelativeToMovement: 1
       _area:
-      - {x: 0, y: 0}
+      - {x: 0, y: 1}
     - _targetList: 01000000
       _canTargetSelf: 0
       _doNeedSpotlight: 1
       _isRelativeToMovement: 1
       _area:
-      - {x: 0, y: 0}
-    _lastTileNeedsToBeEmpty: 1
+      - {x: 0, y: 1}
+    _lastTileNeedsToBeEmpty: 0
     _damage: 8
+    _weightWindSound:
+      Guid:
+        Data1: -1757504512
+        Data2: 1166596148
+        Data3: -1422454855
+        Data4: -1153974306
+      Path: event:/Character/Player/DonLipon/DonLiponWeightWind
+    _weightImpactSound:
+      Guid:
+        Data1: -1617579224
+        Data2: 1137647665
+        Data3: 1769768842
+        Data4: -155704448
+      Path: event:/Character/Player/DonLipon/DonLiponWeightImpact
 --- !u!1001 &6309334940468634841
 PrefabInstance:
   m_ObjectHideFlags: 0

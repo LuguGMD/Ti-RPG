@@ -16,6 +16,11 @@ namespace RPG.Combat
         [SerializeField] private CharacterController _prefab;
         [ParamRef] [SerializeField] private string _fmodParameterName;
 
+        [Range(0, 5)] [SerializeField] private int _motivationStat;
+        [Range(0, 5)] [SerializeField] private int _strengthStat;
+        [Range(0, 5)] [SerializeField] private int _mobilityStat;
+
+
         #region Properties
 
 
@@ -25,6 +30,10 @@ namespace RPG.Combat
         public override TeamEnum Team { get { return TeamEnum.Circus; } }
         public CharacterController Prefab { get { return _prefab; } }
         public string FmodParameterName { get { return _fmodParameterName;  } }
+
+        public int MotivationStat { get { return _motivationStat; } }
+        public int StrengthStat { get { return _strengthStat; } }
+        public int MobilityStat { get { return _mobilityStat; } }
 
         #endregion
     }

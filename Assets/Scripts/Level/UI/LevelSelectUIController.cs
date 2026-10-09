@@ -1,6 +1,7 @@
 using Lugu.Singleton;
 using RPG.Combat;
 using RPG.Combat.UI;
+using RPG.Level.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace RPG.Level
         [SerializeField] private CharacterOptionButton _characterOptionPrefab;
         [SerializeField] private RectTransform _characterOptionsContainer;
         private List<CharacterOptionButton> _characterOptions = new List<CharacterOptionButton>();
+        [SerializeField] private List<CharacterStatPanel> _characterStatPanels = new List<CharacterStatPanel>();
 
         [SerializeField] private RectTransform _partyMemberModelPreview;
 
@@ -131,6 +133,11 @@ namespace RPG.Level
         {
             _partyMemberDescriptionPanel.gameObject.SetActive(character != null);
             if (character == null) return;
+
+            foreach (CharacterStatPanel statPanel in _characterStatPanels)
+            {
+                statPanel.UpdateInfo(character);
+            }
 
             _partyMemberNameText.text = character.EntityName;
             _partyMemberDescriptionText.text = character.EntityDescription;

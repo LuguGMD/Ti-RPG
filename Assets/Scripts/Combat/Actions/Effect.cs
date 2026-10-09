@@ -51,7 +51,7 @@ namespace RPG.Combat.Actions
             {
                 Vector2Int checkPosition = user.Position;
                 checkPosition += _isRelativeToMovement ? _area[i].RelativeTo(user.Direction) : _area[i];
-               /* Debug.Log("User Position: " + user.Position);
+               /*Debug.Log("User Position: " + user.Position);
                 Debug.Log("User Direction: " + user.Direction);
                 Debug.Log("Check Position: " + checkPosition);
                 Debug.Log(_area[i]);*/

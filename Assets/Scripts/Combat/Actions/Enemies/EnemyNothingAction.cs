@@ -30,7 +30,7 @@ namespace RPG.Combat.Actions
             PreviewTileInfo still;
             List<PreviewTileInfo> firstSteps = new List<PreviewTileInfo>();
 
-            still = new PreviewTileInfo(Vector2Int.zero, Grid.DirectionEnum.None, false);
+            still = new PreviewTileInfo(Vector2Int.zero, Grid.DirectionEnum.None, false, alwaysShowEffect: true);
 
             firstSteps.Add(still);
             return firstSteps;

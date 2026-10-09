@@ -4,6 +4,8 @@ using RPG.Extensions;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FMODUnity;
+using RPG.Audio;
 
 namespace RPG.Combat.Actions
 {
@@ -12,6 +14,9 @@ namespace RPG.Combat.Actions
     {
         [SerializeField] private float _damage;
         [SerializeField] private Vector2Int _dir;
+        [SerializeField] private EventReference _accordionOpenSound;
+        [SerializeField] private EventReference _accordionClosedSound;
+        [SerializeField] private EventReference _impactSound;
 
         public override void Init(StageEntityController user)
         {
@@ -28,7 +33,10 @@ namespace RPG.Combat.Actions
 
             do
             {
+                AudioManager.Instance.PlayOneShot(_accordionOpenSound);
                 yield return _user.Movement.Move(new Movement(root.Direction, root.NeedsToBeEmpty), (int)root.RelativePosition.magnitude);
+                AudioManager.Instance.PlayOneShot(_accordionClosedSound);
+                AudioManager.Instance.PlayOneShot(_impactSound);
                 foreach (Effect effect in _effects)
                 {
                     effect.Execute(_user);
