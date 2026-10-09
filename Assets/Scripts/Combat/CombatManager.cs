@@ -463,6 +463,7 @@ namespace RPG.Combat
             DeselectCharacter();
             _canSelectCharacter = false;
 
+            ShowAllEnemiesPreviews();
             HideAllEnemiesPreviews();
 
             StartCoroutine(EnemyTurnCoroutine());
