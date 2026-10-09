@@ -74,24 +74,27 @@ namespace RPG.Combat.Actions
 
             List<PreviewTileInfo> firstSteps = new List<PreviewTileInfo>();
 
+            Effect previewEffect = Effect.Clone(_effects[0]);
+            previewEffect.Area[0] = Vector2Int.zero;
+
             right = new PreviewTileInfo(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
-            right.Effects.Add(_effects[0]);
+            right.Effects.Add(previewEffect);
             PreviewTileInfo child = right.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
-            child.Effects.Add(_effects[0]);
+            child.Effects.Add(previewEffect);
             child = child.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
-            child.Effects.Add(_effects[0]);
+            child.Effects.Add(previewEffect);
             child = child.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
-            child.Effects.Add(_effects[0]);
+            child.Effects.Add(previewEffect);
 
 
             left = new PreviewTileInfo(Vector2Int.left, Grid.DirectionEnum.Left, false, false);
-            left.Effects.Add(_effects[0]);
+            left.Effects.Add(previewEffect);
             child = left.CreateChild(Vector2Int.left, Grid.DirectionEnum.Left, false, false);
-            child.Effects.Add(_effects[0]);
+            child.Effects.Add(previewEffect);
             child = child.CreateChild(Vector2Int.left, Grid.DirectionEnum.Left, false, false);
-            child.Effects.Add(_effects[0]);
+            child.Effects.Add(previewEffect);
             child = child.CreateChild(Vector2Int.left, Grid.DirectionEnum.Left, false, false);
-            child.Effects.Add(_effects[0]);
+            child.Effects.Add(previewEffect);
 
             firstSteps.Add(right);
             firstSteps.Add(left);
