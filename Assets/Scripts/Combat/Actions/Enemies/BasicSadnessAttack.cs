@@ -53,19 +53,20 @@ namespace RPG.Combat.Actions
             List<PreviewTileInfo> firstSteps = new List<PreviewTileInfo>();
 
             Effect previewEffect = Effect.Clone(_effects[0]);
+            previewEffect.Area[0] = new Vector2Int(0, 0);
 
-            up = new PreviewTileInfo(Vector2Int.up, Grid.DirectionEnum.Up, true);
+            up = new PreviewTileInfo(Vector2Int.up, Grid.DirectionEnum.Up, true, alwaysShowEffect: true);
             up.Effects.Add(previewEffect);
 
-            down = new PreviewTileInfo(Vector2Int.down, Grid.DirectionEnum.Down, true);
+            down = new PreviewTileInfo(Vector2Int.down, Grid.DirectionEnum.Down, true, alwaysShowEffect: true);
             down.Effects.Add(previewEffect);
 
 
-            right = new PreviewTileInfo(Vector2Int.right, Grid.DirectionEnum.Right, true);
+            right = new PreviewTileInfo(Vector2Int.right, Grid.DirectionEnum.Right, true, alwaysShowEffect: true);
             right.Effects.Add(previewEffect);
 
 
-            left = new PreviewTileInfo(Vector2Int.left, Grid.DirectionEnum.Left, true);
+            left = new PreviewTileInfo(Vector2Int.left, Grid.DirectionEnum.Left, true, alwaysShowEffect: true);
             left.Effects.Add(previewEffect);
 
             //firstSteps.Add(up);

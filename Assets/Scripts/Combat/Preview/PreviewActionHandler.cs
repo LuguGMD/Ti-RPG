@@ -65,13 +65,13 @@ namespace RPG.Combat.Preview
                 do
                 {
                     position += currentPreviewTileInfo.RelativePosition;
-                    StageEntityController stageEntityTarget = MapManager.Map.GetTile(position).TileObject?.Entity;
+                    StageEntityController stageEntityTarget = MapManager.Map.GetTile(position)?.TileObject?.Entity;
 
                     if (IsPositionValid(currentPreviewTileInfo, position, out doCancelPattern))
                     {
                         AddPreviewTile(currentPreviewTileInfo, position, ref lastPreviewTile);
                     }
-                    else if (!_actionToPreview.LastTileNeedsToBeEmpty && _actionToPreview.Effects[0].TargetList.Contains(stageEntityTarget.Info.Team))
+                    else if (!_actionToPreview.LastTileNeedsToBeEmpty && stageEntityTarget != null && _actionToPreview.Effects[0].TargetList.Contains(stageEntityTarget.Info.Team))
                     {
                         AddPreviewTile(currentPreviewTileInfo, position, ref lastPreviewTile);
                         doCancelPattern = true;

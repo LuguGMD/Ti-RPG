@@ -46,8 +46,13 @@ namespace RPG.Combat.Actions
 
             List<PreviewTileInfo> firstSteps = new List<PreviewTileInfo>();
 
-            first = new PreviewTileInfo(_direction, _direction.ToDirection(), false);
-            second = new PreviewTileInfo(-_direction, (-_direction).ToDirection(), false);
+            Effect previewEffect = Effect.Clone(_effects[0]);
+            previewEffect.Area[0] = new Vector2Int(0, 0);
+
+            first = new PreviewTileInfo(_direction, _direction.ToDirection(), false, alwaysShowEffect: true);
+            first.Effects.Add(previewEffect);
+            second = new PreviewTileInfo(-_direction, (-_direction).ToDirection(), false, alwaysShowEffect: true);
+            second.Effects.Add(previewEffect);
 
 
             firstSteps.Add(first);

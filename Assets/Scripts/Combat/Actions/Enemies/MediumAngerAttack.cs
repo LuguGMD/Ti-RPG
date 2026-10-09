@@ -40,9 +40,12 @@ namespace RPG.Combat.Actions
                 root = root.Child;
             } while (root != null);
 
-            CombatManager.Instance.CameraShake(shakeCameraForce);
+           
 
-            _effects[0].Execute(_user);
+            if(_effects[0].Execute(_user))
+            {
+                CombatManager.Instance.CameraShake(shakeCameraForce);
+            }
             _effects[1].Execute(_user);
         }
 
@@ -53,12 +56,11 @@ namespace RPG.Combat.Actions
             List<PreviewTileInfo> firstSteps = new List<PreviewTileInfo>();
 
             Effect previewEffect = Effect.Clone(_effects[0]);
+            previewEffect.Area[0] = new Vector2Int(0, 0);
 
-            first = new PreviewTileInfo(_direction, _direction.ToDirection(), false);
+            first = new PreviewTileInfo(_direction, _direction.ToDirection(), false, alwaysShowEffect: true);
             first.Effects.Add(previewEffect);
-            PreviewTileInfo child = first.CreateChild(_direction, _direction.ToDirection(), false);
-            child.Effects.Add(previewEffect);
-            child = child.CreateChild(_direction, _direction.ToDirection(), false);
+            PreviewTileInfo child = first.CreateChild(_direction, _direction.ToDirection(), false, alwaysShowEffect: true);
             child.Effects.Add(previewEffect);
 
             firstSteps.Add(first);

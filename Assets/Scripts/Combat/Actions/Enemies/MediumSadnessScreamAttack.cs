@@ -53,15 +53,26 @@ namespace RPG.Combat.Actions
             PreviewTileInfo upRight;
 
             List<PreviewTileInfo> firstSteps = new List<PreviewTileInfo>();
+            Effect previewEffect = Effect.Clone(_effects[0]);
+            previewEffect.Area.Clear();
+            previewEffect.Area.Add(Vector2Int.zero);
 
-            up = new PreviewTileInfo(Vector2Int.up, Vector2Int.up.ToDirection(), false);
-            upLeft = new PreviewTileInfo(Vector2Int.up + Vector2Int.left, Vector2Int.left.ToDirection(), false);
-            left = new PreviewTileInfo(Vector2Int.left, Vector2Int.left.ToDirection(), false);
-            downLeft = new PreviewTileInfo(Vector2Int.down + Vector2Int.left, Vector2Int.left.ToDirection(), false);
-            down = new PreviewTileInfo(Vector2Int.down, Vector2Int.down.ToDirection(), false);
-            downRight = new PreviewTileInfo(Vector2Int.down + Vector2Int.right, Vector2Int.right.ToDirection(), false);
-            right = new PreviewTileInfo(Vector2Int.right, Vector2Int.right.ToDirection(), false);
-            upRight = new PreviewTileInfo(Vector2Int.up + Vector2Int.right, Vector2Int.right.ToDirection(), false);
+            up = new PreviewTileInfo(Vector2Int.up, Vector2Int.up.ToDirection(), false, alwaysShowEffect: true);
+            up.Effects.Add(previewEffect);
+            upLeft = new PreviewTileInfo(Vector2Int.up + Vector2Int.left, Vector2Int.left.ToDirection(), false, alwaysShowEffect: true);
+            upLeft.Effects.Add(previewEffect);
+            left = new PreviewTileInfo(Vector2Int.left, Vector2Int.left.ToDirection(), false, alwaysShowEffect: true);
+            left.Effects.Add(previewEffect);
+            downLeft = new PreviewTileInfo(Vector2Int.down + Vector2Int.left, Vector2Int.left.ToDirection(), false, alwaysShowEffect: true);
+            downLeft.Effects.Add(previewEffect);
+            down = new PreviewTileInfo(Vector2Int.down, Vector2Int.down.ToDirection(), false, alwaysShowEffect: true);
+            down.Effects.Add(previewEffect);
+            downRight = new PreviewTileInfo(Vector2Int.down + Vector2Int.right, Vector2Int.right.ToDirection(), false, alwaysShowEffect: true);
+            downRight.Effects.Add(previewEffect);
+            right = new PreviewTileInfo(Vector2Int.right, Vector2Int.right.ToDirection(), false, alwaysShowEffect: true);
+            right.Effects.Add(previewEffect);
+            upRight = new PreviewTileInfo(Vector2Int.up + Vector2Int.right, Vector2Int.right.ToDirection(), false, alwaysShowEffect: true);
+            upRight.Effects.Add(previewEffect);
 
 
             firstSteps.Add(up);

@@ -15,6 +15,7 @@ namespace RPG.Combat.Preview
         [SerializeField] private List<DamagePreviewHandler> _damagePreviews;
         private ActionPreviewTile _parent;
         private bool _effectPreviewEnabled = false;
+        private bool _neverHideEffects = false;
 
         private Color _color;
         private Color _colorHDR;
@@ -76,7 +77,7 @@ namespace RPG.Combat.Preview
                 ActionsManager.Instance.OnActionTileSelected?.Invoke(_info);
         }
 
-        protected void ShowEffects(bool isFirst = true)
+        public void ShowEffects(bool isFirst = true)
         {
             if (_info == null || ((_effectPreviewEnabled || !_canBeSelected) && !_info.AlwaysShowEffect)) return;
             _effectPreviewEnabled = true;
@@ -144,6 +145,8 @@ namespace RPG.Combat.Preview
 
         private void CheckHovered(Vector2Int hoveredPosition)
         {
+            if (!_canBeSelected) return;
+
             if (_tilePosition == hoveredPosition)
             {
                 ShowEffects();
