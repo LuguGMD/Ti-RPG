@@ -16,6 +16,12 @@ namespace RPG.Combat.Actions
         [SerializeField] private EventReference _attackSFX;
         private Vector2Int _direction;
 
+        #region Properties
+
+        public float Damage { get { return _damage; } }
+
+        #endregion
+
         public override void Init(StageEntityController user)
         {
             _user = user;

@@ -1,8 +1,10 @@
+using RPG.Combat.Actions;
 using RPG.Combat.Grid;
 using RPG.Combat.Preview;
 using RPG.Combat.UI;
 using RPG.Management.Progression;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -99,9 +101,10 @@ namespace RPG.Combat
 
         }
 
-        public virtual void GetActionTargets()
+        protected virtual List<ActionTargetInfo> GetActionTargets()
         {
-
+            List<ActionTargetInfo> targets = new List<ActionTargetInfo>();
+            return targets;
         }
     }
 }
