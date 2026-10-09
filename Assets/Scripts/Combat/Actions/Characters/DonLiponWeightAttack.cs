@@ -28,28 +28,23 @@ namespace RPG.Combat.Actions
         {
             PreviewTileInfo root = PreviewTileInfo.GetRoot(selectedPreviewTile);
 
-            do
-            {
-                AudioManager.Instance.PlayOneShot(_weightWindSound);
-                yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
-                if (root == selectedPreviewTile) break;
-                root = root.Child;
-            } while (root != null);
-
-            yield return new WaitForSeconds(1.15f / CombatManager.CombatSpeed);
+            AudioManager.Instance.PlayOneShot(_weightWindSound);
+            yield return new WaitForSeconds(1.45f / CombatManager.CombatSpeed);
             CombatManager.Instance.CameraShake(shakeCameraForce);
             bool didHit = false;
             foreach (Effect effect in _effects)
             {
-                if(effect.Execute(_user))
+                if (effect.Execute(_user))
                 {
                     didHit = true;
                 }
             }
-            if(didHit)
+            if (didHit)
             {
                 AudioManager.Instance.PlayOneShot(_weightImpactSound);
             }
+
+            _user.Movement.Move(new Movement(root.Direction, true), 1);
         }
 
         public override List<PreviewTileInfo> Preview()
@@ -78,7 +73,7 @@ namespace RPG.Combat.Actions
             right = new PreviewTileInfo(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
             right.Effects.Add(previewEffect);
             /*child = right.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
-            child.Effects.Add(previewEffect);*/ 
+            child.Effects.Add(previewEffect);*/
 
 
             left = new PreviewTileInfo(Vector2Int.left, Grid.DirectionEnum.Left, false, false);
