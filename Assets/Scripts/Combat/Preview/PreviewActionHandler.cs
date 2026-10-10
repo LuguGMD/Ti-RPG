@@ -149,8 +149,9 @@ namespace RPG.Combat.Preview
                         return;
                     }
                     ActionPreviewMaterial previewMaterial = MapManager.StageCenterLights;
-                    previewMaterial.StartPreview(position.x);
-                    _activePreviewMaterial.Add(position.x);
+                    int invertedIndex = (Map.Columns - position.x) % Map.Columns;
+                    previewMaterial.StartPreview(invertedIndex);
+                    _activePreviewMaterial.Add(invertedIndex);
                 }
             }
             else
