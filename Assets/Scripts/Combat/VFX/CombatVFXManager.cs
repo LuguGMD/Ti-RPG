@@ -135,7 +135,9 @@ namespace RPG.Combat.VFX
 
         void UnLockCharacterOutline()
         {
-            selectedCharacter?.GetComponent<AvailableActionVFXController>().UnlockOutline();
+            if(selectedCharacter == null) return;
+            AvailableActionVFXController vfxController = selectedCharacter.GetComponent<AvailableActionVFXController>();
+            vfxController?.UnlockOutline();
             DeactivateCharacterOutline(selectedCharacter);
         }
 
