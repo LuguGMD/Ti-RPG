@@ -71,9 +71,12 @@ namespace RPG.Combat.Preview
                     {
                         AddPreviewTile(currentPreviewTileInfo, position, ref lastPreviewTile);
                     }
-                    else if (!_actionToPreview.LastTileNeedsToBeEmpty && stageEntityTarget != null && _actionToPreview.Effects[0].TargetList.Contains(stageEntityTarget.Info.Team))
+                    else if (!_actionToPreview.LastTileNeedsToBeEmpty)
                     {
-                        AddPreviewTile(currentPreviewTileInfo, position, ref lastPreviewTile);
+                        if (stageEntityTarget != null && _actionToPreview.Effects[0].TargetList.Contains(stageEntityTarget.Info.Team))
+                        {
+                            AddPreviewTile(currentPreviewTileInfo, position, ref lastPreviewTile);
+                        }
                         doCancelPattern = true;
                     }
                     else if (currentPreviewTileInfo.AlwaysShowEffect)
