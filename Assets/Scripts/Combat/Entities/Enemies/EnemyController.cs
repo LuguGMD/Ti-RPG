@@ -120,6 +120,17 @@ namespace RPG.Combat
                 _preview.HidePreview();
         }
 
+        protected override void OnSelected()
+        {
+            base.OnSelected();
+
+            if(_isHovered)
+            {
+                _isHovered = false;
+                ActionsManager.Instance.OnPreviewTileSelected?.Invoke(Position);
+            }
+        }
+
         protected override void CheckHovered(Vector2Int hoveredPositon)
         {
             base.CheckHovered(hoveredPositon);
