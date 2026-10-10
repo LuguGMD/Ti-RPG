@@ -108,6 +108,7 @@ namespace RPG.Analytics
 
         protected override void RecordEvent()
         {
+            _event.LevelName = GameManager.SelectedLevel.levelName;
             _event.CombatResume = JsonUtility.ToJson(_turnsData, true);
             base.RecordEvent();
         }
