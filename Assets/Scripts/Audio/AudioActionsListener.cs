@@ -57,7 +57,7 @@ namespace RPG.Audio
             AudioManager.Instance.PlayOneShot(_errorSFX);
         }
 
-        private void PlayHealSound(RPG.Combat.CharacterController character)
+        private void PlayHealSound(RPG.Combat.CharacterController character, float amount)
         {
             if (_didPlayHealSound) return;
 

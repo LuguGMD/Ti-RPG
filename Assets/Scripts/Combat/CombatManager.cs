@@ -192,12 +192,12 @@ namespace RPG.Combat
 
         #region Feedback
 
-        private void CharacterDamageTaken(CharacterController character)
+        private void CharacterDamageTaken(CharacterController character, float amount)
         {
             CameraShake(shakeCameraDamage);
         }
 
-        private void ApresentadorDamageTaken()
+        private void ApresentadorDamageTaken(float amount)
         {
             CameraShake(shakeCameraDamageApresentador);
         }

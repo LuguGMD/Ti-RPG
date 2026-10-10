@@ -64,7 +64,7 @@ namespace RPG.Combat
 
         #region Handlers
 
-        private void HandleApresentadorDamage()
+        private void HandleApresentadorDamage(float amount)
         {
             ChangeAllSectionsPoses(SpectatorHandler.PosesEnum.Boo);
         }
@@ -74,7 +74,7 @@ namespace RPG.Combat
             ChangeAllSectionsPoses(SpectatorHandler.PosesEnum.Boo);
         }
 
-        private void HandleEnemyDamage(EnemyController enemy)
+        private void HandleEnemyDamage(EnemyController enemy, float amount)
         {
             ChangeSectionPoses(enemy.Position.x, SpectatorHandler.PosesEnum.Cheer);
         }
@@ -84,7 +84,7 @@ namespace RPG.Combat
             ChangeAllSectionsPoses(SpectatorHandler.PosesEnum.Cheer);
         }
 
-        private void HandleCharacterDamage(CharacterController character)
+        private void HandleCharacterDamage(CharacterController character, float amount)
         {
             ChangeSectionPoses(character.Position.x, SpectatorHandler.PosesEnum.Boo);
         }

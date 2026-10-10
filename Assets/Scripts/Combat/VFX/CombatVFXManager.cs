@@ -95,19 +95,19 @@ namespace RPG.Combat.VFX
         #endregion
 
         #region Heal VFX
-        void PlayHealVFX(CharacterController entity)
+        void PlayHealVFX(CharacterController entity, float amount)
         {
             Instantiate(healVFXPrefab, entity.transform.position, Quaternion.identity);
         }
 
-        void PlayHealVFXApresentador()
+        void PlayHealVFXApresentador(float amount)
         {
             Instantiate(healVFXPrefab, CombatManager.Apresentador.transform.position, Quaternion.identity);
         }
 #endregion
 
         #region Hit VFX
-        void PlayHitVFX(StageEntityController entity)
+        void PlayHitVFX(StageEntityController entity, float amount)
         {
             Instantiate(hitVFXPrefab, entity.transform.position, Quaternion.identity, entity.transform);
         }

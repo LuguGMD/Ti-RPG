@@ -49,13 +49,14 @@ namespace RPG.Combat
             if (_tileObject.CurrentTile.TileUpgrade == UpgradeConstants.UpgradeKey.TileDamageReduction1 ||
             _tileObject.CurrentTile.TileUpgrade == UpgradeConstants.UpgradeKey.TileDamageReduction1) damage /= 1.5f;
 
+            float previousHealth = _health;
             _health -= damage;
 
             CombatManager.Instance.CameraShake(shakeCameraDamage);
 
             UpdateHealthBar();
             base.TakeDamage(damage);
-            ActionsManager.Instance.OnEnemyDamageTaken?.Invoke(this);
+            ActionsManager.Instance.OnEnemyDamageTaken?.Invoke(this, _health - previousHealth);
         }
 
         public override void Heal(float heal)
