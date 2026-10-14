@@ -84,7 +84,7 @@ namespace RPG.Combat.UI
             _apresentadorIcon.sprite = CombatManager.Apresentador.HasActed ? _apresentadorUsedIconSprite : _apresentadorIconSprite;
         }
 
-        private void UpdateCharacterHealth(CharacterController character)
+        private void UpdateCharacterHealth(CharacterController character, float amount = 0)
         {
             if (!_characterSliders.ContainsKey(character)) return;
 
@@ -92,7 +92,7 @@ namespace RPG.Combat.UI
             motivationSlider.Slider.DOValue((CombatConstants.MAX_MOTIVATION_APRESENTADOR - character.CurrentMotivation) / CombatConstants.MAX_MOTIVATION_APRESENTADOR, 1f);
         }
 
-        private void UpdateApresentadorDamage()
+        private void UpdateApresentadorDamage(float amount)
         {
             _apresentadorSlider.DOValue(CombatManager.Apresentador.CurrentMotivation / CombatConstants.MAX_MOTIVATION_APRESENTADOR, 0.2f);
         }

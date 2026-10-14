@@ -49,13 +49,14 @@ namespace RPG.Combat
             if (_tileObject.CurrentTile.TileUpgrade == UpgradeConstants.UpgradeKey.TileDamageReduction1 ||
             _tileObject.CurrentTile.TileUpgrade == UpgradeConstants.UpgradeKey.TileDamageReduction1) damage /= 1.5f;
 
+            float previousHealth = _health;
             _health -= damage;
 
             CombatManager.Instance.CameraShake(shakeCameraDamage);
 
             UpdateHealthBar();
             base.TakeDamage(damage);
-            ActionsManager.Instance.OnEnemyDamageTaken?.Invoke(this);
+            ActionsManager.Instance.OnEnemyDamageTaken?.Invoke(this, _health - previousHealth);
         }
 
         public override void Heal(float heal)
@@ -82,6 +83,8 @@ namespace RPG.Combat
         {
             base.Defeated();
 
+            _preview.HidePreview();
+
             ActionsManager.Instance.OnEnemyDefeated?.Invoke(this);
             CombatManager.Instance.RemoveEnemy(this);
             _tileObject.CurrentTile.SetTileObject(null);
@@ -105,6 +108,42 @@ namespace RPG.Combat
         {
             List<ActionTargetInfo> targets = new List<ActionTargetInfo>();
             return targets;
+        }
+
+        protected override void OnHoverStart()
+        {
+            base.OnHoverStart();
+            _preview.ShowPreview();
+        }
+
+        protected override void OnHoverEnd()
+        {
+            if(!_isHovered)
+                _preview.HidePreview();
+        }
+
+        protected override void OnSelected()
+        {
+            base.OnSelected();
+
+            if(_isHovered)
+            {
+                _isHovered = false;
+                ActionsManager.Instance.OnPreviewTileSelected?.Invoke(Position);
+            }
+        }
+
+        protected override void CheckHovered(Vector2Int hoveredPositon)
+        {
+            base.CheckHovered(hoveredPositon);
+            if (_isHovered)
+            {
+                _preview.ShowPreview();
+            }
+            else
+            {
+                _preview.HidePreview();
+            }
         }
     }
 }

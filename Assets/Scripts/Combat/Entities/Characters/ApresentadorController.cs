@@ -126,10 +126,11 @@ namespace RPG.Combat
 
         public override void TakeDamage(float damage)
         {
+            float previousMotivation = _currentMotivation;
             damage *= _damageMultiplier;
             _currentMotivation -= damage;
             _currentMotivation = Mathf.Clamp(_currentMotivation, 0, CombatConstants.MAX_MOTIVATION_APRESENTADOR);
-            ActionsManager.Instance.OnApresentadorDamageTaken?.Invoke();
+            ActionsManager.Instance.OnApresentadorDamageTaken?.Invoke(_currentMotivation - previousMotivation);
 
             base.TakeDamage(damage);
         }
@@ -141,10 +142,11 @@ namespace RPG.Combat
 
         public override void Heal(float heal)
         {
+            float previousMotivation = _currentMotivation;
             _currentMotivation += heal;
             _currentMotivation = Mathf.Clamp(_currentMotivation, 0, CombatConstants.MAX_MOTIVATION_APRESENTADOR);
 
-            ActionsManager.Instance.OnApresentadorHealed?.Invoke();
+            ActionsManager.Instance.OnApresentadorHealed?.Invoke(_currentMotivation - previousMotivation);
         }
 
         public void Rotate(int amount)

@@ -10,8 +10,8 @@ namespace RPG.Combat
         [TextArea] [SerializeField] private string _entityDescription = "Description";
         [SerializeField] private GameObject _previewModelPrefab;
         [SerializeField] private Color _entityColor = Color.white;
-        [ColorUsage(false, true)] [SerializeField] private Color _entityColorHDR = Color.white;
-        [ColorUsage(false, true)] [SerializeField] private Color _entitySecondaryColor = Color.white;
+        [ColorUsage(false, false)] [SerializeField] private Color _entityColorHDR = Color.white;
+        [ColorUsage(false, false)] [SerializeField] private Color _entitySecondaryColor = Color.white;
 
         #region Properties
 

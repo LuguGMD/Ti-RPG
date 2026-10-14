@@ -40,13 +40,13 @@ namespace RPG.Combat
         protected new void OnEnable()
         {
             base.OnEnable();
-            ActionsManager.Instance.OnApresentadorDamageTaken += CheckDefeated;
+            ActionsManager.Instance.OnApresentadorDamageTaken += OnApresentadorDamaged;
         }
 
         protected new void OnDisable()
         {
             base.OnDisable();
-            ActionsManager.Instance.OnApresentadorDamageTaken -= CheckDefeated;
+            ActionsManager.Instance.OnApresentadorDamageTaken -= OnApresentadorDamaged;
         }
 
         private void Initialize()
@@ -66,20 +66,28 @@ namespace RPG.Combat
             if (_tileObject.CurrentTile.TileUpgrade == UpgradeConstants.UpgradeKey.TileDamageReduction1 ||
             _tileObject.CurrentTile.TileUpgrade == UpgradeConstants.UpgradeKey.TileDamageReduction1) damage /= 1.5f;
 
+            float previousMotivation = _currentMotivation;
+
             _currentMotivation -= damage;
             _currentMotivation = Mathf.Clamp(_currentMotivation, 0, CombatConstants.MAX_MOTIVATION_APRESENTADOR);
 
-            ActionsManager.Instance.OnCharacterDamageTaken?.Invoke(this);
+            ActionsManager.Instance.OnCharacterDamageTaken?.Invoke(this, _currentMotivation - previousMotivation);
 
             base.TakeDamage(damage);
         }
 
         public override void Heal(float heal)
         {
+            float previousMotivation = _currentMotivation;
             _currentMotivation += heal;
             _currentMotivation = Mathf.Clamp(_currentMotivation, 0, CombatConstants.MAX_MOTIVATION_APRESENTADOR);
 
-            ActionsManager.Instance.OnCharacterHealed?.Invoke(this);
+            ActionsManager.Instance.OnCharacterHealed?.Invoke(this, _currentMotivation - previousMotivation);
+        }
+
+        private void OnApresentadorDamaged(float amount)
+        {
+            CheckDefeated();
         }
 
         protected override void CheckDefeated()

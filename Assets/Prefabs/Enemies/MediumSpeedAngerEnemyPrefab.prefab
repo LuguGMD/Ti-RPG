@@ -73,6 +73,10 @@ PrefabInstance:
       value: MediumSpeedAngerEnemyPrefab
       objectReference: {fileID: 0}
     - target: {fileID: 6786344436985357976, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6786344436985357976, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 2.96
       objectReference: {fileID: 0}
@@ -179,7 +183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a2493c075ce2f964abdbdc85b411466b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.437
+      value: -0.17
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a2493c075ce2f964abdbdc85b411466b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -220,7 +224,7 @@ PrefabInstance:
     - target: {fileID: -4943108271747695353, guid: a2493c075ce2f964abdbdc85b411466b, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: bfa4fb3c35c44a5419cf6c6c593a5993, type: 2}
+      objectReference: {fileID: 2100000, guid: 18f98f679e5528246a7961ebdb8e431b, type: 2}
     - target: {fileID: 919132149155446097, guid: a2493c075ce2f964abdbdc85b411466b, type: 3}
       propertyPath: m_Name
       value: SpeedEnemyModel

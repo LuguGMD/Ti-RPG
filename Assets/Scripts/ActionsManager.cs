@@ -21,14 +21,15 @@ namespace RPG
         public Action OnRotationAnimationStarted;
         public Action OnRotationAnimationEnded;
         public Action<int> OnMapLineStuck;
+        public Action<int> OnMapLineUnstuck;
         public Action OnRowRotated;
 
         public Action OnCombatWon;
         public Action OnCombatLost;
 
         public Action OnCombatSpeedChanged;
-        public Action OnApresentadorDamageTaken;
-        public Action OnApresentadorHealed;
+        public Action<float> OnApresentadorDamageTaken;
+        public Action<float> OnApresentadorHealed;
         public Action OnSpotlightSuperStarted;
         public Action OnSpotlightSuperEnded;
 
@@ -38,8 +39,8 @@ namespace RPG
         public Action OnApresentadorHoverEnter;
         public Action OnApresentadorHoverExit;
 
-        public Action<CharacterController> OnCharacterDamageTaken;
-        public Action<CharacterController> OnCharacterHealed;
+        public Action<CharacterController, float> OnCharacterDamageTaken;
+        public Action<CharacterController, float> OnCharacterHealed;
         public Action<CharacterController> OnCharacterCreated;
         public Action<CharacterController> OnCharacterDefeated;
 
@@ -53,7 +54,7 @@ namespace RPG
         public Action<StageEntityController> OnStageEntityDefeated;
 
         public Action<EnemyController> OnEnemyDefeated;
-        public Action<EnemyController> OnEnemyDamageTaken;
+        public Action<EnemyController, float> OnEnemyDamageTaken;
         public Action<EnemyController> OnEnemyActionUsed;
         public Action<EnemyController> OnEnemySpawnedWithSpotlight;
 

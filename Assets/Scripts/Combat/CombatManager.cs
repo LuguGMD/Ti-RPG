@@ -192,12 +192,12 @@ namespace RPG.Combat
 
         #region Feedback
 
-        private void CharacterDamageTaken(CharacterController character)
+        private void CharacterDamageTaken(CharacterController character, float amount)
         {
             CameraShake(shakeCameraDamage);
         }
 
-        private void ApresentadorDamageTaken()
+        private void ApresentadorDamageTaken(float amount)
         {
             CameraShake(shakeCameraDamageApresentador);
         }
@@ -242,8 +242,7 @@ namespace RPG.Combat
 
         private void OnCombatActionSelected(PreviewTileInfo previewTileInfo)
         {
-            if (_selectedCharacter == null || _hasCombatEnded) return;
-
+            if (_selectedCharacter == null || _hasCombatEnded || _isActionInProgress) return;
             StartCoroutine(PlayerActionCoroutine(previewTileInfo));
         }
 
@@ -315,7 +314,7 @@ namespace RPG.Combat
 
             yield return _selectedCharacter.UseSelectedAction(previewTileInfo);
 
-            ShowAllEnemiesPreviews();
+            //ShowAllEnemiesPreviews();
             DeselectCharacter();
             _canSelectCharacter = true;
             _isActionInProgress = false;
@@ -333,7 +332,7 @@ namespace RPG.Combat
 
             yield return Apresentador.EquippedSuper.Execute(previewTileInfo);
 
-            ShowAllEnemiesPreviews();
+            //ShowAllEnemiesPreviews();
             DeselectCharacter();
             _canSelectCharacter = true;
             _isActionInProgress = false;
@@ -370,7 +369,7 @@ namespace RPG.Combat
 
         private void StartPlayerTurn()
         {
-            ShowAllEnemiesPreviews();
+            //ShowAllEnemiesPreviews();
 
             _apresentador.ResetAction();
             _usedCharacters.Clear();
@@ -463,6 +462,7 @@ namespace RPG.Combat
             DeselectCharacter();
             _canSelectCharacter = false;
 
+            ShowAllEnemiesPreviews();
             HideAllEnemiesPreviews();
 
             StartCoroutine(EnemyTurnCoroutine());
