@@ -1,5 +1,7 @@
 using RPG.Combat.Actions;
+using RPG.Combat.Grid;
 using RPG.Combat.Preview;
+using RPG.Combat.UI;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,7 +25,9 @@ namespace RPG.Combat
 
         public override void PrepareAction()
         {
-            if(_actions.Count == 0)
+            _nothing.IsHolding = false;
+
+            if (_actions.Count == 0)
             {
                 InitCombatActions();
             }
@@ -39,6 +43,15 @@ namespace RPG.Combat
 
             List<PreviewTileInfo> tiles = _attack.Preview();
             _preparedAction = tiles[0];
+        }
+
+        protected override void Defeated()
+        {
+            if(_nothing.IsHolding)
+            {
+                ActionsManager.Instance.OnMapLineUnstuck?.Invoke(Position.y);
+            }
+            base.Defeated();
         }
     }
 }

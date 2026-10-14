@@ -10,6 +10,8 @@ namespace RPG.Combat.Actions
     [System.Serializable]
     public class EnemyNothingAction : CombatAction
     {
+        public bool IsHolding = false;
+
         public override void Init(StageEntityController user)
         {
             _user = user;
@@ -22,6 +24,7 @@ namespace RPG.Combat.Actions
             {
                 ActionsManager.Instance.OnMapLineStuck?.Invoke(_user.Position.y);
                 _user.SetAnimationBool("IsHolding", true);
+                IsHolding = true;
             }
         }
 

@@ -19,6 +19,7 @@ namespace RPG.Combat
         protected Animator[] _animators;
         protected bool _hasActed = false;
         protected bool _isHovered = false;
+        private bool _isDefeated = false;
 
         [SerializeField] private EventReference _damagedSFX;
 
@@ -28,6 +29,8 @@ namespace RPG.Combat
         public DirectionEnum Direction { get { return _tileObject.Direction; } }
         public TileObject TileObject { get { return _tileObject; } }
         public bool HasActed { get { return _hasActed; } }
+        public bool IsHovered { get { return _isHovered; } }
+        public bool IsDefeated { get { return _isDefeated; } }
 
         #endregion
 
@@ -82,13 +85,20 @@ namespace RPG.Combat
 
         protected virtual void CheckHovered(Vector2Int hoveredPositon)
         {
-            if(!_isHovered && hoveredPositon == Position)
-            {
-                _isHovered = true;
-            }
-            else if(_isHovered && hoveredPositon != Position)
+            if (IsDefeated)
             {
                 _isHovered = false;
+            }
+            else
+            {
+                if (!_isHovered && hoveredPositon == Position)
+                {
+                    _isHovered = true;
+                }
+                else if (_isHovered && hoveredPositon != Position)
+                {
+                    _isHovered = false;
+                }
             }
         }
 
@@ -102,17 +112,21 @@ namespace RPG.Combat
 
         protected virtual void OnSelected()
         {
+            if (IsDefeated) return;
+
             ActionsManager.Instance.OnEntitySelected?.Invoke(this);
         }
 
         protected virtual void OnHoverStart()
         {
+            if (IsDefeated) return;
+
             ActionsManager.Instance.OnEntityHovered?.Invoke(this);
         }
 
         protected virtual void OnHoverEnd()
         {
-            
+
         }
 
         public void SetAnimationTrigger(string trigger)
@@ -160,6 +174,7 @@ namespace RPG.Combat
         protected abstract void CheckDefeated();
         protected virtual void Defeated()
         {
+            _isDefeated = true;
             SetAnimationTrigger("Died");
         }
 

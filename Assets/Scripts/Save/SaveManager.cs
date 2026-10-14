@@ -24,6 +24,12 @@ namespace RPG.Save
             }
         }
 
+        public static bool HasSaveData()
+        {
+            string path = GetSaveFilePath();
+            return File.Exists(path);
+        }
+
         public void FindSavables()
         {
             _onSave = null;
@@ -78,6 +84,7 @@ namespace RPG.Save
             Instance._saveData.AudioManagerData = previousSave.AudioManagerData;
 
             Save();
+            Instance.LoadAll();
         }
 
         private static string GetSaveFilePath()

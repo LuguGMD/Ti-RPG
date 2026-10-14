@@ -83,6 +83,8 @@ namespace RPG.Combat
         {
             base.Defeated();
 
+            _preview.HidePreview();
+
             ActionsManager.Instance.OnEnemyDefeated?.Invoke(this);
             CombatManager.Instance.RemoveEnemy(this);
             _tileObject.CurrentTile.SetTileObject(null);
