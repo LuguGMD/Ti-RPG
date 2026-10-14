@@ -4,6 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.UIElements.UxmlAttributeDescription;
+using FMODUnity;
+using RPG.Audio;
+using Unity.VisualScripting;
 
 namespace RPG.Combat.Actions
 {
@@ -12,6 +15,7 @@ namespace RPG.Combat.Actions
     {
         [SerializeField] private float _heal;
         [SerializeField] private float _damage;
+        [SerializeField] private EventReference _songAttackSFX;
 
         public override void Init(StageEntityController user)
         {
@@ -26,6 +30,7 @@ namespace RPG.Combat.Actions
 
             do
             {
+                AudioManager.Instance.PlayOneShot(_songAttackSFX);
                 yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
                 foreach (Effect effect in root.Effects)
                 {
