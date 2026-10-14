@@ -242,8 +242,7 @@ namespace RPG.Combat
 
         private void OnCombatActionSelected(PreviewTileInfo previewTileInfo)
         {
-            if (_selectedCharacter == null || _hasCombatEnded) return;
-
+            if (_selectedCharacter == null || _hasCombatEnded || _isActionInProgress) return;
             StartCoroutine(PlayerActionCoroutine(previewTileInfo));
         }
 

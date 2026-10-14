@@ -35,6 +35,7 @@ namespace RPG.Combat.Actions
                 {
                     effect.Execute(_user);
                 }
+                Debug.Log("Move");
                 yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
                 root = root.Child;
             } while (root != null);
