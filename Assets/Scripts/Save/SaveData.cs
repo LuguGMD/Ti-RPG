@@ -7,6 +7,7 @@ namespace RPG.Save
     [System.Serializable]
     public class SaveData
     {
+        public bool IsFirstTime = true;
         public GameManagerData GameManagerData = new GameManagerData();
         public LevelManagerData LevelManagerData = new LevelManagerData();
         public UpgradeGraphData UpgradeGraphData = new UpgradeGraphData();

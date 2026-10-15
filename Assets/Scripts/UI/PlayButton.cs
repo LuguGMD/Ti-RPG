@@ -7,7 +7,8 @@ namespace RPG.UI
     {
         private void Start()
         {
-            if (!SaveManager.HasSaveData())
+            ResetSaveButton resetSaveButton = GetComponentInChildren<ResetSaveButton>(true);
+            if (resetSaveButton == null && (SaveManager.SaveData == null || SaveManager.SaveData.IsFirstTime))
             {
                 gameObject.SetActive(false);
             }

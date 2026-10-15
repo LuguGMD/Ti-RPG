@@ -82,6 +82,7 @@ namespace RPG.Save
             Instance._saveData = new SaveData();
 
             Instance._saveData.AudioManagerData = previousSave.AudioManagerData;
+            Instance._saveData.IsFirstTime = false;
 
             Save();
             Instance.LoadAll();

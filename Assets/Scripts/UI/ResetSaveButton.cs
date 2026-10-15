@@ -9,6 +9,7 @@ namespace RPG.UI
         {
             SaveManager.ResetSave();
 
+            SaveManager.SaveData.IsFirstTime = false;
             base.OnClick();
         }
     }
