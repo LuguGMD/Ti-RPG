@@ -1,6 +1,8 @@
-using System.Collections.Generic;
 using RPG.Combat.Actions;
+using RPG.Combat.Grid;
 using RPG.Combat.Preview;
+using RPG.Combat.Wave;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -8,19 +10,45 @@ namespace RPG.Combat
     public class BossController : EnemyController
     {
         // TODO: Criar as actions extendendo [BossCombatAction]
-        [SerializeField] private BossCombatAction _action1Example;
-        [SerializeField] private BossCombatAction _action2Example;
+        [SerializeField] private BossPushAttack _actionPush;
+        [SerializeField] private BossRotateAttack _actionRotate;
 
         [SerializeField] private int _actionPoints;
         [SerializeField] private int _actionPointsMaximumAdd;
         [SerializeField] private int _actionPointsRamp;
 
+        private float _defeatsPerHit = 3;
+        private int _defeatsCount = 0;
+
+        protected new void Start()
+        {
+            base.Start();
+            _tileObject = GetComponent<TileObject>();
+            _tileObject.SetCurrentTile(new Tile(new Vector2Int(0, 0), transform), true);
+            _tileObject.SetEntity(this);
+            CombatManager.Instance.AddEnemy(this);
+
+            _defeatsPerHit = GameManager.BossFightLevel.TotalEnemies / 3f;
+        }
+
+        protected new void OnEnable()
+        {
+            base.OnEnable();
+            ActionsManager.Instance.OnEnemyDefeated += OnEnemyDefeated;
+        }
+
+        private new void OnDisable()
+        {
+            base.OnDisable();
+            ActionsManager.Instance.OnEnemyDefeated -= OnEnemyDefeated;
+        }
+
         protected override void InitCombatActions()
         {
             if (_actions.Count == 0)
             {
-                _actions.Add(_action1Example);
-                _actions.Add(_action2Example);
+                _actions.Add(_actionPush);
+                _actions.Add(_actionRotate);
                 base.InitCombatActions();
             }
         }
@@ -28,7 +56,7 @@ namespace RPG.Combat
         private int TurnActionPoints(int turn)
         {
             int points = (int)(-1 / Mathf.Exp(turn / _actionPointsRamp)) * _actionPointsMaximumAdd;
-            return points;
+            return -points;
         }
         public override void PrepareAction()
         {
@@ -45,7 +73,6 @@ namespace RPG.Combat
             for (int i = 0; i < _actions.Count; i++)
             {
                 BossCombatAction action = _actions[i] as BossCombatAction;
-
                 bool canBuy = action.ActionCost < _actionPoints;
                 if (!canBuy)
                 {
@@ -88,7 +115,7 @@ namespace RPG.Combat
             {
                 SelectAction(chosen.index);
                 List<PreviewTileInfo> tiles = chosen.action.Preview();
-                _preparedAction = tiles[0];
+                _preparedAction = tiles.Count > 0 ? tiles[0] : null;
             }
 
             ManipulateEnemiesAction();
@@ -109,7 +136,7 @@ namespace RPG.Combat
                 }
             }
 
-            Debug.Log("Manipulating enemies >:)");
+            //Debug.Log("Manipulating enemies >:)");
 
             foreach (var target in targets)
             {
@@ -157,6 +184,16 @@ namespace RPG.Combat
                     best.enemy.ActionTargets.Clear();
                     best.enemy.ActionTargets.Add(best.action);
                 }
+            }
+        }
+
+        private void OnEnemyDefeated(EnemyController enemy)
+        {
+            _defeatsCount++;
+            if (_defeatsCount >= _defeatsPerHit)
+            {
+                _defeatsCount = 0;
+                TakeDamage(1);
             }
         }
     }

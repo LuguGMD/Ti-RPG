@@ -21,7 +21,19 @@ namespace RPG.Level
         public ChallengeScriptable[] Challenges { get { return _challenges; } }
         public int CoinsReward { get { return _coinsReward; } }
         public string LevelKey { get { return _levelKey; } }
+        public int TotalWaves { get { return _waves.Length; } }
+        public int TotalEnemies { get { return GetTotalEnemies(); } }
 
         #endregion
+
+        private int GetTotalEnemies()
+        {
+            int total = 0;
+            foreach (var wave in _waves)
+            {
+                total += wave.Spawns.Length;
+            }
+            return total;
+        }
     }
 }

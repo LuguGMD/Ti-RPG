@@ -24,6 +24,7 @@ namespace RPG.Combat
 
         [Header("Enemies")]
         [SerializeField] private EnemySpawnWarning _enemySpawnWarningPrefab;
+        [SerializeField] private BossController _bossPrefab;
         [Header("Tiles")]
         [SerializeField] private ActionPreviewTile _previewTilePrefab;
         [SerializeField] private PreviewTileGroup _characterPreviewGroups;
@@ -224,7 +225,7 @@ namespace RPG.Combat
             }
             else if (!_canSelectCharacter)
             {
-
+                ActionsManager.Instance.OnError?.Invoke();
             }
             else
             {
@@ -256,8 +257,7 @@ namespace RPG.Combat
             _currentTurnState = CombatTurnStateEnum.PlayerTurn;
             _hasCombatStarted = true;
             _hasCombatEnded = false;
-            StartPlayerTurn();
-            SwitchTurn();
+            StartCoroutine(CombatInitializeCoroutine());
         }
 
         private void SwitchTurn()
@@ -300,6 +300,27 @@ namespace RPG.Combat
             currentSpeedTier %= CombatConstants.CombatSpeedTiers.Length;
             SetCombatSpeed(currentSpeedTier);
         }
+
+        private IEnumerator CombatInitializeCoroutine()
+        {
+            if(GameManager.SelectedLevel == GameManager.BossFightLevel)
+            {
+                yield return StartCoroutine(BossFightStartCutscene());
+            }
+
+            StartPlayerTurn();
+            SwitchTurn();
+
+            yield return null;
+        }
+
+        #region BossFight
+        private IEnumerator BossFightStartCutscene()
+        {
+            Instantiate(_bossPrefab);
+            yield return new WaitForSeconds(1f);
+        }
+        #endregion
 
         #region Metodos Player
 
