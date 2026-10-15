@@ -19,6 +19,9 @@ namespace RPG.Combat
         private EnemyHealthBar _healthBar;
         private float _health;
         protected PreviewTileInfo _preparedAction;
+        protected List<ActionTargetInfo> _actionTargets;
+
+        public List<ActionTargetInfo> ActionTargets { get { return _actionTargets; } }
 
         public override EntityScriptable GetEntityInfo()
         {
@@ -69,7 +72,7 @@ namespace RPG.Combat
 
         private void UpdateHealthBar()
         {
-            _healthBar.UpdateHealth(_health / _enemyInfo.Health); 
+            _healthBar.UpdateHealth(_health / _enemyInfo.Health);
         }
 
         protected override void CheckDefeated()
@@ -97,6 +100,7 @@ namespace RPG.Combat
             //TO DO guardar acao preparada e usar aqui
             ActionsManager.Instance.OnEnemyActionUsed?.Invoke(this);
             yield return UseSelectedAction(_preparedAction);
+            _actionTargets = null;
         }
 
         public virtual void PrepareAction()
@@ -109,6 +113,10 @@ namespace RPG.Combat
             List<ActionTargetInfo> targets = new List<ActionTargetInfo>();
             return targets;
         }
+        public void CalculateActionTargets()
+        {
+            _actionTargets = GetActionTargets();
+        }
 
         protected override void OnHoverStart()
         {
@@ -118,7 +126,7 @@ namespace RPG.Combat
 
         protected override void OnHoverEnd()
         {
-            if(!_isHovered)
+            if (!_isHovered)
                 _preview.HidePreview();
         }
 
