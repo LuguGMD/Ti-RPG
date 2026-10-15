@@ -31,12 +31,15 @@ namespace RPG.Combat
 
             _attack.ChangeDirection(Vector2Int.down);
 
-            List<ActionTargetInfo> targets = GetActionTargets();
-
-            if (targets.Count > 0)
+            if (_actionTargets == null)
             {
-                int index = Random.Range(0, targets.Count%4);
-                _attack.ChangeDirection(targets[index].TargetDirection);
+                CalculateActionTargets();
+            }
+
+            if (_actionTargets.Count > 0)
+            {
+                int index = Random.Range(0, _actionTargets.Count % 4);
+                _attack.ChangeDirection(_actionTargets[index].TargetDirection);
             }
 
             List<PreviewTileInfo> tiles = _attack.Preview();
@@ -44,6 +47,8 @@ namespace RPG.Combat
             if (_preparedAction.Parent != null) _preparedAction = _preparedAction.Parent;
 
             SelectAction(0);
+
+            _actionTargets = null;
         }
 
         protected override List<ActionTargetInfo> GetActionTargets()
