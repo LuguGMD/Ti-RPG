@@ -314,7 +314,8 @@ namespace RPG.Combat
 
             yield return _selectedCharacter.UseSelectedAction(previewTileInfo);
 
-            //ShowAllEnemiesPreviews();
+            ShowAllEnemiesPreviews();
+            HideAllEnemiesPreviews(false);
             DeselectCharacter();
             _canSelectCharacter = true;
             _isActionInProgress = false;
@@ -332,7 +333,8 @@ namespace RPG.Combat
 
             yield return Apresentador.EquippedSuper.Execute(previewTileInfo);
 
-            //ShowAllEnemiesPreviews();
+            ShowAllEnemiesPreviews();
+            HideAllEnemiesPreviews(false);
             DeselectCharacter();
             _canSelectCharacter = true;
             _isActionInProgress = false;
@@ -369,7 +371,8 @@ namespace RPG.Combat
 
         private void StartPlayerTurn()
         {
-            //ShowAllEnemiesPreviews();
+            ShowAllEnemiesPreviews();
+            HideAllEnemiesPreviews(false);
 
             _apresentador.ResetAction();
             _usedCharacters.Clear();
@@ -477,11 +480,12 @@ namespace RPG.Combat
             }
         }
 
-        private void HideAllEnemiesPreviews()
+        private void HideAllEnemiesPreviews(bool hideInFirstRow = true)
         {
             for (int i = 0; i < _remainingEnemies.Count; i++)
             {
-                _remainingEnemies[i].Preview.HidePreview();
+                if(hideInFirstRow || _remainingEnemies[i].Position.y != 0)
+                    _remainingEnemies[i].Preview.HidePreview();
             }
         }
 

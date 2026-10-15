@@ -127,7 +127,7 @@ namespace RPG.Combat
         protected override void OnHoverEnd()
         {
             if (!_isHovered)
-                _preview.HidePreview();
+                HidePreview();
         }
 
         protected override void OnSelected()
@@ -150,8 +150,14 @@ namespace RPG.Combat
             }
             else
             {
-                _preview.HidePreview();
+                HidePreview();
             }
+        }
+
+        private void HidePreview()
+        {
+            if(Position.y != 0)
+                _preview.HidePreview();
         }
     }
 }
