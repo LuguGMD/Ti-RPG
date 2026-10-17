@@ -131,6 +131,7 @@ namespace RPG.Combat
                 enemy.CalculateActionTargets();
                 foreach (ActionTargetInfo action in enemy.ActionTargets)
                 {
+                    if(action.Target != null)
                     if (!targets.TryAdd(action.Target, new() { (enemy, action) }))
                     { targets[action.Target].Add((enemy, action)); }
                 }

@@ -19,14 +19,12 @@ namespace RPG.Combat.Actions
 
         [SerializeField] private float _baseDamage = 2;
         [SerializeField] private float _movementDamage = 2;
-        [SerializeField] private int _pushAmount = 1;
         [SerializeField] private EventReference _honkSound;
         [SerializeField] private EventReference _motorSound;
 
         public override void Init(StageEntityController user)
         {
             _user = user;
-            _effects[0].Commands.Add(new PushEffect(Grid.DirectionEnum.Up, _pushAmount));
         }
 
         public override IEnumerator Execute(PreviewTileInfo selectedPreviewTile)
@@ -69,6 +67,8 @@ namespace RPG.Combat.Actions
 
         public override List<PreviewTileInfo> Preview()
         {
+            PreviewTileInfo up;
+            PreviewTileInfo down;
             PreviewTileInfo right;
             PreviewTileInfo left;
 
@@ -77,9 +77,27 @@ namespace RPG.Combat.Actions
             Effect previewEffect = Effect.Clone(_effects[0]);
             previewEffect.Area[0] = Vector2Int.zero;
 
+            up = new PreviewTileInfo(Vector2Int.up, Grid.DirectionEnum.Up, false, false);
+            up.Effects.Add(previewEffect);
+            PreviewTileInfo child = up.CreateChild(Vector2Int.up, Grid.DirectionEnum.Up, false, false);
+            child.Effects.Add(previewEffect);
+            child = child.CreateChild(Vector2Int.up, Grid.DirectionEnum.Up, false, false);
+            child.Effects.Add(previewEffect);
+            child = child.CreateChild(Vector2Int.up, Grid.DirectionEnum.Up, false, false);
+            child.Effects.Add(previewEffect);
+
+            down = new PreviewTileInfo(Vector2Int.down, Grid.DirectionEnum.Down, false, false);
+            down.Effects.Add(previewEffect);
+            child = down.CreateChild(Vector2Int.down, Grid.DirectionEnum.Down, false, false);
+            child.Effects.Add(previewEffect);
+            child = child.CreateChild(Vector2Int.down, Grid.DirectionEnum.Down, false, false);
+            child.Effects.Add(previewEffect);
+            child = child.CreateChild(Vector2Int.down, Grid.DirectionEnum.Down, false, false);
+            child.Effects.Add(previewEffect);
+
             right = new PreviewTileInfo(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
             right.Effects.Add(previewEffect);
-            PreviewTileInfo child = right.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
+            child = right.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
             child.Effects.Add(previewEffect);
             child = child.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
             child.Effects.Add(previewEffect);
@@ -96,6 +114,8 @@ namespace RPG.Combat.Actions
             child = child.CreateChild(Vector2Int.left, Grid.DirectionEnum.Left, false, false);
             child.Effects.Add(previewEffect);
 
+            firstSteps.Add(up);
+            firstSteps.Add(down);
             firstSteps.Add(right);
             firstSteps.Add(left);
 
