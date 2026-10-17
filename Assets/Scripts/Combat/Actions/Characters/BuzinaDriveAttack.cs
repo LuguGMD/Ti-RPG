@@ -68,23 +68,23 @@ namespace RPG.Combat.Actions
 
             List<PreviewTileInfo> firstSteps = new List<PreviewTileInfo>();
 
-            right = new PreviewTileInfo(Vector2Int.right, Grid.DirectionEnum.Right, true, false);
+            right = new PreviewTileInfo(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
             right.Effects.Add(_effects[0]);
-            PreviewTileInfo child = right.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, true, false);
+            PreviewTileInfo child = right.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
             child.Effects.Add(_effects[0]);
-            child = child.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, true, false);
+            child = child.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
             child.Effects.Add(_effects[0]);
-            child = child.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, true, false);
+            child = child.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
             child.Effects.Add(_effects[0]);
 
 
-            left = new PreviewTileInfo(Vector2Int.left, Grid.DirectionEnum.Left, true, false);
+            left = new PreviewTileInfo(Vector2Int.left, Grid.DirectionEnum.Left, false, false);
             left.Effects.Add(_effects[0]);
-            child = left.CreateChild(Vector2Int.left, Grid.DirectionEnum.Left, true, false);
+            child = left.CreateChild(Vector2Int.left, Grid.DirectionEnum.Left, false, false);
             child.Effects.Add(_effects[0]);
-            child = child.CreateChild(Vector2Int.left, Grid.DirectionEnum.Left, true, false);
+            child = child.CreateChild(Vector2Int.left, Grid.DirectionEnum.Left, false, false);
             child.Effects.Add(_effects[0]);
-            child = child.CreateChild(Vector2Int.left, Grid.DirectionEnum.Left, true, false);
+            child = child.CreateChild(Vector2Int.left, Grid.DirectionEnum.Left, false, false);
             child.Effects.Add(_effects[0]);
 
             firstSteps.Add(right);

@@ -12,7 +12,7 @@ namespace RPG.Combat.Grid
         private static int _rows;
         private static int _columns;
 
-        public static readonly Vector2Int CENTER_POS = new Vector2Int(0,-1);
+        public static readonly Vector2Int CENTER_POS = new Vector2Int(0, -1);
 
         #region Properties
 
@@ -49,30 +49,34 @@ namespace RPG.Combat.Grid
 
             //TO DO adicionar uma logica de posicionamento de upgrade depois
 
-            bool isInUpgradeArea = false;
-
-            switch(GameManager.CurrentTileEqquiped)
+            if (GameManager.Instance != null)
             {
-                case UpgradeConstants.UpgradeKey.TileDamageIncrease1:
-                case UpgradeConstants.UpgradeKey.TileDamageReduction1:
-                case UpgradeConstants.UpgradeKey.TilePushBlock1:
-                    isInUpgradeArea = position.x == 0; 
-                    break;
-                case UpgradeConstants.UpgradeKey.TileDamageIncrease2:
-                case UpgradeConstants.UpgradeKey.TileDamageReduction2:
-                case UpgradeConstants.UpgradeKey.TilePushBlock2:
-                    isInUpgradeArea = position.x == 0 || position.x == 1 || position.x == 11;
-                    break;
+                bool isInUpgradeArea = false;
+
+                switch (GameManager.CurrentTileEqquiped)
+                {
+                    case UpgradeConstants.UpgradeKey.TileDamageIncrease1:
+                    case UpgradeConstants.UpgradeKey.TileDamageReduction1:
+                    case UpgradeConstants.UpgradeKey.TilePushBlock1:
+                        isInUpgradeArea = position.x == 0;
+                        break;
+                    case UpgradeConstants.UpgradeKey.TileDamageIncrease2:
+                    case UpgradeConstants.UpgradeKey.TileDamageReduction2:
+                    case UpgradeConstants.UpgradeKey.TilePushBlock2:
+                        isInUpgradeArea = position.x == 0 || position.x == 1 || position.x == 11;
+                        break;
+                }
+
+                if (isInUpgradeArea && position.y < Map.Rows - 1)
+                    tile.SetUpgrade(GameManager.CurrentTileEqquiped);
             }
 
-            if (isInUpgradeArea && position.y < Map.Rows-1)
-                tile.SetUpgrade(GameManager.CurrentTileEqquiped);
-
             tileTransform.position = MapManager.Instance.GetWorldPosition(position);
-            if(position.y < MapManager.RowGameObjects.Length && position.y >= 0)
+            if (position.y < MapManager.RowGameObjects.Length && position.y >= 0)
             {
                 tileTransform.parent = MapManager.RowGameObjects[position.y].transform;
             }
+
         }
 
         private void SetTile(Vector2Int position, Tile tile)

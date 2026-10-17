@@ -22,7 +22,7 @@ namespace RPG.Combat.UI
         private void Start()
         {
             _apresentadorSlider.value = 0f;
-            _apresentadorSlider.DOValue(1f, 1.5f);
+            _apresentadorSlider.DOValue(1f, 3f).SetEase(Ease.Linear).SetDelay(1f);
 
             _apresentadorButton.onClick.AddListener(OnApresentadorClicked);
         }

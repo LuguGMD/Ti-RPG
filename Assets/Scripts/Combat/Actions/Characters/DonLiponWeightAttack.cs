@@ -50,27 +50,27 @@ namespace RPG.Combat.Actions
 
             List<PreviewTileInfo> firstSteps = new List<PreviewTileInfo>();
 
-            up = new PreviewTileInfo(Vector2Int.up, Grid.DirectionEnum.Up, true, false);
+            up = new PreviewTileInfo(Vector2Int.up, Grid.DirectionEnum.Up, false, false);
             up.Effects.Add(_effects[0]);
-            PreviewTileInfo child = up.CreateChild(Vector2Int.up, Grid.DirectionEnum.Up, true, false);
-            child.Effects.Add(_effects[0]);
+            /*PreviewTileInfo child = up.CreateChild(Vector2Int.up, Grid.DirectionEnum.Up, false, false);
+            child.Effects.Add(_effects[0]);*/
 
-            down = new PreviewTileInfo(Vector2Int.down, Grid.DirectionEnum.Down, true, false);
+            down = new PreviewTileInfo(Vector2Int.down, Grid.DirectionEnum.Down, false, false);
             down.Effects.Add(_effects[0]);
-            child = down.CreateChild(Vector2Int.down, Grid.DirectionEnum.Down, true, false);
-            child.Effects.Add(_effects[0]);
+            /*child = down.CreateChild(Vector2Int.down, Grid.DirectionEnum.Down, false, false);
+            child.Effects.Add(_effects[0]);*/
 
 
-            right = new PreviewTileInfo(Vector2Int.right, Grid.DirectionEnum.Right, true, false);
+            right = new PreviewTileInfo(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
             right.Effects.Add(_effects[0]);
-            child = right.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, true, false);
-            child.Effects.Add(_effects[0]);
+            /*child = right.CreateChild(Vector2Int.right, Grid.DirectionEnum.Right, false, false);
+            child.Effects.Add(_effects[0]);*/
 
 
-            left = new PreviewTileInfo(Vector2Int.left, Grid.DirectionEnum.Left, true, false);
+            left = new PreviewTileInfo(Vector2Int.left, Grid.DirectionEnum.Left, false, false);
             left.Effects.Add(_effects[0]);
-            child = left.CreateChild(Vector2Int.left, Grid.DirectionEnum.Left, true, false);
-            child.Effects.Add(_effects[0]);
+            /*child = left.CreateChild(Vector2Int.left, Grid.DirectionEnum.Left, false, false);
+            child.Effects.Add(_effects[0]);*/
 
             firstSteps.Add(up);
             firstSteps.Add(down);

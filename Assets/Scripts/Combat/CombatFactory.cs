@@ -33,6 +33,11 @@ namespace RPG.Combat
                 enemyObject.UpdatePosition();
 
                 CombatManager.Instance.AddEnemy(enemyInstance);
+
+                if (spawnInfo.SpawnWithSpotlightEffect)
+                {
+                    ActionsManager.Instance.OnEnemySpawnedWithSpotlight?.Invoke(enemyInstance);
+                }
             }
 
             return enemyInstance;

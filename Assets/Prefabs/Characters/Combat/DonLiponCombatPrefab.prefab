@@ -228,8 +228,8 @@ MonoBehaviour:
     _damage: 2
     _pushAmount: 1
   _weightAttack:
-    _actionName: Levantamento de Peso
-    _actionDescription: 
+    _actionName: "Trap\xE9zio Superior"
+    _actionDescription: Pula 1 tile e acerta o inimigo com o peso
     _followRadius: 5
     _effects:
     - _targetList: 01000000
@@ -237,13 +237,13 @@ MonoBehaviour:
       _doNeedSpotlight: 0
       _isRelativeToMovement: 1
       _area:
-      - {x: 0, y: 1}
+      - {x: 0, y: 0}
     - _targetList: 01000000
       _canTargetSelf: 0
       _doNeedSpotlight: 1
       _isRelativeToMovement: 1
       _area:
-      - {x: 0, y: 1}
+      - {x: 0, y: 0}
     _lastTileNeedsToBeEmpty: 1
     _damage: 8
 --- !u!1001 &6309334940468634841
