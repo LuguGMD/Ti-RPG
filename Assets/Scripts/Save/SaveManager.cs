@@ -1,4 +1,5 @@
 using Lugu.Singleton;
+using RPG.Tutorial;
 using System;
 using System.IO;
 using System.Linq;
@@ -83,6 +84,7 @@ namespace RPG.Save
 
             Instance._saveData.AudioManagerData = previousSave.AudioManagerData;
             Instance._saveData.IsFirstTime = false;
+            TutorialManager.Instance.ResetTutorials();
 
             Save();
             Instance.LoadAll();
