@@ -37,7 +37,6 @@ namespace RPG.Combat.Actions
             do
             {
                 _user.Movement.Teleport(Grid.DirectionEnum.Up, _user.Position + root.RelativePosition);
-                Debug.Log(_user.Position + root.RelativePosition);
                 AudioManager.Instance.PlayOneShot(_jumpFlyingSound);
                 yield return new WaitForSeconds(4.5f / CombatManager.CombatSpeed);
                 AudioManager.Instance.PlayOneShot(_jumpUmbrellaSound);

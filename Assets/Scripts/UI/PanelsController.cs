@@ -11,8 +11,8 @@ namespace Lugu.UI
         [SerializeField] private List<GameObject> _panelsList;
 
         [Header("Panel Animations")]
-        [SerializeField] private float _transitionDuration = 0.25f;
-        [SerializeField] private float _startScale = 0.95f;
+        [SerializeField] private float _transitionDuration = 0.1f;
+        [SerializeField] private float _startScale = 1.1f;
 
         private GameObject _currentPanel;
         private Sequence _transitionSequence;

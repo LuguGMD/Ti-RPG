@@ -24,7 +24,7 @@ namespace RPG.Combat.Actions.Effects
 
         public PushEffect(DirectionEnum pushDirection, int pushAmount, bool isPushDirectionRelative = true)
         {
-            _isPushDirectionRelative |= isPushDirectionRelative;
+            _isPushDirectionRelative = isPushDirectionRelative;
             _pushDirection = pushDirection;
             _pushAmount = pushAmount;
         }

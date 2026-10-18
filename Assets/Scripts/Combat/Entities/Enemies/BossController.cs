@@ -9,7 +9,6 @@ namespace RPG.Combat
 {
     public class BossController : EnemyController
     {
-        // TODO: Criar as actions extendendo [BossCombatAction]
         [SerializeField] private BossPushAttack _actionPush;
         [SerializeField] private BossRotateAttack _actionRotate;
 
@@ -64,6 +63,8 @@ namespace RPG.Combat
             {
                 InitCombatActions();
             }
+
+            _selectedActionIndex = -1;
 
             int pointsToAdd = TurnActionPoints(CombatManager.TurnCount);
             _actionPoints += pointsToAdd;
