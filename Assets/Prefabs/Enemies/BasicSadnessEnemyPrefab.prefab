@@ -306,7 +306,30 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6108933886631140461, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       insertIndex: 1
       addedObject: {fileID: 2616140076056256543}
+    - targetCorrespondingSourceObject: {fileID: 6108933886631140461, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2204722029477340494}
+    - targetCorrespondingSourceObject: {fileID: 3572734107941342433, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1690420604240417433}
   m_SourcePrefab: {fileID: 100100000, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+--- !u!1 &3341767846840378657 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3572734107941342433, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+  m_PrefabInstance: {fileID: 2302674883705448896}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1690420604240417433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3341767846840378657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da26bd876c59f042a8a888050c49b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterVFXHandler
 --- !u!1 &5418944825150207405 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6108933886631140461, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
@@ -373,3 +396,15 @@ MonoBehaviour:
         Data3: -1551870839
         Data4: -1019038061
       Path: event:/Character/Enemy/Attack
+--- !u!114 &2204722029477340494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5418944825150207405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da26bd876c59f042a8a888050c49b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterVFXHandler

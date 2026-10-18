@@ -291,7 +291,27 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6108933886631140461, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       insertIndex: 1
       addedObject: {fileID: 7627951422692112227}
+    - targetCorrespondingSourceObject: {fileID: 3572734107941342433, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1236595428207594497}
   m_SourcePrefab: {fileID: 100100000, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+--- !u!1 &709295487536591522 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3572734107941342433, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+  m_PrefabInstance: {fileID: 4054095913938058819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1236595428207594497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 709295487536591522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da26bd876c59f042a8a888050c49b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterVFXHandler
 --- !u!1 &7819447153685504558 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6108933886631140461, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}

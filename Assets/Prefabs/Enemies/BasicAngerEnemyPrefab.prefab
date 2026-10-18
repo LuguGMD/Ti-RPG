@@ -291,6 +291,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6108933886631140461, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       insertIndex: 1
       addedObject: {fileID: 2324266041985874038}
+    - targetCorrespondingSourceObject: {fileID: 3572734107941342433, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4781416274376899880}
   m_SourcePrefab: {fileID: 100100000, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
 --- !u!1 &699827620956430052 stripped
 GameObject:
@@ -357,3 +360,20 @@ MonoBehaviour:
         Data3: -1551870839
         Data4: -1019038061
       Path: event:/Character/Enemy/Attack
+--- !u!1 &7846928881895837288 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3572734107941342433, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+  m_PrefabInstance: {fileID: 6733165682577605257}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4781416274376899880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7846928881895837288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da26bd876c59f042a8a888050c49b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterVFXHandler

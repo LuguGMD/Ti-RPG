@@ -288,6 +288,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cf4bb28ebd1e82c449e42047e23fcf6e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 680552208933594346}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: cf4bb28ebd1e82c449e42047e23fcf6e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9004157422603543352}
   m_SourcePrefab: {fileID: 100100000, guid: cf4bb28ebd1e82c449e42047e23fcf6e, type: 3}
 --- !u!4 &4617917051342089443 stripped
 Transform:
@@ -321,3 +324,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &9004157422603543352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5430764714420778585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da26bd876c59f042a8a888050c49b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterVFXHandler

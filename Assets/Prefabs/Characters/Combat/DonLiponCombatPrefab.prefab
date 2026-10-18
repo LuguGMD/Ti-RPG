@@ -246,7 +246,7 @@ MonoBehaviour:
   _weightAttack:
     _actionName: "Trap\xE9zio Superior"
     _actionDescription: Pula 1 casa e acerta o inimigo com o peso
-    _followRadius: 5
+    _followRadius: 7
     _effects:
     - _targetList: 01000000
       _canTargetSelf: 0
@@ -466,6 +466,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1e49eb8e24a3f4b4695abf2e7b9d40f9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7349386340794890859}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1e49eb8e24a3f4b4695abf2e7b9d40f9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2251335266879851299}
   m_SourcePrefab: {fileID: 100100000, guid: 1e49eb8e24a3f4b4695abf2e7b9d40f9, type: 3}
 --- !u!1 &1392080613180038460 stripped
 GameObject:
@@ -524,6 +527,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2251335266879851299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6579243809091803528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da26bd876c59f042a8a888050c49b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterVFXHandler
 --- !u!1 &7322012422977858903 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5615354100242691698, guid: 1e49eb8e24a3f4b4695abf2e7b9d40f9, type: 3}
