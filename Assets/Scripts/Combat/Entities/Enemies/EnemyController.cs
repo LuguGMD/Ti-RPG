@@ -19,6 +19,9 @@ namespace RPG.Combat
         private EnemyHealthBar _healthBar;
         private float _health;
         protected PreviewTileInfo _preparedAction;
+        protected List<ActionTargetInfo> _actionTargets;
+
+        public List<ActionTargetInfo> ActionTargets { get { return _actionTargets; } }
 
         public override EntityScriptable GetEntityInfo()
         {
@@ -69,7 +72,7 @@ namespace RPG.Combat
 
         private void UpdateHealthBar()
         {
-            _healthBar.UpdateHealth(_health / _enemyInfo.Health); 
+            _healthBar.UpdateHealth(_health / _enemyInfo.Health);
         }
 
         protected override void CheckDefeated()
@@ -83,6 +86,8 @@ namespace RPG.Combat
         {
             base.Defeated();
 
+            _preview.HidePreview();
+
             ActionsManager.Instance.OnEnemyDefeated?.Invoke(this);
             CombatManager.Instance.RemoveEnemy(this);
             _tileObject.CurrentTile.SetTileObject(null);
@@ -92,9 +97,15 @@ namespace RPG.Combat
 
         public IEnumerator UsePreparedAction()
         {
+            if (_selectedActionIndex == -1)
+            {
+                yield break;
+            }
+
             //TO DO guardar acao preparada e usar aqui
             ActionsManager.Instance.OnEnemyActionUsed?.Invoke(this);
             yield return UseSelectedAction(_preparedAction);
+            _actionTargets = null;
         }
 
         public virtual void PrepareAction()
@@ -107,6 +118,10 @@ namespace RPG.Combat
             List<ActionTargetInfo> targets = new List<ActionTargetInfo>();
             return targets;
         }
+        public void CalculateActionTargets()
+        {
+            _actionTargets = GetActionTargets();
+        }
 
         protected override void OnHoverStart()
         {
@@ -116,8 +131,8 @@ namespace RPG.Combat
 
         protected override void OnHoverEnd()
         {
-            if(!_isHovered)
-                _preview.HidePreview();
+            if (!_isHovered)
+                HidePreview();
         }
 
         protected override void OnSelected()
@@ -140,8 +155,14 @@ namespace RPG.Combat
             }
             else
             {
-                _preview.HidePreview();
+                HidePreview();
             }
+        }
+
+        private void HidePreview()
+        {
+            if(Position.y != 0)
+                _preview.HidePreview();
         }
     }
 }

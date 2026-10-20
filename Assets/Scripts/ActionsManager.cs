@@ -21,6 +21,7 @@ namespace RPG
         public Action OnRotationAnimationStarted;
         public Action OnRotationAnimationEnded;
         public Action<int> OnMapLineStuck;
+        public Action<int> OnMapLineUnstuck;
         public Action OnRowRotated;
 
         public Action OnCombatWon;

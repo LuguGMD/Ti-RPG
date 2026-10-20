@@ -17,6 +17,9 @@ namespace RPG.Combat.UI
         [SerializeField] private Button _button;
         [SerializeField] private TextMeshProUGUI _buttonText;
         [SerializeField] private RectTransform _rect;
+        [SerializeField] private float _entranceDuration = 0.3f;
+        [SerializeField] private float _selectDuration = 0.2f;
+        [SerializeField] private float _entranceDelay = 0.05f;
 
         private float _selectScale = 1.3f;
 
@@ -33,6 +36,13 @@ namespace RPG.Combat.UI
 
             _buttonText.text = action.ActionName;
             _button.onClick.AddListener(OnButtonClick);
+
+            _rect.DOKill();
+            _rect.localScale = Vector3.zero;
+
+            _rect.DOScale(Vector3.one, _entranceDuration)
+                .SetDelay(_actionIndex * _entranceDelay)
+                .SetEase(Ease.OutBack);
         }
 
         private void OnButtonClick()
@@ -62,14 +72,14 @@ namespace RPG.Combat.UI
 
         public void Select(int actionIndex)
         {
-            if (actionIndex == _actionIndex)
-            {
-                _rect.DOScale(Vector3.one* _selectScale, 0.2f);
-            }
-            else
-            {
-                _rect.DOScale(Vector3.one, 0.2f);
-            }
+            _rect.DOKill();
+
+            Vector3 targetScale = actionIndex == _actionIndex
+                ? Vector3.one * _selectScale
+                : Vector3.one;
+
+            _rect.DOScale(targetScale, _selectDuration)
+                .SetEase(Ease.OutBack);
         }
     }
 }

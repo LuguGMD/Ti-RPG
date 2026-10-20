@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
+using FMODUnity;
+using RPG.Audio;
 
 namespace RPG.Combat
 {
@@ -10,6 +12,11 @@ namespace RPG.Combat
     {
         private Dictionary<int, List<SpectatorHandler>> _spectatorsDictionary = new Dictionary<int, List<SpectatorHandler>>();
         private List<SpectatorHandler> _spectatorList = new List<SpectatorHandler>();
+
+        [SerializeField] private EventReference _audienceClapSound;
+        [SerializeField] private EventReference _audienceSectionClapSound;
+        [SerializeField] private EventReference _audienceBooSound;
+        [SerializeField] private EventReference _audienceSectionBooSound;
 
         private const float MIN_DISTANCE_TO_SECTION = 5;
 
@@ -66,31 +73,37 @@ namespace RPG.Combat
 
         private void HandleApresentadorDamage(float amount)
         {
+            AudioManager.Instance.PlayOneShot(_audienceBooSound);
             ChangeAllSectionsPoses(SpectatorHandler.PosesEnum.Boo);
         }
 
         private void HandleApresentadorDeath()
         {
+            AudioManager.Instance.PlayOneShot(_audienceBooSound);
             ChangeAllSectionsPoses(SpectatorHandler.PosesEnum.Boo);
         }
 
         private void HandleEnemyDamage(EnemyController enemy, float amount)
         {
+            AudioManager.Instance.PlayOneShot(_audienceSectionClapSound);
             ChangeSectionPoses(enemy.Position.x, SpectatorHandler.PosesEnum.Cheer);
         }
 
         private void HandleEnemyDeath(EnemyController enemy)
         {
+            AudioManager.Instance.PlayOneShot(_audienceClapSound);
             ChangeAllSectionsPoses(SpectatorHandler.PosesEnum.Cheer);
         }
 
         private void HandleCharacterDamage(CharacterController character, float amount)
         {
+            AudioManager.Instance.PlayOneShot(_audienceSectionBooSound);
             ChangeSectionPoses(character.Position.x, SpectatorHandler.PosesEnum.Boo);
         }
 
         private void HandleCharacterDeath(CharacterController character)
         {
+            AudioManager.Instance.PlayOneShot(_audienceBooSound);
             ChangeAllSectionsPoses(SpectatorHandler.PosesEnum.Boo);
         }
 

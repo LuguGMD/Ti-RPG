@@ -10,7 +10,8 @@ namespace RPG.Combat.Actions
     {
         [SerializeField] private int _actionCost;
         [SerializeField] private int _actionPriority;
-
+        [SerializeField] private int _cooldownTurns = 0;
+        protected int _lastTurnUsed = -100;
 
         #region Properties
 
@@ -22,6 +23,10 @@ namespace RPG.Combat.Actions
 
         public virtual bool CheckRequirements()
         {
+            if (_lastTurnUsed + _cooldownTurns >= CombatManager.TurnCount)
+            {
+                return false;
+            }
             // TODO: Ao implementar em classes filhas, considerar usar:
             // CombatManager.RemainingEnemies
             // CombatManager.CurrentTurn

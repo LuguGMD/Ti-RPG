@@ -1,4 +1,5 @@
 using Lugu.Singleton;
+using RPG.Tutorial;
 using System;
 using System.IO;
 using System.Linq;
@@ -22,6 +23,12 @@ namespace RPG.Save
             {
                 return Instance._saveData; 
             }
+        }
+
+        public static bool HasSaveData()
+        {
+            string path = GetSaveFilePath();
+            return File.Exists(path);
         }
 
         public void FindSavables()
@@ -76,8 +83,11 @@ namespace RPG.Save
             Instance._saveData = new SaveData();
 
             Instance._saveData.AudioManagerData = previousSave.AudioManagerData;
+            Instance._saveData.IsFirstTime = false;
+            TutorialManager.Instance.ResetTutorials();
 
             Save();
+            Instance.LoadAll();
         }
 
         private static string GetSaveFilePath()

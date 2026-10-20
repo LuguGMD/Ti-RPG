@@ -7,12 +7,15 @@ using UnityEngine;
 
 namespace RPG.Combat.Actions
 {
-    public class BossPushAttack : CombatAction
+    [System.Serializable]
+    public class BossPushAttack : BossCombatAction
     {
         private PushEffect _pushEffect;
 
         public override void Init(StageEntityController user)
         {
+            _user = user;
+
             _pushEffect = new PushEffect(Grid.DirectionEnum.Down, 1, false);
             Effect effect = new Effect();
             effect.Commands.Add(_pushEffect);
@@ -25,6 +28,7 @@ namespace RPG.Combat.Actions
             }
             effect.TargetList.Add(TeamEnum.Enemies);
             _effects.Add(effect);
+
         }
 
         public override IEnumerator Execute(PreviewTileInfo selectedPreviewTile)
@@ -32,12 +36,24 @@ namespace RPG.Combat.Actions
             yield return new WaitForSeconds(0.5f);
             _effects[0].Execute(_user);
             yield return new WaitForSeconds(0.5f);
+
+            _lastTurnUsed = CombatManager.TurnCount;
         }
 
         public override List<PreviewTileInfo> Preview()
         {
             List<PreviewTileInfo> previewTilesInfo = new List<PreviewTileInfo>();
             return previewTilesInfo;
+        }
+
+        public override bool CheckRequirements()
+        {
+            if(CombatManager.RemainingEnemies.Count <= 1)
+            {
+                return false;
+            }
+
+            return base.CheckRequirements();
         }
     }
 }

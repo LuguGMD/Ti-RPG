@@ -24,6 +24,7 @@ namespace RPG.Combat
 
         [Header("Enemies")]
         [SerializeField] private EnemySpawnWarning _enemySpawnWarningPrefab;
+        [SerializeField] private BossController _bossPrefab;
         [Header("Tiles")]
         [SerializeField] private ActionPreviewTile _previewTilePrefab;
         [SerializeField] private PreviewTileGroup _characterPreviewGroups;
@@ -224,7 +225,7 @@ namespace RPG.Combat
             }
             else if (!_canSelectCharacter)
             {
-
+                ActionsManager.Instance.OnError?.Invoke();
             }
             else
             {
@@ -242,8 +243,7 @@ namespace RPG.Combat
 
         private void OnCombatActionSelected(PreviewTileInfo previewTileInfo)
         {
-            if (_selectedCharacter == null || _hasCombatEnded) return;
-
+            if (_selectedCharacter == null || _hasCombatEnded || _isActionInProgress) return;
             StartCoroutine(PlayerActionCoroutine(previewTileInfo));
         }
 
@@ -257,8 +257,7 @@ namespace RPG.Combat
             _currentTurnState = CombatTurnStateEnum.PlayerTurn;
             _hasCombatStarted = true;
             _hasCombatEnded = false;
-            StartPlayerTurn();
-            SwitchTurn();
+            StartCoroutine(CombatInitializeCoroutine());
         }
 
         private void SwitchTurn()
@@ -302,6 +301,27 @@ namespace RPG.Combat
             SetCombatSpeed(currentSpeedTier);
         }
 
+        private IEnumerator CombatInitializeCoroutine()
+        {
+            if(GameManager.SelectedLevel == GameManager.BossFightLevel)
+            {
+                yield return StartCoroutine(BossFightStartCutscene());
+            }
+
+            StartPlayerTurn();
+            SwitchTurn();
+
+            yield return null;
+        }
+
+        #region BossFight
+        private IEnumerator BossFightStartCutscene()
+        {
+            Instantiate(_bossPrefab);
+            yield return new WaitForSeconds(1f);
+        }
+        #endregion
+
         #region Metodos Player
 
         private IEnumerator PlayerActionCoroutine(PreviewTileInfo previewTileInfo)
@@ -315,7 +335,8 @@ namespace RPG.Combat
 
             yield return _selectedCharacter.UseSelectedAction(previewTileInfo);
 
-            //ShowAllEnemiesPreviews();
+            ShowAllEnemiesPreviews();
+            HideAllEnemiesPreviews(false);
             DeselectCharacter();
             _canSelectCharacter = true;
             _isActionInProgress = false;
@@ -333,7 +354,8 @@ namespace RPG.Combat
 
             yield return Apresentador.EquippedSuper.Execute(previewTileInfo);
 
-            //ShowAllEnemiesPreviews();
+            ShowAllEnemiesPreviews();
+            HideAllEnemiesPreviews(false);
             DeselectCharacter();
             _canSelectCharacter = true;
             _isActionInProgress = false;
@@ -370,7 +392,8 @@ namespace RPG.Combat
 
         private void StartPlayerTurn()
         {
-            //ShowAllEnemiesPreviews();
+            ShowAllEnemiesPreviews();
+            HideAllEnemiesPreviews(false);
 
             _apresentador.ResetAction();
             _usedCharacters.Clear();
@@ -478,11 +501,12 @@ namespace RPG.Combat
             }
         }
 
-        private void HideAllEnemiesPreviews()
+        private void HideAllEnemiesPreviews(bool hideInFirstRow = true)
         {
             for (int i = 0; i < _remainingEnemies.Count; i++)
             {
-                _remainingEnemies[i].Preview.HidePreview();
+                if(hideInFirstRow || _remainingEnemies[i].Position.y != 0)
+                    _remainingEnemies[i].Preview.HidePreview();
             }
         }
 

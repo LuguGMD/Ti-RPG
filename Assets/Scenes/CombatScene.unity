@@ -657,6 +657,8 @@ MonoBehaviour:
   _panelsList:
   - {fileID: 1475023722}
   - {fileID: 727877217}
+  _transitionDuration: 0.25
+  _startScale: 0.95
 --- !u!1001 &198324017
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2022,7 +2024,7 @@ PrefabInstance:
     - target: {fileID: 6353857453689576970, guid: 48e63c7cd934ec74ca3ff7573f4af5da, type: 3}
       propertyPath: _selectedLevel
       value: 
-      objectReference: {fileID: 11400000, guid: b45db701fc957124ebea2c9ff3c24524, type: 2}
+      objectReference: {fileID: 11400000, guid: a36f85563ef9abd4dbc9d0965a8103de, type: 2}
     - target: {fileID: 6353857453689576970, guid: 48e63c7cd934ec74ca3ff7573f4af5da, type: 3}
       propertyPath: _currentParty.Array.size
       value: 3
@@ -2055,6 +2057,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Slider
+--- !u!114 &420410365 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4401560790577943323, guid: 81693da597ca4d1449d7f90399596854, type: 3}
+  m_PrefabInstance: {fileID: 1441832705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!1001 &431999193
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4129,6 +4142,8 @@ MonoBehaviour:
   - {fileID: 1959404015}
   - {fileID: 1470469079}
   - {fileID: 1942017670}
+  _transitionDuration: 0.15
+  _startScale: 0.95
 --- !u!114 &781798004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10437,6 +10452,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 126192901}
     m_Modifications:
+    - target: {fileID: 498412104495058527, guid: 044e23737c44e744fb71e78db0185d8f, type: 3}
+      propertyPath: playerActionButton
+      value: 
+      objectReference: {fileID: 420410365}
     - target: {fileID: 1413027289223470336, guid: 044e23737c44e744fb71e78db0185d8f, type: 3}
       propertyPath: m_Pivot.x
       value: 0

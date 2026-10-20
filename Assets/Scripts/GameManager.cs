@@ -16,6 +16,7 @@ namespace RPG
     public class GameManager : SingletonMonoPersistent<GameManager>, ISavable<GameManager, GameManagerAdapter>
     {
         [SerializeField] private LevelScriptable _selectedLevel;
+        [SerializeField] private LevelScriptable _bossFightLevel;
         [SerializeField] private CharacterScriptable[] _currentParty = new CharacterScriptable[CombatConstants.MAX_CHARACTERS_COUNT];
         [SerializeField] private CharacterScriptable[] _availableCharacters;
         private List<string> _completedChallenges = new List<string>();
@@ -29,6 +30,7 @@ namespace RPG
         #region Properties
 
         public static LevelScriptable SelectedLevel { get { return Instance._selectedLevel; } }
+        public static LevelScriptable BossFightLevel { get { return Instance._bossFightLevel; } }
         public static CharacterScriptable[] CurrentParty { get { return Instance._currentParty; } }
         public static CharacterScriptable[] AvailableCharacters {  get { return Instance._availableCharacters; } }
         public static int Coins { get { return Instance._coins; } }

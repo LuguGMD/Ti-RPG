@@ -35,19 +35,22 @@ namespace RPG.Combat
                 InitCombatActions();
             }
 
-            if (!_wasDamaged)
+            if (!_wasDamaged || _actionTargets != null)
             {
 
                 SelectAction(0);
 
                 _regularAttack.ChangeDirection(Vector2Int.down);
 
-                List<ActionTargetInfo> targets = GetActionTargets();
-
-                if (targets.Count > 0)
+                if (_actionTargets == null)
                 {
-                    int index = Random.Range(0, targets.Count);
-                    _regularAttack.ChangeDirection(targets[index].TargetDirection);
+                    CalculateActionTargets();
+                }
+
+                if (_actionTargets.Count > 0)
+                {
+                    int index = Random.Range(0, _actionTargets.Count);
+                    _regularAttack.ChangeDirection(_actionTargets[index].TargetDirection);
                 }
 
                 List<PreviewTileInfo> tiles = _regularAttack.Preview();

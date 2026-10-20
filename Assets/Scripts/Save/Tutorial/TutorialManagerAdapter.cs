@@ -28,6 +28,7 @@ namespace RPG.Tutorial
         {
             TutorialManagerData dataSave = SaveManager.SaveData.TutorialManagerData;
             TutorialData[] tutorialDatas = dataSave.TutorialDatas;
+            
             foreach (TutorialData tutorialData in tutorialDatas)
             {
                 classSave.RegisterTutorial(tutorialData);

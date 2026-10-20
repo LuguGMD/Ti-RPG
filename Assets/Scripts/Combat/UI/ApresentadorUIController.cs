@@ -41,6 +41,7 @@ namespace RPG.Combat.UI
             ActionsManager.Instance.OnTurnPassed += ResetValues;
             ActionsManager.Instance.OnEnemyTurnStarted += FreeLines;
             ActionsManager.Instance.OnMapLineStuck += StuckLine;
+            ActionsManager.Instance.OnMapLineUnstuck += UnstuckLine;
         }
 
         private void OnDisable()
@@ -50,6 +51,7 @@ namespace RPG.Combat.UI
             ActionsManager.Instance.OnTurnPassed -= ResetValues;
             ActionsManager.Instance.OnEnemyTurnStarted -= FreeLines;
             ActionsManager.Instance.OnMapLineStuck -= StuckLine;
+            ActionsManager.Instance.OnMapLineUnstuck -= UnstuckLine;
         }
 
         private void Start()
@@ -162,6 +164,15 @@ namespace RPG.Combat.UI
         private void StuckLine(int lineIndex)
         {
             _linesStuck.Add(lineIndex);
+        }
+
+        private void UnstuckLine(int lineIndex)
+        {
+            int index = _linesStuck.Find((x) => x == lineIndex);
+            if (index != -1)
+            {
+                _linesStuck.RemoveAt(index);
+            }
         }
 
         private void FreeLines()
