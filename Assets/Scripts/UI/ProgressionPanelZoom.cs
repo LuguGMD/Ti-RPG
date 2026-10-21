@@ -45,7 +45,9 @@ public class ProgressionPanelZoom : MonoBehaviour
             scrollRect.scrollSensitivity = 0f;
         }
 
-        currentZoom = Mathf.Clamp(1f, minZoom, maxZoom);
+        currentZoom = Mathf.Lerp(minZoom, maxZoom, 0.5f);
+        scrollRect.verticalScrollbar.value = 0.45f;
+        scrollRect.horizontalScrollbar.value = 0.5f;
         ApplyZoom();
     }
 

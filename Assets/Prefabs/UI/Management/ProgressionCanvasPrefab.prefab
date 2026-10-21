@@ -48,7 +48,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: -1230.4312}
+  m_AnchoredPosition: {x: 0.00012207031, y: -1529.4302}
   m_SizeDelta: {x: 3320.8699, y: 3582.2583}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &756788949255059975
@@ -119,8 +119,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 4324129228255527940}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.30727938, y: 0}
-  m_AnchorMax: {x: 0.69272053, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -370,6 +370,7 @@ GameObject:
   - component: {fileID: 8237725547007775030}
   - component: {fileID: 641395441009510499}
   - component: {fileID: 4459271493779858407}
+  - component: {fileID: 5409241325458627603}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -437,6 +438,26 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5409241325458627603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2863903118853830280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 189fff071299ea84ea70fba679440cb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.ProgressionPanelZoom
+  zoomTarget: {fileID: 3919699025264557320}
+  viewport: {fileID: 4350220540895085567}
+  scrollRect: {fileID: 4459271493779858407}
+  minZoom: 0.25
+  maxZoom: 1.8
+  zoomStep: 0.1
+  mouseZoomSpeed: 0.15
+  keyboardPanSpeed: 0.5
 --- !u!1 &3220193026321451053
 GameObject:
   m_ObjectHideFlags: 0
@@ -475,7 +496,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061035156, y: -2.4999979}
+  m_AnchoredPosition: {x: 0, y: -2.5}
   m_SizeDelta: {x: 0, y: 5.0000043}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &238275232060486571
@@ -552,7 +573,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 165.2, y: 19}
+  m_AnchoredPosition: {x: 13.8133545, y: 19}
   m_SizeDelta: {x: -217.67216, y: 27.6794}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &645140028271887100
@@ -674,8 +695,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1174787678299697954}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.3434792}
-  m_AnchorMax: {x: 1, y: 0.53897613}
+  m_AnchorMin: {x: 0, y: 0.42694584}
+  m_AnchorMax: {x: 1, y: 0.6224675}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2340,6 +2361,30 @@ PrefabInstance:
     - target: {fileID: 5608628521762986343, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652854305578377939, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652854305578377939, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652854305578377939, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652854305578377939, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseUpgradePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652854305578377939, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RPG.Management.Interaction.UpgradeStand, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5652854305578377939, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6660194052023011656, guid: 82427beb431f55f40bb22350e29bf223, type: 3}
       propertyPath: m_Name
