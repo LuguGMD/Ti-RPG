@@ -21,6 +21,7 @@ namespace RPG.Combat
         protected bool _isHovered = false;
         private bool _isDefeated = false;
 
+        [SerializeField] private GameObject _model;
         [SerializeField] private EventReference _damagedSFX;
 
         #region Properties
@@ -31,7 +32,7 @@ namespace RPG.Combat
         public bool HasActed { get { return _hasActed; } }
         public bool IsHovered { get { return _isHovered; } }
         public bool IsDefeated { get { return _isDefeated; } }
-
+        public GameObject Model { get { return _model; } }
         #endregion
 
         protected void Awake()

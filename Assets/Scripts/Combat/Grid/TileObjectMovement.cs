@@ -42,7 +42,7 @@ namespace RPG.Combat.Grid
             _tileObject.SetCurrentTile(nextTile, doReplace);
         }
 
-        public IEnumerator Move(Movement movement, int count)
+        public IEnumerator Move(Movement movement, int count, float time = 0.3f)
         {
             for (int i = 0; i < count; i++)
             {
@@ -55,11 +55,11 @@ namespace RPG.Combat.Grid
 
                     if (direction.IsSideways())
                     {
-                        yield return MoveAlongSpline(0.3f, direction);
+                        yield return MoveAlongSpline(time, direction);
                     }
                     else
                     {
-                        yield return MoveAlongPoints(0.3f, direction);
+                        yield return MoveAlongPoints(time, direction);
                     }
 
                     ChangeTile(direction, movement.NeedsToBeEmpty);
