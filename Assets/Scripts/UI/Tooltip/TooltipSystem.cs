@@ -18,6 +18,7 @@ namespace RPG.UI.Tooltip
 
         public static void Hide()
         {
+            if (Instance == null || Instance.tooltip == null) return;
             Instance.tooltip.Hide();
         }
     }

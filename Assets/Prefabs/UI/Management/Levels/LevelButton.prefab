@@ -33,10 +33,10 @@ RectTransform:
   m_Father: {fileID: 4901910072557678641}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -17.5}
-  m_SizeDelta: {x: -74, y: -69}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -0.000061035156, y: 50}
+  m_SizeDelta: {x: 0, y: 89.119995}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &3706681458763947132
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -67,15 +67,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: Fase 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: efc67b6a4700ccb44a6e1abe4bbad4f5, type: 2}
-  m_sharedMaterial: {fileID: -324199672324954334, guid: efc67b6a4700ccb44a6e1abe4bbad4f5, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c9a343f6edddad348a15e04ec59120de, type: 2}
+  m_sharedMaterial: {fileID: -7721841168683215720, guid: c9a343f6edddad348a15e04ec59120de, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -92,8 +92,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -177,7 +177,7 @@ RectTransform:
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -455, y: 0}
   m_SizeDelta: {x: 200, y: 200}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &4567095742607006650
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -206,7 +206,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -678657426, guid: 9663878930c877e40a238b9b2ca5d60f, type: 3}
+  m_Sprite: {fileID: 1216447313, guid: 034a1b61cb9662944a5456fc62d69db6, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1

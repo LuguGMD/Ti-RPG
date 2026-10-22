@@ -34,7 +34,7 @@ namespace RPG.Level
         [SerializeField] private Slider _motivationBarSlider;
         [SerializeField] private TextMeshProUGUI _levelNameText;
         [SerializeField] private TextMeshProUGUI _selectedCharactersCountText;
-        [SerializeField] private Transform[] _partyMemberModelPreviews;
+        [SerializeField] private Image[] _partyMemberPreviews;
 
         [SerializeField] private Button _confirmPlayButton;
         [SerializeField] private Button _confirmPlayButton2;
@@ -167,13 +167,7 @@ namespace RPG.Level
                 GameManager.CurrentParty[index] = null;
             }
 
-            if (_partyMemberModelPreviews[index].childCount > 0)
-            {
-                foreach (Transform child in _partyMemberModelPreviews[index])
-                {
-                    Destroy(child.gameObject);
-                }
-            }
+            _partyMemberPreviews[index].sprite = null;
 
             UpdateCharacterOptions();
             UpdateCharacterCount();
@@ -202,13 +196,7 @@ namespace RPG.Level
         {
             if (character == null) return;
 
-            foreach (Transform child in _partyMemberModelPreviews[partyMemberIndex])
-            {
-                Destroy(child.gameObject);
-            }
-            GameObject characterModel = Instantiate(character.PreviewModelPrefab.gameObject, _partyMemberModelPreviews[partyMemberIndex]);
-            characterModel.transform.localPosition = Vector3.zero;
-            characterModel.transform.localRotation = Quaternion.identity;
+            _partyMemberPreviews[partyMemberIndex].sprite = character.Icon;
         }
 
         private void UpdateCharacterCount()
