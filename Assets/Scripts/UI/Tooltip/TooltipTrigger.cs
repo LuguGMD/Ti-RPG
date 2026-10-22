@@ -7,7 +7,7 @@ namespace RPG.UI.Tooltip
     public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         private RectTransform rectTransform;
-        private static Tween delay;
+        private Tween delay;
         public string header;
 
         [Multiline()]
@@ -35,6 +35,12 @@ namespace RPG.UI.Tooltip
         {
             if (string.IsNullOrEmpty(content) && string.IsNullOrEmpty(header)) return;
 
+            delay?.Kill();
+            TooltipSystem.Hide();
+        }
+
+        private void OnDisable()
+        {
             delay?.Kill();
             TooltipSystem.Hide();
         }
