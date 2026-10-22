@@ -872,6 +872,7 @@ GameObject:
   m_Component:
   - component: {fileID: 234595779650309302}
   - component: {fileID: 5211001541450776141}
+  - component: {fileID: 8523843799711099393}
   m_Layer: 0
   m_Name: AnikaModel
   m_TagString: Untagged
@@ -933,6 +934,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8523843799711099393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 579454940526450188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da26bd876c59f042a8a888050c49b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterVFXHandler
 --- !u!1 &586588263698777417
 GameObject:
   m_ObjectHideFlags: 0
@@ -10760,7 +10773,7 @@ MonoBehaviour:
   _jumpAttack:
     _actionName: Piruleta
     _actionDescription: Pula para o outro lado do palco, empurrando todos para longe
-    _followRadius: 5
+    _followRadius: 7
     _effects:
     - _targetList: 01000000
       _canTargetSelf: 0

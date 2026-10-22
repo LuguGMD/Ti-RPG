@@ -158,7 +158,7 @@ MonoBehaviour:
   _songAttack:
     _actionName: 'Vibrato Vigoroso '
     _actionDescription: "Canta, motivando todos os aliados na \xE1rea"
-    _followRadius: 5
+    _followRadius: 7
     _effects:
     - _targetList: 00000000
       _canTargetSelf: 1
@@ -358,6 +358,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: de47bb8a5a66c274394be943e8f5b23c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5244920133356773012}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: de47bb8a5a66c274394be943e8f5b23c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4852151070682704055}
   m_SourcePrefab: {fileID: 100100000, guid: de47bb8a5a66c274394be943e8f5b23c, type: 3}
 --- !u!1 &340186979497134255 stripped
 GameObject:
@@ -406,6 +409,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4852151070682704055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6120509375946940071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da26bd876c59f042a8a888050c49b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterVFXHandler
 --- !u!4 &6898312269805093917 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: de47bb8a5a66c274394be943e8f5b23c, type: 3}
