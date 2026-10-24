@@ -25,9 +25,9 @@ namespace RPG.Combat.Actions
         {
             PreviewTileInfo root = PreviewTileInfo.GetRoot(selectedPreviewTile);
 
+            AudioManager.Instance.PlayOneShot(_attackSFX);
             do
             {
-                AudioManager.Instance.PlayOneShot(_attackSFX);
                 yield return new WaitForSeconds(0.9f / CombatManager.CombatSpeed);
                 foreach (Effect effect in _effects)
                 {
@@ -42,34 +42,22 @@ namespace RPG.Combat.Actions
 
         public override List<PreviewTileInfo> Preview()
         {
-            PreviewTileInfo up;
-            PreviewTileInfo down;
-            PreviewTileInfo right;
-            PreviewTileInfo left;
+            PreviewTileInfo downLeft;
+            PreviewTileInfo downright;
 
             List<PreviewTileInfo> firstSteps = new List<PreviewTileInfo>();
 
             Effect previewEffect = Effect.Clone(_effects[0]);
             previewEffect.Area[0] = new Vector2Int(0, 0);
 
-            up = new PreviewTileInfo(Vector2Int.up, Grid.DirectionEnum.Up, true, alwaysShowEffect: true);
-            up.Effects.Add(previewEffect);
+            downLeft = new PreviewTileInfo(Vector2Int.down + Vector2Int.left, Grid.DirectionEnum.DownLeft, true, alwaysShowEffect: true);
+            downLeft.Effects.Add(previewEffect);
 
-            down = new PreviewTileInfo(Vector2Int.down, Grid.DirectionEnum.Down, true, alwaysShowEffect: true);
-            down.Effects.Add(previewEffect);
+            downright = new PreviewTileInfo(Vector2Int.down + Vector2Int.right, Grid.DirectionEnum.DownRight, true, alwaysShowEffect: true);
+            downright.Effects.Add(previewEffect);
 
-
-            right = new PreviewTileInfo(Vector2Int.right, Grid.DirectionEnum.Right, true, alwaysShowEffect: true);
-            right.Effects.Add(previewEffect);
-
-
-            left = new PreviewTileInfo(Vector2Int.left, Grid.DirectionEnum.Left, true, alwaysShowEffect: true);
-            left.Effects.Add(previewEffect);
-
-            //firstSteps.Add(up);
-            firstSteps.Add(down);
-            //firstSteps.Add(right);
-            //firstSteps.Add(left);
+            if (CombatManager.TurnCount % 2 == 0) firstSteps.Add(downLeft);
+            if (CombatManager.TurnCount % 2 == 1) firstSteps.Add(downright);
 
             return firstSteps;
         }

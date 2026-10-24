@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace RPG.Combat.UI
 {
-    public class MotivationBarController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public class MotivationBarController : MonoBehaviour
     {
         [SerializeField] private CharacterMotivationSlider _motivationBarPrefab;
         [SerializeField] private Transform _motivationBarContainer;
@@ -22,7 +22,7 @@ namespace RPG.Combat.UI
         private void Start()
         {
             _apresentadorSlider.value = 0f;
-            _apresentadorSlider.DOValue(1f, 3f).SetEase(Ease.Linear).SetDelay(1f);
+            _apresentadorSlider.DOValue(0.9f, 3f).SetEase(Ease.Linear).SetDelay(1f);
 
             _apresentadorButton.onClick.AddListener(OnApresentadorClicked);
         }
@@ -106,15 +106,6 @@ namespace RPG.Combat.UI
             ActionsManager.Instance.OnApresentadorSelected?.Invoke();
         }
 
-        public void OnPointerEnter(PointerEventData eventData)
-        {
-            ActionsManager.Instance.OnApresentadorHoverEnter?.Invoke();
-        }
-
-        public void OnPointerExit(PointerEventData eventData)
-        {
-            ActionsManager.Instance.OnApresentadorHoverExit?.Invoke();
-
-        }
+        
     }
 }

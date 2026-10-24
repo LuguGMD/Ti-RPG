@@ -24,48 +24,29 @@ namespace RPG.Combat.Actions
         public override IEnumerator Execute(PreviewTileInfo selectedPreviewTile)
         {
             PreviewTileInfo root = PreviewTileInfo.GetRoot(selectedPreviewTile);
-
-            do
+            yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
+            AudioManager.Instance.PlayOneShot(_attackSFX);
+            foreach (Effect effect in _effects)
             {
-                AudioManager.Instance.PlayOneShot(_attackSFX);
-                yield return new WaitForSeconds(0.9f / CombatManager.CombatSpeed);
-                foreach (Effect effect in _effects)
-                {
-                    effect.Execute(_user);
-                }
-                yield return new WaitForSeconds(0.3f / CombatManager.CombatSpeed);
-                yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
-                if (root == selectedPreviewTile) break;
-                root = root.Child;
-            } while (root != null);
+                effect.Execute(_user);
+            }
+            yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
         }
 
 
         public override List<PreviewTileInfo> Preview()
         {
-            PreviewTileInfo up;
             PreviewTileInfo down;
-            PreviewTileInfo right;
-            PreviewTileInfo left;
 
             List<PreviewTileInfo> firstSteps = new List<PreviewTileInfo>();
 
             Effect previewEffect = Effect.Clone(_effects[0]);
             previewEffect.Area[0] = new Vector2Int(0, 0);
 
-            up = new PreviewTileInfo(Vector2Int.up, Grid.DirectionEnum.Up, true, alwaysShowEffect: true);
-            up.Effects.Add(previewEffect);
-
             down = new PreviewTileInfo(Vector2Int.down, Grid.DirectionEnum.Down, true, alwaysShowEffect: true);
             down.Effects.Add(previewEffect);
-
-
-            right = new PreviewTileInfo(Vector2Int.right, Grid.DirectionEnum.Right, true, alwaysShowEffect: true);
-            right.Effects.Add(previewEffect);
-
-
-            left = new PreviewTileInfo(Vector2Int.left, Grid.DirectionEnum.Left, true, alwaysShowEffect: true);
-            left.Effects.Add(previewEffect);
+            PreviewTileInfo child = down.CreateChild(Vector2Int.down, Grid.DirectionEnum.Down, true, alwaysShowEffect: true);
+            child.Effects.Add(previewEffect);
 
             //firstSteps.Add(up);
             firstSteps.Add(down);
