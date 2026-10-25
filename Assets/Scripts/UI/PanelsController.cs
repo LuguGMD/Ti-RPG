@@ -11,7 +11,10 @@ namespace Lugu.UI
         [SerializeField] private List<GameObject> _panelsList;
 
         [Header("Panel Animations")]
+        [Min(0.01f)]
         [SerializeField] private float _transitionDuration = 0.25f;
+
+        [Range(0.8f, 1f)]
         [SerializeField] private float _startScale = 0.95f;
 
         private GameObject _currentPanel;
@@ -102,7 +105,8 @@ namespace Lugu.UI
 
             CanvasGroup previousGroup = _canvasGroups[previousPanel];
 
-            _transitionSequence = DOTween.Sequence();
+            _transitionSequence = DOTween.Sequence()
+                .SetUpdate(true);
 
             _transitionSequence.Append(
                 previousGroup.DOFade(0f, _transitionDuration)
@@ -144,7 +148,9 @@ namespace Lugu.UI
                 _originalScales[panel] * _startScale;
 
             _transitionSequence?.Kill();
-            _transitionSequence = DOTween.Sequence();
+
+            _transitionSequence = DOTween.Sequence()
+                .SetUpdate(true);
 
             _transitionSequence.Append(
                 group.DOFade(1f, _transitionDuration)
@@ -173,7 +179,8 @@ namespace Lugu.UI
 
             CanvasGroup group = _canvasGroups[panel];
 
-            _transitionSequence = DOTween.Sequence();
+            _transitionSequence = DOTween.Sequence()
+                .SetUpdate(true);
 
             _transitionSequence.Append(
                 group.DOFade(0f, _transitionDuration)
