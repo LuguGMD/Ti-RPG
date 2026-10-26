@@ -28,6 +28,7 @@ namespace RPG.Combat
 
             foreach (Renderer renderer in _renderers)
             {
+                if (renderer == null) continue;
                 if (renderer.materials.Length < 2) continue;
 
                 renderer.materials[1].DOFloat(intensity, "_Fresnel_Intensity", 0.3f);

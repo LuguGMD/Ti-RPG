@@ -54,7 +54,7 @@ namespace RPG.Combat
 
         private void Initialize()
         {
-            _currentMotivation = CombatConstants.MAX_MOTIVATION_APRESENTADOR;
+            _currentMotivation = CombatConstants.MAX_MOTIVATION_APRESENTADOR * 0.9f;
             MapManager.Instance.AddTileObject(_tileObject, Map.CENTER_POS);
             AdjsutGameSpeed();
 

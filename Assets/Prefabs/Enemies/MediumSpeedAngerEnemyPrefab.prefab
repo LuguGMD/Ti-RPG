@@ -18,15 +18,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2263448127493250946, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -4.5623307
       objectReference: {fileID: 0}
     - target: {fileID: 2263448127493250946, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.00149316
       objectReference: {fileID: 0}
     - target: {fileID: 2263448127493250946, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 6.924991
       objectReference: {fileID: 0}
     - target: {fileID: 2263448127493250946, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_LocalRotation.w
@@ -79,6 +79,22 @@ PrefabInstance:
     - target: {fileID: 6786344436985357976, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 2.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 6959967857075447024, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      propertyPath: ShapeModule.m_SkinnedMeshRenderer
+      value: 
+      objectReference: {fileID: 8843944010435858328}
+    - target: {fileID: 6959967857075447024, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.38431376
+      objectReference: {fileID: 0}
+    - target: {fileID: 6959967857075447024, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.36862746
+      objectReference: {fileID: 0}
+    - target: {fileID: 6959967857075447024, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8235295
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5875166748602480768, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
@@ -285,3 +301,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da26bd876c59f042a8a888050c49b09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterVFXHandler
+--- !u!137 &8843944010435858328 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -4943108271747695353, guid: a2493c075ce2f964abdbdc85b411466b, type: 3}
+  m_PrefabInstance: {fileID: 4745260253276795551}
+  m_PrefabAsset: {fileID: 0}
