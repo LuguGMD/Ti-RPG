@@ -4,6 +4,20 @@ namespace RPG
 {
     public class CharacterVFXHandler : MonoBehaviour
     {
+        [SerializeField] GameObject trailObject;
+
+        TrailRenderer trail;
+        ParticleSystem[] trailParticles;
+
+        private void Start()
+        {
+            if (trailObject != null)
+            {
+                trail = trailObject.GetComponent<TrailRenderer>();
+                trailParticles = trailObject.GetComponentsInChildren<ParticleSystem>();
+            }
+        }
+
         public void PlayAoeVFX(GameObject aoeVFX)
         {
             GameObject vfx = Instantiate(aoeVFX, transform.position, Quaternion.identity);
@@ -30,6 +44,26 @@ namespace RPG
             else if (transform.parent.name.Contains("Sadness"))
             {
                 Instantiate(slashVFXMaster.slashes[2], transform.position, transform.rotation, transform);
+            }
+        }
+
+        public void SetTrailEmission(int emit)
+        {
+            if (emit == 1)
+            {
+                trail.emitting = true;
+                foreach(ParticleSystem particle in trailParticles)
+                {
+                    particle.Play();
+                }
+            }
+            else
+            {
+                trail.emitting = false;
+                foreach (ParticleSystem particle in trailParticles)
+                {
+                    particle.Stop();
+                }
             }
         }
     }

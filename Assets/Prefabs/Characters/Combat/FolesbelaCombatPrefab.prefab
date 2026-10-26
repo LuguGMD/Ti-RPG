@@ -151,6 +151,9 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: -7758212469530058570, guid: ad5ca967e609ffc4088ad52bd1de2a39, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8021257096892984182}
     - targetCorrespondingSourceObject: {fileID: 3946470532543370578, guid: ad5ca967e609ffc4088ad52bd1de2a39, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6480017546595943333}
@@ -158,6 +161,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ad5ca967e609ffc4088ad52bd1de2a39, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4898195295462728884}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ad5ca967e609ffc4088ad52bd1de2a39, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1420078957323371114}
   m_SourcePrefab: {fileID: 100100000, guid: ad5ca967e609ffc4088ad52bd1de2a39, type: 3}
 --- !u!4 &344791003370811429 stripped
 Transform:
@@ -196,6 +202,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1420078957323371114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117773672608344735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da26bd876c59f042a8a888050c49b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterVFXHandler
+  trailObject: {fileID: 1115841466502127115}
+--- !u!4 &1663801024171751288 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7758212469530058570, guid: ad5ca967e609ffc4088ad52bd1de2a39, type: 3}
+  m_PrefabInstance: {fileID: 234830301561853902}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3041673495287572920 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6236226508965167498, guid: ad5ca967e609ffc4088ad52bd1de2a39, type: 3}
@@ -309,6 +333,73 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8489989663251656329, guid: b76385e9849ccba4fb8342c0476cfb5b, type: 3}
   m_PrefabInstance: {fileID: 796832516092627196}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4611157792777755627
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1663801024171751288}
+    m_Modifications:
+    - target: {fileID: 3495457906517100000, guid: 0398584ea8c58344e950bb65a0064609, type: 3}
+      propertyPath: m_Name
+      value: FolesbelaTrail
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813906601465737373, guid: 0398584ea8c58344e950bb65a0064609, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813906601465737373, guid: 0398584ea8c58344e950bb65a0064609, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813906601465737373, guid: 0398584ea8c58344e950bb65a0064609, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813906601465737373, guid: 0398584ea8c58344e950bb65a0064609, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813906601465737373, guid: 0398584ea8c58344e950bb65a0064609, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813906601465737373, guid: 0398584ea8c58344e950bb65a0064609, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813906601465737373, guid: 0398584ea8c58344e950bb65a0064609, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813906601465737373, guid: 0398584ea8c58344e950bb65a0064609, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813906601465737373, guid: 0398584ea8c58344e950bb65a0064609, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5813906601465737373, guid: 0398584ea8c58344e950bb65a0064609, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0398584ea8c58344e950bb65a0064609, type: 3}
+--- !u!1 &1115841466502127115 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3495457906517100000, guid: 0398584ea8c58344e950bb65a0064609, type: 3}
+  m_PrefabInstance: {fileID: 4611157792777755627}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8021257096892984182 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5813906601465737373, guid: 0398584ea8c58344e950bb65a0064609, type: 3}
+  m_PrefabInstance: {fileID: 4611157792777755627}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6156098801913985770
 PrefabInstance:
@@ -478,7 +569,7 @@ MonoBehaviour:
   _acrobaticsLeftAttack:
     _actionName: "Pra l\xE1"
     _actionDescription: Salta de 2 em 2 casas, acertando quem estiver no caminho
-    _followRadius: 5
+    _followRadius: 8
     _effects:
     - _targetList: 01000000
       _canTargetSelf: 0
@@ -519,7 +610,7 @@ MonoBehaviour:
   _acrobaticsRightAttack:
     _actionName: "Pra c\xE1"
     _actionDescription: Salta de 2 em 2 Tiles, acertando quem estiver no caminho
-    _followRadius: 5
+    _followRadius: 8
     _effects:
     - _targetList: 01000000
       _canTargetSelf: 0
