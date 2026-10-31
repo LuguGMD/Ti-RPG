@@ -29,6 +29,7 @@ namespace RPG.Combat.Actions
         public override IEnumerator Execute(PreviewTileInfo selectedPreviewTile)
         {
             PreviewTileInfo root = PreviewTileInfo.GetRoot(selectedPreviewTile);
+            bool didHit = false;
 
             Vector2Int targetTile = _user.Position + selectedPreviewTile.RelativePosition;
             Vector3 targetPos = MapManager.Instance.GetWorldPosition(targetTile);
@@ -50,7 +51,10 @@ namespace RPG.Combat.Actions
                 AudioManager.Instance.PlayOneShot(_impactSound);
                 foreach (Effect effect in _effects)
                 {
-                    effect.Execute(_user);
+                    if (effect.Execute(_user))
+                    {
+                        didHit = true;
+                    }
                 }
                 if (root == selectedPreviewTile) break;
                 root = root.Child;
@@ -61,6 +65,11 @@ namespace RPG.Combat.Actions
 
             _user.SetAnimationBool("IsActionRunning", false);
             _user.Model.transform.localEulerAngles = Vector3.zero;
+
+            if (didHit)
+            {
+                CombatManager.Instance.HealCharge(_user, (_user.Info as CharacterScriptable).HealAmount);
+            }
         }
 
         public override List<PreviewTileInfo> Preview()

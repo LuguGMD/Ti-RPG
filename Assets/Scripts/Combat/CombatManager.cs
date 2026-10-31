@@ -60,7 +60,7 @@ namespace RPG.Combat
         private float _combatSpeed = 1;
 
         private HashSet<string> _combatUpgrades = new HashSet<string>();
-        private float _damageDealt = 0;
+        private float _healAmount = 0;
 
         #region Properties
 
@@ -125,7 +125,6 @@ namespace RPG.Combat
             ActionsManager.Instance.OnPlayerTurnEnded += EndPlayerTurn;
             ActionsManager.Instance.OnCharacterDamageTaken += CharacterDamageTaken;
             ActionsManager.Instance.OnApresentadorDamageTaken += ApresentadorDamageTaken;
-            ActionsManager.Instance.OnEnemyDamageTaken += OnDamageDealt;
         }
 
         private void OnDisable()
@@ -141,7 +140,6 @@ namespace RPG.Combat
             ActionsManager.Instance.OnCharacterDamageTaken -= CharacterDamageTaken;
             ActionsManager.Instance.OnApresentadorDamageTaken -= ApresentadorDamageTaken;
             ActionsManager.Instance.OnPreviewTileSelected -= PlaceCharacter;
-            ActionsManager.Instance.OnEnemyDamageTaken -= OnDamageDealt;
         }
 
         #region Preparation
@@ -270,14 +268,11 @@ namespace RPG.Combat
                 _currentTurnState = CombatTurnStateEnum.EnemyTurn;
                 ActionsManager.Instance.OnEnemyTurnStarted?.Invoke();
 
-                if(_damageDealt > 0)
-                    Apresentador.Heal(_damageDealt / 10);
-
                 StartEnemyTurn();
             }
             else if (_currentTurnState == CombatTurnStateEnum.EnemyTurn)
             {
-                _damageDealt = 0;
+                _healAmount = 0;
 
                 ActionsManager.Instance.OnEnemyTurnEnded?.Invoke();
                 _currentTurnState = CombatTurnStateEnum.PlayerTurn;
@@ -349,6 +344,11 @@ namespace RPG.Combat
             _canSelectCharacter = true;
             _isActionInProgress = false;
 
+            if (_healAmount > 0)
+            {
+                Apresentador.Heal(_healAmount);
+                _healAmount = 0;
+            }
 
             CheckEndPlayerTurn();
 
@@ -536,9 +536,14 @@ namespace RPG.Combat
             CheckPlayerWon();
         }
 
-        private void OnDamageDealt(EnemyController enemy, float damage)
+        public void HealCharge(StageEntityController user, float healAmount)
         {
-            _damageDealt += Mathf.Abs(damage);
+            bool isOnSpotlight = user.TileObject.IsOnSpotlight;
+            if(isOnSpotlight)
+            {
+                healAmount *= 1.25f;
+            }
+        _healAmount += Mathf.Abs(healAmount);
         }
 
         #endregion

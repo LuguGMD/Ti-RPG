@@ -14,12 +14,14 @@ namespace RPG.Combat
         [SerializeField] private Sprite _posterIcon;
         [Header("Stats")]
         [SerializeField] private int motivation = 100;
+        [SerializeField] private float _healAmount;
         [SerializeField] private CharacterController _prefab;
         [ParamRef] [SerializeField] private string _fmodParameterName;
 
         [Range(0, 5)] [SerializeField] private int _motivationStat;
         [Range(0, 5)] [SerializeField] private int _strengthStat;
         [Range(0, 5)] [SerializeField] private int _mobilityStat;
+        [Range(0, 5)] [SerializeField] private int _healStat;
 
 
         #region Properties
@@ -29,6 +31,7 @@ namespace RPG.Combat
         public Sprite UsedIcon { get { return _usedIcon; } }
         public Sprite PosterIcon { get { return _posterIcon; } }
         public int Motivation => motivation;
+        public float HealAmount => _healAmount;
         public override TeamEnum Team { get { return TeamEnum.Circus; } }
         public CharacterController Prefab { get { return _prefab; } }
         public string FmodParameterName { get { return _fmodParameterName;  } }
@@ -36,6 +39,7 @@ namespace RPG.Combat
         public int MotivationStat { get { return _motivationStat; } }
         public int StrengthStat { get { return _strengthStat; } }
         public int MobilityStat { get { return _mobilityStat; } }
+        public int HealStat { get { return _healStat; } }
 
         #endregion
     }

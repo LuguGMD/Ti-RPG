@@ -30,6 +30,7 @@ namespace RPG.Combat.Actions
         public override IEnumerator Execute(PreviewTileInfo selectedPreviewTile)
         {
             PreviewTileInfo root = PreviewTileInfo.GetRoot(selectedPreviewTile);
+            bool didHit = false;
 
             Vector2Int startPos = _user.Position;
 
@@ -59,10 +60,18 @@ namespace RPG.Combat.Actions
 
             foreach (Effect effect in _effects)
             {
-                effect.Execute(_user);
+                if (effect.Execute(_user))
+                {
+                    didHit = true;
+                }
             }
 
             _effects[0].Commands.RemoveAt(_effects[0].Commands.Count-1);
+
+            if (didHit)
+            {
+                CombatManager.Instance.HealCharge(_user, (_user.Info as CharacterScriptable).HealAmount);
+            }
         }
 
         public override List<PreviewTileInfo> Preview()

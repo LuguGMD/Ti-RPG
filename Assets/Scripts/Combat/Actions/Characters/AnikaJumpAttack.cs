@@ -33,6 +33,7 @@ namespace RPG.Combat.Actions
         public override IEnumerator Execute(PreviewTileInfo selectedPreviewTile)
         {
             PreviewTileInfo root = PreviewTileInfo.GetRoot(selectedPreviewTile);
+            bool didHit = false;
 
             do
             {
@@ -44,12 +45,19 @@ namespace RPG.Combat.Actions
                 _user.TileObject.UpdatePosition();
                 foreach (Effect effect in _effects)
                 {
-                    effect.Execute(_user);
+                    if(effect.Execute(_user))
+                    {
+                        didHit = true;
+                    }
                 }
                 if (root == selectedPreviewTile) break;
                 root = root.Child;
             } while (root != null);
 
+            if(didHit)
+            {
+                CombatManager.Instance.HealCharge(_user, (_user.Info as CharacterScriptable).HealAmount);
+            }
         }
 
 
