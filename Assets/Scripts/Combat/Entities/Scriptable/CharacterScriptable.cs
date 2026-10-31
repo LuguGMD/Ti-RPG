@@ -11,6 +11,7 @@ namespace RPG.Combat
 
         [SerializeField] private Sprite _icon;
         [SerializeField] private Sprite _usedIcon;
+        [SerializeField] private Sprite _posterIcon;
         [Header("Stats")]
         [SerializeField] private int motivation = 100;
         [SerializeField] private CharacterController _prefab;
@@ -26,6 +27,7 @@ namespace RPG.Combat
 
         public Sprite Icon { get { return _icon; } }
         public Sprite UsedIcon { get { return _usedIcon; } }
+        public Sprite PosterIcon { get { return _posterIcon; } }
         public int Motivation => motivation;
         public override TeamEnum Team { get { return TeamEnum.Circus; } }
         public CharacterController Prefab { get { return _prefab; } }

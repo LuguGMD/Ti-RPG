@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace RPG.Dialogue.Editor
 {
-    [ScriptedImporter(23, DialogueGraph.AssetExtension)]
+    [ScriptedImporter(24, DialogueGraph.AssetExtension)]
     public class DialogueGraphImporter : ScriptedImporter
     {
         private static Queue<DialogueNode> _dialogueQueue = new Queue<DialogueNode>();
@@ -128,7 +128,7 @@ namespace RPG.Dialogue.Editor
             if (entityScriptable != null)
             {
                 dialogueDisplayInfo.Title = entityScriptable.CharacterName;
-                dialogueDisplayInfo.Sprite = entityScriptable.Icon;
+                dialogueDisplayInfo.Sprite = entityScriptable.DialogueIcon;
             }
 
             context.AddObjectToAsset("Dialogue" + _processedDialogues.Count + "DisplayInfo", dialogueDisplayInfo);
@@ -155,7 +155,7 @@ namespace RPG.Dialogue.Editor
             if (entityScriptable != null)
             {
                 dialogueDisplayInfo.Title = entityScriptable.CharacterName;
-                dialogueDisplayInfo.Sprite = entityScriptable.Icon;
+                dialogueDisplayInfo.Sprite = entityScriptable.DialogueIcon;
             }
 
             context.AddObjectToAsset("Dialogue" + _processedDialogues.Count + "DisplayInfo", dialogueDisplayInfo);

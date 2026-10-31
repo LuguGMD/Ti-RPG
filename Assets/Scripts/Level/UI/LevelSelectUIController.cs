@@ -35,6 +35,7 @@ namespace RPG.Level
         [SerializeField] private TextMeshProUGUI _levelNameText;
         [SerializeField] private TextMeshProUGUI _selectedCharactersCountText;
         [SerializeField] private Image[] _partyMemberPreviews;
+        [SerializeField] private Sprite _partyMemberPreviewDefault;
 
         [SerializeField] private Button _confirmPlayButton;
         [SerializeField] private Button _confirmPlayButton2;
@@ -167,7 +168,7 @@ namespace RPG.Level
                 GameManager.CurrentParty[index] = null;
             }
 
-            _partyMemberPreviews[index].sprite = null;
+            _partyMemberPreviews[index].sprite = _partyMemberPreviewDefault;
 
             UpdateCharacterOptions();
             UpdateCharacterCount();
@@ -196,7 +197,7 @@ namespace RPG.Level
         {
             if (character == null) return;
 
-            _partyMemberPreviews[partyMemberIndex].sprite = character.Icon;
+            _partyMemberPreviews[partyMemberIndex].sprite = character.PosterIcon;
         }
 
         private void UpdateCharacterCount()
