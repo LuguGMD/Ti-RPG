@@ -99,7 +99,7 @@ namespace RPG.Combat.UI
 
             Renderer[] renderers = characterModel.GetComponentsInChildren<Renderer>();
 
-            _previewMaterial.SetColor("_Color", character.EntityColor);
+            _previewMaterial.SetColor("_Color", character.EntityPlacementPreviewColor);
             foreach (Renderer renderer in renderers)
             {
                 List<Material> materials = new List<Material>();

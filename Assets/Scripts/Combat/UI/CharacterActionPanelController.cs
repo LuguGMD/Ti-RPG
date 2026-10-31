@@ -81,8 +81,8 @@ namespace RPG.Combat.UI
             _characterNameText.text = character.CharacterInfo.EntityName;
             _actionsDescriptionPanel.gameObject.SetActive(false);
 
-            _characterNameText.GetComponentInParent<Image>(true).color = _selectedCharacter.Info.EntityColor;
-            _actionsDescriptionPanel.GetComponent<Image>().color = _selectedCharacter.Info.EntityColor;
+            _characterNameText.GetComponentInParent<Image>(true).color = _selectedCharacter.Info.EntityUIColor;
+            _actionsDescriptionPanel.GetComponent<Image>().color = _selectedCharacter.Info.EntityUIColor;
         }
 
         private void InstantiateActionButton()
