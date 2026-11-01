@@ -11,7 +11,8 @@ namespace RPG.Level.UI
         {
             Motivation,
             Strength,
-            Mobility
+            Mobility,
+            Heal
         }
 
         [SerializeField] private StatType _statType;
@@ -30,6 +31,9 @@ namespace RPG.Level.UI
                     break;
                 case StatType.Mobility:
                     statValue = character.MobilityStat;
+                    break;
+                case StatType.Heal:
+                    statValue = character.HealStat;
                     break;
             }
             for (int i = 0; i < _statValueImages.Count; i++)
