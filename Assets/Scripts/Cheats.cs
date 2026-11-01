@@ -15,6 +15,7 @@ namespace RPG
             if(UnityEngine.Input.GetKeyDown(KeyCode.F1))
             {
                 if (CombatManager.Instance == null) return;
+                if(CombatManager.CharacterPlacementUIPreview.gameObject.activeSelf) return;
 
                 List<CharacterController> characters = CombatManager.RemainingCharacters;
                 foreach (CharacterController character in characters)
@@ -28,8 +29,10 @@ namespace RPG
             if (UnityEngine.Input.GetKeyDown(KeyCode.F2))
             {
                 if (CombatManager.Instance == null) return;
+                if (CombatManager.CharacterPlacementUIPreview.gameObject.activeSelf) return;
 
-                List<CharacterController> characters = CombatManager.RemainingCharacters;
+                CharacterController[] characters = new CharacterController[CombatManager.RemainingCharacters.Count];
+                CombatManager.RemainingCharacters.CopyTo(characters);
                 foreach (CharacterController character in characters)
                 {
                     character.TakeDamage(10);

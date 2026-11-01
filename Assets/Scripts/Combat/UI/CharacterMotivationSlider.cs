@@ -11,6 +11,7 @@ namespace RPG.Combat.UI
     {
         [SerializeField] private Slider _slider;
         [SerializeField] private Image _characterIcon;
+        [SerializeField] private Image _demotivatedIcon;
         [SerializeField] private Button _characterButton;
         [SerializeField] private TooltipTrigger _tooltipTrigger;
         private CharacterController _characterController;
@@ -32,6 +33,7 @@ namespace RPG.Combat.UI
             CharacterScriptable characterInfo = characterController.CharacterInfo;
             _characterController = characterController;
             _characterIcon.sprite = characterController.HasActed ? characterInfo.UsedIcon : characterInfo.Icon;
+            _characterButton.interactable = !characterController.HasActed;
             _tooltipTrigger.header = characterInfo.EntityName;
             _tooltipTrigger.content = "";
 
@@ -43,6 +45,21 @@ namespace RPG.Combat.UI
             {
                 _characterIcon.rectTransform.DOScale(Vector3.one, 0.2f);
             }
+        }
+
+        public void Demotivate()
+        {
+            _demotivatedIcon.gameObject.SetActive(true);
+            _characterIcon.rectTransform.DOScale(Vector3.one * 0.7f, 0.2f);
+            _characterIcon.sprite = _characterController.CharacterInfo.UsedIcon;
+            _characterButton.interactable = false;
+        }
+
+        public void Motivate()
+        {
+            _demotivatedIcon.gameObject.SetActive(false);
+            _characterIcon.rectTransform.DOScale(Vector3.one, 0.2f);
+            _characterButton.interactable = true;
         }
 
         public void OnSelect(CharacterController characterController)

@@ -1,6 +1,8 @@
 using DG.Tweening;
 using RPG.Combat.Grid;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
@@ -10,7 +12,7 @@ namespace RPG.Combat.UI
     public class CharacterPlacementUIPreview : MonoBehaviour
     {
         [SerializeField] private List<Image> _images;
-        private int _addedCharacter = 0;
+        private List<CharacterScriptable> _charactersToAdd = new List<CharacterScriptable>();
         [SerializeField] private Transform _characterPlacement;
         [SerializeField] private Material _previewMaterial;
 
@@ -19,40 +21,53 @@ namespace RPG.Combat.UI
             _previewMaterial = new Material(_previewMaterial);
             _previewMaterial.SetFloat("_Fresnel_Intensity", 1);
             _previewMaterial.SetFloat("_Fresnel_Power", 0.2f);
+
+            for (int i = 0; i < GameManager.CurrentParty.Length; i++)
+            {
+                _charactersToAdd.Add(GameManager.CurrentParty[i]);
+            }
+
             UpdateImages();
         }
 
         private void OnEnable()
         {
             ActionsManager.Instance.OnCharacterCreated += OnCharacterCreated;
-            ActionsManager.Instance.OnCombatStart += OnCombatStart;
+            ActionsManager.Instance.OnCombatStart += DisablePlacement;
             ActionsManager.Instance.OnTileHovered += OnTileHovered;
         }
 
         private void OnDisable()
         {
             ActionsManager.Instance.OnCharacterCreated -= OnCharacterCreated;
-            ActionsManager.Instance.OnCombatStart -= OnCombatStart;
+            ActionsManager.Instance.OnCombatStart -= DisablePlacement;
             ActionsManager.Instance.OnTileHovered -= OnTileHovered;
         }
 
         private void OnCharacterCreated(CharacterController character)
         {
-            _addedCharacter++;
+            _charactersToAdd.Remove(character.CharacterInfo);
             UpdateImages();
         }
 
-        private void OnCombatStart()
+        public void DisablePlacement()
         {
-            Destroy(_characterPlacement.gameObject);
-            Destroy(gameObject);
+            _characterPlacement.gameObject.SetActive(false);
+            gameObject.SetActive(false);
+            _charactersToAdd.Clear();
+        }
+
+        public void EnablePlacement()
+        {
+            _characterPlacement.gameObject.SetActive(true);
+            UpdateImages();
         }
 
         private void UpdateImages()
         {
             for (int i = 0; i < _images.Count; i++)
             {
-                if (i < _addedCharacter)
+                if (i < CombatConstants.MAX_CHARACTERS_COUNT - _charactersToAdd.Count)
                 {
                     _images[i].rectTransform.DOAnchorPosX(130, 0.5f).SetEase(Ease.InBack).OnComplete(() =>
                     {
@@ -61,16 +76,19 @@ namespace RPG.Combat.UI
                 }
                 else
                 {
-                    if (i == _addedCharacter)
+                    if (i == CombatConstants.MAX_CHARACTERS_COUNT - _charactersToAdd.Count)
                     {
                         _images[i].rectTransform.DOAnchorPosX(-80, 1f).SetEase(Ease.OutBack);
                     }
 
-                    _images[i].sprite = GameManager.CurrentParty[i].Icon;
+                    _images[i].sprite = _charactersToAdd[0].Icon;
                 }
             }
 
-            ReplacePreviewModel(_addedCharacter);
+            if (_charactersToAdd.Count > 0)
+            {
+                ReplacePreviewModel(_charactersToAdd[0]);
+            }
         }
 
         private void OnTileHovered(Vector2Int tilePosition)
@@ -82,16 +100,12 @@ namespace RPG.Combat.UI
             _characterPlacement.transform.LookAt(_characterPlacement.position + lookAtPosition);
         }
 
-        private void ReplacePreviewModel(int partyMemberIndex)
+        private void ReplacePreviewModel(CharacterScriptable character)
         {
-            if (_addedCharacter >= GameManager.CurrentParty.Length) return;
-
             foreach (Transform child in _characterPlacement)
             {
                 Destroy(child.gameObject);
             }
-
-            CharacterScriptable character = GameManager.CurrentParty[partyMemberIndex];
 
             GameObject characterModel = Instantiate(character.PreviewModelPrefab.gameObject, _characterPlacement);
             characterModel.transform.localPosition = Vector3.zero;
@@ -109,6 +123,12 @@ namespace RPG.Combat.UI
                 }
                 renderer.SetMaterials(materials);
             }
+        }
+
+        public void AddCharacter(CharacterScriptable character)
+        {
+            if (!_charactersToAdd.Contains(character))
+                _charactersToAdd.Add(character);
         }
     }
 }

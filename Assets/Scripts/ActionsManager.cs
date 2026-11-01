@@ -43,6 +43,7 @@ namespace RPG
         public Action<CharacterController, float> OnCharacterHealed;
         public Action<CharacterController> OnCharacterCreated;
         public Action<CharacterController> OnCharacterDefeated;
+        public Action<CharacterController> OnCharacterRevived;
 
         public Action<CharacterController> OnCharacterActionUsed;
         public Action<CharacterController> OnCharacterActionReset;

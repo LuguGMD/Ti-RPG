@@ -33,6 +33,8 @@ namespace RPG.UI
 
         public void OnPointerExit(PointerEventData eventData)
         {
+            if (_button != null && !_button.interactable) return;
+
             transform.DOScale(_originalScale, _animationDuration);
         }
 

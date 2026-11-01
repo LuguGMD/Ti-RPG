@@ -108,7 +108,8 @@ namespace RPG.Combat
             ActionsManager.Instance.OnCharacterDefeated?.Invoke(this);
 
             //TO DO triggar animacao de morte
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
 
         #endregion
