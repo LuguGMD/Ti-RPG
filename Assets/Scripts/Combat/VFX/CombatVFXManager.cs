@@ -41,6 +41,7 @@ namespace RPG.Combat.VFX
             ActionsManager.Instance.OnCharacterActionUsed += DeactivateIndicator;
             ActionsManager.Instance.OnCharacterActionReset += ActivateIndicator;
             ActionsManager.Instance.OnCharacterSelected += LockCharacterOutline;
+            ActionsManager.Instance.OnCharacterSelected += PlayCharacterSelectionEffect;
             ActionsManager.Instance.OnCharacterDeselected += UnLockCharacterOutline;
             
             ActionsManager.Instance.OnApresentadorHoverEnter += ActivateApresentadorOutline;
@@ -48,6 +49,7 @@ namespace RPG.Combat.VFX
             ActionsManager.Instance.OnApresentadorActionCompleted += DeactivateIndicatorApresentador;
             ActionsManager.Instance.OnPlayerTurnStarted += ActivateIndicatorApresentador;
             ActionsManager.Instance.OnApresentadorSelected += LockApresentadorOutline;
+            ActionsManager.Instance.OnApresentadorSelected += PlayApresentadorSelectionEffect;
             ActionsManager.Instance.OnApresentadorUIClose += UnLockApresentadorOutline;
 
             // Spotlight Super
@@ -77,6 +79,7 @@ namespace RPG.Combat.VFX
             ActionsManager.Instance.OnCharacterActionUsed -= DeactivateIndicator;
             ActionsManager.Instance.OnCharacterActionReset -= ActivateIndicator;
             ActionsManager.Instance.OnCharacterSelected -= LockCharacterOutline;
+            ActionsManager.Instance.OnCharacterSelected -= PlayCharacterSelectionEffect;
             ActionsManager.Instance.OnCharacterDeselected -= UnLockCharacterOutline;
             
             ActionsManager.Instance.OnApresentadorHoverEnter -= ActivateApresentadorOutline;
@@ -84,6 +87,7 @@ namespace RPG.Combat.VFX
             ActionsManager.Instance.OnApresentadorActionCompleted -= DeactivateIndicatorApresentador;
             ActionsManager.Instance.OnPlayerTurnStarted -= ActivateIndicatorApresentador;
             ActionsManager.Instance.OnApresentadorSelected -= LockApresentadorOutline;
+            ActionsManager.Instance.OnApresentadorSelected -= PlayApresentadorSelectionEffect;
             ActionsManager.Instance.OnApresentadorUIClose -= UnLockApresentadorOutline;
 
             // Supers
@@ -222,5 +226,16 @@ namespace RPG.Combat.VFX
         }
         #endregion
 
+        #region Selection Effect
+        void PlayCharacterSelectionEffect(CharacterController entity)
+        {
+            entity?.GetComponent<AvailableActionVFXController>().PlaySelectionEffect();
+        }
+
+        void PlayApresentadorSelectionEffect()
+        {
+            apresentadorAvailableActionVFX.PlaySelectionEffect();
+        }
+        #endregion
     }
 }
