@@ -1,3 +1,4 @@
+using RPG.Audio;
 using RPG.Combat.Actions;
 using RPG.Combat.Grid;
 using RPG.Combat.Preview;
@@ -28,6 +29,8 @@ namespace RPG.Combat
             CombatManager.Instance.AddEnemy(this);
 
             _defeatsPerHit = GameManager.BossFightLevel.TotalEnemies / 3f;
+
+            AudioManager.Instance.SetParamenter("Boss", 1f);
         }
 
         protected new void OnEnable()
@@ -40,6 +43,8 @@ namespace RPG.Combat
         {
             base.OnDisable();
             ActionsManager.Instance.OnEnemyDefeated -= OnEnemyDefeated;
+
+            AudioManager.Instance.SetParamenter("Boss", 0f);
         }
 
         protected override void InitCombatActions()
