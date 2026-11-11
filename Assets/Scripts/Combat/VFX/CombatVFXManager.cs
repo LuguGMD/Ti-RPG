@@ -10,6 +10,7 @@ namespace RPG.Combat.VFX
         [SerializeField] GameObject healVFXPrefab;
         [SerializeField] GameObject hitVFXPrefab;
         [SerializeField] GameObject spotlightPreviousPositionPrefab;
+        [SerializeField] GameObject[] pushSuperVFXPrefabs;
 
         CharacterController selectedCharacter;
         GameObject spotlightPreviousPosition;
@@ -52,6 +53,7 @@ namespace RPG.Combat.VFX
             // Spotlight Super
             ActionsManager.Instance.OnSpotlightSuperStarted += AddSpotlightSuperPreview;
             ActionsManager.Instance.OnSpotlightSuperEnded += RemoveSpotlightSuperPreview;
+            ActionsManager.Instance.OnPushSuperActivated += PlayPushSuperVFX;
         }
 
         void OnDisable()
@@ -82,9 +84,10 @@ namespace RPG.Combat.VFX
             ActionsManager.Instance.OnApresentadorSelected -= LockApresentadorOutline;
             ActionsManager.Instance.OnApresentadorUIClose -= UnLockApresentadorOutline;
 
-            // Spotlight Super
+            // Supers
             ActionsManager.Instance.OnSpotlightSuperStarted -= AddSpotlightSuperPreview;
             ActionsManager.Instance.OnSpotlightSuperEnded -= RemoveSpotlightSuperPreview;
+            ActionsManager.Instance.OnPushSuperActivated -= PlayPushSuperVFX;
         }
 
         #region Spawn VFX
@@ -185,7 +188,7 @@ namespace RPG.Combat.VFX
         }
         #endregion
 
-        #region Spotlight Super Preview
+        #region Supers
         void AddSpotlightSuperPreview()
         {
             spotlightPreviousPosition = Instantiate(spotlightPreviousPositionPrefab, MapManager.Instance.GetWorldPosition(MapManager.SpotlightPosition), Quaternion.identity);
@@ -195,6 +198,11 @@ namespace RPG.Combat.VFX
         void RemoveSpotlightSuperPreview()
         {
             Destroy(spotlightPreviousPosition);
+        }
+
+        void PlayPushSuperVFX(int upgradeTier)
+        {
+            Instantiate(pushSuperVFXPrefabs[upgradeTier]);
         }
         #endregion
 
