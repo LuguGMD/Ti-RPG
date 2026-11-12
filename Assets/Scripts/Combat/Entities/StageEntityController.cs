@@ -104,6 +104,7 @@ namespace RPG.Combat
         public virtual void SelectAction(int actionIndex)
         {
             _selectedActionIndex = actionIndex;
+            SetAnimationInt("ActionIndex", _selectedActionIndex);
             _preview.ChangeActionToPreview(_actions[actionIndex]);
         }
 

@@ -35,7 +35,7 @@ namespace RPG.Combat.Actions
             _user.TileObject.SetDirection(selectedPreviewTile.Direction);
 
             AudioManager.Instance.PlayOneShot(_attackSFX);
-            yield return new WaitForSeconds(0.3f / CombatManager.CombatSpeed);
+            yield return new WaitForSeconds(1f / CombatManager.CombatSpeed);
 
             foreach (Effect effect in _effects)
             {
