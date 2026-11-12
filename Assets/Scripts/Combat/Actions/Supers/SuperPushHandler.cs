@@ -38,6 +38,7 @@ namespace RPG.Combat.Actions
             PreviewTileInfo root = PreviewTileInfo.GetRoot(selectedPreviewTile);
 
             yield return new WaitForSeconds(1);
+            ActionsManager.Instance.OnPushSuperActivated?.Invoke(_upgradeTier);
 
             CombatManager.Instance.CameraShake(shakeCameraForce);
 
