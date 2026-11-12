@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BossEnemyMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 12f74de2dc713704dafb954abda7741c, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: a56ec97938926974198a3baed8c0c69a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -131,6 +131,8 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _GlowPower: 3.13
+    - _GlowScale: 0.72
     - _Grain_Base_Color_Influence: 0.4
     - _Grain_Diffuse_Influence: 0.244
     - _Grain_Scale: 0.15
@@ -162,7 +164,9 @@ Material:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color_Tint: {r: 0.1509434, g: 0.1509434, b: 0.1509434, a: 1}
+    - _DarknessColor: {r: 0.06274508, g: 0.03529412, b: 0.03137255, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _GlowColor: {r: 0.75471693, g: 0.75471693, b: 0.75471693, a: 1}
     - _Shadow_Color: {r: 0.61390567, g: 0.5724902, b: 0.7830189, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
