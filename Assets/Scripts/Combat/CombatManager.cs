@@ -489,7 +489,7 @@ namespace RPG.Combat
             _hasCombatEnded = true;
 
             //TO DO remover depois
-            GameManager.ChangeScene(ScenesEnum.Lose);
+            GameManager.ChangeScene(ScenesEnum.MainMenu);
         }
 
         private void CheckPlayerWon()
