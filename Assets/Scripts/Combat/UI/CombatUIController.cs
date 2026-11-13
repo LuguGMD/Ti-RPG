@@ -75,8 +75,6 @@ namespace RPG.Combat.UI
                 turnInfoText.text = $"Turno {CombatManager.TurnCount}";
             }
 
-            playerActionButton.interactable = !CombatManager.CharacterPlacementUIPreview.gameObject.activeSelf;
-
             UpdateButtonStates();
         }
 
@@ -89,6 +87,10 @@ namespace RPG.Combat.UI
             if (playerActionButton != null)
             {
                 playerActionButton.interactable = isPlayerTurn && !isPlayerActing;
+                if(CombatManager.CharacterPlacementUIPreview.gameObject.activeSelf)
+                {
+                    playerActionButton.interactable = false;
+                }
             }
         }
 
