@@ -68,6 +68,8 @@ namespace RPG.Combat.VFX
 
             // Hit VFX
             ActionsManager.Instance.OnCharacterDamageTaken -= PlayHitVFX;
+            ActionsManager.Instance.OnEnemyDamageTaken -= PlayHitVFX;
+
 
             // Available Action Display
             ActionsManager.Instance.OnCharacterHoverEnter -= ActivateCharacterOutline;
@@ -112,7 +114,20 @@ namespace RPG.Combat.VFX
         #region Hit VFX
         void PlayHitVFX(StageEntityController entity, float amount)
         {
-            Instantiate(hitVFXPrefab, entity.transform.position, Quaternion.identity, entity.transform);
+            GameObject vfx = Instantiate(hitVFXPrefab, entity.transform.position, Quaternion.identity, entity.transform);
+
+            Texture2D colorPalette;
+            if (entity is CharacterController)
+            {
+                colorPalette = CombatManager.AttackingEnemy.Info.EntityVfxColorPalette;
+            }
+            else
+            {
+                colorPalette = CombatManager.SelectedCharacter.Info.EntityVfxColorPalette;
+            }
+
+            VFXColorPaletteController vfxColorPaletteController = vfx.GetComponent<VFXColorPaletteController>();
+            vfxColorPaletteController.SetColorPalette(colorPalette);
         }
         #endregion
 

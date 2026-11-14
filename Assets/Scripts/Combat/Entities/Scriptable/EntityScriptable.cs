@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RPG.Combat
@@ -12,6 +13,7 @@ namespace RPG.Combat
         [SerializeField] private Color _entityColor = Color.white;
         [ColorUsage(false, false)] [SerializeField] private Color _entityColorHDR = Color.white;
         [ColorUsage(false, false)] [SerializeField] private Color _entitySecondaryColor = Color.white;
+        [SerializeField] private Texture2D _entityVfxColorPalette;
 
         #region Properties
 
@@ -22,6 +24,7 @@ namespace RPG.Combat
         public Color EntityColor => _entityColor;
         public Color EntityColorHDR => _entityColorHDR;
         public Color EntitySecondaryColor => _entitySecondaryColor;
+        public Texture2D EntityVfxColorPalette => _entityVfxColorPalette;
 
         #endregion
     }
