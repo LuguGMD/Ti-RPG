@@ -120,14 +120,15 @@ namespace RPG.Combat.VFX
             if (entity is CharacterController)
             {
                 colorPalette = CombatManager.AttackingEnemy.Info.EntityVfxColorPalette;
+                VFXColorPaletteController vfxColorPaletteController = vfx.GetComponent<VFXColorPaletteController>();
+                vfxColorPaletteController.SetColorPalette(colorPalette);
             }
-            else
+            else if (entity is EnemyController)
             {
                 colorPalette = CombatManager.SelectedCharacter.Info.EntityVfxColorPalette;
+                VFXColorPaletteController vfxColorPaletteController = vfx.GetComponent<VFXColorPaletteController>();
+                vfxColorPaletteController.SetColorPalette(colorPalette);
             }
-
-            VFXColorPaletteController vfxColorPaletteController = vfx.GetComponent<VFXColorPaletteController>();
-            vfxColorPaletteController.SetColorPalette(colorPalette);
         }
         #endregion
 
