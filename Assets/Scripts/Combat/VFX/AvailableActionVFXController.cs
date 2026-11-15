@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 namespace RPG
@@ -9,6 +10,25 @@ namespace RPG
 
         bool actionAvailable = true;
         bool lockOutline = false;
+
+        [SerializeField] GameObject selectionVFX;
+        [SerializeField] float selectionVFXDuration;
+
+        Tween selectionVFXTimer;
+
+        public void PlaySelectionEffect()
+        {
+            Debug.Log("Playing selection effect");
+            if (selectionVFX == null) return;
+
+            selectionVFXTimer?.Kill();
+
+            selectionVFX.SetActive(false);
+            selectionVFX.SetActive(true);
+
+            selectionVFXTimer = DOVirtual.DelayedCall(selectionVFXDuration, () => selectionVFX.SetActive(false))
+                .SetLink(gameObject);
+        }
 
         public void ActivateOutline()
         {
