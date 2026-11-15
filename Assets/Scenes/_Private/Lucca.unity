@@ -47948,6 +47948,13 @@ MonoBehaviour:
       Data3: 1730400188
       Data4: 1738563776
     Path: event:/Environment/Music/Battle
+  bossMusic:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
 --- !u!1 &1515370166
 GameObject:
   m_ObjectHideFlags: 0
@@ -61126,6 +61133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.UI.CharacterMotivationSlider
   _slider: {fileID: 7622968914862109223}
   _characterIcon: {fileID: 0}
+  _demotivatedIcon: {fileID: 0}
   _characterButton: {fileID: 0}
   _tooltipTrigger: {fileID: 0}
 --- !u!1 &1704209811
@@ -120603,6 +120611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RPG.Combat.UI.CharacterMotivationSlider
   _slider: {fileID: 7622968914862109223}
   _characterIcon: {fileID: 7851328935991084154}
+  _demotivatedIcon: {fileID: 0}
   _characterButton: {fileID: 4802926793833736830}
   _tooltipTrigger: {fileID: 8226932298952056349}
 --- !u!4 &7955178746677185244
@@ -130297,6 +130306,7 @@ SceneRoots:
   - {fileID: 1814043506}
   - {fileID: 1064414436}
   - {fileID: 1127441675}
+  - {fileID: 3513122565604539288}
   - {fileID: 8090846824215866238}
   - {fileID: 723834173}
   - {fileID: 1510980473}
@@ -130318,7 +130328,6 @@ SceneRoots:
   - {fileID: 36949637}
   - {fileID: 1896976197}
   - {fileID: 6050780578236166153}
-  - {fileID: 3513122565604539288}
   - {fileID: 56344083376750656}
   - {fileID: 8584782513620453131}
   - {fileID: 865176643053207873}
