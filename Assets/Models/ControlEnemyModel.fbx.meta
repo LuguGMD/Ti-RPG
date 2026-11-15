@@ -108,7 +108,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.37634408
+        functionName: PlayAoeVFX
+        data: 
+        objectReferenceParameter: {fileID: 8501416643021159793, guid: d8a82f1244379a043a2a0912ef8d449c, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
