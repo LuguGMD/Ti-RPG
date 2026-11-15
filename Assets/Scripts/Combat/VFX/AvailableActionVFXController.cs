@@ -11,23 +11,26 @@ namespace RPG
         bool actionAvailable = true;
         bool lockOutline = false;
 
-        [SerializeField] GameObject selectionVFX;
-        [SerializeField] float selectionVFXDuration;
+        [SerializeField] Transform selectionBeam;
+        [SerializeField] float beamRiseDuration = 0.5f;
+        [SerializeField] float beamHoldDuration = 0.7f;
+        [SerializeField] float beamFallDuration = 0.4f;
 
-        Tween selectionVFXTimer;
+        Sequence beamSequence;
 
         public void PlaySelectionEffect()
         {
-            Debug.Log("Playing selection effect");
-            if (selectionVFX == null) return;
+            beamSequence?.Kill();
 
-            selectionVFXTimer?.Kill();
+            selectionBeam.localScale = new Vector3(1.5f, 0f, 1.5f);
+            selectionBeam.gameObject.SetActive(true);
 
-            selectionVFX.SetActive(false);
-            selectionVFX.SetActive(true);
-
-            selectionVFXTimer = DOVirtual.DelayedCall(selectionVFXDuration, () => selectionVFX.SetActive(false))
-                .SetLink(gameObject);
+            beamSequence = DOTween.Sequence()
+                .SetLink(gameObject)
+                .Append(selectionBeam.DOScaleY(1f, beamRiseDuration).SetEase(Ease.OutCubic))
+                .AppendInterval(beamHoldDuration)
+                .Append(selectionBeam.DOScaleY(0f, beamFallDuration).SetEase(Ease.InCubic))
+                .OnComplete(() => selectionBeam.gameObject.SetActive(false));
         }
 
         public void ActivateOutline()
@@ -48,9 +51,9 @@ namespace RPG
                 foreach (GameObject g in canOutline)
                 {
                     g.layer = LayerMask.NameToLayer("Default");
-                }  
+                }
             }
-              
+
         }
 
         public void ActivateIndicator()
