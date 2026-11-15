@@ -30,6 +30,7 @@ namespace RPG.Combat.Actions
         public override IEnumerator Execute(PreviewTileInfo selectedPreviewTile)
         {
             PreviewTileInfo root = PreviewTileInfo.GetRoot(selectedPreviewTile);
+            bool didHit = false;
 
             _user.TileObject.SetDirection(root.Direction);
             Vector2Int targetTile = _user.TileObject.Position + root.Direction.ToVector2Int();
@@ -41,7 +42,6 @@ namespace RPG.Combat.Actions
             AudioManager.Instance.PlayOneShot(_weightWindSound);
             yield return new WaitForSeconds(1.45f / CombatManager.CombatSpeed);
             CombatManager.Instance.CameraShake(shakeCameraForce);
-            bool didHit = false;
             foreach (Effect effect in _effects)
             {
                 if (effect.Execute(_user))
@@ -55,6 +55,11 @@ namespace RPG.Combat.Actions
             }
 
             yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
+
+            if (didHit)
+            {
+                CombatManager.Instance.HealCharge(_user, (_user.Info as CharacterScriptable).HealAmount);
+            }
         }
 
         public override List<PreviewTileInfo> Preview()

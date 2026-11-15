@@ -39,6 +39,8 @@ namespace RPG.Combat.UI
             ActionsManager.Instance.OnApresentadorSelected += HideCanvas;
             ActionsManager.Instance.OnActionStart += DisableSpeedButton;
             ActionsManager.Instance.OnActionEnd += EnableSpeedButton;
+            ActionsManager.Instance.OnPlayerTurnEnded += DisableTurnButton;
+            ActionsManager.Instance.OnPlayerTurnStarted += EnableTurnButton;
         }
 
         private void OnDisable()
@@ -48,6 +50,8 @@ namespace RPG.Combat.UI
             ActionsManager.Instance.OnApresentadorSelected -= HideCanvas;
             ActionsManager.Instance.OnActionStart -= DisableSpeedButton;
             ActionsManager.Instance.OnActionEnd -= EnableSpeedButton;
+            ActionsManager.Instance.OnPlayerTurnEnded -= DisableTurnButton;
+            ActionsManager.Instance.OnPlayerTurnStarted -= EnableTurnButton;
         }
 
         private void SetupUI()
@@ -83,6 +87,10 @@ namespace RPG.Combat.UI
             if (playerActionButton != null)
             {
                 playerActionButton.interactable = isPlayerTurn && !isPlayerActing;
+                if(CombatManager.CharacterPlacementUIPreview.gameObject.activeSelf)
+                {
+                    playerActionButton.interactable = false;
+                }
             }
         }
 
@@ -95,6 +103,15 @@ namespace RPG.Combat.UI
                 CombatTurnStateEnum.BattleEnd => "Fim da Batalha",
                 _ => "Desconhecido"
             };
+        }
+        private void EnableTurnButton()
+        {
+            playerActionButton.interactable = true;
+        }
+
+        private void DisableTurnButton()
+        {
+            playerActionButton.interactable = false;
         }
 
         private void EnableSpeedButton()

@@ -1,3 +1,4 @@
+using RPG.Audio;
 using RPG.Combat.Actions;
 using RPG.Combat.Preview;
 using RPG.Management.Progression;
@@ -47,6 +48,7 @@ namespace RPG.Combat
         {
             base.OnDisable();
             ActionsManager.Instance.OnApresentadorDamageTaken -= OnApresentadorDamaged;
+            AudioManager.Instance.SetParamenter(_characterInfo.FmodParameterName, 0f);
         }
 
         private void Initialize()
@@ -108,7 +110,8 @@ namespace RPG.Combat
             ActionsManager.Instance.OnCharacterDefeated?.Invoke(this);
 
             //TO DO triggar animacao de morte
-            Destroy(gameObject);
+            gameObject.SetActive(false);
+            //Destroy(gameObject);
         }
 
         #endregion

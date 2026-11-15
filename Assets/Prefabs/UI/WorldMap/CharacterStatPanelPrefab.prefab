@@ -826,6 +826,7 @@ GameObject:
   - component: {fileID: 1875533416099966530}
   - component: {fileID: 5732177620336692531}
   - component: {fileID: 5980095564782099419}
+  - component: {fileID: 4327737041679012849}
   m_Layer: 5
   m_Name: CharacterStatPanelPrefab
   m_TagString: Untagged
@@ -911,6 +912,22 @@ MonoBehaviour:
   - {fileID: 8136605982597827926}
   - {fileID: 5216897122887656411}
   - {fileID: 4056602425942134961}
+--- !u!114 &4327737041679012849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6948938174897648604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a89915ab33af143b952eeb21275557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RPG.UI.Tooltip.TooltipTrigger
+  header: 
+  content: Test
+  _offset: {x: 0, y: 0}
+  _pivot: {x: 0, y: 0}
 --- !u!1 &7724378603958127674
 GameObject:
   m_ObjectHideFlags: 0

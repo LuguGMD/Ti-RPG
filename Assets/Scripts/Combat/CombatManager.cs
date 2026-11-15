@@ -41,6 +41,9 @@ namespace RPG.Combat
         [SerializeField] private CombatUpgradeScriptable _superPushInfo;
         [SerializeField] private CombatUpgradeScriptable _superSpotlightInfo;
 
+        [Header("Other")]
+        [SerializeField] private CharacterPlacementUIPreview _characterPlacementUIPreview;
+
         private CinemachineImpulseSource _impulseSource;
 
         private CombatTurnStateEnum _currentTurnState;
@@ -55,13 +58,14 @@ namespace RPG.Combat
         private EnemyController _attackingEnemy;
         private List<EnemyController> _remainingEnemies = new List<EnemyController>();
         private List<CharacterController> _remainingCharacters = new List<CharacterController>();
+        private List<CharacterController> _defeatedCharacters = new List<CharacterController>();
         private ApresentadorController _apresentador;
 
         private bool _isActionInProgress = false;
         private float _combatSpeed = 1;
 
         private HashSet<string> _combatUpgrades = new HashSet<string>();
-        private float _damageDealt = 0;
+        private float _healAmount = 0;
 
         #region Properties
 
@@ -82,7 +86,7 @@ namespace RPG.Combat
         public static List<EnemyController> RemainingEnemies { get { return Instance._remainingEnemies; } }
         public static List<CharacterController> RemainingCharacters { get { return Instance._remainingCharacters; } }
         public static bool IsActionInProgress { get { return Instance._isActionInProgress; } }
-        public static HashSet<string> CombatUpgrades { get { return Instance._combatUpgrades; }  }
+        public static HashSet<string> CombatUpgrades { get { return Instance._combatUpgrades; } }
 
         public static Material TileMaterial { get { return Instance._tileMaterial; } }
         public static Texture TilePushImage { get { return Instance._tilePushImage; } }
@@ -92,6 +96,8 @@ namespace RPG.Combat
         public static CombatUpgradeScriptable SuperHealInfo { get { return Instance._superHealInfo; } }
         public static CombatUpgradeScriptable SuperPushInfo { get { return Instance._superPushInfo; } }
         public static CombatUpgradeScriptable SuperSpotlightInfo { get { return Instance._superSpotlightInfo; } }
+
+        public static CharacterPlacementUIPreview CharacterPlacementUIPreview { get { return Instance._characterPlacementUIPreview; } }
 
         #endregion
 
@@ -128,7 +134,6 @@ namespace RPG.Combat
             ActionsManager.Instance.OnPlayerTurnEnded += EndPlayerTurn;
             ActionsManager.Instance.OnCharacterDamageTaken += CharacterDamageTaken;
             ActionsManager.Instance.OnApresentadorDamageTaken += ApresentadorDamageTaken;
-            ActionsManager.Instance.OnEnemyDamageTaken += OnDamageDealt;
         }
 
         private void OnDisable()
@@ -144,7 +149,6 @@ namespace RPG.Combat
             ActionsManager.Instance.OnCharacterDamageTaken -= CharacterDamageTaken;
             ActionsManager.Instance.OnApresentadorDamageTaken -= ApresentadorDamageTaken;
             ActionsManager.Instance.OnPreviewTileSelected -= PlaceCharacter;
-            ActionsManager.Instance.OnEnemyDamageTaken -= OnDamageDealt;
         }
 
         #region Preparation
@@ -155,7 +159,7 @@ namespace RPG.Combat
 
             if (data == null) return;
 
-            foreach(string upgradeKey in data.PurchasedUpgradeIDs)
+            foreach (string upgradeKey in data.PurchasedUpgradeIDs)
             {
                 _combatUpgrades.Add(upgradeKey);
             }
@@ -173,9 +177,42 @@ namespace RPG.Combat
             }
             else
             {
-                CharacterScriptable characterInfo = GameManager.CurrentParty[_remainingCharacters.Count];
-                CharacterSpawnInfo characterSpawnInfo = new CharacterSpawnInfo(characterInfo, position);
-                CombatFactory.InstantiateCharacter(characterSpawnInfo);
+                int characterToPlace = -1;
+                int characterCount = 0;
+
+                for(int i = 0; i < _remainingCharacters.Count; i ++)
+                {
+                    if (!_remainingCharacters[i].gameObject.activeSelf)
+                    {
+                        if(characterToPlace == -1)
+                        {
+                            characterToPlace = i;
+                        }
+                        characterCount++;
+                    }
+                }
+
+                if(characterToPlace != -1)
+                {
+                    CharacterController character = _remainingCharacters[characterToPlace];
+                    character.gameObject.SetActive(true);
+                    character.Movement.Teleport(DirectionEnum.Up, position);
+                    character.TileObject.UpdatePosition();
+                    ActionsManager.Instance.OnCharacterCreated?.Invoke(character);
+                    characterCount--;
+
+                    if(characterCount == 0)
+                    {
+                        ActionsManager.Instance.OnPreviewTileSelected -= PlaceCharacter;
+                        _characterPlacementUIPreview.DisablePlacement();
+                    }
+                }
+                else
+                {
+                    CharacterScriptable characterInfo = GameManager.CurrentParty[_remainingCharacters.Count];
+                    CharacterSpawnInfo characterSpawnInfo = new CharacterSpawnInfo(characterInfo, position);
+                    CombatFactory.InstantiateCharacter(characterSpawnInfo);
+                }
             }
 
         }
@@ -221,7 +258,7 @@ namespace RPG.Combat
 
         private void OnCharacterClicked(CharacterController selectedCharacter)
         {
-            if (_hasCombatEnded || !_hasCombatStarted)
+            if (_hasCombatEnded || !_hasCombatStarted || _characterPlacementUIPreview.gameObject.activeSelf)
             {
 
             }
@@ -273,14 +310,11 @@ namespace RPG.Combat
                 _currentTurnState = CombatTurnStateEnum.EnemyTurn;
                 ActionsManager.Instance.OnEnemyTurnStarted?.Invoke();
 
-                if(_damageDealt > 0)
-                    Apresentador.Heal(_damageDealt / 10);
-
                 StartEnemyTurn();
             }
             else if (_currentTurnState == CombatTurnStateEnum.EnemyTurn)
             {
-                _damageDealt = 0;
+                _healAmount = 0;
 
                 ActionsManager.Instance.OnEnemyTurnEnded?.Invoke();
                 _currentTurnState = CombatTurnStateEnum.PlayerTurn;
@@ -314,7 +348,7 @@ namespace RPG.Combat
 
         private IEnumerator CombatInitializeCoroutine()
         {
-            if(GameManager.SelectedLevel == GameManager.BossFightLevel)
+            if (GameManager.SelectedLevel == GameManager.BossFightLevel)
             {
                 yield return StartCoroutine(BossFightStartCutscene());
             }
@@ -352,8 +386,17 @@ namespace RPG.Combat
             _canSelectCharacter = true;
             _isActionInProgress = false;
 
+            if (_healAmount > 0)
+            {
+                Apresentador.Heal(_healAmount);
+                _healAmount = 0;
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            
 
             CheckEndPlayerTurn();
+
 
         }
 
@@ -429,6 +472,7 @@ namespace RPG.Combat
             if (_remainingCharacters.Contains(character))
             {
                 _remainingCharacters.Remove(character);
+                _defeatedCharacters.Add(character);
             }
 
             CheckPlayerLost();
@@ -448,7 +492,7 @@ namespace RPG.Combat
             _hasCombatEnded = true;
 
             //TO DO remover depois
-            GameManager.ChangeScene(ScenesEnum.Lose);
+            GameManager.ChangeScene(ScenesEnum.MainMenu);
         }
 
         private void CheckPlayerWon()
@@ -456,6 +500,39 @@ namespace RPG.Combat
             if (WaveManager.AreAllWavesSpawned && _remainingEnemies.Count == 0)
             {
                 WinCombat();
+            }
+        }
+
+        public bool CheckPlayerRevive()
+        {
+            List<CharacterController> defeatedCharactersCopy = new List<CharacterController>(_defeatedCharacters);
+            foreach (CharacterController character in defeatedCharactersCopy)
+            {
+                if (_apresentador.CurrentMotivation >= CombatConstants.MAX_MOTIVATION_APRESENTADOR - character.CurrentMotivation)
+                {
+                    RevivePlayer(character);
+                }
+            }
+
+            return defeatedCharactersCopy.Count != _defeatedCharacters.Count;
+        }
+
+        private void RevivePlayer(CharacterController character)
+        {
+            if (_defeatedCharacters.Contains(character))
+            {
+                _remainingCharacters.Add(character);
+                _defeatedCharacters.Remove(character);
+                ActionsManager.Instance.OnCharacterRevived?.Invoke(character);
+
+                if(!_characterPlacementUIPreview.gameObject.activeSelf)
+                {
+                    ActionsManager.Instance.OnPreviewTileSelected += PlaceCharacter;
+                }
+
+                _characterPlacementUIPreview.gameObject.SetActive(true);
+                _characterPlacementUIPreview.AddCharacter(character.CharacterInfo);
+                _characterPlacementUIPreview.EnablePlacement();
             }
         }
 
@@ -517,7 +594,7 @@ namespace RPG.Combat
         {
             for (int i = 0; i < _remainingEnemies.Count; i++)
             {
-                if(hideInFirstRow || _remainingEnemies[i].Position.y != 0)
+                if (hideInFirstRow || _remainingEnemies[i].Position.y != 0)
                     _remainingEnemies[i].Preview.HidePreview();
             }
         }
@@ -540,9 +617,14 @@ namespace RPG.Combat
             CheckPlayerWon();
         }
 
-        private void OnDamageDealt(EnemyController enemy, float damage)
+        public void HealCharge(StageEntityController user, float healAmount)
         {
-            _damageDealt += Mathf.Abs(damage);
+            bool isOnSpotlight = user.TileObject.IsOnSpotlight;
+            if (isOnSpotlight)
+            {
+                healAmount *= 1.25f;
+            }
+            _healAmount += Mathf.Abs(healAmount);
         }
 
         #endregion

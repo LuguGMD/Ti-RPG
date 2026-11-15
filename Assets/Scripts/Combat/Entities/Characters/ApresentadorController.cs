@@ -146,6 +146,8 @@ namespace RPG.Combat
             _currentMotivation += heal;
             _currentMotivation = Mathf.Clamp(_currentMotivation, 0, CombatConstants.MAX_MOTIVATION_APRESENTADOR);
 
+            CombatManager.Instance.CheckPlayerRevive();
+
             ActionsManager.Instance.OnApresentadorHealed?.Invoke(_currentMotivation - previousMotivation);
         }
 

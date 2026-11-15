@@ -29,7 +29,7 @@ namespace RPG.Combat.UI
         private void OnEnable()
         {
             ActionsManager.Instance.OnCharacterCreated += AddCharacter;
-            ActionsManager.Instance.OnCharacterDefeated += RemoveCharacter;
+            ActionsManager.Instance.OnCharacterDefeated += DemotivateCharacter;
             ActionsManager.Instance.OnCharacterDamageTaken += UpdateCharacterHealth;
             ActionsManager.Instance.OnCharacterHealed += UpdateCharacterHealth;
             ActionsManager.Instance.OnApresentadorDamageTaken += UpdateApresentadorDamage;
@@ -42,7 +42,7 @@ namespace RPG.Combat.UI
         private void OnDisable()
         {
             ActionsManager.Instance.OnCharacterCreated -= AddCharacter;
-            ActionsManager.Instance.OnCharacterDefeated -= RemoveCharacter;
+            ActionsManager.Instance.OnCharacterDefeated -= DemotivateCharacter;
             ActionsManager.Instance.OnCharacterDamageTaken -= UpdateCharacterHealth;
             ActionsManager.Instance.OnCharacterHealed -= UpdateCharacterHealth;
             ActionsManager.Instance.OnApresentadorDamageTaken -= UpdateApresentadorDamage;
@@ -54,12 +54,36 @@ namespace RPG.Combat.UI
 
         private void AddCharacter(CharacterController character)
         {
+            if (_characterSliders.ContainsKey(character))
+            {
+                MotivateCharacter(character);
+                return;
+            }
+
             CharacterMotivationSlider motivationSlider = Instantiate<CharacterMotivationSlider>(_motivationBarPrefab, _motivationBarContainer);
             motivationSlider.SetInfo(character);
 
             _characterSliders.Add(character, motivationSlider);
 
             UpdateCharacterHealth(character);
+        }
+
+        private void DemotivateCharacter(CharacterController character)
+        {
+            if (_characterSliders.ContainsKey(character))
+            {
+                _characterSliders[character].SetInfo(character);
+                _characterSliders[character].Demotivate();
+            }
+        }
+
+        private void MotivateCharacter(CharacterController character)
+        {
+            if (_characterSliders.ContainsKey(character))
+            {
+                _characterSliders[character].Motivate();
+                _characterSliders[character].SetInfo(character);
+            }
         }
 
         private void RemoveCharacter(CharacterController character)

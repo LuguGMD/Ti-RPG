@@ -27,18 +27,26 @@ namespace RPG.Combat.Actions
         public override IEnumerator Execute(PreviewTileInfo selectedPreviewTile)
         {
             PreviewTileInfo root = PreviewTileInfo.GetRoot(selectedPreviewTile);
+            bool didHit = false;
 
             do
             {
                 _user.TileObject.SetDirection(root.Direction);
                 foreach(Effect effect in _effects)
                 {
-                    effect.Execute(_user);
+                    if (effect.Execute(_user))
+                    {
+                        didHit = true;
+                    }
                 }
                 yield return _user.Movement.Move(new Movement(root.Direction, true), 1);
                 root = root.Child;
             } while (root != null);
 
+            if (didHit)
+            {
+                CombatManager.Instance.HealCharge(_user, (_user.Info as CharacterScriptable).HealAmount);
+            }
         }
 
         public override List<PreviewTileInfo> Preview()
