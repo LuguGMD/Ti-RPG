@@ -1,4 +1,5 @@
-void MainLight_float(float3 WorldPosition, float3 Normals, out float HalfLambert, out float3 Color, out float ShadowAtten)
+void MainLight_float(float3 WorldPosition, float3 Normals,
+                    out float HalfLambert, out float3 Color, out float ShadowAtten)
 {
 
 #ifdef SHADERGRAPH_PREVIEW

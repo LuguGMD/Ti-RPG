@@ -1,3 +1,4 @@
+using RPG.Audio;
 using RPG.Combat.Actions;
 using RPG.Combat.Preview;
 using RPG.Management.Progression;
@@ -47,6 +48,7 @@ namespace RPG.Combat
         {
             base.OnDisable();
             ActionsManager.Instance.OnApresentadorDamageTaken -= OnApresentadorDamaged;
+            AudioManager.Instance.SetParamenter(_characterInfo.FmodParameterName, 0f);
         }
 
         private void Initialize()

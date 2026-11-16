@@ -137,18 +137,21 @@ namespace RPG.Audio
         {
             string paramName = character.CharacterInfo.FmodParameterName;
 
-            if (string.IsNullOrEmpty(paramName)) return;
-
-            RuntimeManager.StudioSystem.setParameterByName(paramName, 1f);
+            SetParamenter(paramName, 1f);
         }
 
         private void CharacterDefeated(CharacterController character)
         {
             string paramName = character.CharacterInfo.FmodParameterName;
 
+            SetParamenter(paramName, 0f);
+        }
+
+        public void SetParamenter(string paramName, float value)
+        {
             if (string.IsNullOrEmpty(paramName)) return;
 
-            RuntimeManager.StudioSystem.setParameterByName(paramName, 0f);
+            RuntimeManager.StudioSystem.setParameterByName(paramName, value);
         }
 
         public void Save()

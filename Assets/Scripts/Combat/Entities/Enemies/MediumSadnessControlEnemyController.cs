@@ -35,7 +35,7 @@ namespace RPG.Combat
                 InitCombatActions();
             }
 
-            if (!_wasDamaged || _actionTargets != null)
+            if (!_wasDamaged)
             {
 
                 SelectAction(0);
@@ -93,6 +93,7 @@ namespace RPG.Combat
         {
             base.TakeDamage(damage);
             _wasDamaged = true;
+            PrepareAction();
         }
     }
 }

@@ -2472,7 +2472,7 @@ PrefabInstance:
     - target: {fileID: 6353857453689576970, guid: 48e63c7cd934ec74ca3ff7573f4af5da, type: 3}
       propertyPath: _selectedLevel
       value: 
-      objectReference: {fileID: 11400000, guid: b45db701fc957124ebea2c9ff3c24524, type: 2}
+      objectReference: {fileID: 11400000, guid: 7903219be4fe6954f802f3a176b44f75, type: 2}
     - target: {fileID: 6353857453689576970, guid: 48e63c7cd934ec74ca3ff7573f4af5da, type: 3}
       propertyPath: _currentParty.Array.size
       value: 3
@@ -3083,6 +3083,13 @@ MonoBehaviour:
       Data3: 1730400188
       Data4: 1738563776
     Path: event:/Environment/Music/Battle
+  bossMusic:
+    Guid:
+      Data1: 1177312722
+      Data2: 1287700127
+      Data3: 1241563039
+      Data4: -1228620777
+    Path: event:/Environment/Music/Boss
 --- !u!4 &525276434
 Transform:
   m_ObjectHideFlags: 0
@@ -6583,6 +6590,10 @@ PrefabInstance:
     - target: {fileID: 4517775429937424559, guid: 81693da597ca4d1449d7f90399596854, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -30.000122
+      objectReference: {fileID: 0}
+    - target: {fileID: 4517775429937424559, guid: 81693da597ca4d1449d7f90399596854, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -16
       objectReference: {fileID: 0}
     - target: {fileID: 4620194390896004117, guid: 81693da597ca4d1449d7f90399596854, type: 3}
       propertyPath: m_Pivot.x

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RPG
 {
-    public class CharacterVFXHandler : MonoBehaviour
+    public class CharacterVFXController : MonoBehaviour
     {
         [SerializeField] GameObject trailObject;
 

@@ -14,6 +14,7 @@ namespace RPG.Combat
         [ColorUsage(false, false)] [SerializeField] private Color _entitySecondaryColor = Color.white;
         [SerializeField] private Color _entityUIColor = Color.white;
         [SerializeField] private Color _entityPlacementPreviewColor = Color.white;
+        [SerializeField] private Texture2D _entityVfxColorPalette;
 
         #region Properties
 
@@ -26,6 +27,7 @@ namespace RPG.Combat
         public Color EntitySecondaryColor => _entitySecondaryColor;
         public Color EntityUIColor => _entityUIColor;
         public Color EntityPlacementPreviewColor => _entityPlacementPreviewColor;
+        public Texture2D EntityVfxColorPalette => _entityVfxColorPalette;
 
         #endregion
     }
