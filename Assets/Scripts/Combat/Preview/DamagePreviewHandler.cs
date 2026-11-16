@@ -18,15 +18,23 @@ namespace RPG.Combat.Preview
 
         private Sprite _damageSprite;
         private Sprite _damageOutlineSprite;
-        private bool _spritesCached = false;
+        private Vector3 _baseLocalPosition;
+        private Vector3 _baseLocalScale;
+        private bool _initialized = false;
+
+        private GameObject _healObject;
+        private SpriteRenderer _healEffectSprite;
+        private SpriteRenderer _healEffectOutlineSprite;
 
         public void Init(ActionPreviewTile parentTile, ActionPreviewTile actionTile)
         {
-            if (!_spritesCached)
+            if (!_initialized)
             {
                 _damageSprite = _effectSprite.sprite;
                 _damageOutlineSprite = _effectOutlineSprite.sprite;
-                _spritesCached = true;
+                _baseLocalPosition = transform.localPosition;
+                _baseLocalScale = transform.localScale;
+                _initialized = true;
             }
 
             _effectSprite.color = parentTile.Color;
@@ -34,36 +42,97 @@ namespace RPG.Combat.Preview
             _parentTile = parentTile;
             _actionTile = actionTile;
 
-            CheckHits(out bool hitsHeal, out bool hitsDamage, out bool onlyHeals);
+            CheckHits(out bool hasHeal, out bool hasDamage, out bool hitsHeal, out bool hitsDamage);
 
-            bool showHeal = hitsHeal || (!hitsDamage && onlyHeals);
+            bool canShowHeal = _healSprite != null && _healOutlineSprite != null;
 
-            bool useHealSprites = showHeal && _healSprite != null && _healOutlineSprite != null;
-            _effectSprite.sprite = useHealSprites ? _healSprite : _damageSprite;
-            _effectOutlineSprite.sprite = useHealSprites ? _healOutlineSprite : _damageOutlineSprite;
-
-            _effectSprite.enabled = hitsHeal || hitsDamage;
+            if (hasHeal && hasDamage && canShowHeal)
+            {
+                ShowBoth(hitsHeal, hitsDamage);
+            }
+            else if (hasHeal && canShowHeal)
+            {
+                ShowSingle(_healSprite, _healOutlineSprite, hitsHeal);
+            }
+            else
+            {
+                ShowSingle(_damageSprite, _damageOutlineSprite, hitsDamage);
+            }
         }
 
-        private void CheckHits(out bool hitsHeal, out bool hitsDamage, out bool onlyHeals)
+        private void ShowSingle(Sprite fill, Sprite outline, bool isHitting)
         {
+            ResetLayout();
+
+            _effectSprite.sprite = fill;
+            _effectOutlineSprite.sprite = outline;
+            _effectSprite.enabled = isHitting;
+        }
+
+        private void ShowBoth(bool hitsHeal, bool hitsDamage)
+        {
+            CreateHealObject();
+
+            _effectSprite.sprite = _damageSprite;
+            _effectOutlineSprite.sprite = _damageOutlineSprite;
+            _effectSprite.enabled = hitsDamage;
+
+            _healEffectSprite.sprite = _healSprite;
+            _healEffectOutlineSprite.sprite = _healOutlineSprite;
+            _healEffectSprite.color = _effectSprite.color;
+            _healEffectOutlineSprite.color = _effectOutlineSprite.color;
+            _healEffectSprite.enabled = hitsHeal;
+
+            float width = _damageSprite.bounds.size.x;
+            transform.localScale = _baseLocalScale * 0.5f;
+            transform.localPosition = _baseLocalPosition - Vector3.right * (width * _baseLocalScale.x * 0.25f);
+
+            _healObject.transform.localPosition = new Vector3(width, 0f, 0f);
+            _healObject.SetActive(true);
+        }
+
+        private void ResetLayout()
+        {
+            transform.localScale = _baseLocalScale;
+            transform.localPosition = _baseLocalPosition;
+
+            if (_healObject != null)
+                _healObject.SetActive(false);
+        }
+
+        private void CreateHealObject()
+        {
+            if (_healObject != null) return;
+
+            _healObject = Instantiate(_effectSprite.gameObject, transform);
+            _healObject.name = "HealPreview";
+            Destroy(_healObject.GetComponent<DamagePreviewHandler>());
+
+            _healObject.transform.localRotation = Quaternion.identity;
+            _healObject.transform.localScale = Vector3.one;
+
+            SpriteRenderer[] renderers = _healObject.GetComponentsInChildren<SpriteRenderer>(true);
+            _healEffectSprite = renderers[0];
+            _healEffectOutlineSprite = renderers[1];
+        }
+
+        private void CheckHits(out bool hasHeal, out bool hasDamage, out bool hitsHeal, out bool hitsDamage)
+        {
+            hasHeal = false;
+            hasDamage = false;
             hitsHeal = false;
             hitsDamage = false;
-            onlyHeals = false;
 
             if (_parentTile.Info == null) return;
 
-            List<Effect> effects = _parentTile.Info.Effects;
-            if (effects.Count == 0) return;
-
-            onlyHeals = true;
             Tile tile = MapManager.Map.GetTile(_actionTile.TilePosition);
             bool occupied = tile != null && tile.IsOccupied;
 
-            foreach (Effect effect in effects)
+            foreach (Effect effect in _parentTile.Info.Effects)
             {
                 bool isHeal = IsHealEffect(effect);
-                if (!isHeal) onlyHeals = false;
+                if (isHeal) hasHeal = true;
+                else hasDamage = true;
 
                 if (!occupied) continue;
 
