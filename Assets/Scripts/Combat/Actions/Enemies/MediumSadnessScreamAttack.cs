@@ -29,7 +29,7 @@ namespace RPG.Combat.Actions
         public override IEnumerator Execute(PreviewTileInfo selectedPreviewTile)
         {
             AudioManager.Instance.PlayOneShot(_attackSFX);
-            yield return new WaitForSeconds(0.3f / CombatManager.CombatSpeed);
+            yield return new WaitForSeconds(1f / CombatManager.CombatSpeed);
 
             CombatManager.Instance.CameraShake(shakeCameraForce);
 

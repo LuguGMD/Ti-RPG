@@ -55,6 +55,7 @@ namespace RPG.Combat
         private List<CharacterController> _usedCharacters = new List<CharacterController>();
         private bool _canSelectCharacter = true;
 
+        private EnemyController _attackingEnemy;
         private List<EnemyController> _remainingEnemies = new List<EnemyController>();
         private List<CharacterController> _remainingCharacters = new List<CharacterController>();
         private List<CharacterController> _defeatedCharacters = new List<CharacterController>();
@@ -79,7 +80,9 @@ namespace RPG.Combat
         public static int TurnCount { get { return Instance._turnCount; } }
         public static float CombatSpeed { get { return Instance._combatSpeed; } }
         public static ApresentadorController Apresentador { get { return Instance._apresentador; } }
+        public static CharacterController SelectedCharacter { get { return Instance._selectedCharacter; } }
         public static bool HasCombatStarted { get { return Instance._hasCombatStarted; } }
+        public static EnemyController AttackingEnemy { get  { return Instance._attackingEnemy; } }
         public static List<EnemyController> RemainingEnemies { get { return Instance._remainingEnemies; } }
         public static List<CharacterController> RemainingCharacters { get { return Instance._remainingCharacters; } }
         public static bool IsActionInProgress { get { return Instance._isActionInProgress; } }
@@ -489,7 +492,7 @@ namespace RPG.Combat
             _hasCombatEnded = true;
 
             //TO DO remover depois
-            GameManager.ChangeScene(ScenesEnum.Lose);
+            GameManager.ChangeScene(ScenesEnum.MainMenu);
         }
 
         private void CheckPlayerWon()
@@ -555,6 +558,7 @@ namespace RPG.Combat
             {
                 if (!_hasCombatEnded)
                 {
+                    _attackingEnemy = _remainingEnemies[i];
                     yield return CombatCameraDirector.FocusEntity(_remainingEnemies[i]);
                     yield return _remainingEnemies[i].UsePreparedAction();
                     yield return new WaitForSeconds(0.1f / _combatSpeed);

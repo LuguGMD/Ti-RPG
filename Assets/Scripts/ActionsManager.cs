@@ -32,6 +32,7 @@ namespace RPG
         public Action<float> OnApresentadorHealed;
         public Action OnSpotlightSuperStarted;
         public Action OnSpotlightSuperEnded;
+        public Action<int> OnPushSuperActivated;
 
         public Action OnApresentadorActionCompleted;
         public Action OnApresentadorActionCanceled;

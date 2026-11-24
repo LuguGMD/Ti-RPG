@@ -1,6 +1,7 @@
 using FMODUnity;
 using RPG.Audio;
 using RPG.Combat.Actions.Effects;
+using RPG.Combat.Grid;
 using RPG.Combat.Preview;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,6 +27,13 @@ namespace RPG.Combat.Actions
             PreviewTileInfo root = PreviewTileInfo.GetRoot(selectedPreviewTile);
 
             AudioManager.Instance.PlayOneShot(_attackSFX);
+
+            Vector2Int targetTile = _user.Position + selectedPreviewTile.RelativePosition;
+            Vector3 targetPos = MapManager.Instance.GetWorldPosition(targetTile);
+            targetPos.y = _user.transform.position.y;
+
+            _user.transform.LookAt(targetPos);
+
             do
             {
                 yield return new WaitForSeconds(0.9f / CombatManager.CombatSpeed);
@@ -56,8 +64,18 @@ namespace RPG.Combat.Actions
             downright = new PreviewTileInfo(Vector2Int.down + Vector2Int.right, Grid.DirectionEnum.DownRight, true, alwaysShowEffect: true);
             downright.Effects.Add(previewEffect);
 
-            if (CombatManager.TurnCount % 2 == 0) firstSteps.Add(downLeft);
-            if (CombatManager.TurnCount % 2 == 1) firstSteps.Add(downright);
+            if (CombatManager.TurnCount % 2 == 0)
+            {
+                firstSteps.Add(downLeft);
+                _effects[0].Area[0] = new Vector2Int(-1, -1);
+                _effects[1].Area[0] = new Vector2Int(-1, -1);
+            }
+            if (CombatManager.TurnCount % 2 == 1)
+            {
+                firstSteps.Add(downright);
+                _effects[0].Area[0] = new Vector2Int(1, -1);
+                _effects[1].Area[0] = new Vector2Int(1, -1);
+            }
 
             return firstSteps;
         }

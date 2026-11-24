@@ -20,7 +20,7 @@ namespace RPG.Combat
 
         public static EnemyController InstantiateEnemy(EnemySpawnInfo spawnInfo)
         {
-            Vector2Int spawnPos = new Vector2Int(spawnInfo.SpawnPosition, Map.Rows - 1);
+            Vector2Int spawnPos = new Vector2Int(spawnInfo.SpawnPosition, spawnInfo.SpawnRow);
             Tile spawnTile = MapManager.Map.GetTile(spawnPos);
 
             EnemyController enemyInstance = null;

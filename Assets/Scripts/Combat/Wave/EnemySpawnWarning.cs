@@ -23,7 +23,7 @@ namespace RPG.Combat.Wave
         {
             _spawnInfo = spawnInfo;
 
-            Vector2Int spawnTilePos = new Vector2Int(spawnInfo.SpawnPosition, Map.Rows - 1);
+            Vector2Int spawnTilePos = new Vector2Int(spawnInfo.SpawnPosition, spawnInfo.SpawnRow);
             Vector3 spawnWorldPos = MapManager.Instance.GetWorldPosition(spawnTilePos);
 
             spawnWorldPos += spawnWorldPos.normalized * SPAWN_DISTANCE;
