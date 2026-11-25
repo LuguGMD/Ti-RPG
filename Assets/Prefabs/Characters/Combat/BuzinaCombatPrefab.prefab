@@ -165,6 +165,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BuzinaCombatPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1859410682183151354, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      propertyPath: _effect
+      value: 
+      objectReference: {fileID: 4104832421702224495}
     - target: {fileID: 6643821856034087941, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -63.29
@@ -307,7 +311,10 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6643821856034087941, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
-      insertIndex: 0
+      insertIndex: -1
+      addedObject: {fileID: 5397604072232021087}
+    - targetCorrespondingSourceObject: {fileID: 6643821856034087941, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 4386819331686744177}
     - targetCorrespondingSourceObject: {fileID: 6643821856034087941, guid: 3a175659b9c86f040bd1540377822dc8, type: 3}
       insertIndex: -1
@@ -417,6 +424,73 @@ MonoBehaviour:
         Data3: 522345659
         Data4: 1281499532
       Path: event:/Character/Player/Buzina/BuzinaMotorAttack
+--- !u!1001 &7837599008624699933
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1678047081122411078}
+    m_Modifications:
+    - target: {fileID: 2750743397203445314, guid: fe8f6c0bafe330140b2a11f775de01cd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750743397203445314, guid: fe8f6c0bafe330140b2a11f775de01cd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750743397203445314, guid: fe8f6c0bafe330140b2a11f775de01cd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750743397203445314, guid: fe8f6c0bafe330140b2a11f775de01cd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750743397203445314, guid: fe8f6c0bafe330140b2a11f775de01cd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750743397203445314, guid: fe8f6c0bafe330140b2a11f775de01cd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750743397203445314, guid: fe8f6c0bafe330140b2a11f775de01cd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750743397203445314, guid: fe8f6c0bafe330140b2a11f775de01cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750743397203445314, guid: fe8f6c0bafe330140b2a11f775de01cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2750743397203445314, guid: fe8f6c0bafe330140b2a11f775de01cd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4072193620613649046, guid: fe8f6c0bafe330140b2a11f775de01cd, type: 3}
+      propertyPath: m_Name
+      value: BuffBuzinaVFX
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fe8f6c0bafe330140b2a11f775de01cd, type: 3}
+--- !u!198 &4104832421702224495 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6067463135631384690, guid: fe8f6c0bafe330140b2a11f775de01cd, type: 3}
+  m_PrefabInstance: {fileID: 7837599008624699933}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5397604072232021087 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2750743397203445314, guid: fe8f6c0bafe330140b2a11f775de01cd, type: 3}
+  m_PrefabInstance: {fileID: 7837599008624699933}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8149437047668854543
 PrefabInstance:
   m_ObjectHideFlags: 0

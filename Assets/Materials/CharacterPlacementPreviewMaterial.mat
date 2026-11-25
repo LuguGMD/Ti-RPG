@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SpotlightBuffFresnelYellowMaterial
+  m_Name: CharacterPlacementPreviewMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 6b398787169d37e4ca5efa9431fa2c36, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -41,10 +41,12 @@ Material:
     - _Fresnel_Intensity: 0
     - _Fresnel_Power: 1
     - _Fresnel_Strength: 0.76
+    - _Pulse_Duration: 1.5
     - _QueueControl: 0
     - _QueueOffset: 2
     m_Colors:
     - _Color: {r: 0.99215686, g: 0.44705883, b: 0.078431375, a: 1}
+    - _Pulse_Range: {r: 0.8, g: 1, b: 0, a: 0}
     - _Smoothstep_Edges: {r: 0, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

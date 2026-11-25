@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SpotlightBuffFresnelBlueMaterial
+  m_Name: StageEntitySpotlightHighlightMaterial
   m_Shader: {fileID: -6465566751694194690, guid: 6b398787169d37e4ca5efa9431fa2c36, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -39,13 +39,18 @@ Material:
     m_Ints: []
     m_Floats:
     - _Fresnel_Intensity: 0
-    - _Fresnel_Power: 1
+    - _Fresnel_Power: 0.8
     - _Fresnel_Strength: 0.76
+    - _Pulse_Duration: 1.2
+    - _Pulse_Scale: 0.2
+    - _Pulse_Strength: 10.36
+    - _Pulse_Vertical_Speed: -0.5
     - _QueueControl: 0
     - _QueueOffset: 2
     m_Colors:
-    - _Color: {r: 0.9764706, g: 1, b: 0.21568628, a: 1}
-    - _Smoothstep_Edges: {r: 0, g: 1, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Pulse_Range: {r: 0, g: 0, b: 0, a: 0}
+    - _Smoothstep_Edges: {r: 0, g: 0.9, b: 0, a: 0}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &81928197604444555
