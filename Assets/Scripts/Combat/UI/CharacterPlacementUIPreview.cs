@@ -20,7 +20,7 @@ namespace RPG.Combat.UI
         {
             _previewMaterial = new Material(_previewMaterial);
             _previewMaterial.SetFloat("_Fresnel_Intensity", 1);
-            _previewMaterial.SetFloat("_Fresnel_Power", 0.2f);
+            _previewMaterial.SetVector("_Pulse_Range", new Vector2(0.2f, 0.2f));
 
             for (int i = 0; i < GameManager.CurrentParty.Length; i++)
             {

@@ -1,5 +1,72 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1453679117210337464
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4762662811176377611}
+    m_Modifications:
+    - target: {fileID: 2642412705190855965, guid: f39b14fceb20e5f40bd9396ca4c12ebd, type: 3}
+      propertyPath: m_Name
+      value: BuffAngerEnemyVFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 4180589862421303753, guid: f39b14fceb20e5f40bd9396ca4c12ebd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4180589862421303753, guid: f39b14fceb20e5f40bd9396ca4c12ebd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4180589862421303753, guid: f39b14fceb20e5f40bd9396ca4c12ebd, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4180589862421303753, guid: f39b14fceb20e5f40bd9396ca4c12ebd, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4180589862421303753, guid: f39b14fceb20e5f40bd9396ca4c12ebd, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4180589862421303753, guid: f39b14fceb20e5f40bd9396ca4c12ebd, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4180589862421303753, guid: f39b14fceb20e5f40bd9396ca4c12ebd, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4180589862421303753, guid: f39b14fceb20e5f40bd9396ca4c12ebd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4180589862421303753, guid: f39b14fceb20e5f40bd9396ca4c12ebd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4180589862421303753, guid: f39b14fceb20e5f40bd9396ca4c12ebd, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f39b14fceb20e5f40bd9396ca4c12ebd, type: 3}
+--- !u!4 &3326173444613165425 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4180589862421303753, guid: f39b14fceb20e5f40bd9396ca4c12ebd, type: 3}
+  m_PrefabInstance: {fileID: 1453679117210337464}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &6644953740812449601 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5195781006392473593, guid: f39b14fceb20e5f40bd9396ca4c12ebd, type: 3}
+  m_PrefabInstance: {fileID: 1453679117210337464}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6733165682577605257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35,7 +102,7 @@ PrefabInstance:
     - target: {fileID: 2254082721022081560, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 18f98f679e5528246a7961ebdb8e431b, type: 2}
+      objectReference: {fileID: 2100000, guid: 61b1311d00483074ba93cf89bbbd2f57, type: 2}
     - target: {fileID: 2263448127493250946, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.29138583
@@ -76,6 +143,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2549864934641695436, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      propertyPath: _effect
+      value: 
+      objectReference: {fileID: 6644953740812449601}
     - target: {fileID: 4579346334011412139, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -107,7 +178,7 @@ PrefabInstance:
     - target: {fileID: 4938950253073047814, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 18f98f679e5528246a7961ebdb8e431b, type: 2}
+      objectReference: {fileID: 2100000, guid: 61b1311d00483074ba93cf89bbbd2f57, type: 2}
     - target: {fileID: 4951601983924896297, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -135,7 +206,7 @@ PrefabInstance:
     - target: {fileID: 5241189218253534236, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 18f98f679e5528246a7961ebdb8e431b, type: 2}
+      objectReference: {fileID: 2100000, guid: 61b1311d00483074ba93cf89bbbd2f57, type: 2}
     - target: {fileID: 5396384309186746868, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -147,7 +218,7 @@ PrefabInstance:
     - target: {fileID: 5396384309186746868, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 18f98f679e5528246a7961ebdb8e431b, type: 2}
+      objectReference: {fileID: 2100000, guid: 61b1311d00483074ba93cf89bbbd2f57, type: 2}
     - target: {fileID: 5485664810640689869, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -223,7 +294,7 @@ PrefabInstance:
     - target: {fileID: 7059850330399307596, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 18f98f679e5528246a7961ebdb8e431b, type: 2}
+      objectReference: {fileID: 2100000, guid: 61b1311d00483074ba93cf89bbbd2f57, type: 2}
     - target: {fileID: 7148843926018321829, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -247,7 +318,7 @@ PrefabInstance:
     - target: {fileID: 7520457689752852223, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: 'm_Materials.Array.data[1]'
       value: 
-      objectReference: {fileID: 2100000, guid: 18f98f679e5528246a7961ebdb8e431b, type: 2}
+      objectReference: {fileID: 2100000, guid: 61b1311d00483074ba93cf89bbbd2f57, type: 2}
     - target: {fileID: 7645532542050713006, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       propertyPath: m_Materials.Array.size
       value: 2
@@ -346,7 +417,11 @@ PrefabInstance:
     - {fileID: 131815800724074195, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
     - {fileID: 5442635008504069958, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
     - {fileID: 2744782331801291981, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
-    m_AddedGameObjects: []
+    - {fileID: 2020971971912282338, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2263448127493250946, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3326173444613165425}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6108933886631140461, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
       insertIndex: 1
@@ -421,6 +496,11 @@ MonoBehaviour:
         Data3: -1551870839
         Data4: -1019038061
       Path: event:/Character/Enemy/Attack
+--- !u!4 &4762662811176377611 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2263448127493250946, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
+  m_PrefabInstance: {fileID: 6733165682577605257}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7846928881895837288 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3572734107941342433, guid: 5cfb3cb0d7fe3944b821f3acac15b803, type: 3}
@@ -438,3 +518,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da26bd876c59f042a8a888050c49b09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RPG.CharacterVFXHandler
+  trailObject: {fileID: 0}
