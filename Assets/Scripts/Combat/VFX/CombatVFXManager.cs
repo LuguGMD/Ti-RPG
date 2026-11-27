@@ -11,6 +11,7 @@ namespace RPG.Combat.VFX
         [SerializeField] GameObject hitVFXPrefab;
         [SerializeField] GameObject spotlightPreviousPositionPrefab;
         [SerializeField] GameObject[] pushSuperVFXPrefabs;
+        [SerializeField] GameObject holdLineVFXPrefab;
 
         CharacterController selectedCharacter;
         GameObject spotlightPreviousPosition;
@@ -52,10 +53,13 @@ namespace RPG.Combat.VFX
             ActionsManager.Instance.OnApresentadorSelected += PlayApresentadorSelectionEffect;
             ActionsManager.Instance.OnApresentadorUIClose += UnLockApresentadorOutline;
 
-            // Spotlight Super
+            // Supers
             ActionsManager.Instance.OnSpotlightSuperStarted += AddSpotlightSuperPreview;
             ActionsManager.Instance.OnSpotlightSuperEnded += RemoveSpotlightSuperPreview;
             ActionsManager.Instance.OnPushSuperActivated += PlayPushSuperVFX;
+
+            // Hold Line VFX
+            ActionsManager.Instance.OnMapLineStuck += PlayHoldLineVFX;
         }
 
         void OnDisable()
@@ -94,6 +98,9 @@ namespace RPG.Combat.VFX
             ActionsManager.Instance.OnSpotlightSuperStarted -= AddSpotlightSuperPreview;
             ActionsManager.Instance.OnSpotlightSuperEnded -= RemoveSpotlightSuperPreview;
             ActionsManager.Instance.OnPushSuperActivated -= PlayPushSuperVFX;
+
+            // Hold Line VFX
+            ActionsManager.Instance.OnMapLineStuck -= PlayHoldLineVFX;
         }
 
         #region Spawn VFX
@@ -237,5 +244,12 @@ namespace RPG.Combat.VFX
             apresentadorAvailableActionVFX.PlaySelectionEffect();
         }
         #endregion
+
+        void PlayHoldLineVFX(int line)
+        {
+            Debug.Log(line);
+            EnemyController enemy = CombatManager.AttackingEnemy;
+            Instantiate(holdLineVFXPrefab, enemy.transform.position, enemy.transform.rotation);
+        }
     }
 }
